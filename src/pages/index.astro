@@ -37,13 +37,9 @@ const translations = {
         </p>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
-      <img
-        class="hero__logo"
-        src="/logo.png"
-        width="426"
-        height="640"
-        alt="Pasadena Works"
-      />
+      <div class="hero__logo-frame craftsman-frame">
+        <img src="/logo.png" width="426" height="640" alt="Pasadena Works" />
+      </div>
     </div>
   </section>
 
@@ -55,7 +51,10 @@ const translations = {
       <p class="prose">Four services, none of them complicated. Start with whichever one is actually costing you customers.</p>
       <div class="service-grid">
         {services.map((service) => (
-          <a class="service-card" href={localeUrl('en', SEGMENTS.services.en, service.slugs.en)}>
+          <a
+            class="service-card craftsman-frame"
+            href={localeUrl('en', SEGMENTS.services.en, service.slugs.en)}
+          >
             <h3>{service.t.en.title}</h3>
             <p>{service.t.en.summary}</p>
             <span class="service-card__link">View service &rarr;</span>
@@ -81,7 +80,9 @@ const translations = {
     <div class="wrap">
       <h2>Get in touch</h2>
       <p class="prose">Tell us what's going on with your website or your Google presence. We'll respond with something specific, not a form-letter proposal.</p>
-      <ContactForm locale="en" />
+      <div class="contact-frame craftsman-frame">
+        <ContactForm locale="en" />
+      </div>
     </div>
   </section>
 </Base>
@@ -104,12 +105,19 @@ const translations = {
     min-width: 0;
   }
 
-  .hero__logo {
+  .hero__logo-frame {
     flex: 0 0 auto;
     width: min(280px, 60vw);
-    height: auto;
-    transform: rotate(-2deg);
+    padding: var(--space-3);
+    color: var(--color-bg);
+    background: var(--color-pine-dark);
     filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
+  }
+
+  .hero__logo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .hero__eyebrow {
@@ -138,24 +146,32 @@ const translations = {
   .service-card {
     display: block;
     background: var(--color-white);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius);
-    padding: var(--space-5);
+    padding: var(--space-6) var(--space-5) var(--space-5);
     text-decoration: none;
     color: var(--color-ink);
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    transition: transform 0.15s ease, color 0.15s ease;
   }
 
   .service-card:hover {
-    border-color: var(--color-accent);
+    color: var(--color-accent-dark);
     transform: translateY(-2px);
   }
 
   .service-card__link {
+    display: inline-block;
+    margin-top: var(--space-2);
     font-family: var(--font-display);
     font-size: var(--step--1);
-    font-weight: 600;
+    font-weight: 400;
     color: var(--color-accent-dark);
+  }
+
+  .contact-frame {
+    margin-top: var(--space-6);
+    padding: var(--space-6);
+    background: var(--color-white);
+    color: var(--color-ink);
+    max-width: fit-content;
   }
 
   .service-area {

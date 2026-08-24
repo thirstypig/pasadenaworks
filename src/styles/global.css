@@ -236,6 +236,32 @@ main {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+ *  CRAFTSMAN FRAME
+ *  The nested-rectangle border language from the logo: an inner border,
+ *  an outset outline, and four small corner squares standing in for the
+ *  logo's corner "windowpane" joinery blocks. Uses currentColor for the
+ *  lines, so set `color` on the element to pick a frame color per usage.
+ * ───────────────────────────────────────────────────────────────────────── */
+.craftsman-frame {
+  position: relative;
+  border: 2px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 6px;
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 7px 7px;
+  background-position:
+    -2px -2px,
+    calc(100% - 5px) -2px,
+    -2px calc(100% - 5px),
+    calc(100% - 5px) calc(100% - 5px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
  *  SKIP LINK + FOCUS
  * ───────────────────────────────────────────────────────────────────────── */
 .skip-link {
