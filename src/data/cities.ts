@@ -190,6 +190,62 @@ export const cities: City[] = [
       },
     },
   },
+  {
+    slug: 'monrovia',
+    t: {
+      en: {
+        title: 'Web design and local SEO for Monrovia businesses',
+        summary: 'Website and Google visibility work for Monrovia small businesses.',
+        body: [
+          TODO,
+          "Monrovia's Old Town district along Myrtle Avenue is a genuine draw — a walkable strip of independent shops and restaurants that pulls people in from outside the city, especially for the weekly Friday Night street fair. That kind of foot traffic makes an accurate Google Business Profile (hours, photos, whether you're actually open right now) worth more here than in a city without a comparable destination strip.",
+          "We help Monrovia business owners make sure their website and Google presence match what's actually true on Myrtle Avenue and beyond — right hours, right menu or services, easy to reach.",
+        ],
+        meta: 'Website design and local SEO for small businesses in Monrovia, CA. Built for a city where foot traffic and Google visibility both matter.',
+      },
+    },
+  },
+  {
+    slug: 'san-marino',
+    t: {
+      en: {
+        title: 'Web design and local SEO for San Marino businesses',
+        summary: 'Website and Google visibility work for the small, mostly-professional business community in San Marino.',
+        body: [
+          TODO,
+          "San Marino is small, largely residential, and doesn't have much of a commercial strip of its own — most San Marino business owners are professionals (medical, legal, financial, and similar practices) rather than retail. For that kind of business, a clear, trustworthy website and an accurate Google listing matter more than foot traffic ever will, since almost every new client finds you by searching first.",
+          "We build sites and Google presences for San Marino businesses that are built to be found by name and by service, not by walking past a storefront.",
+        ],
+        meta: 'Website design and local SEO for small businesses and practices in San Marino, CA. Built to be found by search, not foot traffic.',
+      },
+    },
+  },
+  {
+    slug: 'monterey-park',
+    t: {
+      en: {
+        title: 'Web design and local SEO for Monterey Park businesses',
+        summary:
+          'Website and Google visibility work for Monterey Park small businesses, in English or Chinese.',
+        body: [
+          TODO,
+          "Monterey Park has one of the oldest and most established Chinese-American business communities in the San Gabriel Valley, and a meaningful share of customers here search in Chinese, not English. A business whose website and Google Business Profile only exist in English is invisible to a real part of its own customer base.",
+          'We build Monterey Park business sites with real Chinese-language pages — not a Google Translate widget bolted onto an English site — plus the Google Business Profile work to match, so you show up for the customers actually searching for you.',
+        ],
+        meta: 'Website design and local SEO for small businesses in Monterey Park, CA — in English and Chinese.',
+      },
+      'zh-hans': {
+        title: '蒙特利公园（Monterey Park）商家网站设计与本地推广',
+        summary: '为蒙特利公园的小型企业提供英文和中文的网站与谷歌推广服务。',
+        body: [
+          TODO,
+          '蒙特利公园是圣盖博谷历史最悠久的华人商业社区之一，很多客人直接用中文搜索，而不是英文。如果网站和谷歌商家资料只有英文版，相当一部分客人根本看不到您。',
+          '我们为蒙特利公园的商家制作真正的中文网站——不是在英文网站上加一个谷歌翻译插件——并配合谷歌商家资料，让真正在搜索您的客人找得到您。',
+        ],
+        meta: '为蒙特利公园（Monterey Park）小型企业提供英文和中文网站设计与本地谷歌推广服务。',
+      },
+    },
+  },
 ];
 
 /** The locales a given city has real, published copy for. This is the only

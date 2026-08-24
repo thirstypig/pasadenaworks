@@ -26,7 +26,7 @@ Everything below lives in **`src/data/site.ts`** unless noted.
 | **Email and phone** | `site.ts` → `email`, `phone`, `phoneDisplay` | The phone number is a placeholder. |
 | **Service area cities** | `site.ts` → `serviceArea` | Drives the homepage list and your local search schema. |
 | **Service copy** | `src/data/services.ts` | All four services, all four languages, in one file. |
-| **City pages** | `src/data/cities.ts` | Six city landing pages. Read the warning at the top before adding more. |
+| **City pages** | `src/data/cities.ts` | Nine city landing pages. Read the warning at the top before adding more. |
 | **Homepage copy** | `src/pages/index.astro` (English), `src/data/home.ts` (other languages) | |
 
 ### Setting up the contact form
@@ -135,8 +135,10 @@ than it's worth for a solo shop; the service pages carry the multilingual load.
 
 ## City landing pages
 
-Six cities live in `src/data/cities.ts` and publish to `/websites/<city>/`,
-with a hub at `/websites/`.
+Nine cities live in `src/data/cities.ts` and publish to `/websites/<city>/`,
+with a hub at `/websites/`. Los Angeles is deliberately not one of them — it's
+too broad to write a specific, honest page about, so it stays a general
+mention (footer, schema `areaServed`) rather than a landing page.
 
 **The rule for this file is in the file itself, and it matters:** near-identical
 pages with the city name swapped out are the classic doorway-page pattern.
