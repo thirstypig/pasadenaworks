@@ -28,13 +28,22 @@ const translations = {
 >
   <section class="section--dark hero">
     <div class="wrap hero__inner">
-      <p class="hero__eyebrow">Pasadena &amp; the San Gabriel Valley</p>
-      <h1>Digital work for small businesses that doesn't talk down to you</h1>
-      <p class="hero__subhead prose">
-        Websites, Google visibility, and paid ads — explained in plain
-        language, sold to you honestly, and never held hostage.
-      </p>
-      <a class="btn" href="#contact">Get in touch</a>
+      <div class="hero__text">
+        <p class="hero__eyebrow">Pasadena &amp; the San Gabriel Valley</p>
+        <h1>Digital work for small businesses that doesn't talk down to you</h1>
+        <p class="hero__subhead prose">
+          Websites, Google visibility, and paid ads — explained in plain
+          language, sold to you honestly, and never held hostage.
+        </p>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <img
+        class="hero__logo"
+        src="/logo.png"
+        width="426"
+        height="640"
+        alt="Pasadena Works"
+      />
     </div>
   </section>
 
@@ -80,6 +89,27 @@ const translations = {
 <style>
   .hero {
     padding-block: var(--space-9);
+  }
+
+  .hero__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    flex-wrap: wrap-reverse;
+  }
+
+  .hero__text {
+    flex: 1 1 28rem;
+    min-width: 0;
+  }
+
+  .hero__logo {
+    flex: 0 0 auto;
+    width: min(280px, 60vw);
+    height: auto;
+    transform: rotate(-2deg);
+    filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
   }
 
   .hero__eyebrow {
