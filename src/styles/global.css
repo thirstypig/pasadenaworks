@@ -26,9 +26,12 @@
   --color-brand: var(--color-pine);
   --color-brand-dark: var(--color-pine-dark);
 
-  /* Type */
-  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system,
-    'Segoe UI', sans-serif;
+  /* Type
+     Display face matches the vintage travel-badge lettering in the logo —
+     a bold slab serif with rounded terminals. Bevan ships one weight (400),
+     which already reads as bold, so headings set font-weight: 400 rather
+     than relying on synthetic bold. */
+  --font-display: 'Bevan', Georgia, 'Rockwell', serif;
   --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
 
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
@@ -90,6 +93,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
+  font-weight: 400;
   color: var(--color-brand-dark);
   line-height: 1.15;
   margin: 0 0 var(--space-4);
@@ -186,7 +190,7 @@ main {
   gap: var(--space-2);
   font-family: var(--font-display);
   font-size: var(--step--1);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
   text-decoration: none;
   padding: var(--space-3) var(--space-5);

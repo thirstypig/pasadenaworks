@@ -20,7 +20,10 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="site-header__brand" href={home}>{site.name}</a>
+    <a class="site-header__brand" href={home}>
+      <img src="/logo.png" alt="" width="426" height="640" />
+      <span>{site.name}</span>
+    </a>
 
     <nav class="site-header__nav" aria-label={strings.nav.home}>
       <a href={home}>{strings.nav.home}</a>
@@ -49,10 +52,22 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
   }
 
   .site-header__brand {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--step-1);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
     text-decoration: none;
+  }
+
+  .site-header__brand img {
+    height: 2.75rem;
+    width: auto;
+    display: block;
+  }
+
+  .site-header__brand span {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-1);
     color: var(--color-brand-dark);
   }
 
