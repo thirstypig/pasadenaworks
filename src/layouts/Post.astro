@@ -1,5 +1,7 @@
 ---
 import Base from './Base.astro';
+import TagPill from '../components/TagPill.astro';
+import EndCta from '../components/EndCta.astro';
 import { absoluteUrl } from '../i18n/routes';
 
 interface Props {
@@ -8,9 +10,30 @@ interface Props {
   pubDate: Date;
   updatedDate?: Date;
   path: string;
+  author: string;
+  tags: string[];
+  pillar: 'websites' | 'search' | 'consulting' | 'ads';
+  readingMinutes: number;
+  heroImage?: string;
+  heroAlt?: string;
+  heroCredit?: string;
 }
 
-const { title, description, pubDate, updatedDate, path } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  path,
+  author,
+  tags,
+  pillar,
+  readingMinutes,
+  heroImage,
+  heroAlt,
+  heroCredit,
+} = Astro.props;
+
 const ogImage = absoluteUrl('/og.png');
 ---
 
@@ -19,7 +42,9 @@ const ogImage = absoluteUrl('/og.png');
   {updatedDate && (
     <meta slot="head" property="article:modified_time" content={updatedDate.toISOString()} />
   )}
-  <article class="section wrap prose post">
+  <article class="section wrap post">
+    <a class="post__back" href="/blog/">&larr; Back to blog</a>
+
     <p class="post__meta">
       <time datetime={pubDate.toISOString()}>
         {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -32,26 +57,169 @@ const ogImage = absoluteUrl('/og.png');
           </time>
         </>
       )}
+      {' · '}{readingMinutes} min read
+      <span class="post__pills">
+        {tags.map((tag) => <TagPill tag={tag} />)}
+      </span>
     </p>
-    <h1>{title}</h1>
-    <div class="post__body">
+
+    <div class="prose">
+      <h1>{title}</h1>
+      <p class="post__subtitle">{description}</p>
+      <p class="post__author">By {author}</p>
+    </div>
+
+    {heroImage && (
+      <figure class="post__hero">
+        <div class="post__hero-frame craftsman-frame">
+          <img src={heroImage} alt={heroAlt ?? ''} loading="eager" />
+        </div>
+        {heroCredit && <figcaption>Photo: {heroCredit}</figcaption>}
+      </figure>
+    )}
+
+    <div class="post__body prose">
       <slot />
+      <EndCta pillar={pillar} />
     </div>
   </article>
 </Base>
 
 <style>
+  .post__back {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    margin-bottom: var(--space-5);
+  }
+
+  .post__back:hover {
+    color: var(--color-accent-dark);
+  }
+
   .post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-3);
+  }
+
+  .post__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-left: var(--space-2);
+  }
+
+  .post__subtitle {
+    font-size: var(--step-1);
+    color: var(--color-ink-soft);
+    margin-top: calc(var(--space-4) * -1 + var(--space-2));
+  }
+
+  .post__author {
     font-family: var(--font-display);
     font-size: var(--step--1);
     color: var(--color-ink-soft);
   }
 
-  .post__body :global(h2) {
-    margin-top: var(--space-7);
+  .post__hero {
+    max-width: var(--max-width-prose);
+    margin: var(--space-6) 0;
+  }
+
+  .post__hero-frame {
+    color: var(--color-pine-dark);
+    padding: var(--space-2);
+    background: var(--color-white);
+  }
+
+  .post__hero img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+  }
+
+  .post__hero figcaption {
+    margin-top: var(--space-2);
+    font-size: var(--step--1);
+    color: var(--color-ink-soft);
+  }
+
+  .post__hero figcaption a {
+    color: inherit;
+  }
+
+  .post__body {
+    margin-top: var(--space-6);
+  }
+
+  .post__body :global(p) {
+    margin-bottom: var(--space-5);
+  }
+
+  .post__body :global(strong),
+  .post__body :global(b) {
+    color: var(--color-brand-dark);
+    font-weight: 600;
+  }
+
+  .post__body :global(em),
+  .post__body :global(i) {
+    color: var(--color-ink-soft);
+    font-style: italic;
   }
 
   .post__body :global(a) {
     color: var(--color-accent-dark);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .post__body :global(a:hover) {
+    text-decoration: none;
+    border-bottom-color: currentColor;
+  }
+
+  .post__body :global(h2) {
+    margin-top: var(--space-8);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .post__body :global(h3) {
+    margin-top: var(--space-7);
+  }
+
+  .post__body :global(blockquote) {
+    margin: var(--space-6) 0;
+    padding: var(--space-5) var(--space-6);
+    border-left: 3px solid var(--color-ochre);
+    background: rgba(200, 134, 43, 0.06);
+    font-style: normal;
+    color: var(--color-ink);
+  }
+
+  .post__body :global(blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .post__body :global(blockquote strong:first-child) {
+    color: var(--color-ochre-dark);
+  }
+
+  .post__body :global(ul),
+  .post__body :global(ol) {
+    margin-bottom: var(--space-5);
+  }
+
+  .post__body :global(li) {
+    margin-bottom: var(--space-2);
   }
 </style>

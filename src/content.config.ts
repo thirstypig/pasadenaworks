@@ -11,6 +11,11 @@ const blog = defineCollection({
     pillar: z.enum(['websites', 'search', 'consulting', 'ads']),
     targetKeyword: z.string(),
     draft: z.boolean().default(false),
+    author: z.string().default('Pasadena Works'),
+    tags: z.array(z.string()).min(1).max(3),
+    heroImage: z.string().url().optional(),
+    heroAlt: z.string().optional(),
+    heroCredit: z.string().optional(),
   }),
 });
 
