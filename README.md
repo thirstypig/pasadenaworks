@@ -95,6 +95,32 @@ checkbox may be greyed out until it does.
 
 ---
 
+## Editing the blog from a browser (Tina CMS)
+
+You don't have to hand-write the markdown files. Run:
+
+```bash
+npm run admin
+```
+
+and open **http://localhost:4321/admin/index.html** — a real browser-based
+editor for every blog post, all the fields, a rich-text body editor. Saving
+writes straight to the `.md` files in `src/content/blog/`, same as editing
+them by hand — commit and push the result the normal way.
+
+This runs in **local mode**: it needs your laptop running `npm run admin`,
+no account, no signup, nothing external. If you ever want to edit from a
+browser without your laptop running (e.g. a phone, or handing editing to
+someone else), that needs [Tina Cloud](https://tina.io) — sign up, connect
+this GitHub repo, and set `clientId`/`token` in `tina/config.ts`. Not set up
+yet; local mode covers everything today.
+
+`tina/config.ts` is the schema Tina edits against — it's a hand-maintained
+mirror of the real schema in `src/content.config.ts`. If you add a field to
+one, add it to the other.
+
+---
+
 ## Writing a blog post
 
 Create a `.md` file in `src/content/blog/`. **The filename becomes the URL**, so

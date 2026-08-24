@@ -28,8 +28,10 @@ That means:
   and look at it if you have that capability. Don't assume CSS works.
 - **Push back when the ask is wrong.** They'd rather hear "that will hurt your
   SEO, here's why" than get what they asked for.
-- Don't add dependencies without saying why. The site currently has three, on
-  purpose.
+- Don't add dependencies without saying why. The production site's runtime
+  dependencies are still exactly three (astro, @astrojs/sitemap, @astrojs/rss).
+  `tinacms` and `@tinacms/cli` are devDependencies for the local `/admin`
+  editor only — real but deliberate exception, not the site itself.
 
 ## Commands
 
@@ -38,6 +40,7 @@ npm install          # once
 npm run dev          # dev server at localhost:4321
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site
+npm run admin        # dev server + Tina CMS admin at localhost:4321/admin/index.html
 ```
 
 Deployment is automatic: pushing to `main` triggers
@@ -194,3 +197,15 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 - Blog is English-only. Translating posts needs a locale field on the collection
   and a route under `[locale]/` — copy the pattern from the service pages rather
   than inventing a new one.
+- **The installed Astro version has known high-severity XSS advisories**
+  (`npm audit`) — predates the Tina addition, unrelated to it. Fixing means
+  `astro@7.2.6`, a major-version bump; needs its own careful pass (build,
+  re-check hreflang/routing, re-verify all pages render) rather than a blind
+  `npm audit fix --force`.
+- Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
+  signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
+  the next step if you want browser-based editing without that.
+- Six of the nine city pages (all but Alhambra, Arcadia, Monterey Park)
+  still carry the placeholder-copy TODO in `src/data/cities.ts` — see the
+  file header. They need the owner's real knowledge of each city's streets
+  and commercial districts before they're genuinely finished.
