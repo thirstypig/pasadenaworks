@@ -1,89 +1,233 @@
-# Projects — James Chang
+# Pasadena Works
 
-Personal workspace containing all active and archived projects. Each folder is a self-contained product.
+Marketing site for a small-business consultancy in Pasadena, CA. Built with
+[Astro](https://astro.build), deployed free on GitHub Pages.
 
----
+**What to publish into it:** see [CONTENT-PLAN.md](./CONTENT-PLAN.md) — a
+90-day article schedule with target keywords and the reasoning behind the order.
 
-## Active Projects
+**Working on this with Claude Code:** [CLAUDE.md](./CLAUDE.md) holds the project
+conventions, hard rules, and the bugs already found and fixed. Claude Code reads
+it automatically — you don't need to paste it in.
 
-| Folder                | Product / Domain              | Stack                          | Status   |
-|-----------------------|-------------------------------|--------------------------------|----------|
-| `thefantasticleagues` | thefantasticleagues.com       | React + Vite / Node + Express  | Active   |
-| `bbq-judge`           | thejudgetool.com              | Next.js / Node API             | Active   |
-| `ktv-singer`          | ktv app + server              | React Native / Express + WS    | Active   |
-| `tastemakers`         | tastemakersapp.com            | Next.js / Laravel / iOS / Android | Active |
-| `alephco.io`          | alephco.io                    | React + Vite + Express (unified) / Static | Active |
-| `bahtzang-trader`     | bahtzang.com                  | Next.js 14 / FastAPI (Python)  | Active   |
-| `tabledrop`           | tabledrop app                 | Next.js (Turborepo monorepo)   | Active   |
-| `jameschang.co`       | jameschang.co                 | Static HTML/CSS                | Active   |
-| `thirstypig`          | thirstypig content site       | Astro                          | Active   |
-| `cooper-stack3`       | internal tool                 | React / Express                | Occasional |
-| `vouch`               | vouch app                     | Next.js 16 / Supabase          | Active   |
-| `TIP`                 | tip.bahtzang.com (staging)    | Next.js 16 / Retell + Stripe   | Active   |
-| `shengchangmd`        | shengchangmd.com              | Astro 5 (static, trilingual)   | Active   |
-| `tobinchang`          | tobinchang.com                | Static / GitHub Pages          | New      |
-| `jarrenchang`         | jarrenchang.com               | Static / GitHub Pages          | New      |
-| `rhyschang`           | rhyschang.com                 | Static / GitHub Pages          | New      |
-| `theresewhite.com`    | theresewhite.bahtzang.com     | Next.js 16 (static export)     | New      |
-| `minmeychang`         | minmeychang.com               | Astro 7 (static, bilingual)    | New      |
-| `pasadenaworks`       | github.com/thirstypig/pasadenaworks | Docs / registry (static)  | New      |
+**Four languages.** English at the root, Spanish and both Chinese variants on
+prefixed paths. Every page gets proper `hreflang` tags, so Google indexes each
+language separately instead of treating them as duplicates.
 
 ---
 
-## Port Registry
+## Before you launch — five things to change
 
-**See [MASTER-PORTS.md](./MASTER-PORTS.md) for the full registry** — reserved blocks, conventions, conflict-check script, and Claude context prompt.
+Everything below lives in **`src/data/site.ts`** unless noted.
 
-**See [PORTS.md](./PORTS.md) for the quick-reference table.**
+| What | Where | Why it matters |
+|---|---|---|
+| **Contact form endpoint** | `site.ts` → `formEndpoint` | Currently `REPLACE_ME`. The form won't work until you fix this. See below. |
+| **Email and phone** | `site.ts` → `email`, `phone`, `phoneDisplay` | The phone number is a placeholder. |
+| **Service area cities** | `site.ts` → `serviceArea` | Drives the homepage list and your local search schema. |
+| **Service copy** | `src/data/services.ts` | All four services, all four languages, in one file. |
+| **City pages** | `src/data/cities.ts` | Six city landing pages. Read the warning at the top before adding more. |
+| **Homepage copy** | `src/pages/index.astro` (English), `src/data/home.ts` (other languages) | |
 
-Each project folder contains its own:
-- `MASTER-PORTS.md` — full global registry (byte-identical copy of this root file)
-- `PORTS.md` — port assignments for that project only
+### Setting up the contact form
 
-### Port Summary
+GitHub Pages serves static files — it has no server, so it can't receive form
+submissions on its own. You need a third-party endpoint:
 
-| Project                     | Frontend | API  | WS   | PG   | Redis |
-|-----------------------------|----------|------|------|------|-------|
-| thefantasticleagues (app)   | 3010     | 4010 | —    | 5442 | 6381  |
-| thefantasticleagues (www)   | 3011     | —    | —    | —    | —     |
-| bbq-judge (app)             | 3030     | 4030 | —    | 5444 | 6383  |
-| bbq-judge (www)             | 3031     | —    | —    | —    | —     |
-| ktv-singer                  | 3040     | 4040 | 8040 | —    | 6385  |
-| tastemakers (web)           | 3050     | —    | —    | —    | —     |
-| tastemakers (backend)       | —        | 4050 | —    | 5446 | 6384  |
-| alephco.io (app, unified)   | —        | 4060 | —    | —    | —     |
-| alephco.io (www, static)    | 3060     | —    | —    | —    | —     |
-| bahtzang-trader (frontend)  | 3070     | —    | —    | —    | —     |
-| bahtzang-trader (backend)   | —        | 4070 | —    | —    | —     |
-| tabledrop                   | 3080     | —    | —    | 5448 | 6387  |
-| jameschang.co               | 3090     | —    | —    | —    | —     |
-| thirstypig                  | 4321     | —    | —    | —    | —     |
-| cooper-stack3               | —        | 4100 | —    | —    | —     |
-| vouch                       | 3020     | —    | —    | —    | —     |
-| TIP (was spar)              | 3110     | —    | —    | —    | —     |
-| shengchangmd                | 3120     | —    | —    | —    | —     |
-| tobinchang                  | 3130     | —    | —    | —    | —     |
-| jarrenchang                 | 3140     | —    | —    | —    | —     |
-| rhyschang                   | 3150     | —    | —    | —    | —     |
-| theresewhite.com            | 3160     | —    | —    | —    | —     |
-| minmeychang                 | 3170     | —    | —    | —    | —     |
-| pasadenaworks                | 3180     | —    | —    | —    | —     |
-| **FUTURE-7** (reserved)     | 3190     | 4190 | —    | 5457 | 6396  |
+1. Sign up at [formspree.io](https://formspree.io) (free tier handles 50
+   submissions/month).
+2. Create a form, copy the endpoint URL.
+3. Paste it into `formEndpoint` in `src/data/site.ts`.
+
+[Web3Forms](https://web3forms.com) and [Tally](https://tally.so) work the same
+way if you prefer them. The form already includes a honeypot field to catch
+bots and a hidden `_locale` field so you can see which language version each
+lead came from.
 
 ---
 
-## Quick Conflict Check
+## Running it locally
+
+You need [Node.js](https://nodejs.org) 20 or newer.
 
 ```bash
-lsof -i -P -n | grep LISTEN | grep -E '3010|3011|3020|3030|3031|3040|3050|3060|3070|3080|3090|3110|3120|3130|3140|3150|3160|3170|3180|4010|4030|4040|4050|4051|4060|4070|4100|4321|5442|5444|5445|5446|5448|6381|6383|6384|6385|6387|8040|24680|24681'
+npm install     # once
+npm run dev     # start the dev server at localhost:4321
+npm run build   # build the production site into dist/
+npm run preview # look at the built site before deploying
 ```
+
+The dev server reloads as you save. Leave it running while you edit.
 
 ---
 
-## Conventions
+## Deploying to GitHub Pages
 
-- Each product owns a **10-port block**: e.g., thefantasticleagues owns 3010–3019 (frontend) and 4010–4019 (API).
-- `-www` marketing sites share the same block as the `-app`, offset by 1.
-- PG ports start at 5442 (+1 per product). Redis at 6381 (+1 per product).
-- Claim a **FUTURE** slot before creating a new product — never freelance a port number.
-- When retiring a product, mark its block `AVAILABLE` in `MASTER-PORTS.md` for 30 days before reclaiming.
+**One-time setup:**
+
+1. Create a repo on GitHub and push this code to the `main` branch.
+2. In the repo, go to **Settings → Pages**.
+3. Under "Build and deployment", set **Source** to **GitHub Actions**.
+
+That's it. `.github/workflows/deploy.yml` handles the rest — every push to
+`main` rebuilds and republishes the site automatically. No manual uploads.
+
+### Pointing pasadenaworks.com at it
+
+At your domain registrar, create these records:
+
+**For the apex domain** (`pasadenaworks.com`) — four `A` records:
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+**For `www`** — one `CNAME` record pointing to `YOUR-USERNAME.github.io`
+
+Then in **Settings → Pages → Custom domain**, enter `pasadenaworks.com` and
+tick **Enforce HTTPS**. DNS can take up to 24 hours to propagate; the HTTPS
+checkbox may be greyed out until it does.
+
+`public/CNAME` already contains the domain, so don't delete that file.
+
+---
+
+## Writing a blog post
+
+Create a `.md` file in `src/content/blog/`. **The filename becomes the URL**, so
+`why-my-website-is-slow.md` publishes at `/blog/why-my-website-is-slow/`.
+
+Use hyphens, lowercase, and real keywords — this is a small SEO decision you
+make every time you write.
+
+```markdown
+---
+title: "Why your website is slow, in plain English"
+description: "A short explanation of what makes small business websites slow and the three fixes that matter most. Aim for 150-158 characters here."
+pubDate: 2026-09-01
+pillar: websites
+targetKeyword: "why is my website slow"
+draft: false
+---
+
+Your first paragraph. Write normally — headings with ##, **bold**, lists.
+```
+
+**Field notes:**
+
+- `pillar` — must be one of `websites`, `search`, `consulting`, `ads`. This
+  decides which service gets promoted at the bottom of the post. The build
+  fails if you typo it, which is deliberate.
+- `description` — this is your Google search result snippet. Write it for a
+  human deciding whether to click.
+- `targetKeyword` — one search phrase per article. It doesn't appear on the
+  page; it's a note to yourself so you don't accidentally write three articles
+  competing for the same term.
+- `draft: true` — hides the post from the site, the sitemap, and the RSS feed.
+
+Posts are English-only by design. Translating a blog four ways is more work
+than it's worth for a solo shop; the service pages carry the multilingual load.
+
+---
+
+## City landing pages
+
+Six cities live in `src/data/cities.ts` and publish to `/websites/<city>/`,
+with a hub at `/websites/`.
+
+**The rule for this file is in the file itself, and it matters:** near-identical
+pages with the city name swapped out are the classic doorway-page pattern.
+Google indexes them and ranks none of them. Every city here names real streets
+and real commercial districts, and if you can't do that for a new city, don't
+add it. Six honest pages beat twenty thin ones.
+
+Cities carry translations only where the language is genuinely how local
+customers search — Alhambra has all four, Arcadia has English and Traditional
+Chinese, Glendale is English-only. The `hreflang` tags follow that automatically,
+so an English-only city correctly claims no alternates at all.
+
+## Adding a service or a language
+
+**A new service:** add an entry to the `services` array in
+`src/data/services.ts`. You need a slug and full copy for all four languages.
+Every page that lists services picks it up automatically — nothing else to edit.
+
+**A new language:** add it to `LOCALES` in `src/i18n/ui.ts`, add its UI strings
+in the same file, add URL segments in `src/i18n/routes.ts`, then add its copy to
+`services.ts` and `home.ts`. TypeScript will point at every spot you missed.
+
+---
+
+## How the multilingual URLs work
+
+```
+/                              /es/                    English root, others prefixed
+/services/                     /es/servicios/          the path segment is translated
+/services/websites/            /es/sitios-web/  ...    so is the service slug
+/websites/                     /es/sitios-web/         city landing page hub
+/websites/pasadena/            /es/sitios-web/alhambra/
+/blog/                                                 English only
+```
+
+Translated slugs are deliberate: a Spanish speaker searches "sitios web," not
+"websites." Those are different keywords and they need different URLs to rank.
+
+The `hreflang` tags are generated from `src/i18n/routes.ts`, so if you change a
+slug the alternates update with it. Pages that exist in only one language emit
+no alternates at all — claiming a translation that doesn't exist is worse for
+SEO than claiming none.
+
+---
+
+## What's already handled
+
+Sitemap with language annotations · RSS feed at `/rss.xml` · `robots.txt` ·
+canonical URLs · Open Graph tags · `LocalBusiness` structured data on the
+homepage · 404 page · skip-to-content link · visible keyboard focus ·
+`prefers-reduced-motion` respected · responsive to 380px.
+
+## Worth doing next
+
+- **Real photographs.** The single highest-impact addition. Stock imagery will
+  undercut the "we're not like other agencies" positioning faster than anything
+  else on the site.
+- **An OG share image** at `public/og.png` (1200×630), then reference it in
+  `src/layouts/Base.astro`.
+- **Google Search Console.** Verify the domain and submit
+  `https://pasadenaworks.com/sitemap-index.xml`. This is how you find out which
+  queries you're actually appearing for.
+- **Self-hosted fonts** via `@fontsource` instead of the Google Fonts CDN —
+  removes a third-party round trip on first load.
+---
+
+## Structure
+
+```
+src/
+├── data/
+│   ├── site.ts         ← settings: email, phone, form endpoint, cities
+│   ├── services.ts     ← all service copy, all four languages
+│   ├── cities.ts       ← city landing page copy
+│   └── home.ts         ← homepage copy for es / zh-hans / zh-hant
+├── i18n/
+│   ├── ui.ts           ← locale registry + UI strings (nav, buttons, forms)
+│   ├── routes.ts       ← translated URL segments + hreflang builders
+│   └── utils.ts        ← t() and path helpers
+├── content/blog/       ← your articles, one .md file each
+├── components/         ← Header, Footer, ContactForm, LangSwitch, Lattice
+├── layouts/            ← Base (all SEO tags live here), Post
+├── pages/
+│   ├── index.astro     ← English homepage
+│   ├── [locale]/       ← generates es, zh-hans, zh-hant
+│   └── services/       ← English service pages
+└── styles/global.css   ← design tokens: colors, type scale, spacing
+```
+
+**Design notes.** The palette comes from Craftsman architecture — Greene &
+Greene pine green, stained-glass ochre, pale sage. The lattice motif in the
+hero and section dividers is the cloud-lift pattern from Pasadena Craftsman
+joinery. To change the look, edit the custom properties at the top of
+`global.css`; every color and size on the site derives from them.

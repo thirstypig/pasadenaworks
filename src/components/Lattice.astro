@@ -1,0 +1,36 @@
+---
+/**
+ * Decorative divider — the "cloud-lift" lattice motif from Pasadena
+ * Craftsman joinery.
+ *
+ * Implemented as a CSS mask, NOT an inline SVG with preserveAspectRatio
+ * ("none" stretches the motif into unreadable noise across wide
+ * containers). This tiles the motif at its true size instead of
+ * scaling it.
+ */
+interface Props {
+  variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
+---
+
+<div class={`lattice lattice--${variant}`} role="presentation" aria-hidden="true"></div>
+
+<style>
+  .lattice {
+    height: 1.25rem;
+    width: 100%;
+    background-color: var(--color-ochre);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpath d='M0 20 L10 0 L20 20 L30 0 L40 20 Z' fill='black'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpath d='M0 20 L10 0 L20 20 L30 0 L40 20 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-size: 40px 20px;
+    mask-size: 40px 20px;
+  }
+
+  .lattice--dark {
+    background-color: var(--color-sage);
+  }
+</style>

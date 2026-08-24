@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import { services } from '../../data/services';
+import { SEGMENTS, localeUrl } from '../../i18n/routes';
+import { LOCALES, type Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { service: service.slugs.en },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const copy = service.t.en;
+
+const translations = Object.fromEntries(
+  LOCALES.map((locale: Locale) => [
+    locale,
+    localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]),
+  ])
+);
+---
+
+<Base
+  title={`${copy.title} — Pasadena Works`}
+  description={copy.meta}
+  locale="en"
+  path={localeUrl('en', SEGMENTS.services.en, service.slugs.en)}
+  translations={translations}
+>
+  <section class="section wrap prose">
+    <p class="eyebrow">{copy.tagline}</p>
+    <h1>{copy.title}</h1>
+    {copy.body.map((p: string) => <p>{p}</p>)}
+
+    <h2>What you get</h2>
+    <ul>
+      {copy.outcomes.map((o: string) => <li>{o}</li>)}
+    </ul>
+
+    <p><a class="btn" href="/#contact">Get in touch</a></p>
+    <p><a href="/services/">&larr; Back to services</a></p>
+  </section>
+</Base>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-accent-dark);
+  }
+</style>

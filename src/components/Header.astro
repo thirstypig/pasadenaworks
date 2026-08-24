@@ -1,0 +1,75 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localePath } from '../i18n/utils';
+import { SEGMENTS } from '../i18n/routes';
+import { site } from '../data/site';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+  locale: Locale;
+  /** Locales this exact page exists in, for the language switcher.
+   *  Defaults to just the current locale (no switcher shown). */
+  translations?: Partial<Record<Locale, string>>;
+}
+
+const { locale, translations = { [locale]: Astro.url.pathname } } = Astro.props;
+const strings = t(locale);
+const home = localePath(locale);
+const servicesHref = localePath(locale, SEGMENTS.services[locale]);
+---
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="site-header__brand" href={home}>{site.name}</a>
+
+    <nav class="site-header__nav" aria-label={strings.nav.home}>
+      <a href={home}>{strings.nav.home}</a>
+      <a href={servicesHref}>{strings.nav.services}</a>
+      <a href="/blog/">{strings.nav.blog}</a>
+      <a href={`${home}#contact`}>{strings.nav.contact}</a>
+    </nav>
+
+    <LangSwitch locale={locale} translations={translations} />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-bg);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding-block: var(--space-4);
+  }
+
+  .site-header__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step-1);
+    text-decoration: none;
+    color: var(--color-brand-dark);
+  }
+
+  .site-header__nav {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+  }
+
+  .site-header__nav a {
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .site-header__nav a:hover {
+    color: var(--color-accent-dark);
+  }
+</style>

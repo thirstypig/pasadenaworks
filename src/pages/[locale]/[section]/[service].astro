@@ -1,0 +1,135 @@
+---
+/**
+ * Dual-purpose route. Astro can't have two dynamic routes at the same
+ * depth — this file already claims [locale]/[section]/[service], so a
+ * separate [locale]/[cityhub]/[city].astro would collide with it. Instead
+ * this single file generates BOTH translated service pages
+ * (/es/servicios/sitios-web/) and translated city pages
+ * (/es/sitios-web/alhambra/) via getStaticPaths, branching render on the
+ * `kind` prop. Don't split this back into two files.
+ */
+import Base from '../../../layouts/Base.astro';
+import CityBody from '../../../components/CityBody.astro';
+import { services, type Service } from '../../../data/services';
+import { cities, cityLocales, type City } from '../../../data/cities';
+import { SEGMENTS, localeUrl } from '../../../i18n/routes';
+import { t } from '../../../i18n/utils';
+import { LOCALES, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
+  const paths: {
+    params: { locale: string; section: string; service: string };
+    props: Record<string, unknown>;
+  }[] = [];
+
+  for (const locale of NON_EN) {
+    for (const service of services) {
+      paths.push({
+        params: {
+          locale,
+          section: SEGMENTS.services[locale],
+          service: service.slugs[locale],
+        },
+        props: { kind: 'service', locale, service },
+      });
+    }
+
+    for (const city of cities) {
+      if (!cityLocales(city).includes(locale)) continue;
+      paths.push({
+        params: {
+          locale,
+          section: SEGMENTS.cityHub[locale],
+          service: city.slug,
+        },
+        props: { kind: 'city', locale, city },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { kind, locale } = Astro.props as {
+  kind: 'service' | 'city';
+  locale: Locale;
+};
+
+const strings = t(locale);
+
+let title = '';
+let description = '';
+let path = '';
+let translations: Partial<Record<Locale, string>> = {};
+
+let service: Service | undefined;
+let serviceCopy: Service['t'][Locale] | undefined;
+
+let city: City | undefined;
+let cityCopy: NonNullable<City['t'][Locale]> | undefined;
+
+if (kind === 'service') {
+  service = Astro.props.service as Service;
+  serviceCopy = service.t[locale];
+  title = `${serviceCopy.title} — Pasadena Works`;
+  description = serviceCopy.meta;
+  path = localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]);
+  translations = Object.fromEntries(
+    LOCALES.map((l) => [l, localeUrl(l, SEGMENTS.services[l], service!.slugs[l])])
+  );
+} else {
+  city = Astro.props.city as City;
+  cityCopy = city.t[locale]!;
+  title = `${cityCopy.title} — Pasadena Works`;
+  description = cityCopy.meta;
+  path = localeUrl(locale, SEGMENTS.cityHub[locale], city.slug);
+  const cLocales = cityLocales(city);
+  translations = Object.fromEntries(
+    (LOCALES.filter((l) => cLocales.includes(l)) as Locale[]).map((l) => [
+      l,
+      localeUrl(l, SEGMENTS.cityHub[l], city!.slug),
+    ])
+  );
+}
+---
+
+<Base title={title} description={description} locale={locale} path={path} translations={translations}>
+  {kind === 'service' && serviceCopy && service && (
+    <section class="section wrap prose">
+      <p class="eyebrow">{serviceCopy.tagline}</p>
+      <h1>{serviceCopy.title}</h1>
+      {serviceCopy.body.map((p) => <p>{p}</p>)}
+      <h2>{strings.buttons.viewService}</h2>
+      <ul>
+        {serviceCopy.outcomes.map((o) => <li>{o}</li>)}
+      </ul>
+      <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
+      <p>
+        <a href={localeUrl(locale, SEGMENTS.services[locale])}>
+          &larr; {strings.buttons.backToServices}
+        </a>
+      </p>
+    </section>
+  )}
+
+  {kind === 'city' && cityCopy && city && (
+    <section class="section wrap">
+      <h1>{cityCopy.title}</h1>
+      <p class="prose">{cityCopy.summary}</p>
+      <CityBody copy={cityCopy} />
+      <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
+      <p>
+        <a href={localeUrl(locale, SEGMENTS.cityHub[locale])}>&larr; {strings.nav.home}</a>
+      </p>
+    </section>
+  )}
+</Base>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-accent-dark);
+  }
+</style>

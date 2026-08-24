@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import CityBody from '../../components/CityBody.astro';
+import { cities, cityLocales } from '../../data/cities';
+import { SEGMENTS, localeUrl } from '../../i18n/routes';
+import { LOCALES, type Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return cities
+    .filter((city) => cityLocales(city).includes('en'))
+    .map((city) => ({
+      params: { city: city.slug },
+      props: { city },
+    }));
+}
+
+const { city } = Astro.props;
+const copy = city.t.en!;
+const locales = cityLocales(city);
+
+const translations = Object.fromEntries(
+  (LOCALES.filter((l: Locale) => locales.includes(l)) as Locale[]).map((locale) => [
+    locale,
+    localeUrl(locale, SEGMENTS.cityHub[locale], city.slug),
+  ])
+);
+---
+
+<Base
+  title={`${copy.title} — Pasadena Works`}
+  description={copy.meta}
+  locale="en"
+  path={localeUrl('en', SEGMENTS.cityHub.en, city.slug)}
+  translations={translations}
+>
+  <section class="section wrap">
+    <h1>{copy.title}</h1>
+    <p class="prose">{copy.summary}</p>
+    <CityBody copy={copy} />
+    <p><a class="btn" href="/#contact">Get in touch</a></p>
+    <p><a href="/websites/">&larr; All cities</a></p>
+  </section>
+</Base>

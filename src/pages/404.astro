@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page not found — Pasadena Works"
+  description="That page doesn't exist. Head back to the homepage or the blog."
+  locale="en"
+  path="/404/"
+>
+  <section class="section wrap not-found">
+    <h1>Page not found</h1>
+    <p class="prose">
+      That page doesn't exist, or it moved. Try the
+      <a href="/">homepage</a> or the <a href="/blog/">blog</a>.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding-block: var(--space-9);
+  }
+</style>

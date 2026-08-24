@@ -1,0 +1,284 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ *  DESIGN TOKENS
+ *  Craftsman palette: Greene & Greene pine green, stained-glass ochre,
+ *  pale sage, plus warm neutrals. Derive from these — don't hardcode hex
+ *  values or pixel sizes in component styles.
+ * ───────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Color */
+  --color-pine: #2f4536;
+  --color-pine-dark: #1e2e24;
+  --color-ochre: #c8862b;
+  --color-ochre-dark: #a06a1c;
+  --color-sage: #d7e0d2;
+  --color-sage-dark: #aebfa4;
+
+  --color-bg: #faf7f0;
+  --color-bg-alt: #f1ece0;
+  --color-ink: #24291f;
+  --color-ink-soft: #4b5245;
+  --color-line: #ddd6c4;
+  --color-white: #ffffff;
+
+  /* Semantic aliases */
+  --color-accent: var(--color-ochre);
+  --color-accent-dark: var(--color-ochre-dark);
+  --color-brand: var(--color-pine);
+  --color-brand-dark: var(--color-pine-dark);
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.4vw, 1.4rem);
+  --step-2: clamp(1.44rem, 1.3rem + 0.7vw, 1.8rem);
+  --step-3: clamp(1.75rem, 1.5rem + 1.2vw, 2.4rem);
+  --step-4: clamp(2.1rem, 1.7rem + 2vw, 3.2rem);
+  --step-5: clamp(2.6rem, 2rem + 3vw, 4.2rem);
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --radius: 6px;
+  --max-width: 72rem;
+  --max-width-prose: 38rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  RESET / BASE
+ * ───────────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-brand-dark);
+  line-height: 1.15;
+  margin: 0 0 var(--space-4);
+}
+
+h1 {
+  font-size: var(--step-5);
+}
+h2 {
+  font-size: var(--step-3);
+}
+h3 {
+  font-size: var(--step-2);
+}
+h4 {
+  font-size: var(--step-1);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+a {
+  color: var(--color-brand-dark);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+}
+
+ul,
+ol {
+  padding-left: 1.25em;
+}
+
+/* Chinese glyphs fill the em box and have no descenders — a hero underline
+ * sized for Latin text cuts through them. See [locale]/index.astro for the
+ * lang-scoped override that lowers it. */
+:global(html[lang^='zh']) body {
+  line-height: 1.8;
+}
+
+main {
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  LAYOUT HELPERS
+ * ───────────────────────────────────────────────────────────────────────── */
+.wrap {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.prose {
+  max-width: var(--max-width-prose);
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.section--dark {
+  background: var(--color-pine);
+  color: var(--color-white);
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h4 {
+  color: var(--color-white);
+}
+
+/* A bare descendant selector here would also win over .btn's own color
+ * rules further down the stylesheet (equal specificity, later wins) —
+ * excluding .btn keeps that from happening. See CLAUDE.md gotchas. */
+.section--dark a:not(.btn) {
+  color: var(--color-sage);
+}
+
+.section--dark a:not(.btn):hover {
+  color: var(--color-ochre);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  BUTTON
+ * ───────────────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: var(--color-accent);
+  color: var(--color-pine-dark);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--color-accent-dark);
+  color: var(--color-pine-dark);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.btn--outline:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+/* Explicit override: .section--dark a:not(.btn) above must never win
+ * against a .btn placed inside a dark section. */
+.section--dark .btn {
+  color: var(--color-pine-dark);
+}
+
+.section--dark .btn:hover {
+  color: var(--color-pine-dark);
+}
+
+.section--dark .btn--outline {
+  color: var(--color-white);
+}
+
+.section--dark .btn--outline:hover {
+  color: var(--color-white);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  SKIP LINK + FOCUS
+ * ───────────────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: var(--space-4);
+  z-index: 100;
+  background: var(--color-pine-dark);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  REDUCED MOTION
+ * ───────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  RESPONSIVE (down to 380px)
+ * ───────────────────────────────────────────────────────────────────────── */
+@media (max-width: 380px) {
+  .wrap {
+    padding-inline: var(--space-4);
+  }
+
+  .section {
+    padding-block: var(--space-6);
+  }
+}

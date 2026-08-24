@@ -1,0 +1,101 @@
+---
+/**
+ * ALL SEO tags live here: title, meta description, canonical URL, OG tags,
+ * hreflang alternates, and (homepage only) LocalBusiness JSON-LD.
+ */
+import type { Locale } from '../i18n/ui';
+import { HTML_LANG } from '../i18n/ui';
+import { buildAlternates, absoluteUrl } from '../i18n/routes';
+import { site } from '../data/site';
+import { t } from '../i18n/utils';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  /** Path (not full URL), e.g. "/services/websites/". */
+  path: string;
+  /** Locales this exact page exists in, keyed to their path. Defaults to
+   *  just the current locale — meaning zero hreflang alternates emitted.
+   *  NEVER pass a full four-locale map "for consistency." */
+  translations?: Partial<Record<Locale, string>>;
+  /** Only true on the homepage — gates the LocalBusiness JSON-LD. */
+  isHome?: boolean;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  locale,
+  path,
+  translations = { [locale]: path },
+  isHome = false,
+  ogType = 'website',
+} = Astro.props;
+
+const canonical = absoluteUrl(path);
+const alternates = buildAlternates(translations);
+const ogImage = absoluteUrl('/og.png');
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.name,
+  url: site.url,
+  email: site.email,
+  telephone: site.phone,
+  areaServed: site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
+};
+---
+
+<!doctype html>
+<html lang={HTML_LANG[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    {isHome && (
+      <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t(locale).misc.skipToContent}</a>
+    <Header locale={locale} translations={translations} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

@@ -1,0 +1,64 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import { site } from '../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__brand">{site.name}</p>
+    <p>
+      {strings.footer.serviceArea} {site.serviceArea.join(', ')}.
+    </p>
+    <p>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      &nbsp;·&nbsp;
+      <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+    </p>
+    <p class="site-footer__rights">&copy; {year} {site.name}. {strings.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-pine-dark);
+    color: var(--color-sage);
+    margin-top: var(--space-9);
+  }
+
+  .site-footer__inner {
+    padding-block: var(--space-7);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .site-footer__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0;
+  }
+
+  .site-footer a {
+    color: var(--color-sage);
+  }
+
+  .site-footer a:hover {
+    color: var(--color-ochre);
+  }
+
+  .site-footer__rights {
+    font-size: var(--step--1);
+    color: var(--color-sage-dark);
+    margin-top: var(--space-3);
+  }
+</style>

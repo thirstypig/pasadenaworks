@@ -1,0 +1,88 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import { site } from '../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+---
+
+<form class="contact-form" action={site.formEndpoint} method="POST" id="contact">
+  <!-- Honeypot: real people never fill this in; bots usually do. -->
+  <div class="contact-form__hp" aria-hidden="true">
+    <label for="company">Company</label>
+    <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <input type="hidden" name="_locale" value={locale} />
+
+  <div class="contact-form__field">
+    <label for="name">{strings.form.name}</label>
+    <input type="text" id="name" name="name" required autocomplete="name" />
+  </div>
+
+  <div class="contact-form__field">
+    <label for="email">{strings.form.email}</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
+  </div>
+
+  <div class="contact-form__field">
+    <label for="message">{strings.form.message}</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <button type="submit" class="btn">{strings.form.send}</button>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 32rem;
+  }
+
+  .contact-form__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  label {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    font: inherit;
+    font-family: var(--font-body);
+    padding: var(--space-3);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--color-accent);
+  }
+
+  .btn {
+    align-self: flex-start;
+  }
+</style>

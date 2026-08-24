@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import { cities, cityLocales } from '../../data/cities';
+import { SEGMENTS, localeUrl } from '../../i18n/routes';
+
+const translations = {
+  en: '/websites/',
+  es: `/es/${SEGMENTS.cityHub.es}/`,
+  'zh-hans': `/zh-hans/${SEGMENTS.cityHub['zh-hans']}/`,
+  'zh-hant': `/zh-hant/${SEGMENTS.cityHub['zh-hant']}/`,
+};
+
+const englishCities = cities.filter((c) => cityLocales(c).includes('en'));
+---
+
+<Base
+  title="Cities we work in — Pasadena Works"
+  description="Website and local SEO work for small businesses across Pasadena, Altadena, South Pasadena, Glendale, Alhambra, and Arcadia."
+  locale="en"
+  path="/websites/"
+  translations={translations}
+>
+  <section class="section wrap">
+    <h1>Cities we work in</h1>
+    <p class="prose">
+      We work with small businesses across the San Gabriel Valley. Pick your
+      city for what matters there specifically.
+    </p>
+    <ul class="city-list">
+      {englishCities.map((city) => (
+        <li>
+          <a href={localeUrl('en', SEGMENTS.cityHub.en, city.slug)}>
+            {city.t.en!.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .city-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+</style>

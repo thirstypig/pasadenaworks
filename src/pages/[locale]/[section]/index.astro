@@ -1,0 +1,131 @@
+---
+/**
+ * Dual-purpose hub index: renders EITHER the translated services index OR
+ * the translated city-hub index, branching on `kind`. Both live at
+ * [locale]/[section]/ depth, so they share one file rather than colliding
+ * dynamic routes — same pattern as [service].astro one level down.
+ */
+import Base from '../../../layouts/Base.astro';
+import { services } from '../../../data/services';
+import { cities, cityLocales } from '../../../data/cities';
+import { SEGMENTS, localeUrl } from '../../../i18n/routes';
+import { t } from '../../../i18n/utils';
+import { LOCALES, type Locale } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
+  const paths: { params: { locale: string; section: string }; props: Record<string, unknown> }[] =
+    [];
+
+  for (const locale of NON_EN) {
+    paths.push({
+      params: { locale, section: SEGMENTS.services[locale] },
+      props: { kind: 'service', locale },
+    });
+    paths.push({
+      params: { locale, section: SEGMENTS.cityHub[locale] },
+      props: { kind: 'city-hub', locale },
+    });
+  }
+
+  return paths;
+}
+
+const { kind, locale } = Astro.props as { kind: 'service' | 'city-hub'; locale: Locale };
+const strings = t(locale);
+
+const servicesTranslations = {
+  en: '/services/',
+  es: `/es/${SEGMENTS.services.es}/`,
+  'zh-hans': `/zh-hans/${SEGMENTS.services['zh-hans']}/`,
+  'zh-hant': `/zh-hant/${SEGMENTS.services['zh-hant']}/`,
+};
+
+const cityHubTranslations = {
+  en: '/websites/',
+  es: `/es/${SEGMENTS.cityHub.es}/`,
+  'zh-hans': `/zh-hans/${SEGMENTS.cityHub['zh-hans']}/`,
+  'zh-hant': `/zh-hant/${SEGMENTS.cityHub['zh-hant']}/`,
+};
+
+const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
+---
+
+{kind === 'service' ? (
+  <Base
+    title={`${strings.nav.services} — Pasadena Works`}
+    description="Pasadena Works — websites, local SEO, business consulting, and paid ads."
+    locale={locale}
+    path={localeUrl(locale, SEGMENTS.services[locale])}
+    translations={servicesTranslations}
+  >
+    <section class="section wrap">
+      <h1>{strings.nav.services}</h1>
+      <div class="service-grid">
+        {services.map((service) => (
+          <a
+            class="service-card"
+            href={localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale])}
+          >
+            <h2>{service.t[locale].title}</h2>
+            <p>{service.t[locale].summary}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </Base>
+) : (
+  <Base
+    title={`Pasadena Works`}
+    description="Website and local SEO work for small businesses across the San Gabriel Valley."
+    locale={locale}
+    path={localeUrl(locale, SEGMENTS.cityHub[locale])}
+    translations={cityHubTranslations}
+  >
+    <section class="section wrap">
+      <h1>Pasadena Works</h1>
+      <ul class="city-list">
+        {localizedCities.map((city) => (
+          <li>
+            <a href={localeUrl(locale, SEGMENTS.cityHub[locale], city.slug)}>
+              {city.t[locale]!.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </Base>
+)}
+
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  .service-card,
+  .city-list a {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .service-card:hover,
+  .city-list a:hover {
+    border-color: var(--color-accent);
+  }
+
+  .city-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+</style>

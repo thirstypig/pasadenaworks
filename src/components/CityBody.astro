@@ -1,0 +1,21 @@
+---
+import type { CityCopy } from '../data/cities';
+
+interface Props {
+  copy: CityCopy;
+}
+
+const { copy } = Astro.props;
+---
+
+<div class="city-body prose">
+  {
+    copy.body.map((paragraph) =>
+      paragraph.trimStart().startsWith('<!--') ? (
+        <Fragment set:html={paragraph} />
+      ) : (
+        <p>{paragraph}</p>
+      )
+    )
+  }
+</div>

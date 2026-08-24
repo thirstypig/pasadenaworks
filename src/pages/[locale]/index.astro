@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Lattice from '../../components/Lattice.astro';
+import { services } from '../../data/services';
+import { site } from '../../data/site';
+import { home } from '../../data/home';
+import { SEGMENTS, localeUrl } from '../../i18n/routes';
+import type { Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return (Object.keys(home) as Locale[]).map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const copy = home[locale]!;
+
+const translations = {
+  en: '/',
+  es: '/es/',
+  'zh-hans': '/zh-hans/',
+  'zh-hant': '/zh-hant/',
+};
+---
+
+<Base
+  title={copy.title}
+  description={copy.metaDescription}
+  locale={locale}
+  path={localeUrl(locale)}
+  translations={translations}
+  isHome
+>
+  <section class="section--dark hero">
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow">{copy.heroEyebrow}</p>
+      <h1>{copy.heroHeading}</h1>
+      <p class="hero__subhead prose">{copy.heroSubhead}</p>
+      <a class="btn" href="#contact">{copy.heroCta}</a>
+    </div>
+  </section>
+
+  <Lattice variant="dark" />
+
+  <section class="section">
+    <div class="wrap">
+      <h2>{copy.servicesHeading}</h2>
+      <p class="prose">{copy.servicesIntro}</p>
+      <div class="service-grid">
+        {services.map((service) => (
+          <a
+            class="service-card"
+            href={localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale])}
+          >
+            <h3>{service.t[locale].title}</h3>
+            <p>{service.t[locale].summary}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Lattice />
+
+  <section class="section--dark">
+    <div class="wrap">
+      <h2>{copy.serviceAreaHeading}</h2>
+      <p class="prose">{copy.serviceAreaIntro}</p>
+      <ul class="service-area">
+        {site.serviceArea.map((city) => <li>{city}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <h2>{copy.closingHeading}</h2>
+      <p class="prose">{copy.closingBody}</p>
+      <ContactForm locale={locale} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  :global(html[lang^='zh']) .hero h1 {
+    text-underline-offset: 0.3em;
+  }
+
+  .hero {
+    padding-block: var(--space-9);
+  }
+
+  .hero__eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-sage);
+  }
+
+  .hero h1 {
+    max-width: 16em;
+  }
+
+  .hero__subhead {
+    font-size: var(--step-1);
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  .service-card {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .service-card:hover {
+    border-color: var(--color-accent);
+  }
+
+  .service-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-5);
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-5);
+    font-family: var(--font-display);
+  }
+</style>
