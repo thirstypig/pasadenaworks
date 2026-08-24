@@ -88,6 +88,28 @@ svg {
   display: block;
 }
 
+/* Neither exists in the site's own copy today, but blog posts are
+ * freeform markdown — a stray table or code block must not blow out
+ * the layout on a narrow phone. */
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+pre {
+  overflow-x: auto;
+  padding: var(--space-4);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
 h1,
 h2,
 h3,
