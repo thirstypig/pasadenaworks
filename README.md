@@ -26,6 +26,7 @@ Personal workspace containing all active and archived projects. Each folder is a
 | `rhyschang`           | rhyschang.com                 | Static / GitHub Pages          | New      |
 | `theresewhite.com`    | theresewhite.bahtzang.com     | Next.js 16 (static export)     | New      |
 | `minmeychang`         | minmeychang.com               | Astro 7 (static, bilingual)    | New      |
+| `pasadenaworks`       | github.com/thirstypig/pasadenaworks | Docs / registry (static)  | New      |
 
 ---
 
@@ -66,14 +67,15 @@ Each project folder contains its own:
 | rhyschang                   | 3150     | —    | —    | —    | —     |
 | theresewhite.com            | 3160     | —    | —    | —    | —     |
 | minmeychang                 | 3170     | —    | —    | —    | —     |
-| **FUTURE-6** (reserved)     | 3180     | 4180 | —    | 5456 | 6395  |
+| pasadenaworks                | 3180     | —    | —    | —    | —     |
+| **FUTURE-7** (reserved)     | 3190     | 4190 | —    | 5457 | 6396  |
 
 ---
 
 ## Quick Conflict Check
 
 ```bash
-lsof -i -P -n | grep LISTEN | grep -E '3010|3011|3020|3030|3031|3040|3050|3060|3070|3080|3090|3110|3120|3130|3140|3150|3160|3170|4010|4030|4040|4050|4051|4060|4070|4100|4321|5442|5444|5445|5446|5448|6381|6383|6384|6385|6387|8040|24680|24681'
+lsof -i -P -n | grep LISTEN | grep -E '3010|3011|3020|3030|3031|3040|3050|3060|3070|3080|3090|3110|3120|3130|3140|3150|3160|3170|3180|4010|4030|4040|4050|4051|4060|4070|4100|4321|5442|5444|5445|5446|5448|6381|6383|6384|6385|6387|8040|24680|24681'
 ```
 
 ---
