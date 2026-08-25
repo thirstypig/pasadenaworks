@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`Privacy Policy — ${site.name}`}
+  description={`How ${site.name} collects, uses, and protects your information.`}
+  locale="en"
+  path="/privacy/"
+>
+  <section class="section wrap prose">
+    <h1>Privacy Policy</h1>
+    <p><em>Last updated: August 25, 2026</em></p>
+
+    <p>
+      This is a plain-language privacy policy for {site.name} ({site.url}).
+      We keep this simple on purpose — if anything here is unclear,
+      {' '}<a href={`mailto:${site.email}`}>email us</a> and ask.
+    </p>
+
+    <h2>What we collect</h2>
+    <p>
+      When you fill out our contact form, we collect your name, email
+      address, and whatever message you send us. That's it — we don't use
+      tracking cookies, analytics scripts, or third-party ad trackers on
+      this site.
+    </p>
+
+    <h2>How we use it</h2>
+    <p>
+      We use your contact information for exactly one thing: replying to
+      you. We don't sell, rent, or share your information with anyone else,
+      and we don't add you to a mailing list without asking first.
+    </p>
+
+    <h2>Where it goes</h2>
+    <p>
+      Our contact form is processed by a third-party form service (currently
+      Formspree). Your submission passes through their systems to reach our
+      inbox. We don't control their infrastructure, but we don't share
+      anything with them beyond what you type into the form.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      You can ask us at any time what information we have about you, and
+      ask us to delete it. Just email us and we'll take care of it.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      If we change this policy in any meaningful way, we'll update the date
+      at the top of this page.
+    </p>
+
+    <h2>Questions</h2>
+    <p>
+      Reach us at <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </section>
+</Base>

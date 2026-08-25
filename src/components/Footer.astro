@@ -29,7 +29,11 @@ const year = new Date().getFullYear();
         </>
       )}
     </p>
-    <p class="site-footer__rights">&copy; {year} {site.name}. {strings.footer.rights}</p>
+    <p class="site-footer__rights">
+      &copy; {year} {site.name}. {strings.footer.rights}
+      &nbsp;·&nbsp;<a href="/privacy/">Privacy</a>
+      &nbsp;·&nbsp;<a href="/terms/">Terms</a>
+    </p>
   </div>
 </footer>
 
