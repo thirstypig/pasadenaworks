@@ -41,6 +41,7 @@ npm run dev          # dev server at localhost:4321
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site
 npm run admin        # dev server + Tina CMS admin at localhost:4321/admin/index.html
+npm run test         # unit tests (vitest) — i18n/hreflang, reading time, city/service lookups
 ```
 
 Deployment is automatic: pushing to `main` triggers
@@ -90,6 +91,9 @@ npm run build
 grep -o 'hreflang="[^"]*" href="[^"]*"' dist/websites/glendale/index.html   # expect nothing
 grep -o 'hreflang="[^"]*" href="[^"]*"' dist/websites/alhambra/index.html   # expect 4 + x-default
 ```
+
+`src/i18n/routes.test.ts` unit-tests `buildAlternates()` directly (zero/partial/full-locale
+cases) — run `npm run test` for a faster check than the grep above during development.
 
 ### 2. City pages must say something real
 
