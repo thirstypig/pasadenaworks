@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { glossary } from '../data/glossary';
+---
+
+<Base
+  title="Glossary — plain-English marketing terms — Pasadena Works"
+  description="What SEO, GEO, Google Business Profile, and other marketing terms actually mean, explained in plain English for small business owners."
+  locale="en"
+  path="/glossary/"
+>
+  <section class="section wrap prose">
+    <h1>Glossary</h1>
+    <p>
+      Marketing has its own jargon, and most of it isn't explained anywhere.
+      Here's what the terms on this site actually mean, in plain English —
+      no marketing-speak, no circular definitions.
+    </p>
+
+    <dl class="glossary-list">
+      {glossary.map((entry) => (
+        <div class="glossary-list__item" id={entry.id}>
+          <dt>{entry.term}</dt>
+          <dd>{entry.definition}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <p>
+      Don't see a term you're stuck on? <a href="/#contact">Ask us</a> — if
+      you're wondering, someone else reading this is too.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .glossary-list {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .glossary-list__item {
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-line);
+    scroll-margin-top: var(--space-6);
+  }
+
+  .glossary-list__item:target {
+    background: rgba(200, 134, 43, 0.06);
+  }
+
+  dt {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    color: var(--color-brand-dark);
+    margin-bottom: var(--space-2);
+  }
+
+  dd {
+    margin: 0;
+  }
+</style>

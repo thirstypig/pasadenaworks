@@ -49,7 +49,7 @@ export const services: Service[] = [
         title: 'Websites that bring in work',
         tagline: 'Built to be found, easy to read, quick to load.',
         summary:
-          'A clear, fast website that tells people what you do and makes it easy to contact you.',
+          "Your website is often the first thing a customer sees. If it loads slowly, looks old, or doesn't say clearly what you do, people leave and go somewhere else. We build simple, fast websites that work great on a phone and make it easy for customers to reach you. You own it when we're done — no hidden fees, no getting locked in.",
         body: [
           "Most small business websites were built once, years ago, by someone who has since stopped answering emails. They load slowly on a phone, the hours are wrong, and there's no obvious way to get in touch. Meanwhile the customer already left and called the shop down the street.",
           "We build sites that fix the basics first: fast on a phone, correct information, and a phone number or form that is impossible to miss. Then we make sure Google can actually read the thing — which is where most sites quietly fail.",
@@ -136,20 +136,22 @@ export const services: Service[] = [
         title: 'Getting found on Google',
         tagline: 'The customers are already searching. Be the result they see.',
         summary:
-          'Show up when someone nearby searches for what you sell — without paying for every click.',
+          'When someone nearby searches for what you sell, you want your business to show up first — on Google, on Google Maps, and now even when people ask AI tools like ChatGPT for recommendations. We handle the technical work behind the scenes: your Google Business Profile, your reviews, and a website that actually answers the questions people are asking. It takes a few months to work. But once it does, it keeps working long after you stop paying for it.',
         body: [
           'Somebody within three miles of you is typing your service into their phone right now. The only question is whose name comes up. That position is not luck and it is not magic — it is a set of specific, boring, fixable things.',
           'We start with the free stuff that moves the needle most for local businesses: your Google Business Profile, your reviews, and whether your name, address, and phone number match everywhere they appear online. Then we build pages and articles that answer the exact questions your customers are typing.',
           'This is slow work. Expect three to six months before it compounds. Anyone promising page one by next Tuesday is selling you something else.',
+          "This work has two parts now, not one. There's still SEO — showing up in a Google search. But there's also GEO — showing up when someone asks an AI tool like ChatGPT or Google's AI answers \"who's a good electrician near me.\" Both come from the same honest groundwork: an accurate Google Business Profile, real reviews, and a website that plainly answers the question someone actually asked. New to these terms? See our plain-English glossary below.",
         ],
         outcomes: [
           'Google Business Profile fully filled out and verified',
           'A keyword list built from what your customers actually type',
           'Pages for each service and each neighborhood you serve',
           'A monthly article schedule you can sustain',
+          'Content written to be quoted correctly by AI tools, not just ranked by Google',
           'A one-page report each month in words, not charts',
         ],
-        meta: 'Local SEO for small businesses in Pasadena and greater LA. Get found on Google Maps and search without paying for every click.',
+        meta: 'Local SEO and AI search (GEO) for small businesses in Pasadena and greater LA. Get found on Google, Google Maps, and AI answers.',
       },
       es: {
         title: 'Aparecer en Google',
@@ -223,7 +225,7 @@ export const services: Service[] = [
         title: 'A second opinion on your business',
         tagline: 'Someone to think it through with, who has no stake in the answer.',
         summary:
-          'Working sessions on pricing, offers, and where your time actually goes.',
+          "Running a small business means making a lot of decisions alone — should you raise your prices, hire someone, or drop a service that isn't worth your time? We sit down with you, look at your numbers, and help you figure out what to do next. You get a short, clear plan you can actually use, not a stack of confusing reports. Sometimes the honest answer is that your business is already doing fine, and we'll tell you that too.",
         body: [
           "Running a small business means every decision lands on one desk. Should you raise prices. Should you hire. Should you drop the service that eats half your week and brings in a tenth of your revenue. There's rarely anyone to talk it through with who isn't also your spouse or your employee.",
           "We do that. It's a working session, not a lecture — we look at your numbers together, name the two or three things that actually matter this quarter, and leave you with a short written summary you can act on.",
@@ -306,7 +308,7 @@ export const services: Service[] = [
         title: 'Paid ads, when they make sense',
         tagline: "We'll tell you honestly whether you should be running them.",
         summary:
-          'Google and Meta ads for businesses where the math actually works out.',
+          "Paid ads on Google and Facebook can bring in customers fast, but they can also waste your money if they're not set up right. Before we recommend running ads, we check whether they actually make sense for your business. If they do, we keep your budget under control and show you exactly what you're getting each month. If they don't, we'll say so and suggest something that works better.",
         body: [
           "Paid advertising is the fastest way to get in front of people and the fastest way to burn money. Whether it's worth it depends on one number: what a customer is worth to you over their lifetime. If that number is small, ads will lose you money no matter how well they're run.",
           "So we start by working that out together. If the math doesn't hold up, we say so and point you toward something that will work better — usually search or your existing customer list.",

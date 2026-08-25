@@ -22,6 +22,12 @@ const year = new Date().getFullYear();
       <a href={`mailto:${site.email}`}>{site.email}</a>
       &nbsp;·&nbsp;
       <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+      {locale === 'en' && (
+        <>
+          &nbsp;·&nbsp;
+          <a href="/glossary/">Glossary</a>
+        </>
+      )}
     </p>
     <p class="site-footer__rights">&copy; {year} {site.name}. {strings.footer.rights}</p>
   </div>

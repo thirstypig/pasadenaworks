@@ -34,6 +34,13 @@ const translations = Object.fromEntries(
     <h1>{copy.title}</h1>
     {copy.body.map((p: string) => <p>{p}</p>)}
 
+    {service.id === 'search' && (
+      <p class="glossary-note">
+        New to terms like SEO and GEO? See the
+        {' '}<a href="/glossary/#seo">plain-English glossary</a>.
+      </p>
+    )}
+
     <h2>What you get</h2>
     <ul>
       {copy.outcomes.map((o: string) => <li>{o}</li>)}
@@ -49,5 +56,10 @@ const translations = Object.fromEntries(
     font-family: var(--font-display);
     font-weight: 400;
     color: var(--color-accent-dark);
+  }
+
+  .glossary-note {
+    font-size: var(--step--1);
+    color: var(--color-ink-soft);
   }
 </style>
