@@ -55,9 +55,16 @@ npm install     # once
 npm run dev     # start the dev server at localhost:4321
 npm run build   # build the production site into dist/
 npm run preview # look at the built site before deploying
+npm run test    # run the unit test suite (vitest)
 ```
 
 The dev server reloads as you save. Leave it running while you edit.
+
+There's a small unit test suite (26 tests) covering the parts of this site
+that are easy to get subtly wrong without noticing: `hreflang`/locale-routing
+logic, city/service slug lookups, and blog reading-time math. Run
+`npm run test` before pushing a change to any of `src/i18n/`, `src/data/`,
+or `src/utils/`.
 
 ---
 
@@ -215,7 +222,9 @@ SEO than claiming none.
 Sitemap with language annotations · RSS feed at `/rss.xml` · `robots.txt` ·
 canonical URLs · Open Graph tags · `LocalBusiness` structured data on the
 homepage · 404 page · skip-to-content link · visible keyboard focus ·
-`prefers-reduced-motion` respected · responsive to 380px.
+`prefers-reduced-motion` respected · responsive to 380px · Privacy Policy and
+Terms of Service pages (`/privacy/`, `/terms/`, linked from the footer) ·
+a plain-English SEO/GEO glossary at `/glossary/`.
 
 ## Worth doing next
 
