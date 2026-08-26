@@ -11,7 +11,16 @@ const { locale } = Astro.props;
 const strings = t(locale);
 ---
 
-<form class="contact-form" action={site.formEndpoint} method="POST" id="contact">
+<form
+  class="contact-form"
+  action={site.formEndpoint}
+  method="POST"
+  id="contact-form"
+  data-crm-webhook-url={site.crmWebhookUrl}
+  data-msg-sending={strings.form.sending}
+  data-msg-success={strings.form.success}
+  data-msg-error={strings.form.error}
+>
   <!-- Honeypot: real people never fill this in; bots usually do. -->
   <div class="contact-form__hp" aria-hidden="true">
     <label for="company">Company</label>
@@ -35,8 +44,71 @@ const strings = t(locale);
     <textarea id="message" name="message" rows="5" required></textarea>
   </div>
 
-  <button type="submit" class="btn">{strings.form.send}</button>
+  <button type="submit" class="btn" data-label={strings.form.send}>{strings.form.send}</button>
+  <p class="contact-form__status" role="status" aria-live="polite"></p>
 </form>
+
+<script>
+  const form = document.getElementById('contact-form');
+
+  if (form instanceof HTMLFormElement) {
+    const button = form.querySelector('button[type="submit"]');
+    const status = form.querySelector('.contact-form__status');
+    const crmWebhookUrl = form.dataset.crmWebhookUrl;
+    const msgSending = form.dataset.msgSending ?? '';
+    const msgSuccess = form.dataset.msgSuccess ?? '';
+    const msgError = form.dataset.msgError ?? '';
+
+    if (button instanceof HTMLButtonElement && status instanceof HTMLElement) {
+      const sendLabel = button.dataset.label ?? button.textContent ?? '';
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        button.disabled = true;
+        button.textContent = msgSending;
+        status.textContent = '';
+        status.classList.remove('contact-form__status--error');
+
+        const data = new FormData(form);
+
+        // Twenty CRM forwarding is best-effort via an n8n webhook — the
+        // Formspree submission below is the source of truth for delivery.
+        if (crmWebhookUrl) {
+          const payload = Object.fromEntries(data.entries());
+          fetch(crmWebhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }).catch(() => {});
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { Accept: 'application/json' },
+          });
+
+          if (response.ok) {
+            form.reset();
+            status.textContent = msgSuccess;
+          } else {
+            status.textContent = msgError;
+            status.classList.add('contact-form__status--error');
+          }
+        } catch {
+          status.textContent = msgError;
+          status.classList.add('contact-form__status--error');
+        } finally {
+          button.disabled = false;
+          button.textContent = sendLabel;
+        }
+      });
+    }
+  }
+</script>
 
 <style>
   .contact-form {
@@ -84,5 +156,14 @@ const strings = t(locale);
 
   .btn {
     align-self: flex-start;
+  }
+
+  .contact-form__status {
+    margin: 0;
+    font-size: var(--step--1);
+  }
+
+  .contact-form__status--error {
+    color: var(--color-accent);
   }
 </style>

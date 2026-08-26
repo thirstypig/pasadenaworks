@@ -61,6 +61,8 @@ export interface UIStrings {
     message: string;
     send: string;
     sending: string;
+    success: string;
+    error: string;
   };
   footer: {
     rights: string;
@@ -95,6 +97,8 @@ export const ui: Record<Locale, UIStrings> = {
       message: 'Message',
       send: 'Send',
       sending: 'Sending…',
+      success: 'Thanks — your message is on its way. We’ll get back to you soon.',
+      error: 'Something went wrong. Please try again or email us directly.',
     },
     footer: {
       rights: 'All rights reserved.',
@@ -127,6 +131,8 @@ export const ui: Record<Locale, UIStrings> = {
       message: 'Mensaje',
       send: 'Enviar',
       sending: 'Enviando…',
+      success: 'Gracias — tu mensaje va en camino. Te responderemos pronto.',
+      error: 'Algo salió mal. Inténtalo de nuevo o escríbenos directamente.',
     },
     footer: {
       rights: 'Todos los derechos reservados.',
@@ -159,6 +165,8 @@ export const ui: Record<Locale, UIStrings> = {
       message: '留言',
       send: '发送',
       sending: '发送中…',
+      success: '谢谢，您的留言已送出，我们会尽快回复。',
+      error: '发生错误，请重试，或直接发邮件联系我们。',
     },
     footer: {
       rights: '版权所有。',
@@ -191,6 +199,8 @@ export const ui: Record<Locale, UIStrings> = {
       message: '留言',
       send: '傳送',
       sending: '傳送中…',
+      success: '謝謝，您的留言已送出，我們將盡快回覆。',
+      error: '發生錯誤，請重試，或直接以電子郵件與我們聯絡。',
     },
     footer: {
       rights: '版權所有。',
