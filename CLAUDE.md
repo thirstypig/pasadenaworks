@@ -191,7 +191,6 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- `site.phone` is a placeholder number.
 - No OG share image. Would go at `public/og.png` (1200×630) and be referenced in
   `Base.astro`.
 - Fonts load from the Google Fonts CDN. Self-hosting via `@fontsource` would
@@ -219,3 +218,4 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   tiers.
 - Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories
   (2026-08-26). No application code changes were needed for the migration.
+- `site.phone` is a real Google Voice number, (434) 373-0080 (2026-08-26).

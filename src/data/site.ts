@@ -10,8 +10,8 @@ export const site = {
 
   /* Shown on the contact page and in the schema markup. */
   email: 'hello@pasadenaworks.com',
-  phone: '+1-626-555-0142',
-  phoneDisplay: '(626) 555-0142',
+  phone: '+1-434-373-0080',
+  phoneDisplay: '(434) 373-0080',
 
   /* Where the contact form posts to.
      GitHub Pages is static — it cannot receive form submissions itself.
