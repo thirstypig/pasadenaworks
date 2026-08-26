@@ -191,8 +191,6 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- `site.formEndpoint` is still `REPLACE_ME` — the contact form does not work
-  until a Formspree endpoint is pasted in. This is the launch blocker.
 - `site.phone` is a placeholder number.
 - No OG share image. Would go at `public/og.png` (1200×630) and be referenced in
   `Base.astro`.
@@ -201,15 +199,23 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 - Blog is English-only. Translating posts needs a locale field on the collection
   and a route under `[locale]/` — copy the pattern from the service pages rather
   than inventing a new one.
-- **The installed Astro version has known high-severity XSS advisories**
-  (`npm audit`) — predates the Tina addition, unrelated to it. Fixing means
-  `astro@7.2.6`, a major-version bump; needs its own careful pass (build,
-  re-check hreflang/routing, re-verify all pages render) rather than a blind
-  `npm audit fix --force`.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
-  the next step if you want browser-based editing without that.
+  the next step if you want browser-based editing without that. Tina's own
+  dependencies (`tinacms`/`@tinacms/cli`) still carry moderate `npm audit`
+  findings (react-router) — dev-only tooling, never shipped to the live site,
+  and fixing it needs a breaking Tina version bump.
 - Six of the nine city pages (all but Alhambra, Arcadia, Monterey Park)
   still carry the placeholder-copy TODO in `src/data/cities.ts` — see the
   file header. They need the owner's real knowledge of each city's streets
   and commercial districts before they're genuinely finished.
+
+## Resolved
+
+- `site.formEndpoint` now points at a real Formspree endpoint, and the
+  contact form dual-submits into a self-hosted n8n workflow (Railway) that
+  forwards leads into Twenty CRM via its REST API (2026-08-25/26). Zapier
+  and Make.com were evaluated first but both paywall webhooks on their free
+  tiers.
+- Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories
+  (2026-08-26). No application code changes were needed for the migration.
