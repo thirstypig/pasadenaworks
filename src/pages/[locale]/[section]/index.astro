@@ -80,7 +80,7 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 {kind === 'blog' ? (
   <Base
     title={`${strings.nav.blog} — Pasadena Works`}
-    description="Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley."
+    description={strings.hub.blogDescription}
     locale={locale}
     path={blogIndexPath(locale)}
     translations={blogTranslations}
@@ -93,13 +93,14 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 ) : kind === 'service' ? (
   <Base
     title={`${strings.nav.services} — Pasadena Works`}
-    description="Pasadena Works — websites, local SEO, business consulting, and paid ads."
+    description={strings.hub.servicesDescription}
     locale={locale}
     path={localeUrl(locale, SEGMENTS.services[locale])}
     translations={servicesTranslations}
   >
     <section class="section wrap">
       <h1>{strings.nav.services}</h1>
+      <p class="prose">{strings.hub.servicesIntro}</p>
       <div class="service-grid">
         {services.map((service) => (
           <a
@@ -115,14 +116,15 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
   </Base>
 ) : (
   <Base
-    title={`Pasadena Works`}
-    description="Website and local SEO work for small businesses across the San Gabriel Valley."
+    title={`${strings.hub.citiesTitle} — Pasadena Works`}
+    description={strings.hub.citiesDescription}
     locale={locale}
     path={localeUrl(locale, SEGMENTS.cityHub[locale])}
     translations={cityHubTranslations}
   >
     <section class="section wrap">
-      <h1>Pasadena Works</h1>
+      <h1>{strings.hub.citiesTitle}</h1>
+      <p class="prose">{strings.hub.citiesIntro}</p>
       <ul class="city-list">
         {localizedCities.map((city) => (
           <li>

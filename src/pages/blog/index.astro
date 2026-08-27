@@ -3,7 +3,9 @@ import Base from '../../layouts/Base.astro';
 import BlogPostGrid from '../../components/BlogPostGrid.astro';
 import { readingTime } from '../../utils/reading-time';
 import { getPostsByLocale, blogIndexPath } from '../../utils/blog';
+import { t } from '../../i18n/utils';
 
+const strings = t('en');
 const allPosts = await getPostsByLocale('en');
 const posts = allPosts.map((post) => ({ post, minutes: readingTime(post.body) }));
 
@@ -17,7 +19,7 @@ const translations = {
 
 <Base
   title="Blog — Pasadena Works"
-  description="Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley."
+  description={strings.hub.blogDescription}
   locale="en"
   path="/blog/"
   translations={translations}

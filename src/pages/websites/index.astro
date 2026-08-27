@@ -11,11 +11,18 @@ const translations = {
 };
 
 const englishCities = cities.filter((c) => cityLocales(c).includes('en'));
+
+/** "monterey-park" -> "Monterey Park". Matches the same derivation Footer.astro uses. */
+const cityDisplayName = (slug: string) =>
+  slug.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
+const description = `Website and local SEO work for small businesses across ${englishCities
+  .map((c) => cityDisplayName(c.slug))
+  .join(', ')}.`;
 ---
 
 <Base
   title="Cities we work in — Pasadena Works"
-  description="Website and local SEO work for small businesses across Pasadena, Altadena, South Pasadena, Glendale, Alhambra, Arcadia, Monrovia, San Marino, and Monterey Park."
+  description={description}
   locale="en"
   path="/websites/"
   translations={translations}

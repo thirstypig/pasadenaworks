@@ -72,6 +72,14 @@ export interface UIStrings {
     explore: string;
     citiesWeServe: string;
   };
+  hub: {
+    servicesDescription: string;
+    servicesIntro: string;
+    citiesTitle: string;
+    citiesDescription: string;
+    citiesIntro: string;
+    blogDescription: string;
+  };
   misc: {
     skipToContent: string;
     languages: string;
@@ -112,6 +120,18 @@ export const ui: Record<Locale, UIStrings> = {
       explore: 'Explore',
       citiesWeServe: 'Cities we serve',
     },
+    hub: {
+      servicesDescription:
+        'Websites, local SEO, business consulting, and paid ads for small businesses in Pasadena and the San Gabriel Valley.',
+      servicesIntro: 'Four services, ordered by what matters most first.',
+      citiesTitle: 'Cities we work in',
+      citiesDescription:
+        'Website and local SEO work for small businesses across Pasadena and the San Gabriel Valley.',
+      citiesIntro:
+        'We work with small businesses across the San Gabriel Valley. Pick your city for what matters there specifically.',
+      blogDescription:
+        'Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley.',
+    },
     misc: {
       skipToContent: 'Skip to content',
       languages: 'Language',
@@ -149,6 +169,18 @@ export const ui: Record<Locale, UIStrings> = {
       serviceAreaBlurb: 'Atendemos a negocios pequeños en Pasadena y el Valle de San Gabriel.',
       explore: 'Explorar',
       citiesWeServe: 'Ciudades que atendemos',
+    },
+    hub: {
+      servicesDescription:
+        'Sitios web, SEO local, asesoría de negocios y publicidad paga para negocios pequeños en Pasadena y el Valle de San Gabriel.',
+      servicesIntro: 'Cuatro servicios, ordenados por lo que más importa primero.',
+      citiesTitle: 'Ciudades donde trabajamos',
+      citiesDescription:
+        'Sitios web y SEO local para negocios pequeños en Pasadena y el Valle de San Gabriel.',
+      citiesIntro:
+        'Trabajamos con negocios pequeños en todo el Valle de San Gabriel. Elige tu ciudad para ver lo que importa ahí específicamente.',
+      blogDescription:
+        'Artículos claros y directos sobre sitios web, búsqueda local, decisiones de negocio y publicidad paga para dueños de negocios pequeños en el Valle de San Gabriel.',
     },
     misc: {
       skipToContent: 'Saltar al contenido',
@@ -188,6 +220,14 @@ export const ui: Record<Locale, UIStrings> = {
       explore: '探索',
       citiesWeServe: '服务城市',
     },
+    hub: {
+      servicesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设、本地谷歌推广、经营咨询和付费广告服务。',
+      servicesIntro: '四项服务，按最重要的排在前面。',
+      citiesTitle: '我们服务的城市',
+      citiesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设与本地谷歌推广服务。',
+      citiesIntro: '我们为整个圣盖博谷的小型企业提供服务。选择您所在的城市，看看当地最重要的事。',
+      blogDescription: '写给圣盖博谷小生意老板看的文章，说大白话，聊网站、本地搜索、经营决策和付费广告。',
+    },
     misc: {
       skipToContent: '跳到正文',
       languages: '语言',
@@ -225,6 +265,14 @@ export const ui: Record<Locale, UIStrings> = {
       serviceAreaBlurb: '為帕薩迪納和聖蓋博谷的小型企業提供服務。',
       explore: '探索',
       citiesWeServe: '服務城市',
+    },
+    hub: {
+      servicesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置、在地 Google 推廣、經營諮詢與付費廣告服務。',
+      servicesIntro: '四項服務，依最重要的排在前面。',
+      citiesTitle: '我們服務的城市',
+      citiesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置與在地 Google 推廣服務。',
+      citiesIntro: '我們為整個聖蓋博谷的小型企業提供服務。選擇您所在的城市，看看當地最重要的事。',
+      blogDescription: '寫給聖蓋博谷小生意老闆看的文章，說白話，聊網站、在地搜尋、經營決策與付費廣告。',
     },
     misc: {
       skipToContent: '跳到主要內容',

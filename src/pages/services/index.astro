@@ -2,6 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import { services } from '../../data/services';
 import { SEGMENTS, localeUrl } from '../../i18n/routes';
+import { t } from '../../i18n/utils';
+
+const strings = t('en');
 
 const translations = {
   en: '/services/',
@@ -13,14 +16,14 @@ const translations = {
 
 <Base
   title="Services — Pasadena Works"
-  description="Websites, local SEO, business consulting, and paid ads for small businesses in Pasadena and the San Gabriel Valley."
+  description={strings.hub.servicesDescription}
   locale="en"
   path="/services/"
   translations={translations}
 >
   <section class="section wrap">
     <h1>Services</h1>
-    <p class="prose">Four services, ordered by what matters most first.</p>
+    <p class="prose">{strings.hub.servicesIntro}</p>
     <div class="service-grid">
       {services.map((service) => (
         <a class="service-card" href={localeUrl('en', SEGMENTS.services.en, service.slugs.en)}>
