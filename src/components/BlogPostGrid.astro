@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import TagPill from './TagPill.astro';
-import { postPath } from '../utils/blog';
+import { postPath, DATE_LOCALE, readingLabel } from '../utils/blog';
 import type { Locale } from '../i18n/ui';
 
 interface Props {
@@ -10,28 +10,6 @@ interface Props {
 }
 
 const { locale, posts } = Astro.props;
-
-const DATE_LOCALE: Record<Locale, string> = {
-  en: 'en-US',
-  es: 'es-ES',
-  'zh-hans': 'zh-CN',
-  'zh-hant': 'zh-TW',
-};
-
-/** "5 min read" in each language. Small and specific enough to keep local
- *  to this component rather than growing the shared UI strings for it. */
-const readingLabel = (minutes: number, locale: Locale): string => {
-  switch (locale) {
-    case 'es':
-      return `${minutes} min de lectura`;
-    case 'zh-hans':
-      return `阅读需 ${minutes} 分钟`;
-    case 'zh-hant':
-      return `閱讀需 ${minutes} 分鐘`;
-    default:
-      return `${minutes} min read`;
-  }
-};
 ---
 
 <div class="post-grid">

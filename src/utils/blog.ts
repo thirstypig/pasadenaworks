@@ -23,6 +23,58 @@ export function blogIndexPath(locale: Locale): string {
   return localeUrl(locale, SEGMENTS.blog[locale]);
 }
 
+/** Locale tag for Date.toLocaleDateString — used on both the index cards
+ *  and the post detail page's byline. */
+export const DATE_LOCALE: Record<Locale, string> = {
+  en: 'en-US',
+  es: 'es-ES',
+  'zh-hans': 'zh-CN',
+  'zh-hant': 'zh-TW',
+};
+
+/** "By {author}" prefix, in each language. */
+export function byLabel(locale: Locale): string {
+  switch (locale) {
+    case 'es':
+      return 'Por';
+    case 'zh-hans':
+      return '作者：';
+    case 'zh-hant':
+      return '作者：';
+    default:
+      return 'By';
+  }
+}
+
+/** "Updated" prefix before a post's updated-date, in each language. */
+export function updatedLabel(locale: Locale): string {
+  switch (locale) {
+    case 'es':
+      return 'Actualizado';
+    case 'zh-hans':
+      return '更新于';
+    case 'zh-hant':
+      return '更新於';
+    default:
+      return 'Updated';
+  }
+}
+
+/** "5 min read" in each language. Small and specific enough to keep as a
+ *  plain function rather than growing the shared UI strings for it. */
+export function readingLabel(minutes: number, locale: Locale): string {
+  switch (locale) {
+    case 'es':
+      return `${minutes} min de lectura`;
+    case 'zh-hans':
+      return `阅读需 ${minutes} 分钟`;
+    case 'zh-hant':
+      return `閱讀需 ${minutes} 分鐘`;
+    default:
+      return `${minutes} min read`;
+  }
+}
+
 /** Every locale this post has been translated into, mapped to that
  *  translation's path — for the hreflang `translations` prop. Only
  *  includes locales where a sibling file with the same translationKey

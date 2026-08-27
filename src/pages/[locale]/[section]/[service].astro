@@ -112,7 +112,7 @@ if (kind === 'service') {
   translations = Object.fromEntries(
     LOCALES.map((l) => [l, localeUrl(l, SEGMENTS.services[l], service!.slugs[l])])
   );
-} else {
+} else if (kind === 'city') {
   city = Astro.props.city as City;
   cityCopy = city.t[locale]!;
   title = `${cityCopy.title} — Pasadena Works`;
