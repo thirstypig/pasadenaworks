@@ -29,7 +29,9 @@ That means:
 - **Push back when the ask is wrong.** They'd rather hear "that will hurt your
   SEO, here's why" than get what they asked for.
 - Don't add dependencies without saying why. The production site's runtime
-  dependencies are still exactly three (astro, @astrojs/sitemap, @astrojs/rss).
+  dependencies are exactly five: `astro`, `@astrojs/sitemap`, `@astrojs/rss`,
+  and `@fontsource/bevan` + `@fontsource/source-serif-4` (added 2026-08-26 to
+  self-host the two fonts instead of loading them from the Google Fonts CDN).
   `tinacms` and `@tinacms/cli` are devDependencies for the local `/admin`
   editor only — real but deliberate exception, not the site itself.
 
@@ -41,7 +43,7 @@ npm run dev          # dev server at localhost:4321
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site
 npm run admin        # dev server + Tina CMS admin at localhost:4321/admin/index.html
-npm run test         # unit tests (vitest) — i18n/hreflang, reading time, city/service lookups
+npm run test         # unit tests (vitest, 37) — i18n/hreflang, reading time, city/service lookups, blog i18n helpers
 ```
 
 Deployment is automatic: pushing to `main` triggers
@@ -61,7 +63,7 @@ src/
 │   ├── ui.ts         ← locale registry + UI strings (nav, buttons, forms)
 │   ├── routes.ts     ← translated URL segments + hreflang builders
 │   └── utils.ts      ← t() and localePath()
-├── content/blog/     ← articles, one .md file each, English only
+├── content/blog/     ← articles, one .md file per language, under en/ es/ zh-hans/ zh-hant/
 ├── components/       ← Header, Footer, ContactForm, LangSwitch, Lattice, CityBody
 ├── layouts/          ← Base (ALL SEO tags live here), Post
 ├── pages/
@@ -143,9 +145,15 @@ unreadable noise across wide containers. It now tiles at true size via
 
 **Astro can't have two dynamic routes at the same depth.**
 `[locale]/[section]/[service].astro` already claims `[locale]/[a]/[b]`. You
-cannot add `[locale]/[cityhub]/[city].astro` — it collides. That file branches
-on a `kind` prop (`'service' | 'city'`) instead. Follow that pattern for any new
-localized section.
+cannot add `[locale]/[cityhub]/[city].astro` — it collides. That file (and its
+`[locale]/[section]/index.astro` sibling one level up) branch on a `kind`
+prop instead — now three values (`'service' | 'city' | 'blog-post'`, the
+last added 2026-08-27 for translated blog posts). Follow that pattern for any
+new localized section, and when you add a new `kind`, **grep the file for
+every existing `if`/`else` first** — a bare `else` written when there were
+only two kinds silently mis-branches the moment a third one exists. Hit
+exactly this bug adding the blog kind; see
+`docs/solutions/logic-errors/dual-purpose-route-bare-else-broke-on-third-kind.md`.
 
 **CJK underlines need a lower baseline.** Chinese glyphs fill the em box and
 have no descenders, so the ochre hero underline cuts through them. There's a
@@ -199,11 +207,28 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   would collide with the dynamic `[section]` segment at the same depth).
   Files live under `src/content/blog/<locale>/`. `SEGMENTS.blog` gives
   the translated `/blog/` segment itself (`boke` for both Chinese
-  variants, matching the `fuwu` pattern). Actual translated content
-  doesn't exist yet — only the 3 English posts, now with the new
-  frontmatter fields. Translating them needs real per-language keyword
-  research for the title/slug (see `RESEARCHED` marker precedent in
-  cities.ts), not literal translation.
+  variants, matching the `fuwu` pattern).
+  **Translation status: 1 of 3 posts partially done.** "What a small
+  business website actually needs" has a Spanish version (real researched
+  keyword/slug, not literal translation) as of 2026-08-27. The other two
+  English posts, and all three in both Chinese variants, aren't translated
+  yet. **Worth the owner's attention:** `CONTENT-PLAN.md`'s own
+  "Translating an article" section recommends translating the
+  multilingual-angle pieces (weeks 5–8), the pricing article, and the
+  Google Business Profile guide first — the post translated so far isn't
+  on that list. Decide whether to keep it, translate it for a different
+  reason (it's the proof-of-concept post, not a deliberate keyword
+  choice), or follow the plan's original priority for the remaining
+  translations.
+- **`tina/config.ts` is now out of sync with `src/content.config.ts`** — the
+  blog i18n work (2026-08-27) added `locale`/`translationKey`/`slug` fields
+  to the real schema, but Tina's mirror schema was never updated to match,
+  and its filename comment still describes the old flat `src/content/blog/
+  <slug>.md` layout instead of the new per-locale subfolders. Until this is
+  fixed, editing/creating posts through `npm run admin` won't expose the
+  new required fields — likely to produce a post that fails the real schema
+  validation on build. Needs updating `tina/config.ts` to match, then
+  verifying with `npm run admin` before trusting it again.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that. Tina's own

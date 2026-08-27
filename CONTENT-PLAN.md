@@ -24,11 +24,11 @@ than no blog.
 
 ## What's already published
 
-| Article | Pillar | Targets |
-|---|---|---|
-| Why customers can't find your business on Google | search | "why can't customers find my business on google" |
-| What a small business website actually needs | websites | "what should a small business website include" |
-| How to know if it's time to raise your prices | consulting | "when to raise prices small business" |
+| Article | Pillar | Targets | Translations |
+|---|---|---|---|
+| Why customers can't find your business on Google | search | "why can't customers find my business on google" | — |
+| What a small business website actually needs | websites | "what should a small business website include" | Spanish |
+| How to know if it's time to raise your prices | consulting | "when to raise prices small business" | — |
 
 ---
 
@@ -127,10 +127,16 @@ and the Google Business Profile guide.
 Not worth translating: anything where the reader is equally likely to search in
 English, which is most consulting content.
 
-To translate a post you'll need to extend the blog collection with a locale
-field and a route under `[locale]/`. The service pages already do exactly this
-pattern in `src/pages/[locale]/[section]/[service].astro` — copy the approach
-from there rather than inventing a new one.
+**The mechanism for this is already built** (2026-08-27) — see "Translating a
+post" in `README.md` for the mechanics (locale subfolder, `translationKey`,
+per-language `slug`). What's not done yet is the actual translation work: as
+of 2026-08-27, only "What a small business website actually needs" has a
+Spanish version, and it wasn't picked for the reasons above — it was the
+proof-of-concept post used to verify the mechanism worked at all. **The
+articles this section actually recommends translating first (the
+multilingual pieces, the pricing article, the GBP guide) are still
+untranslated.** Worth deciding whether to translate those next, or keep
+building out from the post that's already done.
 
 ---
 

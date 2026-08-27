@@ -16,14 +16,16 @@ language separately instead of treating them as duplicates.
 
 ---
 
-## Before you launch — five things to change
+## If you're forking this for your own business
 
-Everything below lives in **`src/data/site.ts`** unless noted.
+Everything below lives in **`src/data/site.ts`** unless noted. This site's own
+copy of these is already filled in for real — treat this section as what to
+change if you're using this repo as a starting point for a different business.
 
 | What | Where | Why it matters |
 |---|---|---|
-| **Contact form endpoint** | `site.ts` → `formEndpoint` | Currently `REPLACE_ME`. The form won't work until you fix this. See below. |
-| **Email and phone** | `site.ts` → `email`, `phone`, `phoneDisplay` | The phone number is a placeholder. |
+| **Contact form endpoint** | `site.ts` → `formEndpoint` | The form won't work until this is a real endpoint, not `REPLACE_ME`. See below. |
+| **Email and phone** | `site.ts` → `email`, `phone`, `phoneDisplay` | |
 | **Service area cities** | `site.ts` → `serviceArea` | Drives the homepage list and your local search schema. |
 | **Service copy** | `src/data/services.ts` | All four services, all four languages, in one file. |
 | **City pages** | `src/data/cities.ts` | Nine city landing pages. Read the warning at the top before adding more. |
@@ -43,6 +45,14 @@ submissions on its own. You need a third-party endpoint:
 way if you prefer them. The form already includes a honeypot field to catch
 bots and a hidden `_locale` field so you can see which language version each
 lead came from.
+
+**This site also forwards leads into a CRM.** `site.ts` → `crmWebhookUrl`
+points at a self-hosted [n8n](https://n8n.io) workflow (not Formspree or
+Zapier — both paywall webhooks on their free tiers) that creates a Person
+record in a self-hosted Twenty CRM instance via its REST API. This is
+optional — leave `crmWebhookUrl` blank and the form still works, emailing you
+via Formspree either way. See `CLAUDE.md`'s "Resolved" section for how this
+is wired up if you want to replicate it.
 
 ---
 
@@ -113,8 +123,8 @@ npm run admin
 
 and open **http://localhost:4321/admin/index.html** — a real browser-based
 editor for every blog post, all the fields, a rich-text body editor. Saving
-writes straight to the `.md` files in `src/content/blog/`, same as editing
-them by hand — commit and push the result the normal way.
+writes straight to the `.md` files in `src/content/blog/<locale>/`, same as
+editing them by hand — commit and push the result the normal way.
 
 This runs in **local mode**: it needs your laptop running `npm run admin`,
 no account, no signup, nothing external. If you ever want to edit from a
@@ -131,8 +141,8 @@ one, add it to the other.
 
 ## Writing a blog post
 
-Create a `.md` file in `src/content/blog/`. **The filename becomes the URL**, so
-`why-my-website-is-slow.md` publishes at `/blog/why-my-website-is-slow/`.
+Create a `.md` file in `src/content/blog/en/`. **The filename becomes the URL**,
+so `why-my-website-is-slow.md` publishes at `/blog/why-my-website-is-slow/`.
 
 Use hyphens, lowercase, and real keywords — this is a small SEO decision you
 make every time you write.
@@ -145,6 +155,9 @@ pubDate: 2026-09-01
 pillar: websites
 targetKeyword: "why is my website slow"
 draft: false
+locale: en
+translationKey: why-website-is-slow
+slug: why-my-website-is-slow
 ---
 
 Your first paragraph. Write normally — headings with ##, **bold**, lists.
@@ -161,9 +174,25 @@ Your first paragraph. Write normally — headings with ##, **bold**, lists.
   page; it's a note to yourself so you don't accidentally write three articles
   competing for the same term.
 - `draft: true` — hides the post from the site, the sitemap, and the RSS feed.
+- `locale` — which of the four languages this file is written in.
+- `translationKey` — shared across every language's version of "the same"
+  post, so the build can find sibling translations for `hreflang` tags. Pick
+  a short, stable id (e.g. `why-website-is-slow`) — it never appears in a URL.
+- `slug` — the real URL slug, **in this language**. Not a translation of the
+  English filename — pick the keyword a speaker of that language would
+  actually search.
 
-Posts are English-only by design. Translating a blog four ways is more work
-than it's worth for a solo shop; the service pages carry the multilingual load.
+### Translating a post
+
+Not required — most posts can stay English-only, and that's fine. To
+translate one, create a new file under the matching locale folder
+(`src/content/blog/es/`, `zh-hans/`, or `zh-hant/`) with the **same
+`translationKey`** as the original, its own researched `targetKeyword` and
+`slug` for that language (see `CONTENT-PLAN.md`'s "Translating an article"
+section for which posts are worth the effort), and a full translation of the
+body in the site's voice — not a literal, word-for-word one. The build finds
+the sibling automatically and generates correct `hreflang` tags; you don't
+need to touch any routing code.
 
 ---
 
@@ -205,7 +234,15 @@ in the same file, add URL segments in `src/i18n/routes.ts`, then add its copy to
 /services/websites/            /es/sitios-web/  ...    so is the service slug
 /websites/                     /es/sitios-web/         city landing page hub
 /websites/pasadena/            /es/sitios-web/alhambra/
-/blog/                                                 English only
+/blog/                         /es/blog/               blog index — "blog" is
+                                                        kept as-is for Spanish
+                                                        (a naturalized
+                                                        loanword); Chinese
+                                                        uses /boke/ (博客)
+/blog/<slug>/                  /es/blog/<slug-es>/     one post — only where a
+                                                        translation exists;
+                                                        most posts stay
+                                                        English-only
 ```
 
 Translated slugs are deliberate: a Spanish speaker searches "sitios web," not
@@ -221,24 +258,26 @@ SEO than claiming none.
 ## What's already handled
 
 Sitemap with language annotations · RSS feed at `/rss.xml` · `robots.txt` ·
-canonical URLs · Open Graph tags · `LocalBusiness` structured data on the
-homepage · 404 page · skip-to-content link · visible keyboard focus ·
-`prefers-reduced-motion` respected · responsive to 380px · Privacy Policy and
-Terms of Service pages (`/privacy/`, `/terms/`, linked from the footer) ·
-a plain-English SEO/GEO glossary at `/glossary/`.
+canonical URLs · Open Graph tags with a real share image (`/og.png`) ·
+`LocalBusiness` structured data on the homepage · 404 page · skip-to-content
+link · visible keyboard focus · `prefers-reduced-motion` respected ·
+responsive to 380px · Privacy Policy and Terms of Service pages (`/privacy/`,
+`/terms/`, linked from the footer) · a plain-English SEO/GEO glossary at
+`/glossary/` · self-hosted fonts (no Google Fonts CDN round trip) · a
+password-protected internal ops dashboard linking every backend service
+(deployed separately, not part of this repo — see `CLAUDE.md`).
 
 ## Worth doing next
 
 - **Real photographs.** The single highest-impact addition. Stock imagery will
   undercut the "we're not like other agencies" positioning faster than anything
   else on the site.
-- **An OG share image** at `public/og.png` (1200×630), then reference it in
-  `src/layouts/Base.astro`.
 - **Google Search Console.** Verify the domain and submit
   `https://pasadenaworks.com/sitemap-index.xml`. This is how you find out which
   queries you're actually appearing for.
-- **Self-hosted fonts** via `@fontsource` instead of the Google Fonts CDN —
-  removes a third-party round trip on first load.
+- **Translate the remaining blog posts.** The mechanism exists (see
+  "Writing a blog post" below) — only one of three posts has a Spanish
+  version so far, and none have Chinese versions yet.
 ---
 
 ## Structure
@@ -254,7 +293,7 @@ src/
 │   ├── ui.ts           ← locale registry + UI strings (nav, buttons, forms)
 │   ├── routes.ts       ← translated URL segments + hreflang builders
 │   └── utils.ts        ← t() and path helpers
-├── content/blog/       ← your articles, one .md file each
+├── content/blog/       ← your articles, one .md file per language (en/es/zh-hans/zh-hant)
 ├── components/         ← Header, Footer, ContactForm, LangSwitch, Lattice
 ├── layouts/            ← Base (all SEO tags live here), Post
 ├── pages/
