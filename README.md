@@ -60,11 +60,12 @@ npm run test    # run the unit test suite (vitest)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a small unit test suite (26 tests) covering the parts of this site
+There's a small unit test suite (37 tests) covering the parts of this site
 that are easy to get subtly wrong without noticing: `hreflang`/locale-routing
-logic, city/service slug lookups, and blog reading-time math. Run
-`npm run test` before pushing a change to any of `src/i18n/`, `src/data/`,
-or `src/utils/`.
+logic, city/service slug lookups, blog reading-time math, and the blog i18n
+path/label helpers (translated `/blog/` segment per locale, localized date
+formatting, reading-time and byline strings). Run `npm run test` before
+pushing a change to any of `src/i18n/`, `src/data/`, or `src/utils/`.
 
 ---
 
