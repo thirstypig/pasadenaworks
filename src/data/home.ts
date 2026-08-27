@@ -29,7 +29,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       'Sitios web, SEO local y publicidad para negocios pequeños en Pasadena y el Valle de San Gabriel. Trabajo claro, sin letra pequeña.',
     heroEyebrow: 'Pasadena y el Valle de San Gabriel',
-    heroHeading: 'Más clientes que lo encuentran. Menos jerga en el camino.',
+    heroHeading: 'Trabajo digital para negocios pequeños — para que más clientes lo encuentren.',
     heroSubhead:
       'Sitios web, presencia en Google y publicidad paga para negocios pequeños en Pasadena y el Valle de San Gabriel — con honestidad, y sin retenerle nada.',
     heroCta: 'Contáctenos',
@@ -49,7 +49,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       '为帕萨迪纳和圣盖博谷的小型企业提供网站、本地谷歌推广和广告服务。说大白话，不卖多余的东西。',
     heroEyebrow: '帕萨迪纳与圣盖博谷',
-    heroHeading: '让更多客人找到您，少一点行话。',
+    heroHeading: '为小生意做的线上工作，让更多客人找到您。',
     heroSubhead: '为帕萨迪纳和圣盖博谷的小型企业提供网站、谷歌曝光和付费广告服务——说到做到，绝不扣着您的网站不放。',
     heroCta: '联系我们',
     servicesHeading: '我们能帮您做什么',
@@ -65,7 +65,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       '為帕薩迪納和聖蓋博谷的小型企業提供網站、在地 Google 推廣和廣告服務。說白話，不賣多餘的東西。',
     heroEyebrow: '帕薩迪納與聖蓋博谷',
-    heroHeading: '讓更多客人找到您，少一點行話。',
+    heroHeading: '為小生意做的線上工作，讓更多客人找到您。',
     heroSubhead: '為帕薩迪納和聖蓋博谷的小型企業提供網站、Google 曝光和付費廣告服務——說到做到，絕不扣著您的網站不放。',
     heroCta: '聯絡我們',
     servicesHeading: '我們能幫您做什麼',
