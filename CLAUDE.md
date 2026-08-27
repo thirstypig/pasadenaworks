@@ -203,12 +203,16 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   dependencies (`tinacms`/`@tinacms/cli`) still carry moderate `npm audit`
   findings (react-router) — dev-only tooling, never shipped to the live site,
   and fixing it needs a breaking Tina version bump.
-- No scheduling link in the site's nav/footer/service pages yet.
-  `schedule.pasadenaworks.com` (Cal.com, self-hosted on Railway) is live and
-  working (2026-08-26) — the domain's certificate was stuck on the same
-  missing-TXT-record issue as the CRM domain, now fixed. Still need: an
-  actual event type/availability configured in Cal.com, and a decision on
-  where the booking link belongs on the site.
+- No scheduling link in the site's nav/footer/service pages yet, even
+  though the booking page itself is done: `schedule.pasadenaworks.com`
+  (Cal.com, self-hosted on Railway) has a real event — "Free 30-min
+  consultation" at `/pasadenaworks/consultation`, Cal Video, the two demo
+  events hidden (2026-08-26). Cal.com's own admin flagged the account
+  password as too weak/no 2FA — that's on the owner to fix, not something
+  an agent should touch. Still open: whether the booking flow actually
+  offers Spanish/Chinese to visitors (Cal.com's i18n supports it, but no
+  explicit language switcher was seen — unverified), and where the link
+  belongs on the site.
 
 ## Resolved
 
@@ -231,3 +235,12 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   from actually working these cities.
 - Fonts (Bevan, Source Serif 4) are self-hosted via `@fontsource` instead
   of loading from the Google Fonts CDN (2026-08-26).
+- A private, real-password-protected ops dashboard exists at
+  `ops.pasadenaworks.com` — links to every backend service (CRM,
+  scheduling, n8n, Railway, GitHub, DNS). It is a separate tiny Node
+  service deployed directly to Railway (project `pasadenaworks`, service
+  `ops-panel`) and is deliberately NOT part of this repo — its source
+  living in a public repo would defeat the password gate. Auth is a real
+  server-side Basic Auth check (`server.js`, `crypto.timingSafeEqual`),
+  not client-side JS. Credentials are the `OPS_USERNAME`/`OPS_PASSWORD`
+  variables on that Railway service — change them there, not here.
