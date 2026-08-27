@@ -208,18 +208,17 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   Files live under `src/content/blog/<locale>/`. `SEGMENTS.blog` gives
   the translated `/blog/` segment itself (`boke` for both Chinese
   variants, matching the `fuwu` pattern).
-  **Translation status: 1 of 3 posts partially done.** "What a small
-  business website actually needs" has a Spanish version (real researched
-  keyword/slug, not literal translation) as of 2026-08-27. The other two
-  English posts, and all three in both Chinese variants, aren't translated
-  yet. **Worth the owner's attention:** `CONTENT-PLAN.md`'s own
-  "Translating an article" section recommends translating the
-  multilingual-angle pieces (weeks 5–8), the pricing article, and the
-  Google Business Profile guide first — the post translated so far isn't
-  on that list. Decide whether to keep it, translate it for a different
-  reason (it's the proof-of-concept post, not a deliberate keyword
-  choice), or follow the plan's original priority for the remaining
-  translations.
+  **Translation status: 2 of 3 posts have a Spanish version.** "What a
+  small business website actually needs" (2026-08-27, proof-of-concept
+  pick) and "How to know if it's time to raise your prices" (2026-08-27,
+  following `CONTENT-PLAN.md`'s own "Translating an article" priority
+  list, which names the pricing article explicitly). Both used real
+  researched Spanish keywords/slugs, not literal translations. Still
+  untranslated: "Why customers can't find your business on Google" (not
+  on the plan's priority list, lower urgency), and all three posts in
+  both Chinese variants — the plan's remaining recommended priorities
+  (the multilingual-angle pieces, weeks 5–8, and the Google Business
+  Profile guide) haven't been written in English yet at all.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that. Tina's own
@@ -239,10 +238,11 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 - The homepage's "Where we work" city grid was removed and replaced with a
   three-column footer (Explore nav links + locale-aware city links) that
   appears sitewide instead of only on the English homepage (2026-08-26).
-- The six city pages that previously had generic body copy (Pasadena,
-  Altadena, South Pasadena, Glendale, Monrovia, San Marino) were
-  strengthened with real, sourced facts via web research (2026-08-26) —
-  see the `RESEARCHED` marker in `src/data/cities.ts`. Not firsthand
+- All nine city pages that previously had generic body copy now carry real,
+  sourced facts via web research: six on 2026-08-26 (Pasadena, Altadena,
+  South Pasadena, Glendale, Monrovia, San Marino), and the last three —
+  Alhambra, Arcadia, Monterey Park — on 2026-08-27. See the `RESEARCHED`
+  marker in `src/data/cities.ts`; no `TODO` markers remain. Not firsthand
   knowledge, though: still worth the owner's eye to sharpen with anything
   from actually working these cities.
 - Fonts (Bevan, Source Serif 4) are self-hosted via `@fontsource` instead
