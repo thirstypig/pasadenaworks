@@ -46,6 +46,7 @@ export interface UIStrings {
     services: string;
     blog: string;
     contact: string;
+    bookCall: string;
   };
   buttons: {
     getInTouch: string;
@@ -84,6 +85,7 @@ export const ui: Record<Locale, UIStrings> = {
       services: 'Services',
       blog: 'Blog',
       contact: 'Contact',
+      bookCall: 'Book a call',
     },
     buttons: {
       getInTouch: 'Get in touch',
@@ -120,6 +122,7 @@ export const ui: Record<Locale, UIStrings> = {
       services: 'Servicios',
       blog: 'Blog',
       contact: 'Contacto',
+      bookCall: 'Agenda una llamada',
     },
     buttons: {
       getInTouch: 'Contáctenos',
@@ -156,6 +159,7 @@ export const ui: Record<Locale, UIStrings> = {
       services: '服务',
       blog: '博客',
       contact: '联系我们',
+      bookCall: '预约通话',
     },
     buttons: {
       getInTouch: '联系我们',
@@ -192,6 +196,7 @@ export const ui: Record<Locale, UIStrings> = {
       services: '服務',
       blog: '部落格',
       contact: '聯絡我們',
+      bookCall: '預約通話',
     },
     buttons: {
       getInTouch: '聯絡我們',

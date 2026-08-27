@@ -41,6 +41,7 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
           <a href={servicesHref}>{strings.nav.services}</a>
           <a href="/blog/">{strings.nav.blog}</a>
           <a href={`${home}#contact`}>{strings.nav.contact}</a>
+          <a href={site.bookingUrl} target="_blank" rel="noopener">{strings.nav.bookCall}</a>
         </nav>
       </div>
 

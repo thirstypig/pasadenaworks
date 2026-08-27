@@ -209,10 +209,11 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   consultation" at `/pasadenaworks/consultation`, Cal Video, the two demo
   events hidden (2026-08-26). Cal.com's own admin flagged the account
   password as too weak/no 2FA — that's on the owner to fix, not something
-  an agent should touch. Still open: whether the booking flow actually
-  offers Spanish/Chinese to visitors (Cal.com's i18n supports it, but no
-  explicit language switcher was seen — unverified), and where the link
-  belongs on the site.
+  an agent should touch. Confirmed working: the booking page genuinely
+  translates into Spanish and Chinese based on the visitor's browser
+  language (verified via `Accept-Language` header — no explicit switcher
+  needed since none is needed). Still open: where the link belongs on
+  the site.
 
 ## Resolved
 

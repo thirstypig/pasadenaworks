@@ -30,6 +30,12 @@ export const site = {
   crmWebhookUrl:
     'https://n8n-production-94d1d.up.railway.app/webhook/15ada5a1-922a-4702-aa88-35a8911f0332',
 
+  /* Public Cal.com booking page for the free 30-min consultation.
+     Self-hosted on Railway — see the ops panel for the admin URL.
+     Cal.com auto-translates this page based on the visitor's browser
+     language, so one URL works across all four site locales. */
+  bookingUrl: 'https://schedule.pasadenaworks.com/pasadenaworks/consultation',
+
   /* Cities you serve. These drive the local landing pages and the schema
      markup that helps you show up in "near me" searches. */
   serviceArea: [
