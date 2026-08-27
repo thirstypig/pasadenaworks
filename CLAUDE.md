@@ -159,6 +159,22 @@ exactly this bug adding the blog kind; see
 have no descenders, so the ochre hero underline cuts through them. There's a
 `:global(html[lang^='zh'])` override in `[locale]/index.astro`.
 
+**A blog post's `slug` frontmatter field must be unique across ALL locales,
+not just within one.** Astro's glob-loader content collection dedupes
+entries by the `slug` field globally — it's not aware that `src/content/
+blog/zh-hans/` and `zh-hant/` are different languages. Giving the
+Simplified and Traditional versions of the same post the identical Hanyu
+Pinyin romanization (e.g. both using `xiaoxing-qiye-wangzhan-xuyao-shenme`)
+silently dropped one from the collection at build time, with only a
+`[glob-loader] contains multiple entries with the same slug` warning to
+notice it by — the build still "succeeds." Renaming the *filename* doesn't
+fix it; the collision is on the `slug` field value itself, since routing
+uses `post.data.slug`, not the filename. Fix: give each locale's slug a
+genuinely distinct value — often free anyway, since Simplified and
+Traditional sources frequently prefer different real words for the same
+concept (e.g. mainland "小型企业" vs. Taiwan "中小企業" for "small
+business," found via keyword research, not invented for uniqueness).
+
 ## Design system
 
 Palette derives from Craftsman architecture — Greene & Greene pine green,
@@ -200,25 +216,11 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- Blog i18n mechanism is built (2026-08-26/27) — content collection has
-  `locale`/`translationKey`/`slug` fields, `/[locale]/[section]/` and
-  `/[locale]/[section]/[service]` reuse the existing service/city routing
-  (folded in as a third `kind`, not a separate `[locale]/blog/` — that
-  would collide with the dynamic `[section]` segment at the same depth).
-  Files live under `src/content/blog/<locale>/`. `SEGMENTS.blog` gives
-  the translated `/blog/` segment itself (`boke` for both Chinese
-  variants, matching the `fuwu` pattern).
-  **Translation status: 2 of 3 posts have a Spanish version.** "What a
-  small business website actually needs" (2026-08-27, proof-of-concept
-  pick) and "How to know if it's time to raise your prices" (2026-08-27,
-  following `CONTENT-PLAN.md`'s own "Translating an article" priority
-  list, which names the pricing article explicitly). Both used real
-  researched Spanish keywords/slugs, not literal translations. Still
-  untranslated: "Why customers can't find your business on Google" (not
-  on the plan's priority list, lower urgency), and all three posts in
-  both Chinese variants — the plan's remaining recommended priorities
-  (the multilingual-angle pieces, weeks 5–8, and the Google Business
-  Profile guide) haven't been written in English yet at all.
+- `CONTENT-PLAN.md`'s remaining recommended priorities — the multilingual-
+  angle pieces (weeks 5–8) and the Google Business Profile guide — haven't
+  been written in English yet at all. All three *existing* posts are now
+  fully translated (see Resolved), so the next translation work is really
+  "write these first," not "translate more of what's already up."
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that. Tina's own
@@ -227,6 +229,18 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   and fixing it needs a breaking Tina version bump.
 ## Resolved
 
+- Blog i18n mechanism is built (2026-08-26/27) — content collection has
+  `locale`/`translationKey`/`slug` fields, `/[locale]/[section]/` and
+  `/[locale]/[section]/[service]` reuse the existing service/city routing
+  (folded in as a third `kind`, not a separate `[locale]/blog/` — that
+  would collide with the dynamic `[section]` segment at the same depth).
+  Files live under `src/content/blog/<locale>/`. `SEGMENTS.blog` gives
+  the translated `/blog/` segment itself (`boke` for both Chinese
+  variants, matching the `fuwu` pattern). All three existing English
+  posts now have Spanish, Simplified Chinese, and Traditional Chinese
+  versions (2026-08-27) — real researched keywords per language, not
+  literal translations; zh-hant follows Taiwan Mandarin lexis/register.
+  See the `slug`-collision gotcha above if adding more.
 - `site.formEndpoint` now points at a real Formspree endpoint, and the
   contact form dual-submits into a self-hosted n8n workflow (Railway) that
   forwards leads into Twenty CRM via its REST API (2026-08-25/26). Zapier
