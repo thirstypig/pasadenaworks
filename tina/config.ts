@@ -16,6 +16,11 @@ import { defineConfig } from 'tinacms';
  *  a field there, update it here too — Tina and Astro's content
  *  collections don't share a schema automatically.
  *
+ *  Posts live one directory per locale — src/content/blog/<locale>/<slug>.md
+ *  (en / es / zh-hans / zh-hant) — not flat under src/content/blog/. The
+ *  `filename.slugify` below reads the post's `locale` field and places new
+ *  posts in the matching subfolder automatically.
+ *
  *  To let people edit from a browser without your laptop running (e.g.
  *  from a phone, or a non-technical teammate), Tina Cloud is the next
  *  step: sign up at tina.io, connect this GitHub repo, and set
@@ -45,12 +50,15 @@ export default defineConfig({
           // — see the "write a keyword, not post-14" rule in README.md.
           filename: {
             readonly: false,
-            slugify: (values) =>
-              (values?.title || 'untitled')
+            slugify: (values) => {
+              const locale = values?.locale || 'en';
+              const base = (values?.title || 'untitled')
                 .toLowerCase()
                 .trim()
                 .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, ''),
+                .replace(/(^-|-$)/g, '');
+              return `${locale}/${base}`;
+            },
           },
         },
         fields: [
@@ -132,6 +140,31 @@ export default defineConfig({
             type: 'boolean',
             name: 'draft',
             label: 'Draft (hidden from the live site)',
+          },
+          {
+            type: 'string',
+            name: 'locale',
+            label: 'Language',
+            required: true,
+            options: ['en', 'es', 'zh-hans', 'zh-hant'],
+            description:
+              'Which of the site\'s four languages this file is written in. Each translation of a post is its own file — set this before saving so the file lands in the right folder.',
+          },
+          {
+            type: 'string',
+            name: 'translationKey',
+            label: 'Translation key',
+            required: true,
+            description:
+              'Shared across every language\'s version of "the same" post, so the site can link between translations. Use a short stable id (e.g. "website-basics") — it never appears in a URL. Use the same value on every language version of this post.',
+          },
+          {
+            type: 'string',
+            name: 'slug',
+            label: 'URL slug',
+            required: true,
+            description:
+              'The real URL slug for this post, in this language — not a literal translation of the English slug, the keyword-appropriate one for this language.',
           },
           {
             type: 'rich-text',

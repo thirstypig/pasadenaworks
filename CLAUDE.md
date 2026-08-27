@@ -220,33 +220,12 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   reason (it's the proof-of-concept post, not a deliberate keyword
   choice), or follow the plan's original priority for the remaining
   translations.
-- **`tina/config.ts` is now out of sync with `src/content.config.ts`** — the
-  blog i18n work (2026-08-27) added `locale`/`translationKey`/`slug` fields
-  to the real schema, but Tina's mirror schema was never updated to match,
-  and its filename comment still describes the old flat `src/content/blog/
-  <slug>.md` layout instead of the new per-locale subfolders. Until this is
-  fixed, editing/creating posts through `npm run admin` won't expose the
-  new required fields — likely to produce a post that fails the real schema
-  validation on build. Needs updating `tina/config.ts` to match, then
-  verifying with `npm run admin` before trusting it again.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that. Tina's own
   dependencies (`tinacms`/`@tinacms/cli`) still carry moderate `npm audit`
   findings (react-router) — dev-only tooling, never shipped to the live site,
   and fixing it needs a breaking Tina version bump.
-- No scheduling link in the site's nav/footer/service pages yet, even
-  though the booking page itself is done: `schedule.pasadenaworks.com`
-  (Cal.com, self-hosted on Railway) has a real event — "Free 30-min
-  consultation" at `/pasadenaworks/consultation`, Cal Video, the two demo
-  events hidden (2026-08-26). Cal.com's own admin flagged the account
-  password as too weak/no 2FA — that's on the owner to fix, not something
-  an agent should touch. Confirmed working: the booking page genuinely
-  translates into Spanish and Chinese based on the visitor's browser
-  language (verified via `Accept-Language` header — no explicit switcher
-  needed since none is needed). Still open: where the link belongs on
-  the site.
-
 ## Resolved
 
 - `site.formEndpoint` now points at a real Formspree endpoint, and the
@@ -268,6 +247,22 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   from actually working these cities.
 - Fonts (Bevan, Source Serif 4) are self-hosted via `@fontsource` instead
   of loading from the Google Fonts CDN (2026-08-26).
+- `tina/config.ts`'s schema now matches `src/content.config.ts` — added the
+  `locale`/`translationKey`/`slug` fields the blog i18n work introduced, and
+  the `filename.slugify` function now reads the post's `locale` field to
+  place new posts in the right `src/content/blog/<locale>/` subfolder
+  automatically (2026-08-27). Verified by loading `npm run admin` and
+  confirming Tina indexes all four existing posts (including the Spanish
+  one) with no schema errors.
+- A "Book a call" link (`site.bookingUrl`, `strings.nav.bookCall`) was added
+  to the footer, footer-only per the owner's call (2026-08-26) — it points
+  at the real Cal.com public booking page for the free 30-min consultation
+  (`schedule.pasadenaworks.com/pasadenaworks/consultation`, self-hosted on
+  Railway, Cal Video, demo events hidden). Confirmed via `Accept-Language`
+  header tests that the page genuinely translates into Spanish and Chinese
+  based on the visitor's browser language — no explicit switcher needed.
+  Cal.com's own admin flagged the account password as too weak/no 2FA —
+  that's on the owner to fix, not something an agent should touch.
 - A private, real-password-protected ops dashboard exists at
   `ops.pasadenaworks.com` — links to every backend service (CRM,
   scheduling, n8n, Railway, GitHub, DNS). It is a separate tiny Node
