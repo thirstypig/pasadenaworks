@@ -223,10 +223,21 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   "write these first," not "translate more of what's already up."
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
-  the next step if you want browser-based editing without that. Tina's own
-  dependencies (`tinacms`/`@tinacms/cli`) still carry moderate `npm audit`
-  findings (react-router) — dev-only tooling, never shipped to the live site,
-  and fixing it needs a breaking Tina version bump.
+  the next step if you want browser-based editing without that.
+- **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
+  injection CVEs) have no safe fix available yet, checked 2026-08-27** —
+  this isn't "hasn't been done," it's genuinely blocked upstream. We're
+  already on the latest `tinacms`/`@tinacms/cli` (3.12.1/2.6.1), and even
+  that latest release still pins `react-router-dom: ^6.30.3`, inside the
+  vulnerable range. The only fix `npm audit fix --force` offers is
+  downgrading to `tinacms@0.59.1` — a pre-3.x release with a different,
+  incompatible config API from what `tina/config.ts` uses now, which would
+  almost certainly break `npm run admin` rather than fix anything. Real
+  risk is low regardless: Tina admin only runs locally, never reaches the
+  live site, and both CVEs need a browser actually navigating a malicious
+  link while the local dev server happens to be running. Re-check
+  `npm audit` next time `tinacms` gets touched — nothing to act on until
+  Tina ships a version with an unaffected react-router-dom.
 ## Resolved
 
 - Blog i18n mechanism is built (2026-08-26/27) — content collection has
