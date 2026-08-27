@@ -192,8 +192,6 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- No OG share image. Would go at `public/og.png` (1200×630) and be referenced in
-  `Base.astro`.
 - Blog is English-only. Translating posts needs a locale field on the collection
   and a route under `[locale]/` — copy the pattern from the service pages rather
   than inventing a new one.
@@ -245,3 +243,8 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   server-side Basic Auth check (`server.js`, `crypto.timingSafeEqual`),
   not client-side JS. Credentials are the `OPS_USERNAME`/`OPS_PASSWORD`
   variables on that Railway service — change them there, not here.
+- `public/og.png` (1200×630) exists — a Craftsman-styled share image
+  matching the hero (headline, logo frame, ochre lattice divider),
+  rendered via a one-off HTML template and screenshot rather than a
+  design tool. The `<meta property="og:image">` tag in `Base.astro` was
+  already wired up before this; it just had no file to point at.
