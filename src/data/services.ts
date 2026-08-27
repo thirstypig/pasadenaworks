@@ -47,7 +47,7 @@ export const services: Service[] = [
     t: {
       en: {
         title: 'Websites that bring in work',
-        tagline: 'Built to be found, easy to read, quick to load.',
+        tagline: "So a slow, outdated site doesn't send customers to someone else.",
         summary:
           "Your website is often the first thing a customer sees. If it loads slowly, looks old, or doesn't say clearly what you do, people leave and go somewhere else. We build simple, fast websites that work great on a phone and make it easy for customers to reach you. You own it when we're done — no hidden fees, no getting locked in.",
         body: [
@@ -66,7 +66,7 @@ export const services: Service[] = [
       },
       es: {
         title: 'Sitios web que traen clientes',
-        tagline: 'Fáciles de encontrar, fáciles de leer, rápidos de cargar.',
+        tagline: 'Para que un sitio lento y anticuado no le mande sus clientes a otro.',
         summary:
           'Si su sitio carga lento, se ve anticuado, o no dice con claridad qué hace, la gente se va y busca en otro lado. Construimos sitios simples y rápidos que funcionan bien en el celular y facilitan que lo contacten. El sitio es suyo cuando terminamos — sin cargos ocultos, sin quedar atrapado.',
         body: [
@@ -85,7 +85,7 @@ export const services: Service[] = [
       },
       'zh-hans': {
         title: '能带来生意的网站',
-        tagline: '容易被找到，容易看懂，打开速度快。',
+        tagline: '别让又慢又旧的网站，把客人送去了别家。',
         summary:
           '如果网站打开慢、看起来过时，或者说不清楚您是做什么的，客人转身就走，去了别家。我们做又简单又快的网站，在手机上体验很好，也方便客人联系您。做完之后网站完全归您——没有隐藏费用，也不会被绑住。',
         body: [
@@ -104,7 +104,7 @@ export const services: Service[] = [
       },
       'zh-hant': {
         title: '能帶來生意的網站',
-        tagline: '容易被找到，容易看懂，開啟速度快。',
+        tagline: '別讓又慢又舊的網站，把客人送去了別家。',
         summary:
           '如果網站開啟慢、看起來過時，或是說不清楚您是做什麼的，客人轉身就走，去了別家。我們做又簡單又快的網站，在手機上體驗很好，也方便客人聯絡您。做完之後網站完全歸您——沒有隱藏費用，也不會被綁住。',
         body: [
@@ -227,7 +227,7 @@ export const services: Service[] = [
     t: {
       en: {
         title: 'A second opinion on your business',
-        tagline: 'Someone to think it through with, who has no stake in the answer.',
+        tagline: 'An honest answer, from someone with nothing to gain either way.',
         summary:
           "Running a small business means making a lot of decisions alone — should you raise your prices, hire someone, or drop a service that isn't worth your time? We sit down with you, look at your numbers, and help you figure out what to do next. You get a short, clear plan you can actually use, not a stack of confusing reports. Sometimes the honest answer is that your business is already doing fine, and we'll tell you that too.",
         body: [
@@ -245,7 +245,7 @@ export const services: Service[] = [
       },
       es: {
         title: 'Una segunda opinión sobre su negocio',
-        tagline: 'Alguien con quien pensarlo, que no tiene nada que ganar.',
+        tagline: 'Una respuesta honesta, de alguien que no gana nada de cualquier forma.',
         summary:
           'Tener un negocio pequeño significa tomar muchas decisiones solo — si subir los precios, si contratar a alguien, si dejar un servicio que ya no vale la pena. Nos sentamos con usted, revisamos sus números, y le ayudamos a decidir qué sigue. Se lleva un plan corto y claro que sí puede usar, no un montón de reportes confusos. A veces la respuesta honesta es que su negocio ya está bien, y eso también se lo decimos.',
         body: [
@@ -263,7 +263,7 @@ export const services: Service[] = [
       },
       'zh-hans': {
         title: '给您的生意一个第二意见',
-        tagline: '找个人一起把事情想清楚，而且他跟结果没有利害关系。',
+        tagline: '一个诚实的答案，来自一个怎么说都没有利害关系的人。',
         summary:
           '做小生意意味着很多决定都得自己扛——要不要涨价、要不要招人、要不要砍掉一个不值当的服务。我们跟您坐下来，一起看您的数字，帮您想清楚下一步该怎么走。您拿到的是一份能直接用的简短计划，不是一堆看不懂的报告。有时候诚实的答案是您的生意本来就挺好，这话我们也会照直说。',
         body: [
@@ -281,7 +281,7 @@ export const services: Service[] = [
       },
       'zh-hant': {
         title: '給您的生意一個第二意見',
-        tagline: '找個人一起把事情想清楚，而且他跟結果沒有利害關係。',
+        tagline: '一個誠實的答案，來自一個怎麼說都沒有利害關係的人。',
         summary:
           '做小生意意味著很多決定都得自己扛——要不要漲價、要不要請人、要不要砍掉一個不值得的服務。我們跟您坐下來，一起看您的數字，幫您想清楚下一步該怎麼走。您拿到的是一份能直接用的簡短計畫，不是一堆看不懂的報告。有時候誠實的答案是您的生意本來就挺好，這話我們也會照實說。',
         body: [
@@ -312,7 +312,7 @@ export const services: Service[] = [
     t: {
       en: {
         title: 'Paid ads, when they make sense',
-        tagline: "We'll tell you honestly whether you should be running them.",
+        tagline: "So you don't waste money on ads that never made sense.",
         summary:
           "Paid ads on Google and Facebook can bring in customers fast, but they can also waste your money if they're not set up right. Before we recommend running ads, we check whether they actually make sense for your business. If they do, we keep your budget under control and show you exactly what you're getting each month. If they don't, we'll say so and suggest something that works better.",
         body: [
@@ -331,7 +331,7 @@ export const services: Service[] = [
       },
       es: {
         title: 'Publicidad pagada, cuando tiene sentido',
-        tagline: 'Le decimos con honestidad si debería estar pagando anuncios.',
+        tagline: 'Para que no desperdicie dinero en anuncios que nunca tuvieron sentido.',
         summary:
           'Los anuncios pagados en Google y Facebook pueden traer clientes rápido, pero también pueden desperdiciar su dinero si no están bien configurados. Antes de recomendarle anunciarse, revisamos si de verdad tiene sentido para su negocio. Si lo tiene, mantenemos su presupuesto bajo control y le mostramos exactamente qué está obteniendo cada mes. Si no, se lo decimos y le sugerimos algo mejor.',
         body: [
@@ -350,7 +350,7 @@ export const services: Service[] = [
       },
       'zh-hans': {
         title: '该投广告的时候才投',
-        tagline: '我们会实话告诉您，到底该不该花这个钱。',
+        tagline: '别把钱浪费在从一开始就不该投的广告上。',
         summary:
           '谷歌和脸书上的付费广告能很快带来客人，但如果设置不当，也能很快烧掉您的钱。在建议您投广告之前，我们会先看这事儿对您的生意到底划不划算。划算的话，我们会把预算控制住，每个月清楚告诉您花了多少、换回来什么。不划算的话，我们会直说，并且给您更好的建议。',
         body: [
@@ -369,7 +369,7 @@ export const services: Service[] = [
       },
       'zh-hant': {
         title: '該投廣告的時候才投',
-        tagline: '我們會實話告訴您，到底該不該花這個錢。',
+        tagline: '別把錢浪費在從一開始就不該投的廣告上。',
         summary:
           'Google 和 Facebook 上的付費廣告能很快帶來客人，但如果設定不當，也能很快燒掉您的錢。在建議您投廣告之前，我們會先看這件事對您的生意到底划不划算。划算的話，我們會把預算控制住，每個月清楚告訴您花了多少、換回來什麼。不划算的話，我們會直說，並且給您更好的建議。',
         body: [
