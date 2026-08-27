@@ -137,8 +137,8 @@ export const cities: City[] = [
         title: 'Web design and local SEO for Alhambra businesses',
         summary: 'Website and Google visibility work for Alhambra small businesses, in English, Spanish, or Chinese.',
         body: [
-          TODO,
-          "Alhambra's Main Street and Valley Boulevard corridors carry a genuinely mixed customer base — English, Spanish, and Chinese speakers all searching for the same kinds of businesses, often in different languages. A website that only exists in English is quietly invisible to a meaningful share of the customers actually looking.",
+          RESEARCHED,
+          "Alhambra's two commercial corridors have different personalities. Main Street near Garfield Avenue has been a center of commerce since 1895 and today mixes dining, retail, and the multiplex at Renaissance Plaza; Valley Boulevard — once part of old U.S. Route 60 before the freeways were built — is where car dealerships, Asian-owned banks, markets, and restaurants concentrate, serving a customer base that's as likely to search in Chinese or Spanish as in English.",
           'We build Alhambra business sites in whichever languages your customers actually search in, with a matching Google Business Profile, so you show up for all of them — not just the ones searching in English.',
         ],
         meta: 'Website design and local SEO for small businesses in Alhambra, CA — in English, Spanish, and Chinese.',
@@ -148,8 +148,8 @@ export const cities: City[] = [
         summary:
           'Sitios web y visibilidad en Google para negocios pequeños en Alhambra, en inglés, español o chino.',
         body: [
-          TODO,
-          'Los corredores de Main Street y Valley Boulevard en Alhambra tienen clientes que buscan en inglés, español y chino, muchas veces para el mismo tipo de negocio. Un sitio que solo existe en inglés es prácticamente invisible para una buena parte de esos clientes.',
+          RESEARCHED,
+          'Los dos corredores comerciales de Alhambra tienen personalidades distintas. Main Street, cerca de Garfield Avenue, es un centro comercial desde 1895 y hoy combina restaurantes, tiendas y el cine de Renaissance Plaza; Valley Boulevard — antes parte de la antigua Ruta 60 de EE. UU., antes de que se construyeran las autopistas — es donde se concentran concesionarios de autos, bancos, mercados y restaurantes de propietarios asiáticos, con una clientela que busca tanto en chino o español como en inglés.',
           'Construimos sitios para negocios de Alhambra en los idiomas que sus clientes realmente usan para buscar, junto con un perfil de Google Business que coincide, para que aparezca ante todos ellos y no solo ante quienes buscan en inglés.',
         ],
         meta: 'Diseño web y SEO local para negocios pequeños en Alhambra, CA — en inglés, español y chino.',
@@ -158,8 +158,8 @@ export const cities: City[] = [
         title: '阿罕布拉市（Alhambra）商家网站设计与本地推广',
         summary: '为阿罕布拉市的小型企业提供英文、西班牙文、中文的网站和谷歌推广服务。',
         body: [
-          TODO,
-          '阿罕布拉市的 Main Street 和 Valley Boulevard 一带，客人用英文、西班牙文、中文搜索的都有，而且经常是在找同一类生意。如果网站只有英文版，很大一部分客人根本看不到您。',
+          RESEARCHED,
+          '阿罕布拉市的两条主要商业街风格不同。Main Street 靠近 Garfield Avenue 一带，从 1895 年就是商业中心，现在有餐厅、零售店，还有 Renaissance Plaza 的电影院；Valley Boulevard 以前是美国 60 号公路的一段，如今聚集了不少车行、亚裔银行、市场和餐厅，客人用中文或西班牙文搜索的和用英文搜索的一样多。',
           '我们会根据您客人真正使用的语言来做网站，并配合相应语言的谷歌商家资料，让您不只是被讲英文的客人找到。',
         ],
         meta: '为阿罕布拉市（Alhambra）小型企业提供英文、西班牙文、中文网站设计与本地谷歌推广服务。',
@@ -168,8 +168,8 @@ export const cities: City[] = [
         title: '阿罕布拉市（Alhambra）商家網站設計與在地推廣',
         summary: '為阿罕布拉市的小型企業提供英文、西班牙文、中文的網站和 Google 推廣服務。',
         body: [
-          TODO,
-          '阿罕布拉市的 Main Street 和 Valley Boulevard 一帶，客人用英文、西班牙文、中文搜尋的都有，而且經常是在找同一類生意。如果網站只有英文版，很大一部分客人根本看不到您。',
+          RESEARCHED,
+          '阿罕布拉市的兩條主要商業街風格不同。Main Street 靠近 Garfield Avenue 一帶，從 1895 年就是商業中心，現在有餐廳、零售店，還有 Renaissance Plaza 的電影院；Valley Boulevard 以前是美國 60 號公路的一段，如今聚集了不少車行、亞裔銀行、市場和餐廳，客人用中文或西班牙文搜尋的和用英文搜尋的一樣多。',
           '我們會根據您客人真正使用的語言來做網站，並搭配相應語言的 Google 商家檔案，讓您不只是被講英文的客人找到。',
         ],
         meta: '為阿罕布拉市（Alhambra）小型企業提供英文、西班牙文、中文網站設計與在地 Google 推廣服務。',
@@ -184,8 +184,8 @@ export const cities: City[] = [
         summary:
           'Website and Google visibility work for Arcadia small businesses, in English or Traditional Chinese.',
         body: [
-          TODO,
-          "Arcadia is home to Santa Anita Park and the Westfield Santa Anita shopping center, which pull in visitors from across the region — and it also has a large Chinese-speaking business community, much of it Traditional-Chinese-reading rather than Simplified. Getting that distinction right, rather than defaulting to Simplified Chinese or skipping Chinese entirely, is a small thing that a lot of websites get wrong.",
+          RESEARCHED,
+          "Arcadia's downtown got its start in 1887 around 1st Avenue and Huntington Drive — a handful of buildings from the 1920s and '30s still stand near that original corner, and Huntington Drive itself later became part of old Route 66. Baldwin Avenue grew into a second commercial strip west of downtown starting in the 1920s. The city is also home to Santa Anita Park and the Westfield Santa Anita shopping center, which pull in visitors from across the region — and to a large Chinese-speaking business community, much of it Traditional-Chinese-reading rather than Simplified. Getting that distinction right, rather than defaulting to Simplified Chinese or skipping Chinese entirely, is a small thing that a lot of websites get wrong.",
           "We build Arcadia business sites in English and Traditional Chinese, matched to how your actual customers read, plus the Google Business Profile work that makes sure you show up locally in both languages.",
         ],
         meta: 'Website design and local SEO for small businesses in Arcadia, CA — in English and Traditional Chinese.',
@@ -194,8 +194,8 @@ export const cities: City[] = [
         title: '亞凱迪亞（Arcadia）商家網站設計與在地推廣',
         summary: '為亞凱迪亞的小型企業提供英文和繁體中文的網站與 Google 推廣服務。',
         body: [
-          TODO,
-          '亞凱迪亞有聖塔安妮塔賽馬場（Santa Anita Park）和 Westfield Santa Anita 購物中心，吸引不少外地訪客；當地也有不少講中文的商家客群，而且多半習慣閱讀繁體中文而非簡體中文。網站语言選對繁體還是簡體，是很多網站容易忽略、卻很重要的小細節。',
+          RESEARCHED,
+          '亞凱迪亞市中心始於 1887 年，最早的商業區在 1st Avenue 與 Huntington Drive 交叉口一帶，附近至今還留有幾棟 1920、30 年代的老建築；Huntington Drive 後來也成為舊 66 號公路的一段。西邊的 Baldwin Avenue 從 1920 年代起發展成另一條商業街。亞凱迪亞還有聖塔安妮塔賽馬場（Santa Anita Park）和 Westfield Santa Anita 購物中心，吸引不少外地訪客；當地也有不少講中文的商家客群，而且多半習慣閱讀繁體中文而非簡體中文。網站語言選對繁體還是簡體，是很多網站容易忽略、卻很重要的小細節。',
           '我們為亞凱迪亞的商家製作英文和繁體中文網站，配合您客人真正習慣閱讀的文字，並處理 Google 商家檔案，讓您在兩種語言的在地搜尋中都能被看到。',
         ],
         meta: '為亞凱迪亞（Arcadia）小型企業提供英文與繁體中文網站設計與在地 Google 推廣服務。',
@@ -240,8 +240,8 @@ export const cities: City[] = [
         summary:
           'Website and Google visibility work for Monterey Park small businesses, in English or Chinese.',
         body: [
-          TODO,
-          "Monterey Park has one of the oldest and most established Chinese-American business communities in the San Gabriel Valley, and a meaningful share of customers here search in Chinese, not English. A business whose website and Google Business Profile only exist in English is invisible to a real part of its own customer base.",
+          RESEARCHED,
+          "Monterey Park's Garvey Avenue and Atlantic Boulevard corridor has been commercial ground for a century — Laura Scudder invented the sealed bag of potato chips near that intersection in 1926 — but it's best known today as the heart of one of the oldest and most established Chinese-American business communities in the San Gabriel Valley, with close to 400 storefronts and an annual Lunar New Year festival along Garvey. A meaningful share of customers here search in Chinese, not English, and a business whose website and Google Business Profile only exist in English is invisible to a real part of its own customer base.",
           'We build Monterey Park business sites with real Chinese-language pages — not a Google Translate widget bolted onto an English site — plus the Google Business Profile work to match, so you show up for the customers actually searching for you.',
         ],
         meta: 'Website design and local SEO for small businesses in Monterey Park, CA — in English and Chinese.',
@@ -250,8 +250,8 @@ export const cities: City[] = [
         title: '蒙特利公园（Monterey Park）商家网站设计与本地推广',
         summary: '为蒙特利公园的小型企业提供英文和中文的网站与谷歌推广服务。',
         body: [
-          TODO,
-          '蒙特利公园是圣盖博谷历史最悠久的华人商业社区之一，很多客人直接用中文搜索，而不是英文。如果网站和谷歌商家资料只有英文版，相当一部分客人根本看不到您。',
+          RESEARCHED,
+          '蒙特利公园的 Garvey Avenue 和 Atlantic Boulevard 一带早在上世纪就是商业地带——1926 年，Laura Scudder 就是在这个路口附近发明了密封袋装薯片——但如今这里更为人熟知的身份，是圣盖博谷历史最悠久、最成熟的华人商业社区之一，Garvey 沿线聚集了近 400 家商户，每年还会举办华人新年庆典。很多客人直接用中文搜索，而不是英文，如果网站和谷歌商家资料只有英文版，相当一部分客人根本看不到您。',
           '我们为蒙特利公园的商家制作真正的中文网站——不是在英文网站上加一个谷歌翻译插件——并配合谷歌商家资料，让真正在搜索您的客人找得到您。',
         ],
         meta: '为蒙特利公园（Monterey Park）小型企业提供英文和中文网站设计与本地谷歌推广服务。',
