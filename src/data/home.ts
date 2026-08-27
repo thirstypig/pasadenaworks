@@ -29,13 +29,13 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       'Sitios web, SEO local y publicidad para negocios pequeños en Pasadena y el Valle de San Gabriel. Trabajo claro, sin letra pequeña.',
     heroEyebrow: 'Pasadena y el Valle de San Gabriel',
-    heroHeading: 'Trabajo digital honesto para negocios pequeños',
+    heroHeading: 'Más clientes que lo encuentran. Menos jerga en el camino.',
     heroSubhead:
-      'Sitios web, presencia en Google y una segunda opinión de negocio — explicado en español sencillo, sin venderle nada que no necesita.',
+      'Sitios web, presencia en Google y publicidad paga para negocios pequeños en Pasadena y el Valle de San Gabriel — con honestidad, y sin retenerle nada.',
     heroCta: 'Contáctenos',
     servicesHeading: 'En qué le podemos ayudar',
     servicesIntro:
-      'Cuatro servicios, ninguno complicado. Empiece por el que más le urge.',
+      'Cuatro servicios, ninguno complicado. Empiece por el que de verdad le está costando clientes ahora mismo.',
     serviceAreaHeading: 'Dónde trabajamos',
     serviceAreaIntro:
       'Atendemos negocios pequeños en estas ciudades y sus alrededores.',
@@ -49,11 +49,11 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       '为帕萨迪纳和圣盖博谷的小型企业提供网站、本地谷歌推广和广告服务。说大白话，不卖多余的东西。',
     heroEyebrow: '帕萨迪纳与圣盖博谷',
-    heroHeading: '为小生意做实在的线上工作',
-    heroSubhead: '网站、谷歌曝光、还有一个客观的第二意见——用大白话讲清楚，不卖您不需要的东西。',
+    heroHeading: '让更多客人找到您，少一点行话。',
+    heroSubhead: '为帕萨迪纳和圣盖博谷的小型企业提供网站、谷歌曝光和付费广告服务——说到做到，绝不扣着您的网站不放。',
     heroCta: '联系我们',
     servicesHeading: '我们能帮您做什么',
-    servicesIntro: '一共四项服务，都不复杂。先从最急的那个开始。',
+    servicesIntro: '一共四项服务，都不复杂。先从真正让您流失客人的那项开始。',
     serviceAreaHeading: '我们的服务区域',
     serviceAreaIntro: '我们为以下城市及周边的小型企业提供服务。',
     closingHeading: '准备好聊聊了吗？',
@@ -65,11 +65,11 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       '為帕薩迪納和聖蓋博谷的小型企業提供網站、在地 Google 推廣和廣告服務。說白話，不賣多餘的東西。',
     heroEyebrow: '帕薩迪納與聖蓋博谷',
-    heroHeading: '為小生意做實在的線上工作',
-    heroSubhead: '網站、Google 曝光，還有一個客觀的第二意見——用白話講清楚，不賣您不需要的東西。',
+    heroHeading: '讓更多客人找到您，少一點行話。',
+    heroSubhead: '為帕薩迪納和聖蓋博谷的小型企業提供網站、Google 曝光和付費廣告服務——說到做到，絕不扣著您的網站不放。',
     heroCta: '聯絡我們',
     servicesHeading: '我們能幫您做什麼',
-    servicesIntro: '一共四項服務，都不複雜。先從最急的那個開始。',
+    servicesIntro: '一共四項服務，都不複雜。先從真正讓您流失客人的那項開始。',
     serviceAreaHeading: '我們的服務區域',
     serviceAreaIntro: '我們為以下城市及周邊的小型企業提供服務。',
     closingHeading: '準備好聊聊了嗎？',

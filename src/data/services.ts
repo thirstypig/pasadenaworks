@@ -68,7 +68,7 @@ export const services: Service[] = [
         title: 'Sitios web que traen clientes',
         tagline: 'Fáciles de encontrar, fáciles de leer, rápidos de cargar.',
         summary:
-          'Un sitio claro y rápido que explica lo que usted hace y facilita que lo contacten.',
+          'Si su sitio carga lento, se ve anticuado, o no dice con claridad qué hace, la gente se va y busca en otro lado. Construimos sitios simples y rápidos que funcionan bien en el celular y facilitan que lo contacten. El sitio es suyo cuando terminamos — sin cargos ocultos, sin quedar atrapado.',
         body: [
           'La mayoría de los sitios web de negocios pequeños se hicieron una sola vez, hace años, por alguien que ya no contesta los correos. Cargan lento en el teléfono, el horario está equivocado y no hay forma obvia de comunicarse. Mientras tanto, el cliente ya se fue y llamó al negocio de la otra cuadra.',
           'Nosotros construimos sitios que arreglan lo básico primero: rápidos en el teléfono, con información correcta, y un número o formulario imposible de pasar por alto. Después nos aseguramos de que Google realmente pueda leer el sitio, que es donde la mayoría falla sin que nadie se dé cuenta.',
@@ -86,7 +86,8 @@ export const services: Service[] = [
       'zh-hans': {
         title: '能带来生意的网站',
         tagline: '容易被找到，容易看懂，打开速度快。',
-        summary: '一个清晰、快速的网站，说清楚您做什么，并且让客人方便联系您。',
+        summary:
+          '如果网站打开慢、看起来过时，或者说不清楚您是做什么的，客人转身就走，去了别家。我们做又简单又快的网站，在手机上体验很好，也方便客人联系您。做完之后网站完全归您——没有隐藏费用，也不会被绑住。',
         body: [
           '大部分小生意的网站都是很多年前做的，做网站的人早就联系不上了。手机上打开很慢，营业时间是错的，也找不到联系方式。等客人找了半天，早就转头打给隔壁那家了。',
           '我们先把最基本的事情做好：手机上打开快、信息准确、电话和留言表单放在一眼就能看到的位置。然后我们会确保谷歌真的能读懂您的网站——大多数网站正是在这一步悄悄地失败了。',
@@ -104,7 +105,8 @@ export const services: Service[] = [
       'zh-hant': {
         title: '能帶來生意的網站',
         tagline: '容易被找到，容易看懂，開啟速度快。',
-        summary: '一個清楚、快速的網站，說明您做什麼，並且讓客人方便聯絡您。',
+        summary:
+          '如果網站開啟慢、看起來過時，或是說不清楚您是做什麼的，客人轉身就走，去了別家。我們做又簡單又快的網站，在手機上體驗很好，也方便客人聯絡您。做完之後網站完全歸您——沒有隱藏費用，也不會被綁住。',
         body: [
           '大部分小生意的網站都是很多年前做的，做網站的人早就聯絡不上了。手機上開啟很慢，營業時間是錯的，也找不到聯絡方式。等客人找了半天，早就轉頭打給隔壁那家了。',
           '我們先把最基本的事情做好：手機上開啟快、資訊正確、電話和留言表單放在一眼就看得到的位置。接著我們會確保 Google 真的能讀懂您的網站——大多數網站正是在這一步悄悄地失敗了。',
@@ -157,7 +159,7 @@ export const services: Service[] = [
         title: 'Aparecer en Google',
         tagline: 'Los clientes ya están buscando. Sea el resultado que ven.',
         summary:
-          'Aparezca cuando alguien cerca busque lo que usted vende, sin pagar por cada clic.',
+          'Cuando alguien cerca busca lo que usted vende, usted quiere ser el primer resultado — en Google, en Google Maps, y ahora hasta cuando le preguntan a herramientas de IA. Nosotros nos encargamos del trabajo técnico detrás: su perfil de Google Business, sus reseñas, y un sitio que de verdad responde lo que la gente pregunta. Tarda unos meses en funcionar, pero una vez que funciona, sigue funcionando aunque deje de pagarnos.',
         body: [
           'En este momento hay alguien a menos de cinco kilómetros escribiendo su servicio en el teléfono. La única pregunta es qué nombre aparece. Ese lugar no es suerte ni magia: es una lista de cosas concretas, aburridas y arreglables.',
           'Empezamos con lo gratuito que más funciona para negocios locales: su perfil de Google Business, sus reseñas, y si su nombre, dirección y teléfono coinciden en todos lados donde aparecen. Después creamos páginas y artículos que responden exactamente lo que sus clientes escriben.',
@@ -175,7 +177,8 @@ export const services: Service[] = [
       'zh-hans': {
         title: '让客人在谷歌上找到您',
         tagline: '客人已经在搜索了，问题是他们看到的是谁。',
-        summary: '当附近的人搜索您卖的东西时出现在结果里，而且不必为每次点击付费。',
+        summary:
+          '附近的人搜索您卖的东西时，您希望第一个出现的是您——在谷歌上、在谷歌地图上，现在甚至是别人问 AI 工具的时候。我们负责背后的技术活儿：谷歌商家资料、客户评价，还有一个真正能回答客人问题的网站。这事儿要几个月才见效，但一旦见效，哪怕您不再付钱，它也会继续管用。',
         body: [
           '此时此刻，离您几公里之内就有人正在手机上搜索您做的这个行业。唯一的问题是：跳出来的是谁的名字。那个位置不靠运气，也不是什么玄学，而是一堆具体、枯燥、但可以一件件解决的事情。',
           '我们先做对本地生意最有效的免费部分：谷歌商家资料、客户评价，以及您的店名、地址、电话在网上各处是否一致。然后我们再制作页面和文章，回答客人真正会搜的那些问题。',
@@ -193,7 +196,8 @@ export const services: Service[] = [
       'zh-hant': {
         title: '讓客人在 Google 上找到您',
         tagline: '客人已經在搜尋了，問題是他們看到的是誰。',
-        summary: '當附近的人搜尋您賣的東西時出現在結果裡，而且不必為每次點擊付費。',
+        summary:
+          '附近的人搜尋您賣的東西時，您希望第一個出現的是您——在 Google 上、在 Google 地圖上，現在甚至是別人問 AI 工具的時候。我們負責背後的技術活兒：Google 商家檔案、客戶評價，還有一個真正能回答客人問題的網站。這件事要幾個月才見效，但一旦見效，就算您不再付費，它也會繼續管用。',
         body: [
           '此時此刻，離您幾公里之內就有人正在手機上搜尋您做的這個行業。唯一的問題是：跳出來的是誰的名字。那個位置不靠運氣，也不是什麼玄學，而是一堆具體、枯燥、但可以一件件解決的事情。',
           '我們先做對本地生意最有效的免費部分：Google 商家檔案、客戶評價，以及您的店名、地址、電話在網路上各處是否一致。接著我們再製作頁面和文章，回答客人真正會搜尋的那些問題。',
@@ -243,7 +247,7 @@ export const services: Service[] = [
         title: 'Una segunda opinión sobre su negocio',
         tagline: 'Alguien con quien pensarlo, que no tiene nada que ganar.',
         summary:
-          'Sesiones de trabajo sobre precios, ofertas y a dónde se le va el tiempo.',
+          'Tener un negocio pequeño significa tomar muchas decisiones solo — si subir los precios, si contratar a alguien, si dejar un servicio que ya no vale la pena. Nos sentamos con usted, revisamos sus números, y le ayudamos a decidir qué sigue. Se lleva un plan corto y claro que sí puede usar, no un montón de reportes confusos. A veces la respuesta honesta es que su negocio ya está bien, y eso también se lo decimos.',
         body: [
           'Tener un negocio pequeño significa que todas las decisiones caen en un solo escritorio. Si subir los precios. Si contratar a alguien. Si dejar ese servicio que se come la mitad de la semana y trae la décima parte del ingreso. Y casi nunca hay con quién platicarlo que no sea su pareja o su empleado.',
           'Eso es lo que hacemos. Es una sesión de trabajo, no una conferencia: revisamos sus números juntos, identificamos las dos o tres cosas que de verdad importan este trimestre, y usted se queda con un resumen corto por escrito.',
@@ -260,7 +264,8 @@ export const services: Service[] = [
       'zh-hans': {
         title: '给您的生意一个第二意见',
         tagline: '找个人一起把事情想清楚，而且他跟结果没有利害关系。',
-        summary: '围绕定价、产品和您的时间到底花在哪里，一起坐下来把问题过一遍。',
+        summary:
+          '做小生意意味着很多决定都得自己扛——要不要涨价、要不要招人、要不要砍掉一个不值当的服务。我们跟您坐下来，一起看您的数字，帮您想清楚下一步该怎么走。您拿到的是一份能直接用的简短计划，不是一堆看不懂的报告。有时候诚实的答案是您的生意本来就挺好，这话我们也会照直说。',
         body: [
           '做小生意意味着所有决定都压在同一张桌子上。要不要涨价。要不要招人。那项占了您一半时间、却只带来十分之一收入的服务，要不要砍掉。而能商量的人，往往不是您的家人就是您的员工。',
           '我们做的就是这件事。这是一次一起干活的会谈，不是听课：我们一起看您的数字，挑出这个季度真正要紧的两三件事，最后给您一份可以直接照着做的简短书面总结。',
@@ -277,7 +282,8 @@ export const services: Service[] = [
       'zh-hant': {
         title: '給您的生意一個第二意見',
         tagline: '找個人一起把事情想清楚，而且他跟結果沒有利害關係。',
-        summary: '圍繞定價、產品和您的時間到底花在哪裡，一起坐下來把問題過一遍。',
+        summary:
+          '做小生意意味著很多決定都得自己扛——要不要漲價、要不要請人、要不要砍掉一個不值得的服務。我們跟您坐下來，一起看您的數字，幫您想清楚下一步該怎麼走。您拿到的是一份能直接用的簡短計畫，不是一堆看不懂的報告。有時候誠實的答案是您的生意本來就挺好，這話我們也會照實說。',
         body: [
           '做小生意意味著所有決定都壓在同一張桌子上。要不要漲價。要不要請人。那項佔了您一半時間、卻只帶來十分之一收入的服務，要不要砍掉。而能商量的人，往往不是您的家人就是您的員工。',
           '我們做的就是這件事。這是一次一起做事的會談，不是聽課：我們一起看您的數字，挑出這個季度真正要緊的兩三件事，最後給您一份可以直接照著做的簡短書面總結。',
@@ -327,7 +333,7 @@ export const services: Service[] = [
         title: 'Publicidad pagada, cuando tiene sentido',
         tagline: 'Le decimos con honestidad si debería estar pagando anuncios.',
         summary:
-          'Anuncios en Google y Meta para negocios donde las cuentas sí salen.',
+          'Los anuncios pagados en Google y Facebook pueden traer clientes rápido, pero también pueden desperdiciar su dinero si no están bien configurados. Antes de recomendarle anunciarse, revisamos si de verdad tiene sentido para su negocio. Si lo tiene, mantenemos su presupuesto bajo control y le mostramos exactamente qué está obteniendo cada mes. Si no, se lo decimos y le sugerimos algo mejor.',
         body: [
           'La publicidad pagada es la forma más rápida de llegar a la gente y también la más rápida de quemar dinero. Que valga la pena depende de un solo número: cuánto vale un cliente para usted a lo largo del tiempo. Si ese número es chico, los anuncios le van a costar dinero por bien que se manejen.',
           'Por eso empezamos por sacar esa cuenta juntos. Si no cuadra, se lo decimos y le señalamos algo que sí va a funcionar mejor, casi siempre las búsquedas o su propia lista de clientes.',
@@ -345,7 +351,8 @@ export const services: Service[] = [
       'zh-hans': {
         title: '该投广告的时候才投',
         tagline: '我们会实话告诉您，到底该不该花这个钱。',
-        summary: '为算得过账的生意投放谷歌和 Meta 广告。',
+        summary:
+          '谷歌和脸书上的付费广告能很快带来客人，但如果设置不当，也能很快烧掉您的钱。在建议您投广告之前，我们会先看这事儿对您的生意到底划不划算。划算的话，我们会把预算控制住，每个月清楚告诉您花了多少、换回来什么。不划算的话，我们会直说，并且给您更好的建议。',
         body: [
           '付费广告是最快让人看到您的办法，也是最快烧钱的办法。值不值得，取决于一个数字：一位客人在往后的时间里总共能给您带来多少钱。如果这个数字不大，广告投得再好也是亏。',
           '所以我们先跟您一起把这笔账算清楚。如果算不过来，我们就直说，并且告诉您什么办法更划算——通常是自然搜索，或者您手上已有的老客户名单。',
@@ -363,7 +370,8 @@ export const services: Service[] = [
       'zh-hant': {
         title: '該投廣告的時候才投',
         tagline: '我們會實話告訴您，到底該不該花這個錢。',
-        summary: '為算得過帳的生意投放 Google 和 Meta 廣告。',
+        summary:
+          'Google 和 Facebook 上的付費廣告能很快帶來客人，但如果設定不當，也能很快燒掉您的錢。在建議您投廣告之前，我們會先看這件事對您的生意到底划不划算。划算的話，我們會把預算控制住，每個月清楚告訴您花了多少、換回來什麼。不划算的話，我們會直說，並且給您更好的建議。',
         body: [
           '付費廣告是最快讓人看到您的辦法，也是最快燒錢的辦法。值不值得，取決於一個數字：一位客人在往後的時間裡總共能為您帶來多少錢。如果這個數字不大，廣告投得再好也是虧。',
           '所以我們先跟您一起把這筆帳算清楚。如果算不過來，我們就直說，並且告訴您什麼辦法更划算——通常是自然搜尋，或者您手上已有的老客戶名單。',
