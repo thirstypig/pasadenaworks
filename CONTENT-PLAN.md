@@ -26,13 +26,51 @@ than no blog.
 
 | Article | Pillar | Targets | Translations |
 |---|---|---|---|
-| Why customers can't find your business on Google | search | "why can't customers find my business on google" | — |
-| What a small business website actually needs | websites | "what should a small business website include" | Spanish |
-| How to know if it's time to raise your prices | consulting | "when to raise prices small business" | — |
+| Why customers can't find your business on Google | search | "why can't customers find my business on google" | Spanish, Simplified &amp; Traditional Chinese |
+| What a small business website actually needs | websites | "what should a small business website include" | Spanish, Simplified &amp; Traditional Chinese |
+| How to know if it's time to raise your prices | consulting | "when to raise prices small business" | Spanish, Simplified &amp; Traditional Chinese |
+
+All three original posts are now translated into all three other site
+languages (2026-08-27) — see "Translating an article" below for what that
+means for what to translate next.
+
+---
+
+## Publishing calendar
+
+The three articles above published roughly weekly from 2026-06-01 through
+2026-06-15, then publishing paused for about ten weeks while the site's
+i18n mechanism and other infrastructure work happened. Restarting at one
+article per week from here, the schedule below is real calendar dates, not
+relative week numbers — update it as you actually publish rather than
+letting it drift out of sync with reality the way the "weeks 1–12" version
+did.
+
+| Target date | Article | Pillar |
+|---|---|---|
+| 2026-08-31 | How much should a small business website cost? | websites |
+| 2026-09-07 | How to claim and fix your Google Business Profile | search |
+| 2026-09-14 | Do I need a website if I have Instagram? | websites |
+| 2026-09-21 | How to ask customers for reviews without being awkward | search |
+| 2026-09-28 | Should your website be in Spanish too? | websites |
+| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search |
+| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites |
+| 2026-10-26 | Are Google Ads worth it for a small business? | ads |
+| 2026-11-02 | What to do when your website traffic drops | search |
+| 2026-11-09 | Which service should you stop offering? | consulting |
+| 2026-11-16 | How to fire a customer without burning the relationship | consulting |
+
+If a week slips, don't compress two articles into one week to catch up —
+just slide every date after it back by the same amount. Consistency at a
+slower pace beats a burst followed by another gap.
 
 ---
 
 ## Weeks 1–4 — the questions people already ask you
+
+_Real target dates: 2026-08-31 through 2026-09-21 — see the publishing
+calendar above._
 
 Start here because you already know the answers cold. These are the questions
 you field on the phone every week, which means writing them is fast and the
@@ -55,6 +93,8 @@ leads, which saves you calls you didn't want.
 
 ## Weeks 5–8 — the multilingual angle nobody else is writing
 
+_Real target dates: 2026-09-28 through 2026-10-19._
+
 This is your genuine differentiator and there is close to no competition for
 these terms in your area. Publish the English version first; translate the
 strongest one or two into Spanish and Chinese afterward.
@@ -75,6 +115,8 @@ Chinese-speaking owner is quietly checking for before they call you.
 ---
 
 ## Weeks 9–12 — the money questions
+
+_Real target dates: 2026-10-26 through 2026-11-16._
 
 By now you have some search history in Google Search Console. Check it before
 committing to these; if real queries are showing up that you didn't predict,
@@ -117,26 +159,29 @@ outranks a new one on the same topic.
 ## Translating an article
 
 Blog posts are English-only by default, and that's the right call for a solo
-shop — four-way translation of everything is more work than it's worth. But one
-or two articles are worth translating, specifically the ones where the audience
+shop — four-way translation of everything is more work than it's worth. But
+some articles are worth translating, specifically the ones where the audience
 searching in that language is underserved.
 
-Worth translating: the multilingual pieces (weeks 5–8), the pricing article,
-and the Google Business Profile guide.
+Worth translating: the multilingual pieces (weeks 5–8, not written yet), the
+Google Business Profile guide (week 2, not written yet), and — done as of
+2026-08-27 — all three currently-published posts.
 
-Not worth translating: anything where the reader is equally likely to search in
-English, which is most consulting content.
+Not worth translating by default: anything where the reader is equally likely
+to search in English, which is most consulting content. (The pricing article
+got translated anyway on 2026-08-27, since translating "the rest of what's
+already published" was cheap once the mechanism existed — not because a
+Spanish- or Chinese-speaking reader is meaningfully underserved for that
+specific topic. Don't take that as a signal to translate every future
+consulting post by default.)
 
-**The mechanism for this is already built** (2026-08-27) — see "Translating a
-post" in `README.md` for the mechanics (locale subfolder, `translationKey`,
-per-language `slug`). What's not done yet is the actual translation work: as
-of 2026-08-27, only "What a small business website actually needs" has a
-Spanish version, and it wasn't picked for the reasons above — it was the
-proof-of-concept post used to verify the mechanism worked at all. **The
-articles this section actually recommends translating first (the
-multilingual pieces, the pricing article, the GBP guide) are still
-untranslated.** Worth deciding whether to translate those next, or keep
-building out from the post that's already done.
+**The mechanism is built and now fully used** — see "Translating a post" in
+`README.md` for the mechanics (locale subfolder, `translationKey`,
+per-language `slug`). All three published posts have Spanish, Simplified
+Chinese, and Traditional Chinese versions. The real translation priority from
+here is the four *not-yet-written* posts above (weeks 2, 5–8) — translate
+each as you publish the English version, rather than batching translation
+work later.
 
 ---
 
