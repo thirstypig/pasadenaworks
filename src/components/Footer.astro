@@ -1,7 +1,9 @@
 ---
 import type { Locale } from '../i18n/ui';
-import { t } from '../i18n/utils';
+import { t, localePath } from '../i18n/utils';
+import { SEGMENTS } from '../i18n/routes';
 import { site } from '../data/site';
+import { cities, cityLocales } from '../data/cities';
 
 interface Props {
   locale: Locale;
@@ -10,14 +12,52 @@ interface Props {
 const { locale } = Astro.props;
 const strings = t(locale);
 const year = new Date().getFullYear();
+
+const home = localePath(locale);
+const servicesHref = localePath(locale, SEGMENTS.services[locale]);
+
+/** "monterey-park" -> "Monterey Park". City slugs aren't translated (see
+ *  cities.ts), so this is a safe display-name derivation. */
+const cityDisplayName = (slug: string) =>
+  slug.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
+
+const localCities = cities.filter((c) => cityLocales(c).includes(locale));
 ---
 
 <footer class="site-footer">
   <div class="wrap site-footer__inner">
-    <p class="site-footer__brand">{site.name}</p>
-    <p>
-      {strings.footer.serviceArea} {site.serviceArea.join(', ')}.
-    </p>
+    <div class="site-footer__columns">
+      <div class="site-footer__col">
+        <p class="site-footer__brand">{site.name}</p>
+        <p>
+          {strings.footer.serviceArea} {site.serviceArea.join(', ')}.
+        </p>
+      </div>
+
+      <div class="site-footer__col">
+        <p class="site-footer__heading">{strings.footer.explore}</p>
+        <nav aria-label={strings.footer.explore}>
+          <a href={home}>{strings.nav.home}</a>
+          <a href={servicesHref}>{strings.nav.services}</a>
+          <a href="/blog/">{strings.nav.blog}</a>
+          <a href={`${home}#contact`}>{strings.nav.contact}</a>
+        </nav>
+      </div>
+
+      {localCities.length > 0 && (
+        <div class="site-footer__col">
+          <p class="site-footer__heading">{strings.footer.citiesWeServe}</p>
+          <nav aria-label={strings.footer.citiesWeServe}>
+            {localCities.map((city) => (
+              <a href={localePath(locale, SEGMENTS.cityHub[locale], city.slug)}>
+                {cityDisplayName(city.slug)}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+    </div>
+
     <p>
       <a href={`mailto:${site.email}`}>{site.email}</a>
       &nbsp;·&nbsp;
@@ -49,6 +89,29 @@ const year = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+  }
+
+  .site-footer__columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-5);
+  }
+
+  .site-footer__col nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .site-footer__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--color-white);
+    margin: 0 0 var(--space-3);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
   .site-footer__brand {

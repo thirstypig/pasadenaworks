@@ -7,16 +7,7 @@ import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Lattice from '../components/Lattice.astro';
 import { services } from '../data/services';
-import { cities, cityLocales } from '../data/cities';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
-
-const englishCities = cities.filter((c) => cityLocales(c).includes('en'));
-
-/** "monterey-park" -> "Monterey Park". City slugs aren't translated (see
- *  cities.ts), so this is a safe display-name derivation for the English
- *  homepage grid. */
-const cityDisplayName = (slug: string) =>
-  slug.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
 
 const translations = {
   en: '/',
@@ -73,30 +64,6 @@ const translations = {
   </section>
 
   <Lattice />
-
-  <section class="section--dark">
-    <div class="wrap">
-      <h2>Where we work</h2>
-      <p class="prose">
-        Nine cities across the San Gabriel Valley, each with what actually
-        matters there — not the same paragraph with the city name swapped out.
-      </p>
-      <div class="city-grid">
-        {englishCities.map((city) => (
-          <a
-            class="city-card craftsman-frame"
-            href={localeUrl('en', SEGMENTS.cityHub.en, city.slug)}
-          >
-            {cityDisplayName(city.slug)}
-          </a>
-        ))}
-      </div>
-      <p class="prose city-grid__note">
-        We also work with businesses across the wider Los Angeles area —
-        <a href="#contact">get in touch</a> and tell us where you're based.
-      </p>
-    </div>
-  </section>
 
   <section class="section" id="contact">
     <div class="wrap">
@@ -196,38 +163,4 @@ const translations = {
     max-width: fit-content;
   }
 
-  .city-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-    gap: var(--space-5);
-    margin-top: var(--space-6);
-  }
-
-  .city-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: var(--space-4);
-    background: var(--color-pine-dark);
-    font-family: var(--font-display);
-    font-size: var(--step-0);
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-
-  /* Matches .section--dark a:not(.btn)'s specificity (see CLAUDE.md
-   * gotcha: a bare descendant link rule there beats anything less
-   * specific) so this card's own colors actually apply. */
-  .section--dark a.city-card {
-    color: var(--color-bg);
-  }
-
-  .section--dark a.city-card:hover {
-    color: var(--color-ochre);
-  }
-
-  .city-grid__note {
-    margin-top: var(--space-6);
-  }
 </style>

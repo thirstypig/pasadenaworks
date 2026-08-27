@@ -67,6 +67,8 @@ export interface UIStrings {
   footer: {
     rights: string;
     serviceArea: string;
+    explore: string;
+    citiesWeServe: string;
   };
   misc: {
     skipToContent: string;
@@ -103,6 +105,8 @@ export const ui: Record<Locale, UIStrings> = {
     footer: {
       rights: 'All rights reserved.',
       serviceArea: 'Serving',
+      explore: 'Explore',
+      citiesWeServe: 'Cities we serve',
     },
     misc: {
       skipToContent: 'Skip to content',
@@ -137,6 +141,8 @@ export const ui: Record<Locale, UIStrings> = {
     footer: {
       rights: 'Todos los derechos reservados.',
       serviceArea: 'Atendemos',
+      explore: 'Explorar',
+      citiesWeServe: 'Ciudades que atendemos',
     },
     misc: {
       skipToContent: 'Saltar al contenido',
@@ -171,6 +177,8 @@ export const ui: Record<Locale, UIStrings> = {
     footer: {
       rights: '版权所有。',
       serviceArea: '服务区域',
+      explore: '探索',
+      citiesWeServe: '服务城市',
     },
     misc: {
       skipToContent: '跳到正文',
@@ -205,6 +213,8 @@ export const ui: Record<Locale, UIStrings> = {
     footer: {
       rights: '版權所有。',
       serviceArea: '服務區域',
+      explore: '探索',
+      citiesWeServe: '服務城市',
     },
     misc: {
       skipToContent: '跳到主要內容',

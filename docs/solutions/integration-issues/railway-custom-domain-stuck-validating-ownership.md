@@ -2,7 +2,7 @@
 title: "Railway custom domain stuck at \"Validating Ownership\" despite correct DNS (missing TXT record)"
 date: 2026-08-26
 category: integration-issues
-component: "Railway custom domains (Twenty CRM service, crm.pasadenaworks.com) — DNS via Squarespace"
+component: "Railway custom domains (Twenty CRM + Cal.com services, crm.pasadenaworks.com and schedule.pasadenaworks.com) — DNS via Squarespace"
 symptom: "Browser shows Railway's \"train has not arrived at the station\" 404 / TLS certificate error (curl: SSL certificate problem, subjectAltName does not match); Railway API reports customDomain.status.certificateStatus stuck at CERTIFICATE_STATUS_TYPE_VALIDATING_OWNERSHIP with verified: false for 20+ hours, even though the CNAME record is DNS_RECORD_STATUS_PROPAGATED"
 tags: [railway, custom-domain, dns, tls-certificate, squarespace, twenty-crm, graphql-api]
 status: solved
@@ -133,6 +133,25 @@ Within about a minute of the TXT record propagating (confirmed via
 flipped to `certificateStatus: "CERTIFICATE_STATUS_TYPE_VALID"` /
 `verified: true`, and `https://crm.pasadenaworks.com/` started returning
 `200` with a valid certificate.
+
+## Confirmed recurrence
+
+The exact same issue hit a second, unrelated Railway custom domain on this
+same project the next day: `schedule.pasadenaworks.com` (fronting a
+self-hosted Cal.com service, not Twenty CRM). Same symptoms — CNAME
+propagated and correct, `certificateStatus: VALIDATING_OWNERSHIP`,
+`verified: false` — and the same missing `_railway-verify.<subdomain>` TXT
+record was the cause. This confirms it's a systemic gap in how Railway
+surfaces the verification requirement (the CNAME-only `dnsRecords` list),
+not a one-off fluke with a specific service or domain. Fixed the same way:
+added the TXT record from `status.verificationToken`, then called
+`customDomainIssueCertificate(id)` to force an immediate retry rather than
+waiting — went from `VALIDATING_OWNERSHIP` to `CERTIFICATE_STATUS_TYPE_VALID`
+in under a minute once the TXT record was confirmed propagated.
+
+**Takeaway**: on any new Railway custom domain on this project, check
+`status.verificationDnsHost`/`verificationToken` *before* considering DNS
+setup complete — don't wait for a stuck certificate to discover it's needed.
 
 ## Prevention
 

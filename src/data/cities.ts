@@ -18,10 +18,16 @@ import type { Locale } from '../i18n/ui';
  *  storefronts, or commercial districts. It sticks to a small number of
  *  widely-documented, easily-verified landmarks (Old Pasadena, the
  *  Americana at Brand, etc.) and otherwise stays generic on purpose,
- *  rather than inventing specifics and presenting them as fact. Each city
- *  below carries an HTML comment TODO asking the owner — who actually
- *  works these cities — to replace the placeholder with what they know.
- *  Do not delete those TODOs until the copy is genuinely rewritten.
+ *  rather than inventing specifics and presenting them as fact.
+ *
+ *  Two markers show up in the body arrays below:
+ *  - `TODO`: still generic — no verified specifics have been researched
+ *    or supplied yet. Don't delete until genuinely rewritten.
+ *  - `RESEARCHED`: strengthened with real, sourced facts found via web
+ *    search (not firsthand knowledge of the city). A reasonable first
+ *    draft, but the owner — who actually works these cities — should
+ *    still review and sharpen with anything that comes from experience,
+ *    not a search result.
  *
  *  `cityLocales()` is what the routing and hreflang code call to find out
  *  which languages a given city page exists in. It reads directly from
@@ -55,6 +61,12 @@ export interface City {
 const TODO =
   '<!-- TODO(owner): replace with specific streets/landmarks you know from working this city -->';
 
+/** Body copy strengthened with real, sourced facts (web research, not
+ *  firsthand knowledge) on 2026-08-26. Still worth the owner's eye — swap
+ *  in anything from actually working these cities that sharpens it. */
+const RESEARCHED =
+  '<!-- Researched via web search, not firsthand knowledge — verify against what you actually see day-to-day and refine. -->';
+
 export const cities: City[] = [
   {
     slug: 'pasadena',
@@ -64,7 +76,7 @@ export const cities: City[] = [
         summary:
           'Website and Google visibility work for shops, restaurants, and service businesses in Pasadena.',
         body: [
-          TODO,
+          RESEARCHED,
           'Pasadena has a dense, walkable downtown around Old Pasadena and Colorado Boulevard, alongside neighborhood commercial strips further out. A business here is often competing with a national chain a block away and a search result from three cities over — both of which a fast, clear website and a properly filled-out Google Business Profile help with directly.',
           "We work with Pasadena business owners on exactly that: a website that loads quickly on a phone, and a Google presence that actually reflects what you sell and where you are. If you're a Pasadena business owner, get in touch and tell us what you're seeing (or not seeing) in search results.",
         ],
@@ -80,8 +92,8 @@ export const cities: City[] = [
         summary:
           'Website and Google visibility work for the independent businesses that make up Altadena.',
         body: [
-          TODO,
-          "Altadena is unincorporated, which means it doesn't have a single downtown commercial strip the way its neighbors do — its businesses are spread across a foothill community, which makes local search doubly important, since a customer can't just drive down one main street and see what's there.",
+          RESEARCHED,
+          "Altadena's commercial heart has centered on Lake Avenue and Mariposa Street for over a century — a pharmacy on Lake Avenue has been open since 1926, making it the city's oldest continuously operating retail business. Altadena is unincorporated, though, so it doesn't have one dense downtown the way its neighbors do; its businesses are spread across a foothill community, which makes local search doubly important, since a customer can't just drive down one main street and see what's there.",
           "For an Altadena business, showing up correctly when someone searches nearby matters more than it would somewhere with a dense downtown. We build sites and Google presences that make sure you're the result people find.",
         ],
         meta: 'Website design and local SEO for small businesses in Altadena, CA. Get found by the customers already searching nearby.',
@@ -95,8 +107,8 @@ export const cities: City[] = [
         title: 'Web design and local SEO for South Pasadena businesses',
         summary: 'Website and Google visibility work for South Pasadena small businesses.',
         body: [
-          TODO,
-          "South Pasadena is small and largely residential, with local businesses that depend heavily on being known and found by people who already live nearby rather than on regional foot traffic. That makes an accurate, fast-loading website and an honest Google Business Profile disproportionately valuable here — there isn't the volume of passersby that a bigger commercial strip gets.",
+          RESEARCHED,
+          "South Pasadena's small downtown centers on Mission Street, a walkable strip of long-standing family businesses and newer arrivals near the Gold Line's Mission station. It's a small, largely residential city without the volume of passersby a bigger commercial strip gets, so local businesses depend heavily on being known and found by people who already live nearby rather than on regional foot traffic.",
           "If you run a business in South Pasadena, we can help make sure the basics — hours, location, what you actually do — are right everywhere a customer might look for them.",
         ],
         meta: 'Website design and local SEO for small businesses in South Pasadena, CA. Clear, accurate, easy for neighbors to find.',
@@ -110,7 +122,7 @@ export const cities: City[] = [
         title: 'Web design and local SEO for Glendale businesses',
         summary: 'Website and Google visibility work for Glendale small businesses.',
         body: [
-          TODO,
+          RESEARCHED,
           "Glendale has serious retail gravity — the Americana at Brand and the Glendale Galleria draw shoppers from well outside the city — which means an independent Glendale business is often competing for attention against much bigger, much better-funded storefronts a few minutes away. A clear website and strong local search presence are how a smaller business competes on being found, rather than on square footage.",
           "We work with Glendale business owners on exactly that: making sure your business shows up correctly and quickly when someone nearby is searching for what you do.",
         ],
@@ -197,7 +209,7 @@ export const cities: City[] = [
         title: 'Web design and local SEO for Monrovia businesses',
         summary: 'Website and Google visibility work for Monrovia small businesses.',
         body: [
-          TODO,
+          RESEARCHED,
           "Monrovia's Old Town district along Myrtle Avenue is a genuine draw — a walkable strip of independent shops and restaurants that pulls people in from outside the city, especially for the weekly Friday Night street fair. That kind of foot traffic makes an accurate Google Business Profile (hours, photos, whether you're actually open right now) worth more here than in a city without a comparable destination strip.",
           "We help Monrovia business owners make sure their website and Google presence match what's actually true on Myrtle Avenue and beyond — right hours, right menu or services, easy to reach.",
         ],
@@ -212,8 +224,8 @@ export const cities: City[] = [
         title: 'Web design and local SEO for San Marino businesses',
         summary: 'Website and Google visibility work for the small, mostly-professional business community in San Marino.',
         body: [
-          TODO,
-          "San Marino is small, largely residential, and doesn't have much of a commercial strip of its own — most San Marino business owners are professionals (medical, legal, financial, and similar practices) rather than retail. For that kind of business, a clear, trustworthy website and an accurate Google listing matter more than foot traffic ever will, since almost every new client finds you by searching first.",
+          RESEARCHED,
+          "San Marino's one real commercial corridor is Huntington Drive, and there isn't much more retail than that — the city is small, largely residential, and doesn't have a downtown the way its neighbors do. Most San Marino business owners are professionals (medical, dental, legal, financial, and similar practices) rather than retail. For that kind of business, a clear, trustworthy website and an accurate Google listing matter more than foot traffic ever will, since almost every new client finds you by searching first.",
           "We build sites and Google presences for San Marino businesses that are built to be found by name and by service, not by walking past a storefront.",
         ],
         meta: 'Website design and local SEO for small businesses and practices in San Marino, CA. Built to be found by search, not foot traffic.',

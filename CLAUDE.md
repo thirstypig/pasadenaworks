@@ -161,9 +161,10 @@ All colors, type scale, and spacing are custom properties at the top of
 `src/styles/global.css`. **Derive from the tokens; don't hardcode hex values or
 pixel sizes in component styles.**
 
-Type is a deliberate inversion of the usual agency pairing: sans display
-(Bricolage Grotesque) over serif body (Source Serif 4). The serif body is better
-for the long-form blog reading the SEO strategy depends on. Don't "fix" this.
+Type pairs a bold slab-serif display face (Bevan) with a serif body (Source
+Serif 4) — both self-hosted via `@fontsource`, imported in `Base.astro`. The
+serif body is better for the long-form blog reading the SEO strategy depends
+on. Don't "fix" this.
 
 ## Content
 
@@ -193,8 +194,6 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 - No OG share image. Would go at `public/og.png` (1200×630) and be referenced in
   `Base.astro`.
-- Fonts load from the Google Fonts CDN. Self-hosting via `@fontsource` would
-  remove a third-party round trip.
 - Blog is English-only. Translating posts needs a locale field on the collection
   and a route under `[locale]/` — copy the pattern from the service pages rather
   than inventing a new one.
@@ -204,10 +203,12 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   dependencies (`tinacms`/`@tinacms/cli`) still carry moderate `npm audit`
   findings (react-router) — dev-only tooling, never shipped to the live site,
   and fixing it needs a breaking Tina version bump.
-- Six of the nine city pages (all but Alhambra, Arcadia, Monterey Park)
-  still carry the placeholder-copy TODO in `src/data/cities.ts` — see the
-  file header. They need the owner's real knowledge of each city's streets
-  and commercial districts before they're genuinely finished.
+- No scheduling link in the site's nav/footer/service pages yet.
+  `schedule.pasadenaworks.com` (Cal.com, self-hosted on Railway) is live and
+  working (2026-08-26) — the domain's certificate was stuck on the same
+  missing-TXT-record issue as the CRM domain, now fixed. Still need: an
+  actual event type/availability configured in Cal.com, and a decision on
+  where the booking link belongs on the site.
 
 ## Resolved
 
@@ -219,3 +220,14 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 - Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories
   (2026-08-26). No application code changes were needed for the migration.
 - `site.phone` is a real Google Voice number, (434) 373-0080 (2026-08-26).
+- The homepage's "Where we work" city grid was removed and replaced with a
+  three-column footer (Explore nav links + locale-aware city links) that
+  appears sitewide instead of only on the English homepage (2026-08-26).
+- The six city pages that previously had generic body copy (Pasadena,
+  Altadena, South Pasadena, Glendale, Monrovia, San Marino) were
+  strengthened with real, sourced facts via web research (2026-08-26) —
+  see the `RESEARCHED` marker in `src/data/cities.ts`. Not firsthand
+  knowledge, though: still worth the owner's eye to sharpen with anything
+  from actually working these cities.
+- Fonts (Bevan, Source Serif 4) are self-hosted via `@fontsource` instead
+  of loading from the Google Fonts CDN (2026-08-26).
