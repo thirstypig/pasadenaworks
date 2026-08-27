@@ -175,6 +175,19 @@ Traditional sources frequently prefer different real words for the same
 concept (e.g. mainland "小型企业" vs. Taiwan "中小企業" for "small
 business," found via keyword research, not invented for uniqueness).
 
+**`sort`/`uniq` under a non-CJK locale lie about CJK duplicates.** Auditing
+the built site for duplicate `<title>`/meta-description tags with
+`grep ... | sort | uniq -c` reported false duplicates (and would equally
+hide real ones) — under `LANG=en_US.UTF-8` with `LC_ALL` unset, `sort` and
+`uniq` do locale-aware collation, and that collation doesn't treat distinct
+Han characters as reliably distinct for grouping purposes. Ten-plus
+genuinely different Chinese titles collapsed into one bogus "duplicate"
+count. Force byte-exact comparison instead: `LC_ALL=C sort ... | LC_ALL=C
+uniq -c`. Also watch for short combined-flag forms like `grep -rho` on
+this environment's `ugrep` — it undercounted real matches (`-l` said 1
+file, `-o` implied many) on the same CJK content; use long-form flags
+(`--only-matching`, `-H`) or `/usr/bin/grep` when auditing non-ASCII text.
+
 ## Design system
 
 Palette derives from Craftsman architecture — Greene & Greene pine green,
