@@ -1,24 +1,28 @@
 ---
 import { services } from '../data/services';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
 
 interface Props {
   pillar: 'websites' | 'search' | 'consulting' | 'ads';
+  locale: Locale;
 }
 
-const { pillar } = Astro.props;
+const { pillar, locale } = Astro.props;
 
 const service = services.find((s) => s.id === pillar)!;
-const href = localeUrl('en', SEGMENTS.services.en, service.slugs.en);
-const copy = service.t.en;
+const href = localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]);
+const copy = service.t[locale];
+const strings = t(locale);
 ---
 
 <div class="end-cta craftsman-frame">
-  <h2>Ready to fix this?</h2>
+  <h2>{strings.endCta.heading}</h2>
   <p class="prose">
-    {copy.tagline} That's what <strong>{copy.title.toLowerCase()}</strong> is for.
+    {copy.tagline}
   </p>
-  <a class="btn" href={href}>See how it works &rarr;</a>
+  <a class="btn" href={href}>{strings.endCta.cta} &rarr;</a>
 </div>
 
 <style>

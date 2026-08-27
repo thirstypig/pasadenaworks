@@ -57,6 +57,10 @@ export interface UIStrings {
     backToBlog: string;
     viewCity: string;
   };
+  endCta: {
+    heading: string;
+    cta: string;
+  };
   form: {
     name: string;
     email: string;
@@ -104,6 +108,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToServices: 'Back to services',
       backToBlog: 'Back to blog',
       viewCity: 'View',
+    },
+    endCta: {
+      heading: 'Ready to fix this?',
+      cta: 'See how it works',
     },
     form: {
       name: 'Name',
@@ -155,6 +163,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToBlog: 'Volver al blog',
       viewCity: 'Ver',
     },
+    endCta: {
+      heading: '¿Listo para arreglar esto?',
+      cta: 'Vea cómo funciona',
+    },
     form: {
       name: 'Nombre',
       email: 'Correo electrónico',
@@ -205,6 +217,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToBlog: '返回博客',
       viewCity: '查看',
     },
+    endCta: {
+      heading: '准备好解决这个问题了吗？',
+      cta: '看看怎么做',
+    },
     form: {
       name: '姓名',
       email: '电子邮箱',
@@ -250,6 +266,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToServices: '返回服務列表',
       backToBlog: '返回部落格',
       viewCity: '查看',
+    },
+    endCta: {
+      heading: '準備好解決這個問題了嗎？',
+      cta: '看看怎麼做',
     },
     form: {
       name: '姓名',
