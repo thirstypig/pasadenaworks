@@ -29,9 +29,7 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
     <div class="site-footer__columns">
       <div class="site-footer__col">
         <p class="site-footer__brand">{site.name}</p>
-        <p>
-          {strings.footer.serviceArea} {site.serviceArea.join(', ')}.
-        </p>
+        <p>{strings.footer.serviceAreaBlurb}</p>
       </div>
 
       <div class="site-footer__col">

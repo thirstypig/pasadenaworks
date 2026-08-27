@@ -68,7 +68,7 @@ export interface UIStrings {
   };
   footer: {
     rights: string;
-    serviceArea: string;
+    serviceAreaBlurb: string;
     explore: string;
     citiesWeServe: string;
   };
@@ -108,7 +108,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: 'All rights reserved.',
-      serviceArea: 'Serving',
+      serviceAreaBlurb: 'Serving small businesses in Pasadena and the San Gabriel Valley.',
       explore: 'Explore',
       citiesWeServe: 'Cities we serve',
     },
@@ -146,7 +146,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: 'Todos los derechos reservados.',
-      serviceArea: 'Atendemos',
+      serviceAreaBlurb: 'Atendemos a negocios pequeños en Pasadena y el Valle de San Gabriel.',
       explore: 'Explorar',
       citiesWeServe: 'Ciudades que atendemos',
     },
@@ -184,7 +184,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: '版权所有。',
-      serviceArea: '服务区域',
+      serviceAreaBlurb: '为帕萨迪纳和圣盖博谷的小型企业提供服务。',
       explore: '探索',
       citiesWeServe: '服务城市',
     },
@@ -222,7 +222,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: '版權所有。',
-      serviceArea: '服務區域',
+      serviceAreaBlurb: '為帕薩迪納和聖蓋博谷的小型企業提供服務。',
       explore: '探索',
       citiesWeServe: '服務城市',
     },
