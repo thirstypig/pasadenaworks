@@ -43,6 +43,18 @@ const {
 
 const ogImage = absoluteUrl('/og.png');
 const strings = t(locale);
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
+  author: { '@type': 'Organization', name: author },
+  ...(heroImage && { image: heroImage }),
+  mainEntityOfPage: absoluteUrl(path),
+};
 ---
 
 <Base
@@ -57,6 +69,7 @@ const strings = t(locale);
   {updatedDate && (
     <meta slot="head" property="article:modified_time" content={updatedDate.toISOString()} />
   )}
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <article class="section wrap post">
     <a class="post__back" href={blogIndexPath(locale)}>&larr; {strings.buttons.backToBlog}</a>
 
