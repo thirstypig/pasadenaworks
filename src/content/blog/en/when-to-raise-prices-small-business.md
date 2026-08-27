@@ -10,6 +10,9 @@ tags: ["pricing", "small business finance"]
 heroImage: "https://images.unsplash.com/photo-1707902665498-a202981fb5ac?auto=format&fit=crop&w=1600&q=80"
 heroAlt: "A calculator and a notebook sitting on a desk, used to work through pricing numbers"
 heroCredit: "Jakub Żerdzicki"
+locale: en
+translationKey: raising-prices
+slug: when-to-raise-prices-small-business
 ---
 
 > **TL;DR** — If you're consistently busy, haven't raised prices in over a year, or dread a certain job because it doesn't pay enough for the hassle, it's probably time to raise your prices. Most owners wait far longer than they should, and a reasonable increase costs you fewer customers than you'd expect.

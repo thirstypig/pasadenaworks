@@ -1,13 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import TagPill from '../../components/TagPill.astro';
+import BlogPostGrid from '../../components/BlogPostGrid.astro';
 import { readingTime } from '../../utils/reading-time';
+import { getPostsByLocale, blogIndexPath } from '../../utils/blog';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const posts = allPosts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .map((post) => ({ post, minutes: readingTime(post.body) }));
+const allPosts = await getPostsByLocale('en');
+const posts = allPosts.map((post) => ({ post, minutes: readingTime(post.body) }));
+
+const translations = {
+  en: blogIndexPath('en'),
+  es: blogIndexPath('es'),
+  'zh-hans': blogIndexPath('zh-hans'),
+  'zh-hant': blogIndexPath('zh-hant'),
+};
 ---
 
 <Base
@@ -15,6 +20,7 @@ const posts = allPosts
   description="Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley."
   locale="en"
   path="/blog/"
+  translations={translations}
 >
   <section class="section wrap">
     <h1>Blog</h1>
@@ -22,96 +28,6 @@ const posts = allPosts
       Answers to the questions small business owners actually ask us,
       written the same way we'd say them out loud.
     </p>
-    <div class="post-grid">
-      {posts.map(({ post, minutes }) => (
-        <a class="post-card craftsman-frame" href={`/blog/${post.id}/`}>
-          {post.data.heroImage ? (
-            <div class="post-card__media">
-              <img src={post.data.heroImage} alt={post.data.heroAlt ?? ''} loading="lazy" />
-            </div>
-          ) : (
-            <div class="post-card__media post-card__media--empty" aria-hidden="true"></div>
-          )}
-          <div class="post-card__body">
-            <p class="post-card__meta">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-              {' · '}{minutes} min read
-            </p>
-            <h2>{post.data.title}</h2>
-            <p>{post.data.description}</p>
-            <div class="post-card__tags">
-              {post.data.tags.map((tag) => <TagPill tag={tag} />)}
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
+    <BlogPostGrid locale="en" posts={posts} />
   </section>
 </Base>
-
-<style>
-  .post-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: var(--space-6);
-    margin-top: var(--space-6);
-  }
-
-  .post-card {
-    display: flex;
-    flex-direction: column;
-    background: var(--color-white);
-    color: var(--color-ink);
-    text-decoration: none;
-    overflow: hidden;
-    transition: transform 0.15s ease, color 0.15s ease;
-  }
-
-  .post-card:hover {
-    color: var(--color-accent-dark);
-    transform: translateY(-2px);
-  }
-
-  .post-card__media {
-    aspect-ratio: 16 / 9;
-    background: var(--color-bg-alt);
-  }
-
-  .post-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .post-card__media--empty {
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  .post-card__body {
-    padding: var(--space-5);
-  }
-
-  .post-card__meta {
-    font-family: var(--font-display);
-    font-size: var(--step--1);
-    color: var(--color-ink-soft);
-    margin-bottom: var(--space-2);
-  }
-
-  .post-card__body h2 {
-    margin-bottom: var(--space-2);
-  }
-
-  .post-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
-  }
-</style>

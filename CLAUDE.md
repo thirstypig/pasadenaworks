@@ -192,9 +192,18 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- Blog is English-only. Translating posts needs a locale field on the collection
-  and a route under `[locale]/` — copy the pattern from the service pages rather
-  than inventing a new one.
+- Blog i18n mechanism is built (2026-08-26/27) — content collection has
+  `locale`/`translationKey`/`slug` fields, `/[locale]/[section]/` and
+  `/[locale]/[section]/[service]` reuse the existing service/city routing
+  (folded in as a third `kind`, not a separate `[locale]/blog/` — that
+  would collide with the dynamic `[section]` segment at the same depth).
+  Files live under `src/content/blog/<locale>/`. `SEGMENTS.blog` gives
+  the translated `/blog/` segment itself (`boke` for both Chinese
+  variants, matching the `fuwu` pattern). Actual translated content
+  doesn't exist yet — only the 3 English posts, now with the new
+  frontmatter fields. Translating them needs real per-language keyword
+  research for the title/slug (see `RESEARCHED` marker precedent in
+  cities.ts), not literal translation.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that. Tina's own

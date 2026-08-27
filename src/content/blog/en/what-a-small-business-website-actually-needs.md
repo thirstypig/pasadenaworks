@@ -10,6 +10,9 @@ tags: ["website basics", "small business websites"]
 heroImage: "https://images.unsplash.com/photo-1736667245201-2eea25a07f55?auto=format&fit=crop&w=1600&q=80"
 heroAlt: "A person typing on a laptop keyboard on a desk"
 heroCredit: "Jakub Żerdzicki"
+locale: en
+translationKey: website-basics
+slug: what-a-small-business-website-actually-needs
 ---
 
 > **TL;DR** — A small business website needs five things: fast on a phone, clear about what you do, correct hours and location, an obvious way to contact you, and readable by Google. Everything else — blogs, online stores, live chat, animations — is optional until those five are solid.

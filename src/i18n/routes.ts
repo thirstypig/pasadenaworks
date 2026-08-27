@@ -32,6 +32,17 @@ export const SEGMENTS = {
   /** The city-hub path segment. Deliberately the same word as the
    *  "websites" service slug — see the URL diagram above. */
   cityHub: services.find((s) => s.id === 'websites')!.slugs,
+
+  /** The blog index path segment, per locale. "blog" stays as-is for
+   *  Spanish (a naturalized loanword, not read as English) — zh-hans/
+   *  zh-hant use "boke" (博客), pinyin-romanized to match the rest of the
+   *  site's segments (e.g. "fuwu" for 服务/服務). */
+  blog: {
+    en: 'blog',
+    es: 'blog',
+    'zh-hans': 'boke',
+    'zh-hant': 'boke',
+  } as Record<Locale, string>,
 } as const;
 
 /** Build a path for a given locale, joining segments and adding the locale

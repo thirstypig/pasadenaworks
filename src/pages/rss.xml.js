@@ -1,20 +1,20 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
 import { site } from '../data/site';
+import { getPostsByLocale, postPath } from '../utils/blog';
 
 export async function GET(context) {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  // English only — this is the site's one RSS feed, not a per-locale one.
+  const posts = await getPostsByLocale('en');
 
   return rss({
     title: `${site.name} — Blog`,
     description: 'Plain-spoken articles for small business owners in the San Gabriel Valley.',
     site: context.site ?? site.url,
-    items: sorted.map((post) => ({
+    items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.pubDate,
-      link: `/blog/${post.id}/`,
+      link: postPath('en', post.data.slug),
     })),
   });
 }

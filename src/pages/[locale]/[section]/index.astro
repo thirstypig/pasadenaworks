@@ -1,9 +1,10 @@
 ---
 /**
- * Dual-purpose hub index: renders EITHER the translated services index OR
- * the translated city-hub index, branching on `kind`. Both live at
- * [locale]/[section]/ depth, so they share one file rather than colliding
- * dynamic routes — same pattern as [service].astro one level down.
+ * Triple-purpose hub index: renders the translated services index, the
+ * translated city-hub index, OR the translated blog index, branching on
+ * `kind`. All three live at [locale]/[section]/ depth, so they share one
+ * file rather than colliding dynamic routes — same pattern as
+ * [service].astro one level down.
  */
 import Base from '../../../layouts/Base.astro';
 import { services } from '../../../data/services';
@@ -11,8 +12,12 @@ import { cities, cityLocales } from '../../../data/cities';
 import { SEGMENTS, localeUrl } from '../../../i18n/routes';
 import { t } from '../../../i18n/utils';
 import { LOCALES, type Locale } from '../../../i18n/ui';
+import { getPostsByLocale, blogIndexPath } from '../../../utils/blog';
+import { readingTime } from '../../../utils/reading-time';
+import BlogPostGrid from '../../../components/BlogPostGrid.astro';
+import type { CollectionEntry } from 'astro:content';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
   const paths: { params: { locale: string; section: string }; props: Record<string, unknown> }[] =
     [];
@@ -26,13 +31,34 @@ export function getStaticPaths() {
       params: { locale, section: SEGMENTS.cityHub[locale] },
       props: { kind: 'city-hub', locale },
     });
+
+    const posts = await getPostsByLocale(locale);
+    paths.push({
+      params: { locale, section: SEGMENTS.blog[locale] },
+      props: {
+        kind: 'blog',
+        locale,
+        posts: posts.map((post) => ({ post, minutes: readingTime(post.body) })),
+      },
+    });
   }
 
   return paths;
 }
 
-const { kind, locale } = Astro.props as { kind: 'service' | 'city-hub'; locale: Locale };
+const { kind, locale, posts } = Astro.props as {
+  kind: 'service' | 'city-hub' | 'blog';
+  locale: Locale;
+  posts?: { post: CollectionEntry<'blog'>; minutes: number }[];
+};
 const strings = t(locale);
+
+const blogTranslations = {
+  en: blogIndexPath('en'),
+  es: blogIndexPath('es'),
+  'zh-hans': blogIndexPath('zh-hans'),
+  'zh-hant': blogIndexPath('zh-hant'),
+};
 
 const servicesTranslations = {
   en: '/services/',
@@ -51,7 +77,20 @@ const cityHubTranslations = {
 const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 ---
 
-{kind === 'service' ? (
+{kind === 'blog' ? (
+  <Base
+    title={`${strings.nav.blog} — Pasadena Works`}
+    description="Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley."
+    locale={locale}
+    path={blogIndexPath(locale)}
+    translations={blogTranslations}
+  >
+    <section class="section wrap">
+      <h1>{strings.nav.blog}</h1>
+      <BlogPostGrid locale={locale} posts={posts ?? []} />
+    </section>
+  </Base>
+) : kind === 'service' ? (
   <Base
     title={`${strings.nav.services} — Pasadena Works`}
     description="Pasadena Works — websites, local SEO, business consulting, and paid ads."

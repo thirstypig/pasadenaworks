@@ -3,6 +3,9 @@ import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
 import EndCta from '../components/EndCta.astro';
 import { absoluteUrl } from '../i18n/routes';
+import { blogIndexPath } from '../utils/blog';
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -10,6 +13,8 @@ interface Props {
   pubDate: Date;
   updatedDate?: Date;
   path: string;
+  locale: Locale;
+  translations?: Partial<Record<Locale, string>>;
   author: string;
   tags: string[];
   pillar: 'websites' | 'search' | 'consulting' | 'ads';
@@ -25,6 +30,8 @@ const {
   pubDate,
   updatedDate,
   path,
+  locale,
+  translations,
   author,
   tags,
   pillar,
@@ -35,15 +42,23 @@ const {
 } = Astro.props;
 
 const ogImage = absoluteUrl('/og.png');
+const strings = t(locale);
 ---
 
-<Base title={title} description={description} locale="en" path={path} ogType="article">
+<Base
+  title={title}
+  description={description}
+  locale={locale}
+  path={path}
+  translations={translations}
+  ogType="article"
+>
   <meta slot="head" property="article:published_time" content={pubDate.toISOString()} />
   {updatedDate && (
     <meta slot="head" property="article:modified_time" content={updatedDate.toISOString()} />
   )}
   <article class="section wrap post">
-    <a class="post__back" href="/blog/">&larr; Back to blog</a>
+    <a class="post__back" href={blogIndexPath(locale)}>&larr; {strings.buttons.backToBlog}</a>
 
     <p class="post__meta">
       <time datetime={pubDate.toISOString()}>

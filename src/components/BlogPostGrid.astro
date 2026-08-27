@@ -1,0 +1,127 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import TagPill from './TagPill.astro';
+import { postPath } from '../utils/blog';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  posts: { post: CollectionEntry<'blog'>; minutes: number }[];
+}
+
+const { locale, posts } = Astro.props;
+
+const DATE_LOCALE: Record<Locale, string> = {
+  en: 'en-US',
+  es: 'es-ES',
+  'zh-hans': 'zh-CN',
+  'zh-hant': 'zh-TW',
+};
+
+/** "5 min read" in each language. Small and specific enough to keep local
+ *  to this component rather than growing the shared UI strings for it. */
+const readingLabel = (minutes: number, locale: Locale): string => {
+  switch (locale) {
+    case 'es':
+      return `${minutes} min de lectura`;
+    case 'zh-hans':
+      return `阅读需 ${minutes} 分钟`;
+    case 'zh-hant':
+      return `閱讀需 ${minutes} 分鐘`;
+    default:
+      return `${minutes} min read`;
+  }
+};
+---
+
+<div class="post-grid">
+  {posts.map(({ post, minutes }) => (
+    <a class="post-card craftsman-frame" href={postPath(locale, post.data.slug)}>
+      {post.data.heroImage ? (
+        <div class="post-card__media">
+          <img src={post.data.heroImage} alt={post.data.heroAlt ?? ''} loading="lazy" />
+        </div>
+      ) : (
+        <div class="post-card__media post-card__media--empty" aria-hidden="true"></div>
+      )}
+      <div class="post-card__body">
+        <p class="post-card__meta">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString(DATE_LOCALE[locale], {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          {' · '}{readingLabel(minutes, locale)}
+        </p>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.description}</p>
+        <div class="post-card__tags">
+          {post.data.tags.map((tag) => <TagPill tag={tag} />)}
+        </div>
+      </div>
+    </a>
+  ))}
+</div>
+
+<style>
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    color: var(--color-ink);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+
+  .post-card:hover {
+    color: var(--color-accent-dark);
+    transform: translateY(-2px);
+  }
+
+  .post-card__media {
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg-alt);
+  }
+
+  .post-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .post-card__media--empty {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .post-card__body {
+    padding: var(--space-5);
+  }
+
+  .post-card__meta {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-2);
+  }
+
+  .post-card__body h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  .post-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+</style>

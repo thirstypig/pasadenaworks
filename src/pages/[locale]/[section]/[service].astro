@@ -1,22 +1,28 @@
 ---
 /**
- * Dual-purpose route. Astro can't have two dynamic routes at the same
- * depth — this file already claims [locale]/[section]/[service], so a
- * separate [locale]/[cityhub]/[city].astro would collide with it. Instead
- * this single file generates BOTH translated service pages
- * (/es/servicios/sitios-web/) and translated city pages
- * (/es/sitios-web/alhambra/) via getStaticPaths, branching render on the
- * `kind` prop. Don't split this back into two files.
+ * Triple-purpose route. Astro can't have two dynamic routes at the same
+ * depth — this file already claims [locale]/[section]/[service], so
+ * separate [locale]/[cityhub]/[city].astro or [locale]/blog/[slug].astro
+ * files would collide with it. Instead this single file generates
+ * translated service pages (/es/servicios/sitios-web/), translated city
+ * pages (/es/sitios-web/alhambra/), AND translated blog posts
+ * (/es/blog/lo-que-un-sitio-web-realmente-necesita/) via getStaticPaths,
+ * branching render on the `kind` prop. Don't split this back into
+ * separate files.
  */
+import { render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
+import Post from '../../../layouts/Post.astro';
 import CityBody from '../../../components/CityBody.astro';
 import { services, type Service } from '../../../data/services';
 import { cities, cityLocales, type City } from '../../../data/cities';
 import { SEGMENTS, localeUrl } from '../../../i18n/routes';
 import { t } from '../../../i18n/utils';
 import { LOCALES, type Locale } from '../../../i18n/ui';
+import { getPostsByLocale, getTranslationsFor, postPath } from '../../../utils/blog';
+import { readingTime } from '../../../utils/reading-time';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
   const paths: {
     params: { locale: string; section: string; service: string };
@@ -46,15 +52,43 @@ export function getStaticPaths() {
         props: { kind: 'city', locale, city },
       });
     }
+
+    const posts = await getPostsByLocale(locale);
+    for (const post of posts) {
+      paths.push({
+        params: {
+          locale,
+          section: SEGMENTS.blog[locale],
+          service: post.data.slug,
+        },
+        props: { kind: 'blog-post', locale, post, translations: await getTranslationsFor(post) },
+      });
+    }
   }
 
   return paths;
 }
 
 const { kind, locale } = Astro.props as {
-  kind: 'service' | 'city';
+  kind: 'service' | 'city' | 'blog-post';
   locale: Locale;
 };
+
+type BlogPost = Awaited<ReturnType<typeof getPostsByLocale>>[number];
+
+let blogPost: BlogPost | undefined;
+let BlogContent: Awaited<ReturnType<typeof render>>['Content'] | undefined;
+let blogReadingMinutes = 0;
+let blogTranslations: Partial<Record<Locale, string>> = {};
+
+if (kind === 'blog-post') {
+  const props = Astro.props as { post: BlogPost; translations: Partial<Record<Locale, string>> };
+  blogPost = props.post;
+  blogTranslations = props.translations;
+  const rendered = await render(blogPost);
+  BlogContent = rendered.Content;
+  blogReadingMinutes = readingTime(blogPost.body);
+}
 
 const strings = t(locale);
 
@@ -94,6 +128,26 @@ if (kind === 'service') {
 }
 ---
 
+{kind === 'blog-post' && blogPost && BlogContent ? (
+  <Post
+    title={blogPost.data.title}
+    description={blogPost.data.description}
+    pubDate={blogPost.data.pubDate}
+    updatedDate={blogPost.data.updatedDate}
+    path={postPath(locale, blogPost.data.slug)}
+    locale={locale}
+    translations={blogTranslations}
+    author={blogPost.data.author}
+    tags={blogPost.data.tags}
+    pillar={blogPost.data.pillar}
+    readingMinutes={blogReadingMinutes}
+    heroImage={blogPost.data.heroImage}
+    heroAlt={blogPost.data.heroAlt}
+    heroCredit={blogPost.data.heroCredit}
+  >
+    <BlogContent />
+  </Post>
+) : (
 <Base title={title} description={description} locale={locale} path={path} translations={translations}>
   {kind === 'service' && serviceCopy && service && (
     <section class="section wrap prose">
@@ -125,6 +179,7 @@ if (kind === 'service') {
     </section>
   )}
 </Base>
+)}
 
 <style>
   .eyebrow {

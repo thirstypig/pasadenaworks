@@ -54,6 +54,7 @@ export interface UIStrings {
     readMore: string;
     viewService: string;
     backToServices: string;
+    backToBlog: string;
     viewCity: string;
   };
   form: {
@@ -93,6 +94,7 @@ export const ui: Record<Locale, UIStrings> = {
       readMore: 'Read more',
       viewService: 'View service',
       backToServices: 'Back to services',
+      backToBlog: 'Back to blog',
       viewCity: 'View',
     },
     form: {
@@ -130,6 +132,7 @@ export const ui: Record<Locale, UIStrings> = {
       readMore: 'Leer más',
       viewService: 'Ver servicio',
       backToServices: 'Volver a servicios',
+      backToBlog: 'Volver al blog',
       viewCity: 'Ver',
     },
     form: {
@@ -167,6 +170,7 @@ export const ui: Record<Locale, UIStrings> = {
       readMore: '阅读更多',
       viewService: '查看服务',
       backToServices: '返回服务列表',
+      backToBlog: '返回博客',
       viewCity: '查看',
     },
     form: {
@@ -204,6 +208,7 @@ export const ui: Record<Locale, UIStrings> = {
       readMore: '閱讀更多',
       viewService: '查看服務',
       backToServices: '返回服務列表',
+      backToBlog: '返回部落格',
       viewCity: '查看',
     },
     form: {
