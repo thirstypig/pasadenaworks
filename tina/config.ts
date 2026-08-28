@@ -21,18 +21,19 @@ import { defineConfig } from 'tinacms';
  *  `filename.slugify` below reads the post's `locale` field and places new
  *  posts in the matching subfolder automatically.
  *
- *  To let people edit from a browser without your laptop running (e.g.
- *  from a phone, or a non-technical teammate), Tina Cloud is the next
- *  step: sign up at tina.io, connect this GitHub repo, and set
- *  clientId/token below. Not required for local editing.
+ *  Tina Cloud is connected (2026-08-27) — project "pasadenaworks" at
+ *  app.tina.io, so people can also edit from a browser without your
+ *  laptop running (e.g. from a phone, or a non-technical teammate), once
+ *  the site is deployed with TINA_CLIENT_ID/TINA_TOKEN set. Not required
+ *  for local editing — npm run admin still works with neither set.
  */
 export default defineConfig({
   branch: 'main',
 
-  // Uncomment and fill in after connecting this repo at app.tina.io, if
-  // you want browser-based editing without running the site locally.
-  // clientId: process.env.TINA_CLIENT_ID,
-  // token: process.env.TINA_TOKEN,
+  // Set as GitHub Actions repo secrets for the live build, and in a local
+  // .env (gitignored) if you want to test `npx tinacms build` yourself.
+  clientId: process.env.TINA_CLIENT_ID,
+  token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: 'admin',
