@@ -28,7 +28,7 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
   <div class="wrap site-footer__inner">
     <div class="site-footer__columns">
       <div class="site-footer__col">
-        <p class="site-footer__brand">{site.name}</p>
+        <img class="site-footer__logo" src="/logo-lockup.png" alt={site.name} width="1600" height="578" />
         <p>{strings.footer.serviceAreaBlurb}</p>
       </div>
 
@@ -113,11 +113,14 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
     letter-spacing: 0.06em;
   }
 
-  .site-footer__brand {
-    font-family: var(--font-display);
-    font-weight: 400;
-    color: var(--color-white);
-    margin: 0;
+  .site-footer__logo {
+    /* Logo art is opaque black on a transparent background — the footer
+     * panel is always dark rose regardless of site theme, so invert it to
+     * white rather than needing a separate light-colored asset. */
+    filter: invert(1);
+    height: 2.75rem;
+    width: auto;
+    margin-bottom: var(--space-3);
   }
 
   .site-footer a {

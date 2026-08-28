@@ -31,6 +31,27 @@
   --color-brand: var(--color-rose);
   --color-brand-dark: var(--color-rose-dark);
 
+  /* Theme-adaptive roles (2026-08-27, light/dark mode). These two are the
+     ONLY tokens that change value in dark mode — see the dark-mode block
+     below. Everything else (--color-rose, --color-ochre, --color-blush,
+     --color-white, and their -dark variants) stays fixed across both
+     themes: those are used as backgrounds for things that are already a
+     fixed color regardless of page theme (buttons, pills, the footer, the
+     skip link) or paired with a backdrop that intentionally doesn't shift
+     (see the label-frame gotcha below) — only the page's own background/
+     text/surface colors and the heading/link color drawn on it need a
+     dark counterpart.
+     --color-surface: card/panel backgrounds (contact form, blog cards,
+       hub cards) that sit ON TOP of --color-bg and need to stay visually
+       a step lighter/darker than it in either theme.
+     --color-heading: headings and inline links drawn directly on
+       --color-bg. NOT used for text drawn on a fixed-color backdrop
+       (button text on ochre, pill text on blush, the hero logo frame) —
+       those keep using --color-rose-dark literally so they don't go
+       illegible if this token flips light in dark mode. */
+  --color-surface: var(--color-white);
+  --color-heading: var(--color-rose-dark);
+
   /* Type
      Display face is Anton — modeled on 1930s-40s American gothic/
      grotesque poster and newspaper-headline lettering, matching the
@@ -67,6 +88,55 @@
   --radius: 6px;
   --max-width: 72rem;
   --max-width-prose: 38rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  DARK MODE (2026-08-27)
+ *  Defaults to the visitor's OS/browser preference; a manual override from
+ *  ThemeToggle.astro sets data-theme on <html> and wins either direction.
+ *  No-preference-saved visitors get pure prefers-color-scheme with no
+ *  data-theme attribute at all — the :not([data-theme="light"]) guard on
+ *  the media-query block is what lets a saved "light" choice cancel a dark
+ *  OS preference; a saved "dark" choice is covered by the plain attribute
+ *  selector below regardless of OS setting.
+ * ───────────────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #18110f;
+    --color-bg-alt: #221815;
+    --color-ink: #f2e9de;
+    --color-ink-soft: #c7b9ac;
+    --color-line: #3c2b25;
+    --color-surface: #241a17;
+    --color-heading: #e7a9ae;
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #18110f;
+  --color-bg-alt: #221815;
+  --color-ink: #f2e9de;
+  --color-ink-soft: #c7b9ac;
+  --color-line: #3c2b25;
+  --color-surface: #241a17;
+  --color-heading: #e7a9ae;
+}
+
+/* The header/hero logo art is opaque black with a transparent background —
+   there's no separate light-colored asset, so flip it white in dark mode
+   instead. Both spots sit directly on --color-bg (not a fixed light card
+   like the label-frame gotcha below), so inverting the art alongside the
+   backdrop keeps the same flush, no-visible-box look in both themes. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .site-header__brand img,
+  :root:not([data-theme='light']) .hero__logo-frame img {
+    filter: invert(1);
+  }
+}
+
+:root[data-theme='dark'] .site-header__brand img,
+:root[data-theme='dark'] .hero__logo-frame img {
+  filter: invert(1);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -127,7 +197,7 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 400;
-  color: var(--color-brand-dark);
+  color: var(--color-heading);
   line-height: 1.15;
   margin: 0 0 var(--space-4);
 }
@@ -150,7 +220,7 @@ p {
 }
 
 a {
-  color: var(--color-brand-dark);
+  color: var(--color-heading);
   text-underline-offset: 0.15em;
 }
 
@@ -295,7 +365,7 @@ main {
 .contact-frame {
   margin-top: var(--space-6);
   padding: var(--space-6);
-  background: var(--color-white);
+  background: var(--color-surface);
   color: var(--color-ink);
   max-width: 34rem;
   width: 100%;

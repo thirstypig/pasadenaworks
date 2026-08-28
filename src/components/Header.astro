@@ -4,6 +4,7 @@ import { t, localePath } from '../i18n/utils';
 import { SEGMENTS } from '../i18n/routes';
 import { site } from '../data/site';
 import LangSwitch from './LangSwitch.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   locale: Locale;
@@ -31,7 +32,10 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
       <a href={`${home}#contact`}>{strings.nav.contact}</a>
     </nav>
 
-    <LangSwitch locale={locale} translations={translations} />
+    <div class="site-header__controls">
+      <LangSwitch locale={locale} translations={translations} />
+      <ThemeToggle locale={locale} />
+    </div>
   </div>
 </header>
 
@@ -77,5 +81,11 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
 
   .site-header__nav a:hover {
     color: var(--color-accent-dark);
+  }
+
+  .site-header__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 </style>

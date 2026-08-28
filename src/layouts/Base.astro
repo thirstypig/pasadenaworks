@@ -65,6 +65,23 @@ const localBusinessSchema = {
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <script is:inline>
+      // Runs before first paint to avoid a flash of the wrong theme. Only
+      // sets data-theme when the visitor has explicitly overridden their
+      // OS preference (see ThemeToggle.astro) — otherwise the CSS
+      // prefers-color-scheme media query handles it with no attribute at
+      // all, so a visitor who never touches the toggle always tracks
+      // their OS setting live, including if they change it later.
+      (function () {
+        try {
+          var saved = localStorage.getItem('pw-theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

@@ -103,6 +103,8 @@ export interface UIStrings {
     skipToContent: string;
     languages: string;
     placeholderNotice: string;
+    switchToLightMode: string;
+    switchToDarkMode: string;
   };
 }
 
@@ -159,6 +161,8 @@ export const ui: Record<Locale, UIStrings> = {
       skipToContent: 'Skip to content',
       languages: 'Language',
       placeholderNotice: 'This page is a placeholder and is being filled in.',
+      switchToLightMode: 'Switch to light mode',
+      switchToDarkMode: 'Switch to dark mode',
     },
   },
   es: {
@@ -213,6 +217,8 @@ export const ui: Record<Locale, UIStrings> = {
       skipToContent: 'Saltar al contenido',
       languages: 'Idioma',
       placeholderNotice: 'Esta página es un borrador y todavía se está completando.',
+      switchToLightMode: 'Cambiar a modo claro',
+      switchToDarkMode: 'Cambiar a modo oscuro',
     },
   },
   'zh-hans': {
@@ -263,6 +269,8 @@ export const ui: Record<Locale, UIStrings> = {
       skipToContent: '跳到正文',
       languages: '语言',
       placeholderNotice: '这个页面还在完善中，内容是占位文字。',
+      switchToLightMode: '切换到浅色模式',
+      switchToDarkMode: '切换到深色模式',
     },
   },
   'zh-hant': {
@@ -313,6 +321,8 @@ export const ui: Record<Locale, UIStrings> = {
       skipToContent: '跳到主要內容',
       languages: '語言',
       placeholderNotice: '這個頁面還在完善中，內容是佔位文字。',
+      switchToLightMode: '切換到淺色模式',
+      switchToDarkMode: '切換到深色模式',
     },
   },
 };
