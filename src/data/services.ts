@@ -155,87 +155,81 @@ export const services: Service[] = [
     },
     t: {
       en: {
-        title: 'Getting found on Google',
+        title: 'Getting found online',
         tagline: 'The customers are already searching. Be the result they see.',
         summary:
-          'When someone nearby searches for what you sell, you want your business to show up first — on Google, on Google Maps, and now even when people ask AI tools like ChatGPT for recommendations. We handle the technical work behind the scenes: your Google Business Profile, your reviews, and a website that actually answers the questions people are asking. It takes a few months to work. But once it does, it keeps working long after you stop paying for it.',
+          'When someone nearby searches for what you sell, you want to be the result they see — on Google, on Yelp, and now on AI tools like ChatGPT. We handle the technical work behind the scenes. It takes a few months, but once it works, it keeps working long after you stop paying for it.',
         body: [
           'Somebody within three miles of you is typing your service into their phone right now. The only question is whose name comes up. That position is not luck and it is not magic — it is a set of specific, boring, fixable things.',
-          'We start with the free stuff that moves the needle most for local businesses: your <a href="/glossary/#google-business-profile">Google Business Profile</a>, your <a href="/glossary/#reviews">reviews</a>, and whether your name, address, and phone number match everywhere they appear online. Then we build pages and articles that answer the exact questions your customers are typing.',
-          'Google isn\'t the only place this happens. A Yelp listing, a Quora thread, or a Reddit post asking "who\'s a good electrician in Pasadena" all show up in search too, and a good or bad answer there follows your business around. We keep an eye on where you\'re actually being discussed — not just your Google listing — and fix what\'s fixable.',
-          'This is slow work. Expect three to six months before it compounds. Anyone promising page one by next Tuesday is selling you something else.',
-          'This work has two parts now, not one. There\'s still <a href="/glossary/#seo">SEO</a> — showing up in a Google search. But there\'s also <a href="/glossary/#geo">GEO</a> — showing up when someone asks an AI tool like ChatGPT or Google\'s AI answers "who\'s a good electrician near me." Both come from the same honest groundwork: an accurate Google Business Profile, real reviews, and a website that plainly answers the question someone actually asked. New to these terms? See our <a href="/glossary/">plain-English glossary</a>.',
+          'We start with the free stuff that moves the needle most: your <a href="/glossary/#google-business-profile">Google Business Profile</a>, your <a href="/glossary/#reviews">reviews</a>, whether your name, address, and phone number match everywhere online — and how you actually look on Yelp, Quora, and Reddit, not just Google. Then we build pages and articles that answer the exact questions your customers are typing.',
+          'This is slow work — expect three to six months before it compounds, and that now includes the <a href="/glossary/#geo">GEO</a> side of it too, showing up when someone asks an AI tool instead of typing into Google. Anyone promising page one by next Tuesday is selling you something else.',
         ],
         outcomes: [
           '<a href="/glossary/#google-business-profile">Google Business Profile</a> fully filled out and verified',
           'A <a href="/glossary/#keyword">keyword</a> list built from what your customers actually type',
           'Pages for each service and each neighborhood you serve',
           'A look at what\'s actually showing up for you on Yelp, Quora, and Reddit — not just Google',
-          'A monthly article schedule you can sustain',
           'Content written to be quoted correctly by AI tools, not just ranked by Google',
           'A one-page report each month in words, not charts',
         ],
         meta: 'Local SEO and AI search (GEO) for small businesses in Pasadena and greater LA. Get found on Google, Google Maps, and AI answers.',
       },
       es: {
-        title: 'Aparecer en Google',
+        title: 'Aparecer en línea',
         tagline: 'Los clientes ya están buscando. Sea el resultado que ven.',
         summary:
-          'Cuando alguien cerca busca lo que usted vende, usted quiere ser el primer resultado — en Google, en Google Maps, y ahora hasta cuando le preguntan a herramientas de IA. Nosotros nos encargamos del trabajo técnico detrás: su perfil de Google Business, sus reseñas, y un sitio que de verdad responde lo que la gente pregunta. Tarda unos meses en funcionar, pero una vez que funciona, sigue funcionando aunque deje de pagarnos.',
+          'Cuando alguien cerca busca lo que usted vende, quiere ser el resultado que ve — en Google, en Yelp, y ahora en herramientas de IA como ChatGPT. Nosotros nos encargamos del trabajo técnico detrás. Tarda unos meses, pero una vez que funciona, sigue funcionando aunque deje de pagarnos.',
         body: [
           'En este momento hay alguien a menos de cinco kilómetros escribiendo su servicio en el teléfono. La única pregunta es qué nombre aparece. Ese lugar no es suerte ni magia: es una lista de cosas concretas, aburridas y arreglables.',
-          'Empezamos con lo gratuito que más funciona para negocios locales: su perfil de Google Business, sus reseñas, y si su nombre, dirección y teléfono coinciden en todos lados donde aparecen. Después creamos páginas y artículos que responden exactamente lo que sus clientes escriben.',
-          'Google no es el único lugar donde esto pasa. Una ficha en Yelp, un hilo de Quora o una publicación en Reddit preguntando "quién es un buen electricista en Pasadena" también aparecen en las búsquedas, y una buena o mala respuesta ahí sigue a su negocio. Vigilamos dónde realmente se está hablando de usted — no solo su ficha de Google — y arreglamos lo que se pueda arreglar.',
-          'Este trabajo es lento. Cuente con tres a seis meses antes de que empiece a acumularse. Quien le prometa la primera página para el martes le está vendiendo otra cosa.',
+          'Empezamos con lo gratuito que más funciona: su perfil de Google Business, sus reseñas, si su nombre, dirección y teléfono coinciden en todos lados — y cómo se ve usted en Yelp, Quora y Reddit, no solo en Google. Después creamos páginas y artículos que responden exactamente lo que sus clientes escriben.',
+          'Este trabajo es lento — cuente con tres a seis meses antes de que empiece a acumularse, y eso ahora incluye el lado GEO también, apareciendo cuando alguien le pregunta a una herramienta de IA en vez de buscar en Google. Quien le prometa la primera página para el martes le está vendiendo otra cosa.',
         ],
         outcomes: [
           'Perfil de Google Business completo y verificado',
           'Una lista de palabras clave basada en lo que sus clientes escriben',
           'Páginas para cada servicio y cada zona que atiende',
           'Una revisión de lo que aparece de usted en Yelp, Quora y Reddit — no solo en Google',
-          'Un calendario de artículos que sí puede mantener',
+          'Contenido escrito para que las herramientas de IA lo citen correctamente, no solo para el ranking de Google',
           'Un reporte mensual de una página, en palabras y no en gráficas',
         ],
         meta: 'SEO local para negocios pequeños en Pasadena y Los Ángeles. Aparezca en Google Maps y en las búsquedas sin pagar por cada clic.',
       },
       'zh-hans': {
-        title: '让客人在谷歌上找到您',
+        title: '网上曝光',
         tagline: '客人已经在搜索了，问题是他们看到的是谁。',
         summary:
-          '附近的人搜索您卖的东西时，您希望第一个出现的是您——在谷歌上、在谷歌地图上，现在甚至是别人问 AI 工具的时候。我们负责背后的技术活儿：谷歌商家资料、客户评价，还有一个真正能回答客人问题的网站。这事儿要几个月才见效，但一旦见效，哪怕您不再付钱，它也会继续管用。',
+          '附近的人搜索您卖的东西时，您希望被看到的是您——在谷歌上、在 Yelp 上，现在甚至是在 ChatGPT 这样的 AI 工具上。我们负责背后的技术活儿。这事儿要几个月才见效，但一旦见效，哪怕您不再付钱，它也会继续管用。',
         body: [
           '此时此刻，离您几公里之内就有人正在手机上搜索您做的这个行业。唯一的问题是：跳出来的是谁的名字。那个位置不靠运气，也不是什么玄学，而是一堆具体、枯燥、但可以一件件解决的事情。',
-          '我们先做对本地生意最有效的免费部分：谷歌商家资料、客户评价，以及您的店名、地址、电话在网上各处是否一致。然后我们再制作页面和文章，回答客人真正会搜的那些问题。',
-          '不是只有谷歌才算数。Yelp 上的评价、Quora 上的提问、Reddit 上一句「帕萨迪纳哪个电工靠谱」，这些帖子同样会出现在搜索结果里，评价好坏都会一直跟着您的生意。我们会留意大家到底在哪里议论您的生意——不只是谷歌商家资料——能改的就改。',
-          '这件事很慢。通常需要三到六个月才会开始见效并逐步累积。任何人跟您保证「下周就上第一页」，那他卖给您的是别的东西。',
+          '我们先做最有效的免费部分：谷歌商家资料、客户评价、您的店名地址电话在网上各处是否一致——还有您在 Yelp、Quora、Reddit 上到底是什么样子，不只是谷歌。然后我们再制作页面和文章，回答客人真正会搜的那些问题。',
+          '这件事很慢——通常需要三到六个月才会开始见效并逐步累积，现在也包括 GEO 这一块，也就是别人问 AI 工具而不是搜谷歌时能不能被找到。任何人跟您保证「下周就上第一页」，那他卖给您的是别的东西。',
         ],
         outcomes: [
           '完整填写并通过验证的谷歌商家资料',
           '一份根据客人实际搜索词整理的关键词清单',
           '为每项服务和每个服务区域制作专门页面',
           '看看您在 Yelp、Quora、Reddit 上到底是什么样子——不只是谷歌',
-          '一份您能长期坚持下去的每月文章计划',
+          '内容写得能被 AI 工具正确引用，不只是被谷歌排名',
           '每月一页纸的报告，用大白话写，不是一堆图表',
         ],
         meta: '为帕萨迪纳和大洛杉矶地区小型企业提供本地谷歌推广服务。不用为每次点击付费，也能让客人找到您。',
       },
       'zh-hant': {
-        title: '讓客人在 Google 上找到您',
+        title: '網路曝光',
         tagline: '客人已經在搜尋了，問題是他們看到的是誰。',
         summary:
-          '附近的人搜尋您賣的東西時，您希望第一個出現的是您——在 Google 上、在 Google 地圖上，現在甚至是別人問 AI 工具的時候。我們負責背後的技術活兒：Google 商家檔案、客戶評價，還有一個真正能回答客人問題的網站。這件事要幾個月才見效，但一旦見效，就算您不再付費，它也會繼續管用。',
+          '附近的人搜尋您賣的東西時，您希望被看到的是您——在 Google 上、在 Yelp 上，現在甚至是在 ChatGPT 這樣的 AI 工具上。我們負責背後的技術活兒。這件事要幾個月才見效，但一旦見效，就算您不再付費，它也會繼續管用。',
         body: [
           '此時此刻，離您幾公里之內就有人正在手機上搜尋您做的這個行業。唯一的問題是：跳出來的是誰的名字。那個位置不靠運氣，也不是什麼玄學，而是一堆具體、枯燥、但可以一件件解決的事情。',
-          '我們先做對本地生意最有效的免費部分：Google 商家檔案、客戶評價，以及您的店名、地址、電話在網路上各處是否一致。接著我們再製作頁面和文章，回答客人真正會搜尋的那些問題。',
-          '不是只有 Google 才算數。Yelp 上的評價、Quora 上的提問、Reddit 上一句「帕薩迪納哪個電工靠譜」，這些貼文同樣會出現在搜尋結果裡，評價好壞都會一直跟著您的生意。我們會留意大家到底在哪裡議論您的生意——不只是 Google 商家檔案——能改的就改。',
-          '這件事很慢。通常需要三到六個月才會開始見效並逐步累積。任何人跟您保證「下週就上第一頁」，那他賣給您的是別的東西。',
+          '我們先做最有效的免費部分：Google 商家檔案、客戶評價、您的店名地址電話在網路上各處是否一致——還有您在 Yelp、Quora、Reddit 上到底是什麼樣子，不只是 Google。接著我們再製作頁面和文章，回答客人真正會搜尋的那些問題。',
+          '這件事很慢——通常需要三到六個月才會開始見效並逐步累積，現在也包括 GEO 這一塊，也就是別人問 AI 工具而不是搜 Google 時能不能被找到。任何人跟您保證「下週就上第一頁」，那他賣給您的是別的東西。',
         ],
         outcomes: [
           '完整填寫並通過驗證的 Google 商家檔案',
           '一份根據客人實際搜尋字詞整理的關鍵字清單',
           '為每項服務和每個服務區域製作專門頁面',
           '看看您在 Yelp、Quora、Reddit 上到底是什麼樣子——不只是 Google',
-          '一份您能長期堅持下去的每月文章計畫',
+          '內容寫得能被 AI 工具正確引用，不只是被 Google 排名',
           '每月一頁的報告，用白話寫，不是一堆圖表',
         ],
         meta: '為帕薩迪納和大洛杉磯地區小型企業提供在地 Google 推廣服務。不用為每次點擊付費，也能讓客人找到您。',
@@ -260,7 +254,7 @@ export const services: Service[] = [
     },
     t: {
       en: {
-        title: 'Online marketing — organic and paid',
+        title: 'Online marketing',
         tagline: "So you don't waste money on marketing that never made sense.",
         summary:
           "Paid ads can bring in customers fast, and organic content keeps working long after you stop paying — but both waste time and money if they're not built around what a customer is actually worth to you. We look at both together, and say so honestly if paid doesn't make sense yet.",
@@ -280,7 +274,7 @@ export const services: Service[] = [
         meta: 'Online marketing — organic and paid — for Southern California small businesses. We start by checking what actually makes sense for you.',
       },
       es: {
-        title: 'Marketing en línea — orgánico y pagado',
+        title: 'Marketing en línea',
         tagline: 'Para que no desperdicie dinero en marketing que nunca tuvo sentido.',
         summary:
           'Los anuncios pagados pueden traer clientes rápido, y el contenido orgánico sigue funcionando mucho después de dejar de pagar — pero ambos desperdician tiempo y dinero si no se basan en lo que un cliente realmente vale para usted. Vemos los dos juntos, y le decimos con honestidad si lo pagado todavía no tiene sentido.',
@@ -300,7 +294,7 @@ export const services: Service[] = [
         meta: 'Marketing en línea — orgánico y pagado — para negocios pequeños del sur de California. Primero revisamos qué de verdad le conviene.',
       },
       'zh-hans': {
-        title: '线上营销——自然流量和付费广告',
+        title: '线上营销',
         tagline: '别把钱浪费在从一开始就没道理的营销上。',
         summary:
           '付费广告能很快带来客人，自然内容则会在您停止付费之后继续管用——但如果不是围绕一位客人的真实价值来做，两者都会浪费时间和金钱。我们会把两者放在一起看，如果付费广告现在还没道理，我们会照实说。',
@@ -320,7 +314,7 @@ export const services: Service[] = [
         meta: '为南加州小型企业提供线上营销服务——自然流量和付费广告。我们会先帮您算清楚，什么对您才是真正划算的。',
       },
       'zh-hant': {
-        title: '線上行銷——自然流量與付費廣告',
+        title: '線上行銷',
         tagline: '別把錢浪費在從一開始就沒道理的行銷上。',
         summary:
           '付費廣告能很快帶來客人，自然內容則會在您停止付費之後繼續管用——但如果不是圍繞一位客人的真實價值來做，兩者都會浪費時間和金錢。我們會把兩者放在一起看，如果付費廣告現在還沒道理，我們會照實說。',
@@ -354,13 +348,13 @@ export const services: Service[] = [
     },
     t: {
       en: {
-        title: 'A second opinion on your business',
+        title: 'Online consulting',
         tagline: 'An honest answer, from someone with nothing to gain either way.',
         summary:
-          "Running a small business means making decisions alone — pricing, hiring, what to drop. We sit down, look at your numbers, and hand you a short plan you can actually use. Sometimes the honest answer is you're already fine.",
+          "Running a small business means making decisions alone — pricing, what to offer, what to drop. We sit down, look at your numbers, and hand you a short plan you can actually use. Sometimes the honest answer is you're already fine.",
         body: [
           "Call it a consultancy session, a strategy check-in, or just a second opinion — the label doesn't matter. It's an hour with someone whose only job is helping you see your own business clearly, not selling you the next thing.",
-          "Running a small business means every decision lands on one desk. Should you raise prices. Should you hire. Should you drop the service that eats half your week and brings in a tenth of your revenue. There's rarely anyone to talk it through with who isn't also your spouse or your employee.",
+          "Running a small business means every decision lands on one desk. Should you raise prices. Should you drop the service that eats half your week and brings in a tenth of your revenue. Should you keep the client who's more trouble than they're worth. There's rarely anyone to talk it through with who isn't also your spouse or your employee.",
           "We do that. It's a working session, not a lecture — we look at your numbers together, name the two or three things that actually matter this quarter, and leave you with a short written summary you can act on.",
           "Sometimes the honest answer is that your business is fine and you don't need us. We'll tell you that too.",
         ],
@@ -374,13 +368,13 @@ export const services: Service[] = [
         meta: 'Practical business consultancy and strategy sessions for small business owners in Southern California. Pricing, offers, and priorities — no jargon, no slide decks.',
       },
       es: {
-        title: 'Una segunda opinión sobre su negocio',
+        title: 'Consultoría en línea',
         tagline: 'Una respuesta honesta, de alguien que no gana nada de cualquier forma.',
         summary:
-          'Tener un negocio pequeño significa tomar decisiones solo — precios, contrataciones, qué dejar. Nos sentamos, revisamos sus números, y le damos un plan corto que sí puede usar. A veces la respuesta honesta es que ya está bien.',
+          'Tener un negocio pequeño significa tomar decisiones solo — precios, qué ofrecer, qué dejar. Nos sentamos, revisamos sus números, y le damos un plan corto que sí puede usar. A veces la respuesta honesta es que ya está bien.',
         body: [
           'Llámelo sesión de consultoría, revisión de estrategia, o simplemente una segunda opinión — el nombre no importa. Es una hora con alguien cuyo único trabajo es ayudarle a ver su propio negocio con claridad, no venderle lo siguiente.',
-          'Tener un negocio pequeño significa que todas las decisiones caen en un solo escritorio. Si subir los precios. Si contratar a alguien. Si dejar ese servicio que se come la mitad de la semana y trae la décima parte del ingreso. Y casi nunca hay con quién platicarlo que no sea su pareja o su empleado.',
+          'Tener un negocio pequeño significa que todas las decisiones caen en un solo escritorio. Si subir los precios. Si dejar ese servicio que se come la mitad de la semana y trae la décima parte del ingreso. Si quedarse con ese cliente que da más problemas de lo que vale. Y casi nunca hay con quién platicarlo que no sea su pareja o su empleado.',
           'Eso es lo que hacemos. Es una sesión de trabajo, no una conferencia: revisamos sus números juntos, identificamos las dos o tres cosas que de verdad importan este trimestre, y usted se queda con un resumen corto por escrito.',
           'A veces la respuesta honesta es que su negocio está bien y no nos necesita. También se lo vamos a decir.',
         ],
@@ -394,13 +388,13 @@ export const services: Service[] = [
         meta: 'Asesoría y estrategia de negocios prácticas para dueños de negocios pequeños en el sur de California. Precios, servicios y prioridades, sin palabras complicadas.',
       },
       'zh-hans': {
-        title: '给您的生意一个第二意见',
+        title: '线上经营咨询',
         tagline: '一个诚实的答案，来自一个怎么说都没有利害关系的人。',
         summary:
-          '做小生意意味着自己做决定——定价、招人、砍掉什么服务。我们坐下来，看您的数字，给您一份能直接用的简短计划。有时候诚实的答案是您已经挺好了。',
+          '做小生意意味着自己做决定——定价、做什么不做什么、砍掉什么服务。我们坐下来，看您的数字，给您一份能直接用的简短计划。有时候诚实的答案是您已经挺好了。',
         body: [
           '叫它经营咨询也好，战略会谈也好，还是就叫第二意见，名字不重要。就是花一个小时，找一个唯一的工作就是帮您看清自己生意的人，而不是想卖您下一样东西的人。',
-          '做小生意意味着所有决定都压在同一张桌子上。要不要涨价。要不要招人。那项占了您一半时间、却只带来十分之一收入的服务，要不要砍掉。而能商量的人，往往不是您的家人就是您的员工。',
+          '做小生意意味着所有决定都压在同一张桌子上。要不要涨价。那项占了您一半时间、却只带来十分之一收入的服务，要不要砍掉。那位麻烦比价值还多的客人，要不要继续留着。而能商量的人，往往不是您的家人就是您的员工。',
           '我们做的就是这件事。这是一次一起干活的会谈，不是听课：我们一起看您的数字，挑出这个季度真正要紧的两三件事，最后给您一份可以直接照着做的简短书面总结。',
           '有时候诚实的答案是：您的生意挺好的，不需要我们。这话我们也会照直说。',
         ],
@@ -414,13 +408,13 @@ export const services: Service[] = [
         meta: '为南加州小型企业主提供务实的经营咨询与战略服务：定价、服务组合和优先级，不讲行话，不做花架子。',
       },
       'zh-hant': {
-        title: '給您的生意一個第二意見',
+        title: '線上經營諮詢',
         tagline: '一個誠實的答案，來自一個怎麼說都沒有利害關係的人。',
         summary:
-          '做小生意意味著自己做決定——定價、請人、砍掉什麼服務。我們坐下來，看您的數字，給您一份能直接用的簡短計畫。有時候誠實的答案是您已經挺好了。',
+          '做小生意意味著自己做決定——定價、做什麼不做什麼、砍掉什麼服務。我們坐下來，看您的數字，給您一份能直接用的簡短計畫。有時候誠實的答案是您已經挺好了。',
         body: [
           '叫它經營諮詢也好，策略會談也好，還是就叫第二意見，名字不重要。就是花一個小時，找一個唯一的工作就是幫您看清自己生意的人，而不是想賣您下一樣東西的人。',
-          '做小生意意味著所有決定都壓在同一張桌子上。要不要漲價。要不要請人。那項佔了您一半時間、卻只帶來十分之一收入的服務，要不要砍掉。而能商量的人，往往不是您的家人就是您的員工。',
+          '做小生意意味著所有決定都壓在同一張桌子上。要不要漲價。那項佔了您一半時間、卻只帶來十分之一收入的服務，要不要砍掉。那位麻煩比價值還多的客人，要不要繼續留著。而能商量的人，往往不是您的家人就是您的員工。',
           '我們做的就是這件事。這是一次一起做事的會談，不是聽課：我們一起看您的數字，挑出這個季度真正要緊的兩三件事，最後給您一份可以直接照著做的簡短書面總結。',
           '有時候誠實的答案是：您的生意挺好的，不需要我們。這話我們也會照直說。',
         ],

@@ -67,7 +67,7 @@ did.
 | ~~2026-12-21~~ | *Skipped — Christmas week.* | — |
 | ~~2026-12-28~~ | *Skipped — New Year's week.* | — |
 | 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads |
-| 2027-01-11 | How to know it's time to hire your first employee | consulting |
+| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting |
 
 **The last two rows are the "Southern California + online marketing" pieces
 requested 2026-08-27.** Both are genuinely regional, not generic filler with
