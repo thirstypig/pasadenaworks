@@ -32,7 +32,7 @@ const translations = Object.fromEntries(
   <section class="section wrap prose">
     <p class="eyebrow">{copy.tagline}</p>
     <h1>{copy.title}</h1>
-    {copy.body.map((p: string) => <p set:html={p} />)}
+    {copy.body.map((p: string) => <Fragment set:html={p} />)}
 
     <h2>What you get</h2>
     <ul>
