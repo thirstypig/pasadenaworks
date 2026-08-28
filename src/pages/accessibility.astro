@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`Accessibility Statement — ${site.name}`}
+  description={`${site.name}'s commitment to an accessible website, and how to report a problem.`}
+  locale="en"
+  path="/accessibility/"
+>
+  <section class="section wrap prose">
+    <h1>Accessibility Statement</h1>
+    <p><em>Last updated: August 28, 2026</em></p>
+
+    <p>
+      We want this site to work for everyone, including people using a
+      screen reader, keyboard-only navigation, or a browser's built-in
+      zoom or high-contrast mode. This page says what we're doing about
+      that and how to reach us if something isn't working.
+    </p>
+
+    <h2>What we're aiming for</h2>
+    <p>
+      We build this site to meet the Web Content Accessibility Guidelines
+      (WCAG) 2.1 at Level AA — things like readable color contrast, a
+      logical heading structure, working keyboard navigation, a "skip to
+      content" link, and alt text on every image. This is an ongoing
+      effort, not a one-time checkbox — we review it periodically and fix
+      what we find.
+    </p>
+
+    <h2>Known limitations</h2>
+    <p>
+      We're not aware of any at the moment. If you run into one, that's
+      exactly what the contact below is for.
+    </p>
+
+    <h2>Report a problem</h2>
+    <p>
+      If any part of this site is hard to use with assistive technology,
+      or you hit a barrier we haven't caught, email{' '}
+      <a href={`mailto:${site.email}`}>{site.email}</a> with what page you
+      were on and what happened. We'll look into it directly — this isn't
+      a form-letter inbox.
+    </p>
+  </section>
+</Base>
