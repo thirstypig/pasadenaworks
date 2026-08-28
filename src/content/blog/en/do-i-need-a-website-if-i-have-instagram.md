@@ -23,7 +23,7 @@ Sometimes, honestly, no. If you make custom cakes, tattoo, or do floral design, 
 
 Since mid-2025, Google started indexing public posts from Instagram Business and Creator accounts — Reels, carousels, photos, and captions can show up in regular search results, not just inside Instagram's own app. That's a real shift, and it's the strongest argument for "Instagram might be enough" that exists right now.
 
-But read the fine print. Only public posts from Business or Creator accounts qualify. Stories never show up. Posts from before January 2020 don't count. And when a post does surface in Google, it's competing on Instagram's domain authority, formatted the way Instagram wants it formatted, with an "Add on Instagram" wrapper around it — not on a page you control, that you can structure around the exact question a customer is asking, with your phone number and hours right there. Getting indexed occasionally is not the same as being findable reliably. A website page targeting "emergency plumber Pasadena" and built to answer that question will out-rank a scrolling caption almost every time.
+But read the fine print. Only public posts from Business or Creator accounts qualify. Stories never show up. Posts from before January 2020 don't count. And when a post does surface in Google, it's competing on Instagram's domain authority, formatted the way Instagram wants it formatted, with an "Add on Instagram" wrapper around it. It's not a page you control — you can't structure it around the exact question a customer is asking, and your phone number and hours aren't right there. Getting indexed occasionally is not the same as being findable reliably. A website page targeting "emergency plumber Pasadena" and built to answer that question will out-rank a scrolling caption almost every time.
 
 ## The part nobody puts in the pitch deck: you don't own the account
 
@@ -39,6 +39,6 @@ That gap matters most at the moment someone is deciding whether to call you back
 
 ## When Instagram-only genuinely is enough
 
-To be fair to the other side: if your business is intensely visual, sells almost entirely through referral and word of mouth, and your customers are already comfortable booking through a DM or a link in your bio, a full website can be a lower priority than other things you could spend that money on. A one-person custom framer with a two-month waitlist doesn't need to outrank anyone on Google. They need Instagram to keep doing what it's already doing.
+To be fair to the other side: say your business is intensely visual, sells almost entirely through referral and word of mouth, and your customers are already comfortable booking through a DM or a link in your bio. A full website can be a lower priority than other things you could spend that money on. A one-person custom framer with a two-month waitlist doesn't need to outrank anyone on Google. They need Instagram to keep doing what it's already doing.
 
 The test isn't "do you have Instagram." It's "if Instagram disappeared tomorrow, would anyone still be able to find you, call you, or book you." If the answer is no, that's not an Instagram problem. That's a website problem wearing an Instagram costume.

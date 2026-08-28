@@ -21,7 +21,7 @@ Depends on your customers. Not a cop-out answer — it's the actual answer, and 
 
 ## The number that actually matters for you
 
-Big regional stats get thrown around a lot in this conversation, and they're real, but they can also mislead you if you don't localize them. Hispanic buying power nationally is somewhere around $2.7 trillion, headed toward $3 trillion by 2026 — Hispanic households are growing their spending faster than the rest of the country. That's a real trend. It's also useless for deciding what your business, specifically, should do.
+Big regional stats get thrown around a lot in this conversation, and they're real, but they can mislead you if you don't check what's true in your own area. Hispanic buying power nationally is somewhere around $2.7 trillion, headed toward $3 trillion by 2026 — Hispanic households are growing their spending faster than the rest of the country. That's a real trend. It's also useless for deciding what your business, specifically, should do.
 
 What matters is your city block. Hispanic and Latino population share swings wildly across the San Gabriel Valley — it's not one market. Parts of the eastern and southeastern SGV (El Monte, Baldwin Park, and nearby cities) run well above 60% Hispanic. Pasadena itself and the cities immediately around it run lower, closer to a quarter to a third depending on the neighborhood. San Gabriel the city is closer to a quarter Hispanic and roughly half Asian — a different translation conversation entirely.
 

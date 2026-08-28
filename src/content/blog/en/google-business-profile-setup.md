@@ -17,7 +17,7 @@ slug: google-business-profile-setup
 
 > **TL;DR** — Search "your business name" on Google, click "Own this business?" or "Claim this business," and verify with whatever method Google offers you — usually video now, sometimes an instant Search Console check. Postcard verification is mostly gone as of July 2026. Once you're in, the real work starts: most owners claim their profile and then leave it half-filled, which is worse for ranking than not having one polished.
 
-If your business doesn't show up on Google Maps when someone searches for it, or it shows up but someone else's placeholder listing is sitting there instead, you claim it the same way regardless: search your business name on Google or in Google Maps, and look for "Own this business?" or "Claim this business." Click it. That starts the process. The part people get stuck on is verification, and the part they skip entirely is fixing what's actually wrong with the listing once they're in.
+Maybe your business doesn't show up on Google Maps when someone searches for it. Maybe it shows up, but someone else's placeholder listing is sitting there instead. Either way, you claim it the same way: search your business name on Google or in Google Maps, and look for "Own this business?" or "Claim this business." Click it. That starts the process. The part people get stuck on is verification, and the part they skip entirely is fixing what's actually wrong with the listing once they're in.
 
 ## Claiming and verifying, step by step
 

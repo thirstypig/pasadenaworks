@@ -21,7 +21,7 @@ Several cities in the San Gabriel Valley have Chinese or Chinese-American plural
 
 ## Where people are actually finding businesses
 
-WeChat is the obvious first answer and it's the wrong first answer for most small businesses here. WeChat's real strength is inside China — reaching WeChat users as a U.S. small business generally means running a public/service account through Tencent's approval process, which wants a business license and is built for companies that already operate in China. For a bakery in Monterey Park or a dental office in Arcadia, that's a lot of setup for a channel your actual customers may not check daily once they've settled in the U.S.
+WeChat is the obvious first answer and it's the wrong first answer for most small businesses here. WeChat's real strength is inside China. Reaching WeChat users as a U.S. small business generally means running a public/service account through Tencent's approval process, and that process wants a business license — it's built for companies that already operate in China. For a bakery in Monterey Park or a dental office in Arcadia, that's a lot of setup for a channel your actual customers may not check daily once they've settled in the U.S.
 
 What does work, consistently, for SGV businesses:
 
@@ -35,7 +35,7 @@ Google Translate on your site tells a Chinese-speaking visitor something before 
 
 A real translated section doesn't need to be your whole site. It needs:
 
-- Your core service pages, in Simplified Chinese if your customers are more likely mainland-background (common in Rowland Heights, Hacienda Heights, parts of San Gabriel) or Traditional Chinese if they're more Taiwan-background (more common historically in Monterey Park, Arcadia, San Marino) — these are genuinely different audiences with different vocabulary preferences, not the same language with a font swap.
+- Your core service pages, translated into Simplified Chinese if your customers are more likely mainland-background (common in Rowland Heights, Hacienda Heights, parts of San Gabriel), or Traditional Chinese if they're more Taiwan-background (more common historically in Monterey Park, Arcadia, San Marino). These are genuinely different audiences with different vocabulary preferences — not the same language with a font swap.
 - A phone number and contact method staffed by someone who can actually take a call in Chinese, or clearly says so if not.
 - URLs and page titles that are actually translated, not just body text — a Chinese speaker searching in Chinese needs a page Google can match to that search, and that starts with the URL and title tag, not just the paragraph underneath them.
 

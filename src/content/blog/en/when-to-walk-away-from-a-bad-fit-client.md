@@ -29,7 +29,7 @@ Most bad client relationships don't turn bad. They start bad and you talk yourse
 
 **It's outside what you're actually good at.** Not every job that lands in your inbox is yours to take. If someone needs deep e-commerce inventory logic and your strength is marketing sites and local SEO, the honest move is to say so and, if you can, point them somewhere else. Taking it anyway because the check clears just means you'll deliver something mediocre, they'll be unhappy, and you'll have spent weeks on it instead of the work you're actually strong at.
 
-**You feel dread, not excitement, before the ink is dry.** This one gets dismissed the most because it sounds unprofessional to admit "I had a bad feeling." But that feeling is your brain pattern-matching against every red flag above, faster than you can list them out loud. If you're already rehearsing how you'll explain a delay to this client before you've started, that's information. Don't override it because the timing is convenient or the invoice would help this month.
+**You feel dread, not excitement, before the ink is dry.** This one gets dismissed the most because it sounds unprofessional to admit "I had a bad feeling." But that feeling is your brain adding up every red flag above, faster than you can list them out loud. If you're already rehearsing how you'll explain a delay to this client before you've started, that's information. Don't override it because the timing is convenient or the invoice would help this month.
 
 ## What to do when you see the signs early
 
