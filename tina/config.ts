@@ -73,6 +73,22 @@ export default defineConfig({
               return `${locale}/${base}`;
             },
           },
+          // Shows the scheduled publish date next to the title in the post
+          // list, so you can see the whole calendar at a glance without
+          // opening each entry — added 2026-08-28 per owner request.
+          itemProps: (values) => {
+            const date = values?.pubDate
+              ? new Date(values.pubDate).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })
+              : 'no date set';
+            const draftTag = values?.draft ? ' [DRAFT]' : '';
+            return {
+              label: `${date} — ${values?.title || 'Untitled'}${draftTag}`,
+            };
+          },
         },
         fields: [
           {
