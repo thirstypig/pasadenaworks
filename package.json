@@ -7,10 +7,10 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port 3180",
     "build": "astro build",
-    "preview": "astro preview",
-    "admin": "tinacms dev -c \"astro dev\"",
+    "preview": "astro preview --port 3180",
+    "admin": "tinacms dev -c \"astro dev --port 3180\"",
     "test": "vitest run"
   },
   "dependencies": {

@@ -39,12 +39,23 @@ That means:
 
 ```bash
 npm install          # once
-npm run dev          # dev server at localhost:4321
+npm run dev          # dev server at localhost:3180 (see cross-project port registry below)
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
-npm run preview      # serve the built site
-npm run admin        # dev server + Tina CMS admin at localhost:4321/admin/index.html
+npm run preview      # serve the built site, also on localhost:3180
+npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
 npm run test         # unit tests (vitest, 37) — i18n/hreflang, reading time, city/service lookups, blog i18n helpers
 ```
+
+**Port 3180 is this repo's reserved slot** in the owner's cross-project port
+registry (`MASTER-PORTS.md` / `PORTS.md` at this repo's root, mirrored from
+`~/Projects/MASTER-PORTS.md` — the canonical source, covering ~20 other local
+projects). Don't let `dev`/`preview` fall back to Astro's default 4321 —
+that port is already reserved for a different project (thirstypig) in the
+same registry, and running both at once would collide. If a future task
+needs another port on this project, claim it from pasadenaworks's own
+reserved block (3180–3189 / 4180–4189) and update both the local and root
+copies of the registry — never just pick a free-looking port without
+checking there first.
 
 Deployment is automatic: pushing to `main` triggers
 `.github/workflows/deploy.yml`. Never build and commit `dist/` — it's gitignored
