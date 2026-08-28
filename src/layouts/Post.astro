@@ -99,7 +99,7 @@ const articleSchema = {
 
     {heroImage && (
       <figure class="post__hero">
-        <div class="post__hero-frame craftsman-frame">
+        <div class="post__hero-frame label-frame">
           <img src={heroImage} alt={heroAlt ?? ''} loading="eager" />
         </div>
         {heroCredit && <figcaption>Photo: {heroCredit}</figcaption>}
@@ -163,7 +163,7 @@ const articleSchema = {
   }
 
   .post__hero-frame {
-    color: var(--color-pine-dark);
+    color: var(--color-rose-dark);
     padding: var(--space-2);
     background: var(--color-white);
   }

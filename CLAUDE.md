@@ -190,18 +190,52 @@ file, `-o` implied many) on the same CJK content; use long-form flags
 
 ## Design system
 
-Palette derives from Craftsman architecture — Greene & Greene pine green,
-stained-glass ochre, pale sage. The lattice motif is the cloud-lift pattern from
-Pasadena Craftsman joinery.
+**Rebranded 2026-08-27** around a real logo file the owner provided
+(`public/logo-source.svg`, a script "Pasadena" wordmark + blocky "WORKS" +
+a rose icon — vintage Americana commercial lettering, in the tradition of
+1920s–50s Southern California citrus-crate-label and soda-fountain print
+art, not the Craftsman-architecture identity the site launched with).
+
+Palette: deep rose/burgundy (`--color-rose`, tied to the logo's rose mark)
+replaces the old Greene & Greene pine green; citrus-crate-label gold
+(`--color-ochre`) carried over unchanged — it already fit the new direction;
+dusty blush (`--color-blush`) replaces pale sage; warm cream neutrals
+unchanged. The CSS custom property *names* (`--color-rose`, `--color-blush`)
+still read like the old `--color-pine`/`--color-sage` shape because they
+were mechanically renamed, not because "rose" is incidental — it's the
+literal new brand color now.
+
+The divider motif (`Lattice.astro`) is a beaded pearl-rule now, the border
+language of a vintage label, replacing the old diamond/cloud-lift motif tied
+to Craftsman joinery. Card/frame borders (`.label-frame` in global.css,
+renamed from `.craftsman-frame`) are a simple double-rule border instead of
+the old geometric corner-bracket "windowpane" style.
+
+Logo assets: `public/logo-mark.png` (the rose icon alone, square, black —
+used in the header next to the wordmark text) and `public/logo-lockup.png`
+(the full script+WORKS+rose lockup — used large on the homepage hero).
+Favicons/apple-touch-icon are the rose icon too. **`public/og.png` (the
+social-share image) was NOT regenerated in this rebrand — it still shows
+the old Craftsman badge logo and needs redoing** to match.
+
+**A quality caveat on the source SVG:** it was auto-traced from a raster
+image, not drawn as clean vector paths — zoom in and the curves show visible
+faceting/stair-stepping. Fine at the sizes currently used (header icon,
+favicon, a mid-size hero image); would look rough blown up large (print, a
+big hero background). Get a proper vector redraw before using it any bigger
+than the current hero size.
 
 All colors, type scale, and spacing are custom properties at the top of
 `src/styles/global.css`. **Derive from the tokens; don't hardcode hex values or
 pixel sizes in component styles.**
 
-Type pairs a bold slab-serif display face (Bevan) with a serif body (Source
-Serif 4) — both self-hosted via `@fontsource`, imported in `Base.astro`. The
+Type still pairs a bold slab-serif display face (Bevan) with a serif body
+(Source Serif 4) — both self-hosted via `@fontsource`, imported in
+`Base.astro`. Bevan was kept through the rebrand: it already reads as bold
+vintage sign-painter/showcard lettering, which pairs fine with the new
+logo's blocky "WORKS" lockup without needing a second display font. The
 serif body is better for the long-form blog reading the SEO strategy depends
-on. Don't "fix" this.
+on. Don't "fix" either.
 
 ## Content
 

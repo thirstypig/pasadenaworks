@@ -37,8 +37,8 @@ const translations = {
         </p>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
-      <div class="hero__logo-frame craftsman-frame">
-        <img src="/logo.png" width="426" height="640" alt="Pasadena Works" />
+      <div class="hero__logo-frame label-frame">
+        <img src="/logo-lockup.png" width="1600" height="578" alt="Pasadena Works" />
       </div>
     </div>
   </section>
@@ -52,7 +52,7 @@ const translations = {
       <div class="service-grid">
         {services.map((service) => (
           <a
-            class="service-card craftsman-frame"
+            class="service-card label-frame"
             href={localeUrl('en', SEGMENTS.services.en, service.slugs.en)}
           >
             <h3>{service.t.en.title}</h3>
@@ -70,7 +70,7 @@ const translations = {
     <div class="wrap">
       <h2>Get in touch</h2>
       <p class="prose">Tell us what's going on with your website or your Google presence. We'll respond with something specific, not a form-letter proposal.</p>
-      <div class="contact-frame craftsman-frame">
+      <div class="contact-frame label-frame">
         <ContactForm locale="en" />
       </div>
     </div>
@@ -97,10 +97,10 @@ const translations = {
 
   .hero__logo-frame {
     flex: 0 0 auto;
-    width: min(280px, 60vw);
-    padding: var(--space-3);
-    color: var(--color-bg);
-    background: var(--color-pine-dark);
+    width: min(420px, 80vw);
+    padding: var(--space-5) var(--space-4);
+    color: var(--color-rose-dark);
+    background: var(--color-bg);
     filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
   }
 
@@ -115,7 +115,7 @@ const translations = {
     font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-sage);
+    color: var(--color-blush);
   }
 
   .hero h1 {

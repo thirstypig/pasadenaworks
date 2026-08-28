@@ -14,7 +14,7 @@ const { locale, posts } = Astro.props;
 
 <div class="post-grid">
   {posts.map(({ post, minutes }) => (
-    <a class="post-card craftsman-frame" href={postPath(locale, post.data.slug)}>
+    <a class="post-card label-frame" href={postPath(locale, post.data.slug)}>
       {post.data.heroImage ? (
         <div class="post-card__media">
           <img src={post.data.heroImage} alt={post.data.heroAlt ?? ''} loading="lazy" />

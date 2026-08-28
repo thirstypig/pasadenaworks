@@ -1,36 +1,43 @@
 /* ─────────────────────────────────────────────────────────────────────────
  *  DESIGN TOKENS
- *  Craftsman palette: Greene & Greene pine green, stained-glass ochre,
- *  pale sage, plus warm neutrals. Derive from these — don't hardcode hex
- *  values or pixel sizes in component styles.
+ *  Vintage-Americana palette (2026-08-27 rebrand around the script-and-rose
+ *  logo): deep rose/burgundy tied to the logo's rose mark, citrus-crate-
+ *  label gold, dusty blush, plus warm cream neutrals — evoking 1920s-50s
+ *  Southern California citrus-label and soda-fountain print art. Derive
+ *  from these — don't hardcode hex values or pixel sizes in component
+ *  styles. (Token names kept their old "rose"/"blush" shape after a
+ *  find-replace from the previous Craftsman-green palette — "rose" here
+ *  is literal now, not just a leftover name.)
  * ───────────────────────────────────────────────────────────────────────── */
 :root {
   /* Color */
-  --color-pine: #2f4536;
-  --color-pine-dark: #1e2e24;
+  --color-rose: #7a2e35;
+  --color-rose-dark: #4a1c22;
   --color-ochre: #c8862b;
   --color-ochre-dark: #a06a1c;
-  --color-sage: #d7e0d2;
-  --color-sage-dark: #aebfa4;
+  --color-blush: #e3cfc6;
+  --color-blush-dark: #c9a89e;
 
   --color-bg: #faf7f0;
   --color-bg-alt: #f1ece0;
-  --color-ink: #24291f;
-  --color-ink-soft: #4b5245;
+  --color-ink: #241a17;
+  --color-ink-soft: #4a4038;
   --color-line: #ddd6c4;
   --color-white: #ffffff;
 
   /* Semantic aliases */
   --color-accent: var(--color-ochre);
   --color-accent-dark: var(--color-ochre-dark);
-  --color-brand: var(--color-pine);
-  --color-brand-dark: var(--color-pine-dark);
+  --color-brand: var(--color-rose);
+  --color-brand-dark: var(--color-rose-dark);
 
   /* Type
-     Display face matches the vintage travel-badge lettering in the logo —
-     a bold slab serif with rounded terminals. Bevan ships one weight (400),
-     which already reads as bold, so headings set font-weight: 400 rather
-     than relying on synthetic bold. */
+     Display face matches the bold, blocky lettering in the "WORKS" half of
+     the logo lockup — a bold slab serif with rounded terminals reads as
+     vintage sign-painter/showcard lettering, which pairs with the script
+     "Pasadena" wordmark without needing a second display font. Bevan ships
+     one weight (400), which already reads as bold, so headings set
+     font-weight: 400 rather than relying on synthetic bold. */
   --font-display: 'Bevan', Georgia, 'Rockwell', serif;
   --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
 
@@ -181,7 +188,7 @@ main {
 }
 
 .section--dark {
-  background: var(--color-pine);
+  background: var(--color-rose);
   color: var(--color-white);
 }
 
@@ -196,7 +203,7 @@ main {
  * rules further down the stylesheet (equal specificity, later wins) —
  * excluding .btn keeps that from happening. See CLAUDE.md gotchas. */
 .section--dark a:not(.btn) {
-  color: var(--color-sage);
+  color: var(--color-blush);
 }
 
 .section--dark a:not(.btn):hover {
@@ -219,14 +226,14 @@ main {
   border-radius: var(--radius);
   border: 1px solid transparent;
   background: var(--color-accent);
-  color: var(--color-pine-dark);
+  color: var(--color-rose-dark);
   cursor: pointer;
   transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
 .btn:hover {
   background: var(--color-accent-dark);
-  color: var(--color-pine-dark);
+  color: var(--color-rose-dark);
 }
 
 .btn--outline {
@@ -242,11 +249,11 @@ main {
 /* Explicit override: .section--dark a:not(.btn) above must never win
  * against a .btn placed inside a dark section. */
 .section--dark .btn {
-  color: var(--color-pine-dark);
+  color: var(--color-rose-dark);
 }
 
 .section--dark .btn:hover {
-  color: var(--color-pine-dark);
+  color: var(--color-rose-dark);
 }
 
 .section--dark .btn--outline {
@@ -258,29 +265,18 @@ main {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
- *  CRAFTSMAN FRAME
- *  The nested-rectangle border language from the logo: an inner border,
- *  an outset outline, and four small corner squares standing in for the
- *  logo's corner "windowpane" joinery blocks. Uses currentColor for the
- *  lines, so set `color` on the element to pick a frame color per usage.
+ *  LABEL FRAME (renamed from craftsman-frame, 2026-08-27 rebrand)
+ *  A double-rule border — thick outer line, thin inner line with a gap —
+ *  the classic border language of a vintage citrus-crate label or ticket,
+ *  replacing the old geometric Greene & Greene corner-block frame. Uses
+ *  currentColor for both lines, so set `color` on the element to pick a
+ *  frame color per usage.
  * ───────────────────────────────────────────────────────────────────────── */
-.craftsman-frame {
+.label-frame {
   position: relative;
-  border: 2px solid currentColor;
+  border: 3px solid currentColor;
   outline: 1px solid currentColor;
-  outline-offset: 6px;
-  background-image:
-    linear-gradient(currentColor, currentColor),
-    linear-gradient(currentColor, currentColor),
-    linear-gradient(currentColor, currentColor),
-    linear-gradient(currentColor, currentColor);
-  background-repeat: no-repeat;
-  background-size: 7px 7px;
-  background-position:
-    -2px -2px,
-    calc(100% - 5px) -2px,
-    -2px calc(100% - 5px),
-    calc(100% - 5px) calc(100% - 5px);
+  outline-offset: 5px;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -291,7 +287,7 @@ main {
   top: -3rem;
   left: var(--space-4);
   z-index: 100;
-  background: var(--color-pine-dark);
+  background: var(--color-rose-dark);
   color: var(--color-white);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius);

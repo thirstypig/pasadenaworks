@@ -1,8 +1,10 @@
 ---
 /**
- * Decorative divider — a rule broken by a hollow diamond, echoing the
- * small diamond insignia the logo repeats between its banner and its
- * mountain/forest panels.
+ * Decorative divider — a rule strung with small pearl-like dots, the
+ * beaded-border language common to vintage citrus-crate labels and
+ * ticket stock. Replaced the old diamond lattice (2026-08-27 rebrand)
+ * which echoed the previous Craftsman-badge logo's geometric insignia —
+ * that motif doesn't relate to the new script-and-rose logo.
  *
  * Implemented as a CSS mask, NOT an inline SVG with preserveAspectRatio
  * ("none" stretches the motif into unreadable noise across wide
@@ -23,15 +25,15 @@ const { variant = 'light' } = Astro.props;
     height: 1.5rem;
     width: 100%;
     background-color: var(--color-ochre);
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='24' viewBox='0 0 60 24'%3E%3Crect x='0' y='10' width='60' height='4'/%3E%3Cpath fill-rule='evenodd' d='M30 2 L46 12 L30 22 L14 12 Z M30 7 L39 12 L30 17 L21 12 Z'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='24' viewBox='0 0 60 24'%3E%3Crect x='0' y='10' width='60' height='4'/%3E%3Cpath fill-rule='evenodd' d='M30 2 L46 12 L30 22 L14 12 Z M30 7 L39 12 L30 17 L21 12 Z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'%3E%3Crect x='0' y='7' width='24' height='2'/%3E%3Ccircle cx='12' cy='8' r='5'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'%3E%3Crect x='0' y='7' width='24' height='2'/%3E%3Ccircle cx='12' cy='8' r='5'/%3E%3C/svg%3E");
     -webkit-mask-repeat: repeat-x;
     mask-repeat: repeat-x;
-    -webkit-mask-size: 60px 24px;
-    mask-size: 60px 24px;
+    -webkit-mask-size: 24px 16px;
+    mask-size: 24px 16px;
   }
 
   .lattice--dark {
-    background-color: var(--color-sage);
+    background-color: var(--color-blush);
   }
 </style>
