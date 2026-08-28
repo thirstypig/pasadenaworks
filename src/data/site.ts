@@ -55,4 +55,16 @@ export const site = {
     linkedin: '',
     instagram: '',
   },
+
+  /* GA4 Measurement ID (format "G-XXXXXXXXXX"). Leave blank to keep
+     analytics off entirely — CookieConsent.astro and Base.astro both
+     check this and render nothing at all when it's empty, so there's no
+     half-wired banner asking for consent to a script that isn't there.
+     To get one: analytics.google.com → Admin → Create Property → name it
+     "Pasadena Works" → add a Web data stream for https://pasadenaworks.com
+     → it gives you the Measurement ID. Recommended: under Admin > Data
+     Settings > Data Collection, turn OFF Google Signals — keeps this to
+     plain traffic analytics instead of ad-personalization data sharing,
+     which matters for the CCPA "sale/sharing" disclosure threshold. */
+  gaMeasurementId: '',
 } as const;

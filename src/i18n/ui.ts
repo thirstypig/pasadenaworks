@@ -105,6 +105,9 @@ export interface UIStrings {
     placeholderNotice: string;
     switchToLightMode: string;
     switchToDarkMode: string;
+    cookieNotice: string;
+    cookieAccept: string;
+    cookieDecline: string;
   };
 }
 
@@ -163,6 +166,10 @@ export const ui: Record<Locale, UIStrings> = {
       placeholderNotice: 'This page is a placeholder and is being filled in.',
       switchToLightMode: 'Switch to light mode',
       switchToDarkMode: 'Switch to dark mode',
+      cookieNotice:
+        'We use analytics cookies to see how people use this site. No ad tracking, no selling your data.',
+      cookieAccept: 'OK',
+      cookieDecline: 'Decline',
     },
   },
   es: {
@@ -219,6 +226,10 @@ export const ui: Record<Locale, UIStrings> = {
       placeholderNotice: 'Esta página es un borrador y todavía se está completando.',
       switchToLightMode: 'Cambiar a modo claro',
       switchToDarkMode: 'Cambiar a modo oscuro',
+      cookieNotice:
+        'Usamos cookies analíticas para ver cómo se usa este sitio. Sin rastreo publicitario, sin vender tus datos.',
+      cookieAccept: 'Aceptar',
+      cookieDecline: 'Rechazar',
     },
   },
   'zh-hans': {
@@ -271,6 +282,9 @@ export const ui: Record<Locale, UIStrings> = {
       placeholderNotice: '这个页面还在完善中，内容是占位文字。',
       switchToLightMode: '切换到浅色模式',
       switchToDarkMode: '切换到深色模式',
+      cookieNotice: '我们使用分析类 Cookie，以了解本网站的使用情况。不做广告追踪，也不会出售您的信息。',
+      cookieAccept: '同意',
+      cookieDecline: '拒绝',
     },
   },
   'zh-hant': {
@@ -323,6 +337,9 @@ export const ui: Record<Locale, UIStrings> = {
       placeholderNotice: '這個頁面還在完善中，內容是佔位文字。',
       switchToLightMode: '切換到淺色模式',
       switchToDarkMode: '切換到深色模式',
+      cookieNotice: '我們使用分析用的 Cookie，藉此瞭解本網站的使用情況，不做廣告追蹤，也不會出售您的資訊。',
+      cookieAccept: '接受',
+      cookieDecline: '拒絕',
     },
   },
 };
