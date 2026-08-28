@@ -280,6 +280,30 @@ main {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+ *  CONTACT FRAME
+ *  Shared by both the English homepage and the [locale]/index.astro
+ *  homepages so the contact form gets the same card treatment everywhere.
+ *  `width: 100%` (capped by max-width) instead of `fit-content` — fit-content
+ *  sizing is fragile on narrow viewports; this shrinks predictably instead.
+ *  Padding tightens on small screens so the card doesn't eat into the
+ *  limited width available for the actual input fields.
+ * ───────────────────────────────────────────────────────────────────────── */
+.contact-frame {
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  background: var(--color-white);
+  color: var(--color-ink);
+  max-width: 34rem;
+  width: 100%;
+}
+
+@media (max-width: 30rem) {
+  .contact-frame {
+    padding: var(--space-4);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
  *  SKIP LINK + FOCUS
  * ───────────────────────────────────────────────────────────────────────── */
 .skip-link {
