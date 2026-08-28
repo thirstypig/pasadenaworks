@@ -1,5 +1,5 @@
 ---
-import { LOCALES, LOCALE_LABEL, HTML_LANG, type Locale } from '../i18n/ui';
+import { LOCALES, LOCALE_LABEL, LOCALE_ABBR, HTML_LANG, type Locale } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -24,9 +24,11 @@ const available = LOCALES.filter((l) => Boolean(translations[l]));
               href={translations[l]}
               hreflang={HTML_LANG[l]}
               aria-current={l === locale ? 'true' : undefined}
+              aria-label={LOCALE_LABEL[l]}
+              title={LOCALE_LABEL[l]}
               class={l === locale ? 'is-current' : ''}
             >
-              {LOCALE_LABEL[l]}
+              {LOCALE_ABBR[l]}
             </a>
           </li>
         ))}

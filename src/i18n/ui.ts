@@ -32,12 +32,27 @@ export const HTML_LANG: Record<Locale, string> = {
   'zh-hant': 'zh-Hant',
 };
 
-/** Human-readable name of each language, in its own language. */
+/** Human-readable name of each language, in its own language. Used as the
+ *  accessible name (aria-label) on the language switcher's links — the
+ *  visible text there is the shorter LOCALE_ABBR instead. */
 export const LOCALE_LABEL: Record<Locale, string> = {
   en: 'English',
   es: 'Español',
   'zh-hans': '简体中文',
   'zh-hant': '繁體中文',
+};
+
+/** Compact abbreviation for the language switcher, so it doesn't crowd the
+ *  header. EN/ES are the obvious two-letter codes; the Chinese variants use
+ *  their own native shorthand (简/繁, "simplified"/"traditional") rather
+ *  than a Latin code — that's the actual convention Chinese-reading users
+ *  recognize, and a Latin reader doesn't need to parse it anyway since it's
+ *  not their language. */
+export const LOCALE_ABBR: Record<Locale, string> = {
+  en: 'EN',
+  es: 'ES',
+  'zh-hans': '简',
+  'zh-hant': '繁',
 };
 
 export interface UIStrings {
