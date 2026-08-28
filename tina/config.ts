@@ -26,6 +26,18 @@ import { defineConfig } from 'tinacms';
  *  laptop running (e.g. from a phone, or a non-technical teammate), once
  *  the site is deployed with TINA_CLIENT_ID/TINA_TOKEN set. Not required
  *  for local editing — npm run admin still works with neither set.
+ *
+ *  Two more collections (2026-08-27) make the project's own markdown docs
+ *  browsable/editable from the same admin, since there was nowhere else to
+ *  read them short of opening the repo: "Project Docs" for the five root
+ *  files (README, CLAUDE.md, CONTENT-PLAN.md, MASTER-PORTS.md, PORTS.md)
+ *  and "Debugging Notes" for docs/solutions/. Both are read/edit only —
+ *  create and delete are disabled so the CMS can't be used to add or
+ *  remove a load-bearing file like CLAUDE.md by accident. This has nothing
+ *  to do with ops.pasadenaworks.com, which is a separate Node service
+ *  deployed on its own (deliberately not part of this public repo) — a
+ *  docs viewer there would be a change to that other codebase, not this
+ *  one.
  */
 export default defineConfig({
   branch: 'main',
@@ -171,6 +183,49 @@ export default defineConfig({
             type: 'rich-text',
             name: 'body',
             label: 'Body',
+            isBody: true,
+          },
+        ],
+      },
+      {
+        name: 'docsRoot',
+        label: 'Project Docs',
+        path: '',
+        format: 'md',
+        // Non-recursive glob (no `**`) — only the five docs actually at the
+        // repo root, not every .md file in src/content/blog or node_modules.
+        match: { include: '*.md' },
+        ui: {
+          // Read/edit only — these are known, load-bearing files (CLAUDE.md
+          // drives how Claude Code works in this repo; the others are the
+          // README, the content calendar, and the port registry). Creating
+          // or deleting root docs from here would be easy to do by
+          // accident and hard to notice.
+          allowedActions: { create: false, delete: false },
+        },
+        fields: [
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Content',
+            isBody: true,
+          },
+        ],
+      },
+      {
+        name: 'docsSolutions',
+        label: 'Debugging Notes (docs/solutions)',
+        path: 'docs/solutions',
+        format: 'md',
+        match: { include: '**/*.md' },
+        ui: {
+          allowedActions: { create: false, delete: false },
+        },
+        fields: [
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Content',
             isBody: true,
           },
         ],
