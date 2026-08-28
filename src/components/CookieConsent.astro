@@ -94,6 +94,14 @@ const strings = t(locale);
     gap: var(--space-4);
   }
 
+  /* Higher specificity than the plain class rule above, so this correctly
+   * wins and actually hides the banner when the hidden attribute is set —
+   * without it, our own `display: flex` overrides the browser's default
+   * `[hidden] { display: none }`, and the banner never visually hides. */
+  .cookie-consent[hidden] {
+    display: none;
+  }
+
   .cookie-consent p {
     margin: 0;
     font-size: var(--step--1);
