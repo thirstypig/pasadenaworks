@@ -60,6 +60,33 @@ did.
 | 2026-11-02 | What to do when your website traffic drops | search |
 | 2026-11-09 | Which service should you stop offering? | consulting |
 | 2026-11-16 | How to fire a customer without burning the relationship | consulting |
+| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites |
+| ~~2026-11-30~~ | *Skipped — Thanksgiving week.* | — |
+| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search |
+| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites |
+| ~~2026-12-21~~ | *Skipped — Christmas week.* | — |
+| ~~2026-12-28~~ | *Skipped — New Year's week.* | — |
+| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads |
+| 2027-01-11 | How to know it's time to hire your first employee | consulting |
+
+**The last two rows are the "Southern California + online marketing" pieces
+requested 2026-08-27.** Both are genuinely regional, not generic filler with
+a city name swapped in:
+
+- **Rose Parade season** is Pasadena's single biggest annual tourism/traffic
+  event (New Year's Day parade + the Rose Bowl game) — a real seasonal
+  search spike for anything hospitality/retail/service-adjacent, and a
+  legitimate reason to remind readers to check their Google Business Profile
+  hours/photos before it hits. Timed for early December, ahead of the event.
+- **Lunar New Year** is a major commercial season specifically in the west
+  San Gabriel Valley (Monterey Park, Alhambra, Arcadia's Chinese-American
+  business communities) — ties directly into the multilingual content
+  already built this year, and fits the "online marketing" pillar because
+  it's a real case for timing a paid + organic push around a known seasonal
+  spike, not evergreen SEO. Dated for the first week of January since actual
+  Lunar New Year timing (late Jan–Feb depending on year) means outreach and
+  ad prep should start weeks ahead — verify the exact date for whatever year
+  you're actually publishing this before it goes out.
 
 If a week slips, don't compress two articles into one week to catch up —
 just slide every date after it back by the same amount. Consistency at a
@@ -158,30 +185,21 @@ outranks a new one on the same topic.
 
 ## Translating an article
 
-Blog posts are English-only by default, and that's the right call for a solo
-shop — four-way translation of everything is more work than it's worth. But
-some articles are worth translating, specifically the ones where the audience
-searching in that language is underserved.
+**Decision (2026-08-27): translate every post, all three languages, going
+forward.** Earlier guidance here was selective — translate only where a
+language's audience is underserved. The owner overrode that: every future
+post gets a Spanish, Simplified Chinese, and Traditional Chinese version as
+part of publishing it, not a separate later pass. Translate alongside the
+English draft, using a real researched keyword/slug per language (not a
+literal translation) — see the gotchas in `CLAUDE.md` for the mechanics
+(locale subfolder, `translationKey`, per-language `slug`, and the slug-
+uniqueness pitfall to check before publishing).
 
-Worth translating: the multilingual pieces (weeks 5–8, not written yet), the
-Google Business Profile guide (week 2, not written yet), and — done as of
-2026-08-27 — all three currently-published posts.
-
-Not worth translating by default: anything where the reader is equally likely
-to search in English, which is most consulting content. (The pricing article
-got translated anyway on 2026-08-27, since translating "the rest of what's
-already published" was cheap once the mechanism existed — not because a
-Spanish- or Chinese-speaking reader is meaningfully underserved for that
-specific topic. Don't take that as a signal to translate every future
-consulting post by default.)
-
-**The mechanism is built and now fully used** — see "Translating a post" in
-`README.md` for the mechanics (locale subfolder, `translationKey`,
-per-language `slug`). All three published posts have Spanish, Simplified
-Chinese, and Traditional Chinese versions. The real translation priority from
-here is the four *not-yet-written* posts above (weeks 2, 5–8) — translate
-each as you publish the English version, rather than batching translation
-work later.
+All three currently-published posts already have all four languages, done
+2026-08-27. The four *not-yet-written* posts (the Google Business Profile
+guide, and the three multilingual-angle pieces) should be written and
+translated together when their turn comes up in the calendar, not English-
+first-then-translate-later.
 
 ---
 
