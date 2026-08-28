@@ -7,9 +7,9 @@ targetKeyword: "rose parade pasadena business checklist"
 draft: true
 author: "Pasadena Works"
 tags: ["local seo", "pasadena"]
-heroImage: "https://images.unsplash.com/photo-1712585714483-2be426abf242?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A parade float moving down a street lined with spectators"
-heroCredit: "Annie Spratt"
+heroImage: "https://images.unsplash.com/photo-1713496130804-c313e91a209f?auto=format&fit=crop&w=1600&q=80"
+heroAlt: "Pasadena City Hall's clock tower rising above a palm-lined street in downtown Pasadena"
+heroCredit: "Elena Takmakova"
 locale: en
 translationKey: rose-parade-checklist
 slug: rose-parade-season-business-checklist
