@@ -312,7 +312,7 @@ main {
  * ───────────────────────────────────────────────────────────────────────── */
 .skip-link {
   position: absolute;
-  top: -3rem;
+  top: 0;
   left: var(--space-4);
   z-index: 100;
   background: var(--color-rose-dark);
@@ -320,11 +320,16 @@ main {
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius);
   text-decoration: none;
-  transition: top 0.15s ease;
+  /* translateY(-100%), not a fixed top offset — a fixed rem value has to
+   * guess the element's rendered height (padding + line-height), and a
+   * guess that's too small leaves a permanent sliver poking into view.
+   * -100% of the element's own box always fully clears it. */
+  transform: translateY(-100%);
+  transition: transform 0.15s ease;
 }
 
 .skip-link:focus {
-  top: var(--space-4);
+  transform: translateY(var(--space-4));
 }
 
 :focus-visible {

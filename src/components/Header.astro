@@ -21,8 +21,7 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
 <header class="site-header">
   <div class="wrap site-header__inner">
     <a class="site-header__brand" href={home}>
-      <img src="/logo-mark.svg" alt="" width="190" height="252" />
-      <span>{site.name}</span>
+      <img src="/logo-lockup.png" alt={site.name} width="1600" height="578" />
     </a>
 
     <nav class="site-header__nav" aria-label={strings.nav.home}>
@@ -54,7 +53,6 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
   .site-header__brand {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
     text-decoration: none;
   }
 
@@ -62,13 +60,6 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
     height: 2.75rem;
     width: auto;
     display: block;
-  }
-
-  .site-header__brand span {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--step-1);
-    color: var(--color-brand-dark);
   }
 
   .site-header__nav {
