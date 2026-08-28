@@ -66,5 +66,5 @@ export const site = {
      Settings > Data Collection, turn OFF Google Signals — keeps this to
      plain traffic analytics instead of ad-personalization data sharing,
      which matters for the CCPA "sale/sharing" disclosure threshold. */
-  gaMeasurementId: '',
+  gaMeasurementId: 'G-RQ3WJ09KXS',
 } as const;
