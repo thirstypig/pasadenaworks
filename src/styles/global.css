@@ -32,17 +32,17 @@
   --color-brand-dark: var(--color-rose-dark);
 
   /* Type
-     Display face is Bevan — a digitization of Beton, Heinrich Jost's 1931
-     geometric slab serif, so it's genuinely period-correct for the
-     1920s-1950s even though it's a different (European/Bauhaus-adjacent)
-     tradition than the logo's American vintage-advertising lettering.
-     Tried swapping to Anton (matches the logo's lettering style more
-     literally) on 2026-08-27 but it didn't land — reverted same day.
-     The actual logo artwork carries the specific "matches the logo"
-     job; the site's own type doesn't need to force it too. Bevan ships
-     one weight (400), which already reads as bold, so headings set
-     font-weight: 400 rather than relying on synthetic bold. */
-  --font-display: 'Bevan', Georgia, 'Rockwell', serif;
+     Display face is Anton — modeled on 1930s-40s American gothic/
+     grotesque poster and newspaper-headline lettering, matching the
+     bold condensed "WORKS" half of the logo lockup. (History: launched
+     with Bevan, a legitimate period face too — a digitization of Beton,
+     Heinrich Jost's 1931 geometric slab serif — but European/Bauhaus-
+     adjacent rather than American vintage-advertising. Tried Anton,
+     reverted to Bevan, then back to Anton, all on 2026-08-27 — Anton is
+     the one that stuck.) Anton ships one weight (400), which is already
+     extra-bold by design, so headings set font-weight: 400 rather than
+     relying on synthetic bold. */
+  --font-display: 'Anton', Impact, Haettenschweiler, 'Franklin Gothic Bold', sans-serif;
   --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
 
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
