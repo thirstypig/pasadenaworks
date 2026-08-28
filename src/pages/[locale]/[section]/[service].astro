@@ -153,10 +153,10 @@ if (kind === 'service') {
     <section class="section wrap prose">
       <p class="eyebrow">{serviceCopy.tagline}</p>
       <h1>{serviceCopy.title}</h1>
-      {serviceCopy.body.map((p) => <p>{p}</p>)}
+      {serviceCopy.body.map((p) => <p set:html={p} />)}
       <h2>{strings.buttons.viewService}</h2>
       <ul>
-        {serviceCopy.outcomes.map((o) => <li>{o}</li>)}
+        {serviceCopy.outcomes.map((o) => <li set:html={o} />)}
       </ul>
       <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
       <p>

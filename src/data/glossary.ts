@@ -60,4 +60,16 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The star ratings and comments customers leave on your Google Business Profile. They're one of the biggest factors in whether Google — and now AI tools — recommend you over a competitor, and they're free to earn, just not free to ignore.",
   },
+  {
+    id: 'integrations',
+    term: 'Integrations (SaaS integrations)',
+    definition:
+      'Connecting your website or booking form to the other software you already use — your CRM, your calendar, your email list, your payment processor — so a lead or booking shows up there automatically instead of you copying it over by hand. "SaaS" just means software you pay for monthly and use in a browser, like most of these tools are.',
+  },
+  {
+    id: 'workflow-automation',
+    term: 'Workflow automation',
+    definition:
+      "A set-it-once rule that moves information between your tools without you doing it manually — e.g., a new contact-form submission automatically creates a lead in your CRM and sends you a text. It's not \"AI\" in any complicated sense, just plumbing that saves you the copy-paste.",
+  },
 ];
