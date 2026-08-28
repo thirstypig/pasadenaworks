@@ -15,6 +15,11 @@
   --color-rose-dark: #4a1c22;
   --color-ochre: #c8862b;
   --color-ochre-dark: #a06a1c;
+  /* A lighter ochre for hover text specifically on the fixed rose section
+     background (--color-ochre there is only 3.04:1 — fails WCAG AA's
+     4.5:1 for normal text; this hits 4.94:1). Not theme-adaptive — the
+     rose section background never changes, so this doesn't need to. */
+  --color-ochre-on-rose: #e8b562;
   --color-blush: #e3cfc6;
   --color-blush-dark: #c9a89e;
 
@@ -31,7 +36,8 @@
   --color-brand: var(--color-rose);
   --color-brand-dark: var(--color-rose-dark);
 
-  /* Theme-adaptive roles (2026-08-27, light/dark mode). These two are the
+  /* Theme-adaptive roles (2026-08-27, light/dark mode; --color-accent-text
+     added 2026-08-28 for a WCAG contrast fix — see below). These are the
      ONLY tokens that change value in dark mode — see the dark-mode block
      below. Everything else (--color-rose, --color-ochre, --color-blush,
      --color-white, and their -dark variants) stays fixed across both
@@ -39,8 +45,8 @@
      fixed color regardless of page theme (buttons, pills, the footer, the
      skip link) or paired with a backdrop that intentionally doesn't shift
      (see the label-frame gotcha below) — only the page's own background/
-     text/surface colors and the heading/link color drawn on it need a
-     dark counterpart.
+     text/surface colors and the heading/link/accent color drawn on it
+     need a dark counterpart.
      --color-surface: card/panel backgrounds (contact form, blog cards,
        hub cards) that sit ON TOP of --color-bg and need to stay visually
        a step lighter/darker than it in either theme.
@@ -48,9 +54,21 @@
        --color-bg. NOT used for text drawn on a fixed-color backdrop
        (button text on ochre, pill text on blush, the hero logo frame) —
        those keep using --color-rose-dark literally so they don't go
-       illegible if this token flips light in dark mode. */
+       illegible if this token flips light in dark mode.
+     --color-accent-text: the ochre "accent" role used as TEXT drawn on
+       --color-bg/--color-surface (link hover, "View service" links, blog
+       tag/date accents) — as opposed to --color-accent-dark, which stays
+       fixed because it's also used as a BACKGROUND (.btn:hover) that must
+       not go pale in dark mode. Added because plain --color-ochre-dark
+       measured only 4.29:1 on the light background and 4.06:1 on the dark
+       one — both fail WCAG AA's 4.5:1 minimum for normal-size text. This
+       token is a darker ochre in light mode (5.37:1) and the base
+       --color-ochre in dark mode (6.13:1), each tuned for its own
+       background rather than sharing one fixed value that can only be
+       right for one theme. */
   --color-surface: var(--color-white);
   --color-heading: var(--color-rose-dark);
+  --color-accent-text: #8c5c17;
 
   /* Type
      Display face is Anton — modeled on 1930s-40s American gothic/
@@ -109,6 +127,7 @@
     --color-line: #3c2b25;
     --color-surface: #241a17;
     --color-heading: #e7a9ae;
+    --color-accent-text: var(--color-ochre);
   }
 }
 
@@ -120,6 +139,7 @@
   --color-line: #3c2b25;
   --color-surface: #241a17;
   --color-heading: #e7a9ae;
+  --color-accent-text: var(--color-ochre);
 }
 
 /* The header/hero logo art is opaque black with a transparent background —
@@ -225,7 +245,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-accent-dark);
+  color: var(--color-accent-text);
 }
 
 ul,
@@ -281,7 +301,7 @@ main {
 }
 
 .section--dark a:not(.btn):hover {
-  color: var(--color-ochre);
+  color: var(--color-ochre-on-rose);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
