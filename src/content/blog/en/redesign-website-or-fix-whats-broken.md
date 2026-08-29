@@ -1,15 +1,17 @@
 ---
-title: "Should you redesign your website, or just fix what's broken?"
-description: "A full redesign is sometimes overkill. Here's how to tell if your site needs a rebuild or just a few fixes — and how to avoid losing your SEO."
-pubDate: 2026-11-23
+title: 'Should you redesign your website, or just fix what''s broken?'
+description: A full redesign is sometimes overkill. Here's how to tell if your site needs a rebuild or just a few fixes — and how to avoid losing your SEO.
+pubDate: 2026-11-23T00:00:00.000Z
 pillar: websites
-targetKeyword: "redesign website or fix what's broken"
-draft: true
-author: "Pasadena Works"
-tags: ["website redesign", "seo"]
-heroImage: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A computer monitor displaying a design system interface, with plants on a desk beside it"
-heroCredit: "Balázs Kétyi"
+targetKeyword: redesign website or fix what's broken
+author: Pasadena Works
+tags:
+  - website redesign
+  - seo
+heroImage: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1600&q=80'
+heroAlt: 'A computer monitor displaying a design system interface, with plants on a desk beside it'
+heroCredit: Balázs Kétyi
+draft: false
 locale: en
 translationKey: redesign-or-fix
 slug: redesign-website-or-fix-whats-broken
@@ -37,10 +39,10 @@ If none of those four are true, keep reading before you sign a redesign contract
 
 Here's the pattern we see constantly: a business asks for "a whole new website," and when we actually look, the real list is short.
 
-- **The site is slow.** Big unoptimized images, a bloated theme, too many plugins. This is often a few hours of work, not a rebuild — compress images, trim what's loading that doesn't need to, and load time drops from eight seconds to two.
-- **One page is confusing.** Usually the homepage or the services page — visitors land, can't tell what you do or how to buy it, and leave. Fixing one page's layout and copy is a day of work, not a redesign.
-- **The photos are outdated.** A stock photo from years ago, a team photo missing three people who left. Swap the photos. This is not a redesign, it's an afternoon.
-- **The contact form is broken.** It's not submitting, or it's going to an inbox nobody checks. This is the single highest-cost bug on a small business site because every lead through it just disappears, and it usually takes under an hour to fix once someone finds it.
+* **The site is slow.** Big unoptimized images, a bloated theme, too many plugins. This is often a few hours of work, not a rebuild — compress images, trim what's loading that doesn't need to, and load time drops from eight seconds to two.
+* **One page is confusing.** Usually the homepage or the services page — visitors land, can't tell what you do or how to buy it, and leave. Fixing one page's layout and copy is a day of work, not a redesign.
+* **The photos are outdated.** A stock photo from years ago, a team photo missing three people who left. Swap the photos. This is not a redesign, it's an afternoon.
+* **The contact form is broken.** It's not submitting, or it's going to an inbox nobody checks. This is the single highest-cost bug on a small business site because every lead through it just disappears, and it usually takes under an hour to fix once someone finds it.
 
 Redesigns run anywhere from a few thousand dollars for a small brochure site to well into five figures for something more custom. Targeted fixes for the list above usually run a few hundred to low four figures total. If your actual problem is on that list, you're paying redesign money to fix a form.
 
