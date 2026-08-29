@@ -43,7 +43,7 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 37) — i18n/hreflang, reading time, city/service lookups, blog i18n helpers
+npm run test         # unit tests (vitest, 44) — i18n/hreflang, reading time, city/service lookups, blog i18n helpers, Tina config helpers
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
@@ -225,9 +225,9 @@ the old geometric corner-bracket "windowpane" style.
 Logo assets: `public/logo-mark.png` (the rose icon alone, square, black —
 used in the header next to the wordmark text) and `public/logo-lockup.png`
 (the full script+WORKS+rose lockup — used large on the homepage hero).
-Favicons/apple-touch-icon are the rose icon too. **`public/og.png` (the
-social-share image) was NOT regenerated in this rebrand — it still shows
-the old Craftsman badge logo and needs redoing** to match.
+Favicons/apple-touch-icon are the rose icon too. `public/og.png` (the
+social-share image) was regenerated to match this rebrand on 2026-08-28 —
+see Resolved.
 
 **A quality caveat on the source SVG:** it was auto-traced from a raster
 image, not drawn as clean vector paths — zoom in and the curves show visible
@@ -279,6 +279,14 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   been written in English yet at all. All three *existing* posts are now
   fully translated (see Resolved), so the next translation work is really
   "write these first," not "translate more of what's already up."
+- **Cal.com bookings don't reach Twenty CRM yet.** The contact form already
+  dual-submits into CRM (see Resolved), but booking a call via `site.bookingUrl`
+  doesn't — it's a separate n8n bridge (duplicate the existing contact-form →
+  Twenty workflow, swap in a Cal.com "Booking Created" webhook trigger, remap
+  `payload.attendees[0].name`/`email`, `payload.title`, `payload.startTime`).
+  Not built yet: no n8n API key exists on the Railway service, so this needs
+  either the owner doing it by hand in the n8n UI or sharing the existing
+  workflow's exact node config for more specific guidance.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that.
@@ -355,8 +363,36 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   server-side Basic Auth check (`server.js`, `crypto.timingSafeEqual`),
   not client-side JS. Credentials are the `OPS_USERNAME`/`OPS_PASSWORD`
   variables on that Railway service — change them there, not here.
-- `public/og.png` (1200×630) exists — a Craftsman-styled share image
-  matching the hero (headline, logo frame, ochre lattice divider),
-  rendered via a one-off HTML template and screenshot rather than a
-  design tool. The `<meta property="og:image">` tag in `Base.astro` was
-  already wired up before this; it just had no file to point at.
+- `public/og.png` (1200×630) exists, originally as a Craftsman-styled share
+  image matching the pre-rebrand hero. Regenerated 2026-08-28 to match the
+  2026-08-27 rebrand: rose background, a label-frame card holding
+  `logo-lockup.png`, and the site's real tagline — rendered the same way,
+  a one-off HTML template screenshotted via headless Chrome rather than a
+  design tool. The `<meta property="og:image">` tag in `Base.astro` needed
+  no change either time; it just points at whatever file is there.
+- The `registry/` folder (a mirror of the owner's cross-project
+  `MASTER-PORTS.md`/`PORTS.md`/`README.md`) was removed 2026-08-28 — it
+  exposed other local projects' names, stacks, and ports in this public
+  repo for no reason this repo needed. The real port reservation for this
+  repo (3180–3189/4180–4189) still lives in the root-level
+  `MASTER-PORTS.md`/`PORTS.md`, which are unrelated tracked files, not part
+  of what got removed.
+- The ops dashboard's "Blog editor (Tina)" card now links to the real
+  `pasadenaworks.com/admin/index.html` (2026-08-28) instead of describing
+  it as local-only — it's backed by Tina Cloud (see the blog-i18n entry
+  above), so it works from any browser once the site is deployed, not
+  just from the owner's laptop running `npm run admin`.
+- Cal.com's Google Calendar sync is confirmed working end-to-end
+  (2026-08-28) — booking a slot that overlaps an existing Google Calendar
+  event made that slot disappear from availability, not just theoretically
+  wired up.
+- The `itemProps` config previously added to the blog collection's `ui`
+  in Tina (to show `pubDate` next to the title in the post list) turned out
+  to not be a real Tina API at the collection level — it's only read off
+  object-field/block-template configs, so it silently did nothing since it
+  shipped. Removed 2026-08-28, and `filename.slugify` was extracted into
+  `tina/utils.ts` with unit tests along the way (`npx tsc --noEmit` now
+  passes clean on `tina/config.ts` for the first time — the dead
+  `itemProps` was a real type error that no prior build step had caught,
+  since `npx tinacms build` only validates the schema, not every `ui`
+  callback).
