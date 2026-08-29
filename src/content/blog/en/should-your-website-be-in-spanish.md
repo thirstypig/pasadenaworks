@@ -1,15 +1,17 @@
 ---
-title: "Should your website be in Spanish too?"
-description: "A Spanish-language version can pay off fast for local businesses in the San Gabriel Valley. Here's how to know if yours is one of them."
-pubDate: 2026-09-28
+title: Should your website be in Spanish too?
+description: A Spanish-language version can pay off fast for local businesses in the San Gabriel Valley. Here's how to know if yours is one of them.
+pubDate: 2026-09-28T00:00:00.000Z
 pillar: websites
-targetKeyword: "should my website be in spanish"
-draft: true
-author: "Pasadena Works"
-tags: ["bilingual websites", "san gabriel valley"]
-heroImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A shop owner smiling and talking with a customer across a retail counter"
-heroCredit: "Clay Banks"
+targetKeyword: should my website be in spanish
+author: Pasadena Works
+tags:
+  - bilingual websites
+  - san gabriel valley
+heroImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80'
+heroAlt: A shop owner smiling and talking with a customer across a retail counter
+heroCredit: Clay Banks
+draft: false
 locale: en
 translationKey: spanish-website
 slug: should-your-website-be-in-spanish
@@ -31,10 +33,10 @@ So the real homework isn't "is the SGV a Spanish-speaking region" — it's "who 
 
 Bilingual websites earn their cost back fastest for businesses where the transaction is local and the relationship is direct:
 
-- **Home services** — plumbers, electricians, landscapers, HVAC. Someone's parent or grandparent found the number, and the person calling on their behalf appreciates not having to translate a quote over the phone.
-- **Medical, dental, and legal offices** — where trust and precision both matter, and a patient reading their own after-visit instructions in Spanish is a real quality-of-care difference, not a nicety.
-- **Restaurants, salons, and retail with walk-in traffic** — people decide whether to walk in based on what they can read on your site or your door.
-- **Anyone who already fields calls in Spanish** — if your front desk is already doing informal translation on the phone, your website is behind your actual customer base, not ahead of it.
+* **Home services** — plumbers, electricians, landscapers, HVAC. Someone's parent or grandparent found the number, and the person calling on their behalf appreciates not having to translate a quote over the phone.
+* **Medical, dental, and legal offices** — where trust and precision both matter, and a patient reading their own after-visit instructions in Spanish is a real quality-of-care difference, not a nicety.
+* **Restaurants, salons, and retail with walk-in traffic** — people decide whether to walk in based on what they can read on your site or your door.
+* **Anyone who already fields calls in Spanish** — if your front desk is already doing informal translation on the phone, your website is behind your actual customer base, not ahead of it.
 
 It pays off less for a consultant whose clients are referred nationally, a niche e-commerce shop selling to a hobbyist audience that happens to be English-speaking, or a B2B vendor whose buyers are corporate procurement departments. Building a Spanish site there is cost with no matching upside — money better spent elsewhere.
 
