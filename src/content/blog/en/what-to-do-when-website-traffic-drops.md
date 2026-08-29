@@ -1,15 +1,17 @@
 ---
-title: "What to do when your website traffic drops"
-description: "A sudden traffic drop usually has one of five causes. Here's the diagnostic order to find yours fast, before you guess and waste money fixing the wrong thing."
-pubDate: 2026-11-02
+title: What to do when your website traffic drops
+description: 'A sudden traffic drop usually has one of five causes. Here''s the diagnostic order to find yours fast, before you guess and waste money fixing the wrong thing.'
+pubDate: 2026-11-02T00:00:00.000Z
 pillar: search
-targetKeyword: "website traffic dropped what to do"
-draft: true
-author: "Pasadena Works"
-tags: ["seo", "google search console"]
-heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A laptop screen showing declining analytics graphs and charts"
-heroCredit: "Luke Chesser"
+targetKeyword: website traffic dropped what to do
+author: Pasadena Works
+tags:
+  - seo
+  - google search console
+heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80'
+heroAlt: A laptop screen showing declining analytics graphs and charts
+heroCredit: Luke Chesser
+draft: false
 locale: en
 translationKey: traffic-drop
 slug: what-to-do-when-website-traffic-drops
