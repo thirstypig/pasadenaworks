@@ -1,15 +1,17 @@
 ---
-title: "Getting ready for Rose Parade season: what Pasadena businesses should check every December"
-description: "A December checklist for Pasadena businesses: Google Business Profile hours, parade-route access info, staffing, and what actually changes in search traffic."
-pubDate: 2026-12-07
+title: 'Getting ready for Rose Parade season: what Pasadena businesses should check every December'
+description: 'A December checklist for Pasadena businesses: Google Business Profile hours, parade-route access info, staffing, and what actually changes in search traffic.'
+pubDate: 2026-12-07T00:00:00.000Z
 pillar: search
-targetKeyword: "rose parade pasadena business checklist"
-draft: true
-author: "Pasadena Works"
-tags: ["local seo", "pasadena"]
-heroImage: "https://images.unsplash.com/photo-1713496130804-c313e91a209f?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "Pasadena City Hall's clock tower rising above a palm-lined street in downtown Pasadena"
-heroCredit: "Elena Takmakova"
+targetKeyword: rose parade pasadena business checklist
+author: Pasadena Works
+tags:
+  - local seo
+  - pasadena
+heroImage: 'https://images.unsplash.com/photo-1713496130804-c313e91a209f?auto=format&fit=crop&w=1600&q=80'
+heroAlt: Pasadena City Hall's clock tower rising above a palm-lined street in downtown Pasadena
+heroCredit: Elena Takmakova
+draft: false
 locale: en
 translationKey: rose-parade-checklist
 slug: rose-parade-season-business-checklist
