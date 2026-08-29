@@ -30,8 +30,10 @@ That means:
   SEO, here's why" than get what they asked for.
 - Don't add dependencies without saying why. The production site's runtime
   dependencies are exactly five: `astro`, `@astrojs/sitemap`, `@astrojs/rss`,
-  and `@fontsource/bevan` + `@fontsource/source-serif-4` (added 2026-08-26 to
-  self-host the two fonts instead of loading them from the Google Fonts CDN).
+  and `@fontsource/anton` + `@fontsource/source-serif-4` (added 2026-08-26 to
+  self-host the two fonts instead of loading them from the Google Fonts CDN;
+  the display face was swapped Bevan → Anton → briefly back to Bevan → Anton
+  again on 2026-08-27, "final call" — see Resolved).
   `tinacms` and `@tinacms/cli` are devDependencies for the local `/admin`
   editor only — real but deliberate exception, not the site itself.
 
@@ -240,13 +242,15 @@ All colors, type scale, and spacing are custom properties at the top of
 `src/styles/global.css`. **Derive from the tokens; don't hardcode hex values or
 pixel sizes in component styles.**
 
-Type still pairs a bold slab-serif display face (Bevan) with a serif body
-(Source Serif 4) — both self-hosted via `@fontsource`, imported in
-`Base.astro`. Bevan was kept through the rebrand: it already reads as bold
-vintage sign-painter/showcard lettering, which pairs fine with the new
-logo's blocky "WORKS" lockup without needing a second display font. The
-serif body is better for the long-form blog reading the SEO strategy depends
-on. Don't "fix" either.
+Type pairs a bold condensed display face (Anton) with a serif body (Source
+Serif 4) — both self-hosted via `@fontsource`, imported in `Base.astro`.
+Anton is modeled on 1930s–40s American gothic/grotesque poster and
+newspaper-headline lettering, matching the bold condensed "WORKS" half of
+the real logo more closely than the earlier Bevan (a sign-painter/showcard
+face, from a European/Bauhaus-adjacent tradition) did — settled on
+2026-08-27 after briefly reverting to Bevan and swapping back, "final
+call." The serif body is better for the long-form blog reading the SEO
+strategy depends on. Don't "fix" either.
 
 ## Content
 
@@ -274,19 +278,30 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- `CONTENT-PLAN.md`'s remaining recommended priorities — the multilingual-
-  angle pieces (weeks 5–8) and the Google Business Profile guide — haven't
-  been written in English yet at all. All three *existing* posts are now
-  fully translated (see Resolved), so the next translation work is really
-  "write these first," not "translate more of what's already up."
-- **Cal.com bookings don't reach Twenty CRM yet.** The contact form already
-  dual-submits into CRM (see Resolved), but booking a call via `site.bookingUrl`
-  doesn't — it's a separate n8n bridge (duplicate the existing contact-form →
-  Twenty workflow, swap in a Cal.com "Booking Created" webhook trigger, remap
-  `payload.attendees[0].name`/`email`, `payload.title`, `payload.startTime`).
-  Not built yet: no n8n API key exists on the Railway service, so this needs
-  either the owner doing it by hand in the n8n UI or sharing the existing
-  workflow's exact node config for more specific guidance.
+- `CONTENT-PLAN.md`'s full 90-day schedule (20 posts) has been drafted and
+  is now mostly published: 15 of 20 English posts are live (`draft: false`),
+  5 remain `draft: true` with future `pubDate`s (2026-10-05 through
+  2027-01-11) for the owner to review and flip live on schedule via Tina.
+  **Only the original three posts have Spanish/Simplified/Traditional
+  Chinese translations** — none of the 12 newly-published posts have been
+  translated yet. That's the next real translation work, not "write more
+  English posts first."
+- **Cal.com bookings now reach Twenty CRM** — built and tested end-to-end
+  2026-08-29 (n8n workflow "Cal.com booking - Twenty CRM": a Cal.com
+  "Booking Created" webhook → n8n → `POST /rest/people` on Twenty, using
+  `$('Webhook').item.json.body.payload.attendees[0].name`/`.email`). Two
+  things had to be fixed before it worked: the workflow wasn't Published
+  (n8n only registers the *production* webhook path once Published/Active
+  — "Listen for test event" only covers the test URL), and Edit Fields/HTTP
+  Request weren't actually wired together on the canvas. **Still open: a
+  repeat customer (same email booking again) hits Twenty's "duplicate entry
+  detected" error and silently fails to sync** — the workflow only knows
+  how to create a Person, never look one up first. Fix in progress: add a
+  `GET /rest/people` filter-by-email lookup node before the create step,
+  branch on found/not-found with an `IF` node. Blocked on confirming the
+  exact filter query-param syntax against this workspace's own Twenty API
+  playground (Settings → API & Webhooks) before wiring it into n8n — Twenty
+  has no static API reference; the schema/filter syntax is workspace-specific.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that.
@@ -336,8 +351,11 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   marker in `src/data/cities.ts`; no `TODO` markers remain. Not firsthand
   knowledge, though: still worth the owner's eye to sharpen with anything
   from actually working these cities.
-- Fonts (Bevan, Source Serif 4) are self-hosted via `@fontsource` instead
-  of loading from the Google Fonts CDN (2026-08-26).
+- Fonts (originally Bevan, now Anton; Source Serif 4) are self-hosted via
+  `@fontsource` instead of loading from the Google Fonts CDN (2026-08-26).
+  The display face changed from Bevan → Anton → briefly reverted to Bevan
+  → back to Anton, "final call," all on 2026-08-27 — see the Design system
+  section above for why Anton won.
 - `tina/config.ts`'s schema now matches `src/content.config.ts` — added the
   `locale`/`translationKey`/`slug` fields the blog i18n work introduced, and
   the `filename.slugify` function now reads the post's `locale` field to
@@ -352,8 +370,9 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   Railway, Cal Video, demo events hidden). Confirmed via `Accept-Language`
   header tests that the page genuinely translates into Spanish and Chinese
   based on the visitor's browser language — no explicit switcher needed.
-  Cal.com's own admin flagged the account password as too weak/no 2FA —
-  that's on the owner to fix, not something an agent should touch.
+  Cal.com's account password has since been changed (2026-08-29, see below)
+  — the owner should still turn on 2FA if it isn't already on, but the weak
+  password itself is no longer an open item.
 - A private, real-password-protected ops dashboard exists at
   `ops.pasadenaworks.com` — links to every backend service (CRM,
   scheduling, n8n, Railway, GitHub, DNS). It is a separate tiny Node
@@ -396,3 +415,13 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   `itemProps` was a real type error that no prior build step had caught,
   since `npx tinacms build` only validates the schema, not every `ui`
   callback).
+- **Cal.com's password-reset emails were never sending, blocking login to
+  the owner's own account (2026-08-29).** Two stacked causes: Railway
+  blocks outbound SMTP entirely below its Pro plan (surfaces as an
+  `ETIMEDOUT` connection timeout, not an auth error — no SMTP config change
+  fixes it, only a plan upgrade), and a Gmail app password had been
+  generated under the wrong Google account (a *different* error, `535
+  BadCredentials`/`EAUTH`, only visible once the plan was upgraded). Fixed
+  by upgrading Railway to Pro and regenerating the app password under the
+  correct account (`jc.pasadenaworks@gmail.com`). Full writeup:
+  `docs/solutions/integration-issues/calcom-railway-smtp-password-reset-emails-fail.md`.

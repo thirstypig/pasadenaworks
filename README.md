@@ -276,9 +276,11 @@ password-protected internal ops dashboard linking every backend service
 - **Google Search Console.** Verify the domain and submit
   `https://pasadenaworks.com/sitemap-index.xml`. This is how you find out which
   queries you're actually appearing for.
-- **Translate the remaining blog posts.** The mechanism exists (see
-  "Writing a blog post" below) — only one of three posts has a Spanish
-  version so far, and none have Chinese versions yet.
+- **Translate the newer blog posts.** The mechanism exists (see
+  "Writing a blog post" below) and all four languages work end-to-end —
+  but of the 15 published English posts, only the original 3 have Spanish,
+  Simplified, and Traditional Chinese versions. The 12 posts published
+  since have none yet.
 ---
 
 ## Structure

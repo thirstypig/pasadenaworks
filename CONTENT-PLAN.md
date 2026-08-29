@@ -24,6 +24,12 @@ than no blog.
 
 ## What's already published
 
+The three original posts (below) plus 12 more from the calendar are now
+live (`draft: false`) — 15 of the 20 planned posts total, as of 2026-08-29.
+Only these three original ones have translations; the 12 newly-published
+posts have none yet (see "Translate the remaining blog posts" in
+`README.md`).
+
 | Article | Pillar | Targets | Translations |
 |---|---|---|---|
 | Why customers can't find your business on Google | search | "why can't customers find my business on google" | Spanish, Simplified &amp; Traditional Chinese |
@@ -33,6 +39,23 @@ than no blog.
 All three original posts are now translated into all three other site
 languages (2026-08-27) — see "Translating an article" below for what that
 means for what to translate next.
+
+**⚠️ Worth a decision, not silently normalized:** all 12 of the remaining
+calendar posts except 5 (see the ⏳ marks below) were switched from
+`draft: true` to `draft: false` on 2026-08-29 — all at once, via Tina —
+rather than one at a time on their originally staggered weekly dates. That
+directly contradicts this plan's own stated strategy above ("One article
+per week is enough... consistency matters more than volume — an abandoned
+blog is worse than no blog"). Nothing in the code gates a post's visibility
+on its `pubDate` being in the past — `draft: false` alone makes it live
+immediately, regardless of how far in the future its `pubDate` says it is.
+Practically: readers and Google can already see (and the RSS feed already
+includes) posts date-stamped as far out as 2027-01-04, all today. If the
+weekly cadence was actually the intent, someone needs to either flip the
+still-future ones back to `draft: true` and re-release them on schedule, or
+consciously decide the front-loaded launch was fine and update this plan's
+"Publishing calendar" dates to match reality instead of the other way
+around.
 
 ---
 
@@ -46,28 +69,30 @@ relative week numbers — update it as you actually publish rather than
 letting it drift out of sync with reality the way the "weeks 1–12" version
 did.
 
-| Target date | Article | Pillar |
-|---|---|---|
-| 2026-08-31 | How much should a small business website cost? | websites |
-| 2026-09-07 | How to claim and fix your Google Business Profile | search |
-| 2026-09-14 | Do I need a website if I have Instagram? | websites |
-| 2026-09-21 | How to ask customers for reviews without being awkward | search |
-| 2026-09-28 | Should your website be in Spanish too? | websites |
-| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search |
-| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites |
-| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites |
-| 2026-10-26 | Are Google Ads worth it for a small business? | ads |
-| 2026-11-02 | What to do when your website traffic drops | search |
-| 2026-11-09 | Which service should you stop offering? | consulting |
-| 2026-11-16 | How to fire a customer without burning the relationship | consulting |
-| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites |
-| ~~2026-11-30~~ | *Skipped — Thanksgiving week.* | — |
-| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search |
-| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites |
-| ~~2026-12-21~~ | *Skipped — Christmas week.* | — |
-| ~~2026-12-28~~ | *Skipped — New Year's week.* | — |
-| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads |
-| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting |
+✅ = live now (`draft: false`) · ⏳ = still `draft: true`, unpublished
+
+| Target date | Article | Pillar | Status |
+|---|---|---|---|
+| 2026-08-31 | How much should a small business website cost? | websites | ✅ published 2026-08-29 |
+| 2026-09-07 | How to claim and fix your Google Business Profile | search | ✅ published 2026-08-29 |
+| 2026-09-14 | Do I need a website if I have Instagram? | websites | ✅ published 2026-08-29 |
+| 2026-09-21 | How to ask customers for reviews without being awkward | search | ✅ published 2026-08-29 |
+| 2026-09-28 | Should your website be in Spanish too? | websites | ✅ published 2026-08-29 |
+| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | ⏳ draft |
+| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | ⏳ draft |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | ⏳ draft |
+| 2026-10-26 | Are Google Ads worth it for a small business? | ads | ✅ published 2026-08-29 |
+| 2026-11-02 | What to do when your website traffic drops | search | ✅ published 2026-08-29 |
+| 2026-11-09 | Which service should you stop offering? | consulting | ⏳ draft |
+| 2026-11-16 | How to fire a customer without burning the relationship | consulting | ✅ published 2026-08-29 |
+| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | ✅ published 2026-08-29 |
+| ~~2026-11-30~~ | *Skipped — Thanksgiving week.* | — | — |
+| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | ✅ published 2026-08-29 |
+| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | ✅ published 2026-08-29 |
+| ~~2026-12-21~~ | *Skipped — Christmas week.* | — | — |
+| ~~2026-12-28~~ | *Skipped — New Year's week.* | — | — |
+| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | ✅ published 2026-08-29 |
+| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | ⏳ draft |
 
 **The last two rows are the "Southern California + online marketing" pieces
 requested 2026-08-27.** Both are genuinely regional, not generic filler with
