@@ -1,15 +1,17 @@
 ---
-title: "Do I need a website if I have Instagram?"
-description: "Sometimes no. Usually yes. Here's the honest breakdown of when Instagram alone covers you and when it's putting your business at real risk."
-pubDate: 2026-09-14
+title: Do I need a website if I have Instagram?
+description: Sometimes no. Usually yes. Here's the honest breakdown of when Instagram alone covers you and when it's putting your business at real risk.
+pubDate: 2026-09-14T00:00:00.000Z
 pillar: websites
-targetKeyword: "do i need a website if i have instagram"
-draft: true
-author: "Pasadena Works"
-tags: ["instagram", "small business marketing"]
-heroImage: "https://images.unsplash.com/photo-1753164597612-5e71b83fda91?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A small business owner checking her phone while working at a laptop"
-heroCredit: "Vitaly Gariev"
+targetKeyword: do i need a website if i have instagram
+author: Pasadena Works
+tags:
+  - instagram
+  - small business marketing
+heroImage: 'https://images.unsplash.com/photo-1753164597612-5e71b83fda91?auto=format&fit=crop&w=1600&q=80'
+heroAlt: A small business owner checking her phone while working at a laptop
+heroCredit: Vitaly Gariev
+draft: false
 locale: en
 translationKey: instagram-vs-website
 slug: do-i-need-a-website-if-i-have-instagram
