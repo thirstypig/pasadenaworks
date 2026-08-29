@@ -1,4 +1,5 @@
 import { defineConfig } from 'tinacms';
+import { slugifyBlogFilename } from './utils';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -6,7 +7,7 @@ import { defineConfig } from 'tinacms';
  * ─────────────────────────────────────────────────────────────────────────
  *
  *  Runs in LOCAL mode: `npm run admin` starts the Astro dev server wrapped
- *  by Tina's local backend. Visit http://localhost:4321/admin/index.html
+ *  by Tina's local backend. Visit http://localhost:3180/admin/index.html
  *  to edit posts in a real WYSIWYG UI — it writes straight to the .md
  *  files in src/content/blog/, same as editing them by hand. No account,
  *  no signup, no external service. Commit and push the changed files same
@@ -63,31 +64,7 @@ export default defineConfig({
           // — see the "write a keyword, not post-14" rule in README.md.
           filename: {
             readonly: false,
-            slugify: (values) => {
-              const locale = values?.locale || 'en';
-              const base = (values?.title || 'untitled')
-                .toLowerCase()
-                .trim()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
-              return `${locale}/${base}`;
-            },
-          },
-          // Shows the scheduled publish date next to the title in the post
-          // list, so you can see the whole calendar at a glance without
-          // opening each entry — added 2026-08-28 per owner request.
-          itemProps: (values) => {
-            const date = values?.pubDate
-              ? new Date(values.pubDate).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })
-              : 'no date set';
-            const draftTag = values?.draft ? ' [DRAFT]' : '';
-            return {
-              label: `${date} — ${values?.title || 'Untitled'}${draftTag}`,
-            };
+            slugify: slugifyBlogFilename,
           },
         },
         fields: [
