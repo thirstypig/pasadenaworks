@@ -62,7 +62,7 @@ You need [Node.js](https://nodejs.org) 20 or newer.
 
 ```bash
 npm install     # once
-npm run dev     # start the dev server at localhost:4321
+npm run dev     # start the dev server at localhost:3180
 npm run build   # build the production site into dist/
 npm run preview # look at the built site before deploying
 npm run test    # run the unit test suite (vitest)
@@ -70,12 +70,13 @@ npm run test    # run the unit test suite (vitest)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a small unit test suite (37 tests) covering the parts of this site
+There's a small unit test suite (44 tests) covering the parts of this site
 that are easy to get subtly wrong without noticing: `hreflang`/locale-routing
-logic, city/service slug lookups, blog reading-time math, and the blog i18n
+logic, city/service slug lookups, blog reading-time math, the blog i18n
 path/label helpers (translated `/blog/` segment per locale, localized date
-formatting, reading-time and byline strings). Run `npm run test` before
-pushing a change to any of `src/i18n/`, `src/data/`, or `src/utils/`.
+formatting, reading-time and byline strings), and the Tina admin's filename
+helper. Run `npm run test` before pushing a change to any of `src/i18n/`,
+`src/data/`, `src/utils/`, or `tina/`.
 
 ---
 
@@ -121,7 +122,7 @@ You don't have to hand-write the markdown files. Run:
 npm run admin
 ```
 
-and open **http://localhost:4321/admin/index.html** — a real browser-based
+and open **http://localhost:3180/admin/index.html** — a real browser-based
 editor for every blog post, all the fields, a rich-text body editor. Saving
 writes straight to the `.md` files in `src/content/blog/<locale>/`, same as
 editing them by hand — commit and push the result the normal way.
@@ -303,8 +304,9 @@ src/
 └── styles/global.css   ← design tokens: colors, type scale, spacing
 ```
 
-**Design notes.** The palette comes from Craftsman architecture — Greene &
-Greene pine green, stained-glass ochre, pale sage. The lattice motif in the
-hero and section dividers is the cloud-lift pattern from Pasadena Craftsman
-joinery. To change the look, edit the custom properties at the top of
-`global.css`; every color and size on the site derives from them.
+**Design notes.** The palette comes from a 1920s–50s Southern California
+citrus-crate-label look, built around the owner's real logo — deep rose,
+citrus-crate gold, dusty blush. The lattice motif in the hero and section
+dividers is a beaded pearl-rule, the border language of a vintage label. To
+change the look, edit the custom properties at the top of `global.css`;
+every color and size on the site derives from them.
