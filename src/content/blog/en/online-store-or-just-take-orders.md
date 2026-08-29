@@ -1,15 +1,17 @@
 ---
-title: "Do you need an online store, or just a way to take orders?"
-description: "Most small businesses don't need Shopify. A framework for figuring out if you need real e-commerce or just an order form and a payment link."
-pubDate: 2026-12-14
+title: 'Do you need an online store, or just a way to take orders?'
+description: Most small businesses don't need Shopify. A framework for figuring out if you need real e-commerce or just an order form and a payment link.
+pubDate: 2026-12-14T00:00:00.000Z
 pillar: websites
-targetKeyword: "do i need an online store or order form"
-draft: true
-author: "Pasadena Works"
-tags: ["e-commerce", "website planning"]
-heroImage: "https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A person taping shut a cardboard shipping box on a table"
-heroCredit: "Bench Accounting"
+targetKeyword: do i need an online store or order form
+author: Pasadena Works
+tags:
+  - e-commerce
+  - website planning
+heroImage: 'https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80'
+heroAlt: A person taping shut a cardboard shipping box on a table
+heroCredit: Bench Accounting
+draft: false
 locale: en
 translationKey: online-store-vs-orders
 slug: online-store-or-just-take-orders
