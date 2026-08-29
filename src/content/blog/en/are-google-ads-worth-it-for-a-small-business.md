@@ -1,15 +1,17 @@
 ---
-title: "Are Google Ads worth it for a small business?"
-description: "Google Ads works for small businesses with good margins and someone watching the account daily. Here's what it costs and when it doesn't pay off."
-pubDate: 2026-10-26
+title: Are Google Ads worth it for a small business?
+description: Google Ads works for small businesses with good margins and someone watching the account daily. Here's what it costs and when it doesn't pay off.
+pubDate: 2026-10-26T00:00:00.000Z
 pillar: ads
-targetKeyword: "are google ads worth it for small business"
-draft: true
-author: "Pasadena Works"
-tags: ["google ads", "advertising budget"]
-heroImage: "https://images.unsplash.com/photo-1664575197229-3bbebc281874?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A person sitting at a desk reviewing numbers on a laptop"
-heroCredit: "Windows"
+targetKeyword: are google ads worth it for small business
+author: Pasadena Works
+tags:
+  - google ads
+  - advertising budget
+heroImage: 'https://images.unsplash.com/photo-1664575197229-3bbebc281874?auto=format&fit=crop&w=1600&q=80'
+heroAlt: A person sitting at a desk reviewing numbers on a laptop
+heroCredit: Windows
+draft: false
 locale: en
 translationKey: google-ads-worth-it
 slug: are-google-ads-worth-it-for-a-small-business
@@ -41,9 +43,9 @@ Do the arithmetic before you commit: take your industry's average CPC, decide ho
 
 Google Ads works when three things are true at once:
 
-- **The person searching is ready to act now.** "Emergency AC repair Pasadena" is a buyer. "How does air conditioning work" is not. Google Ads is built for intent-driven searches — someone already decided they need what you sell and is looking for who sells it. It's a poor fit for building awareness of something people don't yet know they want.
-- **The margin per customer covers the cost of finding them, with room left over.** A $50 service with a $6 CPC and a 5% conversion rate means it costs $120 to land a $50 sale. No amount of optimizing fixes that ratio — the business itself doesn't have room for paid acquisition at that price point, and no agency should tell you otherwise.
-- **Someone is actually watching the account.** Google Ads doesn't run itself well. Left alone, campaigns drift toward broad, expensive, badly-targeted traffic because the platform's default settings favor spending your budget, not spending it well. A campaign nobody checks for a month is a campaign quietly bleeding money on searches that were never going to convert.
+* **The person searching is ready to act now.** "Emergency AC repair Pasadena" is a buyer. "How does air conditioning work" is not. Google Ads is built for intent-driven searches — someone already decided they need what you sell and is looking for who sells it. It's a poor fit for building awareness of something people don't yet know they want.
+* **The margin per customer covers the cost of finding them, with room left over.** A $50 service with a $6 CPC and a 5% conversion rate means it costs $120 to land a $50 sale. No amount of optimizing fixes that ratio — the business itself doesn't have room for paid acquisition at that price point, and no agency should tell you otherwise.
+* **Someone is actually watching the account.** Google Ads doesn't run itself well. Left alone, campaigns drift toward broad, expensive, badly-targeted traffic because the platform's default settings favor spending your budget, not spending it well. A campaign nobody checks for a month is a campaign quietly bleeding money on searches that were never going to convert.
 
 Where it's a bad idea: thin-margin businesses, one-time low-dollar purchases, anyone expecting a payoff in the first two weeks, and anyone who won't look at the account after it launches. If any of those describe your situation, that money is usually better spent on a Google Business Profile that's actually filled out, or a website that ranks for what people search organically — slower, but it doesn't stop working the day you stop paying.
 
