@@ -1,15 +1,17 @@
 ---
-title: "How much should a small business website cost?"
-description: "A real-world price range for a small business website in 2026, what drives the cost, and where AI website builders actually fit in."
-pubDate: 2026-08-31
+title: How much should a small business website cost?
+description: 'A real-world price range for a small business website in 2026, what drives the cost, and where AI website builders actually fit in.'
+pubDate: 2026-08-31T00:00:00.000Z
 pillar: websites
-targetKeyword: "small business website cost"
-draft: true
-author: "Pasadena Works"
-tags: ["web design", "pricing"]
-heroImage: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "Someone typing on a laptop at a desk, working through the numbers on a website project"
-heroCredit: "Campaign Creators"
+targetKeyword: small business website cost
+author: Pasadena Works
+tags:
+  - web design
+  - pricing
+heroImage: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80'
+heroAlt: 'Someone typing on a laptop at a desk, working through the numbers on a website project'
+heroCredit: Campaign Creators
+draft: false
 locale: en
 translationKey: website-cost
 slug: how-much-should-a-small-business-website-cost
@@ -23,9 +25,9 @@ If someone quotes you $300 for a website, or $30,000, both numbers can be correc
 
 Three things drive most of the cost difference:
 
-- **Custom vs. template.** A templated site (DIY builder, or a freelancer using a theme) is cheaper because nobody's building your layout from scratch. A fully custom design costs more because someone is.
-- **Who writes the words.** Real copywriting — someone actually asking what makes your business different and writing that down — takes real time. A lot of "expensive" website quotes are really copywriting quotes wearing a web design hat.
-- **What it connects to.** A site that just displays information is simpler than one wired into a booking calendar, a CRM, or online ordering. Every integration is scope, and scope is money.
+* **Custom vs. template.** A templated site (DIY builder, or a freelancer using a theme) is cheaper because nobody's building your layout from scratch. A fully custom design costs more because someone is.
+* **Who writes the words.** Real copywriting — someone actually asking what makes your business different and writing that down — takes real time. A lot of "expensive" website quotes are really copywriting quotes wearing a web design hat.
+* **What it connects to.** A site that just displays information is simpler than one wired into a booking calendar, a CRM, or online ordering. Every integration is scope, and scope is money.
 
 ## What you actually get at each price point
 
