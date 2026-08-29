@@ -1,15 +1,17 @@
 ---
-title: "How to Claim and Fix Your Google Business Profile"
-description: "How to claim and verify your Google Business Profile in 2026, plus the category, hours, and service-area mistakes that quietly cost small businesses money."
-pubDate: 2026-09-07
+title: How to Claim and Fix Your Google Business Profile
+description: 'How to claim and verify your Google Business Profile in 2026, plus the category, hours, and service-area mistakes that quietly cost small businesses money.'
+pubDate: 2026-09-07T00:00:00.000Z
 pillar: search
-targetKeyword: "google business profile setup"
-draft: true
-author: "Pasadena Works"
-tags: ["local seo", "google business profile"]
-heroImage: "https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "An OPEN neon sign glowing in a shop window"
-heroCredit: "Tim Mossholder"
+targetKeyword: google business profile setup
+author: Pasadena Works
+tags:
+  - local seo
+  - google business profile
+heroImage: 'https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?auto=format&fit=crop&w=1600&q=80'
+heroAlt: An OPEN neon sign glowing in a shop window
+heroCredit: Tim Mossholder
+draft: false
 locale: en
 translationKey: google-business-profile
 slug: google-business-profile-setup
