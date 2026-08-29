@@ -1,15 +1,17 @@
 ---
-title: "How to fire a customer without burning the relationship"
-description: "Chronic late payments, scope creep, disrespect to your staff. Here's how to end a client relationship cleanly, in writing, without ghosting."
-pubDate: 2026-11-16
+title: How to fire a customer without burning the relationship
+description: 'Chronic late payments, scope creep, disrespect to your staff. Here''s how to end a client relationship cleanly, in writing, without ghosting.'
+pubDate: 2026-11-16T00:00:00.000Z
 pillar: consulting
-targetKeyword: "how to fire a customer"
-draft: true
-author: "Pasadena Works"
-tags: ["client management", "small business operations"]
-heroImage: "https://images.unsplash.com/photo-1638262052640-82e94d64664a?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "Two people shaking hands over a table, closing out a conversation"
-heroCredit: "Rock Staar"
+targetKeyword: how to fire a customer
+author: Pasadena Works
+tags:
+  - client management
+  - small business operations
+heroImage: 'https://images.unsplash.com/photo-1638262052640-82e94d64664a?auto=format&fit=crop&w=1600&q=80'
+heroAlt: 'Two people shaking hands over a table, closing out a conversation'
+heroCredit: Rock Staar
+draft: false
 locale: en
 translationKey: fire-a-customer
 slug: how-to-fire-a-customer
@@ -51,17 +53,7 @@ The goal isn't to win an argument. It's to leave clean, so neither of you regret
 
 Here's language you can actually send:
 
-> Hi [Name],
->
-> I want to be direct with you: [Company] will be [client]'s last month with us. [One honest sentence — e.g., "The scope of what you need has grown past what a monthly retainer like ours is built for."]
->
-> We'll finish [the specific work owed] by [date]. After that, [month/date] will be our final invoice.
->
-> If it's useful, I'm happy to recommend a couple of people who specialize in [what they actually need] — just say the word.
->
-> Thanks for the work we did get to do together.
->
-> [Your name]
+> Hi \[Name],I want to be direct with you: \[Company] will be \[client]'s last month with us. \[One honest sentence — e.g., "The scope of what you need has grown past what a monthly retainer like ours is built for."]We'll finish \[the specific work owed] by \[date]. After that, \[month/date] will be our final invoice.If it's useful, I'm happy to recommend a couple of people who specialize in \[what they actually need] — just say the word.Thanks for the work we did get to do together.\[Your name]
 
 Notice what it doesn't do: it doesn't apologize for existing boundaries, and it doesn't relitigate every late invoice. State it, give a date, offer a hand, and stop.
 
