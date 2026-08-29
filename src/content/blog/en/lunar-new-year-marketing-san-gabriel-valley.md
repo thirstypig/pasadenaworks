@@ -1,15 +1,17 @@
 ---
-title: "Marketing to the San Gabriel Valley's Lunar New Year crowd"
-description: "Lunar New Year 2027 falls on February 6. Here's how SGV restaurants, salons, and shops in Monterey Park, Alhambra, and Arcadia should market to it."
-pubDate: 2027-01-04
+title: Marketing to the San Gabriel Valley's Lunar New Year crowd
+description: 'Lunar New Year 2027 falls on February 6. Here''s how SGV restaurants, salons, and shops in Monterey Park, Alhambra, and Arcadia should market to it.'
+pubDate: 2027-01-04T00:00:00.000Z
 pillar: ads
-targetKeyword: "lunar new year marketing san gabriel valley"
-draft: true
-author: "Pasadena Works"
-tags: ["lunar new year", "san gabriel valley"]
-heroImage: "https://images.unsplash.com/photo-1680444029037-5a718fad16c0?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "Red paper lanterns lit up against a dark night sky"
-heroCredit: "Thomas Kinto"
+targetKeyword: lunar new year marketing san gabriel valley
+author: Pasadena Works
+tags:
+  - lunar new year
+  - san gabriel valley
+heroImage: 'https://images.unsplash.com/photo-1680444029037-5a718fad16c0?auto=format&fit=crop&w=1600&q=80'
+heroAlt: Red paper lanterns lit up against a dark night sky
+heroCredit: Thomas Kinto
+draft: false
 locale: en
 translationKey: lunar-new-year-marketing
 slug: lunar-new-year-marketing-san-gabriel-valley
@@ -39,8 +41,8 @@ A few specific customs turn into real revenue if you're set up for them:
 
 Red and gold decor in your storefront or on your homepage banner is fine as a signal, but it's not marketing on its own — every business on the block will have it. What actually moves people:
 
-- **Google Business Profile posts in the customer's language**, not just English with a red border. A Mandarin or Cantonese post about your reunion-dinner menu, posted well ahead of time, shows up in local search results for people searching in that language.
-- **Local Chinese-language press and community calendars.** World Journal and Sing Tao Daily still run real classified and event listings in this area, and community Facebook groups for Monterey Park, Alhambra, and Arcadia get real engagement in the weeks before the holiday. This isn't nostalgia advertising — it's where the audience actually looks.
-- **A specific, bookable offer**, not a vague sale. "Reunion dinner menu, book by [date]" beats "Happy Lunar New Year, everyone welcome."
+* **Google Business Profile posts in the customer's language**, not just English with a red border. A Mandarin or Cantonese post about your reunion-dinner menu, posted well ahead of time, shows up in local search results for people searching in that language.
+* **Local Chinese-language press and community calendars.** World Journal and Sing Tao Daily still run real classified and event listings in this area, and community Facebook groups for Monterey Park, Alhambra, and Arcadia get real engagement in the weeks before the holiday. This isn't nostalgia advertising — it's where the audience actually looks.
+* **A specific, bookable offer**, not a vague sale. "Reunion dinner menu, book by \[date]" beats "Happy Lunar New Year, everyone welcome."
 
 None of this requires a big budget. It requires knowing what the holiday actually is for the people walking into your business, and saying something specific about it instead of hanging a banner and hoping.
