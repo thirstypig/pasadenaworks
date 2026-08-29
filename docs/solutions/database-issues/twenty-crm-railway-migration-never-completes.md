@@ -250,5 +250,8 @@ replacement was confirmed working.
   — the working alternative template (source: `nomideusz/twenty-railway`)
   that ran migrations correctly on first boot.
 
-No other `docs/solutions/` entries exist in this repo yet — this is the
-first documented solution.
+- [Self-hosted Cal.com on Railway: healthcheck never passes](../integration-issues/calcom-railway-healthcheck-never-passes.md) —
+  the mirror-image case: rather than a healthcheck hiding an incomplete
+  first-boot (this doc), that one had the HTTP healthcheck removed
+  entirely as the fix, which means a `SUCCESS` status there confirms even
+  less than it does here.
