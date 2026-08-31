@@ -291,19 +291,19 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- `CONTENT-PLAN.md`'s full 90-day schedule (20 posts) is drafted. 15 are
-  `draft: false` and 5 are `draft: true` (for the owner to review and flip
-  via Tina). Since 2026-08-31 the site is **date-gated**: a post appears on
-  its `pubDate` and not before, so only 4 are visible today and the rest
-  surface weekly through 2027-01-04 without anyone doing anything. Don't
-  read "15 live" as "15 visible."
-  **Only the three original posts have Spanish/Simplified/Traditional
-  Chinese translations.** The other 17 have none. Date-gating turns that
-  backlog into a queue with deadlines: each post needs its translations
-  before its own pubDate arrives, or it publishes English-only. The nearest
-  gaps are `website-cost` (already visible, untranslated) and 2026-09-07's
-  `google-business-profile`. This is the next real content work — not
-  "write more English posts first."
+- `CONTENT-PLAN.md`'s full 90-day schedule is done and approved: all 20
+  English posts are `draft: false` as of 2026-08-31 (the owner reviewed and
+  flipped the last 5 via Tina). Since the same date the site is
+  **date-gated** — a post appears on its `pubDate` and not before — so 4 are
+  visible today and the rest surface weekly through 2027-01-11 with no one
+  doing anything. **Never read "20 approved" as "20 visible."**
+  **5 of the 20 have Spanish/Simplified/Traditional Chinese translations;
+  15 do not.** Date-gating turns that backlog into a queue with deadlines:
+  each post needs its translations before its own `pubDate`, or it publishes
+  English-only. Next gap is 2026-09-14's `instagram-vs-website`, then weekly.
+  Three are load-bearing — 2026-09-28 (Spanish), 2026-10-12 and 2026-10-19
+  (Chinese) argue for exactly the reach they'd be missing. This is the next
+  real content work, not "write more English posts first."
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
   injection CVEs) have no safe fix available yet, checked 2026-08-27** —
   this isn't "hasn't been done," it's genuinely blocked upstream. We're

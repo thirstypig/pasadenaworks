@@ -70,13 +70,19 @@ npm run test    # run the unit test suite (vitest)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a small unit test suite (44 tests) covering the parts of this site
-that are easy to get subtly wrong without noticing: `hreflang`/locale-routing
-logic, city/service slug lookups, blog reading-time math, the blog i18n
-path/label helpers (translated `/blog/` segment per locale, localized date
-formatting, reading-time and byline strings), and the Tina admin's filename
-helper. Run `npm run test` before pushing a change to any of `src/i18n/`,
-`src/data/`, `src/utils/`, or `tina/`.
+There's a unit test suite (65 tests) covering the parts of this site that are
+easy to get subtly wrong without noticing: `hreflang`/locale-routing logic,
+city/service slug lookups, reading-time math (including CJK, which has no
+spaces between words), scheduled publishing, UTC-pinned date formatting, the
+blog i18n path/label helpers, and the Tina admin's filename helper.
+
+It also checks the blog content itself — that no two posts share a `slug`
+across locales, that every translation of a post carries the same `pubDate`,
+and that Chinese files don't mix scripts. Those all fail *silently* otherwise:
+the build succeeds and the output looks fine.
+
+Run `npm run test` before pushing a change to any of `src/i18n/`, `src/data/`,
+`src/utils/`, `tina/`, or `src/content/blog/`.
 
 ---
 
@@ -127,12 +133,14 @@ editor for every blog post, all the fields, a rich-text body editor. Saving
 writes straight to the `.md` files in `src/content/blog/<locale>/`, same as
 editing them by hand — commit and push the result the normal way.
 
-This runs in **local mode**: it needs your laptop running `npm run admin`,
-no account, no signup, nothing external. If you ever want to edit from a
-browser without your laptop running (e.g. a phone, or handing editing to
-someone else), that needs [Tina Cloud](https://tina.io) — sign up, connect
-this GitHub repo, and set `clientId`/`token` in `tina/config.ts`. Not set up
-yet; local mode covers everything today.
+**Tina Cloud is set up**, so you can also edit from a browser without your
+laptop running — including from a phone — at
+**https://pasadenaworks.com/admin/index.html**. Saving there commits straight
+to `main`, which redeploys the site on its own. The deploy workflow builds the
+admin bundle using the `TINA_CLIENT_ID` and `TINA_TOKEN` repository secrets.
+
+`npm run admin` still works and is the better choice for bulk edits, since it
+writes to your working copy and lets you review the diff before committing.
 
 `tina/config.ts` is the schema Tina edits against — it's a hand-maintained
 mirror of the real schema in `src/content.config.ts`. If you add a field to
@@ -142,8 +150,10 @@ one, add it to the other.
 
 ## Writing a blog post
 
-Create a `.md` file in `src/content/blog/en/`. **The filename becomes the URL**,
-so `why-my-website-is-slow.md` publishes at `/blog/why-my-website-is-slow/`.
+Create a `.md` file in `src/content/blog/en/`. **The `slug` field is the URL**
+— `slug: why-my-website-is-slow` publishes at `/blog/why-my-website-is-slow/`.
+By convention the English filename matches its slug, so keep them in sync;
+renaming the file alone changes nothing.
 
 Use hyphens, lowercase, and real keywords — this is a small SEO decision you
 make every time you write.
@@ -175,6 +185,8 @@ Your first paragraph. Write normally — headings with ##, **bold**, lists.
   page; it's a note to yourself so you don't accidentally write three articles
   competing for the same term.
 - `draft: true` — hides the post from the site, the sitemap, and the RSS feed.
+  **`draft: false` is not the same as "live":** a post also stays hidden until
+  its `pubDate` arrives (see "Scheduling a post" below).
 - `locale` — which of the four languages this file is written in.
 - `translationKey` — shared across every language's version of "the same"
   post, so the build can find sibling translations for `hreflang` tags. Pick
@@ -182,6 +194,27 @@ Your first paragraph. Write normally — headings with ##, **bold**, lists.
 - `slug` — the real URL slug, **in this language**. Not a translation of the
   English filename — pick the keyword a speaker of that language would
   actually search.
+
+### Scheduling a post
+
+`pubDate` is a real schedule, not a label. A post is only built once its
+`pubDate` has arrived, so you can approve everything up front and let it
+release itself:
+
+- Date in the **future** → invisible. No page, no sitemap entry, no RSS item.
+- Date **today or past** → live at the next build.
+
+A daily build at 13:00 UTC (about 6am Pacific) is what makes the date arrive
+— `.github/workflows/deploy.yml` runs on a schedule as well as on push. You
+don't have to do anything on the day.
+
+Two consequences worth knowing:
+
+- Un-ticking **"Draft"** in Tina does not publish a future-dated post. It
+  approves it; the date still decides when.
+- A future-dated post can't be previewed by building locally, because the
+  gate hides it. To check one, temporarily set its `pubDate` to today, build,
+  look, then put the date back — and verify with `git diff` that you did.
 
 ### Translating a post
 
@@ -276,11 +309,13 @@ password-protected internal ops dashboard linking every backend service
 - **Google Search Console.** Verify the domain and submit
   `https://pasadenaworks.com/sitemap-index.xml`. This is how you find out which
   queries you're actually appearing for.
-- **Translate the newer blog posts.** The mechanism exists (see
-  "Writing a blog post" below) and all four languages work end-to-end —
-  but of the 15 published English posts, only the original 3 have Spanish,
-  Simplified, and Traditional Chinese versions. The 12 posts published
-  since have none yet.
+- **Translate the remaining blog posts.** The mechanism exists (see
+  "Writing a blog post" below) and all four languages work end-to-end — but
+  of the 20 approved English posts, 5 have Spanish, Simplified, and
+  Traditional Chinese versions and 15 don't. Because posts now publish
+  themselves on their `pubDate`, each one needs its translations *before*
+  that date or it goes out English-only. See `CONTENT-PLAN.md` for which
+  post is next.
 ---
 
 ## Structure
