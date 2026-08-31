@@ -45,7 +45,8 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 51) — i18n/hreflang, reading time, city/service lookups, blog i18n helpers, Tina config helpers
+npm run test         # unit tests (vitest, 65) — i18n/hreflang, reading time, city/service
+                     #   lookups, blog i18n helpers, blog content integrity, Tina config helpers
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
