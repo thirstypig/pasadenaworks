@@ -1,15 +1,17 @@
 ---
-title: "How to know when to walk away from a bad-fit client"
-description: "The warning signs of a bad-fit client show up before you sign anything: scope fights, price haggling, and a gut feeling you're ignoring. Here's what to watch."
-pubDate: 2027-01-11
+title: How to know when to walk away from a bad-fit client
+description: 'The warning signs of a bad-fit client show up before you sign anything: scope fights, price haggling, and a gut feeling you''re ignoring. Here''s what to watch.'
+pubDate: 2027-01-11T00:00:00.000Z
 pillar: consulting
-targetKeyword: "when to walk away from a bad client"
-draft: true
-author: "Pasadena Works"
-tags: ["client relationships", "small business advice"]
-heroImage: "https://images.unsplash.com/photo-1560250163-17506787d971?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "Two people shaking hands during a business meeting"
-heroCredit: "LinkedIn Sales Solutions"
+targetKeyword: when to walk away from a bad client
+author: Pasadena Works
+tags:
+  - client relationships
+  - small business advice
+heroImage: 'https://images.unsplash.com/photo-1560250163-17506787d971?auto=format&fit=crop&w=1600&q=80'
+heroAlt: Two people shaking hands during a business meeting
+heroCredit: LinkedIn Sales Solutions
+draft: false
 locale: en
 translationKey: walk-away-bad-client
 slug: when-to-walk-away-from-a-bad-fit-client
