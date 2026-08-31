@@ -286,22 +286,6 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   Chinese translations** — none of the 12 newly-published posts have been
   translated yet. That's the next real translation work, not "write more
   English posts first."
-- **Cal.com bookings now reach Twenty CRM** — built and tested end-to-end
-  2026-08-29 (n8n workflow "Cal.com booking - Twenty CRM": a Cal.com
-  "Booking Created" webhook → n8n → `POST /rest/people` on Twenty, using
-  `$('Webhook').item.json.body.payload.attendees[0].name`/`.email`). Two
-  things had to be fixed before it worked: the workflow wasn't Published
-  (n8n only registers the *production* webhook path once Published/Active
-  — "Listen for test event" only covers the test URL), and Edit Fields/HTTP
-  Request weren't actually wired together on the canvas. **Still open: a
-  repeat customer (same email booking again) hits Twenty's "duplicate entry
-  detected" error and silently fails to sync** — the workflow only knows
-  how to create a Person, never look one up first. Fix in progress: add a
-  `GET /rest/people` filter-by-email lookup node before the create step,
-  branch on found/not-found with an `IF` node. Blocked on confirming the
-  exact filter query-param syntax against this workspace's own Twenty API
-  playground (Settings → API & Webhooks) before wiring it into n8n — Twenty
-  has no static API reference; the schema/filter syntax is workspace-specific.
 - Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
   signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
   the next step if you want browser-based editing without that.
@@ -321,6 +305,26 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   Tina ships a version with an unaffected react-router-dom.
 ## Resolved
 
+- **Cal.com bookings now reach Twenty CRM, repeat customers included**
+  (n8n workflow "Cal.com booking - Twenty CRM"). A Cal.com "Booking Created"
+  webhook → n8n → Twenty. Built 2026-08-29; the repeat-customer duplicate bug
+  was fixed and verified end-to-end 2026-08-31. Shape is now:
+  `Webhook → Edit Fields → Find person by email (GET) → Already in CRM? (IF)
+  → Create person in Twenty (POST) | Update existing person (PATCH)`.
+  The lookup filter is `emails.primaryEmail[eq]:"<email>"` against
+  `GET /rest/people`, and the IF branches on `totalCount == 0`.
+  Three things that had to be right, each of which silently no-ops otherwise:
+  the workflow must be **Published** (n8n only registers the production
+  webhook path once Active — "Listen for test event" covers only the test
+  URL); every node must actually be **connected on the canvas** (a run that
+  stops early looks exactly like a run that succeeded, since neither creates
+  a duplicate); and the email is **lowercased** in every expression
+  (`.toLowerCase().trim()`) because Twenty's `[eq]` comparator is
+  case-sensitive — `Foo@Gmail.com` would miss the lookup and hit the
+  duplicate error anyway. Verified by rebooking a known email: person count
+  held at 7, `createdAt` unchanged, `updatedAt` and `firstName` both updated.
+  API details and the filter-syntax reference live in the
+  `reference-twenty-crm-railway` memory.
 - Blog i18n mechanism is built (2026-08-26/27) — content collection has
   `locale`/`translationKey`/`slug` fields, `/[locale]/[section]/` and
   `/[locale]/[section]/[service]` reuse the existing service/city routing

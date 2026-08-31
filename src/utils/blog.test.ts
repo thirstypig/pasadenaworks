@@ -1,12 +1,23 @@
 import { describe, it, expect, vi } from 'vitest';
 
-// blog.ts imports getCollection from 'astro:content' for getPostsByLocale/
-// getTranslationsFor (not under test here — those need real Astro content
-// collections, which plain vitest can't provide). Stub the virtual module
-// so the pure functions below can be imported and tested in isolation.
+// blog.ts imports getCollection from 'astro:content'. Stub the virtual module
+// so the pure functions below can be imported in isolation. The stub is also
+// driven directly in the scheduled-publishing tests at the bottom of this
+// file: getCollection is handed the real predicate blog.ts builds, so running
+// it against fixture entries tests that predicate for real.
 vi.mock('astro:content', () => ({ getCollection: vi.fn() }));
 
-import { postPath, blogIndexPath, DATE_LOCALE, readingLabel, updatedLabel, byLabel } from './blog';
+import { getCollection } from 'astro:content';
+import {
+  postPath,
+  blogIndexPath,
+  DATE_LOCALE,
+  readingLabel,
+  updatedLabel,
+  byLabel,
+  getPostsByLocale,
+  getTranslationsFor,
+} from './blog';
 
 describe('postPath', () => {
   it('builds the English post path with no locale prefix', () => {
@@ -82,5 +93,104 @@ describe('byLabel', () => {
     expect(byLabel('es')).toBe('Por');
     expect(byLabel('zh-hans')).toBe('作者：');
     expect(byLabel('zh-hant')).toBe('作者：');
+  });
+});
+
+// --- Scheduled publishing -------------------------------------------------
+// A post with a pubDate in the future must not be published yet. This is not
+// just a listing concern: getPostsByLocale also backs getStaticPaths for both
+// /blog/[...slug] and /[locale]/[section]/[service], so a post that survives
+// this filter gets a built page and a sitemap entry — i.e. it is public.
+
+const DAY = 24 * 60 * 60 * 1000;
+const past = () => new Date(Date.now() - DAY);
+const future = () => new Date(Date.now() + DAY);
+
+type Fixture = {
+  data: {
+    draft: boolean;
+    locale: string;
+    pubDate: Date;
+    slug: string;
+    translationKey: string;
+  };
+};
+
+function entry(over: Partial<Fixture['data']> = {}): Fixture {
+  return {
+    data: {
+      draft: false,
+      locale: 'en',
+      pubDate: past(),
+      slug: 'a-post',
+      translationKey: 'key',
+      ...over,
+    },
+  };
+}
+
+/** Run blog.ts's real predicate against these fixtures. */
+function collectionOf(entries: Fixture[]) {
+  vi.mocked(getCollection).mockImplementation((async (
+    _collection: string,
+    filter?: (e: Fixture) => boolean
+  ) => (filter ? entries.filter(filter) : entries)) as never);
+}
+
+describe('getPostsByLocale — scheduled publishing', () => {
+  it('excludes a post whose pubDate has not arrived yet', async () => {
+    collectionOf([entry({ slug: 'tomorrow', pubDate: future() })]);
+    const posts = await getPostsByLocale('en');
+    expect(posts.map((p) => p.data.slug)).toEqual([]);
+  });
+
+  it('includes a post whose pubDate has already passed', async () => {
+    collectionOf([entry({ slug: 'yesterday', pubDate: past() })]);
+    const posts = await getPostsByLocale('en');
+    expect(posts.map((p) => p.data.slug)).toEqual(['yesterday']);
+  });
+
+  it('still excludes drafts regardless of date', async () => {
+    collectionOf([entry({ slug: 'draft-post', draft: true, pubDate: past() })]);
+    expect(await getPostsByLocale('en')).toEqual([]);
+  });
+
+  it('still returns only the requested locale', async () => {
+    collectionOf([
+      entry({ slug: 'english', locale: 'en' }),
+      entry({ slug: 'spanish', locale: 'es' }),
+    ]);
+    const posts = await getPostsByLocale('es');
+    expect(posts.map((p) => p.data.slug)).toEqual(['spanish']);
+  });
+
+  it('sorts the published posts newest first', async () => {
+    collectionOf([
+      entry({ slug: 'older', pubDate: new Date(Date.now() - 5 * DAY) }),
+      entry({ slug: 'newer', pubDate: new Date(Date.now() - 1 * DAY) }),
+    ]);
+    const posts = await getPostsByLocale('en');
+    expect(posts.map((p) => p.data.slug)).toEqual(['newer', 'older']);
+  });
+});
+
+describe('getTranslationsFor — scheduled publishing', () => {
+  it('never claims a translation whose pubDate is still in the future', async () => {
+    // Hard rule #1: an hreflang alternate for an unbuilt page is a 404 alternate.
+    const en = entry({ slug: 'english', locale: 'en' });
+    collectionOf([en, entry({ slug: 'spanish', locale: 'es', pubDate: future() })]);
+
+    const translations = await getTranslationsFor(en as never);
+
+    expect(Object.keys(translations)).toEqual(['en']);
+  });
+
+  it('claims a translation that has already been published', async () => {
+    const en = entry({ slug: 'english', locale: 'en' });
+    collectionOf([en, entry({ slug: 'spanish', locale: 'es', pubDate: past() })]);
+
+    const translations = await getTranslationsFor(en as never);
+
+    expect(translations.es).toBe('/es/blog/spanish/');
   });
 });
