@@ -1,15 +1,17 @@
 ---
-title: "Reaching Chinese-speaking customers in the San Gabriel Valley"
-description: "How SGV businesses actually reach Chinese-speaking customers: WeChat, Chinese-language directories, bilingual signage, and a real translated website."
-pubDate: 2026-10-12
+title: Reaching Chinese-speaking customers in the San Gabriel Valley
+description: 'How SGV businesses actually reach Chinese-speaking customers: WeChat, Chinese-language directories, bilingual signage, and a real translated website.'
+pubDate: 2026-10-12T00:00:00.000Z
 pillar: websites
-targetKeyword: "reaching chinese speaking customers san gabriel valley"
-draft: true
-author: "Pasadena Works"
-tags: ["multilingual", "san gabriel valley"]
-heroImage: "https://images.unsplash.com/photo-1526186550435-406043dc9904?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A Chinese-American storefront lit up at night, signage in Chinese and English"
-heroCredit: "Aaron Lau"
+targetKeyword: reaching chinese speaking customers san gabriel valley
+author: Pasadena Works
+tags:
+  - multilingual
+  - san gabriel valley
+heroImage: 'https://images.unsplash.com/photo-1526186550435-406043dc9904?auto=format&fit=crop&w=1600&q=80'
+heroAlt: 'A Chinese-American storefront lit up at night, signage in Chinese and English'
+heroCredit: Aaron Lau
+draft: false
 locale: en
 translationKey: chinese-speaking-customers
 slug: reaching-chinese-speaking-customers-san-gabriel-valley
@@ -25,9 +27,9 @@ WeChat is the obvious first answer and it's the wrong first answer for most smal
 
 What does work, consistently, for SGV businesses:
 
-- **Chinese-language local directories and news sites.** Outlets like World Journal (世界日報) and Sing Tao (星島日報) still run local business listings and classifieds that older, more established Chinese-speaking households read out of habit. These aren't glamorous, but they're trusted, and trust is the whole game with a first-time customer.
-- **Google Business Profile, translated properly.** A huge share of search happens in Chinese even when the searcher is bilingual — people default to their first language for local search. If your Google Business Profile description, posts, and Q&A responses are English-only, you're invisible to a search in Chinese for the exact same service.
-- **Word of mouth inside WeChat groups**, which is different from a WeChat business account. Neighborhood and parent WeChat groups are where a recommendation for a plumber or a pediatric dentist actually spreads. You don't run these — you earn a mention in them by being good and by having something a member can screenshot and forward, like a real Chinese-language page they can send a friend.
+* **Chinese-language local directories and news sites.** Outlets like World Journal (世界日報) and Sing Tao (星島日報) still run local business listings and classifieds that older, more established Chinese-speaking households read out of habit. These aren't glamorous, but they're trusted, and trust is the whole game with a first-time customer.
+* **Google Business Profile, translated properly.** A huge share of search happens in Chinese even when the searcher is bilingual — people default to their first language for local search. If your Google Business Profile description, posts, and Q\&A responses are English-only, you're invisible to a search in Chinese for the exact same service.
+* **Word of mouth inside WeChat groups**, which is different from a WeChat business account. Neighborhood and parent WeChat groups are where a recommendation for a plumber or a pediatric dentist actually spreads. You don't run these — you earn a mention in them by being good and by having something a member can screenshot and forward, like a real Chinese-language page they can send a friend.
 
 ## A translated website section beats a translate button
 
@@ -35,9 +37,9 @@ Google Translate on your site tells a Chinese-speaking visitor something before 
 
 A real translated section doesn't need to be your whole site. It needs:
 
-- Your core service pages, translated into Simplified Chinese if your customers are more likely mainland-background (common in Rowland Heights, Hacienda Heights, parts of San Gabriel), or Traditional Chinese if they're more Taiwan-background (more common historically in Monterey Park, Arcadia, San Marino). These are genuinely different audiences with different vocabulary preferences — not the same language with a font swap.
-- A phone number and contact method staffed by someone who can actually take a call in Chinese, or clearly says so if not.
-- URLs and page titles that are actually translated, not just body text — a Chinese speaker searching in Chinese needs a page Google can match to that search, and that starts with the URL and title tag, not just the paragraph underneath them.
+* Your core service pages, translated into Simplified Chinese if your customers are more likely mainland-background (common in Rowland Heights, Hacienda Heights, parts of San Gabriel), or Traditional Chinese if they're more Taiwan-background (more common historically in Monterey Park, Arcadia, San Marino). These are genuinely different audiences with different vocabulary preferences — not the same language with a font swap.
+* A phone number and contact method staffed by someone who can actually take a call in Chinese, or clearly says so if not.
+* URLs and page titles that are actually translated, not just body text — a Chinese speaker searching in Chinese needs a page Google can match to that search, and that starts with the URL and title tag, not just the paragraph underneath them.
 
 ## Bilingual signage is a business decision, not just a design one
 
