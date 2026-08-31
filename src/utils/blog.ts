@@ -39,6 +39,22 @@ export const DATE_LOCALE: Record<Locale, string> = {
   'zh-hant': 'zh-TW',
 };
 
+/** A post's date, formatted for one locale.
+ *
+ *  Forced to UTC on purpose. pubDate values are UTC midnight, so formatting in
+ *  the build machine's local zone renders the previous day anywhere behind UTC:
+ *  a Pacific laptop shows "August 30" for 2026-08-31T00:00:00Z while GitHub's
+ *  UTC runner shows "August 31". Rendered output must not depend on where the
+ *  build ran, and it must agree with the <time datetime> attribute beside it. */
+export function formatPostDate(date: Date, locale: Locale): string {
+  return date.toLocaleDateString(DATE_LOCALE[locale], {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
 /** "By {author}" prefix, in each language. */
 export function byLabel(locale: Locale): string {
   switch (locale) {
