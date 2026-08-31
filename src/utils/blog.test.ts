@@ -17,6 +17,7 @@ import {
   byLabel,
   getPostsByLocale,
   getTranslationsFor,
+  formatPostDate,
 } from './blog';
 
 describe('postPath', () => {
@@ -192,5 +193,29 @@ describe('getTranslationsFor — scheduled publishing', () => {
     const translations = await getTranslationsFor(en as never);
 
     expect(translations.es).toBe('/es/blog/spanish/');
+  });
+});
+
+// --- Date rendering ------------------------------------------------------
+// pubDate values are UTC midnight. Formatting them in the *build machine's*
+// timezone shifts the displayed day for anywhere behind UTC — a Pacific laptop
+// renders 2026-08-31T00:00:00Z as "August 30, 2026" while GitHub's UTC runner
+// renders "August 31". Rendered output must not depend on where it was built.
+
+describe('formatPostDate', () => {
+  const pubDate = new Date('2026-08-31T00:00:00.000Z');
+
+  it('renders the UTC calendar day, not the build machine\'s local day', () => {
+    expect(formatPostDate(pubDate, 'en')).toBe('August 31, 2026');
+  });
+
+  it('is stable across locales — same day, localized wording', () => {
+    expect(formatPostDate(pubDate, 'zh-hant')).toContain('31');
+    expect(formatPostDate(pubDate, 'zh-hans')).toContain('31');
+    expect(formatPostDate(pubDate, 'es')).toContain('31');
+  });
+
+  it('does not shift a date that is already mid-day UTC', () => {
+    expect(formatPostDate(new Date('2026-06-15T12:00:00.000Z'), 'en')).toBe('June 15, 2026');
   });
 });

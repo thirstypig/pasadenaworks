@@ -45,7 +45,8 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 44) — i18n/hreflang, reading time, city/service lookups, blog i18n helpers, Tina config helpers
+npm run test         # unit tests (vitest, 65) — i18n/hreflang, reading time, city/service
+                     #   lookups, blog i18n helpers, blog content integrity, Tina config helpers
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
@@ -167,6 +168,18 @@ every existing `if`/`else` first** — a bare `else` written when there were
 only two kinds silently mis-branches the moment a third one exists. Hit
 exactly this bug adding the blog kind; see
 `docs/solutions/logic-errors/dual-purpose-route-bare-else-broke-on-third-kind.md`.
+
+**Scheduled publishing is two mechanisms, not one.** `getPostsByLocale()`
+gates on `pubDate <= now` as well as `draft` — and that filter must stay in
+`src/utils/blog.ts`, never move into a page template. It also backs
+`getStaticPaths` for both blog routes, so a future-dated post gets no page
+*and no sitemap entry*; filtering only the index would hide posts from readers
+while still advertising the URLs to Google. `getTranslationsFor()` needs the
+same filter or a live post can emit an `hreflang` alternate at an unbuilt page.
+The other half lives in `.github/workflows/deploy.yml`: a static site has no
+clock, so the daily `schedule:` cron is what makes a date arrive. Delete it and
+the filter is still correct and nothing ever publishes. Full write-up in
+`docs/solutions/logic-errors/static-site-scheduled-publishing-needs-a-clock.md`.
 
 **CJK underlines need a lower baseline.** Chinese glyphs fill the em box and
 have no descenders, so the ochre hero underline cuts through them. There's a
@@ -307,127 +320,24 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   Tina ships a version with an unaffected react-router-dom.
 ## Resolved
 
-- **Cal.com bookings now reach Twenty CRM, repeat customers included**
-  (n8n workflow "Cal.com booking - Twenty CRM"). A Cal.com "Booking Created"
-  webhook → n8n → Twenty. Built 2026-08-29; the repeat-customer duplicate bug
-  was fixed and verified end-to-end 2026-08-31. Shape is now:
-  `Webhook → Edit Fields → Find person by email (GET) → Already in CRM? (IF)
-  → Create person in Twenty (POST) | Update existing person (PATCH)`.
-  The lookup filter is `emails.primaryEmail[eq]:"<email>"` against
-  `GET /rest/people`, and the IF branches on `totalCount == 0`.
-  Three things that had to be right, each of which silently no-ops otherwise:
-  the workflow must be **Published** (n8n only registers the production
-  webhook path once Active — "Listen for test event" covers only the test
-  URL); every node must actually be **connected on the canvas** (a run that
-  stops early looks exactly like a run that succeeded, since neither creates
-  a duplicate); and the email is **lowercased** in every expression
-  (`.toLowerCase().trim()`) because Twenty's `[eq]` comparator is
-  case-sensitive — `Foo@Gmail.com` would miss the lookup and hit the
-  duplicate error anyway. Verified by rebooking a known email: person count
-  held at 7, `createdAt` unchanged, `updatedAt` and `firstName` both updated.
-  API details and the filter-syntax reference live in the
-  `reference-twenty-crm-railway` memory.
-- Blog i18n mechanism is built (2026-08-26/27) — content collection has
-  `locale`/`translationKey`/`slug` fields, `/[locale]/[section]/` and
-  `/[locale]/[section]/[service]` reuse the existing service/city routing
-  (folded in as a third `kind`, not a separate `[locale]/blog/` — that
-  would collide with the dynamic `[section]` segment at the same depth).
-  Files live under `src/content/blog/<locale>/`. `SEGMENTS.blog` gives
-  the translated `/blog/` segment itself (`boke` for both Chinese
-  variants, matching the `fuwu` pattern). All three existing English
-  posts now have Spanish, Simplified Chinese, and Traditional Chinese
-  versions (2026-08-27) — real researched keywords per language, not
-  literal translations; zh-hant follows Taiwan Mandarin lexis/register.
-  See the `slug`-collision gotcha above if adding more.
-- `site.formEndpoint` now points at a real Formspree endpoint, and the
-  contact form dual-submits into a self-hosted n8n workflow (Railway) that
-  forwards leads into Twenty CRM via its REST API (2026-08-25/26). Zapier
-  and Make.com were evaluated first but both paywall webhooks on their free
-  tiers.
-- Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories
-  (2026-08-26). No application code changes were needed for the migration.
+Already solved — **details and reasoning in [`docs/RESOLVED.md`](docs/RESOLVED.md)**.
+Read that file before re-investigating any of these.
+
+- Cal.com bookings now reach Twenty CRM, repeat customers included
+- Blog i18n mechanism is built (2026-08-26/27)
+- `site.formEndpoint` now points at a real Formspree endpoint, and the contact form dual-submits into a self-hos…
+- Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories (2026-08-26).
 - `site.phone` is a real Google Voice number, (434) 373-0080 (2026-08-26).
-- The homepage's "Where we work" city grid was removed and replaced with a
-  three-column footer (Explore nav links + locale-aware city links) that
-  appears sitewide instead of only on the English homepage (2026-08-26).
-- All nine city pages that previously had generic body copy now carry real,
-  sourced facts via web research: six on 2026-08-26 (Pasadena, Altadena,
-  South Pasadena, Glendale, Monrovia, San Marino), and the last three —
-  Alhambra, Arcadia, Monterey Park — on 2026-08-27. See the `RESEARCHED`
-  marker in `src/data/cities.ts`; no `TODO` markers remain. Not firsthand
-  knowledge, though: still worth the owner's eye to sharpen with anything
-  from actually working these cities.
-- Fonts (originally Bevan, now Anton; Source Serif 4) are self-hosted via
-  `@fontsource` instead of loading from the Google Fonts CDN (2026-08-26).
-  The display face changed from Bevan → Anton → briefly reverted to Bevan
-  → back to Anton, "final call," all on 2026-08-27 — see the Design system
-  section above for why Anton won.
-- `tina/config.ts`'s schema now matches `src/content.config.ts` — added the
-  `locale`/`translationKey`/`slug` fields the blog i18n work introduced, and
-  the `filename.slugify` function now reads the post's `locale` field to
-  place new posts in the right `src/content/blog/<locale>/` subfolder
-  automatically (2026-08-27). Verified by loading `npm run admin` and
-  confirming Tina indexes all four existing posts (including the Spanish
-  one) with no schema errors.
-- A "Book a call" link (`site.bookingUrl`, `strings.nav.bookCall`) was added
-  to the footer, footer-only per the owner's call (2026-08-26) — it points
-  at the real Cal.com public booking page for the free 30-min consultation
-  (`schedule.pasadenaworks.com/pasadenaworks/consultation`, self-hosted on
-  Railway, Cal Video, demo events hidden). Confirmed via `Accept-Language`
-  header tests that the page genuinely translates into Spanish and Chinese
-  based on the visitor's browser language — no explicit switcher needed.
-  Cal.com's account password has since been changed (2026-08-29, see below)
-  — the owner should still turn on 2FA if it isn't already on, but the weak
-  password itself is no longer an open item.
-- A private, real-password-protected ops dashboard exists at
-  `ops.pasadenaworks.com` — links to every backend service (CRM,
-  scheduling, n8n, Railway, GitHub, DNS). It is a separate tiny Node
-  service deployed directly to Railway (project `pasadenaworks`, service
-  `ops-panel`) and is deliberately NOT part of this repo — its source
-  living in a public repo would defeat the password gate. Auth is a real
-  server-side Basic Auth check (`server.js`, `crypto.timingSafeEqual`),
-  not client-side JS. Credentials are the `OPS_USERNAME`/`OPS_PASSWORD`
-  variables on that Railway service — change them there, not here.
-- `public/og.png` (1200×630) exists, originally as a Craftsman-styled share
-  image matching the pre-rebrand hero. Regenerated 2026-08-28 to match the
-  2026-08-27 rebrand: rose background, a label-frame card holding
-  `logo-lockup.png`, and the site's real tagline — rendered the same way,
-  a one-off HTML template screenshotted via headless Chrome rather than a
-  design tool. The `<meta property="og:image">` tag in `Base.astro` needed
-  no change either time; it just points at whatever file is there.
-- The `registry/` folder (a mirror of the owner's cross-project
-  `MASTER-PORTS.md`/`PORTS.md`/`README.md`) was removed 2026-08-28 — it
-  exposed other local projects' names, stacks, and ports in this public
-  repo for no reason this repo needed. The real port reservation for this
-  repo (3180–3189/4180–4189) still lives in the root-level
-  `MASTER-PORTS.md`/`PORTS.md`, which are unrelated tracked files, not part
-  of what got removed.
-- The ops dashboard's "Blog editor (Tina)" card now links to the real
-  `pasadenaworks.com/admin/index.html` (2026-08-28) instead of describing
-  it as local-only — it's backed by Tina Cloud (see the blog-i18n entry
-  above), so it works from any browser once the site is deployed, not
-  just from the owner's laptop running `npm run admin`.
-- Cal.com's Google Calendar sync is confirmed working end-to-end
-  (2026-08-28) — booking a slot that overlaps an existing Google Calendar
-  event made that slot disappear from availability, not just theoretically
-  wired up.
-- The `itemProps` config previously added to the blog collection's `ui`
-  in Tina (to show `pubDate` next to the title in the post list) turned out
-  to not be a real Tina API at the collection level — it's only read off
-  object-field/block-template configs, so it silently did nothing since it
-  shipped. Removed 2026-08-28, and `filename.slugify` was extracted into
-  `tina/utils.ts` with unit tests along the way (`npx tsc --noEmit` now
-  passes clean on `tina/config.ts` for the first time — the dead
-  `itemProps` was a real type error that no prior build step had caught,
-  since `npx tinacms build` only validates the schema, not every `ui`
-  callback).
-- **Cal.com's password-reset emails were never sending, blocking login to
-  the owner's own account (2026-08-29).** Two stacked causes: Railway
-  blocks outbound SMTP entirely below its Pro plan (surfaces as an
-  `ETIMEDOUT` connection timeout, not an auth error — no SMTP config change
-  fixes it, only a plan upgrade), and a Gmail app password had been
-  generated under the wrong Google account (a *different* error, `535
-  BadCredentials`/`EAUTH`, only visible once the plan was upgraded). Fixed
-  by upgrading Railway to Pro and regenerating the app password under the
-  correct account (`jc.pasadenaworks@gmail.com`). Full writeup:
-  `docs/solutions/integration-issues/calcom-railway-smtp-password-reset-emails-fail.md`.
+- The homepage's "Where we work" city grid was removed and replaced with a three-column footer (Explore nav link…
+- All nine city pages that previously had generic body copy now carry real, sourced facts via web research: six…
+- Fonts (originally Bevan, now Anton; Source Serif 4) are self-hosted via `@fontsource` instead of loading from…
+- `tina/config.ts`'s schema now matches `src/content.config.ts`
+- A "Book a call" link (`site.bookingUrl`, `strings.nav.bookCall`) was added to the footer, footer-only per the…
+- A private, real-password-protected ops dashboard exists at `ops.pasadenaworks.com`
+- `public/og.png` (1200×630) exists, originally as a Craftsman-styled share image matching the pre-rebrand hero.
+- The `registry/` folder (a mirror of the owner's cross-project `MASTER-PORTS.md`/`PORTS.md`/`README.md`) was re…
+- The ops dashboard's "Blog editor (Tina)" card now links to the real `pasadenaworks.com/admin/index.html` (2026…
+- Cal.com's Google Calendar sync is confirmed working end-to-end (2026-08-28)
+- The `itemProps` config previously added to the blog collection's `ui` in Tina (to show `pubDate` next to the t…
+- Cal.com's password-reset emails were never sending, blocking login to the owner's own account (2026-08-29).
+- Twenty CRM's MCP server is reachable — it advertised `http://` behind Railway's TLS proxy; fixed with `TRUST_PROXY=1` (2026-08-31)

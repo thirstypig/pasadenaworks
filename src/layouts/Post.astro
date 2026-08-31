@@ -3,7 +3,7 @@ import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
 import EndCta from '../components/EndCta.astro';
 import { absoluteUrl } from '../i18n/routes';
-import { blogIndexPath, DATE_LOCALE, readingLabel, updatedLabel, byLabel } from '../utils/blog';
+import { blogIndexPath, formatPostDate, readingLabel, updatedLabel, byLabel } from '../utils/blog';
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 
@@ -75,13 +75,13 @@ const articleSchema = {
 
     <p class="post__meta">
       <time datetime={pubDate.toISOString()}>
-        {pubDate.toLocaleDateString(DATE_LOCALE[locale], { year: 'numeric', month: 'long', day: 'numeric' })}
+        {formatPostDate(pubDate, locale)}
       </time>
       {updatedDate && (
         <>
           {` · ${updatedLabel(locale)} `}
           <time datetime={updatedDate.toISOString()}>
-            {updatedDate.toLocaleDateString(DATE_LOCALE[locale], { year: 'numeric', month: 'long', day: 'numeric' })}
+            {formatPostDate(updatedDate, locale)}
           </time>
         </>
       )}

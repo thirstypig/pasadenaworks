@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import TagPill from './TagPill.astro';
-import { postPath, DATE_LOCALE, readingLabel } from '../utils/blog';
+import { postPath, formatPostDate, readingLabel } from '../utils/blog';
 import type { Locale } from '../i18n/ui';
 
 interface Props {
@@ -25,11 +25,7 @@ const { locale, posts } = Astro.props;
       <div class="post-card__body">
         <p class="post-card__meta">
           <time datetime={post.data.pubDate.toISOString()}>
-            {post.data.pubDate.toLocaleDateString(DATE_LOCALE[locale], {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
+            {formatPostDate(post.data.pubDate, locale)}
           </time>
           {' · '}{readingLabel(minutes, locale)}
         </p>
