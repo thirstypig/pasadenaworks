@@ -168,6 +168,18 @@ only two kinds silently mis-branches the moment a third one exists. Hit
 exactly this bug adding the blog kind; see
 `docs/solutions/logic-errors/dual-purpose-route-bare-else-broke-on-third-kind.md`.
 
+**Scheduled publishing is two mechanisms, not one.** `getPostsByLocale()`
+gates on `pubDate <= now` as well as `draft` — and that filter must stay in
+`src/utils/blog.ts`, never move into a page template. It also backs
+`getStaticPaths` for both blog routes, so a future-dated post gets no page
+*and no sitemap entry*; filtering only the index would hide posts from readers
+while still advertising the URLs to Google. `getTranslationsFor()` needs the
+same filter or a live post can emit an `hreflang` alternate at an unbuilt page.
+The other half lives in `.github/workflows/deploy.yml`: a static site has no
+clock, so the daily `schedule:` cron is what makes a date arrive. Delete it and
+the filter is still correct and nothing ever publishes. Full write-up in
+`docs/solutions/logic-errors/static-site-scheduled-publishing-needs-a-clock.md`.
+
 **CJK underlines need a lower baseline.** Chinese glyphs fill the em box and
 have no descenders, so the ochre hero underline cuts through them. There's a
 `:global(html[lang^='zh'])` override in `[locale]/index.astro`.
