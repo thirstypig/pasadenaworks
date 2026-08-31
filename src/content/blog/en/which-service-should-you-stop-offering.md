@@ -1,15 +1,17 @@
 ---
-title: "Which service should you stop offering?"
-description: "A framework for small business owners: which service costs the most time for what it earns, and why 'customers ask for it' isn't reason enough to keep it."
-pubDate: 2026-11-09
+title: Which service should you stop offering?
+description: 'A framework for small business owners: which service costs the most time for what it earns, and why ''customers ask for it'' isn''t reason enough to keep it.'
+pubDate: 2026-11-09T00:00:00.000Z
 pillar: consulting
-targetKeyword: "which service should you stop offering"
-draft: true
-author: "Pasadena Works"
-tags: ["business strategy", "profitability"]
-heroImage: "https://images.unsplash.com/photo-1572610304424-34b7b2b46540?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "A small business owner sitting at a table, hand on chin, staring hard at a laptop screen"
-heroCredit: "Jonas Leupe"
+targetKeyword: which service should you stop offering
+author: Pasadena Works
+tags:
+  - business strategy
+  - profitability
+heroImage: 'https://images.unsplash.com/photo-1572610304424-34b7b2b46540?auto=format&fit=crop&w=1600&q=80'
+heroAlt: 'A small business owner sitting at a table, hand on chin, staring hard at a laptop screen'
+heroCredit: Jonas Leupe
+draft: false
 locale: en
 translationKey: stop-offering-a-service
 slug: which-service-should-you-stop-offering
