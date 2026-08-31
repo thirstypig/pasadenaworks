@@ -3,6 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Scheduled publishing: getPostsByLocale() in src/utils/blog.ts only builds
+  # posts whose pubDate has arrived, so a post dated in the future needs a
+  # rebuild ON that date to appear. GitHub Pages is static — without this cron
+  # nothing would ever trigger that build and the post would stay invisible.
+  # 13:00 UTC ≈ 6am Pacific, so a post dated today is live by breakfast.
+  schedule:
+    - cron: '0 13 * * *'
   workflow_dispatch:
 
 permissions:

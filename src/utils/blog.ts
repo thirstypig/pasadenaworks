@@ -4,11 +4,18 @@ import { SEGMENTS, localeUrl } from '../i18n/routes';
 
 export type BlogPost = CollectionEntry<'blog'>;
 
-/** Published (non-draft) posts in one locale, newest first. */
+/** Published posts in one locale, newest first.
+ *
+ *  "Published" means not a draft AND its pubDate has arrived. The date half
+ *  is what makes CONTENT-PLAN.md's schedule real: a post dated next month is
+ *  simply absent until then. Note this also gates getStaticPaths for both
+ *  blog routes, so a future-dated post gets no page built and no sitemap
+ *  entry — hiding it from the index alone would leave the URL live. */
 export async function getPostsByLocale(locale: Locale): Promise<BlogPost[]> {
+  const now = new Date();
   const posts = await getCollection(
     'blog',
-    ({ data }) => !data.draft && data.locale === locale
+    ({ data }) => !data.draft && data.pubDate <= now && data.locale === locale
   );
   return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
@@ -78,11 +85,17 @@ export function readingLabel(minutes: number, locale: Locale): string {
 /** Every locale this post has been translated into, mapped to that
  *  translation's path — for the hreflang `translations` prop. Only
  *  includes locales where a sibling file with the same translationKey
- *  actually exists; never assumes a translation that isn't there. */
+ *  actually exists *and is already published*; never assumes a translation
+ *  that isn't there. A future-dated sibling builds no page, so claiming it
+ *  would emit an alternate pointing at a 404. */
 export async function getTranslationsFor(
   post: BlogPost
 ): Promise<Partial<Record<Locale, string>>> {
-  const all = await getCollection('blog', ({ data }) => !data.draft);
+  const now = new Date();
+  const all = await getCollection(
+    'blog',
+    ({ data }) => !data.draft && data.pubDate <= now
+  );
   const siblings = all.filter((p) => p.data.translationKey === post.data.translationKey);
 
   return Object.fromEntries(
