@@ -131,3 +131,12 @@ Read this before re-investigating anything that sounds already-handled.
   by upgrading Railway to Pro and regenerating the app password under the
   correct account (`jc.pasadenaworks@gmail.com`). Full writeup:
   `docs/solutions/integration-issues/calcom-railway-smtp-password-reset-emails-fail.md`.
+
+- **Twenty CRM's MCP server is reachable** (2026-08-31). It advertised `http://`
+  URLs in its OAuth discovery metadata behind Railway's TLS-terminating proxy, so
+  MCP clients refused it (`Protected resource http://… does not match expected
+  https://…`). `SERVER_URL` was a red herring — already correct, and never read by
+  that code path, which derives URLs from the request via Express's
+  `request.protocol`. Fixed with `TRUST_PROXY=1` on the Railway `server` service.
+  Full trace, the varying-host diagnostic, and a regression check in
+  [`docs/solutions/integration-issues/twenty-crm-mcp-advertises-http-behind-railway-proxy.md`](solutions/integration-issues/twenty-crm-mcp-advertises-http-behind-railway-proxy.md).

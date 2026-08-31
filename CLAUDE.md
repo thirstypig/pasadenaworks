@@ -327,3 +327,4 @@ Read that file before re-investigating any of these.
 - Cal.com's Google Calendar sync is confirmed working end-to-end (2026-08-28)
 - The `itemProps` config previously added to the blog collection's `ui` in Tina (to show `pubDate` next to the t…
 - Cal.com's password-reset emails were never sending, blocking login to the owner's own account (2026-08-29).
+- Twenty CRM's MCP server is reachable — it advertised `http://` behind Railway's TLS proxy; fixed with `TRUST_PROXY=1` (2026-08-31)
