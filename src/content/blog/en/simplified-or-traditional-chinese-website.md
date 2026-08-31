@@ -1,15 +1,17 @@
 ---
-title: "Simplified or Traditional Chinese — which does your business need?"
-description: "Simplified and Traditional Chinese aren't interchangeable on a website. How a San Gabriel Valley business figures out which one its customers actually read."
-pubDate: 2026-10-19
+title: Simplified or Traditional Chinese — which does your business need?
+description: Simplified and Traditional Chinese aren't interchangeable on a website. How a San Gabriel Valley business figures out which one its customers actually read.
+pubDate: 2026-10-19T00:00:00.000Z
 pillar: websites
-targetKeyword: "simplified or traditional chinese website"
-draft: true
-author: "Pasadena Works"
-tags: ["chinese language website", "san gabriel valley"]
-heroImage: "https://images.unsplash.com/photo-1764416965805-2c13161e4472?auto=format&fit=crop&w=1600&q=80"
-heroAlt: "Traditional Chinese shop signs with hand-painted calligraphy above a storefront"
-heroCredit: "MChe Lee"
+targetKeyword: simplified or traditional chinese website
+author: Pasadena Works
+tags:
+  - chinese language website
+  - san gabriel valley
+heroImage: 'https://images.unsplash.com/photo-1764416965805-2c13161e4472?auto=format&fit=crop&w=1600&q=80'
+heroAlt: Traditional Chinese shop signs with hand-painted calligraphy above a storefront
+heroCredit: MChe Lee
+draft: false
 locale: en
 translationKey: simplified-traditional-chinese
 slug: simplified-or-traditional-chinese-website
@@ -32,14 +34,16 @@ Mixing the two within a single page — one paragraph in Simplified, the next in
 Don't decide this by looking at a map and guessing. Ask your actual customers, or look at where they're already coming from.
 
 **Signals that point to Traditional Chinese:**
-- Older, established immigrant communities — Monterey Park and parts of Alhambra built their Chinese-American population significantly through Taiwanese and Hong Kong immigration starting in the 1970s–80s, well before mainland immigration grew.
-- Customers who mention Taiwan, Hong Kong, or Macau, or whose names romanize in Wade-Giles or Hong Kong-style spelling rather than Hanyu Pinyin.
-- Existing signage or menus at your business already in Traditional — a strong sign your current customer base reads it, and switching would confuse people, not help them.
+
+* Older, established immigrant communities — Monterey Park and parts of Alhambra built their Chinese-American population significantly through Taiwanese and Hong Kong immigration starting in the 1970s–80s, well before mainland immigration grew.
+* Customers who mention Taiwan, Hong Kong, or Macau, or whose names romanize in Wade-Giles or Hong Kong-style spelling rather than Hanyu Pinyin.
+* Existing signage or menus at your business already in Traditional — a strong sign your current customer base reads it, and switching would confuse people, not help them.
 
 **Signals that point to Simplified Chinese:**
-- Newer immigrant populations from mainland China, which have grown across the San Gabriel Valley — Arcadia and San Marino in particular saw significant mainland Chinese immigration and investment in the 2000s–2010s.
-- Customers whose names romanize in Hanyu Pinyin (the mainland's standard system).
-- A customer base that skews younger and more recently arrived.
+
+* Newer immigrant populations from mainland China, which have grown across the San Gabriel Valley — Arcadia and San Marino in particular saw significant mainland Chinese immigration and investment in the 2000s–2010s.
+* Customers whose names romanize in Hanyu Pinyin (the mainland's standard system).
+* A customer base that skews younger and more recently arrived.
 
 Neither of these is a hard rule. The only way to actually know is to ask. If you have any existing Chinese-speaking customers or staff, ask them directly which one they read comfortably — and ask a few people, not just one, since one person's background isn't your whole customer base. If you're building this before you have customers to ask, look at your closest comparable competitors' signage and materials in the neighborhood you're serving.
 
