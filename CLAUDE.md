@@ -278,17 +278,19 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
 
 ## Known outstanding work
 
-- `CONTENT-PLAN.md`'s full 90-day schedule (20 posts) has been drafted and
-  is now mostly published: 15 of 20 English posts are live (`draft: false`),
-  5 remain `draft: true` with future `pubDate`s (2026-10-05 through
-  2027-01-11) for the owner to review and flip live on schedule via Tina.
-  **Only the original three posts have Spanish/Simplified/Traditional
-  Chinese translations** — none of the 12 newly-published posts have been
-  translated yet. That's the next real translation work, not "write more
-  English posts first."
-- Tina CMS admin (`npm run admin`) runs in local mode only — no account, no
-  signup, but requires your laptop running to edit. Tina Cloud (tina.io) is
-  the next step if you want browser-based editing without that.
+- `CONTENT-PLAN.md`'s full 90-day schedule (20 posts) is drafted. 15 are
+  `draft: false` and 5 are `draft: true` (for the owner to review and flip
+  via Tina). Since 2026-08-31 the site is **date-gated**: a post appears on
+  its `pubDate` and not before, so only 4 are visible today and the rest
+  surface weekly through 2027-01-04 without anyone doing anything. Don't
+  read "15 live" as "15 visible."
+  **Only the three original posts have Spanish/Simplified/Traditional
+  Chinese translations.** The other 17 have none. Date-gating turns that
+  backlog into a queue with deadlines: each post needs its translations
+  before its own pubDate arrives, or it publishes English-only. The nearest
+  gaps are `website-cost` (already visible, untranslated) and 2026-09-07's
+  `google-business-profile`. This is the next real content work — not
+  "write more English posts first."
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
   injection CVEs) have no safe fix available yet, checked 2026-08-27** —
   this isn't "hasn't been done," it's genuinely blocked upstream. We're
