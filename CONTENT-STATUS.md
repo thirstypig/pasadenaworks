@@ -18,7 +18,7 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2026-06-15 | How to know if it's time to raise your prices | consulting | ✅ | ✅ | ✅ | ✅ live |
 | 2026-08-31 | How much should a small business website cost? | websites | ✅ | ✅ | ✅ | ✅ live |
 | 2026-09-07 | How to Claim and Fix Your Google Business Profile | search | ✅ | ✅ | ✅ | ⏳ 6 days |
-| 2026-09-14 | Do I need a website if I have Instagram? | websites | — | — | — | ⏳ 13 days |
+| 2026-09-14 | Do I need a website if I have Instagram? | websites | ✅ | ✅ | ✅ | ⏳ 13 days |
 | 2026-09-21 | How to ask customers for reviews without being awkward | search | — | — | — | ⏳ 20 days |
 | 2026-09-28 | Should your website be in Spanish too? | websites | — | — | — | ⏳ 27 days |
 | 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | — | — | — | ⏳ 34 days |
