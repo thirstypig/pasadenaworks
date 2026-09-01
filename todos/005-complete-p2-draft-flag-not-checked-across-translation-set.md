@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p2
 issue_id: 005
 tags: [code-review, testing, content-integrity]
@@ -81,7 +81,12 @@ A `beforeSubmit` hook warning when a set's `draft` values diverge.
 
 ## Recommended Action
 
-_(Leave blank for triage.)_
+**Option A** — extend the existing consistency test. Done 2026-09-01. Option B
+was rejected for the reason its own Cons list gives: holding one language back
+while it is still being reviewed is a legitimate thing to want, and deriving
+`draft` from the English post takes it away. Option C (a Tina `beforeSubmit`
+hook) protects only the owner's path, and this repo has already been burned once
+by a Tina `ui` config that silently no-ops.
 
 ## Technical Details
 
@@ -90,13 +95,24 @@ _(Leave blank for triage.)_
 
 ## Acceptance Criteria
 
-- [ ] A set with mismatched `draft` values fails the test suite
-- [ ] Both directions covered (English drafted, translation live — and reverse)
-- [ ] `pillar` deliberately left unchecked, or a note explaining why a mismatch
-      there is cosmetic
+- [x] A set with mismatched `draft` values fails the test suite
+- [x] Both directions covered (English drafted, translation live — and reverse)
+- [x] `pillar` deliberately left unchecked, with the reason in the test comment
 
 ## Work Log
 
+- **2026-09-01** — Implemented. `byKey` hoisted to module scope so the new
+  assertion shares the grouping with the `pubDate` one rather than rebuilding it.
+  `field()` gained an optional fallback: `draft` is `z.boolean().default(false)`
+  in `src/content.config.ts`, so a file may legally omit it, and the parser had
+  to read absent as `false` instead of throwing. All 80 posts currently declare
+  it explicitly, so nothing exercises that path today — it exists so the test
+  does not start failing on the first post that leaves the field out.
+
+  Verified by mutating real files rather than by inspection: setting the English
+  redesign post to `draft: true` fails the new assertion (1 failed, 7 passed),
+  and so does setting only its Traditional Chinese translation. Both files were
+  restored and the restore confirmed by SHA-256, not assumed.
 - **2026-08-31** — Raised by the simplicity review during `/ce:review` of PR #9.
   Verified: `draft` is absent from the integrity tests and present on both
   filter paths in `blog.ts`.

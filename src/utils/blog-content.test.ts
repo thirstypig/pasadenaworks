@@ -24,12 +24,18 @@ type Post = {
   locale: string;
   translationKey: string;
   pubDate: string;
+  draft: boolean;
   body: string;
 };
 
-function field(source: string, name: string): string {
+function field(source: string, name: string, fallback?: string): string {
   const m = source.match(new RegExp(`^${name}:\\s*"?(.+?)"?\\s*$`, 'm'));
-  if (!m) throw new Error(`missing frontmatter field "${name}"`);
+  // Fields with a zod default (`draft`) may legitimately be absent from a file;
+  // absent must read as the default, not as a parse error.
+  if (!m) {
+    if (fallback !== undefined) return fallback;
+    throw new Error(`missing frontmatter field "${name}"`);
+  }
   return m[1].trim();
 }
 
@@ -46,10 +52,15 @@ const posts: Post[] = LOCALES.flatMap((dir) =>
         locale: field(source, 'locale'),
         translationKey: field(source, 'translationKey'),
         pubDate: field(source, 'pubDate').split('T')[0],
+        draft: field(source, 'draft', 'false') === 'true',
         body: source.split(/^---$/m)[2] ?? '',
       };
     })
 );
+
+/** Posts grouped by translationKey — one set (English + its translations) per entry. */
+const byKey = new Map<string, Post[]>();
+for (const p of posts) byKey.set(p.translationKey, [...(byKey.get(p.translationKey) ?? []), p]);
 
 describe('blog content integrity', () => {
   it('finds every post (guards against the glob path silently going stale)', () => {
@@ -78,12 +89,26 @@ describe('blog content integrity', () => {
     // Since posts are gated on pubDate, a typo'd date in one language means
     // that language publishes on a different day — the English post goes live
     // with no alternate for it, which is exactly what translating it prevented.
-    const byKey = new Map<string, Post[]>();
-    for (const p of posts) byKey.set(p.translationKey, [...(byKey.get(p.translationKey) ?? []), p]);
-
     const mismatched = [...byKey.entries()]
       .filter(([, group]) => new Set(group.map((p) => p.pubDate)).size > 1)
       .map(([key, group]) => `${key}: ${group.map((p) => `${p.locale}=${p.pubDate}`).join(', ')}`);
+
+    expect(mismatched).toEqual([]);
+  });
+
+  it('gives every translation of a post the same draft flag, so a set publishes together', () => {
+    // blog.ts gates on `draft` AND `pubDate` together, so a set that disagrees
+    // on `draft` fails the same way a mismatched date does — but this one is a
+    // two-click mistake in Tina, which edits one file at a time. English drafted
+    // with a translation live builds a translated page whose English parent does
+    // not exist, emitting an hreflang alternate at an unbuilt URL (hard rule #1).
+    // English live with its translations drafted publishes English-only, in
+    // silence — the exact outcome the translations were written to prevent.
+    // `pillar` is deliberately not checked here: it only groups posts, so a
+    // mismatch is cosmetic and costs nothing at build time.
+    const mismatched = [...byKey.entries()]
+      .filter(([, group]) => new Set(group.map((p) => p.draft)).size > 1)
+      .map(([key, group]) => `${key}: ${group.map((p) => `${p.locale}=${p.draft}`).join(', ')}`);
 
     expect(mismatched).toEqual([]);
   });
