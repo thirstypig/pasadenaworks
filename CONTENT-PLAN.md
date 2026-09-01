@@ -32,15 +32,12 @@ own. 5 of the 20 are translated into all three other languages; 15 are not
 — that backlog is now the schedule's real constraint, since an untranslated
 post publishes English-only when its date arrives.
 
-| Article | Pillar | Targets | Translations |
-|---|---|---|---|
-| Why customers can't find your business on Google | search | "why can't customers find my business on google" | Spanish, Simplified &amp; Traditional Chinese |
-| What a small business website actually needs | websites | "what should a small business website include" | Spanish, Simplified &amp; Traditional Chinese |
-| How to know if it's time to raise your prices | consulting | "when to raise prices small business" | Spanish, Simplified &amp; Traditional Chinese |
-
-All three original posts are now translated into all three other site
-languages (2026-08-27) — see "Translating an article" below for what that
-means for what to translate next.
+**For the live picture, see [`CONTENT-STATUS.md`](CONTENT-STATUS.md)** — a
+generated table of every post, its publish date, and which translations
+exist. Regenerate it with `npm run content:status`, or read it in Tina under
+Project Docs. It is derived from the post files themselves, so unlike a
+hand-written table here it cannot drift out of date. Don't restate its
+contents in this file; keep this one for strategy and target keywords.
 
 **✅ Decided and implemented (2026-08-31).** This section previously flagged
 that all the calendar posts had been flipped to `draft: false` at once, so
