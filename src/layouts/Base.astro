@@ -46,6 +46,7 @@ const {
 const canonical = absoluteUrl(path);
 const alternates = buildAlternates(translations);
 const ogImage = absoluteUrl('/og.png');
+const profiles = Object.values(site.social).filter(Boolean);
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -55,13 +56,10 @@ const localBusinessSchema = {
   email: site.email,
   telephone: site.phone,
   areaServed: site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
-  /* Only the profiles that exist. `sameAs` is how Google connects this site
-     to the same business on other platforms; pointing it at a blank or dead
-     profile actively muddies that, so empty entries are dropped rather than
-     emitted. The key disappears entirely when nothing is set. */
-  ...(Object.values(site.social).some(Boolean)
-    ? { sameAs: Object.values(site.social).filter(Boolean) }
-    : {}),
+  /* Empty entries dropped and the key omitted entirely when nothing is set —
+     the reasoning lives on `social` in src/data/site.ts, where someone is
+     actually tempted to paste a placeholder. */
+  ...(profiles.length && { sameAs: profiles }),
 };
 ---
 

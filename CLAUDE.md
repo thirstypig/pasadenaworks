@@ -359,11 +359,12 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
   own `pubDate` publishes English-only and does not get a second chance.
-- **One code-review finding is open in `todos/`**: `006`, four small
-  simplifications, P3 and purely cosmetic. `005` (a translation set's `draft`
-  flag could differ across languages with nothing to catch it) and `010` (three
-  translation precision drifts) were both closed 2026-09-01 — see the work logs
-  in their todo files, which record why the other options were rejected.
+- **No code-review findings are open in `todos/`** — all ten are complete as of
+  2026-09-01. The work logs are still worth reading before related work; they
+  record why the rejected options were rejected. One caveat learned closing
+  `006`: **a todo is a snapshot, not a live view.** Two of its four findings had
+  already been fixed as side effects of `007` and `008`, and nothing marked them
+  resolved. Re-verify a finding against the current code before acting on it.
 - **`npx tsc --noEmit` fails on `tina/config.test.ts`** — `picomatch` has no type
   declarations, and the package is not declared in `package.json` either; the
   test reaches it transitively through Tina. Pre-existing since 2026-08-31 and
