@@ -71,11 +71,15 @@ npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a unit test suite (89 tests) covering the parts of this site that are
+There's a unit test suite (103 tests) covering the parts of this site that are
 easy to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the
-blog i18n path/label helpers, and the Tina admin's filename helper.
+blog i18n path/label helpers, and the Tina admin's filename helper — including
+non-ASCII titles, after a bug where every Chinese post created in the admin
+landed at the same empty filename and overwrote the previous one.
+
+The tests run in CI on every pull request, and again before the site deploys.
 
 It also checks the blog content itself — that no two posts share a `slug`
 across locales, that every translation of a post carries the same `pubDate`,
