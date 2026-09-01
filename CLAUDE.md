@@ -45,9 +45,10 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 89) — i18n/hreflang, reading time, city/service
+npm run test         # unit tests (vitest, 103) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
-                     #   generator, and Tina's collection match globs
+                     #   generator and its Pacific clock, JSON-LD escaping, and Tina's collection
+                     #   match globs + filename slugifier
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 
@@ -65,6 +66,16 @@ checking there first.
 Deployment is automatic: pushing to `main` triggers
 `.github/workflows/deploy.yml`. Never build and commit `dist/` — it's gitignored
 and the Action handles it.
+
+**The tests gate both workflows** (added 2026-09-01). `.github/workflows/ci.yml`
+runs the suite and a build on every pull request and branch push;
+`deploy.yml` runs the suite before building, so a push to `main` *and* the daily
+scheduled publish are both gated. Before this, nothing ran the tests
+automatically — which mattered because the content invariants they protect fail
+silently: a duplicate `slug` builds green with exit code 0 and only a warning,
+while the test suite catches it. `ci.yml` also greps the build log for that
+warning and promotes it to a failure, which catches a collision committed
+through Tina without a pull request.
 
 ## Where things live
 
@@ -85,6 +96,12 @@ src/
 ├── pages/
 └── styles/global.css ← design tokens
 ```
+
+`todos/` at the repo root holds code-review findings, one file per finding, named
+`{id}-{status}-{priority}-{slug}.md` where status moves `pending` → `complete`.
+Each carries the reproduction, two or three options with trade-offs, and a work
+log. Written by `/ce:review`; read before starting work so a known issue isn't
+rediscovered.
 
 **Copy changes go in `src/data/`, not in page templates.** If you find yourself
 editing prose inside an `.astro` file, check whether it belongs in a data file
@@ -342,6 +359,23 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
   own `pubDate` publishes English-only and does not get a second chance.
+- **Four code-review findings are open in `todos/`**, none urgent, all with
+  reproductions and options already written: `005` a translation set's `draft`
+  flag can differ across languages with nothing to catch it, `006` four small
+  simplifications, `010` three translation drifts milder than the reversed
+  recommendation already fixed (a modal hardened from "can" to "will", a cost
+  range narrowed, a Spanish "almost never" for "most of the time"). `010` is the
+  one worth doing next.
+- **`npx tsc --noEmit` fails on `tina/config.test.ts`** — `picomatch` has no type
+  declarations, and the package is not declared in `package.json` either; the
+  test reaches it transitively through Tina. Pre-existing since 2026-08-31 and
+  invisible because nothing in this repo runs `tsc`: there is no typecheck
+  script, `npm run test` does not typecheck, and `npm run build` passes because
+  Astro does not typecheck `tina/`. Nothing is broken by it. Fixing means either
+  `npm i -D picomatch @types/picomatch` (both devDependencies, so the production
+  five are untouched), a one-line `declare module 'picomatch'`, or reaching
+  picomatch through `@tinacms/schema-tools`, which is what the test actually
+  exercises. Left open deliberately — it needs a call on which.
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
   injection CVEs) have no safe fix available yet, checked 2026-08-27** —
   this isn't "hasn't been done," it's genuinely blocked upstream. We're
@@ -380,3 +414,8 @@ Read that file before re-investigating any of these.
 - Cal.com's password-reset emails were never sending, blocking login to the owner's own account (2026-08-29).
 - Twenty CRM's MCP server is reachable — it advertised `http://` behind Railway's TLS proxy; fixed with `TRUST_PROXY=1` (2026-08-31)
 - Tina's "Project Docs" and "Debugging Notes" collections indexed zero documents silently from 2026-08-27 until 2026-08-31 — `match.include` gets the format appended (2026-08-31)
+- All 20 blog posts exist in all four languages; the translation backlog is closed (2026-09-01)
+- The test suite gates both CI and deploy — nothing ran it automatically before (2026-09-01)
+- Blog prose links are underlined at rest, fixing a WCAG 1.4.1 failure (2026-09-01)
+- Tina no longer writes every Chinese post to the same empty filename (2026-09-01)
+- JSON-LD is escaped before injection; `site.social` is finally read, as schema.org `sameAs` (2026-09-01)

@@ -140,3 +140,56 @@ Read this before re-investigating anything that sounds already-handled.
   `request.protocol`. Fixed with `TRUST_PROXY=1` on the Railway `server` service.
   Full trace, the varying-host diagnostic, and a regression check in
   [`docs/solutions/integration-issues/twenty-crm-mcp-advertises-http-behind-railway-proxy.md`](solutions/integration-issues/twenty-crm-mcp-advertises-http-behind-railway-proxy.md).
+
+- **All 20 blog posts now exist in all four languages** (2026-09-01). The
+  15-post translation backlog is closed, so nothing on the schedule through
+  2027-01-11 will publish English-only. Vendor names came from each vendor's own
+  localized help rather than from translating the English ones, keyword phrasing
+  and slugs were researched per locale, and every figure is the English post's.
+  `CONTENT-STATUS.md` is the live picture — prefer it over any count written by
+  hand.
+
+- **The test suite now gates both workflows** (2026-09-01). Nothing ran the
+  tests automatically before this; they were enforced by a person remembering.
+  That mattered more than it sounds because the invariants they protect fail
+  silently — a duplicate `slug` across locales builds green with exit code 0 and
+  a warning nobody reads, while Astro's glob loader drops one of the colliding
+  posts. Confirmed by injecting a real collision: build exit 0, tests red.
+  `.github/workflows/ci.yml` covers pull requests and branch pushes;
+  `deploy.yml` runs the suite before building, so the daily scheduled publish is
+  gated too, and greps the build log to promote that warning to a failure.
+
+- **Links inside blog posts are underlined at rest** (2026-09-01). They were
+  distinguished by colour alone, with the underline appearing only on hover. The
+  accent measures 2.96:1 against body text in light mode and 2.53:1 in dark,
+  both under WCAG 1.4.1's 3:1 floor — so a reader who does not separate those
+  hues could not find links in an article at all, and hover is no remedy on
+  touch. `:focus-visible` was missing alongside `:hover` and was added. Note the
+  rule is `a:not(.btn)`: a bare descendant selector beats `.btn` and paints a
+  border along the End CTA button, which is the same collision `global.css`
+  already guards against for `.section--dark a`.
+
+- **Tina no longer destroys CJK filenames** (2026-09-01). `slugifyBlogFilename`
+  derived a new post's filename from its *title* through `[^a-z0-9]`, which
+  treats every non-ASCII writing system as punctuation: a Chinese title
+  collapsed to an empty basename, the file landed at `<locale>/.md`, and the
+  second Chinese post silently overwrote the first. It now derives from the
+  `slug` field, which is required, already ASCII, and already unique across
+  locales. Full write-up, including why seven passing tests missed it, in
+  [`docs/solutions/integration-issues/tina-slugify-strips-cjk-and-collides-filenames.md`](solutions/integration-issues/tina-slugify-strips-cjk-and-collides-filenames.md).
+
+- **JSON-LD is escaped before injection** (2026-09-01). Both layouts embed
+  structured data with `set:html`, and `JSON.stringify` does not escape `<`, so
+  a value containing `</script>` closed the block early and the remainder
+  rendered as page HTML — silently, since the build succeeded and the page
+  looked right. `src/utils/json-ld.ts` now owns serialization for both sinks. No
+  live exposure existed: both schemas are fed from `src/data/site.ts` and post
+  frontmatter, which take a commit or the local Tina admin to change.
+
+- **The LinkedIn profile is emitted as schema.org `sameAs`** (2026-09-01).
+  `site.social` had sat with two empty strings since launch and **nothing read
+  it** — setting a URL would have rendered nowhere. It now feeds the homepage's
+  LocalBusiness JSON-LD, which is how Google ties this site to the same business
+  elsewhere. Empty entries are filtered rather than emitted, so Instagram stays
+  absent until there is a real account: a `sameAs` pointing at a dead profile is
+  worse than none.
