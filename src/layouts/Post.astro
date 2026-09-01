@@ -204,13 +204,25 @@ const articleSchema = {
     font-style: italic;
   }
 
+  /* Links in article prose are underlined AT REST, not only on hover.
+     They used to be distinguished by colour alone, and the accent against
+     surrounding body text measures 2.96:1 in light mode and 2.53:1 in dark
+     — under WCAG 1.4.1's 3:1 floor, so a reader who does not separate those
+     hues could not find the links at all. Hover is not a fix: it does not
+     exist on touch, and you cannot hover a link you never spotted.
+
+     currentColor first so a browser without color-mix() still gets a solid
+     underline; the mix then softens it to about 45% so a paragraph with
+     several links does not turn into a fence. */
   .post__body :global(a) {
     color: var(--color-accent-text);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid currentColor;
+    border-bottom-color: color-mix(in srgb, currentColor 45%, transparent);
   }
 
-  .post__body :global(a:hover) {
+  .post__body :global(a:hover),
+  .post__body :global(a:focus-visible) {
     text-decoration: none;
     border-bottom-color: currentColor;
   }

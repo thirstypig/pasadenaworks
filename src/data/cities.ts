@@ -20,9 +20,7 @@ import type { Locale } from '../i18n/ui';
  *  Americana at Brand, etc.) and otherwise stays generic on purpose,
  *  rather than inventing specifics and presenting them as fact.
  *
- *  Two markers show up in the body arrays below:
- *  - `TODO`: still generic — no verified specifics have been researched
- *    or supplied yet. Don't delete until genuinely rewritten.
+ *  One marker shows up in the body arrays below:
  *  - `RESEARCHED`: strengthened with real, sourced facts found via web
  *    search (not firsthand knowledge of the city). A reasonable first
  *    draft, but the owner — who actually works these cities — should
@@ -57,9 +55,6 @@ export interface City {
    *  consistency." */
   t: Partial<Record<Locale, CityCopy>>;
 }
-
-const TODO =
-  '<!-- TODO(owner): replace with specific streets/landmarks you know from working this city -->';
 
 /** Body copy strengthened with real, sourced facts (web research, not
  *  firsthand knowledge) on 2026-08-26. Still worth the owner's eye — swap
