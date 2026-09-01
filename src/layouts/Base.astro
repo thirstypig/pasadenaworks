@@ -3,6 +3,7 @@
  * ALL SEO tags live here: title, meta description, canonical URL, OG tags,
  * hreflang alternates, and (homepage only) LocalBusiness JSON-LD.
  */
+import { jsonLd } from '../utils/json-ld';
 import type { Locale } from '../i18n/ui';
 import { HTML_LANG } from '../i18n/ui';
 import { buildAlternates, absoluteUrl } from '../i18n/routes';
@@ -109,7 +110,7 @@ const localBusinessSchema = {
     <meta name="twitter:description" content={description} />
 
     {isHome && (
-      <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+      <script type="application/ld+json" set:html={jsonLd(localBusinessSchema)} />
     )}
 
     <slot name="head" />

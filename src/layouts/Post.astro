@@ -1,4 +1,5 @@
 ---
+import { jsonLd } from '../utils/json-ld';
 import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
 import EndCta from '../components/EndCta.astro';
@@ -69,7 +70,7 @@ const articleSchema = {
   {updatedDate && (
     <meta slot="head" property="article:modified_time" content={updatedDate.toISOString()} />
   )}
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLd(articleSchema)} />
   <article class="section wrap post">
     <a class="post__back" href={blogIndexPath(locale)}>&larr; {strings.buttons.backToBlog}</a>
 

@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p2
 issue_id: 003
 tags: [code-review, security, seo, structured-data]
@@ -114,3 +114,18 @@ _(Leave blank for triage.)_
 
 - `src/layouts/Base.astro:112`, `src/layouts/Post.astro:72`
 - `tina/config.ts:64`
+
+---
+
+**RESOLVED 2026-09-01 — Option B.** `src/utils/json-ld.ts` exports `jsonLd()`,
+which is `JSON.stringify` plus `.replace(/</g, '<')`, and both layouts now
+call it. One place to be correct, and a future schema block gets it for free.
+
+Verified end to end, not just by unit test: put a real `</script><script>
+alert(1)</script>` payload into `site.social.instagram`, rebuilt, and confirmed
+no live script tag reaches `dist/index.html` — then restored `site.ts` and
+confirmed it byte-identical to HEAD. The genuine schema still parses as valid
+JSON-LD with the LinkedIn `sameAs` intact.
+
+Fixed before merging rather than after, so this publishes to a public repo as a
+closed finding rather than an open advisory with a reproduction.
