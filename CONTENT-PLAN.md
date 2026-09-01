@@ -217,8 +217,12 @@ literal translation) — see the gotchas in `CLAUDE.md` for the mechanics
 (locale subfolder, `translationKey`, per-language `slug`, and the slug-
 uniqueness pitfall to check before publishing).
 
-Six posts have all four languages as of 2026-08-31; the other fourteen are
-English-only and each needs its set before its own `pubDate`. The four *not-yet-written* posts (the Google Business Profile
+**All twenty posts have all four languages as of 2026-08-31.** The backlog is
+gone and there is no longer a translation deadline attached to any scheduled
+post — every one of them will publish complete. The rule still applies to
+anything written from here on: translate alongside the English draft, because
+a date-gated post that misses its own `pubDate` publishes English-only and
+does not get a second chance. The four *not-yet-written* posts (the Google Business Profile
 guide, and the three multilingual-angle pieces) should be written and
 translated together when their turn comes up in the calendar, not English-
 first-then-translate-later.

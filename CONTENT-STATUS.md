@@ -19,20 +19,20 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2026-08-31 | How much should a small business website cost? | websites | ✅ | ✅ | ✅ | ✅ live |
 | 2026-09-07 | How to Claim and Fix Your Google Business Profile | search | ✅ | ✅ | ✅ | ⏳ 6 days |
 | 2026-09-14 | Do I need a website if I have Instagram? | websites | ✅ | ✅ | ✅ | ⏳ 13 days |
-| 2026-09-21 | How to ask customers for reviews without being awkward | search | — | — | — | ⏳ 20 days |
-| 2026-09-28 | Should your website be in Spanish too? | websites | — | — | — | ⏳ 27 days |
-| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | — | — | — | ⏳ 34 days |
-| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | — | — | — | ⏳ 41 days |
-| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | — | — | — | ⏳ 48 days |
-| 2026-10-26 | Are Google Ads worth it for a small business? | ads | — | — | — | ⏳ 55 days |
-| 2026-11-02 | What to do when your website traffic drops | search | — | — | — | ⏳ 62 days |
-| 2026-11-09 | Which service should you stop offering? | consulting | — | — | — | ⏳ 69 days |
-| 2026-11-16 | How to fire a customer without burning the relationship | consulting | — | — | — | ⏳ 76 days |
-| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | — | — | — | ⏳ 83 days |
-| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | — | — | — | ⏳ 97 days |
-| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | — | — | — | ⏳ 104 days |
-| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | — | — | — | ⏳ 125 days |
-| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | — | — | — | ⏳ 132 days |
+| 2026-09-21 | How to ask customers for reviews without being awkward | search | ✅ | ✅ | ✅ | ⏳ 20 days |
+| 2026-09-28 | Should your website be in Spanish too? | websites | ✅ | ✅ | ✅ | ⏳ 27 days |
+| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | ✅ | ✅ | ✅ | ⏳ 34 days |
+| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | ✅ | ✅ | ✅ | ⏳ 41 days |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | ✅ | ✅ | ✅ | ⏳ 48 days |
+| 2026-10-26 | Are Google Ads worth it for a small business? | ads | ✅ | ✅ | ✅ | ⏳ 55 days |
+| 2026-11-02 | What to do when your website traffic drops | search | ✅ | ✅ | ✅ | ⏳ 62 days |
+| 2026-11-09 | Which service should you stop offering? | consulting | ✅ | ✅ | ✅ | ⏳ 69 days |
+| 2026-11-16 | How to fire a customer without burning the relationship | consulting | ✅ | ✅ | ✅ | ⏳ 76 days |
+| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | ✅ | ✅ | ✅ | ⏳ 83 days |
+| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | ✅ | ✅ | ✅ | ⏳ 97 days |
+| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | ✅ | ✅ | ✅ | ⏳ 104 days |
+| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | ✅ | ✅ | ✅ | ⏳ 125 days |
+| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | ✅ | ✅ | ✅ | ⏳ 132 days |
 
 ## What needs doing
 
