@@ -217,6 +217,20 @@ matches a file that actually exists. Full write-up, including the
 `Error: Body must be a string` red herring, in
 `docs/solutions/integration-issues/tina-match-include-appends-the-format-and-matches-nothing.md`.
 
+**A `[^a-z0-9]` slug transform deletes every Chinese character.** Tina's
+`slugifyBlogFilename` used to derive a new post's filename from its *title*
+that way, so a CJK title collapsed to an empty basename and the file landed at
+`<locale>/.md` — the first Chinese post created in the admin became a hidden
+dotfile and the second silently overwrote it. Accented Latin degraded too
+(`página` → `p-gina`). It survived because the seven cases in
+`tina/utils.test.ts` were all ASCII English, on a site that publishes in four
+languages. The filename now derives from the `slug` field, which is required,
+already ASCII, and already unique across locales — so **a slug collision now
+collides two files on disk as well**, making that test more load-bearing than
+it looks. The rule worth carrying: a test corpus must contain a sample from
+every locale the product ships in. Full write-up in
+`docs/solutions/integration-issues/tina-slugify-strips-cjk-and-collides-filenames.md`.
+
 **`sort`/`uniq` under a non-CJK locale lie about CJK duplicates.** Auditing
 the built site for duplicate `<title>`/meta-description tags with
 `grep ... | sort | uniq -c` reported false duplicates (and would equally
