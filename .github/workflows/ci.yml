@@ -1,0 +1,51 @@
+name: CI
+
+# Runs on every pull request and every branch push, so a content mistake shows
+# up as a red check before it can be merged.
+#
+# WHY THIS EXISTS: the invariants that protect this site's content are enforced
+# by the test suite and by nothing else. The most important one — blog `slug`
+# values being unique across ALL locales — fails SILENTLY at build time: Astro's
+# glob loader dedupes on that field, drops one of the colliding posts, prints a
+# warning, and exits 0. A build-only gate deploys that happily. Verified: a
+# deliberate collision built green with `67 page(s) built` and exit code 0,
+# while `npm run test` failed on it.
+on:
+  pull_request:
+  push:
+    branches-ignore: [main] # main is covered by the deploy workflow's own test step
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Content integrity, i18n routing, reading time, and the Tina match globs.
+      - name: Unit tests
+        run: npm run test
+
+      # The Astro build is a second gate: it catches a broken frontmatter schema
+      # or a route collision that the unit tests do not model. The Tina admin
+      # bundle is deliberately not built here — it needs secrets a fork's PR
+      # cannot see, and it is not what this check is protecting.
+      #
+      # The build exits 0 on a duplicate slug, so that warning is promoted to a
+      # failure explicitly. Belt and braces alongside the unit tests: this also
+      # catches a collision introduced through the Tina admin, which can commit
+      # content without ever opening a pull request.
+      - name: Build, and fail on a duplicate blog slug
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee build.log
+          if grep -q "multiple entries with the same slug" build.log; then
+            echo "::error::Two blog posts share a slug. Astro silently drops one of them."
+            exit 1
+          fi

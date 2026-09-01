@@ -3,6 +3,7 @@
  * ALL SEO tags live here: title, meta description, canonical URL, OG tags,
  * hreflang alternates, and (homepage only) LocalBusiness JSON-LD.
  */
+import { jsonLd } from '../utils/json-ld';
 import type { Locale } from '../i18n/ui';
 import { HTML_LANG } from '../i18n/ui';
 import { buildAlternates, absoluteUrl } from '../i18n/routes';
@@ -54,6 +55,13 @@ const localBusinessSchema = {
   email: site.email,
   telephone: site.phone,
   areaServed: site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
+  /* Only the profiles that exist. `sameAs` is how Google connects this site
+     to the same business on other platforms; pointing it at a blank or dead
+     profile actively muddies that, so empty entries are dropped rather than
+     emitted. The key disappears entirely when nothing is set. */
+  ...(Object.values(site.social).some(Boolean)
+    ? { sameAs: Object.values(site.social).filter(Boolean) }
+    : {}),
 };
 ---
 
@@ -102,7 +110,7 @@ const localBusinessSchema = {
     <meta name="twitter:description" content={description} />
 
     {isHome && (
-      <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+      <script type="application/ld+json" set:html={jsonLd(localBusinessSchema)} />
     )}
 
     <slot name="head" />

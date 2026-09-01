@@ -51,8 +51,13 @@ export const site = {
     'Los Angeles',
   ],
 
+  /* Profiles the business actually maintains. These are emitted as schema.org
+     `sameAs` on the homepage, which is how Google ties this site to the same
+     business entity elsewhere — so a wrong or dead URL here is worse than an
+     empty one. Leave a network blank until there is a real, maintained
+     profile behind it; the schema skips empty entries. */
   social: {
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/company/pasadena-works/',
     instagram: '',
   },
 

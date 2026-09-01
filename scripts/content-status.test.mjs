@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFrontmatter, renderTable, readPosts } from './content-status.mjs';
+import { parseFrontmatter, renderTable, readPosts, pacificToday, dateStamp } from './content-status.mjs';
 
 /** Frontmatter as it actually appears in src/content/blog — the English
  *  files leave most values bare, the Chinese ones quote nearly everything.
@@ -174,5 +174,51 @@ describe('the real content directory', () => {
       .filter((p) => p.locale !== 'en' && !english.has(p.translationKey))
       .map((p) => `${p.locale}/${p.title}`);
     expect(orphans).toEqual([]);
+  });
+});
+
+/* ── The generator's clock ─────────────────────────────────────────────
+   The stamp in the header and the countdowns in the table have to agree at
+   every hour. They briefly did not: the stamp was made Pacific while the rows
+   still measured against `new Date()`, so during a US evening the file was
+   stamped one day and behaved as though it were the next. */
+describe('pacificToday', () => {
+  it('returns the Pacific calendar day, as midnight UTC', () => {
+    // 02:30 UTC on the 14th is 19:30 PT on the 13th.
+    expect(pacificToday(new Date('2026-09-14T02:30:00Z')).toISOString())
+      .toBe('2026-09-13T00:00:00.000Z');
+  });
+
+  it('does not roll over early in the morning UTC', () => {
+    // 07:00 UTC on the 14th is still 00:00 PT on the 14th.
+    expect(dateStamp(pacificToday(new Date('2026-09-14T07:00:00Z')))).toBe('2026-09-14');
+    // 06:59 UTC is 23:59 PT on the 13th.
+    expect(dateStamp(pacificToday(new Date('2026-09-14T06:59:00Z')))).toBe('2026-09-13');
+  });
+
+  it('handles both sides of a DST transition', () => {
+    // PDT (UTC-7) in summer, PST (UTC-8) in winter — the offset is not fixed,
+    // which is the reason for using a timezone database rather than subtracting
+    // a constant number of hours.
+    expect(dateStamp(pacificToday(new Date('2026-07-01T06:30:00Z')))).toBe('2026-06-30');
+    expect(dateStamp(pacificToday(new Date('2026-12-01T07:30:00Z')))).toBe('2026-11-30');
+  });
+
+  it('agrees with the table it stamps', () => {
+    // The regression this pins: a post publishing on the 14th must not read as
+    // published in a file stamped the 13th.
+    const evening = pacificToday(new Date('2026-09-14T02:30:00Z'));
+    expect(dateStamp(evening)).toBe('2026-09-13');
+    expect(new Date('2026-09-14T00:00:00.000Z') > evening).toBe(true);
+  });
+});
+
+describe('dateStamp', () => {
+  it('formats as YYYY-MM-DD without depending on locale data', () => {
+    // An earlier version used toLocaleDateString('en-CA') for its ISO-shaped
+    // output. On a small-ICU build that locale falls back and emits 8/31/2026
+    // into a committed file.
+    expect(dateStamp(new Date('2026-08-31T00:00:00.000Z'))).toBe('2026-08-31');
+    expect(dateStamp(new Date('2027-01-04T00:00:00.000Z'))).toBe('2027-01-04');
   });
 });

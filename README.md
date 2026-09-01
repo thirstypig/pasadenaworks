@@ -66,11 +66,12 @@ npm run dev     # start the dev server at localhost:3180
 npm run build   # build the production site into dist/
 npm run preview # look at the built site before deploying
 npm run test    # run the unit test suite (vitest)
+npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a unit test suite (65 tests) covering the parts of this site that are
+There's a unit test suite (89 tests) covering the parts of this site that are
 easy to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the

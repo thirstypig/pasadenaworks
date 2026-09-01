@@ -1,4 +1,5 @@
 ---
+import { jsonLd } from '../utils/json-ld';
 import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
 import EndCta from '../components/EndCta.astro';
@@ -69,7 +70,7 @@ const articleSchema = {
   {updatedDate && (
     <meta slot="head" property="article:modified_time" content={updatedDate.toISOString()} />
   )}
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLd(articleSchema)} />
   <article class="section wrap post">
     <a class="post__back" href={blogIndexPath(locale)}>&larr; {strings.buttons.backToBlog}</a>
 
@@ -204,14 +205,31 @@ const articleSchema = {
     font-style: italic;
   }
 
-  .post__body :global(a) {
+  /* Links in article prose are underlined AT REST, not only on hover.
+     They used to be distinguished by colour alone, and the accent against
+     surrounding body text measures 2.96:1 in light mode and 2.53:1 in dark
+     — under WCAG 1.4.1's 3:1 floor, so a reader who does not separate those
+     hues could not find the links at all. Hover is not a fix: it does not
+     exist on touch, and you cannot hover a link you never spotted.
+
+     currentColor first so a browser without color-mix() still gets a solid
+     underline; the mix then softens it to about 45% so a paragraph with
+     several links does not turn into a fence. */
+  /* `:not(.btn)` for the same reason `.section--dark a:not(.btn)` exists in
+     global.css: the End CTA renders a `.btn` INSIDE `.post__body`, and this
+     selector's specificity (0,2,1) beats `.btn` (0,1,0). Without the guard it
+     paints an underline along the button's bottom edge and overrides its text
+     colour — on every post, in all four languages. The bug was invisible while
+     this border was transparent; making it visible is what surfaced it. */
+  .post__body :global(a:not(.btn)) {
     color: var(--color-accent-text);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid currentColor;
+    border-bottom-color: color-mix(in srgb, currentColor 45%, transparent);
   }
 
-  .post__body :global(a:hover) {
-    text-decoration: none;
+  .post__body :global(a:not(.btn):hover),
+  .post__body :global(a:not(.btn):focus-visible) {
     border-bottom-color: currentColor;
   }
 

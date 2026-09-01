@@ -217,11 +217,36 @@ literal translation) — see the gotchas in `CLAUDE.md` for the mechanics
 (locale subfolder, `translationKey`, per-language `slug`, and the slug-
 uniqueness pitfall to check before publishing).
 
-All three currently-published posts already have all four languages, done
-2026-08-27. The four *not-yet-written* posts (the Google Business Profile
+**All twenty posts have all four languages as of 2026-08-31.** The backlog is
+gone and there is no longer a translation deadline attached to any scheduled
+post — every one of them will publish complete. The rule still applies to
+anything written from here on: translate alongside the English draft, because
+a date-gated post that misses its own `pubDate` publishes English-only and
+does not get a second chance. The four *not-yet-written* posts (the Google Business Profile
 guide, and the three multilingual-angle pieces) should be written and
 translated together when their turn comes up in the calendar, not English-
 first-then-translate-later.
+
+### Place names
+
+**Pasadena is 帕薩迪納 (Traditional) / 帕萨迪纳 (Simplified).** Not a
+judgement call — it is how the City of Pasadena writes its own name in its
+official trilingual election materials (「市級民選市長，帕薩迪納市」), and
+LA County ballot material is Traditional Chinese by law. Chinese Wikipedia
+and Baidu Baike carry the Simplified form. Variants exist in the wild
+(帕薩迪那 with a final 那, Cantonese 帕莎甸娜) — don't use them.
+
+Write it 帕薩迪納（Pasadena）on first mention in a post, then plain Latin
+`Pasadena` after that: the Chinese term is what someone actually searches,
+and the English keeps it recognizable for a reader who knows the city by
+its English name. San Gabriel Valley is 聖蓋博谷 / 圣盖博谷.
+
+**Never touch the `author: "Pasadena Works"` byline** — that is the
+business's name, not a place, and it stays in English in every language.
+
+In Spanish, Pasadena is just Pasadena. The valley stays `San Gabriel
+Valley`, which is what people here say, rather than a translated
+"Valle de San Gabriel."
 
 ---
 
