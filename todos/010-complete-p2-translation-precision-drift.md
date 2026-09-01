@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p2
 issue_id: 010
 tags: [code-review, content, i18n, introduced-by-this-pr]
@@ -74,17 +74,36 @@ Modal strength is a fidelity rule; the cost range under-asserts.
 
 ## Recommended Action
 
-_(Leave blank for triage.)_
+**Option A** — all three, plus the hongbao gloss. Done 2026-09-01.
 
 ## Acceptance Criteria
 
-- [ ] 會 → 能 or 可能 in the zh-hant redesign post
-- [ ] The cost range reaches roughly $3,000 in both Chinese versions
-- [ ] The Spanish traffic-drop line matches "most of the time," not "almost never"
-- [ ] Decision recorded on the hongbao/lai see/li xi gloss
+- [x] 會 → 可能 in the zh-hant redesign post
+- [x] The cost range reaches roughly $3,000 in both Chinese versions
+- [x] The Spanish traffic-drop line matches "most of the time," not "almost never"
+- [x] Decision recorded on the hongbao/lai see/li xi gloss — restored, adapted
 
 ## Work Log
 
+- **2026-09-01** — Fixed all four. Details:
+  - **1.** Used 可能, not 能. Line 57 of the same Traditional file already writes
+    the parallel clause as 一次草率的改版，可能讓您失去半年的排名 — so 可能 matches
+    the file's own established register rather than importing the Simplified
+    twin's word.
+  - **2.** 一兩千 → 兩三千 in Traditional, 一两千 → 两三千 in Simplified. Caps at
+    roughly $3,000, which is where "low four figures" lands.
+  - **3.** "Casi nunca lo es" → "La mayoría de las veces no lo es".
+  - **4.** Gloss restored, but *adapted rather than translated*: the English
+    glosses all three terms because an English reader knows none of them. A
+    Chinese reader already knows 紅包, so glossing it would be noise — the two
+    that carry the article's multi-community point are the Cantonese and
+    Vietnamese ones. Rendered as 紅包（粵語稱「利是」，越南語稱 lì xì）/
+    红包（粤语称「利是」，越南语称 lì xì）.
+  - All four verified in the **rendered HTML**, not the source. Every affected
+    post is future-dated (2026-11-02 through 2027-01-04) and therefore excluded
+    from an ordinary build, so the three translation sets were temporarily
+    back-dated to build them, then restored from `git show HEAD:<file>` and the
+    restore confirmed by an empty `pubDate` delta in `git diff`.
 - **2026-08-31** — From the translation-fidelity audit during `/ce:review` of
   PR #9. All three verified directly against the English and against the
   sibling translation that got it right.

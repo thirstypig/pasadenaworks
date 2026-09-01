@@ -186,6 +186,19 @@ Read this before re-investigating anything that sounds already-handled.
   live exposure existed: both schemas are fed from `src/data/site.ts` and post
   frontmatter, which take a commit or the local Tina admin to change.
 
+- **A translation set can no longer half-publish through `draft`**
+  (2026-09-01). `src/utils/blog.ts` gates on `draft` and `pubDate` together, and
+  the integrity suite asserted that every post sharing a `translationKey` has an
+  identical `pubDate` — but said nothing about `draft`, which was not even parsed
+  into the test. Either direction was a silent failure: English drafted with a
+  translation live builds a translated page whose English parent does not exist,
+  emitting an `hreflang` alternate at an unbuilt URL (hard rule #1); English live
+  with its translations drafted publishes English-only, which is the exact
+  outcome all 60 translations were written to prevent. Realistic because the
+  owner flips drafts in Tina, which edits one file at a time. Now one more
+  assertion beside the `pubDate` one, sharing its `translationKey` grouping.
+  Verified by mutating real posts in both directions, not by inspection.
+
 - **The LinkedIn profile is emitted as schema.org `sameAs`** (2026-09-01).
   `site.social` had sat with two empty strings since launch and **nothing read
   it** — setting a URL would have rendered nowhere. It now feeds the homepage's

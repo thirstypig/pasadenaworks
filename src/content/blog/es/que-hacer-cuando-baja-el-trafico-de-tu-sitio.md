@@ -17,7 +17,7 @@ slug: que-hacer-cuando-baja-el-trafico-de-tu-sitio
 
 > **En corto** — Revisa primero Google Search Console: acciones manuales, luego si la caída es de todo el sitio o de páginas específicas, y luego si coincide con un cambio en el sitio o con una actualización conocida de Google. Casi todas las caídas de tráfico de negocios pequeños se deben a una de cinco cosas, y normalmente puedes saber cuál en veinte minutos.
 
-Se te cayó el tráfico y quieres saber si es una emergencia. Casi nunca lo es, pero no lo vas a saber hasta que busques en los lugares correctos, en el orden correcto. Adivinar cuesta dinero: pagarle a alguien para que "arregle tu SEO" antes de saber qué está roto es la manera en que los negocios pequeños queman unos miles de dólares resolviendo el problema equivocado.
+Se te cayó el tráfico y quieres saber si es una emergencia. La mayoría de las veces no lo es, pero no lo vas a saber hasta que busques en los lugares correctos, en el orden correcto. Adivinar cuesta dinero: pagarle a alguien para que "arregle tu SEO" antes de saber qué está roto es la manera en que los negocios pequeños queman unos miles de dólares resolviendo el problema equivocado.
 
 ## Revisa esto, en este orden
 

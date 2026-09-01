@@ -45,7 +45,7 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 103) — i18n/hreflang, reading time, city/service
+npm run test         # unit tests (vitest, 104) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, and Tina's collection
                      #   match globs + filename slugifier
@@ -359,13 +359,11 @@ the plain thing. Short sentences. Admit when something isn't worth the money.
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
   own `pubDate` publishes English-only and does not get a second chance.
-- **Four code-review findings are open in `todos/`**, none urgent, all with
-  reproductions and options already written: `005` a translation set's `draft`
-  flag can differ across languages with nothing to catch it, `006` four small
-  simplifications, `010` three translation drifts milder than the reversed
-  recommendation already fixed (a modal hardened from "can" to "will", a cost
-  range narrowed, a Spanish "almost never" for "most of the time"). `010` is the
-  one worth doing next.
+- **One code-review finding is open in `todos/`**: `006`, four small
+  simplifications, P3 and purely cosmetic. `005` (a translation set's `draft`
+  flag could differ across languages with nothing to catch it) and `010` (three
+  translation precision drifts) were both closed 2026-09-01 — see the work logs
+  in their todo files, which record why the other options were rejected.
 - **`npx tsc --noEmit` fails on `tina/config.test.ts`** — `picomatch` has no type
   declarations, and the package is not declared in `package.json` either; the
   test reaches it transitively through Tina. Pre-existing since 2026-08-31 and
@@ -419,3 +417,4 @@ Read that file before re-investigating any of these.
 - Blog prose links are underlined at rest, fixing a WCAG 1.4.1 failure (2026-09-01)
 - Tina no longer writes every Chinese post to the same empty filename (2026-09-01)
 - JSON-LD is escaped before injection; `site.social` is finally read, as schema.org `sameAs` (2026-09-01)
+- A translation set can no longer half-publish through a mismatched `draft` flag (2026-09-01)
