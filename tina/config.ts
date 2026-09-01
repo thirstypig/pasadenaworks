@@ -1,5 +1,9 @@
 import { defineConfig } from 'tinacms';
-import { slugifyBlogFilename } from './utils';
+import {
+  slugifyBlogFilename,
+  DOCS_ROOT_INCLUDE,
+  DOCS_SOLUTIONS_INCLUDE,
+} from './utils';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -185,9 +189,10 @@ export default defineConfig({
         label: 'Project Docs',
         path: '',
         format: 'md',
-        // Non-recursive glob (no `**`) — only the five docs actually at the
-        // repo root, not every .md file in src/content/blog or node_modules.
-        match: { include: '*.md' },
+        // Non-recursive glob (no `**`) — only the docs actually at the repo
+        // root, not every .md file in src/content/blog or node_modules.
+        // NOTE: no `.md` here — Tina appends the format itself. See utils.ts.
+        match: { include: DOCS_ROOT_INCLUDE },
         ui: {
           // Read/edit only — these are known, load-bearing files (CLAUDE.md
           // drives how Claude Code works in this repo; the others are the
@@ -210,7 +215,7 @@ export default defineConfig({
         label: 'Debugging Notes (docs/solutions)',
         path: 'docs/solutions',
         format: 'md',
-        match: { include: '**/*.md' },
+        match: { include: DOCS_SOLUTIONS_INCLUDE },
         ui: {
           allowedActions: { create: false, delete: false },
         },
