@@ -66,6 +66,43 @@ export function parseFrontmatter(raw) {
   return out;
 }
 
+/**
+ * Today's date in Pacific, expressed as midnight UTC.
+ *
+ * WHY THIS SHAPE: every `pubDate` in the content is midnight UTC, so returning
+ * the same shape makes the comparisons in `renderTable` whole-day arithmetic
+ * rather than an instant comparison that flips partway through a US evening.
+ * The stamp and the table then agree at every hour of the day — an earlier
+ * version made only the stamp Pacific and left the rows on `new Date()`, which
+ * produced a file stamped the 13th claiming the 14th's post had already gone
+ * out.
+ *
+ * WHY PACIFIC AT ALL: not because the site gates in Pacific — `getPostsByLocale`
+ * in src/utils/blog.ts compares Date objects, which is a UTC instant. What
+ * makes a post land on the right Pacific day is the deploy workflow's
+ * `cron: '0 13 * * *'`, firing at 06:00 PT. This table is read by someone in
+ * Pasadena, so it counts days the way they do.
+ *
+ * `formatToParts` with an explicit `en-US` numeric format rather than a locale
+ * that happens to print ISO order: a locale-shaped shortcut silently falls back
+ * on a small-ICU Node build and would write `8/31/2026` into a committed file.
+ */
+export function pacificToday(now = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(now);
+  const at = (type) => parts.find((part) => part.type === type).value;
+  return new Date(`${at('year')}-${at('month')}-${at('day')}T00:00:00.000Z`);
+}
+
+/** A `YYYY-MM-DD` stamp from a date already normalised by `pacificToday`. */
+export function dateStamp(date) {
+  return date.toISOString().slice(0, 10);
+}
+
 /** Whole days from `today` until `date`, rounded up. */
 function daysUntil(date, today) {
   return Math.ceil((date.getTime() - today.getTime()) / 86_400_000);
@@ -131,12 +168,9 @@ export function readPosts(blogDir = BLOG) {
 }
 
 function main() {
-  const today = new Date();
+  const today = pacificToday();
   const posts = readPosts();
-  // Pacific, not UTC. The site date-gates in Pacific and stamps its footer the
-  // same way; a UTC stamp here reads as tomorrow's date every evening after
-  // 5pm Pacific, which makes the table look a day out of step with the site.
-  const stamp = today.toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+  const stamp = dateStamp(today);
 
   const page = `# Content status
 

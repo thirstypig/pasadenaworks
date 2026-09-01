@@ -214,16 +214,21 @@ const articleSchema = {
      currentColor first so a browser without color-mix() still gets a solid
      underline; the mix then softens it to about 45% so a paragraph with
      several links does not turn into a fence. */
-  .post__body :global(a) {
+  /* `:not(.btn)` for the same reason `.section--dark a:not(.btn)` exists in
+     global.css: the End CTA renders a `.btn` INSIDE `.post__body`, and this
+     selector's specificity (0,2,1) beats `.btn` (0,1,0). Without the guard it
+     paints an underline along the button's bottom edge and overrides its text
+     colour — on every post, in all four languages. The bug was invisible while
+     this border was transparent; making it visible is what surfaced it. */
+  .post__body :global(a:not(.btn)) {
     color: var(--color-accent-text);
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     border-bottom-color: color-mix(in srgb, currentColor 45%, transparent);
   }
 
-  .post__body :global(a:hover),
-  .post__body :global(a:focus-visible) {
-    text-decoration: none;
+  .post__body :global(a:not(.btn):hover),
+  .post__body :global(a:not(.btn):focus-visible) {
     border-bottom-color: currentColor;
   }
 

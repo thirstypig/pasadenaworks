@@ -33,9 +33,19 @@ jobs:
         with:
           node-version: 22
 
-      - name: Build Tina Cloud admin bundle
+      # Gate the deploy on the tests, including the daily scheduled publish.
+      # A failing suite here stops the site from redeploying, which is the
+      # intended trade: the failure it is most likely to catch is a post
+      # silently missing from the collection, and shipping that is worse than
+      # briefly not shipping at all. The run goes red either way, so it is
+      # visible rather than silent.
+      - name: Unit tests
         run: |
           npm ci
+          npm run test
+
+      - name: Build Tina Cloud admin bundle
+        run: |
           npx tinacms build
         env:
           TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}

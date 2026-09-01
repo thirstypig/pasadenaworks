@@ -8,18 +8,39 @@
 interface BlogValuesLike {
   locale?: string;
   title?: string;
+  slug?: string;
 }
 
-/** src/content/blog/<slug>.md -> /blog/<slug>/, per the "write a keyword,
- *  not post-14" rule in README.md. Locale determines which subfolder a
- *  new post's file lands in. */
-export function slugifyBlogFilename(values: BlogValuesLike | undefined): string {
-  const locale = values?.locale || 'en';
-  const base = (values?.title || 'untitled')
+/** Lowercase ASCII, hyphen-separated. Anything outside [a-z0-9] is a
+ *  separator — which is why this must never be handed a CJK title. */
+function asciiSlug(value: string): string {
+  return value
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
+}
+
+/**
+ * src/content/blog/<locale>/<name>.md -> /<locale>/blog/<name>/, per the
+ * "write a keyword, not post-14" rule in README.md.
+ *
+ * DERIVED FROM `slug`, NOT `title`. The earlier version slugified the title,
+ * which silently destroyed every Chinese post created through the admin: each
+ * Han character is outside [a-z0-9], so the whole basename collapsed to an
+ * empty string and the file landed at `<locale>/.md`. The first such post
+ * became a hidden dotfile; the second overwrote it. Accented Latin degraded
+ * too — `página` became `p-gina`.
+ *
+ * The `slug` field is the right source: it is `required: true`, it is already
+ * the real URL segment, and `blog-content.test.ts` already enforces that it is
+ * unique across every locale. Falling back to the title preserves the old
+ * behaviour for an English post typed before the slug field is filled in.
+ */
+export function slugifyBlogFilename(values: BlogValuesLike | undefined): string {
+  const locale = values?.locale || 'en';
+  const base =
+    asciiSlug(values?.slug ?? '') || asciiSlug(values?.title ?? '') || 'untitled';
   return `${locale}/${base}`;
 }
 
