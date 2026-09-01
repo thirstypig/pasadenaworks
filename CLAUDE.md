@@ -45,8 +45,10 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 65) — i18n/hreflang, reading time, city/service
-                     #   lookups, blog i18n helpers, blog content integrity, Tina config helpers
+npm run test         # unit tests (vitest, 89) — i18n/hreflang, reading time, city/service
+                     #   lookups, blog i18n helpers, blog content integrity, the content-status
+                     #   generator, and Tina's collection match globs
+npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
@@ -201,6 +203,20 @@ Traditional sources frequently prefer different real words for the same
 concept (e.g. mainland "小型企业" vs. Taiwan "中小企業" for "small
 business," found via keyword research, not invented for uniqueness).
 
+**A Tina collection's `match.include` must omit the file extension.** Tina
+appends the collection's `format` itself — `getMatches()` in
+`@tinacms/schema-tools` builds `` `${path}/${include}.${format}` `` — so
+writing `include: '*.md'` produces the glob `*.md.md`, matches nothing, and
+the collection indexes **zero documents with no error and no warning**. Both
+docs collections were broken this way from the day they were added
+(2026-08-27) until 2026-08-31, and nobody noticed because an empty list looks
+like an empty folder. The globs now live in `tina/utils.ts` as
+`DOCS_ROOT_INCLUDE` / `DOCS_SOLUTIONS_INCLUDE` with the explanation, and
+`tina/config.test.ts` calls Tina's own `getMatches()` and asserts the result
+matches a file that actually exists. Full write-up, including the
+`Error: Body must be a string` red herring, in
+`docs/solutions/integration-issues/tina-match-include-appends-the-format-and-matches-nothing.md`.
+
 **`sort`/`uniq` under a non-CJK locale lie about CJK duplicates.** Auditing
 the built site for duplicate `<title>`/meta-description tags with
 `grep ... | sort | uniq -c` reported false duplicates (and would equally
@@ -276,6 +292,12 @@ fails on a typo, deliberately.
 keyword per article — two articles competing for the same phrase split their own
 traffic.
 
+`CONTENT-STATUS.md` is the live picture: every English post, its publish date,
+which translations exist, and whether it is live, due in N days, published
+English-only (🚩) or still a draft. It is **generated** — run
+`npm run content:status` after any content change rather than editing it. It
+also shows up inside Tina under Project Docs.
+
 ## Voice
 
 The site's whole positioning is that it doesn't talk down to people. Copy is
@@ -341,3 +363,4 @@ Read that file before re-investigating any of these.
 - The `itemProps` config previously added to the blog collection's `ui` in Tina (to show `pubDate` next to the t…
 - Cal.com's password-reset emails were never sending, blocking login to the owner's own account (2026-08-29).
 - Twenty CRM's MCP server is reachable — it advertised `http://` behind Railway's TLS proxy; fixed with `TRUST_PROXY=1` (2026-08-31)
+- Tina's "Project Docs" and "Debugging Notes" collections indexed zero documents silently from 2026-08-27 until 2026-08-31 — `match.include` gets the format appended (2026-08-31)

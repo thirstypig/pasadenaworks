@@ -133,7 +133,10 @@ export function readPosts(blogDir = BLOG) {
 function main() {
   const today = new Date();
   const posts = readPosts();
-  const stamp = today.toISOString().slice(0, 10);
+  // Pacific, not UTC. The site date-gates in Pacific and stamps its footer the
+  // same way; a UTC stamp here reads as tomorrow's date every evening after
+  // 5pm Pacific, which makes the table look a day out of step with the site.
+  const stamp = today.toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
 
   const page = `# Content status
 
