@@ -54,6 +54,13 @@ const localBusinessSchema = {
   email: site.email,
   telephone: site.phone,
   areaServed: site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
+  /* Only the profiles that exist. `sameAs` is how Google connects this site
+     to the same business on other platforms; pointing it at a blank or dead
+     profile actively muddies that, so empty entries are dropped rather than
+     emitted. The key disappears entirely when nothing is set. */
+  ...(Object.values(site.social).some(Boolean)
+    ? { sameAs: Object.values(site.social).filter(Boolean) }
+    : {}),
 };
 ---
 
