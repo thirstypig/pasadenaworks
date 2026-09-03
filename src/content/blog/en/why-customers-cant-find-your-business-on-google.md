@@ -15,37 +15,32 @@ translationKey: google-visibility
 slug: why-customers-cant-find-your-business-on-google
 ---
 
-> **TL;DR** — If customers can't find you on Google, it's almost always one of four things: an unclaimed or half-finished Google Business Profile, a name/address/phone number that doesn't match everywhere it appears online, too few reviews, or a website that's slow and broken on a phone. Start with the profile — it's free, it's the fastest fix, and it's the one most owners skip.
+> **TL;DR** — If customers cannot find you on Google, the cause is almost invariably one of four things: an unclaimed or half-completed Google Business Profile, a name, address, and phone number that fail to match everywhere they appear online, insufficient reviews, or a website that is slow and broken on a phone. Begin with the profile, because it is free, it is the fastest available fix, and it is the one most owners skip entirely.
 
-Usually it's one of four things:
+The explanation is ordinarily one of four things: your Google Business Profile has not been claimed or is missing basic information; your business name and address fail to match everywhere they appear online; you do not have enough reviews; or the website itself is slow or broken on a phone.
 
-- Your Google Business Profile isn't claimed, or is missing basic information
-- Your business name and address don't match everywhere they appear online
-- You don't have enough reviews
-- Your website itself is slow or broken on a phone
-
-Start with the profile. It's free, it's the fastest fix, and it's the one most owners skip.
+Begin with the profile, because it costs nothing, constitutes the fastest available remedy, and remains the one most owners skip entirely.
 
 ## Claim your Google Business Profile first
 
-If you've never logged into [Google Business Profile](https://business.google.com) for your business, do that today. It's free. Search for your business name — if a listing already exists but you've never claimed it, claim it. If none exists, create one.
+If you have never logged into [Google Business Profile](https://business.google.com) on behalf of your business, do that today, principally because it costs nothing. Search for your business name: if a listing already exists that you have never claimed, claim it, and if none exists, create one.
 
-Fill in every field: hours, phone number, categories, a real description, and photos. **An empty or half-finished profile tells Google — and customers — that nobody's minding the store.**
+Complete every field — hours, telephone number, categories, a genuine description, and photographs. **An empty or half-completed profile communicates to Google, and equally to customers, that nobody is minding the store.**
 
 ## Make sure your name, address, and phone number match everywhere
 
-Google cross-checks your business information against other places it appears online: your website, Yelp, Facebook, old directory listings you forgot existed. If your address is written three different ways across those, or your phone number changed and one listing still has the old one, that inconsistency quietly hurts you.
+Google cross-checks your business information against the other places it appears online: your website, Yelp, Facebook, and old directory listings you had forgotten existed. If your address is rendered three different ways across those sources, or your telephone number changed while one listing still carries the previous one, that inconsistency quietly damages you.
 
-It's tedious to fix. But it's a **one-time cleanup, not ongoing work** — once it's done, it stays done.
+Correcting the discrepancies is undeniably tedious. It is nonetheless a **one-time cleanup rather than ongoing work** — once completed, it stays completed.
 
 ## Reviews matter more than most owners want to believe
 
-A business with three reviews and a business with sixty reviews, all else equal, will not rank the same. You don't need a review "campaign" — you need a habit.
+A business carrying three reviews and a business carrying sixty, all else being equal, will not rank identically. You do not require a review "campaign" so much as an established habit.
 
-> Ask happy customers, in person, right after a good interaction. A simple "if you have a minute, a Google review really helps us" works better than any automated follow-up email.
+> Ask satisfied customers directly, in person, immediately following a positive interaction. A straightforward "if you have a minute, a Google review really helps us" performs considerably better than any automated follow-up email.
 
 ## Your website has to actually work on a phone
 
-Most local searches happen on a phone, and most old small-business websites were built for a desktop screen a decade ago. If your site takes more than a couple of seconds to load, or the phone number isn't tappable, or the text is too small to read without pinching to zoom, **you're losing people before they ever get to decide whether to call you.**
+The majority of local searches occur on a phone, and most older small-business websites were constructed for a desktop screen a decade ago. If your site requires more than a couple of seconds to load, or the telephone number is not tappable, or the text is too small to read without pinching to zoom, then **you are losing people before they ever reach the point of deciding whether to call you.**
 
-None of this is glamorous. It's also not expensive or mysterious — it's a checklist, and most of it you can do yourself in an afternoon. If you'd rather have someone else do it and tell you honestly what's actually wrong first, that's what [getting found on Google](/services/get-found-on-google/) is for.
+None of this is remotely glamorous. It is equally neither expensive nor mysterious — it amounts to a checklist, and you can accomplish most of it yourself in an afternoon. If you would rather somebody else did it and told you honestly what is actually wrong beforehand, that is precisely what [getting found on Google](/services/get-found-on-google/) exists for.

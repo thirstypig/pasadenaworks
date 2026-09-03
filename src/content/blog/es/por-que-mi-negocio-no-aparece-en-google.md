@@ -15,37 +15,32 @@ translationKey: google-visibility
 slug: por-que-mi-negocio-no-aparece-en-google
 ---
 
-> **Resumen** — Si los clientes no te encuentran en Google, casi siempre es una de cuatro cosas: un Perfil de Negocio de Google sin reclamar o a medio llenar, un nombre/dirección/teléfono que no coincide en todos lados donde aparece en línea, muy pocas reseñas, o un sitio web lento y roto en el celular. Empieza por el perfil — es gratis, es lo más rápido de arreglar, y es lo que más dueños se saltan.
+> **En corto** — Si los clientes no logran encontrarle en Google, la causa es casi invariablemente una de cuatro cosas: un Perfil de Negocio de Google sin reclamar o a medio completar, un nombre, dirección y teléfono que no coinciden en todos los lugares donde aparecen en línea, reseñas insuficientes, o una página web lenta y rota en el teléfono. Comience por el perfil, porque es gratuito, constituye el arreglo más rápido disponible, y es el que la mayoría de los dueños omite por completo.
 
-Normalmente es una de estas cuatro cosas:
+La explicación es ordinariamente una de cuatro cosas: su Perfil de Negocio de Google no ha sido reclamado o carece de información básica; el nombre y la dirección de su negocio no coinciden en todos los lugares donde aparecen en línea; usted no tiene suficientes reseñas; o la página web misma resulta lenta o está rota en el teléfono.
 
-- Tu Perfil de Negocio de Google no está reclamado, o le falta información básica
-- El nombre y la dirección de tu negocio no coinciden en todos los lugares donde aparecen en línea
-- No tienes suficientes reseñas
-- Tu propio sitio web es lento o no funciona bien en el celular
+Comience por el perfil, porque no cuesta nada, constituye el remedio más rápido disponible, y sigue siendo el que la mayoría de los dueños omite.
 
-Empieza por el perfil. Es gratis, es lo más rápido de arreglar, y es lo que más dueños se saltan.
+## Reclame primero su Perfil de Negocio de Google
 
-## Primero, reclama tu Perfil de Negocio de Google
+Si usted nunca ha entrado a [Google Business Profile](https://business.google.com) en representación de su negocio, hágalo hoy, principalmente porque no cuesta nada. Busque el nombre de su negocio: si ya existe una ficha que usted nunca ha reclamado, recláme la, y si no existe ninguna, cree una.
 
-Si nunca has iniciado sesión en [Google Business Profile](https://business.google.com) para tu negocio, hazlo hoy. Es gratis. Busca el nombre de tu negocio — si ya existe una ficha pero nunca la has reclamado, reclámala. Si no existe ninguna, crea una.
+Complete todos los campos — horarios, número telefónico, categorías, una descripción genuina y fotografías. **Un perfil vacío o a medio completar le comunica a Google, e igualmente a los clientes, que nadie está atendiendo el negocio.**
 
-Llena cada campo: horario, teléfono, categorías, una descripción real, y fotos. **Un perfil vacío o a medio llenar le dice a Google — y a tus clientes — que nadie está al pendiente del negocio.**
+## Asegúrese de que su nombre, dirección y teléfono coincidan en todas partes
 
-## Asegúrate de que tu nombre, dirección y teléfono coincidan en todos lados
+Google contrasta la información de su negocio con los demás lugares donde aparece en línea: su página web, Yelp, Facebook y viejas fichas de directorios cuya existencia usted había olvidado. Si su dirección está escrita de tres maneras distintas a lo largo de esas fuentes, o si su número telefónico cambió mientras una ficha todavía carga el anterior, esa inconsistencia le perjudica silenciosamente.
 
-Google compara la información de tu negocio con otros lugares donde aparece en línea: tu sitio web, Yelp, Facebook, directorios viejos que ya ni recordabas que existían. Si tu dirección está escrita de tres formas distintas entre esos lugares, o tu teléfono cambió y una ficha todavía tiene el número viejo, esa inconsistencia te perjudica en silencio.
-
-Es tedioso de arreglar. Pero es una **limpieza de una sola vez, no trabajo constante** — una vez hecha, se queda hecha.
+Corregir las discrepancias resulta innegablemente tedioso. Constituye no obstante una **limpieza de una sola vez antes que trabajo continuo**: una vez completada, permanece completada.
 
 ## Las reseñas importan más de lo que la mayoría de los dueños quiere creer
 
-Un negocio con tres reseñas y un negocio con sesenta reseñas, con todo lo demás igual, no van a tener el mismo posicionamiento. No necesitas una "campaña" de reseñas — necesitas un hábito.
+Un negocio que carga tres reseñas y un negocio que carga sesenta, siendo todo lo demás igual, no posicionarán idénticamente. Usted no requiere una "campaña" de reseñas sino más bien un hábito establecido.
 
-> Pídeselo a tus clientes contentos, en persona, justo después de una buena interacción. Un simple "si tiene un minuto, una reseña en Google nos ayuda muchísimo" funciona mejor que cualquier correo automático de seguimiento.
+> Pídaselo directamente a los clientes satisfechos, en persona, inmediatamente después de una interacción positiva. Un sencillo "si tiene un minuto, una reseña en Google nos ayuda mucho" rinde considerablemente mejor que cualquier correo automatizado de seguimiento.
 
-## Tu sitio web tiene que funcionar de verdad en el celular
+## Su página web tiene que funcionar de verdad en un teléfono
 
-La mayoría de las búsquedas locales ocurren en el celular, y la mayoría de los sitios web viejos de negocios pequeños se construyeron para una pantalla de escritorio hace una década. Si tu sitio tarda más de un par de segundos en cargar, o el número de teléfono no se puede tocar para llamar, o el texto es tan pequeño que hay que hacer zoom para leerlo, **estás perdiendo clientes antes de que siquiera decidan si llamarte.**
+La mayoría de las búsquedas locales ocurre en un teléfono, y la mayoría de las páginas web antiguas de negocios pequeños fueron construidas para una pantalla de escritorio hace una década. Si su sitio requiere más de un par de segundos para cargar, o el número telefónico no resulta pulsable, o el texto es demasiado pequeño para leerlo sin acercar con los dedos, entonces **usted está perdiendo gente antes de que siquiera llegue al punto de decidir si le llama.**
 
-Nada de esto es glamoroso. Tampoco es caro ni misterioso — es una lista de pendientes, y la mayoría la puedes hacer tú mismo en una tarde. Si prefieres que alguien más lo haga y te diga honestamente qué está mal primero, para eso está [aparecer en Google](/es/servicios/aparecer-en-google/).
+Nada de esto resulta remotamente glamoroso. Tampoco resulta costoso ni misterioso: equivale a una lista de verificación, y usted puede realizar la mayor parte por sí mismo en una tarde. Si prefiere que alguien más lo haga y le diga honestamente qué anda mal de antemano, eso es precisamente para lo que existe [aparecer en Google](/es/servicios/aparecer-en-google/).
