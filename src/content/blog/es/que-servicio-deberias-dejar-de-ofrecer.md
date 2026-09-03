@@ -15,40 +15,40 @@ translationKey: stop-offering-a-service
 slug: que-servicio-deberias-dejar-de-ofrecer
 ---
 
-> **En corto** — El servicio que hay que cortar suele ser el que se come más horas en relación con lo que paga, el que más te desordena la agenda, y del que sentirías alivio al soltarlo. Saca las cuentas de tiempo por dólar de todo lo que ofreces, no te quedes con la corazonada. Si un servicio pierde dinero y la única razón para conservarlo es "los clientes lo piden", eso no es una razón: es una costumbre.
+> **En corto** — El servicio que conviene eliminar es ordinariamente aquel que consume más horas en relación con lo que paga, que genera mayores dificultades de agenda, y del cual usted sentiría auténtico alivio al desprenderse. Haga la aritmética de tiempo por dólar sobre todo lo que ofrece, antes que confiar únicamente en la intuición. Si un servicio pierde dinero y la única razón por la que lo conserva es que los clientes lo piden, eso no constituye una razón: constituye una costumbre.
 
-El servicio que deberías dejar de ofrecer es ese que dudarías en nombrar en voz alta, porque una parte de ti ya lo sabe. Casi cualquier dueño lo adivina en unos diez segundos si es honesto. Lo difícil no es identificarlo. Es admitir que construiste un negocio que incluye algo que deberías dejar.
+El servicio que debería dejar de ofrecer es aquel que titubearía en nombrar en voz alta, porque alguna parte de usted ya sabe cuál es. La mayoría de los dueños puede identificarlo en unos diez segundos siempre que sea honesta consigo misma. La parte difícil no consiste en identificarlo, sino en admitir que ha construido un negocio que incorpora algo que debería abandonar.
 
-Así es como pasa. Empiezas un negocio y le dices que sí a todo, porque necesitas los ingresos y todavía no tienes el peso para decir que no. Un cliente pregunta si también haces X. No haces X, pero te las arreglas, porque rechazar dinero cuando eres nuevo se siente imprudente. Tres años después, X es una línea en tu página web, y nunca regresaste a preguntarte si debería estar ahí.
+He aquí cómo surge ordinariamente esa situación: usted establece un negocio y consiente en absolutamente todo, porque necesita los ingresos y todavía no posee la posición necesaria para negarse. Un cliente pregunta si además realiza X. Usted no realiza X, pero se las arregla, porque rechazar dinero cuando uno es nuevo resulta temerario. Tres años después X se ha convertido en una línea de su página web, y usted nunca ha vuelto a preguntarse si le corresponde estar ahí.
 
-## Haz las cuentas del tiempo, no las de los sentimientos
+## Haga las cuentas del tiempo, no las del sentimiento
 
-Casi todos los dueños saben más o menos cuánto cobran por cada servicio. Casi ninguno lleva registro de cuánto tarda cada uno de verdad, incluyendo las partes que no se facturan: los correos de ida y vuelta, los cambios de cita, la resolución de problemas después de entregar. En esa brecha es donde se esconde una mala línea de servicio.
+La mayoría de los dueños sabe aproximadamente cuánto cobra por cada servicio. Casi ninguno registra cuánto consume genuinamente cada uno, incluidas las porciones que jamás se facturan: los correos de ida y vuelta, las reprogramaciones, la resolución de problemas posterior. Esa discrepancia es precisamente donde se oculta una línea de servicio no rentable.
 
-Saca tus últimos 10 a 15 trabajos de cada servicio que ofreces. Para cada uno, anota cuánto te pagaron y aproximadamente cuántas horas tomó de principio a fin, incluyendo administración. Divide. Vas a obtener un número por hora para cada servicio, y es muy común que uno de ellos salga vergonzosamente bajo — a veces por debajo de lo que le pagarías a alguien más por hacerlo.
+Recupere sus últimos diez a quince trabajos de cada servicio que ofrece. Para cada uno, anote cuánto le pagaron y aproximadamente cuántas horas consumió de principio a fin, administración incluida. Divida la primera cifra entre la segunda, y obtendrá una tarifa horaria efectiva correspondiente a cada servicio, y resulta sumamente común que alguno de ellos resulte vergonzosamente bajo, ocasionalmente por debajo de lo que usted le pagaría a otra persona por realizarlo.
 
-Esto es simplemente la regla del 80/20 aplicada a tu propia lista de clientes en lugar de a un libro de texto: una parte pequeña de lo que haces suele producir la mayor parte de lo que te queda. El otro lado del reparto no es neutral. No es "más chico pero está bien": muchas veces te está costando activamente, una vez que cuentas las horas que nadie te está pagando.
+Esto equivale a la regla del 80/20 aplicada a su propia lista de clientes antes que a un libro de texto: una proporción reducida de lo que usted hace produce ordinariamente la mayor parte de lo que conserva. El otro lado de esa división no resulta neutral, y tampoco es meramente más pequeño aunque aceptable: con frecuencia le está costando activamente, una vez contadas las horas que nadie está pagando.
 
-Si un servicio sale en $15 la hora una vez que cuentas todo, no estás ofreciendo un servicio. Lo estás subsidiando con el dinero de los servicios que sí pagan bien.
+Si un servicio arroja quince dólares por hora una vez contado todo, usted no está ofreciendo un servicio en absoluto. Lo está subsidiando con dinero ganado por los servicios que sí pagan como corresponde.
 
-## Hazle estas cuatro preguntas a cada cosa que ofreces
+## Hágase estas cuatro preguntas sobre cada oferta
 
-Cuando las cuentas ya te apuntan a un candidato, revísalo contra estas antes de decidir:
+Una vez que la aritmética haya identificado un candidato, examínelo contra lo siguiente antes de comprometerse:
 
-**¿Cuál toma más tiempo en relación con lo que deja?** Eso ya lo calculaste. Anota el número en algún lado donde de verdad lo vuelvas a ver, no nada más en tu cabeza.
+**¿Cuál oferta concreta consume más tiempo en relación con lo que efectivamente gana?** Acaba usted de calcularlo, de modo que anote la cifra resultante en algún sitio que vaya a consultar genuinamente de nuevo, antes que retenerla aproximadamente en la cabeza.
 
-**¿Cuál te causa más dolor de agenda y logística?** Algunos servicios son rentables en papel pero te destrozan el calendario: piden horarios raros, equipo extra, coordinación con otros proveedores, o cambios de último minuto que se desparraman sobre todo lo demás que tenías planeado ese día. Ese costo no aparece en una factura, pero sí aparece en lo cansado que estás y en cuántos otros trabajos rechazas para proteger el espacio de este.
+**¿Cuál oferta concreta genera mayores dificultades de agenda y logística?** Ciertos servicios resultan rentables sobre el papel y sin embargo destrozan su calendario, porque exigen horarios inusuales, equipo adicional, coordinación con otros proveedores, o alteraciones de último minuto que se propagan por todo lo demás planeado para ese día. Ese costo jamás aparece en una factura, aunque aparece confiablemente en lo agotado que usted termina y en cuántos otros trabajos rechaza con tal de preservar espacio para éste.
 
-**¿Cuál te daría alivio dejar de hacer?** Esta es la pregunta de la corazonada, y no es blanda: los dueños suelen tener razón en esto antes de poder explicar por qué. Si te da flojera cierto tipo de trabajo antes de que siquiera esté en el calendario, tu cuerpo ya corrió el análisis que tu hoja de cálculo está a punto de confirmar.
+**¿Cuál oferta concreta le aliviaría genuinamente dejar de realizar?** Ésta constituye la pregunta de la intuición, y no es una pregunta blanda, porque los dueños suelen tener razón en esto bastante antes de poder articular por qué. Si usted teme cierta categoría de trabajo antes incluso de que llegue al calendario, su cuerpo ya ha realizado el análisis que su hoja de cálculo está a punto de confirmar.
 
-**¿Cuál ya no encaja con lo que quieres que sea tu negocio?** Los negocios evolucionan. El trabajo de mantenimiento que aceptaste para sobrevivir el primer año quizá ya no combina con la reputación de remodelación de alta gama que construiste después. Conservarlo puede confundir activamente a clientes potenciales sobre lo que de verdad haces, y eso golpea las referencias y las reseñas del trabajo que sí quieres.
+**¿Cuál ya no encaja con quien usted quiere ser como negocio?** Los negocios evolucionan continuamente, y el trabajo de mantenimiento que aceptó para sobrevivir el primer año quizá ya no corresponda a la reputación de remodelación de gama alta que ha construido desde entonces. Conservarlo puede confundir activamente a los clientes potenciales respecto de lo que usted hace realmente, lo cual perjudica las recomendaciones y reseñas adheridas al trabajo que genuinamente desea.
 
-Si un servicio falla dos o más de estas, ahí está tu respuesta.
+Si un servicio concreto incumple dos o más de estos criterios, efectivamente ya tiene su respuesta.
 
 ## "Pero los clientes lo piden" no es una razón
 
-Esta es la objeción que mantiene vivos los servicios no rentables durante años, y no se sostiene. Los clientes piden muchas cosas. Eso no es lo mismo que valga tu tiempo dárselas.
+Ésta es la objeción que sostiene servicios no rentables durante años, y no resiste el examen. Los clientes solicitan muchísimas cosas, lo cual no equivale remotamente a que esas cosas merezcan su tiempo.
 
-Si un servicio pierde dinero, causa dolores de cabeza y sentirías alivio al soltarlo, "alguien podría quererlo" no cambia ninguna de esas cuentas. Solo significa que vas a necesitar una respuesta corta y clara cuando te lo pidan. "Eso ya no lo hacemos, pero aquí está quién sí" es una frase perfectamente buena, y la mayoría de los clientes respeta más a un negocio que sabe en qué es bueno que a uno que le dice que sí a todos.
+Si un servicio pierde dinero, genera dificultades, y usted se sentiría aliviado de soltarlo, entonces la posibilidad de que alguien pudiera quererlo no altera ninguna parte de esa aritmética. Únicamente significa que necesitará una respuesta breve y llana cuando se lo pregunten. "Ya no hacemos eso, pero aquí está quién sí" constituye una frase perfectamente adecuada, y la mayoría de los clientes respeta considerablemente más a un negocio que sabe en qué es bueno que a uno que consiente en todo.
 
-Soltar un servicio no es encoger tu negocio. Es decir la verdad sobre lo que tu negocio ya es, para que las partes que sí están funcionando reciban más de tu atención. Esa suele ser la verdadera razón por la que el crecimiento se estanca: no por tener muy pocas ofertas, sino por tener demasiadas mediocres apretujando a la buena.
+Soltar un servicio no constituye encoger su negocio. Constituye decir la verdad sobre lo que su negocio ya es, de manera que las partes que genuinamente funcionan puedan recibir más de su atención. Ésa suele ser la razón real por la que el crecimiento se estanca: no demasiado pocas ofertas, sino demasiadas mediocres desplazando a la buena.
