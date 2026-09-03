@@ -53,7 +53,7 @@
  *  sentence is kept only as a guard against runaway sentences.
  */
 import { readFileSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join, dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -383,8 +383,16 @@ export function mainProse(html) {
   t = t.replace(/<p class="post__(author|meta)"[\s\S]*?<\/p>/g, ' ');
   t = t.replace(/<figcaption[\s\S]*?<\/figcaption>/g, ' ');
   t = t.replace(/<div class="end-cta[\s\S]*?<\/div>\s*<\/div>/g, ' ');
-  t = t.replace(/<a class="btn"[\s\S]*?<\/a>/g, ' ');
+  // Attribute order is not guaranteed — the homepage CTA is written
+  // <a href={...} ... class="btn">, so anchoring on `class` being first
+  // silently missed it. Match the class attribute anywhere in the tag.
+  t = t.replace(/<a\b[^>]*\bclass="[^"]*\bbtn\b[^"]*"[^>]*>[\s\S]*?<\/a>/g, ' ');
   t = t.replace(/<nav\b[\s\S]*?<\/nav>/g, ' ');
+  // Forms are interface, not prose. Field labels ("Company", "Email",
+  // "Message") and the submit button are exactly the UI text the house
+  // style keeps plain, and on the homepage they were pulling the score
+  // down by three grades on their own.
+  t = t.replace(/<form\b[\s\S]*?<\/form>/g, ' ');
   // Quoted samples: keep the opening summary, drop later blockquotes,
   // matching dropQuotedSamples() on the markdown side.
   {
@@ -401,23 +409,30 @@ export function mainProse(html) {
 
 export function reportDist(distDir) {
   const out = [];
+  // `page` is computed relative to distDir rather than by stripping a
+  // literal "dist" prefix. The earlier version did the latter, so the
+  // returned path depended on whether the caller passed "dist" or an
+  // absolute path — which broke the cross-check test and would have broken
+  // the CLI, since it passes an absolute path.
+  const root = resolve(distDir);
   const walk = (dir) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name);
       if (entry.isDirectory()) walk(full);
       else if (entry.name === 'index.html') {
-        const locale = localeFromPath(full.replace(/\\/g, '/'));
+        const rel = '/' + relative(root, full).replace(/\\/g, '/');
+        const locale = localeFromPath('dist' + rel);
         const text = mainProse(readFileSync(full, 'utf8'));
         if (!text) continue;
         const r = analyze(text, locale);
         // Very short pages (index/listing pages that are mostly links) carry
         // too few sentences for a grade to mean anything. Reported, not scored.
         const tooShort = (r.units ?? 0) < 120;
-        out.push({ page: full.replace(/^dist/, '') || '/', ...r, tooShort, verdict: tooShort ? null : verdict(r) });
+        out.push({ page: rel, ...r, tooShort, verdict: tooShort ? null : verdict(r) });
       }
     }
   };
-  walk(distDir);
+  walk(root);
   return out;
 }
 

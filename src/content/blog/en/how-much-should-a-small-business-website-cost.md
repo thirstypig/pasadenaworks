@@ -27,7 +27,7 @@ Three separate factors drive the overwhelming majority of the cost difference:
 
 * **Custom construction versus template.** A templated site, whether assembled through a self-service builder or by a freelancer working from an existing theme, costs measurably less because nobody is constructing your layout from scratch. A fully custom design costs considerably more precisely because somebody genuinely is.
 * **Who actually writes the words on the finished page.** Genuine copywriting — somebody actually asking what distinguishes your business and then writing that down — consumes genuine time. A considerable proportion of expensive-looking website quotes are really copywriting quotes wearing a web design hat.
-* **Whatever the finished site ultimately has to connect to.** A site merely displaying information is substantially simpler than one wired into a booking calendar, a CRM, or online ordering. Every additional integration constitutes further scope, and scope invariably translates into money.
+* **Whatever the finished site ultimately has to connect to.** A site merely displaying information is substantially simpler than one wired into a booking calendar, a CRM, or online ordering. Every additional integration constitutes further scope, and scope invariably translates into additional money.
 
 ## What you actually get at each price point
 
@@ -35,7 +35,7 @@ Three separate factors drive the overwhelming majority of the cost difference:
 
 **$1,500–$6,000 as a one-time build, commissioned from a freelancer or a small shop.** A genuine site constructed for your business specifically: your words, your structure, verified on mobile, and configured so that Google can actually read it. This constitutes the range most small businesses intending to be discovered through search ought to be examining seriously.
 
-**$10,000 and upward, working through an established agency.** You are paying for a team, a process, and account management, rather than necessarily for a better end result than the range above produces. Occasionally worthwhile where you require ongoing strategy alongside the construction; frequently you are simply financing overhead.
+**$10,000 and upward, working through an established agency.** You are paying for a team, a process, and account management, rather than necessarily for a better end result than the range above produces. Occasionally worthwhile in circumstances where you require ongoing strategy alongside the construction itself; frequently you are simply financing somebody else's overhead.
 
 ## What about AI website builders and "vibe coding"?
 

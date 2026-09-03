@@ -31,7 +31,7 @@ Complete every field — hours, telephone number, categories, a genuine descript
 
 Google cross-checks your business information against the other places it appears online: your website, Yelp, Facebook, and old directory listings you had forgotten existed. If your address is rendered three different ways across those sources, or your telephone number changed while one listing still carries the previous one, that inconsistency quietly damages you.
 
-Correcting the discrepancies is undeniably tedious. It is nonetheless a **one-time cleanup rather than ongoing work** — once completed, it stays completed.
+Correcting the accumulated discrepancies is undeniably tedious work. It is nonetheless a **one-time cleanup rather than ongoing work** — once completed, it stays completed.
 
 ## Reviews matter more than most owners want to believe
 

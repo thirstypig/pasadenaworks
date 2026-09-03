@@ -61,7 +61,7 @@ export const services: Service[] = [
         title: 'Websites that bring in work',
         tagline: "So a slow, outdated site doesn't send customers to someone else.",
         summary:
-          "If your site loads slowly, appears outdated, or fails to state clearly what you do, visitors leave and go elsewhere. We build fast, straightforward sites that you genuinely own once we have finished. No hidden fees, and no arrangement that locks you in.",
+          "If your site loads slowly, appears outdated, or fails to state clearly what you do, visitors leave and go elsewhere. We build fast, straightforward sites that you genuinely own the moment we have finished, with no hidden fees and no arrangement that locks you into anything afterward.",
         body: [
           '<p>Most small business websites were constructed once, years ago, by somebody who has since stopped answering emails. The maintenance nobody scheduled simply never happened. Meanwhile the customer has already given up and telephoned the shop down the street.</p>',
           '<h3>How it works</h3><ul><li>Fast on a phone, correct information, a phone number or form that\'s impossible to miss</li><li>Built so Google can actually read it — most sites quietly fail here</li><li>Optional: <a href="/glossary/#integrations">integrations</a> with your CRM or calendar, so new leads land where you already work</li></ul>',
@@ -154,7 +154,7 @@ export const services: Service[] = [
         title: 'Getting found online',
         tagline: 'The customers are already searching. Be the result they see.',
         summary:
-          'When someone nearby searches for what you sell, you want to be the result they see — on Google, on Yelp, and now on AI tools like ChatGPT. It takes months to work, but then it keeps working long after you stop paying.',
+          'When somebody nearby searches for what you sell, you want to be the result they actually see — on Google, on Yelp, and now on AI tools such as ChatGPT. It takes several months to begin working, and then continues working long after you have stopped paying for it.',
         body: [
           '<p>Somebody within three miles of you is typing your service into their phone at this moment, and the only genuine question is whose name appears when they do.</p>',
           '<h3>How it works</h3><ul><li>Your <a href="/glossary/#google-business-profile">Google Business Profile</a> and <a href="/glossary/#reviews">reviews</a>, fully handled</li><li>Your name, address, and phone number made consistent everywhere online</li><li>How you actually look on Yelp, Quora, and Reddit — not just Google</li><li>Pages and articles that answer the exact questions your customers are typing</li></ul>',
@@ -253,7 +253,7 @@ export const services: Service[] = [
         title: 'Paid and organic marketing',
         tagline: "So you don't waste money on marketing that never made sense.",
         summary:
-          "Paid ads can bring in customers fast, and organic content keeps working long after you stop paying — but both waste money if they're not built around what a customer is worth to you. We say so honestly if paid doesn't make sense yet.",
+          "Paid advertising can bring in customers quickly, and organic content continues working long after you stop paying for it — but both waste money unless they are built around what a customer is genuinely worth to you. We will say so honestly if paid advertising does not yet make sense for your situation.",
         body: [
           '<p>Paid advertising is the fastest route to getting in front of people, and equally the fastest method of burning money. Most businesses require some combination of paid and organic. The genuine question concerns which combination.</p>',
           '<h3>How it works</h3><ul><li>We work out what a customer is actually worth to you, first</li><li>If paid ads don\'t make sense yet, we say so and point you toward <a href="/glossary/#seo">SEO</a>, <a href="/glossary/#geo">GEO</a>, or your existing customer list instead</li><li>When ads do make sense: a small number of campaigns, a real budget cap, tracked calls and forms</li></ul>',
@@ -347,7 +347,7 @@ export const services: Service[] = [
         title: 'Online consulting',
         tagline: 'An honest answer, from someone with nothing to gain either way.',
         summary:
-          "Not sure whether to invest in a new website, more visibility on Google, or paid ads next? We look at your online efforts together and tell you honestly what's actually worth doing — and what to skip.",
+          "Uncertain whether to invest next in a new website, greater visibility on Google, or paid advertising? We examine your existing online efforts together and tell you honestly what is genuinely worth doing, and equally what is worth skipping entirely.",
         body: [
           "<p>Call it a consultancy session, a strategy check-in, or just a second opinion — the label doesn't matter. This isn't general business consulting; it's specifically about your online presence — your website, your visibility, your marketing — and how to sequence and implement it well.</p>",
           '<h3>How it works</h3><ul><li>A working session, not a lecture — we look at what\'s actually happening across your website, search visibility, and ads together</li><li>Help deciding what to invest in online next, and what to leave alone</li><li>A short written summary you can act on, not a slide deck</li></ul>',
@@ -388,15 +388,15 @@ export const services: Service[] = [
           '不确定究竟应当投资新网站、提升谷歌曝光，还是投放付费广告？我们会与您一同检视现有的线上工作，并且诚实告知何者真正值得投入，至于何者则可以暂且搁置。',
         body: [
           '<p>无论称之为经营咨询、战略会谈，抑或单纯就是第二意见，名称本身并不重要。此外，这并非一般性的经营咨询，而是专门针对您的线上呈现——您的网站、您的曝光度、您的营销——以及这些事项究竟应当依何种顺序推进、又该如何落地。</p>',
-          '<h3>怎么做</h3><ul><li>一次会谈，不是听课——我们一起看您的网站、搜索曝光和广告到底是什么情况</li><li>帮您决定接下来该在线上投资什么，什么可以先放着不管</li><li>一份能直接用的简短书面总结，不是一堆幻灯片</li></ul>',
+          '<h3>怎么做</h3><ul><li>一次会谈而非授课——我们将一同检视您的网站、搜索曝光与广告目前究竟处于何种状况</li><li>协助您判断接下来应当于线上投入何处，至于何者则可以暂且搁置</li><li>一份能直接用的简短书面总结，不是一堆幻灯片</li></ul>',
           '<p>有时候诚实的答案是：您的线上呈现已经运作得相当良好，因此并不需要我们。此外，这句话我们同样会照实说出来，与其他任何结论并无二致。</p>',
         ],
         outcomes: [
-          '一次会谈，弄清楚线上先解决哪件事',
-          '看清楚您哪些线上投入真正有回报',
-          '一份留给您的简短书面总结，不是一堆幻灯片',
-          '一个给下个季度用的简单落地计划，不是没人会看的五年战略',
-          '一次回访，看看办法有没有奏效',
+          '一次会谈，藉此厘清线上应当优先处理何事',
+          '厘清您既有的线上投入之中，何者真正产生回报',
+          '一份留予您的简短书面总结，而非一叠无人翻阅的幻灯片',
+          '一份供下个季度使用的简明执行计划，而非无人阅读的五年战略',
+          '一次后续回访，藉以确认前述方法是否确实奏效',
         ],
         meta: '为南加州小型企业主提供线上策略咨询——网站、曝光度、营销该投资什么，什么可以先放一放，不讲行话。',
       },
@@ -407,15 +407,15 @@ export const services: Service[] = [
           '不確定究竟應當投資新網站、提升 Google 曝光，還是投放付費廣告？我們會與您一同檢視現有的線上工作，並且誠實告知何者真正值得投入，至於何者則可以暫且擱置。',
         body: [
           '<p>無論稱之為經營諮詢、策略會談，抑或單純就是第二意見，名稱本身並不重要。此外，這並非一般性的經營諮詢，而是專門針對您的線上呈現——您的網站、您的曝光度、您的行銷——以及這些事項究竟應當依何種順序推進、又該如何落地。</p>',
-          '<h3>怎麼做</h3><ul><li>一次會談，不是聽課——我們一起看您的網站、搜尋曝光和廣告到底是什麼情況</li><li>幫您決定接下來該在線上投資什麼，什麼可以先放著不管</li><li>一份能直接用的簡短書面總結，不是一堆簡報</li></ul>',
+          '<h3>怎麼做</h3><ul><li>一次會談而非授課——我們將一同檢視您的網站、搜尋曝光與廣告目前究竟處於何種狀況</li><li>協助您判斷接下來應當於線上投入何處，至於何者則可以暫且擱置</li><li>一份能直接用的簡短書面總結，不是一堆簡報</li></ul>',
           '<p>有時候誠實的答案是：您的線上呈現已經運作得相當良好，因此並不需要我們。此外，這句話我們同樣會照實說出來，與其他任何結論並無二致。</p>',
         ],
         outcomes: [
-          '一次會談，釐清線上先解決哪件事',
-          '看清楚您哪些線上投入真正有回報',
-          '一份留給您的簡短書面總結，不是一堆簡報',
-          '一個給下一季用的簡單落地計畫，不是沒人會看的五年戰略',
-          '一次回訪，看看方法有沒有奏效',
+          '一次會談，藉此釐清線上應當優先處理何事',
+          '釐清您既有的線上投入之中，何者真正產生回報',
+          '一份留予您的簡短書面總結，而非一疊無人翻閱的簡報',
+          '一份供下一季使用的簡明執行計畫，而非無人閱讀的五年戰略',
+          '一次後續回訪，藉以確認前述方法是否確實奏效',
         ],
         meta: '為南加州小型企業主提供線上策略諮詢——網站、曝光度、行銷該投資什麼，什麼可以先放一放，不講行話。',
       },

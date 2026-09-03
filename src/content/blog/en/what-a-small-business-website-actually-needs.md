@@ -27,7 +27,7 @@ If your homepage requires five seconds to load because of an enormous unoptimize
 
 ## Say what you do, in the first few seconds
 
-Do not oblige somebody to scroll downward merely in order to establish whether you are a bakery or a bakery-supply wholesaler. State it in plain words near the top of the page: what you do, and precisely whom it is intended for. Reserve the clever tagline for considerably later, if indeed at all.
+Do not oblige somebody to scroll downward merely in order to establish whether you are a bakery or a bakery-supply wholesaler. State it in plain words near the top of the page: what you do, and precisely whom it is intended for. Reserve the clever tagline for considerably later in the page, assuming it belongs anywhere at all.
 
 ## Hours, location, and contact information — correct and easy to find
 

@@ -12,6 +12,9 @@ import {
   FORMAL_MARKERS,
   COLLOQUIAL_MARKERS,
   report,
+  reportDist,
+  mainProse,
+  localeFromPath,
 } from './readability.mjs';
 
 const BLOG_DIR = join(dirname(fileURLToPath(import.meta.url)), '../src/content/blog');
@@ -339,5 +342,75 @@ describe('Chinese corpus grammar guards', () => {
     const hitsInHant = [...'這裡有个簡體字'].filter((ch) => SIMPLIFIED.includes(ch));
     expect(hitsInHant).toContain('个');
     expect([...'这里有個简体字'].filter((ch) => TRADITIONAL.includes(ch))).toContain('個');
+  });
+});
+
+describe('rendered-page extraction', () => {
+  it('reads the locale off the built path', () => {
+    expect(localeFromPath('dist/index.html')).toBe('en');
+    expect(localeFromPath('dist/es/servicios/sitios-web/index.html')).toBe('es');
+    expect(localeFromPath('dist/zh-hant/fuwu/wangzhan-jianzhi/index.html')).toBe('zh-hant');
+    // A city called "es-something" must not read as Spanish.
+    expect(localeFromPath('dist/websites/estancia/index.html')).toBe('en');
+  });
+
+  it('takes only what is inside <main>', () => {
+    const html = '<header>site nav here</header><main><p>The prose that counts.</p></main><footer>footer text</footer>';
+    const out = mainProse(html);
+    expect(out).toContain('The prose that counts');
+    expect(out).not.toContain('site nav');
+    expect(out).not.toContain('footer text');
+  });
+
+  /**
+   * Buttons, forms and calls to action are excluded because UI text is
+   * deliberately NOT raised to college register — "Contact us" must not
+   * become "Initiate correspondence". Measuring it would create pressure to
+   * do exactly what the house style forbids.
+   *
+   * The attribute-order case is a real bug this caught: the homepage CTA is
+   * written <a href={...} ... class="btn">, and an earlier version anchored
+   * on `class` appearing first, so it silently measured the button text.
+   */
+  it('excludes buttons regardless of attribute order', () => {
+    expect(mainProse('<main><a class="btn" href="/x">Press Here</a><p>Real prose.</p></main>')).not.toContain('Press Here');
+    expect(mainProse('<main><a href="/x" rel="noopener" class="btn">Press Here</a><p>Real prose.</p></main>')).not.toContain('Press Here');
+  });
+
+  it('excludes form field labels', () => {
+    const out = mainProse('<main><p>Real prose.</p><form><label>Company</label><label>Email</label><button>Send</button></form></main>');
+    expect(out).toContain('Real prose');
+    expect(out).not.toContain('Company');
+    expect(out).not.toContain('Send');
+  });
+
+  it('drops headings, matching the markdown path', () => {
+    expect(mainProse('<main><h2>Short Heading</h2><p>Body prose here.</p></main>')).not.toContain('Short Heading');
+  });
+
+  /**
+   * THE CROSS-CHECK. Blog posts are the only content measurable both ways,
+   * and their agreement is the only evidence the rendered extraction is
+   * faithful. They started 1.1 grades apart; the whole gap was page
+   * furniture inside <main>. Anything that reopens it should fail here.
+   */
+  it('agrees with the markdown path on live posts, within half a grade', () => {
+    const rendered = reportDist(join(BLOG_DIR, '../../../dist'));
+    const live = [
+      'why-customers-cant-find-your-business-on-google',
+      'what-a-small-business-website-actually-needs',
+      'when-to-raise-prices-small-business',
+      'how-much-should-a-small-business-website-cost',
+    ];
+    let compared = 0;
+    for (const slug of live) {
+      const md = analyze(readFileSync(join(BLOG_DIR, 'en', `${slug}.md`), 'utf8'), 'en');
+      const html = rendered.find((r) => r.page === `/blog/${slug}/index.html`);
+      if (!html) continue; // date-gated out of the build
+      compared += 1;
+      expect(Math.abs(html.fkGrade - md.fkGrade), `${slug}: md ${md.fkGrade} vs html ${html.fkGrade}`).toBeLessThanOrEqual(0.5);
+    }
+    // Positive control: if the build is missing the comparison is vacuous.
+    expect(compared, 'no live posts found in dist/ — run npm run build first').toBeGreaterThan(0);
   });
 });
