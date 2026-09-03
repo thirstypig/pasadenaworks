@@ -1,4 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import {
   analyze,
   prose,
@@ -8,7 +11,10 @@ import {
   TARGETS,
   FORMAL_MARKERS,
   COLLOQUIAL_MARKERS,
+  report,
 } from './readability.mjs';
+
+const BLOG_DIR = join(dirname(fileURLToPath(import.meta.url)), '../src/content/blog');
 
 describe('prose extraction', () => {
   it('drops frontmatter, code and tables before measuring', () => {
@@ -187,5 +193,151 @@ describe('verdict', () => {
       expect(t.max, locale).toBeGreaterThan(t.min);
       expect(Number.isFinite(t.max), locale).toBe(true);
     }
+  });
+});
+
+describe('quoted sample text', () => {
+  const post = `---
+title: x
+---
+
+> **TL;DR** — This opening summary constitutes the article's own prose and is
+> therefore measured alongside everything else in the piece.
+
+Ordinary article prose that the measurement should certainly include.
+
+> Hey [name], glad the job worked out. No pressure either way.
+
+More ordinary article prose follows the quoted template above.
+`;
+
+  it('keeps the opening summary, which is the article speaking', () => {
+    expect(prose(post)).toContain("article's own prose");
+  });
+
+  it('drops a later quoted sample the reader will send verbatim', () => {
+    // A text message to a customer must stay plain. Measuring it as article
+    // prose would create pressure to make the template worse advice in
+    // order to move a number that is describing something else.
+    expect(prose(post)).not.toContain('No pressure either way');
+  });
+
+  it('keeps the prose on both sides of a dropped quote', () => {
+    const out = prose(post);
+    expect(out).toContain('should certainly include');
+    expect(out).toContain('More ordinary article prose');
+  });
+
+  /**
+   * KNOWN HOLE, left open deliberately and recorded rather than hidden.
+   *
+   * Because every blockquote after the first is dropped, a writer could in
+   * principle park ordinary prose in a blockquote to keep it out of the
+   * band. Nothing here prevents that. The guard is human: quoting prose you
+   * wrote yourself reads as obviously strange in review. Closing it
+   * mechanically would mean distinguishing "quoted sample" from "block
+   * quotation" by content, which no rule available here does reliably.
+   */
+  it('can be dodged by parking prose in a blockquote — documented, not fixed', () => {
+    const dodge = prose(`---
+title: x
+---
+
+> **TL;DR** — summary text here for the opening block.
+
+> Short. Simple. Plain. Would drag the grade down if it counted.
+`);
+    expect(dodge).not.toContain('Would drag the grade down');
+  });
+});
+
+describe('Chinese corpus grammar guards', () => {
+  const zh = report().filter((r) => r.locale.startsWith('zh'));
+
+  it('has Chinese posts to check', () => {
+    // Positive control. An empty corpus would make every guard below pass
+    // vacuously, which is the failure mode this repo has hit before.
+    expect(zh.length).toBeGreaterThan(0);
+  });
+
+  /**
+   * 由於 / 由于 introduces a clause; it does not trail one after a comma the
+   * way 因為 does. Written twice during the 2026-09-03 register conversion,
+   * both times while swapping a colloquial marker for a formal one purely to
+   * move the register index — and both times it produced worse Chinese than
+   * what it replaced.
+   *
+   * The lesson generalises past this one word: the index describes the
+   * prose. Editing the prose to move the index, rather than editing it to
+   * read better, inverts what the measurement is for.
+   */
+  it('never trails 由於/由于 after a comma', () => {
+    const offenders = [];
+    for (const row of zh) {
+      const raw = readFileSync(join(BLOG_DIR, row.locale, row.file), 'utf8');
+      for (const m of raw.matchAll(/[，,]\s*由[於于]/g)) {
+        offenders.push(`${row.locale}/${row.file}: …${raw.slice(Math.max(0, m.index - 18), m.index + 8)}…`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  /**
+   * A SAMPLE, NOT AN ALPHABET. These are ~90 of the most common characters
+   * that differ between the scripts, chosen for frequency in this corpus.
+   * A first version used twelve and let an injected 个/简/体 through during
+   * its own verification — the guard fired only once the injected character
+   * happened to be on the list.
+   *
+   * Same shape of hole as the British-spelling denylist described in
+   * `writing-american-english-copy`: passing means "the common cases are
+   * clean", never "the scripts do not mix". Widen it when a leak gets past.
+   */
+  const SIMPLIFIED = '们网这么马电买卖东车间时个简体为说话业应实让经营对开关产资讯页点线钱价评标题过还进发现样种级结给认识记录导际档条单处务动场广华选择显较观觉该误请谢读变属续总联职号术卫装复规视亲览访语议护财责费质轻输农远适乡银错钟闭阳阶随难静愿类飞饭养验';
+  const TRADITIONAL = '們網這麼馬電買賣東車間時個簡體為說話業應實讓經營對開關產資訊頁點線錢價評標題過還進發現樣種級結給認識記錄導際檔條單處務動場廣華選擇顯較觀覺該誤請謝讀變屬續總聯職號術衛裝複規視親覽訪語議護財責費質輕輸農遠適鄉銀錯鐘閉陽階隨難靜願類飛飯養驗';
+
+  /**
+   * One post is allowed to mix, and it is the post about mixing.
+   *
+   * "整體還是簡體官網" explains the difference between the two scripts to a
+   * reader choosing between them, and its opening gloss is 簡體（简体） — the
+   * Traditional term followed by the actual Simplified form in parentheses.
+   * Showing the reader the thing being described is the correct editorial
+   * call, so the exemption is per file and carries its reason, rather than
+   * the guard being weakened for all twenty.
+   */
+  const SCRIPT_GUARD_EXEMPT = {
+    'zhengti-haishi-jianti-guanwang.md':
+      'glosses 簡體（简体） deliberately; the post is about the two scripts',
+    'jianti-haishi-fanti-wangzhan.md':
+      'same post in zh-hans; glosses the Traditional form for the same reason',
+  };
+
+  it('keeps Simplified and Traditional scripts from mixing', () => {
+    const bad = [];
+    for (const row of zh) {
+      if (SCRIPT_GUARD_EXEMPT[row.file]) continue;
+      const raw = readFileSync(join(BLOG_DIR, row.locale, row.file), 'utf8');
+      const wrong = row.locale === 'zh-hant' ? SIMPLIFIED : TRADITIONAL;
+      const hits = [...raw].filter((ch) => wrong.includes(ch));
+      if (hits.length) bad.push(`${row.locale}/${row.file}: ${[...new Set(hits)].join('')}`);
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('every exemption names a file that still exists', () => {
+    // An exemption for a renamed file silently widens the hole it was
+    // opened for, and nothing else would ever notice.
+    const present = new Set(zh.map((r) => r.file));
+    for (const file of Object.keys(SCRIPT_GUARD_EXEMPT)) {
+      expect(present.has(file), `${file} is exempted but not in the corpus`).toBe(true);
+    }
+  });
+
+  it('the script guard actually fires on a mixed-script string', () => {
+    // Positive control for the guard above, so it can never pass vacuously.
+    const hitsInHant = [...'這裡有个簡體字'].filter((ch) => SIMPLIFIED.includes(ch));
+    expect(hitsInHant).toContain('个');
+    expect([...'这里有個简体字'].filter((ch) => TRADITIONAL.includes(ch))).toContain('個');
   });
 });

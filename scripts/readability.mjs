@@ -116,6 +116,27 @@ export const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'
  * ("## What actually works") and folding them into the sentence average
  * drags it toward zero, which would let a post pass the band by adding
  * subheadings instead of by rewriting anything.
+ *
+ * ── QUOTED SAMPLE TEXT IS EXCLUDED, AND THE FIRST BLOCKQUOTE IS NOT ──
+ *
+ * Every post opens with a summary in a blockquote (TL;DR / En corto / 重點).
+ * That IS the article's own prose, it carries the most weight of anything on
+ * the page, and it is measured.
+ *
+ * LATER blockquotes are a different kind of thing. The reviews post quotes
+ * three sample messages a reader will send verbatim to a customer — a text
+ * message, an email, a reply to a bad review. Those must stay plain: a text
+ * to a plumbing customer written at college level would be worse advice, not
+ * better. Measured as article prose they pulled that post from 13.4 to 11.9,
+ * which would have created pressure to degrade the templates in order to
+ * move a number describing something else entirely.
+ *
+ * This mirrors the rule in the `writing-american-english-copy` skill —
+ * quoted material is not yours to correct — and the risk it carries is that
+ * a future writer could park ordinary prose in a blockquote to dodge the
+ * band. `readability.test.mjs` documents that hole deliberately rather than
+ * pretending it is closed; the guard is that quoting prose you wrote
+ * yourself is visibly odd in review.
  */
 export function prose(markdown) {
   let body = markdown.replace(/^---[\s\S]*?\n---\n/, '');
@@ -125,9 +146,32 @@ export function prose(markdown) {
   body = body.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
   body = body.replace(/^\s{0,3}#{1,6}\s+.*$/gm, ' ');
   body = body.replace(/^\s*\|.*\|\s*$/gm, ' ');
+  body = dropQuotedSamples(body);
   body = body.replace(/^\s*[-*+>]\s+/gm, '');
   body = body.replace(/[*_]{1,3}/g, '');
   return body;
+}
+
+/** Keeps the first blockquote block (the summary), drops every later one. */
+export function dropQuotedSamples(body) {
+  const lines = body.split('\n');
+  const out = [];
+  let seenFirstQuote = false;
+  let inQuote = false;
+  for (const line of lines) {
+    const isQuote = /^\s*>/.test(line);
+    if (isQuote && !inQuote) {
+      inQuote = true;
+      if (!seenFirstQuote) seenFirstQuote = 'keeping';
+      else seenFirstQuote = 'dropping';
+    } else if (!isQuote && inQuote) {
+      inQuote = false;
+      if (seenFirstQuote === 'keeping') seenFirstQuote = 'done';
+    }
+    if (isQuote && seenFirstQuote === 'dropping') continue;
+    out.push(line);
+  }
+  return out.join('\n');
 }
 
 /* ── English ───────────────────────────────────────────────────────────── */
