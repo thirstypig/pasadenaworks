@@ -15,32 +15,32 @@ translationKey: raising-prices
 slug: when-to-raise-prices-small-business
 ---
 
-> **TL;DR** — If you're consistently busy, haven't raised prices in over a year, or dread a certain job because it doesn't pay enough for the hassle, it's probably time to raise your prices. Most owners wait far longer than they should, and a reasonable increase costs you fewer customers than you'd expect.
+> **TL;DR** — If you are consistently busy, have not raised prices in over a year, or quietly dread a particular job because it does not pay enough for the hassle involved, then it is probably time to raise your prices. Most owners wait considerably longer than they should, and a reasonable increase costs you fewer customers than you would expect.
 
-If you're consistently busy, if you haven't raised prices in over a year, or if you find yourself quietly dreading the next job because it doesn't pay enough for the hassle, it's probably time. Most small business owners wait far longer than they should, because raising prices feels like a confrontation instead of a normal, expected part of running a business.
+If you are consistently busy, if you have not raised prices in over a year, or if you find yourself quietly dreading the next job because it does not pay enough for the hassle involved, then it is probably time. Most small business owners wait considerably longer than they should, because raising prices feels like a confrontation rather than a normal and entirely expected part of running a business.
 
 ## Being consistently busy is the clearest signal
 
-If you're turning away work, or booking weeks out, or saying yes to everything because you're afraid to say no, your prices are telling you something.
+If you are turning away work, or booking several weeks out, or consenting to everything because you are afraid of saying no, then your prices are telling you something reasonably specific.
 
-**Demand that outstrips your capacity is the market's way of saying you're underpriced** — not a sign to work more hours.
+**Demand that outstrips your available capacity is the market's way of indicating that you are underpriced** — rather than an instruction to work additional hours.
 
 ## A year without a price change is a real cost
 
-Materials, rent, insurance, and your own time all get more expensive every year, quietly. If your prices haven't moved, your margin has been shrinking the whole time, even though nothing dramatic happened to make it feel that way.
+Materials, rent, insurance, and your own time all become more expensive every year, quietly and without announcement. If your prices have not moved throughout that period, your margin has been shrinking the entire time, even though nothing sufficiently dramatic occurred to make the erosion noticeable.
 
-Check your pricing at least once a year, on purpose, the same way you'd check anything else that drifts if left alone.
+Review your pricing at least annually, deliberately, in the same manner you would review anything else that drifts when left unattended.
 
 ## Dread is data
 
-If a certain type of job makes your stomach sink when it comes in — not because it's hard, but because it doesn't pay enough for what it costs you — that's real information.
+If a particular category of job makes your stomach sink when it arrives — not because the work is difficult, but because it does not pay enough for what it genuinely costs you — that constitutes real information rather than mere temperament.
 
-> You don't have to keep offering it at the old price, or at all.
+> You are under no obligation to continue offering it at the previous price, or indeed to continue offering it at all.
 
 ## Raising prices is a smaller deal than it feels like
 
-Most owners picture a wave of angry customers. In practice, a reasonable increase loses you a small number of your most price-sensitive customers — often the ones costing you the most time relative to what they pay — and the rest barely notice.
+Most owners picture an incoming wave of indignant customers. In practice, a reasonable increase loses you a small number of your most price-sensitive customers — frequently the very ones costing you the most time relative to what they actually pay — while the remainder barely register that anything happened.
 
-You can announce it plainly: "Starting next month, prices are going up to keep up with costs." **You don't need to apologize for running a business that has to stay solvent.**
+You can announce it plainly: "Starting next month, prices are going up to keep up with costs." **You are not required to apologize for operating a business that has to remain solvent.**
 
-If you want a second, disinterested opinion on your specific numbers before you decide, that's exactly what [a working session on pricing](/services/business-advice/) is for. Sometimes the honest answer is that you're fine as you are — we'll tell you that too.
+If you would like a second, disinterested opinion on your specific numbers before deciding, that is precisely what [a working session on pricing](/services/business-advice/) exists for. Sometimes the honest answer is that you are entirely fine as you are, and we will tell you that as readily.
