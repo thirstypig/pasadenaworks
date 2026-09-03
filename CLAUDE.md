@@ -46,7 +46,9 @@ npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
 npm run readability  # reading level of every post, per locale, against the house targets
-npm run test         # unit tests (vitest, 131) — i18n/hreflang, reading time, city/service
+npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
+                     #   homepage) — run `npm run build` first
+npm run test         # unit tests (vitest, 146) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, and the per-locale readability
@@ -387,6 +389,35 @@ checking the postcard claim is what revealed the post had been overstating it.
 rewrites exactly the comparatives and modals that `blog-content.test.ts`
 cannot see. Re-read every "more/less", "should/shouldn't" and every modal
 against the English twin before shipping a translation set.
+
+**What is deliberately NOT raised.** The instruction was "throughout the
+site", and three things are still excluded on purpose:
+
+- **UI text** — nav, buttons, form labels, CTAs. "Contact us" must not
+  become "Initiate correspondence". These are excluded from measurement
+  too, because scoring them creates pressure to do exactly that.
+- **Legal pages** (`/terms/`, `/privacy/`, `/accessibility/`) — rewriting a
+  privacy policy for reading level risks changing what it commits you to.
+- **The glossary** — its job is explaining technical terms to people who do
+  not know them, so college-level definitions defeat the purpose.
+
+Also untouched within the data modules: `meta` descriptions (155 characters
+to win a click in a search result is a different job from reading well),
+`title`, and `tagline`. Index/listing pages are card summaries and are
+reported but not scored.
+
+**Two measurement paths, and they must agree.** The blog is markdown and is
+scored at source. Service, city and homepage copy lives in `src/data/*.ts`
+and reaches the page through components, so it is scored from the BUILT
+page instead — whatever sits inside `<main>`. Blog posts are scored both
+ways deliberately: `readability.test.mjs` fails if the two disagree by more
+than half a grade. They started 1.1 apart, and the entire gap was page
+furniture inside `<main>` — a back-link, an image credit, a CTA button.
+
+**City pages: check the facts survived.** Hard rule 2 content is sourced.
+After any register edit to `cities.ts`, assert the specifics are still in
+the built output (1926, Laura Scudder, 400 storefronts, 1895, Renaissance
+Plaza, Huntington Drive, 1887) rather than trusting the diff.
 
 ## Known outstanding work
 
