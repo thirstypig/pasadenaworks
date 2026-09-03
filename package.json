@@ -12,7 +12,8 @@
     "preview": "astro preview --port 3180",
     "admin": "tinacms dev -c \"astro dev --port 3180\"",
     "test": "vitest run",
-    "content:status": "node scripts/content-status.mjs"
+    "content:status": "node scripts/content-status.mjs",
+    "readability": "node scripts/readability.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

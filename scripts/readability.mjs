@@ -1,0 +1,307 @@
+/**
+ * ─────────────────────────────────────────────────────────────────────────
+ *  READABILITY — measures the reading level of every post, per locale.
+ * ─────────────────────────────────────────────────────────────────────────
+ *
+ *  Run with `npm run readability` (add `--json` for machine output).
+ *
+ *  WHY THIS EXISTS: on 2026-09-03 the owner set a house target of
+ *  college-level English. Before that call there was no number attached to
+ *  the copy at all, and the level had drifted badly without anyone seeing
+ *  it — the four posts written FOR Spanish- and Chinese-speaking readers
+ *  had landed at grade 12.0–12.2 while "How to fire a customer" sat at 6.7.
+ *  A five-grade spread nobody chose. This makes the level visible so it is
+ *  chosen rather than accumulated.
+ *
+ *  ── ONE FORMULA PER LANGUAGE, NEVER ONE FORMULA FOR ALL ──
+ *
+ *  Flesch-Kincaid is defined over ENGLISH syllables and English word
+ *  length. Running it on Spanish inflates every score (Spanish words carry
+ *  more syllables for the same idea), and running it on Chinese is not
+ *  merely inaccurate but meaningless — the syllable term divides by a
+ *  vowel count that does not exist in Han script, and the word count
+ *  depends on segmentation this repo has no tokenizer for. A single
+ *  `grade` column across four locales would be a fabricated number in two
+ *  of them, which is worse than no number: see
+ *  `project-verification-greps-go-stale` for how a check that cannot fail
+ *  becomes decorative.
+ *
+ *  So:
+ *    en           → Flesch-Kincaid grade + Flesch Reading Ease (validated)
+ *    es           → Fernández Huerta (the Spanish adaptation of Flesch,
+ *                   with a Spanish syllable counter that handles diphthongs)
+ *    zh-hans/hant → NO grade level is reported. Sentence length PLUS a
+ *                   register index, because in Chinese the two come apart:
+ *                   see below.
+ *
+ *  ── WHY CHINESE NEEDS A REGISTER INDEX, NOT A LENGTH TARGET ──
+ *
+ *  The first version of this file targeted characters-per-sentence alone
+ *  and reported 19/20 Chinese posts already "in band" — which would have
+ *  meant the Chinese rewrite was finished before it started. That was the
+ *  metric being wrong, not the posts being right.
+ *
+ *  English raises register mostly by subordinating clauses, so length and
+ *  difficulty move together and one number tracks both. Chinese raises
+ *  register mostly by LEXICAL CHOICE — 書面語 over 口語 — and barely moves
+ *  sentence length at all. 所以 becomes 因此, 但是 becomes 然而, 不是
+ *  becomes 並非; sentence-final particles (吧 呢 啊 嘛) drop away. A post can
+ *  be rewritten from conversational to academic Chinese and land on exactly
+ *  the same characters-per-sentence.
+ *
+ *  So `registerIndex` is the real target for zh, and characters-per-
+ *  sentence is kept only as a guard against runaway sentences.
+ */
+import { readFileSync, readdirSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const BLOG = join(ROOT, 'src/content/blog');
+
+export const LOCALES = ['en', 'es', 'zh-hans', 'zh-hant'];
+
+/**
+ * House targets, set 2026-09-03.
+ *
+ * English is a BAND, not a ceiling. A single "13+" floor would be passed
+ * by a 40-word unreadable sentence just as happily as by good academic
+ * prose, so the upper bound is load-bearing — it is what stops "college
+ * level" from becoming "impenetrable".
+ *
+ * Spanish reads on the Fernández Huerta scale, where HIGHER means EASIER
+ * (60–70 is normal prose, 30–50 is university level). "College level" is
+ * therefore a push DOWN, and the posts currently sit at a mean of 70.7.
+ */
+export const TARGETS = {
+  en: { metric: 'fkGrade', min: 13, max: 15, label: 'FK grade 13–15' },
+  es: { metric: 'fernandezHuerta', min: 40, max: 55, label: 'F-H 40–55 (lower = harder)' },
+  'zh-hans': { metric: 'registerIndex', min: 0.55, max: 0.85, label: 'register 0.55–0.85' },
+  'zh-hant': { metric: 'registerIndex', min: 0.55, max: 0.85, label: 'register 0.55–0.85' },
+};
+
+/**
+ * 書面語 (written/formal) markers and their 口語 (spoken/colloquial)
+ * counterparts, in both Simplified and Traditional forms.
+ *
+ * Only multi-character markers are listed. Single formal characters (亦,
+ * 即, 若, 之, 其) are far more discriminating in principle but appear inside
+ * unrelated compounds constantly — 其 alone occurs in 其他, 其中, 尤其 — so
+ * counting them would measure vocabulary that has nothing to do with
+ * register.
+ */
+export const FORMAL_MARKERS = [
+  '因此', '然而', '並非', '并非', '此外', '由於', '由于', '對於', '对于',
+  '關於', '关于', '至於', '至于', '儘管', '尽管', '倘若', '進而', '进而',
+  '從而', '从而', '藉由', '借由', '而言', '不僅', '不仅', '並且', '并且',
+  '亦即', '換言之', '换言之', '如此', '繼而', '继而', '隨後', '随后',
+  '較為', '较为', '頗為', '颇为', '尤為', '尤为', '得以', '足以', '意即',
+];
+
+export const COLLOQUIAL_MARKERS = [
+  '所以', '但是', '可是', '不是', '還有', '还有', '然後', '然后', '這樣',
+  '这样', '那樣', '那样', '因為', '因为', '其實', '其实', '反正', '一下',
+  '有點', '有点', '什麼的', '什么的', '之類的', '之类的', '而且',
+];
+
+/** Sentence-final particles — pure spoken-register signal, no formal use. */
+export const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
+
+/* ── text extraction ───────────────────────────────────────────────────── */
+
+/**
+ * Strips a markdown post down to the prose a reader actually reads.
+ *
+ * Headings are removed rather than counted. They are deliberate fragments
+ * ("## What actually works") and folding them into the sentence average
+ * drags it toward zero, which would let a post pass the band by adding
+ * subheadings instead of by rewriting anything.
+ */
+export function prose(markdown) {
+  let body = markdown.replace(/^---[\s\S]*?\n---\n/, '');
+  body = body.replace(/```[\s\S]*?```/g, ' ');
+  body = body.replace(/`[^`]*`/g, ' ');
+  body = body.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ');
+  body = body.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
+  body = body.replace(/^\s{0,3}#{1,6}\s+.*$/gm, ' ');
+  body = body.replace(/^\s*\|.*\|\s*$/gm, ' ');
+  body = body.replace(/^\s*[-*+>]\s+/gm, '');
+  body = body.replace(/[*_]{1,3}/g, '');
+  return body;
+}
+
+/* ── English ───────────────────────────────────────────────────────────── */
+
+export function englishSyllables(word) {
+  const w = word.toLowerCase().replace(/[^a-z]/g, '');
+  if (!w) return 0;
+  if (w.length <= 3) return 1;
+  const trimmed = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '').replace(/^y/, '');
+  const groups = trimmed.match(/[aeiouy]{1,2}/g);
+  return groups ? groups.length : 1;
+}
+
+/* ── Spanish ───────────────────────────────────────────────────────────── */
+
+const STRONG = 'aeoáéó';
+const WEAK = 'iuü';
+const ACCENTED_WEAK = 'íú';
+
+/**
+ * Spanish syllable count.
+ *
+ * Spanish orthography is near-phonetic, so this is far more reliable than
+ * the English heuristic above. The rule that matters is the diphthong: a
+ * weak vowel beside a strong one forms ONE syllable (cui-da-do), unless the
+ * weak vowel carries an accent, which breaks it into two (dí-a). Counting
+ * every vowel separately would overstate by roughly 15% on ordinary prose
+ * and push every Spanish post out of band for a reason that is not real.
+ */
+export function spanishSyllables(word) {
+  const w = word.toLowerCase().replace(/[^a-záéíóúüñ]/g, '');
+  if (!w) return 0;
+  const groups = w.match(/[aeiouáéíóúü]+/g);
+  if (!groups) return 1;
+  let count = 0;
+  for (const group of groups) {
+    if (group.length === 1) { count += 1; continue; }
+    let syllables = 1;
+    for (let i = 1; i < group.length; i += 1) {
+      const prev = group[i - 1];
+      const cur = group[i];
+      const bothStrong = STRONG.includes(prev) && STRONG.includes(cur);
+      const accentBreaks = ACCENTED_WEAK.includes(prev) || ACCENTED_WEAK.includes(cur);
+      if (bothStrong || accentBreaks) syllables += 1;
+    }
+    count += syllables;
+  }
+  return Math.max(count, 1);
+}
+
+/* ── analysis ──────────────────────────────────────────────────────────── */
+
+const CJK_SENTENCE_END = /[。！？!?]+/;
+const CJK_CLAUSE_END = /[。！？，、；：!?,;:]+/;
+
+export function analyze(markdown, locale) {
+  const body = prose(markdown);
+
+  if (locale === 'zh-hans' || locale === 'zh-hant') {
+    const han = (body.match(/[一-鿿]/g) || []).length;
+    const sentences = body.split(CJK_SENTENCE_END)
+      .map((s) => (s.match(/[一-鿿]/g) || []).length)
+      .filter((n) => n > 0);
+    const clauses = body.split(CJK_CLAUSE_END)
+      .map((s) => (s.match(/[一-鿿]/g) || []).length)
+      .filter((n) => n > 0);
+    const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
+    const tally = (markers) =>
+      markers.reduce((sum, m) => sum + (body.split(m).length - 1), 0);
+
+    const formal = tally(FORMAL_MARKERS);
+    const colloquial = tally(COLLOQUIAL_MARKERS);
+    const particles = tally(PARTICLES);
+    // Particles count as colloquial evidence: they have no formal register
+    // use at all, so a post can score "formal" on connectives while still
+    // reading as speech if it ends its sentences with 吧 and 呢.
+    const spoken = colloquial + particles;
+    return {
+      locale,
+      units: han,
+      sentences: sentences.length,
+      charsPerSentence: +mean(sentences).toFixed(1),
+      charsPerClause: +mean(clauses).toFixed(1),
+      longest: sentences.length ? Math.max(...sentences) : 0,
+      formal,
+      colloquial,
+      particles,
+      registerIndex: formal + spoken === 0 ? null : +(formal / (formal + spoken)).toFixed(2),
+      fkGrade: null,
+      readingEase: null,
+      fernandezHuerta: null,
+    };
+  }
+
+  const sentences = body
+    .split(/[.!?]+(?=\s|$)/)
+    .map((s) => s.trim())
+    .filter((s) => s.split(/\s+/).filter(Boolean).length > 1);
+  const words = body.match(/\b[\w'’À-ɏ-]+\b/g) || [];
+  const W = words.length;
+  const S = sentences.length;
+  if (!W || !S) return { locale, units: W, sentences: S, fkGrade: null };
+
+  const counter = locale === 'es' ? spanishSyllables : englishSyllables;
+  const syl = words.reduce((a, w) => a + counter(w), 0);
+  const wordsPerSentence = W / S;
+  const syllablesPerWord = syl / W;
+
+  return {
+    locale,
+    units: W,
+    sentences: S,
+    wordsPerSentence: +wordsPerSentence.toFixed(1),
+    longest: Math.max(...sentences.map((s) => s.split(/\s+/).filter(Boolean).length)),
+    polysyllabicPct: +((words.filter((w) => counter(w) >= 3).length / W) * 100).toFixed(1),
+    fkGrade: locale === 'en'
+      ? +(0.39 * wordsPerSentence + 11.8 * syllablesPerWord - 15.59).toFixed(1)
+      : null,
+    readingEase: locale === 'en'
+      ? +(206.835 - 1.015 * wordsPerSentence - 84.6 * syllablesPerWord).toFixed(0)
+      : null,
+    // Fernández Huerta (1959), the standard Spanish adaptation of Flesch.
+    // Higher is easier, same direction as Reading Ease; ~60 is plain prose.
+    fernandezHuerta: locale === 'es'
+      ? +(206.84 - 60 * syllablesPerWord - 1.02 * wordsPerSentence).toFixed(0)
+      : null,
+  };
+}
+
+/** In band, above it, or below it — `null` when the locale has no target. */
+export function verdict(result) {
+  const target = TARGETS[result.locale];
+  if (!target) return null;
+  const value = result[target.metric];
+  if (value == null) return null;
+  if (value < target.min) return 'below';
+  if (value > target.max) return 'above';
+  return 'ok';
+}
+
+export function report() {
+  const rows = [];
+  for (const locale of LOCALES) {
+    const dir = join(BLOG, locale);
+    for (const file of readdirSync(dir).filter((f) => f.endsWith('.md')).sort()) {
+      const result = analyze(readFileSync(join(dir, file), 'utf8'), locale);
+      rows.push({ file, ...result, verdict: verdict(result) });
+    }
+  }
+  return rows;
+}
+
+/* ── CLI ───────────────────────────────────────────────────────────────── */
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const rows = report();
+  if (process.argv.includes('--json')) {
+    console.log(JSON.stringify(rows, null, 2));
+  } else {
+    const MARK = { ok: '✅', above: '⬆️ ', below: '⬇️ ' };
+    for (const locale of LOCALES) {
+      const group = rows.filter((r) => r.locale === locale);
+      const target = TARGETS[locale];
+      const metric = target.metric;
+      console.log(`\n${locale}  —  target ${target.label}`);
+      for (const r of group.sort((a, b) => (a[metric] ?? 0) - (b[metric] ?? 0))) {
+        console.log(
+          `  ${MARK[r.verdict] ?? '  '} ${String(r[metric]).padStart(6)}  ${r.file.replace(/\.md$/, '').slice(0, 58)}`,
+        );
+      }
+      const inBand = group.filter((r) => r.verdict === 'ok').length;
+      const values = group.map((r) => r[metric]).filter((v) => v != null);
+      const mean = values.reduce((a, b) => a + b, 0) / values.length;
+      console.log(`  ── ${inBand}/${group.length} in band · mean ${mean.toFixed(1)}`);
+    }
+  }
+}
