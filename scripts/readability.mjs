@@ -324,9 +324,120 @@ export function report() {
   return rows;
 }
 
+
+/* ── rendered pages ───────────────────────────────────────────────────── */
+
+/**
+ * Scores BUILT pages rather than source files.
+ *
+ * WHY BOTH: the blog is markdown and can be measured at source, but the
+ * service pages, city pages and homepage are assembled from `src/data/*.ts`
+ * through Astro components, and there is no honest way to score a
+ * TypeScript module — you would be regex-ing string literals out of an
+ * object and guessing which ones a reader ever sees.
+ *
+ * The rendered page settles it: whatever is inside <main> is what somebody
+ * actually reads, wherever the copy came from. Header, nav, language
+ * switcher and footer sit outside <main> and are excluded, which matters
+ * because that chrome repeats on all 67 pages and would drag every score
+ * toward the same number.
+ *
+ * Blog posts are measured BOTH ways on purpose. Their two scores should
+ * land close together, and that agreement is the only evidence that this
+ * extraction is faithful — see the cross-check in readability.test.mjs.
+ */
+export function localeFromPath(p) {
+  const m = p.match(/dist\/(es|zh-hans|zh-hant)\//);
+  return m ? m[1] : 'en';
+}
+
+const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'", nbsp: ' ', mdash: '—', ndash: '–' };
+
+/**
+ * Pulls the readable prose out of one built page.
+ *
+ * Everything removed below is chrome that happens to sit inside <main>, and
+ * each exclusion was found by diffing this extraction against the markdown
+ * one rather than guessed at. On a post the two paths disagreed by about a
+ * grade, and the whole difference was 44 words of furniture: a "Back to
+ * blog" link, an image credit, and a closing call-to-action with a button.
+ * All fragments, all repeated on every post, all dragging
+ * words-per-sentence down.
+ *
+ * Buttons and calls to action are excluded for a second reason that matters
+ * more than the arithmetic. UI text is deliberately NOT being raised to
+ * college register — "Contact us" must not become "Initiate correspondence"
+ * — so scoring it would create pressure to do exactly the thing the house
+ * style forbids.
+ */
+export function mainProse(html) {
+  const m = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/);
+  if (!m) return '';
+  let t = m[1];
+  t = t.replace(/<script[\s\S]*?<\/script>/g, ' ');
+  t = t.replace(/<style[\s\S]*?<\/style>/g, ' ');
+  // Headings: fragments, same reasoning as the markdown path.
+  t = t.replace(/<h[1-6]\b[\s\S]*?<\/h[1-6]>/g, ' ');
+  // Page furniture and interface text.
+  t = t.replace(/<a class="post__back"[\s\S]*?<\/a>/g, ' ');
+  t = t.replace(/<p class="post__(author|meta)"[\s\S]*?<\/p>/g, ' ');
+  t = t.replace(/<figcaption[\s\S]*?<\/figcaption>/g, ' ');
+  t = t.replace(/<div class="end-cta[\s\S]*?<\/div>\s*<\/div>/g, ' ');
+  t = t.replace(/<a class="btn"[\s\S]*?<\/a>/g, ' ');
+  t = t.replace(/<nav\b[\s\S]*?<\/nav>/g, ' ');
+  // Quoted samples: keep the opening summary, drop later blockquotes,
+  // matching dropQuotedSamples() on the markdown side.
+  {
+    let first = true;
+    t = t.replace(/<blockquote[\s\S]*?<\/blockquote>/g, (bq) => {
+      if (first) { first = false; return bq; }
+      return ' ';
+    });
+  }
+  t = t.replace(/<[^>]+>/g, ' ');
+  t = t.replace(/&([a-z#0-9]+);/gi, (_, e) => ENTITIES[e.toLowerCase()] ?? ' ');
+  return t.replace(/\s+/g, ' ').trim();
+}
+
+export function reportDist(distDir) {
+  const out = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name === 'index.html') {
+        const locale = localeFromPath(full.replace(/\\/g, '/'));
+        const text = mainProse(readFileSync(full, 'utf8'));
+        if (!text) continue;
+        const r = analyze(text, locale);
+        // Very short pages (index/listing pages that are mostly links) carry
+        // too few sentences for a grade to mean anything. Reported, not scored.
+        const tooShort = (r.units ?? 0) < 120;
+        out.push({ page: full.replace(/^dist/, '') || '/', ...r, tooShort, verdict: tooShort ? null : verdict(r) });
+      }
+    }
+  };
+  walk(distDir);
+  return out;
+}
+
 /* ── CLI ───────────────────────────────────────────────────────────────── */
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (process.argv.includes('--dist')) {
+    const rows = reportDist(join(ROOT, 'dist')).filter((r) => !r.tooShort);
+    for (const locale of LOCALES) {
+      const group = rows.filter((r) => r.locale === locale);
+      if (!group.length) continue;
+      const t = TARGETS[locale];
+      const off = group.filter((r) => r.verdict !== 'ok');
+      console.log(`\n${locale}  —  target ${t.label}  —  ${group.length - off.length}/${group.length} in band`);
+      for (const r of off.sort((a, b) => (a[t.metric] ?? 0) - (b[t.metric] ?? 0))) {
+        console.log(`  ${r.verdict === 'above' ? '⬆️ ' : '⬇️ '} ${String(r[t.metric]).padStart(6)}  ${r.page}`);
+      }
+    }
+    process.exit(0);
+  }
   const rows = report();
   if (process.argv.includes('--json')) {
     console.log(JSON.stringify(rows, null, 2));
