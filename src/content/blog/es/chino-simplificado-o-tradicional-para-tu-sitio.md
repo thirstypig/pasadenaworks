@@ -15,40 +15,40 @@ translationKey: simplified-traditional-chinese
 slug: chino-simplificado-o-tradicional-para-tu-sitio
 ---
 
-> **En corto** — El chino simplificado (简体) es el que usa China continental. El tradicional (繁體) es el que usan Taiwán, Hong Kong, Macao y buena parte de las comunidades chino-americanas más establecidas. Si no sabes cuál leen tus clientes, pregúntales; no adivines por el hecho de que "son chinos". Equivocarte, o mezclar los dos en una misma página, se lee como descuido para un lector nativo, no como algo neutral.
+> **En corto** — El chino simplificado (简体) es el que utiliza China continental. El chino tradicional (繁體) es el que utilizan Taiwán, Hong Kong, Macao y numerosas comunidades chino-estadounidenses de mayor antigüedad. Si desconoce cuál de los dos leen sus clientes, pregúnteles, antes que suponerlo sobre la base de que son "chinos". Equivocarse, o mezclar ambos en una misma página, se lee como descuido ante un lector nativo, y no como neutralidad.
 
-Si un cliente en Monterey Park o Alhambra va a leer tu página web en chino, necesitas saber en cuál chino. Simplificado y tradicional no son dos tipografías ni dos estilos del mismo idioma: son dos sistemas de escritura distintos para la misma lengua hablada, y una página que los mezcla se ve armada por alguien a quien no le importó lo suficiente como para revisar. Eso es lo contrario de la impresión que quieres dejarle a un cliente que está decidiendo si confiarte su dinero.
+Si un cliente de Monterey Park o Alhambra va a leer su sitio web en chino, usted necesita saber en cuál chino. El simplificado y el tradicional no constituyen dos tipografías ni dos estilos de un mismo idioma: son dos sistemas de escritura distintos para la misma lengua hablada, y una página que los mezcla aparenta haber sido ensamblada por alguien a quien no le importó lo suficiente como para comprobarlo. Ése es precisamente el efecto contrario al que desea dejar en un cliente que está decidiendo si confiarle su dinero.
 
-## La diferencia real, y por qué importa más de lo que suena
+## La diferencia real, y por qué importa más de lo que parece
 
-El chino simplificado lo introdujo el gobierno de China continental en los años cincuenta para aumentar la alfabetización: muchos caracteres comunes se rediseñaron con menos trazos. El chino tradicional conservó las formas antiguas. Taiwán, Hong Kong y Macao nunca adoptaron la simplificación, así que siguen usando tradicional hoy. Singapur y Malasia usan mayormente simplificado.
+El chino simplificado fue introducido por el gobierno de China continental durante la década de 1950 con el fin de elevar la alfabetización, y numerosos caracteres corrientes fueron redibujados con menos trazos. El chino tradicional conservó las formas antiguas de los caracteres y, dado que Taiwán, Hong Kong y Macao nunca adoptaron la simplificación, continúan empleando el tradicional hasta hoy. Singapur y Malasia utilizan predominantemente el simplificado.
 
-Un lector fluido en uno normalmente puede descifrar el otro, más o menos como alguien que habla inglés resuelve la ortografía británica frente a la estadounidense. Pero "puede descifrarlo" no es el estándar para el sitio web de un negocio. Un lector nativo nota el desajuste al instante, y el efecto no es neutral: se lee como "este negocio no sabe con quién está hablando". Para un negocio de servicios que vende confianza tanto como cualquier otra cosa, esa es una mala primera impresión antes de que hayas dicho una palabra sobre tus precios.
+Un lector con fluidez en uno puede frecuentemente descifrar el otro, de modo muy semejante a como un angloparlante suele resolver la ortografía británica frente a la estadounidense. Pero "poder descifrarlo" no constituye el listón de un sitio web comercial. Un lector nativo advierte la discordancia al instante, y el efecto no resulta neutral: se lee como prueba de que este negocio ignora a quién se está dirigiendo. Tratándose de un negocio de servicios que vende confianza tanto como cualquier otra cosa, eso constituye una primera impresión deficiente antes de que usted haya dicho una palabra sobre sus precios.
 
-Mezclar los dos dentro de una misma página — un párrafo en simplificado, el siguiente en tradicional, porque dos traductores distintos o dos pasadas distintas de traducción automática tocaron el texto — es peor que escoger el equivocado de manera consistente. Se ve como que nadie lo revisó.
+Mezclar ambos dentro de una misma página — un párrafo en simplificado y el siguiente en tradicional, porque dos traductores distintos o dos pasadas separadas de traducción automática tocaron el texto — resulta peor que escoger el equivocado de manera consistente, porque parece que nadie lo revisó en absoluto.
 
-## Cómo averiguar cuál usan de verdad tus clientes
+## Cómo averiguar cuál usan realmente sus clientes
 
-No decidas esto mirando un mapa y adivinando. Pregúntales a tus clientes reales, o fíjate de dónde ya están llegando.
+No resuelva esto consultando un mapa y suponiendo. Pregunte a sus clientes reales, o examine de dónde están llegando ya.
 
-**Señales que apuntan al chino tradicional:**
+**Señales que apuntan hacia el chino tradicional:**
 
-* Comunidades inmigrantes más antiguas y establecidas: Monterey Park y partes de Alhambra formaron buena parte de su población chino-americana con inmigración de Taiwán y Hong Kong a partir de los años setenta y ochenta, bastante antes de que creciera la inmigración de China continental.
-* Clientes que mencionan Taiwán, Hong Kong o Macao, o cuyos nombres se romanizan al estilo Wade-Giles o al estilo de Hong Kong en vez de Hanyu Pinyin.
-* Letreros o menús que tu negocio ya tiene en tradicional: una señal fuerte de que tu clientela actual lo lee, y cambiarlo confundiría a la gente en lugar de ayudarla.
+* Comunidades inmigrantes más antiguas y establecidas. Monterey Park y ciertas zonas de Alhambra construyeron su población chino-estadounidense sustancialmente mediante inmigración taiwanesa y hongkonesa a partir de las décadas de 1970 y 1980, bastante antes de que se expandiera la inmigración continental.
+* Clientes que mencionan Taiwán, Hong Kong o Macao, o cuyos nombres se romanizan en Wade-Giles o en la grafía hongkonesa antes que en hanyu pinyin.
+* Señalización o menús existentes en su negocio ya redactados en tradicional, lo cual constituye prueba sólida de que su clientela actual lo lee, y cambiarlo confundiría a la gente antes que ayudarla.
 
-**Señales que apuntan al chino simplificado:**
+**Señales que apuntan hacia el chino simplificado:**
 
-* Poblaciones inmigrantes más nuevas de China continental, que han crecido por todo el San Gabriel Valley — Arcadia y San Marino en particular vieron bastante inmigración e inversión de China continental en los años 2000 y 2010.
-* Clientes cuyos nombres se romanizan en Hanyu Pinyin (el sistema estándar del continente).
-* Una clientela más joven y de llegada más reciente.
+* Poblaciones inmigrantes más recientes procedentes de China continental, que han crecido a lo largo del San Gabriel Valley. Arcadia y San Marino en particular registraron inmigración e inversión continental considerables durante las décadas de 2000 y 2010.
+* Clientes cuyos nombres se romanizan en hanyu pinyin, que constituye el sistema estándar del continente.
+* Una clientela que se inclina hacia lo más joven y lo llegado más recientemente.
 
-Ninguna de estas es una regla dura. La única forma de saberlo de verdad es preguntar. Si ya tienes clientes o empleados que hablan chino, pregúntales directamente cuál leen con comodidad — y pregúntale a varios, no a uno solo, porque el origen de una persona no es toda tu clientela. Si estás construyendo esto antes de tener a quién preguntarle, fíjate en los letreros y materiales de tus competidores más parecidos en el vecindario al que le vas a servir.
+Ninguno de los dos conjuntos constituye una regla férrea, y la única manera de saberlo con certeza consiste en preguntar. Si cuenta con clientes o personal chinohablante, pregúnteles directamente cuál leen con comodidad — y pregunte a varias personas antes que a una sola, puesto que el origen de un individuo no equivale a su clientela entera. Si está construyendo esto antes de disponer de clientes a quienes preguntar, examine la señalización y los materiales de sus competidores comparables más cercanos en el barrio que pretende atender.
 
-## Cuando la respuesta es "las dos"
+## Cuando la respuesta es "ambos"
 
-Muchos negocios del San Gabriel Valley atienden genuinamente a las dos comunidades: un dentista en Alhambra, un agente de bienes raíces que cubre de Monterey Park a Arcadia, un contador con clientes por toda la región. En ese caso, construye las dos, como páginas traducidas completamente separadas, no una sola página con un botón que cambia unas cuantas palabras.
+Numerosos negocios del San Gabriel Valley atienden genuinamente a ambas comunidades: un dentista en Alhambra, un agente inmobiliario que cubre desde Monterey Park hasta Arcadia, un contador con clientes por toda la región. En esa circunstancia, construya ambos, como páginas traducidas enteramente separadas, antes que una sola página con un conmutador que sustituya un puñado de palabras.
 
-No intentes partir la diferencia con algún híbrido tipo "mayormente tradicional pero simplificado donde sea más fácil". No existe un sistema de escritura intermedio: un lector reconoce los caracteres o no los reconoce, y una página que se tambalea entre los dos simplemente se ve sin terminar. Dos versiones limpias y completamente separadas le ganan a una confundida.
+No intente partir la diferencia mediante algún enfoque híbrido de "mayormente tradicional pero simplificado donde resulte más sencillo". No existe sistema de escritura intermedio alguno — un lector reconoce los caracteres o no los reconoce — y una página que oscila entre ambos sencillamente aparenta estar sin terminar. Dos versiones limpias y enteramente separadas superan a una sola confusa.
 
-Una cosa más que vale la pena decir claro: ni el simplificado ni el tradicional te sirven de nada si las palabras mismas no son chino real y natural — el registro y el vocabulario que Taiwán usa para "negocio pequeño" no son los que usa China continental, incluso dejando de lado el juego de caracteres. Una traducción literal, o hecha por alguien fluido en la otra variedad regional, se lee ligeramente rara del mismo modo en que un "solicitor" británico suena raro en publicidad de Los Ángeles. Si vas a pagar por una traducción, asegúrate de que quien la haga esté traduciendo al chino regional específico que tus clientes de verdad hablan, no nada más al juego de caracteres.
+Un punto adicional merece enunciarse con claridad: ni el simplificado ni el tradicional le sirven de nada si las palabras mismas no son chino auténtico y natural, porque el registro y las elecciones léxicas que Taiwán emplea para "negocio pequeño" no son las que emplea China continental, con total independencia del conjunto de caracteres. Una traducción literal, o una producida por alguien fluido en la otra variedad regional, se lee ligeramente desviada del mismo modo en que un "solicitor" británico suena peculiar en publicidad de Los Ángeles. Si va a pagar por una traducción, asegúrese de que quien la realice esté traduciendo al chino regional específico que sus clientes efectivamente hablan, y no meramente al conjunto de caracteres.
