@@ -419,6 +419,16 @@ After any register edit to `cities.ts`, assert the specifics are still in
 the built output (1926, Laura Scudder, 400 storefronts, 1895, Renaissance
 Plaza, Huntington Drive, 1887) rather than trusting the diff.
 
+**The metric describes the prose; editing prose to move the metric inverts
+what it is for.** That happened four times during the conversion and every
+one of those edits read worse than what it replaced. The counter-rule is not
+"never touch the metric" but "measure which one is broken" — on one post a
+shortfall looked exactly like a scoring artifact, and measuring the proposed
+fix across all 20 English posts showed it moved them by at most +0.4 against
+a 1.3-grade gap, so the prose really was thin and the metric was left alone.
+Full write-up in
+`docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md`.
+
 ## Known outstanding work
 
 - `CONTENT-PLAN.md`'s full 90-day schedule is done and approved: all 20
