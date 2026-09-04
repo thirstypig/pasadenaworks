@@ -59,7 +59,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 62 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 182) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 188) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability

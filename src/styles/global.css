@@ -271,9 +271,16 @@ ol {
   padding-left: 1.25em;
 }
 
-/* Chinese glyphs fill the em box and have no descenders — a hero underline
- * sized for Latin text cuts through them. See [locale]/index.astro for the
- * lang-scoped override that lowers it. */
+/* Chinese glyphs fill the em box and have no descenders, so text set for Latin
+ * needs more room between lines — that is what this rule is for.
+ *
+ * This comment used to add "See [locale]/index.astro for the lang-scoped
+ * override that lowers it", referring to a hero-underline offset. That override
+ * was removed on 2026-09-04 because nothing underlines a hero heading any more,
+ * and this pointer outlived it by one commit — in the very block documenting a
+ * rule that had itself been dead for months. Left recorded rather than silently
+ * deleted, because it is the third instance of the same failure in this file's
+ * history. */
 /* NOT `:global(...)` — that is an Astro scoped-style construct. This is a plain
  * stylesheet, so Astro never transforms it and `:global(...)` ships verbatim to
  * the browser, which discards the whole rule as an invalid selector. It was dead
