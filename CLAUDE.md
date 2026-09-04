@@ -82,6 +82,14 @@ while the test suite catches it. `ci.yml` also greps the build log for that
 warning and promotes it to a failure, which catches a collision committed
 through Tina without a pull request.
 
+`ci.yml` has a third step, added 2026-09-03: it re-runs the readability tests
+**after** the build. The rendered-page cross-check needs `dist/`, and both
+workflows run the suite before building, so in the unit step that test skips
+rather than fails. Without the post-build step it would never execute in CI at
+all — which is exactly how it first shipped broken, passing on a laptop that
+happened to have a stale `dist/` lying around and failing the moment CI ran it
+on a clean checkout.
+
 ## Where things live
 
 ```
