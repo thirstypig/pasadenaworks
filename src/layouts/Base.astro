@@ -88,6 +88,10 @@ const localBusinessSchema = {
       // their OS setting live, including if they change it later.
       (function () {
         try {
+          // KEY DUPLICATED in src/components/ThemeToggle.astro. It cannot be
+          // shared: this script must be inline to run before first paint, so it
+          // cannot import. Renaming one and not the other silently reintroduces
+          // the flash-of-wrong-theme this whole block exists to prevent.
           var saved = localStorage.getItem('pw-theme');
           if (saved === 'light' || saved === 'dark') {
             document.documentElement.dataset.theme = saved;
@@ -95,6 +99,20 @@ const localBusinessSchema = {
         } catch (e) {}
       })();
     </script>
+
+    {/* The feed is built and correct (4 items, no drafts, no future posts) but
+        was reachable from nowhere: no discovery link, no footer link, not in the
+        sitemap. English only by design — src/pages/rss.xml.js reads 'en' — so the
+        link is emitted only on English pages rather than pointing zh/es readers
+        at an English feed. */}
+    {locale === 'en' && (
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.name} — Blog`}
+        href={absoluteUrl('/rss.xml')}
+      />
+    )}
 
     <title>{title}</title>
     <meta name="description" content={description} />

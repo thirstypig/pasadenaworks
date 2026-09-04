@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 017
 tags: [code-review, accessibility, css, wcag]
@@ -92,3 +92,36 @@ Ratios computed from the actual custom-property values, not estimated. Confirmed
 clean and not to be re-audited: alt text across all four locales, form label
 associations, `role="status" aria-live="polite"`, heading order on the other 51
 built pages, and prose link underlines beyond `.post__body`.
+
+### 2026-09-04 — All five closed
+
+Every ratio recomputed from the actual token values before and after, per theme.
+
+**#1 error text** → `--color-accent-text`. That token is already redefined per
+theme (it resolves to ochre in dark), so it is the right answer for both:
+5.74:1 light, 5.59:1 dark, against 3.04:1 before.
+
+**#2 focus ring** → same token: 5.37:1 light, 6.13:1 dark, against 2.84:1. A
+naive swap to a fixed darker colour would have *broken* dark mode — worth noting,
+since the light-mode value on a dark background measures 3.25:1.
+
+**#3 `.label-frame`** now draws its second rule with `box-shadow` instead of
+`outline`, leaving `outline` free for focus alone. **Verified in a browser**, not
+by reasoning: tabbed to a blog card and zoomed. The focused card shows the ochre
+ring *and* the dark frame; its unfocused neighbour shows only the frame. Before,
+focus replaced the decoration and the difference was a hue change at the same
+position.
+
+**#4 input borders** → a new `--color-line-control` token rather than changing
+`--color-line`, which also draws decorative rules that carry no contrast
+requirement and would have looked heavy at this weight. 3.24:1 light, 3.67:1
+dark, against 1.45:1 and 1.27:1. Defined in all three theme blocks (`:root`, the
+`prefers-color-scheme` media block, and `[data-theme='dark']`) — the first
+attempt landed two copies in the media block and none in the data-theme block,
+caught by grepping the definitions back out.
+
+**#5 `overflow-wrap: break-word`** on `.prose` and `.post__body`.
+
+Confirmed visually while checking the form: the CTA arrows really do fall out of
+Anton (finding #14, group 020) — the arrow renders in the fallback face beside
+ultra-bold condensed text. Left for that todo.

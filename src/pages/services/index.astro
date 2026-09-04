@@ -1,17 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { services } from '../../data/services';
-import { SEGMENTS, localeUrl } from '../../i18n/routes';
+import { SEGMENTS, localeUrl, servicesIndexPaths } from '../../i18n/routes';
 import { t } from '../../i18n/utils';
 
 const strings = t('en');
 
-const translations = {
-  en: '/services/',
-  es: `/es/${SEGMENTS.services.es}/`,
-  'zh-hans': `/zh-hans/${SEGMENTS.services['zh-hans']}/`,
-  'zh-hant': `/zh-hant/${SEGMENTS.services['zh-hant']}/`,
-};
+const translations = servicesIndexPaths();
 ---
 
 <Base
@@ -37,12 +32,6 @@ const translations = {
 </Base>
 
 <style>
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: var(--space-5);
-    margin-top: var(--space-6);
-  }
 
   .service-card {
     display: block;

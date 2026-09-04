@@ -59,7 +59,16 @@ describe('parseFrontmatter', () => {
   });
 
   it('ignores the body below the closing delimiter', () => {
-    expect(parseFrontmatter(EN_RAW)['> **TL;DR** — Sometimes, no.']).toBeUndefined();
+    // Assert on a real `key: value` line placed BELOW the closing fence. The
+    // old version asserted that '> **TL;DR** — Sometimes, no.' was not a key —
+    // unfalsifiable twice over: the parser only ever builds keys via
+    // line.slice(0, indexOf(':')), so a whole line can never become one, and
+    // that line has no colon anyway (TL;DR is a semicolon). It passed with the
+    // frontmatter regex deleted entirely.
+    const raw = "---\ntitle: Real\nlocale: en\n---\n\nslug: not-frontmatter\n\nBody text.\n";
+    const parsed = parseFrontmatter(raw);
+    expect(parsed.title).toBe('Real');
+    expect(parsed.slug).toBeUndefined();
   });
 });
 

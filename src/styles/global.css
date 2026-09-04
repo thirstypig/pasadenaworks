@@ -28,12 +28,17 @@
   --color-ink: #241a17;
   --color-ink-soft: #4a4038;
   --color-line: #ddd6c4;
+  /* Boundaries of INTERACTIVE controls (form fields), where the border is the
+     only thing identifying the control — WCAG 1.4.11 wants 3:1 there. Separate
+     from --color-line, which also draws decorative rules that carry no such
+     requirement and would look heavy-handed at this weight.
+     Measured: #9a8e72 on #ffffff = 3.24:1. */
+  --color-line-control: #9a8e72;
   --color-white: #ffffff;
 
   /* Semantic aliases */
   --color-accent: var(--color-ochre);
   --color-accent-dark: var(--color-ochre-dark);
-  --color-brand: var(--color-rose);
   --color-brand-dark: var(--color-rose-dark);
 
   /* Theme-adaptive roles (2026-08-27, light/dark mode; --color-accent-text
@@ -136,6 +141,7 @@
     --color-ink: #f2e9de;
     --color-ink-soft: #c7b9ac;
     --color-line: #3c2b25;
+    --color-line-control: #8a6f61; /* 3.67:1 on #241a17 */
     --color-surface: #241a17;
     --color-heading: #e7a9ae;
     --color-accent-text: var(--color-ochre);
@@ -148,6 +154,7 @@
   --color-ink: #f2e9de;
   --color-ink-soft: #c7b9ac;
   --color-line: #3c2b25;
+  --color-line-control: #8a6f61; /* 3.67:1 on #241a17 */
   --color-surface: #241a17;
   --color-heading: #e7a9ae;
   --color-accent-text: var(--color-ochre);
@@ -264,13 +271,38 @@ ol {
   padding-left: 1.25em;
 }
 
-/* Chinese glyphs fill the em box and have no descenders — a hero underline
- * sized for Latin text cuts through them. See [locale]/index.astro for the
- * lang-scoped override that lowers it. */
-/* NOT `:global(...)` — that is an Astro scoped-style construct. This is a plain
- * stylesheet, so Astro never transforms it and `:global(...)` ships verbatim to
- * the browser, which discards the whole rule as an invalid selector. It was dead
- * from the day it was written. Selectors here are already global. */
+/* Chinese glyphs fill the em box and have no descenders, so text set for Latin
+ * needs more room between lines — that is what this rule is for.
+ *
+ * This comment used to add "See [locale]/index.astro for the lang-scoped
+ * override that lowers it", referring to a hero-underline offset. That override
+ * was removed on 2026-09-04 because nothing underlines a hero heading any more,
+ * and this pointer outlived it by one commit — in the very block documenting a
+ * rule that had itself been dead for months. Left recorded rather than silently
+ * deleted, because it is the third instance of the same failure in this file's
+ * history. */
+/* NOT `:global(...)`. That is an Astro compiler construct, and the condition is
+ * narrower than it looks: @astrojs/compiler-rs strips it only while SCOPING a
+ * scoped <style> block. Not "inside an .astro file" — verified against the
+ * installed compiler, `<style is:global>` leaves `:global(...)` verbatim too. So
+ * "add is:global" is NOT the fix; it reproduces this bug in a different file.
+ *
+ * Untransformed, it reaches the browser, which discards the ENTIRE rule —
+ * declarations included — because any error anywhere in a selector invalidates
+ * the whole statement (CSS 2.2 §4.1.7). Parsing resumes cleanly at the next
+ * rule, which is why it fails so quietly. In a selector LIST it is worse: one
+ * invalid member kills every sibling. `:is()` and `:where()` are the exception —
+ * they take forgiving lists.
+ *
+ * It is not silent at BUILD time, though: lightningcss warns "'global' is not
+ * recognized as a valid pseudo-class" and exits 0 anyway. That warning printed
+ * on every build for months while this rule was dead and CLAUDE.md called it a
+ * working fix. ci.yml now promotes it to a failure, like the duplicate-slug one.
+ *
+ * Selectors in a plain stylesheet are already global — just write it. (The
+ * construct looks plausible because CSS Modules genuinely supports it; a
+ * `*.module.css` file WOULD honour it. Renaming this file is not an option:
+ * every other class in it would become a hashed local name.) */
 html[lang^='zh'] body {
   line-height: 1.8;
 }
@@ -306,6 +338,16 @@ main {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: var(--space-5);
+}
+
+/* One pasted bare URL used to blow the layout out by 207px at 320px — measured.
+   Nothing in the corpus does it today (longest real token is 19 chars), but blog
+   posts are freeform markdown written through Tina. The rules for `table` and
+   `pre` above already defend this exact scenario; long words were simply missed.
+   CJK is unaffected: it breaks anywhere by default. */
+.prose,
+.post__body {
+  overflow-wrap: break-word;
 }
 
 .prose {
@@ -406,11 +448,32 @@ main {
  *  currentColor for both lines, so set `color` on the element to pick a
  *  frame color per usage.
  * ───────────────────────────────────────────────────────────────────────── */
+/* The second rule is a box-shadow, NOT an outline. `.post-card` and
+   `.service-card` are focusable elements carrying this class, and
+   :focus-visible also uses `outline` — so focus REPLACED the decorative ring
+   instead of adding to it. The focused card was distinguishable only by the
+   ring changing colour at nearly the same position, which reads as "a
+   differently coloured card", not "the focused card". box-shadow leaves
+   `outline` free for focus alone. */
+/* Shared by four pages — the two service indexes and both homepages — where it
+   was byte-identical in all four. The .service-CARD rules are deliberately NOT
+   shared: the English homepage uses the label-frame treatment while the other
+   three use a bordered card, and that difference is a design choice, not drift.
+   Astro's scoped styles out-specify this, so a page can still override.
+
+   min(16rem, 100%) rather than a bare 16rem, matching BlogPostGrid: a fixed
+   track wider than its container overflows the viewport instead of shrinking. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
 .label-frame {
   position: relative;
   border: 3px solid currentColor;
-  outline: 1px solid currentColor;
-  outline-offset: 5px;
+  box-shadow: 0 0 0 5px transparent, 0 0 0 6px currentColor;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -463,7 +526,7 @@ main {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-ochre);
+  outline: 3px solid var(--color-accent-text);
   outline-offset: 2px;
 }
 

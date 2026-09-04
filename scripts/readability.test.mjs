@@ -400,11 +400,13 @@ const SIMPLIFIED = '们网这么马电买卖东车间时个简体为说话业应
 
 describe('rendered-page extraction', () => {
   it('reads the locale off the built path', () => {
-    expect(localeFromPath('dist/index.html')).toBe('en');
-    expect(localeFromPath('dist/es/servicios/sitios-web/index.html')).toBe('es');
-    expect(localeFromPath('dist/zh-hant/fuwu/wangzhan-jianzhi/index.html')).toBe('zh-hant');
+    // Paths are relative to the BUILD ROOT now — no fabricated 'dist' prefix.
+    expect(localeFromPath('/index.html')).toBe('en');
+    expect(localeFromPath('/es/servicios/sitios-web/index.html')).toBe('es');
+    expect(localeFromPath('/zh-hant/fuwu/wangzhan-jianzhi/index.html')).toBe('zh-hant');
+    expect(localeFromPath('index.html')).toBe('en');
     // A city called "es-something" must not read as Spanish.
-    expect(localeFromPath('dist/websites/estancia/index.html')).toBe('en');
+    expect(localeFromPath('/websites/estancia/index.html')).toBe('en');
   });
 
   it('takes only what is inside <main>', () => {

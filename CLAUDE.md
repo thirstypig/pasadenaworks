@@ -59,19 +59,27 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 62 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 188) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
                      #   metrics (English FK, Spanish Fernandez Huerta, Chinese register),
-                     #   and a polarity tripwire on sentences that have shipped reversed
+                     #   and a polarity tripwire on sentences that have shipped reversed.
+                     #   5 of these need dist/ and SKIP without it — the rendered
+                     #   nav-link checks and the readability cross-check — which is
+                     #   why ci.yml re-runs the whole suite after the build.
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
-registry (`MASTER-PORTS.md` / `PORTS.md` at this repo's root, mirrored from
-`~/Projects/MASTER-PORTS.md` — the canonical source, covering ~20 other local
-projects). Don't let `dev`/`preview` fall back to Astro's default 4321 —
+registry. The canonical source is `~/Projects/MASTER-PORTS.md`, **outside this
+repo**; the `MASTER-PORTS.md` / `PORTS.md` at this root are deliberately
+**trimmed to this project's own block** rather than being the byte-identical
+mirror every other project keeps, because this repo is public and the full
+registry names ~22 projects with their stacks and hosting. (Deleting `registry/`
+on 2026-08-28 was that decision; these two files were set aside as "unrelated"
+and carried the same table, so the exposure outlived the fix. Completed
+2026-09-04.) Don't let `dev`/`preview` fall back to Astro's default 4321 —
 that port is already reserved for a different project (thirstypig) in the
 same registry, and running both at once would collide. If a future task
 needs another port on this project, claim it from pasadenaworks's own
@@ -329,8 +337,11 @@ this environment's `ugrep` — it undercounted real matches (`-l` said 1
 file, `-o` implied many) on the same CJK content; use long-form flags
 (`--only-matching`, `-H`) or `/usr/bin/grep` when auditing non-ASCII text.
 
-**`:global(...)` is inert in a plain `.css` file.** It is an Astro *scoped-style*
-construct, transformed only inside an `.astro` `<style>` block. `global.css` is
+**`:global(...)` is inert unless the `<style>` block is SCOPED.** It is an Astro
+compiler construct, and the condition is the scoping — not the file type.
+Verified against `@astrojs/compiler-rs`: it survives verbatim inside
+`<style is:global>` as well, so "add `is:global`" reproduces the bug rather than
+fixing it. `global.css` is
 a plain stylesheet, so Astro never touches it and the selector ships verbatim,
 where the browser discards the whole rule as invalid. The Chinese line-height
 override was written that way and was dead from the day it landed — every zh
@@ -338,6 +349,11 @@ page rendered at Latin spacing (measured ratio 1.600, not 1.800) while this file
 cited it as a working fix. Selectors in `global.css` are already global; the
 `:global()` in `[locale]/index.astro` is correct because that one *is* inside a
 `<style>` block. Fixed 2026-09-03.
+
+The build was never actually silent about it: lightningcss warns *"'global' is
+not recognized as a valid pseudo-class"* and exits 0, and printed that on every
+build for months. `ci.yml` now promotes it to a failure alongside the
+duplicate-slug warning — the same move, for the same reason.
 
 **hreflang has exactly one producer, and it must stay that way.**
 `@astrojs/sitemap`'s `i18n` option was enabled and built its own `xhtml:link`

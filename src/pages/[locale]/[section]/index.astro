@@ -9,7 +9,7 @@
 import Base from '../../../layouts/Base.astro';
 import { services } from '../../../data/services';
 import { cities, cityLocales } from '../../../data/cities';
-import { SEGMENTS, localeUrl } from '../../../i18n/routes';
+import { SEGMENTS, localeUrl, servicesIndexPaths, cityHubPaths, blogIndexPaths } from '../../../i18n/routes';
 import { t } from '../../../i18n/utils';
 import { LOCALES, type Locale } from '../../../i18n/ui';
 import { getPostsByLocale, blogIndexPath } from '../../../utils/blog';
@@ -91,26 +91,11 @@ if (kind !== 'blog' && kind !== 'service' && kind !== 'city-hub') {
 }
 const strings = t(locale);
 
-const blogTranslations = {
-  en: blogIndexPath('en'),
-  es: blogIndexPath('es'),
-  'zh-hans': blogIndexPath('zh-hans'),
-  'zh-hant': blogIndexPath('zh-hant'),
-};
+const blogTranslations = blogIndexPaths();
 
-const servicesTranslations = {
-  en: '/services/',
-  es: `/es/${SEGMENTS.services.es}/`,
-  'zh-hans': `/zh-hans/${SEGMENTS.services['zh-hans']}/`,
-  'zh-hant': `/zh-hant/${SEGMENTS.services['zh-hant']}/`,
-};
+const servicesTranslations = servicesIndexPaths();
 
-const cityHubTranslations = {
-  en: '/websites/',
-  es: `/es/${SEGMENTS.cityHub.es}/`,
-  'zh-hans': `/zh-hans/${SEGMENTS.cityHub['zh-hans']}/`,
-  'zh-hant': `/zh-hant/${SEGMENTS.cityHub['zh-hant']}/`,
-};
+const cityHubTranslations = cityHubPaths();
 
 const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 ---
@@ -183,12 +168,6 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 )}
 
 <style>
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: var(--space-5);
-    margin-top: var(--space-6);
-  }
 
   .service-card__link {
     font-family: var(--font-display);

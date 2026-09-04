@@ -18,7 +18,7 @@
 
 import { site } from '../data/site';
 import { services } from '../data/services';
-import { DEFAULT_LOCALE, HTML_LANG, type Locale } from './ui';
+import { DEFAULT_LOCALE, HTML_LANG, LOCALES, type Locale } from './ui';
 
 /** Path segments per locale.
  *
@@ -61,6 +61,37 @@ export const SEGMENTS: {
     'zh-hant': 'boke',
   },
 };
+
+/**
+ * hreflang maps for the three index pages that exist in all four locales.
+ *
+ * These were written out longhand SIX times — once on each English page and
+ * again on its localized twin — in three different styles: hardcoded literals,
+ * a hardcoded `en` with template literals for the rest, and a helper spelled
+ * out per locale. All three bypassed `localeUrl` and re-implemented the
+ * locale-prefix rule inline, and `en: '/services/'` bypassed
+ * `SEGMENTS.services.en`, which exists and equals 'services'.
+ *
+ * That duplication is not a tidiness point: an English page and its localized
+ * twin kept as two copies is exactly what produced four user-visible defects
+ * fixed on 2026-09-03 (a wrong blog link, a button label used as a heading, a
+ * mislabelled back-link, a missing card CTA).
+ *
+ * A full four-locale map IS correct for these three pages — they genuinely
+ * exist in every locale. This is not the "hardcode a full map for consistency"
+ * that hard rule #1 forbids; it is the correct map, derived once instead of
+ * transcribed six times. Pages whose existence is conditional must still derive
+ * from their own data: cityLocales(), getTranslationsFor(), homeTranslations().
+ */
+function indexPaths(segment: Record<Locale, string>): Record<Locale, string> {
+  return Object.fromEntries(
+    LOCALES.map((locale) => [locale, localeUrl(locale, segment[locale])])
+  ) as Record<Locale, string>;
+}
+
+export const servicesIndexPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.services);
+export const cityHubPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.cityHub);
+export const blogIndexPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.blog);
 
 /** Build a path for a given locale, joining segments and adding the locale
  *  prefix (skipped for the default locale). Always leading+trailing slash. */

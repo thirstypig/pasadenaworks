@@ -27,7 +27,12 @@ describe('readingTime', () => {
   });
 
   it('collapses multiple whitespace/newlines between words instead of over-counting', () => {
-    const body = 'one\n\n  two   three\tfour';
+    // Sized so the assertion can actually FAIL. The old version used 4 words:
+    // it yields 6 tokens with or without collapsing, and ceil(6/200) is 1 —
+    // which is also the function's clamped floor, so it passed whether or not
+    // the behaviour existed. 150 real words joined by runs of whitespace tips
+    // to 2 minutes under a naive split (150 words + ~150 empty tokens > 200).
+    const body = Array(150).fill('word').join('  \n\n \t ');
     expect(readingTime(body)).toBe(1);
   });
 

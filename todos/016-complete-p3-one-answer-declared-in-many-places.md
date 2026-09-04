@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 016
 tags: [code-review, architecture, duplication, i18n]
@@ -105,3 +105,51 @@ with defect fixes.
 
 ### 2026-09-03 — Found during full-repo review
 Named as the root cause of todo-PR #17's four copy divergences, not as tidiness.
+
+### 2026-09-04 — Closed. Option B, plus most of A.
+
+**#1 — the six longhand `translations` maps are gone.** Three helpers in
+routes.ts (`servicesIndexPaths`, `cityHubPaths`, `blogIndexPaths`), each derived
+through `localeUrl` and `SEGMENTS`. The maps had been written out six times in
+three styles, all bypassing `localeUrl`, and `en: '/services/'` even bypassed
+`SEGMENTS.services.en`, which exists and equals 'services'.
+
+**Verified as a true no-op**: `diff -rq` across every built HTML file reports
+nothing, and the md5 of every `<link rel="alternate">` on all 67 pages is
+identical before and after. That is the right acceptance test for a refactor
+whose whole claim is that it changes nothing.
+
+The two homepage maps in this group were already fixed under todo 015 — those
+genuinely needed deriving, because `home` is `Partial`. These three do not: the
+pages exist in all four locales, so a full map is correct. The helper comment
+records the distinction, since "derive it" and "a four-locale map is fine here"
+look contradictory without it.
+
+**#2 — the silent locale fallback is gone.** `localeFromPath`'s alternation
+`(es|zh-hans|zh-hant)` is now built from `LOCALES`, so an unknown locale can no
+longer fall through to `'en'` and be scored with Flesch-Kincaid — which this
+file's own header calls "meaningless rather than merely wrong" on Chinese. Also
+removed the fabricated `'dist' + rel` argument at the call site: the regex
+anchored on `dist/`, forcing the caller to re-add a prefix that `reportDist` had
+deliberately stripped, because hardcoding "dist" had been a bug before.
+
+**#3 — `.service-grid` promoted to global.css**, after hashing all four copies to
+confirm they were byte-identical. The `.service-card` rules are deliberately NOT
+shared: the English homepage uses the label-frame treatment and the other three a
+bordered card. That is a design choice, and merging them would have changed the
+homepage. Took the chance to apply `min(16rem, 100%)`, matching the reflow fix
+made to BlogPostGrid.
+
+**#4 — `content.config.ts` now does `z.enum(LOCALES)`.** Verified it still
+narrows: `locale: ko` fails the build. Adding a locale was always loud; renaming
+or removing one was silent — posts with the old value validated against a stale
+hand-written enum and then matched nothing, vanishing with no page, no sitemap
+entry and no error.
+
+**Still open, and deliberately.** The locale list survives in `tina/config.ts`
+(1), `readability.mjs` (3) and `content-status.mjs` (2). The two `.mjs` scripts
+run under bare node and cannot import the TypeScript registry without a build
+step — that is a real constraint, and closing it means adding a shared
+`.mjs`/`.json` module, which is a change of shape rather than a deduplication.
+Worth doing; not worth smuggling into this batch. `cityDisplayName` and the
+`pillar` union are likewise left.

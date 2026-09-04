@@ -53,8 +53,19 @@ const strings = t(locale);
         gtag('config', id);
       }
 
+      /* Wrapped, like the equivalent call in Base.astro's pre-paint script.
+         localStorage THROWS — not returns null — in a private window or with
+         site data blocked, and an uncaught throw here kills the rest of this
+         script, so the banner's own buttons would never get their listeners:
+         the banner would show and be unusable. Failing to `null` shows the
+         banner and loads nothing, which is the right default. */
       const banner = document.getElementById('cookie-consent');
-      const saved = localStorage.getItem(KEY);
+      let saved = null;
+      try {
+        saved = localStorage.getItem(KEY);
+      } catch {
+        /* storage unavailable — treat as "no choice recorded yet" */
+      }
 
       if (saved === 'accepted') {
         loadGA(measurementId);
@@ -65,7 +76,12 @@ const strings = t(locale);
       banner?.querySelectorAll('[data-consent]').forEach((button) => {
         button.addEventListener('click', () => {
           const choice = button.dataset.consent === 'accept' ? 'accepted' : 'declined';
-          localStorage.setItem(KEY, choice);
+          try {
+            localStorage.setItem(KEY, choice);
+          } catch {
+            /* The choice cannot be remembered, but it must still be HONOURED for
+               this page view — dismiss the banner and respect the answer. */
+          }
           banner.hidden = true;
           if (choice === 'accepted') loadGA(measurementId);
         });

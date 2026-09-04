@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 018
 tags: [code-review, security, privacy, gdpr]
@@ -99,3 +99,41 @@ it is 20+ images and belongs in its own change.
 ### 2026-09-03 — Found during full-repo review
 #1 is the notable one: it is not a new finding so much as an old fix that stopped
 half-way, recorded in RESOLVED.md as complete.
+
+### 2026-09-04 — Three fixed, two left as decisions
+
+**#1 — the port files are trimmed.** 193 lines to 60, and zero references to any
+other project. The registry's own changelog had flagged this on 2026-08-27 and
+explicitly left it as *"the owner's own call on whether to remove it"*; deleting
+`registry/` on 2026-08-28 was that call, and these two root copies were simply
+missed. So this completes a decision already made rather than making a new one.
+
+Note the tension it resolves: MASTER-PORTS.md instructs that every project's copy
+"must stay byte-identical to the root copy". That instruction is correct for
+private repos and wrong for this one. Both files now say so at the top, and
+CLAUDE.md records it — the canonical registry stays complete at
+`~/Projects/MASTER-PORTS.md`; only this mirror is reduced.
+
+**#3 — Tina can no longer edit CLAUDE.md.** `DOCS_ROOT_INCLUDE` went from `*` to
+the extglob `!(CLAUDE)`, so the composed glob is `!(CLAUDE).md`. Verified with
+picomatch directly: CLAUDE.md is excluded while README, CONTENT-PLAN,
+CONTENT-STATUS, PORTS and MASTER-PORTS stay editable — CONTENT-STATUS.md in
+particular, since its visibility in Tina is the whole reason the generator writes
+it to the root. Two tests pin both halves.
+
+Narrowing beat disabling: `allowedActions.update: false` would have made the
+docs collection read-only and broken the workflow the collection exists for.
+
+**#4 — both `localStorage` calls in CookieConsent are wrapped.** It throws rather
+than returning null in a private window, and an uncaught throw there killed the
+rest of the script — so the banner would render with no working buttons. Reads
+now fail to "no choice recorded"; writes fail without preventing the choice being
+honoured for that page view.
+
+**Left as decisions, not defects:**
+- **#2 Unsplash hotlinking.** Every reader's IP and referrer reach Unsplash
+  before any consent interaction, on 20 live pages. Self-hosting is permitted by
+  the licence and would help LCP, but it is 20+ images and a deliberate change of
+  approach — worth its own task.
+- **#5 no consent-withdrawal path.** Fine for CCPA, weak for GDPR. Whether that
+  matters depends on the audience, which is a business call.

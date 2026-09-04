@@ -147,7 +147,7 @@ export const COLLOQUIAL_MARKERS = [
 ];
 
 /** Sentence-final particles — pure spoken-register signal, no formal use. */
-export const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
+const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
 
 /* ── text extraction ───────────────────────────────────────────────────── */
 
@@ -202,7 +202,7 @@ export function prose(markdown) {
 }
 
 /** Keeps the first blockquote block (the summary), drops every later one. */
-export function dropQuotedSamples(body) {
+function dropQuotedSamples(body) {
   const lines = body.split('\n');
   const out = [];
   let seenFirstQuote = false;
@@ -237,7 +237,6 @@ export function englishSyllables(word) {
 /* ── Spanish ───────────────────────────────────────────────────────────── */
 
 const STRONG = 'aeoáéó';
-const WEAK = 'iuü';
 const ACCENTED_WEAK = 'íú';
 
 /**
@@ -411,8 +410,32 @@ export function report() {
  * land close together, and that agreement is the only evidence that this
  * extraction is faithful — see the cross-check in readability.test.mjs.
  */
+/**
+ * Locale of a built page, from its path RELATIVE TO THE BUILD ROOT.
+ *
+ * Two things were wrong here. The alternation `(es|zh-hans|zh-hant)` was a
+ * fifth hand-written copy of the locale list, and an unknown locale fell
+ * through to 'en' SILENTLY — so a new language's pages would be scored with
+ * Flesch-Kincaid, which this file's own header calls "meaningless rather than
+ * merely wrong" on Chinese, and reported as out of band with a plausible
+ * number. It is now derived from LOCALES, so adding a locale there extends this
+ * automatically.
+ *
+ * And it anchored on `dist/`, which forced the only caller to write
+ * `localeFromPath('dist' + rel)` — fabricating a prefix to satisfy the regex,
+ * right after reportDist deliberately computed `rel` relative to the root it
+ * was PASSED, because hardcoding "dist" had been a bug before. The anchor is
+ * now the start of the relative path.
+ *
+ * Falling back to 'en' is correct and deliberate: English pages live at the
+ * build root with no prefix (`/websites/alhambra/`), which is exactly what a
+ * non-match means once the alternation is complete.
+ */
+const PREFIXED = LOCALES.filter((l) => l !== 'en');
+const LOCALE_PREFIX = new RegExp(`^/?(${PREFIXED.join('|')})/`);
+
 export function localeFromPath(p) {
-  const m = p.match(/dist\/(es|zh-hans|zh-hant)\//);
+  const m = p.match(LOCALE_PREFIX);
   return m ? m[1] : 'en';
 }
 
@@ -490,7 +513,7 @@ export function reportDist(distDir) {
       if (entry.isDirectory()) walk(full);
       else if (entry.name === 'index.html') {
         const rel = '/' + relative(root, full).replace(/\\/g, '/');
-        const locale = localeFromPath('dist' + rel);
+        const locale = localeFromPath(rel);
         const text = mainProse(readFileSync(full, 'utf8'));
         if (!text) continue;
         const r = analyze(text, locale);

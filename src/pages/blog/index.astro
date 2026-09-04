@@ -4,17 +4,13 @@ import BlogPostGrid from '../../components/BlogPostGrid.astro';
 import { readingTime } from '../../utils/reading-time';
 import { getPostsByLocale, blogIndexPath } from '../../utils/blog';
 import { t } from '../../i18n/utils';
+import { blogIndexPaths } from '../../i18n/routes';
 
 const strings = t('en');
 const allPosts = await getPostsByLocale('en');
 const posts = allPosts.map((post) => ({ post, minutes: readingTime(post.body) }));
 
-const translations = {
-  en: blogIndexPath('en'),
-  es: blogIndexPath('es'),
-  'zh-hans': blogIndexPath('zh-hans'),
-  'zh-hant': blogIndexPath('zh-hant'),
-};
+const translations = blogIndexPaths();
 ---
 
 <Base

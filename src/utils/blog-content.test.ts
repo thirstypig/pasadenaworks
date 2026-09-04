@@ -30,8 +30,18 @@ type Post = {
   raw: string;
 };
 
+/**
+ * Minimal frontmatter reader. Handles BOTH quote styles.
+ *
+ * It used to strip only double quotes, which made it disagree with
+ * scripts/content-status.mjs's parseFrontmatter() over the same 80 files — the
+ * two run the same orphan check and would have reached different answers on a
+ * single-quoted value (`slug: 'foo'` came back as `'foo'`, quotes included).
+ * Latent only because nothing in the corpus is single-quoted today; the schema
+ * places no constraint on which style an author or Tina writes.
+ */
 function field(source: string, name: string, fallback?: string): string {
-  const m = source.match(new RegExp(`^${name}:\\s*"?(.+?)"?\\s*$`, 'm'));
+  const m = source.match(new RegExp(`^${name}:\\s*["']?(.+?)["']?\\s*$`, 'm'));
   // Fields with a zod default (`draft`) may legitimately be absent from a file;
   // absent must read as the default, not as a parse error.
   if (!m) {
@@ -41,31 +51,51 @@ function field(source: string, name: string, fallback?: string): string {
   return m[1].trim();
 }
 
-const posts: Post[] = LOCALES.flatMap((dir) =>
-  readdirSync(join(BLOG, dir))
-    .filter((f) => f.endsWith('.md'))
-    .map((f) => {
-      const path = join(dir, f);
-      const source = readFileSync(join(BLOG, dir, f), 'utf-8');
-      return {
-        path,
-        dir,
-        slug: field(source, 'slug'),
-        locale: field(source, 'locale'),
-        translationKey: field(source, 'translationKey'),
-        pubDate: field(source, 'pubDate').split('T')[0],
-        pubDateRaw: field(source, 'pubDate'),
-        draft: field(source, 'draft', 'false') === 'true',
-        body: source.split(/^---$/m)[2] ?? '',
-        // Whole file, frontmatter included. The polarity tripwires check this
-        // rather than `body`: a reversed comparative in a `description` is at
-        // least as damaging as one in the prose, because that is the line the
-        // search result shows. (Distinct from readability, which deliberately
-        // excludes meta descriptions — different job, different rule.)
-        raw: source,
-      };
-    })
-);
+/**
+ * Every `.md` under src/content/blog, at any depth — NOT just the four locale
+ * directories' top level.
+ *
+ * The loader is `glob({ pattern: '**\/*.md' })`, so a file at
+ * src/content/blog/post.md or src/content/blog/en/drafts/post.md IS in the
+ * collection and DOES get a page. The old walk read exactly
+ * ['en','es','zh-hans','zh-hant'] and kept only top-level files, so such a post
+ * was invisible to every invariant below — slug uniqueness included, which is
+ * the one that silently drops a post at build time with only a warning.
+ *
+ * Returns paths relative to BLOG, so `dir` is still the first segment.
+ */
+function markdownFiles(dir = ''): string[] {
+  const out: string[] = [];
+  for (const entry of readdirSync(join(BLOG, dir), { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue;
+    const rel = dir ? `${dir}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) out.push(...markdownFiles(rel));
+    else if (entry.name.endsWith('.md')) out.push(rel);
+  }
+  return out;
+}
+
+const posts: Post[] = markdownFiles().map((path) => {
+  const dir = path.split('/')[0];
+  const source = readFileSync(join(BLOG, path), 'utf-8');
+  return {
+    path,
+    dir,
+    slug: field(source, 'slug'),
+    locale: field(source, 'locale'),
+    translationKey: field(source, 'translationKey'),
+    pubDate: field(source, 'pubDate').split('T')[0],
+    pubDateRaw: field(source, 'pubDate'),
+    draft: field(source, 'draft', 'false') === 'true',
+    body: source.split(/^---$/m)[2] ?? '',
+    // Whole file, frontmatter included. The polarity tripwires check this
+    // rather than `body`: a reversed comparative in a `description` is at
+    // least as damaging as one in the prose, because that is the line the
+    // search result shows. (Distinct from readability, which deliberately
+    // excludes meta descriptions — different job, different rule.)
+    raw: source,
+  };
+});
 
 /** Posts grouped by translationKey — one set (English + its translations) per entry. */
 const byKey = new Map<string, Post[]>();
