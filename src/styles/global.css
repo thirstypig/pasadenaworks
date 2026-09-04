@@ -28,6 +28,12 @@
   --color-ink: #241a17;
   --color-ink-soft: #4a4038;
   --color-line: #ddd6c4;
+  /* Boundaries of INTERACTIVE controls (form fields), where the border is the
+     only thing identifying the control — WCAG 1.4.11 wants 3:1 there. Separate
+     from --color-line, which also draws decorative rules that carry no such
+     requirement and would look heavy-handed at this weight.
+     Measured: #9a8e72 on #ffffff = 3.24:1. */
+  --color-line-control: #9a8e72;
   --color-white: #ffffff;
 
   /* Semantic aliases */
@@ -136,6 +142,7 @@
     --color-ink: #f2e9de;
     --color-ink-soft: #c7b9ac;
     --color-line: #3c2b25;
+    --color-line-control: #8a6f61; /* 3.67:1 on #241a17 */
     --color-surface: #241a17;
     --color-heading: #e7a9ae;
     --color-accent-text: var(--color-ochre);
@@ -148,6 +155,7 @@
   --color-ink: #f2e9de;
   --color-ink-soft: #c7b9ac;
   --color-line: #3c2b25;
+  --color-line-control: #8a6f61; /* 3.67:1 on #241a17 */
   --color-surface: #241a17;
   --color-heading: #e7a9ae;
   --color-accent-text: var(--color-ochre);
@@ -308,6 +316,16 @@ main {
   padding-inline: var(--space-5);
 }
 
+/* One pasted bare URL used to blow the layout out by 207px at 320px — measured.
+   Nothing in the corpus does it today (longest real token is 19 chars), but blog
+   posts are freeform markdown written through Tina. The rules for `table` and
+   `pre` above already defend this exact scenario; long words were simply missed.
+   CJK is unaffected: it breaks anywhere by default. */
+.prose,
+.post__body {
+  overflow-wrap: break-word;
+}
+
 .prose {
   max-width: var(--max-width-prose);
 }
@@ -406,11 +424,17 @@ main {
  *  currentColor for both lines, so set `color` on the element to pick a
  *  frame color per usage.
  * ───────────────────────────────────────────────────────────────────────── */
+/* The second rule is a box-shadow, NOT an outline. `.post-card` and
+   `.service-card` are focusable elements carrying this class, and
+   :focus-visible also uses `outline` — so focus REPLACED the decorative ring
+   instead of adding to it. The focused card was distinguishable only by the
+   ring changing colour at nearly the same position, which reads as "a
+   differently coloured card", not "the focused card". box-shadow leaves
+   `outline` free for focus alone. */
 .label-frame {
   position: relative;
   border: 3px solid currentColor;
-  outline: 1px solid currentColor;
-  outline-offset: 5px;
+  box-shadow: 0 0 0 5px transparent, 0 0 0 6px currentColor;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -463,7 +487,7 @@ main {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-ochre);
+  outline: 3px solid var(--color-accent-text);
   outline-offset: 2px;
 }
 

@@ -163,7 +163,12 @@ const strings = t(locale);
     font-size: 16px; /* prevents iOS Safari auto-zoom on focus */
     width: 100%;
     padding: var(--space-3);
-    border: 1px solid var(--color-line);
+    /* --color-line-control, not --color-line. These fields sit on a
+       .contact-frame that is ALSO --color-surface, so this border is the only
+       thing identifying the control — WCAG 1.4.11 wants 3:1 where that is true.
+       --color-line measured 1.45:1 light and 1.27:1 dark; in dark mode the
+       fields read as ghost boxes. */
+    border: 1px solid var(--color-line-control);
     border-radius: var(--radius);
     background: var(--color-surface);
     color: var(--color-ink);
@@ -184,6 +189,11 @@ const strings = t(locale);
   }
 
   .contact-form__status--error {
-    color: var(--color-accent);
+    /* --color-accent (ochre) measured 3.04:1 on white, under the 4.5:1 AA
+       needs. --color-accent-text is defined per theme for exactly this — it is
+       #8c5c17 in light (5.74:1) and resolves to ochre in dark (5.59:1). This is
+       the one string a user MUST be able to read, because it only appears when
+       their message failed to send. */
+    color: var(--color-accent-text);
   }
 </style>

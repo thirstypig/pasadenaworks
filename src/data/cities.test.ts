@@ -20,13 +20,23 @@ describe('cityLocales', () => {
   });
 
   it('never fabricates a locale absent from a city\'s own data', () => {
-    // Every city in the array must only report locales it genuinely has —
-    // this is the single source of truth the hreflang/routing code trusts.
+    // `cityLocales` is Object.keys(city.t).filter(Boolean), so asserting that
+    // every reported locale exists in `city.t` was true BY CONSTRUCTION for any
+    // content — it could not fail. What can actually go wrong is the function
+    // being rewritten to return a fixed list, which is what hard rule 1 forbids
+    // ("Don't hardcode a full four-locale map for consistency"). So assert the
+    // property that would break: the reported set must DIFFER between cities.
+    expect(cities.length).toBeGreaterThan(3); // control: an empty array must not pass
+    const shapes = new Set(cities.map((city) => cityLocales(city).sort().join(',')));
+    expect(shapes.size).toBeGreaterThan(1);
+
+    // and it must still agree with the data, per city
     for (const city of cities) {
-      const reported = cityLocales(city);
-      for (const locale of reported) {
-        expect(city.t[locale]).toBeDefined();
-      }
+      expect(cityLocales(city).sort()).toEqual(
+        (Object.keys(city.t) as (keyof typeof city.t)[])
+          .filter((l) => city.t[l])
+          .sort(),
+      );
     }
   });
 });

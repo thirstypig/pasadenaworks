@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 019
 tags: [code-review, testing, quality]
@@ -104,3 +104,40 @@ bar is the consistent move.
 ### 2026-09-03 — Found during full-repo review
 Verified by running the arithmetic on #1 and reading the parser for #2 rather
 than trusting the titles.
+
+### 2026-09-04 — Closed. Every rewrite was falsified against a broken implementation.
+
+**#1 reading-time** — resized to 150 words joined by whitespace runs, so a naive
+`.split(' ')` tips it to 2 minutes. Falsified by changing the implementation's
+`/\s+/` to `' '`: the test fails. The old 4-word body yielded 6 tokens either
+way, and `ceil(6/200)` is 1, which is also the clamped floor.
+
+**#2 content-status** — now asserts a real `key: value` line placed BELOW the
+closing fence is not picked up. Falsified by widening the parser's regex past the
+fence. The old assertion could not fail: the parser only builds keys via
+`slice(0, indexOf(':'))`, and the line it named has no colon.
+
+**#3 cities — the report was partly wrong, and this is the useful correction.**
+It was called "true by construction". It is not: `cityLocales` returning a
+hardcoded four-locale list WOULD have failed it, because Pasadena has only `en`.
+Its real weakness was the missing length control — an empty `cities` array
+passed. Rewritten to assert the reported sets differ between cities (the
+property a hardcoded list breaks) plus a per-city equality, with
+`cities.length > 3` as the control. Falsified by hardcoding the return: 3 tests
+fail.
+
+**#6 the directory blind spot — the one with real consequences.** The loader is
+`glob('**\/*.md')` while the test walked four hardcoded directories, top level
+only. Now recursive. Falsified by adding
+`src/content/blog/en/drafts/sneaky.md` with a duplicate slug: three invariants
+fail, including slug uniqueness — the one that silently drops a post at build
+with only a warning. Previously that file was invisible to every check.
+
+**#7 the disagreeing parsers** — fixed the disagreement rather than deleting one
+of the two checks. `field()` stripped only double quotes, so it and
+`parseFrontmatter()` reached different answers on `slug: 'foo'` (`'foo'`, quotes
+included). Both quote styles now handled; verified on a real file.
+
+**#4 and #5 left alone deliberately.** The `routes.test.ts` pair documents intent
+and is defensible, and the slow setup (`report()` at collect time, the repo-root
+crawl) is wasteful but harmless — neither is a test that cannot fail.
