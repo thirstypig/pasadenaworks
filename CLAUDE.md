@@ -59,12 +59,15 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 62 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 182) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
                      #   metrics (English FK, Spanish Fernandez Huerta, Chinese register),
-                     #   and a polarity tripwire on sentences that have shipped reversed
+                     #   and a polarity tripwire on sentences that have shipped reversed.
+                     #   5 of these need dist/ and SKIP without it — the rendered
+                     #   nav-link checks and the readability cross-check — which is
+                     #   why ci.yml re-runs the whole suite after the build.
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 

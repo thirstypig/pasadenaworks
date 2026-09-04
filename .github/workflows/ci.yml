@@ -87,17 +87,20 @@ jobs:
             exit 1
           fi
 
-      # The readability cross-check needs dist/, so it SKIPS in the unit-test
-      # step above — both workflows run tests before building. Run it again
-      # here, now that the build exists, or it would never execute in CI at
-      # all and would only ever have been checked by hand on a laptop with a
-      # stale dist/ lying around. That is exactly how it passed locally while
-      # failing here on the first attempt.
+      # The WHOLE suite runs again here, not just the readability file.
+      #
+      # Several tests need dist/ and therefore SKIP in the unit-test step above,
+      # because both workflows run tests before building: the readability
+      # cross-check, and src/i18n/rendered-links.test.ts. Naming one file meant
+      # the next dist-dependent test added would silently never run in CI — the
+      # same trap the readability check itself shipped with, passing locally on
+      # a laptop that had a stale dist/ lying around. Re-running everything
+      # costs about a second and cannot go stale.
       #
       # What it protects: the blog is scored from markdown and the rest of the
       # site from rendered HTML, and the two must agree within half a grade.
       # Adding a component inside <main> silently breaks that agreement.
-      - name: Cross-check the rendered readability extraction
+      - name: Re-run the suite against the built site
         run: |
-          npm run test -- readability
+          npm run test
           npm run readability -- --dist
