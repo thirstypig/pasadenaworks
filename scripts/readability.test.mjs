@@ -11,6 +11,7 @@ import {
   TARGETS,
   FORMAL_MARKERS,
   COLLOQUIAL_MARKERS,
+  LOCALES,
   report,
   reportDist,
   mainProse,
@@ -412,5 +413,47 @@ describe('rendered-page extraction', () => {
     }
     // Positive control: if the build is missing the comparison is vacuous.
     expect(compared, 'no live posts found in dist/ — run npm run build first').toBeGreaterThan(0);
+  });
+});
+
+describe('degenerate input', () => {
+  /**
+   * `reportDist` runs `analyze` over every built page, including tiny ones
+   * whose <main> is almost entirely nav and buttons. If a short page threw or
+   * produced NaN, `npm run readability -- --dist` would break on the whole
+   * site rather than on the one page — so this pins the floor rather than any
+   * particular score.
+   */
+  it.each(['en', 'es', 'zh-hans', 'zh-hant'])('never throws or returns NaN for %s', (locale) => {
+    for (const text of ['', ' ', 'Word', '網', 'no terminator here']) {
+      const r = analyze(text, locale);
+      const value = r[TARGETS[locale].metric];
+      expect(Number.isNaN(value), `${locale} / ${JSON.stringify(text)}`).toBe(false);
+      expect(verdict(r) === null || ['below', 'ok', 'above'].includes(verdict(r))).toBe(true);
+    }
+  });
+
+  /**
+   * REGRESSION: the early return used to hardcode `fkGrade: null` for every
+   * locale, so a one-word Spanish page came back carrying English's metric key
+   * and no `fernandezHuerta` at all. `JSON.stringify` drops undefined, so
+   * `--json` emitted no Spanish field whatsoever — a consumer could not
+   * distinguish "no value" from "key not emitted".
+   */
+  it("keeps every locale's own metric key present, so --json cannot drop it", () => {
+    for (const locale of LOCALES) {
+      const json = JSON.parse(JSON.stringify(analyze('Word', locale)));
+      const key = TARGETS[locale].metric;
+      expect(Object.hasOwn(json, key), `${locale} lost "${key}" through JSON`).toBe(true);
+      expect(json[key], `${locale} ${key}`).toBeNull();
+    }
+  });
+
+  it('reports no verdict rather than a false "below" when nothing is measurable', () => {
+    // A page with no measurable prose is not failing the band; it is silent
+    // about it. Returning 'below' would put unmeasurable pages on the
+    // out-of-band list and invite someone to pad them.
+    expect(verdict(analyze('', 'en'))).toBeNull();
+    expect(verdict(analyze('Hola', 'es'))).toBeNull();
   });
 });

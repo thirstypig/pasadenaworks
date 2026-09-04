@@ -48,11 +48,12 @@ npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index
 npm run readability  # reading level of every post, per locale, against the house targets
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
-npm run test         # unit tests (vitest, 146) — i18n/hreflang, reading time, city/service
+npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
-                     #   match globs + filename slugifier, and the per-locale readability
-                     #   metrics (English FK, Spanish Fernandez Huerta, Chinese register)
+                     #   match globs + filename slugifier, the per-locale readability
+                     #   metrics (English FK, Spanish Fernandez Huerta, Chinese register),
+                     #   and a polarity tripwire on sentences that have shipped reversed
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 

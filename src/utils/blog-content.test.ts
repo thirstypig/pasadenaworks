@@ -175,3 +175,76 @@ describe('Chinese script purity', () => {
     expect(leaks).toEqual([]);
   });
 });
+
+/**
+ * A TRIPWIRE ON SENTENCES THAT HAVE ALREADY SHIPPED BACKWARDS — not a
+ * semantic check, and it should never pretend to be one.
+ *
+ * Every other test in this file checks SHAPE: slug uniqueness, pubDate
+ * parity, translationKey linkage, script purity. A fluent, well-formed,
+ * confidently wrong sentence passes all of them. That is not hypothetical
+ * here: both Chinese versions of the Spanish-website post once shipped
+ * 划算得多 — "much MORE worth it" — where the English says it pays off
+ * LESS, recommending a Spanish site to precisely the three business types
+ * the post tells you to skip. Every structural test was green.
+ *
+ * The 2026-09-03 register conversion rewrote every post in four languages,
+ * and register work rewrites exactly the polarity-bearing clauses:
+ * comparatives, "more/less", "should/shouldn't", and modals. So the one
+ * sentence known to have inverted before is pinned here, in each locale,
+ * with a negative control on the inverted wording.
+ *
+ * This does not verify meaning in general and cannot. It is a place to add
+ * a line each time a polarity error is found, so the same sentence cannot
+ * flip twice.
+ */
+const POLARITY_TRIPWIRES: {
+  translationKey: string;
+  note: string;
+  expected: Record<string, string>;
+  forbidden: string[];
+}[] = [
+  {
+    translationKey: 'spanish-website',
+    note: 'a Spanish site pays off LESS for national-referral, niche-ecommerce and B2B-procurement businesses',
+    expected: {
+      en: 'pays off considerably less',
+      es: 'Se paga considerablemente menos',
+      'zh-hant': '回報便低得多',
+      'zh-hans': '回报便低得多',
+    },
+    forbidden: ['划算得多', '更划算', 'más rentable', 'pays off considerably more'],
+  },
+];
+
+describe('polarity tripwires', () => {
+  it('has a tripwire table that still matches real posts', () => {
+    // Positive control. If a translationKey is renamed the table silently
+    // guards nothing, and every assertion below passes on an empty set.
+    for (const t of POLARITY_TRIPWIRES) {
+      const set = posts.filter((p) => p.translationKey === t.translationKey);
+      expect(set.length, `no posts for translationKey "${t.translationKey}"`).toBeGreaterThan(0);
+    }
+  });
+
+  it.each(POLARITY_TRIPWIRES)('keeps $translationKey pointing the same way in every locale', (t) => {
+    for (const [locale, needle] of Object.entries(t.expected)) {
+      const post = posts.find((p) => p.translationKey === t.translationKey && p.locale === locale);
+      expect(post, `${t.translationKey} missing its ${locale} version`).toBeDefined();
+      expect(
+        post!.body.includes(needle),
+        `${post!.path}: expected "${needle}" — ${t.note}`,
+      ).toBe(true);
+    }
+  });
+
+  it.each(POLARITY_TRIPWIRES)('never states the inverse of $translationKey anywhere in the corpus', (t) => {
+    // Negative control, corpus-wide rather than per-file: the inversion has
+    // to be absent everywhere, because the wrong claim is just as damaging
+    // in a post that merely mentions the topic.
+    for (const bad of t.forbidden) {
+      const offenders = posts.filter((p) => p.body.includes(bad)).map((p) => p.path);
+      expect(offenders, `inverted wording "${bad}" — ${t.note}`).toEqual([]);
+    }
+  });
+});

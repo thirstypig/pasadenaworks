@@ -273,7 +273,23 @@ export function analyze(markdown, locale) {
   const words = body.match(/\b[\w'’À-ɏ-]+\b/g) || [];
   const W = words.length;
   const S = sentences.length;
-  if (!W || !S) return { locale, units: W, sentences: S, fkGrade: null };
+  if (!W || !S) {
+    // Every metric key is present and null, never absent. `JSON.stringify`
+    // drops undefined but keeps null, so a missing key would silently
+    // disappear from `--json` output for Spanish while English still showed
+    // its own. A consumer cannot tell "no value" from "field not emitted".
+    return {
+      locale,
+      units: W,
+      sentences: S,
+      wordsPerSentence: null,
+      longest: 0,
+      polysyllabicPct: null,
+      fkGrade: null,
+      readingEase: null,
+      fernandezHuerta: null,
+    };
+  }
 
   const counter = locale === 'es' ? spanishSyllables : englishSyllables;
   const syl = words.reduce((a, w) => a + counter(w), 0);
