@@ -158,3 +158,38 @@ caught by grep.
   sites, and it is a design call about how the arrow should look.
 - The English/localized visual divergence (logo hero, frame styles, city hub as
   list vs card grid) is a deliberate-call question, not drift to be cleaned up.
+
+### 2026-09-04 — `tags: required` had to be reverted; it broke every deploy
+
+Adding `required: true` to the Tina `tags` field changed the generated GraphQL
+type from `[String]` to `[String!]!`, and `npx tinacms build` in deploy.yml then
+refused to run:
+
+```
+[NON_BREAKING - FIELD_TYPE_CHANGED] Field 'Blog.tags' changed type from '[String]' to '[String!]!'
+Error: The local GraphQL schema doesn't match the remote GraphQL schema. (ERR_CLOUD_CHECK_FAILED)
+```
+
+Tina Cloud holds the remote schema and did not pick the change up on its own —
+three consecutive deploy runs failed with `Last indexed at` frozen at
+16:18:49 GMT, including a manual re-run several minutes later. Reverted, because
+this blocks EVERY deploy, and deploy.yml's cron is the only thing that makes a
+date-gated post publish (todo 011): an edit-time validation is not worth
+stopping the publishing pipeline.
+
+**What survived.** The `ui.validate` on `tags` is kept and gives the same
+editor-time feedback — it is a client-side function and does not touch the
+GraphQL type. `heroImage`'s validate is likewise unaffected. Astro's
+`z.array(z.string()).min(1).max(3)` remains the real enforcement, so a post with
+no tags still fails the build; the finding's substance stands.
+
+**To restore it:** update the schema in Tina Cloud first (dashboard, owner's
+login), confirm the remote type reads `[String!]!`, then re-add `required: true`.
+Not attempted from here — that dashboard is not reachable by tooling.
+
+**The lesson worth carrying:** `tina/config.ts` is not a local file. Some edits
+to it are schema changes that must be synchronised with Tina Cloud, and they fail
+at DEPLOY time, long after the local build and the whole test suite have gone
+green. `required`, field type, and adding or removing a field are all in that
+category; `ui.validate`, `description` and `label` are not. Nothing in the local
+gate can catch this — the first signal is a red deploy on main.
