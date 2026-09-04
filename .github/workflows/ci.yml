@@ -32,6 +32,19 @@ jobs:
       - name: Unit tests
         run: npm run test
 
+      # WHY THIS IS HERE AND NOT IN deploy.yml: nothing in this repo ran `tsc`
+      # until now, so a type error was invisible — `npm run test` does not
+      # typecheck, and `npm run build` passes because Astro never typechecks
+      # tina/. One sat broken for days that way.
+      #
+      # It gates pull requests only, on purpose. deploy.yml's cron is what
+      # makes a date-gated post actually publish, and a type error in tina/
+      # cannot affect the built site at all — Astro does not compile that
+      # folder. Blocking the daily publish over one would stop real content
+      # from shipping to fix nothing.
+      - name: Typecheck
+        run: npm run typecheck
+
       # The Astro build is a second gate: it catches a broken frontmatter schema
       # or a route collision that the unit tests do not model. The Tina admin
       # bundle is deliberately not built here — it needs secrets a fork's PR

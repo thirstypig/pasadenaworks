@@ -12,6 +12,7 @@
     "preview": "astro preview --port 3180",
     "admin": "tinacms dev -c \"astro dev --port 3180\"",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
     "content:status": "node scripts/content-status.mjs",
     "readability": "node scripts/readability.mjs"
   },
@@ -24,7 +25,10 @@
   },
   "devDependencies": {
     "@tinacms/cli": "^2.6.1",
+    "@types/picomatch": "^4.0.3",
+    "picomatch": "^4.0.7",
     "tinacms": "^3.12.1",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.11"
   }
 }
