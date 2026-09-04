@@ -27,6 +27,7 @@ type Post = {
   pubDateRaw: string;
   draft: boolean;
   body: string;
+  raw: string;
 };
 
 function field(source: string, name: string, fallback?: string): string {
@@ -56,6 +57,12 @@ const posts: Post[] = LOCALES.flatMap((dir) =>
         pubDateRaw: field(source, 'pubDate'),
         draft: field(source, 'draft', 'false') === 'true',
         body: source.split(/^---$/m)[2] ?? '',
+        // Whole file, frontmatter included. The polarity tripwires check this
+        // rather than `body`: a reversed comparative in a `description` is at
+        // least as damaging as one in the prose, because that is the line the
+        // search result shows. (Distinct from readability, which deliberately
+        // excludes meta descriptions — different job, different rule.)
+        raw: source,
       };
     })
 );
@@ -265,6 +272,42 @@ const POLARITY_TRIPWIRES: {
     },
     forbidden: ['划算得多', '更划算', 'más rentable', 'pays off considerably more'],
   },
+  // Added 2026-09-03 after a fidelity audit found each of these had drifted.
+  // All four are the shape the automated checks cannot see: a comparative, a
+  // modal, a range, or a direction — correct-looking prose that says something
+  // the English does not.
+  {
+    translationKey: 'redesign-or-fix',
+    note: 'a redesign runs WELL INTO five figures — open-ended, not capped at the middle of the range',
+    expected: {
+      en: 'well into five figures',
+      es: 'bien entradas las cinco cifras',
+      'zh-hant': '五位數以上',
+      'zh-hans': '五位数以上',
+    },
+    // 中段 ("mid-range") pins this to roughly $40-60k. It is the owner's own
+    // pricing, and the same sentence renders "low four figures" correctly as
+    // 四位數低段 — so the idiom was known and the wrong half was chosen.
+    forbidden: ['五位數中段', '五位数中段'],
+  },
+  {
+    translationKey: 'stop-offering-a-service',
+    note: 'keeping a mismatched service CAN confuse customers — possibility, not assertion',
+    expected: { 'zh-hant': '可能會讓潛在客人搞不清楚', 'zh-hans': '可能会让潜在顾客搞不清楚' },
+    forbidden: ['反而會讓潛在客人', '反而会让潜在顾客'],
+  },
+  {
+    translationKey: 'traffic-drop',
+    note: 'you LIFT a suspension; 恢復停權 reads as restoring one',
+    expected: { 'zh-hant': '解除停權', 'zh-hans': '解除停用' },
+    forbidden: ['恢復停權', '恢复停用'],
+  },
+  {
+    translationKey: 'google-ads-worth-it',
+    note: 'the account needs watching WEEKLY — the body says so three times; the meta used to say daily',
+    expected: { en: 'watching the account weekly' },
+    forbidden: ['watching the account daily'],
+  },
 ];
 
 describe('polarity tripwires', () => {
@@ -282,7 +325,7 @@ describe('polarity tripwires', () => {
       const post = posts.find((p) => p.translationKey === t.translationKey && p.locale === locale);
       expect(post, `${t.translationKey} missing its ${locale} version`).toBeDefined();
       expect(
-        post!.body.includes(needle),
+        post!.raw.includes(needle),
         `${post!.path}: expected "${needle}" — ${t.note}`,
       ).toBe(true);
     }
@@ -293,7 +336,7 @@ describe('polarity tripwires', () => {
     // to be absent everywhere, because the wrong claim is just as damaging
     // in a post that merely mentions the topic.
     for (const bad of t.forbidden) {
-      const offenders = posts.filter((p) => p.body.includes(bad)).map((p) => p.path);
+      const offenders = posts.filter((p) => p.raw.includes(bad)).map((p) => p.path);
       expect(offenders, `inverted wording "${bad}" — ${t.note}`).toEqual([]);
     }
   });
