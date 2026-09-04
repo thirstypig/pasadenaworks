@@ -67,11 +67,13 @@ npm run build   # build the production site into dist/
 npm run preview # look at the built site before deploying
 npm run test    # run the unit test suite (vitest)
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
+npm run readability     # reading level of every post, per language
+npm run readability -- --dist  # same, for the built pages (run a build first)
 ```
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a unit test suite (104 tests) covering the parts of this site that are
+There's a unit test suite (155 tests) covering the parts of this site that are
 easy to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the
@@ -79,7 +81,16 @@ blog i18n path/label helpers, and the Tina admin's filename helper — including
 non-ASCII titles, after a bug where every Chinese post created in the admin
 landed at the same empty filename and overwrote the previous one.
 
+It also measures reading level, per language, against a house target (see
+`npm run readability`). Each language gets its own formula, because
+Flesch-Kincaid is defined over English syllables and means nothing applied to
+Chinese. And it carries a *polarity tripwire*: a plain assertion that one
+particular sentence still says what it said in English, after both Chinese
+versions of a post once shipped claiming the opposite of the original.
+
 The tests run in CI on every pull request, and again before the site deploys.
+The rendered-page checks need a build, so CI runs them a second time after
+building.
 
 It also checks the blog content itself — that no two posts share a `slug`
 across locales, that every translation of a post carries the same `pubDate`,
@@ -306,7 +317,7 @@ canonical URLs · Open Graph tags with a real share image (`/og.png`) ·
 link · visible keyboard focus · `prefers-reduced-motion` respected ·
 responsive to 380px · Privacy Policy and Terms of Service pages (`/privacy/`,
 `/terms/`, linked from the footer) · a plain-English SEO/GEO glossary at
-`/glossary/` · self-hosted fonts (no Google Fonts CDN round trip) · a
+`/glossary/` · a measured house reading level across all four languages · self-hosted fonts (no Google Fonts CDN round trip) · a
 password-protected internal ops dashboard linking every backend service
 (deployed separately, not part of this repo — see `CLAUDE.md`).
 
@@ -318,13 +329,11 @@ password-protected internal ops dashboard linking every backend service
 - **Google Search Console.** Verify the domain and submit
   `https://pasadenaworks.com/sitemap-index.xml`. This is how you find out which
   queries you're actually appearing for.
-- **Translate the remaining blog posts.** The mechanism exists (see
-  "Writing a blog post" below) and all four languages work end-to-end — but
-  of the 20 approved English posts, 5 have Spanish, Simplified, and
-  Traditional Chinese versions and 15 don't. Because posts now publish
-  themselves on their `pubDate`, each one needs its translations *before*
-  that date or it goes out English-only. See `CONTENT-PLAN.md` for which
-  post is next.
+- **Keep translations ahead of the publish date.** All 20 posts now exist in
+  all four languages, so there is no backlog — but posts publish themselves on
+  their `pubDate`, and anything written from here needs its translations
+  *before* that date or it goes out English-only with no second chance.
+  `CONTENT-STATUS.md` is generated from the frontmatter and is the live answer.
 ---
 
 ## Structure

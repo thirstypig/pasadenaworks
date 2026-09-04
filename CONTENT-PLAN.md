@@ -62,34 +62,39 @@ relative week numbers — update it as you actually publish rather than
 letting it drift out of sync with reality the way the "weeks 1–12" version
 did.
 
-All 20 posts are approved, so publication is automatic — the Status column
-tracks the one thing that still needs a person: translations.
+All 20 posts are approved and all 20 now exist in every language, so
+publication is fully automatic and there is no translation backlog left to
+work. The Status column below is therefore a record rather than a queue.
 
-🌍 = translated (es + zh-hans + zh-hant) · 🈳 = English only, needs translation
-· 👁 = already visible on the site
+**Do not hand-maintain what is visible today.** `CONTENT-STATUS.md` is
+generated from the post frontmatter and is the live answer; this table drifted
+out of date within two days of the backlog closing precisely because it was
+tracking the same thing by hand.
+
+🌍 = translated (es + zh-hans + zh-hant) · 👁 = already visible on the site
 
 | Target date | Article | Pillar | Status |
 |---|---|---|---|
 | 2026-08-31 | How much should a small business website cost? | websites | 🌍 translated · 👁 visible |
 | 2026-09-07 | How to claim and fix your Google Business Profile | search | 🌍 translated |
-| 2026-09-14 | Do I need a website if I have Instagram? | websites | 🈳 needs translation |
-| 2026-09-21 | How to ask customers for reviews without being awkward | search | 🈳 needs translation |
-| 2026-09-28 | Should your website be in Spanish too? | websites | 🈳 needs translation |
-| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | 🈳 needs translation |
-| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | 🈳 needs translation |
-| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | 🈳 needs translation |
-| 2026-10-26 | Are Google Ads worth it for a small business? | ads | 🈳 needs translation |
-| 2026-11-02 | What to do when your website traffic drops | search | 🈳 needs translation |
-| 2026-11-09 | Which service should you stop offering? | consulting | 🈳 needs translation |
-| 2026-11-16 | How to fire a customer without burning the relationship | consulting | 🈳 needs translation |
-| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | 🈳 needs translation |
+| 2026-09-14 | Do I need a website if I have Instagram? | websites | 🌍 translated |
+| 2026-09-21 | How to ask customers for reviews without being awkward | search | 🌍 translated |
+| 2026-09-28 | Should your website be in Spanish too? | websites | 🌍 translated |
+| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | 🌍 translated |
+| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | 🌍 translated |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | 🌍 translated |
+| 2026-10-26 | Are Google Ads worth it for a small business? | ads | 🌍 translated |
+| 2026-11-02 | What to do when your website traffic drops | search | 🌍 translated |
+| 2026-11-09 | Which service should you stop offering? | consulting | 🌍 translated |
+| 2026-11-16 | How to fire a customer without burning the relationship | consulting | 🌍 translated |
+| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | 🌍 translated |
 | ~~2026-11-30~~ | *Skipped — Thanksgiving week.* | — | — |
-| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | 🈳 needs translation |
-| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | 🈳 needs translation |
+| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | 🌍 translated |
+| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | 🌍 translated |
 | ~~2026-12-21~~ | *Skipped — Christmas week.* | — | — |
 | ~~2026-12-28~~ | *Skipped — New Year's week.* | — | — |
-| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | 🈳 needs translation |
-| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | 🈳 needs translation |
+| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | 🌍 translated |
+| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | 🌍 translated |
 
 **The last two rows are the "Southern California + online marketing" pieces
 requested 2026-08-27.** Both are genuinely regional, not generic filler with
