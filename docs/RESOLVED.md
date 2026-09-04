@@ -206,3 +206,19 @@ Read this before re-investigating anything that sounds already-handled.
   elsewhere. Empty entries are filtered rather than emitted, so Instagram stays
   absent until there is a real account: a `sameAs` pointing at a dead profile is
   worse than none.
+
+- **The site has a measured reading level, and the measurement is designed
+  against the ways a measurement corrupts writing** (2026-09-03). The owner set
+  a college-level target across all four languages. The first Chinese metric
+  was characters-per-sentence and reported 19/20 posts already in band before a
+  word had changed — Chinese raises register lexically (所以→因此, 但是→然而),
+  not by sentence length, so measuring length measured nothing. Replaced with a
+  書面語 register index; Spanish uses Fernández Huerta rather than
+  Flesch-Kincaid, which inflates on Spanish and is meaningless on Chinese.
+  Every band carries an upper bound, which earned its place twice: one draft
+  passed a 13+ floor at grade 15.9 with 29.8-word sentences, harder to read
+  than the 6.7 version it replaced. Verified by scoring the corpus both from
+  markdown and from the built pages and requiring the two to agree within half
+  a grade — a cross-check that found two real bugs and, in its first version,
+  failed its own positive control. Full write-up in
+  [`docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md`](solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md).

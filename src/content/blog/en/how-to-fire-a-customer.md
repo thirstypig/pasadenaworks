@@ -17,50 +17,50 @@ translationKey: fire-a-customer
 slug: how-to-fire-a-customer
 ---
 
-> **TL;DR** — If a customer chronically pays late, disrespects your staff, or eats up far more time than they pay for, you're allowed to end the relationship. Give real notice, put the end date in writing, finish what you've already been paid for, and don't ghost them. Most owners feel guilty about this. You don't need permission, but here it is anyway.
+> **TL;DR** — If a customer chronically pays late, disrespects your staff, or consumes considerably more time than they actually pay for, then you are entitled to end the relationship. Provide genuine notice, commit the concluding date to writing, complete whatever you have already been paid for, and do not disappear on them without explanation. Most owners feel considerably guilty about this, although you do not require anybody's permission — and here it is regardless.
 
-Yes, you can fire a customer. Plenty of small business owners never consider it because "the customer is always right" gets treated like a law of physics instead of a slogan someone made up to sell more shoes. It's not a law. If a customer is costing you money, staff, or sleep, keeping them isn't loyalty — it's just a bad trade you keep making.
+Yes, you are permitted to fire a customer, and a great many small business owners never seriously contemplate it because "the customer is always right" gets treated as a law of physics rather than as a slogan somebody invented in order to sell more shoes. It is emphatically not a law, and if a customer is genuinely costing you money, staff, or sleep, then retaining them does not constitute loyalty so much as a poor trade you have simply continued making.
 
 ## The signals it's actually time
 
-Not every annoying client needs to go. Look for a pattern, not a bad week.
+Not every irritating client needs to depart, so what you are looking for is an established pattern rather than one difficult week.
 
-**They pay late, every time, on principle.** One slow month during a client's own cash crunch is normal business. A client who's 30-45 days late on every invoice and treats your payment terms as a suggestion is telling you how they see the relationship: optional.
+**They pay late, invariably, and apparently on principle.** One slow month during a client's own cash shortage is entirely ordinary business, but a client running thirty to forty-five days late on every single invoice, treating your payment terms as a mild suggestion, is telling you precisely how they regard the relationship: as optional.
 
-**They're rude to your staff, not just you.** You can absorb a sharp email aimed at you and decide it's worth it. You don't get to make that call on your employee's behalf. If a client snaps at your assistant, your junior designer, or whoever answers your phone, that's not a personality quirk — it's a workplace problem you're allowing into your building.
+**They are rude to your staff, and not merely to you.** You can absorb a sharp email directed at yourself and conclude privately that it is worth tolerating. You are not entitled to make that same determination on an employee's behalf. If a client snaps at your assistant, your junior designer, or whoever happens to answer your telephone, that is not a personality quirk but a workplace problem you are actively permitting into your own building.
 
-**Every project turns into three projects.** Scope creep that gets negotiated and repriced is normal client work. Scope creep that just happens, over and over, with the expectation that "since we're already in there" covers it for free, is a client who has decided your rate doesn't apply to them.
+**Every individual project transforms into approximately three projects.** Scope creep that gets openly negotiated and then repriced constitutes entirely ordinary client work, whereas scope creep that simply occurs, repeatedly, accompanied by an unspoken expectation that "since we're already in there" covers it without any charge, indicates a client who has quietly determined that your rate does not apply to them.
 
-**The math doesn't work anymore.** Add up the hours: emails, calls, redoes, hand-holding, chasing payment. If a client who pays you $800 a month takes as much of your time as three clients who pay $2,500, you're subsidizing them with time you could spend on people who value it.
+**The underlying arithmetic no longer works in your favor.** Total the hours honestly, including the emails, the calls, the revisions, the hand-holding, and the pursuit of payment. If a client paying you $800 monthly consumes as much of your time as three separate clients paying $2,500, you are subsidizing that relationship with hours you could otherwise spend on people who visibly value them.
 
-One of those alone might just be a rough patch. Two or more, for months, is a pattern — and patterns don't fix themselves.
+Any one of these signals alone might merely represent a temporarily rough patch, but two or more of them sustained across several months constitutes a genuine pattern, and patterns of this kind do not resolve themselves without intervention.
 
 ## How to actually do it
 
-The goal isn't to win an argument. It's to leave clean, so neither of you regrets how it ended.
+The objective here is not winning an argument but leaving cleanly enough that neither party subsequently regrets the manner in which the relationship concluded.
 
-**1. Give real notice, not a surprise.** "This is our last month" beats "as of today, I'm done." If you have a contract, check the notice period it requires and honor it even if you'd rather not.
+**1. Provide genuine notice, rather than delivering a surprise.** "This will be our final month together" is considerably better than "as of today, I am finished," and if a written contract exists between you, examine the notice period it requires and honor that period even in circumstances where you would very much rather not.
 
-**2. Be honest, not cruel.** You don't need to list every grievance. State the real reason in one sentence, without editorializing.
+**2. Be honest with them without being gratuitously cruel.** You are under no obligation whatsoever to enumerate every accumulated grievance, so state the actual underlying reason in a single sentence and resist the temptation to editorialize around it afterward.
 
-**3. Offer a referral if you can honestly make one.** This softens the exit and it's often the difference between "the vendor who dropped us" and "the vendor who helped us land somewhere better." Skip this step if you can't say it and mean it — a fake referral is worse than none.
+**3. Offer a referral, provided you can honestly make one.** Doing so softens the exit considerably, and frequently determines whether you become "the vendor who dropped us" or "the vendor who helped us land somewhere better." Omit the step entirely if you cannot say it and genuinely mean it, because a fabricated referral is substantially worse than none at all.
 
-**4. Put the end date in writing.** Email, not a phone call you both remember differently later. This protects you if there's ever a dispute about when the relationship ended.
+**4. Commit the concluding date to writing somewhere permanent.** Use email rather than a telephone conversation that the two of you will inevitably remember differently six months afterward, because a written record protects you if a dispute ever arises regarding when the relationship actually ended.
 
-**5. Finish what's paid for.** If they prepaid for a service period or you owe deliverables under a signed contract, finish those. Ending the relationship isn't a reason to also breach the agreement — that trades one problem for a worse one.
+**5. Complete whatever has already been paid for.** If they prepaid for a service period, or you owe deliverables under a contract you signed, complete those obligations. Ending a relationship is not grounds for also breaching the underlying agreement, and doing so trades one manageable problem for a considerably worse one.
 
-**6. Don't ghost.** Going quiet feels easier in the moment. It isn't. Unanswered emails turn into bad reviews, and bad reviews outlast the six weeks of awkwardness you were trying to avoid.
+**6. Do not simply disappear on them without explanation.** Going quiet feels appreciably easier in the moment and reliably is not, because unanswered emails become unfavorable public reviews, and those reviews will outlast by several years the six weeks of awkwardness you were originally attempting to avoid.
 
-Here's language you can actually send:
+Here is language you can genuinely send, kept deliberately plain because a client reading it should not have to decode anything at all:
 
 > Hi \[Name],I want to be direct with you: \[Company] will be \[client]'s last month with us. \[One honest sentence — e.g., "The scope of what you need has grown past what a monthly retainer like ours is built for."]We'll finish \[the specific work owed] by \[date]. After that, \[month/date] will be our final invoice.If it's useful, I'm happy to recommend a couple of people who specialize in \[what they actually need] — just say the word.Thanks for the work we did get to do together.\[Your name]
 
-Notice what it doesn't do: it doesn't apologize for existing boundaries, and it doesn't relitigate every late invoice. State it, give a date, offer a hand, and stop.
+Observe carefully what that message declines to do: it does not apologize for the mere existence of boundaries, and it does not relitigate every late invoice from the preceding two years. State the position plainly, supply a definite date, extend a hand if you can, and then stop writing.
 
 ## The part that isn't legal advice, but matters
 
-If you have a signed contract, read it before you send anything. Most service agreements have a notice period and a clause about what happens to work in progress — follow it. If you're on a month-to-month handshake arrangement, you have more room to move, but "more room" doesn't mean "no notice." Finish and invoice for anything you've already delivered or are contracted to deliver. What you're ending is future work, not your existing obligations. If the relationship involves real money at stake or a contract you're unsure how to read, that's a fifteen-minute conversation with a lawyer, not something to guess your way through.
+If a signed contract exists between you, read it carefully before sending anything at all. Most service agreements contain both a notice period and a clause governing what becomes of work already in progress, and you should follow both. If you are instead operating on a month-to-month handshake arrangement, you have considerably more room to maneuver, although additional room does not amount to no notice whatsoever. Complete and invoice anything you have already delivered or remain contractually obligated to deliver, because what you are terminating is future work rather than your existing obligations. If the relationship involves genuine money at stake, or a contract you are uncertain how to interpret correctly, that constitutes a fifteen-minute conversation with a lawyer rather than something to guess your way through on a weekend.
 
 ## You're allowed to do this
 
-The guilt is normal. You started this business to help people, and turning someone away feels like the opposite of that. But a client who costs you more than they pay isn't a charity case you're obligated to keep — it's a decision you're allowed to make like any other business decision. The clients who are left get more of you. That's not a loss. That's the actual point of doing this carefully instead of saying yes to everyone.
+The guilt is entirely normal and predictable, because you established this business in order to help people and turning somebody away feels like the precise opposite of that intention. But a client costing you considerably more than they pay is not a charity case you are somehow obligated to retain: it is a decision you are entitled to make like any other business decision you make in a given week. The clients who remain afterward receive more of you, which does not constitute a loss so much as the actual point of doing this carefully instead of consenting to absolutely everyone.

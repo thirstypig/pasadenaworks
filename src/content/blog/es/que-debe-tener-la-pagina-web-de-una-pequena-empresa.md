@@ -15,42 +15,38 @@ translationKey: website-basics
 slug: que-debe-tener-la-pagina-web-de-una-pequena-empresa
 ---
 
-> **Resumen** — La página web de una pequeña empresa necesita cinco cosas: cargar rápido en el celular, decir claramente a qué se dedica, mostrar el horario y la dirección correctos, dar una forma obvia de contactarla, y estar escrita de una manera que Google pueda leer. Todo lo demás — blog, tienda en línea, chat en vivo, animaciones — es opcional hasta que esas cinco cosas estén resueltas.
+> **En corto** — La página web de un negocio pequeño requiere cinco cosas: velocidad en el teléfono, claridad respecto de lo que usted hace, horarios y ubicación correctos, un medio obvio de contactarle, y legibilidad para Google. Todo lo demás — blogs, tiendas en línea, chat en vivo, animaciones — permanece opcional hasta que esas cinco estén genuinamente sólidas.
 
-La página web de una pequeña empresa necesita cinco cosas: tiene que cargar rápido en el celular, decir con claridad a qué se dedica, mostrar dónde está y cuándo abre, dejar clara una forma de contactarla, y ser algo que Google realmente pueda leer. Casi todo lo demás es opcional.
+La página web de un negocio pequeño requiere cinco cosas: tiene que cargar rápidamente en un teléfono, declarar inequívocamente lo que usted hace, mostrar dónde se sitúa y cuándo abre, hacer obvio cómo se le contacta, y ser algo que Google pueda efectivamente leer. Casi todo lo que exceda esas cinco permanece enteramente opcional.
 
-## La velocidad en el celular no es negociable
+## La velocidad, en el teléfono, no es negociable
 
-La mayoría de las personas que te encuentran por primera vez están usando el celular, paradas en algún lugar, decidiendo en los próximos segundos si se quedan viendo tu página o regresan a los resultados de búsqueda.
+La mayoría de las personas que le descubren por primera vez sostienen un teléfono, están paradas en algún sitio incómodo, y deciden en los siguientes segundos si continúan examinando su sitio o regresan directamente a los resultados de búsqueda.
 
-Si tu página principal tarda cinco segundos en cargar por culpa de un carrusel de fotos gigante y sin optimizar, **ya perdiste a una buena parte de esas personas** — y nunca vas a saber que pasó.
+Si su página de inicio requiere cinco segundos para cargar debido a un enorme carrusel de fotografías sin optimizar, entonces **usted ya perdió una proporción sustancial de esas personas** — y jamás se enterará de que ocurrió.
 
-## Di a qué te dedicas, en los primeros segundos
+## Diga lo que hace, en los primeros segundos
 
-No hagas que alguien tenga que buscar en la página para saber si eres una panadería o un mayorista de insumos para panaderías. Ponlo en palabras simples, cerca de arriba: qué haces, y para quién. El eslogan ingenioso puede esperar, si es que hace falta.
+No obligue a nadie a desplazarse hacia abajo meramente para establecer si usted es una panadería o un mayorista de insumos de panadería. Enúncielo en palabras llanas cerca de la parte superior de la página: qué hace usted, y precisamente para quién está destinado. Reserve el eslogan ingenioso para considerablemente después, si acaso.
 
-## Horario, dirección y forma de contacto — correctos y fáciles de encontrar
+## Horarios, ubicación e información de contacto — correctos y fáciles de encontrar
 
-Suena demasiado obvio para mencionarlo, y es justo lo que más se equivoca.
+Esto suena demasiado obvio como para ameritar mención, y es simultáneamente lo que está mal con mayor frecuencia. Un horario incorrecto le cuesta un cliente que cruzó la ciudad conduciendo y le encontró cerrado. Un número telefónico que no constituye un enlace pulsable en móvil le cuesta a alguien que habría llamado de inmediato antes que después. Una dirección faltante o desactualizada envía a la gente a un local enteramente equivocado.
 
-- Un horario incorrecto te cuesta un cliente que manejó hasta allá y te encontró cerrado
-- Un número de teléfono que no se puede tocar directamente desde el celular te cuesta a alguien que te habría llamado en ese momento, no después
-- Una dirección faltante o desactualizada manda a la gente al local equivocado
+> Corrija los datos básicos antes de gastar un solo dólar en cualquier otra cosa, porque nada más sofisticado compensa unos horarios incorrectos.
 
-> Antes de gastar un peso en cualquier otra cosa, asegúrate de que estos datos básicos estén bien. Nada más elaborado arregla un horario equivocado.
+## Una manera de contactarle que efectivamente le llegue
 
-## Una forma de contactarte que de verdad te llegue
-
-Un formulario de contacto está bien. Un formulario de contacto que deja de funcionar en silencio porque nadie se dio cuenta de que el correo dejó de reenviarse hace seis meses no está bien, y pasa más seguido de lo que uno pensaría. **Pruébalo. Mándate un mensaje a través de él cada par de meses.**
+Un formulario de contacto sencillo resulta perfectamente adecuado. Un formulario de contacto que dejó de funcionar calladamente porque nadie notó que el correo había cesado de reenviarse seis meses atrás no resulta adecuado, y sucede considerablemente más a menudo de lo que usted esperaría. **Pruébelo periódicamente, enviándose efectivamente un mensaje a través de él cada pocos meses.**
 
 ## Algo que Google pueda leer
 
-Una página puede verse perfectamente normal para una persona y aun así ser casi invisible para Google, generalmente por títulos de página faltantes, descripciones faltantes, o contenido que está encerrado dentro de una imagen en lugar de ser texto real.
+Una página web puede parecerle perfectamente normal a una persona y permanecer casi invisible para Google, ordinariamente por títulos de página faltantes, descripciones faltantes, o contenido encerrado dentro de una imagen antes que existiendo como texto real.
 
-Esta es la parte más difícil de revisar uno mismo, y suele ser la razón por la que un sitio que se ve bien no aparece en las búsquedas.
+Ésta constituye la porción más difícil de verificar independientemente, y suele ser la razón subyacente por la cual un sitio de apariencia por lo demás respetable no aparece en absoluto en los resultados de búsqueda.
 
-## Lo que todavía no necesitas
+## Lo que todavía no necesita
 
-Un blog con cincuenta publicaciones. Una tienda en línea, si no vendes cosas por internet. Un widget de chat en vivo. Animaciones. Buena parte de lo que las agencias te intentan vender resuelve un problema que todavía no tienes.
+Un blog que carga cincuenta entradas, una tienda en línea suponiendo que usted no vende cosas en línea, un widget de chat en vivo, o animaciones: la mayoría de aquello que las agencias le venden de más resuelve un problema que usted todavía no tiene realmente.
 
-Primero resuelve bien las cinco cosas de arriba — ahí está la mayor parte del valor, y es en gran medida lo que significa [una página web que trae trabajo](/es/servicios/sitios-web/).
+Haga bien primero las cinco cosas anteriores, porque eso constituye la mayor parte del valor, y constituye la mayor parte de lo que [una página web que trae trabajo](/es/servicios/sitios-web/) significa en realidad.

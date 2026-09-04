@@ -15,42 +15,38 @@ translationKey: website-basics
 slug: what-a-small-business-website-actually-needs
 ---
 
-> **TL;DR** — A small business website needs five things: fast on a phone, clear about what you do, correct hours and location, an obvious way to contact you, and readable by Google. Everything else — blogs, online stores, live chat, animations — is optional until those five are solid.
+> **TL;DR** — A small business website requires five things: speed on a phone, clarity about what you do, correct hours and location, an obvious means of contacting you, and legibility to Google. Everything else — blogs, online stores, live chat, animations — remains optional until those five are genuinely solid.
 
-A small business website needs five things: it has to load fast on a phone, say clearly what you do, show where you are and when you're open, make it obvious how to contact you, and be something Google can actually read. Almost everything else is optional.
+A small business website requires five things: it has to load quickly on a phone, state unambiguously what you do, show where you are situated and when you are open, make it obvious how somebody contacts you, and be something Google can actually read. Almost everything beyond those five remains entirely optional.
 
 ## Speed, on a phone, is not negotiable
 
-Most people finding you for the first time are on a phone, standing somewhere, deciding in the next few seconds whether to keep looking at your site or go back to the search results.
+Most people discovering you for the first time are holding a phone, standing somewhere inconvenient, and deciding within the next few seconds whether to continue examining your site or return directly to the search results.
 
-If your homepage takes five seconds to load because of a giant unoptimized photo slideshow, **you've already lost a chunk of those people** — and you'll never know it happened.
+If your homepage requires five seconds to load because of an enormous unoptimized photograph slideshow, then **you have already lost a substantial proportion of those people** — and you will never learn that it happened.
 
 ## Say what you do, in the first few seconds
 
-Don't make someone scroll to figure out whether you're a bakery or a bakery-supply wholesaler. Put it in plain words, near the top: what you do, and who it's for. Save the clever tagline for later, if at all.
+Do not oblige somebody to scroll downward merely in order to establish whether you are a bakery or a bakery-supply wholesaler. State it in plain words near the top of the page: what you do, and precisely whom it is intended for. Reserve the clever tagline for considerably later in the page, assuming it belongs anywhere at all.
 
 ## Hours, location, and contact information — correct and easy to find
 
-This sounds too obvious to mention, and it's the thing that's wrong most often.
+This sounds too obvious to warrant mentioning, and it is simultaneously the thing that is wrong most frequently. Incorrect hours cost you a customer who drove across town and found you closed. A telephone number that is not a tappable link on mobile costs you somebody who would have called immediately rather than later. A missing or outdated address sends people to entirely the wrong storefront.
 
-- Wrong hours cost you a customer who drove over and found you closed
-- A phone number that isn't a tappable link on mobile costs you someone who would have called right then, not later
-- A missing or outdated address sends people to the wrong storefront
-
-> Get the basic facts right before you spend a dollar on anything else. Nothing fancier fixes wrong hours.
+> Get the basic facts correct before spending a single dollar on anything else, because nothing more sophisticated compensates for incorrect hours.
 
 ## A way to contact you that actually reaches you
 
-A contact form is fine. A contact form that quietly stops working because nobody noticed the email stopped forwarding six months ago is not fine, and it happens more than you'd think. **Test it. Actually send yourself a message through it every few months.**
+A straightforward contact form is perfectly adequate. A contact form that quietly stopped working because nobody noticed the email had ceased forwarding six months ago is not adequate, and it happens considerably more often than you would expect. **Test it periodically, by actually sending yourself a message through it every few months.**
 
 ## Something Google can read
 
-A website can look perfectly normal to a person and still be nearly invisible to Google, usually because of missing page titles, missing descriptions, or content that's locked inside an image instead of real text.
+A website can appear perfectly normal to a person and remain nearly invisible to Google, ordinarily because of missing page titles, missing descriptions, or content locked inside an image rather than existing as real text.
 
-This is the part that's hardest to check yourself, and it's usually why an otherwise decent-looking site isn't showing up in search.
+This constitutes the portion that is hardest to verify independently, and it is usually the underlying reason an otherwise respectable-looking site fails to appear in search results whatsoever.
 
 ## What you don't need yet
 
-A blog with fifty posts. An online store, if you don't sell things online. A live chat widget. Animations. Most of what agencies upsell you on solves a problem you don't have yet.
+A blog carrying fifty posts, an online store assuming you do not sell things online, a live chat widget, animations: most of what agencies upsell you on resolves a problem you do not yet actually have.
 
-Get the five things above right first — that's most of the value, and it's most of what [a website that brings in work](/services/websites/) actually means.
+Get the five things above right first, because that constitutes most of the value, and it constitutes most of what [a website that brings in work](/services/websites/) actually means.

@@ -15,50 +15,50 @@ translationKey: fire-a-customer
 slug: como-despedir-a-un-cliente
 ---
 
-> **En corto** — Si un cliente paga tarde de forma crónica, le falta al respeto a tu personal, o se come mucho más tiempo del que paga, tienes permitido terminar la relación. Da aviso real, pon la fecha de término por escrito, termina lo que ya te pagaron, y no desaparezcas. A casi todos los dueños les da culpa esto. No necesitas permiso, pero aquí lo tienes de todos modos.
+> **En corto** — Si un cliente paga tarde crónicamente, falta al respeto a su personal, o consume considerablemente más tiempo del que efectivamente paga, entonces usted tiene derecho a terminar la relación. Proporcione aviso genuino, deje la fecha de conclusión por escrito, complete aquello que ya le pagaron, y no desaparezca sin explicación alguna. La mayoría de los dueños se siente considerablemente culpable por esto, aunque usted no necesita el permiso de nadie — y aquí lo tiene de todas formas.
 
-Sí, puedes despedir a un cliente. Muchos dueños de negocios pequeños ni lo consideran porque "el cliente siempre tiene la razón" se trata como una ley de la física en vez de un eslogan que alguien inventó para vender más zapatos. No es una ley. Si un cliente te está costando dinero, personal o sueño, conservarlo no es lealtad: es un mal trato que sigues haciendo.
+Sí, se le permite despedir a un cliente, y muchísimos dueños de negocios pequeños jamás lo contemplan seriamente porque "el cliente siempre tiene la razón" se trata como una ley de la física antes que como un eslogan que alguien inventó con tal de vender más zapatos. No es en absoluto una ley, y si un cliente le está costando genuinamente dinero, personal o sueño, entonces conservarlo no constituye lealtad sino más bien un mal trato que usted sencillamente ha continuado haciendo.
 
-## Las señales de que de verdad ya es hora
+## Las señales de que efectivamente llegó el momento
 
-No todo cliente molesto tiene que irse. Busca un patrón, no una mala semana.
+No todo cliente irritante necesita marcharse, de modo que lo que usted busca es un patrón establecido antes que una sola semana difícil.
 
-**Paga tarde, siempre, por principio.** Un mes lento durante un apretón de flujo del cliente es negocio normal. Un cliente que va 30 o 45 días tarde en cada factura y trata tus términos de pago como una sugerencia te está diciendo cómo ve la relación: opcional.
+**Pagan tarde, invariablemente, y aparentemente por principio.** Un mes lento durante una escasez de efectivo del propio cliente constituye negocio enteramente ordinario, pero un cliente que acumula de treinta a cuarenta y cinco días de retraso en cada factura, tratando sus términos de pago como una sugerencia leve, le está diciendo con precisión cómo considera la relación: como opcional.
 
-**Es grosero con tu personal, no solo contigo.** Puedes aguantarte un correo filoso dirigido a ti y decidir que vale la pena. Esa decisión no te toca tomarla en nombre de tu empleado. Si un cliente le contesta mal a tu asistente, a tu diseñador junior, o a quien conteste el teléfono, eso no es una peculiaridad de carácter: es un problema laboral que estás dejando entrar a tu negocio.
+**Son groseros con su personal, y no meramente con usted.** Usted puede absorber un correo cortante dirigido a sí mismo y concluir en privado que vale la pena tolerarlo, pero no tiene derecho a tomar esa misma determinación en nombre de un empleado, y si un cliente le contesta mal a su asistente, a su diseñador junior, o a quien resulte contestar el teléfono, eso no constituye una peculiaridad de carácter sino un problema laboral que usted está permitiendo activamente dentro de su propio local.
 
-**Cada proyecto se convierte en tres.** El trabajo extra que se negocia y se recotiza es normal. El trabajo extra que simplemente ocurre, una y otra vez, con la expectativa de que "ya que andas ahí" lo cubre gratis, es un cliente que decidió que tu tarifa no le aplica.
+**Cada proyecto individual se transforma en aproximadamente tres proyectos.** El crecimiento de alcance que se negocia abiertamente y después se recotiza constituye trabajo enteramente ordinario con clientes, mientras que el crecimiento de alcance que sencillamente ocurre, repetidamente, acompañado de una expectativa tácita de que "ya que estamos ahí dentro" lo cubre sin cargo alguno, indica un cliente que ha determinado calladamente que su tarifa no le aplica.
 
-**Las cuentas ya no dan.** Suma las horas: correos, llamadas, rehacer cosas, acompañamiento, perseguir el pago. Si un cliente que te paga $800 al mes te toma tanto tiempo como tres clientes que pagan $2,500, lo estás subsidiando con tiempo que podrías darle a gente que sí lo valora.
+**La aritmética subyacente ya no funciona a su favor.** Sume las horas con honestidad, incluyendo los correos, las llamadas, las correcciones, el acompañamiento y la persecución del pago; si un cliente que le paga 800 dólares mensuales consume tanto de su tiempo como tres clientes distintos que pagan 2,500, entonces usted está subsidiando esa relación con horas que podría dedicar a personas que visiblemente las valoran.
 
-Una sola de estas puede ser nada más una mala racha. Dos o más, durante meses, es un patrón — y los patrones no se arreglan solos.
+Cualquiera de estas señales por sí sola podría representar meramente un tramo temporalmente malo, pero dos o más de ellas sostenidas a lo largo de varios meses constituyen un patrón genuino, y los patrones de esta clase no se resuelven solos sin intervención.
 
-## Cómo hacerlo de verdad
+## Cómo hacerlo efectivamente
 
-El objetivo no es ganar una discusión. Es salir limpio, para que ninguno de los dos se arrepienta de cómo terminó.
+El objetivo aquí no consiste en ganar una discusión sino en marcharse con la limpieza suficiente para que ninguna de las partes lamente posteriormente la manera en que concluyó la relación.
 
-**1. Da aviso real, no una sorpresa.** "Este es nuestro último mes" le gana a "a partir de hoy, ya no". Si tienes contrato, revisa el periodo de aviso que exige y respétalo aunque preferirías no hacerlo.
+**1. Proporcione aviso genuino, antes que entregar una sorpresa.** "Éste será nuestro último mes juntos" resulta considerablemente mejor que "a partir de hoy, terminé", y si existe entre ustedes un contrato escrito, examine el periodo de aviso que exige y hónrelo incluso en circunstancias donde preferiría muchísimo no hacerlo.
 
-**2. Sé honesto, no cruel.** No necesitas enumerar cada agravio. Di la razón real en una frase, sin editorializar.
+**2. Sea honesto con ellos sin resultar gratuitamente cruel.** No tiene obligación alguna de enumerar cada agravio acumulado, de modo que enuncie la razón real subyacente en una sola frase y resista la tentación de editorializar a su alrededor después.
 
-**3. Ofrece una recomendación si puedes hacerla con honestidad.** Esto suaviza la salida y muchas veces es la diferencia entre "el proveedor que nos soltó" y "el proveedor que nos ayudó a caer en un mejor lugar". Sáltate este paso si no lo puedes decir en serio: una recomendación falsa es peor que ninguna.
+**3. Ofrezca una recomendación, siempre que pueda hacerla honestamente.** Hacerlo suaviza la salida considerablemente y frecuentemente determina si usted se convierte en "el proveedor que nos dejó" o en "el proveedor que nos ayudó a aterrizar en un lugar mejor", pero omita el paso enteramente si no puede decirlo y sostenerlo genuinamente, porque una recomendación fabricada resulta sustancialmente peor que no ofrecer ninguna.
 
-**4. Pon la fecha de término por escrito.** Correo, no una llamada que después cada quien recuerde distinto. Esto te protege si alguna vez hay un desacuerdo sobre cuándo terminó la relación.
+**4. Deje la fecha de conclusión por escrito en algún sitio permanente.** Utilice correo electrónico antes que una conversación telefónica que ambos recordarán inevitablemente de manera distinta seis meses después, porque un registro escrito le protege si alguna vez surge una disputa respecto de cuándo terminó realmente la relación.
 
-**5. Termina lo que ya está pagado.** Si te pagaron por adelantado un periodo de servicio, o debes entregables bajo un contrato firmado, termínalos. Terminar la relación no es razón para además incumplir el acuerdo: eso cambia un problema por uno peor.
+**5. Complete aquello que ya se le ha pagado previamente.** Si prepagaron un periodo de servicio, o usted debe entregables bajo un contrato que firmó, entonces complete esas obligaciones concretas, porque terminar una relación no constituye fundamento para incumplir además el acuerdo subyacente, y hacerlo cambiaría un problema manejable por otro considerablemente peor.
 
-**6. No desaparezcas.** Quedarte callado se siente más fácil en el momento. No lo es. Los correos sin respuesta se convierten en malas reseñas, y las malas reseñas duran mucho más que las seis semanas de incomodidad que estabas tratando de evitar.
+**6. No desaparezca sencillamente sin explicación alguna.** Guardar silencio se siente apreciablemente más sencillo en el momento y confiablemente no lo es, porque los correos sin responder se convierten en reseñas públicas desfavorables, y esas reseñas sobrevivirán durante varios años a las seis semanas de incomodidad que usted intentaba originalmente evitar.
 
-Aquí hay texto que de verdad puedes mandar:
+He aquí un texto que puede enviar genuinamente, mantenido deliberadamente sencillo porque un cliente que lo lea no debería tener que descifrar absolutamente nada:
 
-> Hola \[Nombre]: quiero ser directo contigo. \[Mes] será el último mes de \[cliente] con nosotros. \[Una frase honesta — por ejemplo, "El alcance de lo que necesitan creció más allá de lo que un acuerdo mensual como el nuestro está hecho para cubrir."] Terminaremos \[el trabajo específico pendiente] para el \[fecha]. Después de eso, \[mes/fecha] será nuestra última factura. Si te sirve, con gusto te recomiendo a un par de personas que se especializan en \[lo que de verdad necesitan]; nada más dime. Gracias por el trabajo que sí alcanzamos a hacer juntos. \[Tu nombre]
+> Hola \[Nombre],Quiero ser directo: \[mes] será el último mes de \[cliente] con nosotros. \[Una frase honesta — por ejemplo: "El alcance de lo que necesitas creció más allá de lo que un retainer mensual como el nuestro puede cubrir."]Terminaremos \[el trabajo específico pendiente] para \[fecha]. Después de eso, \[mes/fecha] será nuestra última factura.Si te sirve, con gusto te recomiendo a un par de personas que se especializan en \[lo que realmente necesitan] — nada más dime.Gracias por el trabajo que sí alcanzamos a hacer juntos.\[Tu nombre]
 
-Fíjate en lo que no hace: no se disculpa por tener límites, y no vuelve a litigar cada factura atrasada. Dilo, da una fecha, ofrece una mano, y para.
+Observe cuidadosamente lo que ese mensaje se niega a hacer: no se disculpa por la mera existencia de límites, y no vuelve a litigar cada factura atrasada de los dos años precedentes. Enuncie la posición llanamente, aporte una fecha definida, extienda una mano si puede, y después deje de escribir.
 
 ## La parte que no es asesoría legal, pero importa
 
-Si tienes un contrato firmado, léelo antes de mandar nada. Casi todos los acuerdos de servicio traen un periodo de aviso y una cláusula sobre qué pasa con el trabajo en curso: síguela. Si vas mes a mes de palabra, tienes más margen, pero "más margen" no quiere decir "sin aviso". Termina y factura todo lo que ya entregaste o estás contratado para entregar. Lo que estás terminando es el trabajo futuro, no tus obligaciones actuales. Si hay dinero serio de por medio o un contrato que no estás seguro de cómo leer, eso es una conversación de quince minutos con un abogado, no algo que resolver adivinando.
+Si existe entre ustedes un contrato firmado, léalo cuidadosamente antes de enviar absolutamente nada, porque la mayoría de los acuerdos de servicio contiene tanto un periodo de aviso como una cláusula que gobierna qué sucede con el trabajo ya en curso, y usted debería seguir ambos. Si opera en cambio bajo un arreglo mensual de palabra, dispone de considerablemente más margen de maniobra, aunque margen adicional no equivale a ningún aviso en absoluto. Complete y facture cualquier cosa que ya haya entregado o siga contractualmente obligado a entregar, porque lo que usted está terminando es el trabajo futuro antes que sus obligaciones existentes. Si la relación involucra dinero genuino en juego, o un contrato que usted no sabe con certeza cómo interpretar correctamente, eso constituye una conversación de quince minutos con un abogado antes que algo que resolver adivinando durante un fin de semana.
 
-## Tienes permitido hacer esto
+## Usted tiene permitido hacer esto
 
-La culpa es normal. Empezaste este negocio para ayudar a la gente, y darle la vuelta a alguien se siente como lo contrario. Pero un cliente que te cuesta más de lo que paga no es un caso de caridad que estés obligado a conservar: es una decisión que puedes tomar como cualquier otra decisión de negocio. Los clientes que se quedan reciben más de ti. Eso no es una pérdida. Ese es justamente el punto de hacer esto con cuidado en lugar de decirle que sí a todo el mundo.
+La culpa resulta enteramente normal y previsible, porque usted estableció este negocio con el fin de ayudar a la gente y rechazar a alguien se siente como el efecto precisamente contrario a esa intención. Pero un cliente que le cuesta considerablemente más de lo que paga no es un caso de caridad que usted esté de algún modo obligado a conservar: es una decisión que tiene derecho a tomar como cualquier otra decisión de negocio que tome en una semana determinada. Los clientes que permanecen después reciben más de usted, lo cual no constituye una pérdida sino más bien el objetivo real de hacer esto con cuidado en lugar de consentir absolutamente a todo el mundo.

@@ -15,43 +15,43 @@ translationKey: redesign-or-fix
 slug: rediseno-o-arreglar-lo-que-esta-roto
 ---
 
-> **En corto** — La mayoría de los sitios no necesitan un rediseño. Necesitan dos o tres cosas específicas arregladas: una página lenta, un menú confuso, un formulario de contacto que falla en silencio. Un rediseño completo vale la pena solo cuando el sitio está roto en celular, está construido sobre algo que ya nadie puede tocar, o la marca de verdad cambió. Si te equivocas aquí, un rediseño descuidado puede tumbar el posicionamiento que tu sitio actual ya se ganó.
+> **En corto** — La mayoría de los sitios no requiere rediseño alguno. Requiere que se reparen dos o tres cosas concretas: una página lenta, un menú confuso, un formulario de contacto que falla en silencio. Un rediseño completo merece emprenderse únicamente cuando el sitio está genuinamente roto en el móvil, construido sobre algo que ya nadie puede mantener, o cuando la marca misma ha cambiado efectivamente. Equivóquese en esto y un rediseño descuidado puede destruir el posicionamiento que su sitio actual ya se ganó.
 
-Si te estás preguntando "¿necesito una página web completamente nueva?", la primera pregunta honesta es: ¿qué está mal con la que tienes? Nueve de cada diez veces, cuando un dueño dice "necesitamos un rediseño", lo que quiere decir es "el sitio me da pena" o "no me está trayendo clientes". Ninguna de esas dos es automáticamente un problema de rediseño. A veces sí lo es. Normalmente son dos o tres cosas arreglables disfrazadas de rediseño.
+Si usted se pregunta si necesita una página web enteramente nueva, la primera pregunta honesta es qué anda realmente mal con la que ya tiene. Nueve de cada diez veces, cuando el dueño de un negocio dice que necesita un rediseño, lo que quiere decir es que el sitio le avergüenza o que no le está produciendo prospectos, y ninguna de esas dos cosas constituye automáticamente un problema de rediseño. A veces genuinamente lo es. Habitualmente equivale a dos o tres cosas reparables disfrazadas de rediseño.
 
 ## Cuándo un rediseño completo sí es la decisión correcta
 
-Hay razones reales para reconstruir, y son específicas:
+Existen razones genuinas para reconstruir, y resultan razonablemente concretas:
 
-**El sitio está roto en celular, no nada más feo.** Más de la mitad de tu tráfico probablemente está en un teléfono. Si el texto se sale de la pantalla, los botones son demasiado chicos para tocarlos, o el menú simplemente no funciona en móvil, eso no es un widget que se arregle: es todo el diseño fallando en el trabajo que tiene que hacer. Los parches sobre un sitio no adaptable casi nunca aguantan.
+**El sitio está roto en el móvil, antes que meramente poco atractivo.** Los dispositivos móviles han representado la mayoría del tráfico web mundial desde 2016 y [en Norteamérica rondan el 57%](https://kinsta.com/mobile-vs-desktop-market-share/), de modo que más de la mitad de sus visitantes probablemente sostiene un teléfono. Si el texto se desborda de la pantalla, los botones resultan demasiado pequeños para pulsarlos con precisión, o el menú sencillamente no funciona en el móvil, eso no constituye un widget reparable sino la maquetación entera fallando en el trabajo para el que existe, y los parches sobre un sitio no adaptable rara vez aguantan mucho tiempo.
 
-**Está construido sobre algo que nadie puede mantener.** Si tu sitio corre sobre una plataforma descontinuada, un tema sin actualizaciones, o HTML hecho a mano hace años que solo una persona entendía — y esa persona ya no está —, no estás arreglando una página web, estás haciendo arqueología cada vez que la tocas. En algún punto, reconstruir sobre algo actual cuesta menos que las horas que gastas rodeando lo que tienes.
+**Está construido sobre algo que nadie puede mantener.** Si su sitio funciona sobre una plataforma descontinuada, una plantilla que ya no recibe actualizaciones, o HTML escrito a mano hace años que exactamente una persona llegó a entender — y esa persona ya se marchó — entonces usted no está manteniendo una página web sino realizando arqueología cada vez que alguien la toca. En algún punto reconstruir sobre algo actual cuesta menos que las horas acumuladas trabajando alrededor de lo que ya tiene.
 
-**La marca sí cambió.** Nombre nuevo, logo nuevo, servicios nuevos, un giro hacia otro tipo de cliente. Si el sitio todavía describe un negocio que ya no manejas, eso no es un ajuste.
+**La marca ha cambiado genuinamente.** Un nombre nuevo, un logotipo nuevo, servicios nuevos, o un giro hacia un cliente enteramente distinto. Si el sitio todavía describe un negocio que usted ya no opera, eso no constituye un retoque.
 
-**La conversión está mal en todas partes, no en una página.** Si la gente llega al sitio y se va desde cada página — no solo desde una confusa — y ya descartaste la calidad del tráfico y los precios, puede que la experiencia completa sea el problema.
+**La conversión es mala en todas partes, antes que en una página.** Si los visitantes llegan al sitio y se marchan desde todas las páginas antes que desde una sola confusa, y usted ya descartó la calidad del tráfico y los precios como explicaciones, entonces la experiencia entera podría ser genuinamente el problema.
 
-Si ninguna de esas cuatro es cierta, sigue leyendo antes de firmar un contrato de rediseño.
+Si ninguna de esas cuatro condiciones se cumple, siga leyendo antes de firmar contrato alguno de rediseño.
 
 ## Cuándo en realidad son solo 2 o 3 cosas
 
-Este es el patrón que vemos todo el tiempo: un negocio pide "una página web completamente nueva", y cuando de verdad la revisamos, la lista real es corta.
+He aquí el patrón que encontramos constantemente: un negocio solicita una página web enteramente nueva y, cuando examinamos efectivamente lo que existe, la lista real resulta ser corta.
 
-* **El sitio está lento.** Imágenes grandes sin optimizar, un tema inflado, demasiados plugins. Muchas veces esto son unas horas de trabajo, no una reconstrucción: comprimes imágenes, recortas lo que se está cargando sin necesidad, y el tiempo de carga baja de ocho segundos a dos.
-* **Una página es confusa.** Normalmente la de inicio o la de servicios: el visitante llega, no entiende qué haces ni cómo comprarte, y se va. Arreglar el diseño y el texto de una página es un día de trabajo, no un rediseño.
-* **Las fotos están viejas.** Una foto de banco de imágenes de hace años, una foto de equipo a la que le faltan tres personas que ya se fueron. Cambia las fotos. Eso no es un rediseño, es una tarde.
-* **El formulario de contacto está roto.** No envía, o está llegando a un buzón que nadie revisa. Este es el error más caro de un sitio de negocio pequeño, porque cada prospecto que pasa por ahí simplemente desaparece, y normalmente se arregla en menos de una hora una vez que alguien lo encuentra.
+* **El sitio es lento.** Imágenes grandes sin optimizar, una plantilla sobrecargada, un exceso de complementos. Esto es frecuentemente unas horas de trabajo antes que una reconstrucción, porque comprimir imágenes y recortar aquello que carga innecesariamente puede reducir el tiempo de carga de ocho segundos a dos.
+* **Una página es confusa.** Ordinariamente la de inicio o la de servicios, donde los visitantes llegan, no logran determinar qué hace usted ni cómo comprarlo, y se marchan. Reparar la maquetación y el texto de una página es un día de trabajo antes que un rediseño.
+* **Las fotografías están desactualizadas.** Una fotografía de archivo de hace años, o una fotografía de equipo a la que le faltan tres personas que ya se fueron. Reemplace las fotografías; esto es una tarde antes que un rediseño.
+* **El formulario de contacto está roto.** O bien no envía en absoluto, o bien está entregando a una bandeja que nadie vigila. Éste constituye el error más costoso que puede tener el sitio de un negocio pequeño, porque cada prospecto que llega por él sencillamente se desvanece, y ordinariamente lleva menos de una hora repararlo una vez que alguien efectivamente lo localiza.
 
-Los rediseños van desde unos cuantos miles de dólares para un sitio pequeño de presentación hasta bien entrado en cinco cifras para algo más a la medida. Los arreglos puntuales de la lista de arriba normalmente van de unos cientos a unos pocos miles en total. Si tu problema real está en esa lista, estás pagando precio de rediseño para arreglar un formulario.
+Los rediseños van desde unos miles de dólares para un sitio pequeño de presentación hasta bien entradas las cinco cifras para cualquier cosa más a medida, mientras que las reparaciones puntuales que atienden la lista anterior ordinariamente van desde unos cientos de dólares hasta cuatro cifras bajas en total. Si su problema real aparece en esa lista, usted está pagando dinero de rediseño con el fin de reparar un formulario.
 
-Preferimos decirte "no nos necesitas seis semanas, nos necesitas dos días" que venderte el trabajo grande.
+Preferiríamos considerablemente decirle que no nos necesita durante seis semanas pero sí durante dos días, antes que venderle el trabajo más grande.
 
-## El riesgo de verdad: un rediseño descuidado te puede arruinar el SEO
+## El riesgo real: un rediseño descuidado puede destrozar su SEO
 
-Si sí necesitas la reconstrucción, hay un error que después les cuesta dinero de verdad a los negocios: cambiar las URLs sin redirigir las viejas.
+Si usted genuinamente necesita la reconstrucción, un error concreto le cuesta dinero real a los negocios después: alterar las URLs sin redirigir las antiguas.
 
-Cada página de tu sitio actual que posiciona en Google — aunque sea modestamente — tiene buscadores y otros sitios apuntando a esa URL exacta. Un sitio nuevo con una estructura de URLs nueva y sin redirecciones 301 de las viejas a las nuevas tira todo eso a la basura. Google tiene que descubrir las páginas nuevas desde cero y volver a ganarse la confianza que las anteriores construyeron durante meses o años. Mientras tanto, cualquiera que busque la frase que antes lo llevaba contigo, o haga clic en un enlace viejo desde otro sitio, cae en una página muerta.
+Cada página de su sitio actual que posiciona en Google, aunque sea modestamente, tiene buscadores y otros sitios apuntando a esa URL exacta. Un sitio nuevo que lleva una estructura de URLs nueva y ninguna redirección 301 desde las direcciones antiguas descarta todo ese prestigio acumulado, porque Google debe entonces descubrir las páginas nuevas desde cero y volver a ganarse la confianza que las antiguas establecieron a lo largo de meses o años. Mientras tanto, cualquiera que busque la frase que antes le traía hasta usted, o que pulse un enlace antiguo desde otro sitio, llega a una página muerta.
 
-Esto se puede evitar y no tiene nada de exótico. Antes de que el rediseño salga en vivo: lista todas las URLs que tiene el sitio actual, mapea cada una a dónde vive su contenido en el sitio nuevo, y arma una redirección 301 para cada una — incluyendo las páginas que vas a borrar por completo, redirigidas al reemplazo más cercano. Cualquier desarrollador que haga un rediseño debería tratar esto como un paso no negociable, no como algo que se ve al final. Si quien está construyendo tu sitio nuevo no ha sacado el tema, pregúntaselo antes de dar el visto bueno.
+Esto resulta enteramente evitable y no es exótico. Antes de que un rediseño entre en producción, enumere cada URL que el sitio actual contiene, asigne cada una al lugar donde su contenido reside ahora, y establezca una redirección 301 para absolutamente todas, incluidas las páginas que va a eliminar por completo, las cuales deberían apuntar al reemplazo relevante más cercano. [La propia documentación de Google sobre mudanzas de sitio](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) resulta específica respecto de dos puntos que suelen omitirse: no redirija muchas URLs antiguas hacia un único destino irrelevante como la página de inicio, porque eso confunde a los usuarios y puede tratarse como un soft 404; y mantenga las redirecciones vigentes durante al menos un año antes que retirarlas en cuanto el sitio nuevo parezca asentado. Cualquier desarrollador que ejecute un rediseño debería tratar esto como innegociable antes que como una ocurrencia tardía y, si quien construye su sitio nuevo no lo ha planteado, pregúnteselo antes de aprobar nada.
 
-Un rediseño bien hecho no te cuesta tus posiciones. Un rediseño descuidado te puede costar seis meses de ellas.
+Un rediseño hecho correctamente no le cuesta su posicionamiento. Un rediseño hecho con descuido puede costarle seis meses del mismo.

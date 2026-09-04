@@ -15,38 +15,38 @@ translationKey: website-cost
 slug: cuanto-cuesta-una-pagina-web-para-un-negocio-pequeno
 ---
 
-> **En corto** — Para la mayoría de los negocios pequeños, una página web de verdad cuesta entre $1,500 y $6,000 como trabajo único con un freelance o un taller chico, o entre $0 y $30 al mes si la haces tú en una plataforma como Squarespace o Wix. Las agencias cobran más por el mismo resultado. Las herramientas de IA te pueden dejar una página en línea casi sin costo inicial — pero barato de lanzar y barato en tres años no son la misma pregunta, y esa todavía no está resuelta.
+> **En corto** — Para la mayoría de los negocios pequeños, una página web genuina cuesta entre 1,500 y 6,000 dólares como construcción única de un freelance o un taller pequeño, o entre 0 y 30 dólares mensuales si usted la construye por su cuenta sobre una plataforma como Squarespace o Wix. Las agencias cobran considerablemente más por el mismo resultado. Los constructores de sitios con IA y las herramientas de "vibe coding" pueden producir una página publicada por casi nada por adelantado — pero barato de lanzar y barato a lo largo de tres años no constituyen la misma pregunta, y ésa permanece genuinamente sin resolver.
 
-Si alguien te cotiza $300 por una página web, y otro te cotiza $30,000, los dos números pueden estar bien. Simplemente están respondiendo preguntas distintas. Esto es lo que de verdad mueve el precio.
+Si alguien le cotiza 300 dólares por una página web, o alternativamente 30,000, ambos números pueden resultar enteramente correctos, porque están respondiendo preguntas distintas. Lo que sigue es aquello que efectivamente impulsa el precio, y dónde encajan las herramientas de IA dentro de esa aritmética.
 
-## Qué es lo que sube el costo
+## Qué mueve realmente el precio
 
-Tres cosas explican casi toda la diferencia:
+Tres cosas impulsan la mayor parte de la diferencia de costo:
 
-* **Plantilla o diseño a la medida.** Un sitio con plantilla — una plataforma de autoservicio, o un freelance usando un tema ya hecho — sale más barato porque nadie está construyendo tu diseño desde cero. Uno hecho a la medida cuesta más porque sí lo están haciendo.
-* **Quién escribe el texto.** Escribir de verdad — que alguien se siente a preguntarte qué hace diferente a tu negocio y lo ponga en palabras — toma tiempo real. Muchas cotizaciones "caras" de páginas web en realidad son cotizaciones de redacción disfrazadas de diseño.
-* **Con qué se conecta.** Un sitio que solo muestra información es más simple que uno conectado a un calendario de citas, a un CRM o a pedidos en línea. Cada conexión es trabajo, y el trabajo cuesta.
+* **A medida frente a plantilla.** Un sitio con plantilla, ya sea un constructor de autoservicio o un freelance trabajando desde un tema, cuesta menos porque nadie está construyendo su maquetación desde cero. Un diseño enteramente a medida cuesta más precisamente porque alguien sí lo está haciendo.
+* **Quién escribe las palabras.** La redacción genuina — alguien preguntando efectivamente qué distingue a su negocio y después escribiéndolo — consume tiempo genuino. Una proporción considerable de las cotizaciones de sitios web que parecen caras son en realidad cotizaciones de redacción disfrazadas de diseño web.
+* **Con qué se conecta.** Un sitio que meramente muestra información resulta sustancialmente más simple que uno conectado a un calendario de reservaciones, un CRM, o pedidos en línea. Cada integración constituye alcance adicional, y el alcance es dinero.
 
-## Qué recibes en cada rango
+## Qué obtiene usted realmente en cada rango de precio
 
-**$0–$30 al mes, hecho por ti (Squarespace, Wix, o nada más tu perfil de Google Business).** Sirve para un negocio que principalmente necesita existir en línea y que lo encuentren: horario, dirección, teléfono, unas fotos. Tú haces la configuración, sobre una plantilla.
+**0 a 30 dólares mensuales, autoservicio (Squarespace, Wix, o un Perfil de Negocio de Google por sí solo).** Adecuado para un negocio que principalmente necesita existir en línea y resultar localizable: horarios, ubicación, número telefónico y algunas fotografías. Usted realiza la instalación por su cuenta, trabajando sobre una plantilla.
 
-**$1,500–$6,000, pago único, con un freelance o un taller chico.** Un sitio real hecho para tu negocio: tus palabras, tu estructura, revisado en celular, armado para que Google de verdad lo pueda leer. Este es el rango que le conviene a la mayoría de los negocios pequeños que quieren aparecer en las búsquedas.
+**1,500 a 6,000 dólares, pago único, freelance o taller pequeño.** Un sitio genuino construido específicamente para su negocio: sus palabras, su estructura, verificado en móvil, y configurado de manera que Google pueda efectivamente leerlo. Éste es el rango que la mayoría de los negocios pequeños que pretenden ser encontrados mediante búsqueda debería estar examinando.
 
-**$10,000 o más, con agencia.** Estás pagando por un equipo, un proceso y alguien que administre la cuenta — no necesariamente por un mejor resultado que el rango de arriba. A veces vale la pena si necesitas estrategia continua junto con el sitio. Muchas veces estás pagando gastos internos de la agencia.
+**10,000 dólares en adelante, agencia.** Usted paga por un equipo, un proceso y administración de cuenta, antes que necesariamente por un mejor resultado final del que produce el rango anterior. Ocasionalmente vale la pena cuando necesita estrategia continua junto con la construcción; frecuentemente está pagando por gastos generales.
 
-## ¿Y las herramientas de IA?
+## ¿Y los constructores de sitios con IA y el "vibe coding"?
 
-Esta es la parte que más ha cambiado en el último año, y también donde un consejo honesto tiene que incluir "todavía no lo sabemos bien".
+Ésta es la porción que más ha cambiado a lo largo del último año, e igualmente la porción donde el consejo honesto tiene que incluir la admisión de que todavía no lo sabemos enteramente.
 
-Lo bueno es real: una herramienta de IA puede generar en minutos un sitio publicado, con páginas de verdad y un formulario de contacto que funciona, casi sin costo. Para un negocio que solo necesita *algo en línea hoy*, eso es una opción legítima, no un truco.
+La ventaja resulta genuina: las herramientas de IA pueden generar una página web funcional y publicada, que lleva páginas reales y un formulario de contacto operativo, en cuestión de minutos y por casi nada. Para un negocio que sencillamente necesita *algo publicado hoy*, eso constituye una opción genuina antes que un truco.
 
-El problema aparece después, y aparece de maneras concretas. Las revisiones de seguridad del código generado por IA han encontrado vulnerabilidades a una tasa notablemente más alta que en el código escrito a mano. Los sitios hechos así tienden a acumular una estructura desordenada y difícil de arreglar más rápido que un sitio que alguien planeó — lo cual importa el día que quieres agregar algo nuevo y resulta que la base no lo aguanta. Y a algunos negocios les ha salido caro el texto legal generado por IA: un aviso de cookies o una página de privacidad inventada en vez de ajustada a lo que el sitio realmente hace, que es su propio tipo de riesgo.
+El inconveniente aparece después, y aparece de unas cuantas maneras razonablemente concretas. El análisis de seguridad de código generado por IA ha encontrado una [densidad de vulnerabilidades 2.7 veces mayor que en código escrito por humanos](https://arxiv.org/pdf/2510.26103), con incidencias de alta severidad apareciendo aproximadamente dos veces y media más a menudo; un escaneo de cerca de 5,600 aplicaciones hechas con vibe coding arrojó más de 2,000 vulnerabilidades y más de 400 secretos expuestos. Los sitios construidos de esta manera tienden además a acumular estructura desordenada y difícil de reparar más rápido que un sitio que alguien efectivamente planeó, lo cual importa el día en que usted quiere añadir algo nuevo y descubre que los cimientos no lo soportan con facilidad. Y varios negocios han quedado expuestos por textos legales generados por IA — un aviso de cookies o una página de privacidad que fue inventada antes que genuinamente ajustada a lo que el sitio hace, lo cual constituye su propia variedad de responsabilidad.
 
-Nada de eso quiere decir que los sitios hechos con IA sean mala idea. Quiere decir que "creador de páginas con IA" y "sitio a la medida de $6,000" no están compitiendo por el mismo cliente. Uno está hecho para poner algo en línea rápido y barato hoy. El otro está hecho para aguantar mientras tu negocio crece, para que el SEO de verdad funcione, y para que alguien pueda arreglar algo en seis meses sin empezar de nuevo. Cuál te conviene depende de cuál de esos problemas realmente tienes.
+Nada de eso establece que los sitios construidos con IA sean una mala idea. Establece que "constructor de sitios con IA" y "sitio a medida de 6,000 dólares" no compiten genuinamente por el mismo cliente. Uno está optimizado para poner algo en línea rápido y barato hoy. El otro está optimizado para sostenerse conforme su negocio crece, conforme el SEO efectivamente tiene que funcionar, y conforme alguien necesita reparar algo dentro de seis meses sin empezar de nuevo. Cuál le conviene depende enteramente de cuál de esos problemas tiene usted realmente.
 
-Si tu página web es un folleto — horario, teléfono, unas fotos — una herramienta de IA o una plataforma de autoservicio es un lugar perfectamente razonable para empezar. Si tu página web es la forma en que la gente te *encuentra* y decide llamarte, el trabajo de SEO y la redacción pesan más de lo que parece, y ahí es donde pagarle a una persona sigue justificando su costo.
+Si su página web es un folleto — horarios, información de contacto, algunas fotografías — entonces un constructor con IA o una plataforma de autoservicio constituye un lugar completamente razonable para comenzar. Si su página web pretende ser la manera en que la gente le *encuentra* y decide llamar, entonces la base de SEO y la redacción tienden a importar considerablemente más de lo que se les reconoce, y ahí es donde pagarle a una persona todavía justifica su costo.
 
-## Una forma simple de escoger el número
+## Una manera sencilla de elegir un número
 
-Pregúntate qué necesita hacer la página web. Si la respuesta honesta es "existir y verse seria", presupuesta para el extremo de autoservicio. Si la respuesta honesta es "traerme clientes que están buscando activamente lo que hago", presupuesta para el rango a la medida — y antes de firmar, pregúntale a quien contrates cómo piensa el tema de las búsquedas, no nada más el diseño.
+Pregunte qué necesita lograr genuinamente la página web. Si la respuesta honesta es que debería existir y parecer legítima, presupueste hacia el extremo de autoservicio. Si la respuesta honesta es que debería traer clientes que buscan activamente lo que usted hace, presupueste para el rango de construcción a medida — y pregúntele a quien contrate cómo piensa acerca de la búsqueda antes que meramente acerca del diseño, antes de firmar absolutamente nada.

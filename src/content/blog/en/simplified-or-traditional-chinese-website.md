@@ -17,40 +17,40 @@ translationKey: simplified-traditional-chinese
 slug: simplified-or-traditional-chinese-website
 ---
 
-> **TL;DR** — Simplified Chinese (简体) is what mainland China uses. Traditional Chinese (繁體) is what Taiwan, Hong Kong, Macau, and a lot of older Chinese-American communities use. If you don't know which one your customers read, ask them — don't guess based on the fact that they're "Chinese." Getting it wrong, or mixing the two on one page, reads as sloppy to a native reader, not neutral.
+> **TL;DR** — Simplified Chinese (简体) is what mainland China uses. Traditional Chinese (繁體) is what Taiwan, Hong Kong, Macau, and a great many older Chinese-American communities use. If you do not know which one your customers read, ask them, rather than guessing on the basis that they are "Chinese." Getting it wrong, or mixing the two on a single page, reads as careless to a native reader rather than as neutral.
 
-If a customer in Monterey Park or Alhambra is going to read your website in Chinese, you need to know which Chinese. Simplified and Traditional aren't two fonts or two styles of the same language — they're two different writing systems for the same spoken language, and a page that mixes them looks like it was thrown together by someone who didn't care enough to check. That's the opposite of the impression you want to make on a customer deciding whether to trust you with their money.
+If a customer in Monterey Park or Alhambra is going to read your website in Chinese, you need to know which Chinese. Simplified and Traditional are not two fonts or two styles of one language: they are two distinct writing systems for the same spoken language, and a page that mixes them appears to have been assembled by somebody who did not care sufficiently to check. That is the precise opposite of the impression you want to leave with a customer deciding whether to trust you with their money.
 
 ## The actual difference, and why it matters more than it sounds
 
-Simplified Chinese was introduced by the mainland Chinese government in the 1950s to increase literacy — many common characters were redrawn with fewer strokes. Traditional Chinese kept the older character forms. Taiwan, Hong Kong, and Macau never adopted the simplification, so they still use Traditional today. Singapore and Malaysia mostly use Simplified.
+Simplified Chinese was introduced by the mainland Chinese government during the 1950s in order to raise literacy, and many common characters were redrawn with fewer strokes. Traditional Chinese retained the older character forms, and because Taiwan, Hong Kong, and Macau never adopted the simplification, they continue to use Traditional today. Singapore and Malaysia predominantly use Simplified.
 
-A reader fluent in one can often puzzle through the other, the way an English speaker can usually work out British versus American spelling. But "can puzzle through" isn't the bar for a business website. A native reader notices the mismatch instantly, and the effect isn't neutral — it reads as "this business doesn't know who it's talking to." For a service business selling trust as much as anything else, that's a bad first impression before you've said a word about your prices.
+A reader fluent in one can frequently puzzle through the other, much as an English speaker can ordinarily work out British against American spelling. But "can puzzle through" does not constitute the bar for a business website. A native reader notices the mismatch instantly, and the effect is not neutral: it reads as evidence that this business does not know whom it is addressing. For a service business selling trust as much as anything else, that constitutes a poor first impression before you have said a word about your prices.
 
-Mixing the two within a single page — one paragraph in Simplified, the next in Traditional, because two different translators or two different machine-translation passes touched the copy — is worse than picking the wrong one consistently. It looks like nobody proofread it.
+Mixing the two within a single page — one paragraph in Simplified and the next in Traditional, because two different translators or two separate machine-translation passes touched the copy — is worse than choosing the wrong one consistently, because it looks as though nobody proofread it at all.
 
 ## How to figure out which one your customers actually use
 
-Don't decide this by looking at a map and guessing. Ask your actual customers, or look at where they're already coming from.
+Do not settle this by consulting a map and guessing. Ask your actual customers, or examine where they are already arriving from.
 
-**Signals that point to Traditional Chinese:**
+**Signals that point toward Traditional Chinese:**
 
-* Older, established immigrant communities — Monterey Park and parts of Alhambra built their Chinese-American population significantly through Taiwanese and Hong Kong immigration starting in the 1970s–80s, well before mainland immigration grew.
-* Customers who mention Taiwan, Hong Kong, or Macau, or whose names romanize in Wade-Giles or Hong Kong-style spelling rather than Hanyu Pinyin.
-* Existing signage or menus at your business already in Traditional — a strong sign your current customer base reads it, and switching would confuse people, not help them.
+* Older, established immigrant communities. Monterey Park and portions of Alhambra built their Chinese-American population substantially through Taiwanese and Hong Kong immigration beginning in the 1970s and 1980s, well before mainland immigration expanded.
+* Customers who mention Taiwan, Hong Kong, or Macau, or whose names romanize in Wade-Giles or Hong Kong-style spelling rather than in Hanyu Pinyin.
+* Existing signage or menus at your business already rendered in Traditional, which is strong evidence that your current customer base reads it, and switching would confuse people rather than assist them.
 
-**Signals that point to Simplified Chinese:**
+**Signals that point toward Simplified Chinese:**
 
-* Newer immigrant populations from mainland China, which have grown across the San Gabriel Valley — Arcadia and San Marino in particular saw significant mainland Chinese immigration and investment in the 2000s–2010s.
-* Customers whose names romanize in Hanyu Pinyin (the mainland's standard system).
-* A customer base that skews younger and more recently arrived.
+* Newer immigrant populations from mainland China, which have grown across the San Gabriel Valley. Arcadia and San Marino in particular saw considerable mainland Chinese immigration and investment throughout the 2000s and 2010s.
+* Customers whose names romanize in Hanyu Pinyin, which is the mainland's standard system.
+* A customer base skewing younger and more recently arrived.
 
-Neither of these is a hard rule. The only way to actually know is to ask. If you have any existing Chinese-speaking customers or staff, ask them directly which one they read comfortably — and ask a few people, not just one, since one person's background isn't your whole customer base. If you're building this before you have customers to ask, look at your closest comparable competitors' signage and materials in the neighborhood you're serving.
+Neither set constitutes a hard rule, and the only way to know with any certainty is to ask. If you have existing Chinese-speaking customers or staff, ask them directly which one they read comfortably — and ask several people rather than one, since a single person's background is not your whole customer base. If you are building this before you have customers available to ask, examine the signage and materials of your closest comparable competitors in the neighborhood you intend to serve.
 
 ## When the answer is "both"
 
-Plenty of San Gabriel Valley businesses genuinely serve both communities — a dentist in Alhambra, a real estate agent covering Monterey Park through Arcadia, an accountant with clients across the whole region. In that case, build both, as fully separate translated pages, not one page with a toggle that swaps a few words.
+A great many San Gabriel Valley businesses genuinely serve both communities: a dentist in Alhambra, a real estate agent covering Monterey Park through Arcadia, an accountant carrying clients across the entire region. In that circumstance, build both, as fully separate translated pages, rather than one page carrying a toggle that substitutes a handful of words.
 
-Don't try to split the difference with some hybrid "mostly Traditional but simplified where it's easier" approach. There's no such thing as a compromise writing system — a reader either recognizes the characters or doesn't, and a page that wobbles between the two just looks unfinished. Two clean, fully separate versions beat one confused one.
+Do not attempt to split the difference through some hybrid "mostly Traditional but simplified where it is easier" approach. No compromise writing system exists — a reader either recognizes the characters or does not — and a page wobbling between the two simply appears unfinished. Two clean, entirely separate versions beat a single confused one.
 
-One more thing worth saying plainly: neither Simplified nor Traditional does you any good if the words themselves aren't real, natural Chinese — the register and word choices Taiwan uses for "small business" aren't the words mainland China uses, even setting character sets aside. A literal translation, or a translation done by someone fluent in the other regional variety, reads as slightly off in the same way a British "solicitor" sounds odd in Los Angeles ad copy. If you're paying for a translation, make sure whoever does it is translating into the specific regional Chinese your customers actually speak — not just the character set.
+One further point deserves stating plainly: neither Simplified nor Traditional does you any good whatsoever if the words themselves are not genuine, natural Chinese, because the register and word choices Taiwan employs for "small business" are not the words mainland China employs, entirely apart from character sets. A literal translation, or one produced by somebody fluent in the other regional variety, reads as slightly off in the same manner that a British "solicitor" sounds peculiar in Los Angeles advertising copy. If you are paying for a translation, ensure that whoever performs it is translating into the specific regional Chinese your customers actually speak, and not merely into the character set.

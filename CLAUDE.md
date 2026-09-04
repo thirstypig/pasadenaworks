@@ -45,10 +45,15 @@ npm run dev          # dev server at localhost:3180 (see cross-project port regi
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
 npm run preview      # serve the built site, also on localhost:3180
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
-npm run test         # unit tests (vitest, 104) — i18n/hreflang, reading time, city/service
+npm run readability  # reading level of every post, per locale, against the house targets
+npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
+                     #   homepage) — run `npm run build` first
+npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
-                     #   generator and its Pacific clock, JSON-LD escaping, and Tina's collection
-                     #   match globs + filename slugifier
+                     #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
+                     #   match globs + filename slugifier, the per-locale readability
+                     #   metrics (English FK, Spanish Fernandez Huerta, Chinese register),
+                     #   and a polarity tripwire on sentences that have shipped reversed
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 
@@ -339,8 +344,91 @@ plain-spoken, sometimes blunt, never markety. Real examples from the site:
 
 > Anyone promising page one by next Tuesday is selling you something else.
 
-If you write copy, match that. No "leverage," no "solutions," no "empower." Say
-the plain thing. Short sentences. Admit when something isn't worth the money.
+If you write copy, match that. No "leverage," no "solutions," no "empower."
+Admit when something isn't worth the money.
+
+### Register: college level, set 2026-09-03
+
+**The owner's call, made after seeing the measurements and after pushback.**
+Copy across the whole site — every language — targets a college reading level.
+This replaces the earlier "short sentences" instruction, which is why that line
+is gone from the paragraph above. What survives from it is the *attitude*:
+blunt, specific, no marketing vocabulary, willing to name the downside. What
+changed is the *construction*: subordinate clauses and real transitions instead
+of stacked short declaratives.
+
+Run `npm run readability` for the live picture. `scripts/readability.mjs` holds
+the targets and the reasoning; `scripts/readability.test.mjs` locks them.
+
+| Locale | Metric | Target |
+|---|---|---|
+| `en` | Flesch-Kincaid grade | 13–15 |
+| `es` | Fernández Huerta (**lower = harder**) | 40–55 |
+| `zh-hans` / `zh-hant` | 書面語 register index | 0.55–0.85 |
+
+**One formula per language, never one across all four.** Flesch-Kincaid is
+defined over English syllables; on Spanish it inflates, and on Chinese it is
+meaningless rather than merely wrong. The first Chinese metric tried here was
+characters-per-sentence, which reported 19/20 posts already in band — because
+Chinese raises register through word choice (所以→因此, 但是→然而, 不是→並非,
+dropping 吧/呢/啊/嘛), not through sentence length. Length and difficulty come
+apart in Chinese in a way they do not in English.
+
+**Every band has an upper bound, and it is load-bearing.** A bare "13+" floor
+is satisfied by an unreadable 40-word sentence. The first zh-Hant rewrite came
+back at register 1.00 — 25 formal markers, zero colloquial — which reads as a
+legal document, not as a college-level article. The max caught it.
+
+**Source anything the reader could check.** Raising register without raising
+rigor just makes assertions sound more confident. The pilot post carried 29
+unsourced figures across the corpus and 1 outbound citation in 20 posts; the
+rewrite cites Google's own documentation, per locale
+(`?hl=zh-TW`, `?hl=zh-CN`, `?hl=es-419`). Verify a URL before citing it —
+checking the postcard claim is what revealed the post had been overstating it.
+
+**Sentences that carry polarity still need a human read.** Register work
+rewrites exactly the comparatives and modals that `blog-content.test.ts`
+cannot see. Re-read every "more/less", "should/shouldn't" and every modal
+against the English twin before shipping a translation set.
+
+**What is deliberately NOT raised.** The instruction was "throughout the
+site", and three things are still excluded on purpose:
+
+- **UI text** — nav, buttons, form labels, CTAs. "Contact us" must not
+  become "Initiate correspondence". These are excluded from measurement
+  too, because scoring them creates pressure to do exactly that.
+- **Legal pages** (`/terms/`, `/privacy/`, `/accessibility/`) — rewriting a
+  privacy policy for reading level risks changing what it commits you to.
+- **The glossary** — its job is explaining technical terms to people who do
+  not know them, so college-level definitions defeat the purpose.
+
+Also untouched within the data modules: `meta` descriptions (155 characters
+to win a click in a search result is a different job from reading well),
+`title`, and `tagline`. Index/listing pages are card summaries and are
+reported but not scored.
+
+**Two measurement paths, and they must agree.** The blog is markdown and is
+scored at source. Service, city and homepage copy lives in `src/data/*.ts`
+and reaches the page through components, so it is scored from the BUILT
+page instead — whatever sits inside `<main>`. Blog posts are scored both
+ways deliberately: `readability.test.mjs` fails if the two disagree by more
+than half a grade. They started 1.1 apart, and the entire gap was page
+furniture inside `<main>` — a back-link, an image credit, a CTA button.
+
+**City pages: check the facts survived.** Hard rule 2 content is sourced.
+After any register edit to `cities.ts`, assert the specifics are still in
+the built output (1926, Laura Scudder, 400 storefronts, 1895, Renaissance
+Plaza, Huntington Drive, 1887) rather than trusting the diff.
+
+**The metric describes the prose; editing prose to move the metric inverts
+what it is for.** That happened four times during the conversion and every
+one of those edits read worse than what it replaced. The counter-rule is not
+"never touch the metric" but "measure which one is broken" — on one post a
+shortfall looked exactly like a scoring artifact, and measuring the proposed
+fix across all 20 English posts showed it moved them by at most +0.4 against
+a 1.3-grade gap, so the prose really was thin and the metric was left alone.
+Full write-up in
+`docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md`.
 
 ## Known outstanding work
 
