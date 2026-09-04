@@ -2,7 +2,7 @@
 status: pending
 priority: p2
 issue_id: 013
-tags: [code-review, security, crm, contact-form, static-hosting]
+tags: [code-review, security, crm, contact-form, static-hosting, needs-owner-action]
 dependencies: []
 ---
 
@@ -10,7 +10,7 @@ dependencies: []
 
 ## Problem Statement
 
-`src/data/site.ts` holds the n8n webhook URL, and `src/components/ContactForm.astro`
+`src/data/site.ts` holds the n8n webhook URL and `src/components/ContactForm.astro`
 renders it into the page as `data-crm-webhook-url`. Verified in the built output:
 
 ```
@@ -18,95 +18,141 @@ $ grep -o 'data-crm-webhook-url="[^"]*"' dist/index.html
 data-crm-webhook-url="https://n8n-production-94d1d.up.railway.app/webhook/15ada5a1-…"
 ```
 
-Anyone who views source can POST arbitrary JSON to that endpoint, at any volume,
-with no token, no origin check and no rate limit. That writes forged records
-straight into Twenty CRM and bypasses Formspree's spam filtering entirely — the
-browser-side call is a second, unfiltered path to the same destination.
+Anyone who views source can POST arbitrary JSON there, at any volume, with no
+token, no origin check and no rate limit — writing forged records into Twenty CRM
+and bypassing Formspree's spam filtering entirely. `mode: 'no-cors'` makes the
+response opaque, so the site cannot detect any of it.
 
-`mode: 'no-cors'` makes the response opaque, so the site cannot detect any of it.
-
-**A query-string secret does not help**, because it ships in the same HTML. This
-is not a configuration mistake; it is what putting a write endpoint in a static
-page means.
+**This is inherent to the architecture, not a mistake in it.** A static site has
+no server (hard rule 4), so any endpoint the browser calls is public by
+construction. A query-string secret does not help: it ships in the same HTML.
 
 ## Findings
 
-**The honeypot that would have blunted this is inert.** `ContactForm.astro:26-27`
-renders a `company` field with a comment saying bots fill it, but the submit
-handler never reads it, and the field is not named `_gotcha`, so Formspree will
-not drop it either. Two mitigations that look present and are not.
+**The honeypot that would have blunted this was inert — now fixed.**
+`ContactForm.astro` rendered a `company` field with a comment saying bots fill
+it, but the handler never read it and the name was not `_gotcha`, so Formspree
+ignored it too. Renamed and enforced on both paths (2026-09-03). That stops
+naive form-fillers; it does not stop anyone POSTing the endpoint directly.
 
 **A second, quieter bug in the same call.** `mode: 'no-cors'` restricts
 `Content-Type` to three safelisted values, so the `application/json` header is
 silently stripped and n8n receives the body as `text/plain`. Worth confirming the
 workflow still parses it — it may be working by accident.
 
-Related but out of scope here: `docs/RESOLVED.md` records the contact form
-dual-submitting by design, so this is the design working as intended, not drift.
-The design is what needs revisiting.
+**Host discrepancy worth resolving.** `memory/project_contact_form_architecture.md`
+records the n8n instance as `n8n-production-80f3d.up.railway.app`; `site.ts`
+points at `n8n-production-94d1d`. One of the two is stale.
 
 ## Proposed Solutions
 
-### Option A — Formspree forwards to n8n server-side; drop the browser call
+### ~~Option A — Formspree forwards to n8n server-side~~ RULED OUT
 
-Remove `data-crm-webhook-url` and the second `fetch` entirely; configure the
-Formspree endpoint to forward submissions to n8n.
+Struck 2026-09-03. `src/data/site.ts:23-24` already records why: *"Formspree's
+free plan can't forward submissions anywhere on its own, and Zapier/Make both
+paywall webhooks on their free tiers too."* The architecture memory adds that
+paid tiers were declined. This option was recommended in the first draft of this
+todo **without checking the decision already recorded in the repo** — the note
+was two lines above the value being audited.
 
-- **Pros:** The only option that actually closes it. The webhook stops being
-  public, spam filtering applies to everything reaching the CRM, and the page
-  gets simpler. Respects the static-hosting constraint — no backend added.
-- **Cons:** Depends on Formspree's forwarding/webhook feature being available on
-  the current plan; needs verifying before committing. Changes a working
-  production lead path, so it must be tested with a real submission end to end.
-- **Effort:** Small–Medium · **Risk:** Medium — this is how leads reach the CRM.
+It becomes available only by paying for Formspree (or an equivalent), which is a
+budget decision, not an engineering one.
 
-### Option B — Rotate the webhook path and add a shared secret
+### Option B — A shared secret in the request
 
-- **Pros:** Fast.
-- **Cons:** **Does not work.** Any secret the browser sends is in the HTML. This
-  buys nothing but the appearance of a fix, and would make the next reader think
-  the problem was handled.
-- **Effort:** Small · **Risk:** High (false sense of security)
+- **Does not work.** Anything the browser sends is in the HTML. It would buy only
+  the appearance of a fix, and mislead the next reader.
 
-### Option C — Keep the direct call, add rate limiting and validation in n8n
+### Option C — Harden the n8n workflow
 
-Leave the endpoint public but make the workflow reject junk: required-field
-checks, a rate limit per IP, and the honeypot actually enforced.
+Validate and constrain server-side, where the code is not public: require the
+expected fields, reject anything with the honeypot filled, drop submissions
+whose shape does not match, and rate-limit per IP.
 
-- **Pros:** No change to the lead path, so no risk of dropping a real enquiry.
-  Reduces the damage without touching the architecture.
-- **Cons:** The endpoint stays writable by anyone; this caps the blast radius
-  rather than removing it. Rate limiting in n8n is more work than it sounds.
+- **Pros:** The only option available without spending money. Caps the damage,
+  keeps the lead path untouched, and the logic lives somewhere not readable from
+  the page. Composes with the honeypot fix already landed.
+- **Cons:** The endpoint stays writable by anyone — this is damage control, not
+  closure. Must be done in the n8n UI (owner's login; not reachable from tool
+  calls). Rate limiting in n8n is more work than the validation.
 - **Effort:** Medium · **Risk:** Low
+
+### Option D — Accept it, and monitor
+
+Leave as is; watch Twenty for junk and clean up if it appears.
+
+- **Pros:** Zero work. The endpoint is unadvertised, and small-site webhooks are
+  rarely found by anything but a broad scanner.
+- **Cons:** Security by obscurity. The URL is in the HTML of every page of a
+  site whose whole strategy is to be found in search.
+- **Effort:** None · **Risk:** Medium
 
 ## Recommended Action
 
-**Option A**, with Option C's honeypot fix landed first as a cheap independent
-win (wire `company` into the submit handler, or rename it `_gotcha` so Formspree
-drops it — one line either way, no risk to the lead path).
+**Option C**, done in n8n. Paste-ready node config below, per the owner's
+preferred way of working with n8n (see `memory/reference_n8n_edit_workflows_via_node_json.md`).
 
-Deliberately **not** actioned in the 2026-09-03 review PR: A changes how leads
-reach the CRM, and breaking that silently is worse than the exposure it fixes.
-It needs the owner's go-ahead and a real end-to-end test submission.
+Add an **IF** node between the Webhook trigger and the HTTP Request node, and
+route only the `true` branch onward:
+
+```json
+{
+  "parameters": {
+    "conditions": {
+      "options": { "caseSensitive": true, "version": 2 },
+      "combinator": "and",
+      "conditions": [
+        { "operator": { "type": "string", "operation": "empty" },
+          "leftValue": "={{ $json.body._gotcha || '' }}" },
+        { "operator": { "type": "string", "operation": "notEmpty" },
+          "leftValue": "={{ $json.body.email || '' }}" },
+        { "operator": { "type": "string", "operation": "contains" },
+          "leftValue": "={{ $json.body.email || '' }}", "rightValue": "@" },
+        { "operator": { "type": "string", "operation": "notEmpty" },
+          "leftValue": "={{ $json.body.message || '' }}" },
+        { "operator": { "type": "number", "operation": "lt" },
+          "leftValue": "={{ ($json.body.message || '').length }}", "rightValue": 5000 }
+      ]
+    }
+  },
+  "type": "n8n-nodes-base.if",
+  "name": "Valid submission?"
+}
+```
+
+Note `$json.body.…` rather than `$json.…` — the webhook nests the payload under
+`body`. Confirm against one real submission in n8n's execution log before
+trusting the paths, and check what content type actually arrives (see Findings).
+
+Rate limiting is a second step and can wait; the validation removes the cheap
+abuse.
 
 ## Technical Details
 
-- `src/data/site.ts` — the webhook URL
-- `src/components/ContactForm.astro:19` (attribute), `:26-27` (honeypot), `:65-108` (handler), `:81` (`no-cors`)
-- Related: `memory/project_contact_form_architecture.md`, `docs/RESOLVED.md`
+- `src/data/site.ts` — `crmWebhookUrl`, and the comment recording why Formspree forwarding is unavailable
+- `src/components/ContactForm.astro` — `data-crm-webhook-url`, the `no-cors` fetch, the now-enforced honeypot
+- n8n workflow — owner's UI only
 
 ## Acceptance Criteria
 
-- [ ] The n8n webhook URL no longer appears in any built page
-- [ ] A real test submission still creates a Twenty CRM record, verified in the CRM
-- [ ] The honeypot either blocks a submission or is removed — not left decorative
+- [ ] n8n rejects a submission with `_gotcha` filled
+- [ ] n8n rejects a submission missing `email` or `message`
+- [ ] A real test submission still creates a Twenty CRM record
 - [ ] Confirm what content type n8n actually receives
+- [ ] Reconcile the `80f3d` / `94d1d` host discrepancy
 
 ## Work Log
 
 ### 2026-09-03 — Found during full-repo review
-Security review confirmed the exposure in built HTML and confirmed the honeypot
-is never read. Also confirmed clean, so it is not re-audited: no secret has ever
+Security review confirmed the exposure in built HTML and that the honeypot was
+never read. Also confirmed clean, so it is not re-audited: no secret has ever
 been committed, `TINA_TOKEN` is absent from the deployed admin bundle, all nine
-`set:html` sites trace to author-committed data, and fork PRs cannot reach
-secrets.
+`set:html` sites trace to author-committed data, and fork PRs cannot reach secrets.
+
+### 2026-09-03 — Recommendation corrected
+First draft recommended Formspree server-side forwarding. That was wrong: the
+repo already documents that the free plan cannot do it and that paid tiers were
+declined — in a comment directly above the value being audited. Lesson worth
+keeping: **when a finding concerns a configured value, read the comment attached
+to it before proposing an alternative.** Rewritten around Option C, which is the
+only one available at this budget, with the n8n node config ready to paste.
