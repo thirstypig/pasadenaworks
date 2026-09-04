@@ -70,23 +70,6 @@ describe.each(COLLECTIONS)('$name match glob', (collection) => {
   });
 });
 
-describe('the docs-root glob excludes CLAUDE.md', () => {
-  // The collection allows `update`, so anything this glob matches is editable
-  // through the admin — including, before 2026-09-04, the file that tells Claude
-  // Code how to work in this repo.
-  const isMatch = picomatch(`${DOCS_ROOT_INCLUDE}.md`);
-
-  it('does not match CLAUDE.md', () => {
-    expect(isMatch('CLAUDE.md')).toBe(false);
-  });
-
-  it('still matches the docs that are meant to be editable', () => {
-    for (const file of ['README.md', 'CONTENT-PLAN.md', 'CONTENT-STATUS.md', 'PORTS.md']) {
-      expect(isMatch(file), `${file} should stay editable in Tina`).toBe(true);
-    }
-  });
-});
-
 describe('the include patterns themselves', () => {
   it('omit the .md extension, because Tina adds it', () => {
     expect(DOCS_ROOT_INCLUDE).not.toContain('.md');

@@ -431,10 +431,28 @@ blog `tags` field on 2026-09-04 changed the GraphQL type from `[String]` to
 not re-index on its own across three runs. Since deploy.yml's cron is the only
 thing that makes a date-gated post publish, that stops content shipping.
 
-Schema-affecting (sync Tina Cloud first, via the dashboard): `required`, field
-`type`, adding or removing a field, changing `name`. Safe: `ui.validate`,
-`description`, `label`, `ui.allowedActions`, `match.include`. Nothing in the
-local gate can catch the first group — the first signal is a red deploy on main.
+The safe list is narrower than it looks. Verified by bisection on 2026-09-04:
+reverting `required` alone was not enough, and `match.include` and `ui.validate`
+also failed the check. Treat **any** edit to `tina/config.ts` or `tina/utils.ts`
+as schema-affecting until proven otherwise. Only `description` and `label`
+changes have been observed to pass.
+
+**Test it locally before merging** — this is the important part. `.env` holds
+`TINA_CLIENT_ID` / `TINA_TOKEN`, so:
+
+```bash
+set -a; . ./.env; set +a
+npx tinacms build      # runs the same cloud check deploy.yml does
+```
+
+That turns a broken-production discovery into a ten-second local one. Nothing
+else in the local gate can see it: `npm run build`, `npm run typecheck` and the
+whole test suite pass regardless, because the check lives only inside
+`npx tinacms build`, which runs in `deploy.yml` and therefore on `main` alone.
+
+Also note the remote schema is **not stable while you test**: Tina Cloud
+re-indexes from `main`, so a mismatch can resolve or appear as `main` moves.
+Bisect locally, not by deploy.
 
 ## Content
 

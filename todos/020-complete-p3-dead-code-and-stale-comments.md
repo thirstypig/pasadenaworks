@@ -193,3 +193,41 @@ at DEPLOY time, long after the local build and the whole test suite have gone
 green. `required`, field type, and adding or removing a field are all in that
 category; `ui.validate`, `description` and `label` are not. Nothing in the local
 gate can catch this — the first signal is a red deploy on main.
+
+### 2026-09-04 — the whole Tina change set had to come out, not just `required`
+
+Reverting `required: true` alone did NOT restore deploys. The error changed from
+"local **GraphQL** schema doesn't match" (with a `Reason:` naming the `tags`
+type) to "local **Tina** schema doesn't match" with no reason given — a second,
+coarser check.
+
+Bisected locally instead of by deploy cycle, using `.env` and `npx tinacms
+build`, which runs the same cloud check:
+
+| tina/ state | cloud check |
+|---|---|
+| `DOCS_ROOT_INCLUDE` back to `'*'` | still fails |
+| `ui.validate` blocks removed as well | still fails |
+| `tina/config.ts` + `tina/utils.ts` restored to 28e0102 | **passes** |
+
+Note the middle row against the last: with both reverted, `git diff` showed
+**only comment differences** from 28e0102, and it still failed — then the exact
+28e0102 content passed. The remote schema is not stable while this is being
+tested: Tina Cloud re-indexes from `main`, and `main` moved four times during
+the investigation. That is why bisecting by deploy is hopeless and why the
+answer is "restore the known-good state", not "find the one guilty line".
+
+**Reverted in full**: both `ui.validate` blocks, `DOCS_ROOT_INCLUDE`, and the
+`tina/config.test.ts` assertions that pinned the CLAUDE.md exclusion. `tina/` is
+now byte-identical to the last state that deployed successfully.
+
+**What this costs**, recorded so it is not lost:
+- todo 018's CLAUDE.md protection is gone — a Tina editor can again `update`
+  CLAUDE.md. Re-apply after syncing Tina Cloud.
+- The `tags` / `heroImage` edit-time validation is gone. Astro's zod schema still
+  enforces both at build, so the defect todo 020 named is still caught; only the
+  earlier, friendlier signal is missing.
+
+**Both remain valid findings blocked on one external step**: updating the schema
+in Tina Cloud's dashboard, which needs the owner's login and is not reachable
+from tooling.
