@@ -52,7 +52,7 @@
  *  So `registerIndex` is the real target for zh, and characters-per-
  *  sentence is kept only as a guard against runaway sentences.
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -431,6 +431,10 @@ export function reportDist(distDir) {
   // absolute path — which broke the cross-check test and would have broken
   // the CLI, since it passes an absolute path.
   const root = resolve(distDir);
+  // A missing dist/ is an ordinary state, not an exception: the unit suite
+  // runs before the build in both workflows. Return nothing and let the
+  // caller decide — the CLI prints an instruction, the cross-check skips.
+  if (!existsSync(root)) return [];
   const walk = (dir) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name);
@@ -456,7 +460,12 @@ export function reportDist(distDir) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   if (process.argv.includes('--dist')) {
-    const rows = reportDist(join(ROOT, 'dist')).filter((r) => !r.tooShort);
+    const all = reportDist(join(ROOT, 'dist'));
+    if (!all.length) {
+      console.error('No built pages found in dist/. Run `npm run build` first.');
+      process.exit(1);
+    }
+    const rows = all.filter((r) => !r.tooShort);
     for (const locale of LOCALES) {
       const group = rows.filter((r) => r.locale === locale);
       if (!group.length) continue;

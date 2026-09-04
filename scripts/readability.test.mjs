@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -19,6 +19,7 @@ import {
 } from './readability.mjs';
 
 const BLOG_DIR = join(dirname(fileURLToPath(import.meta.url)), '../src/content/blog');
+const DIST_DIR = join(dirname(fileURLToPath(import.meta.url)), '../dist');
 
 describe('prose extraction', () => {
   it('drops frontmatter, code and tables before measuring', () => {
@@ -395,8 +396,18 @@ describe('rendered-page extraction', () => {
    * faithful. They started 1.1 grades apart; the whole gap was page
    * furniture inside <main>. Anything that reopens it should fail here.
    */
-  it('agrees with the markdown path on live posts, within half a grade', () => {
-    const rendered = reportDist(join(BLOG_DIR, '../../../dist'));
+  /**
+   * SKIPPED, not passed, when dist/ is absent. Both workflows run the unit
+   * suite BEFORE the build, so this cannot see rendered output there — it is
+   * an integration check wearing a unit test's clothes, and CI runs it again
+   * as an explicit post-build step where dist/ does exist.
+   *
+   * Skipping is not the vacuous pass this test was written to avoid. That
+   * danger is a dist/ which EXISTS but yields zero comparisons, and the
+   * positive control below still covers exactly that.
+   */
+  it.skipIf(!existsSync(DIST_DIR))('agrees with the markdown path on live posts, within half a grade', () => {
+    const rendered = reportDist(DIST_DIR);
     const live = [
       'why-customers-cant-find-your-business-on-google',
       'what-a-small-business-website-actually-needs',

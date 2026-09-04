@@ -49,3 +49,18 @@ jobs:
             echo "::error::Two blog posts share a slug. Astro silently drops one of them."
             exit 1
           fi
+
+      # The readability cross-check needs dist/, so it SKIPS in the unit-test
+      # step above — both workflows run tests before building. Run it again
+      # here, now that the build exists, or it would never execute in CI at
+      # all and would only ever have been checked by hand on a laptop with a
+      # stale dist/ lying around. That is exactly how it passed locally while
+      # failing here on the first attempt.
+      #
+      # What it protects: the blog is scored from markdown and the rest of the
+      # site from rendered HTML, and the two must agree within half a grade.
+      # Adding a component inside <main> silently breaks that agreement.
+      - name: Cross-check the rendered readability extraction
+        run: |
+          npm run test -- readability
+          npm run readability -- --dist
