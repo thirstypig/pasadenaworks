@@ -423,6 +423,19 @@ face, from a European/Bauhaus-adjacent tradition) did — settled on
 call." The serif body is better for the long-form blog reading the SEO
 strategy depends on. Don't "fix" either.
 
+**`tina/config.ts` is not a local file.** Some edits to it are *schema* changes
+that Tina Cloud holds remotely, and they fail at DEPLOY time — after the local
+build and the whole test suite have gone green. Adding `required: true` to the
+blog `tags` field on 2026-09-04 changed the GraphQL type from `[String]` to
+`[String!]!` and broke every deploy with `ERR_CLOUD_CHECK_FAILED`; Tina Cloud did
+not re-index on its own across three runs. Since deploy.yml's cron is the only
+thing that makes a date-gated post publish, that stops content shipping.
+
+Schema-affecting (sync Tina Cloud first, via the dashboard): `required`, field
+`type`, adding or removing a field, changing `name`. Safe: `ui.validate`,
+`description`, `label`, `ui.allowedActions`, `match.include`. Nothing in the
+local gate can catch the first group — the first signal is a red deploy on main.
+
 ## Content
 
 Blog posts are markdown in `src/content/blog/`. **The filename becomes the URL**,

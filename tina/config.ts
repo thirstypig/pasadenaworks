@@ -127,7 +127,30 @@ export default defineConfig({
             name: 'tags',
             label: 'Tags',
             list: true,
-            required: true,
+            // NO `required: true` HERE, and it is not an oversight.
+            //
+            // Adding it on 2026-09-04 changed the generated GraphQL type from
+            // `[String]` to `[String!]!`, and `npx tinacms build` in deploy.yml
+            // then refused to run:
+            //
+            //   [NON_BREAKING - FIELD_TYPE_CHANGED] Field 'Blog.tags' changed
+            //   type from '[String]' to '[String!]!'
+            //   Error: The local GraphQL schema doesn't match the remote
+            //   GraphQL schema. (ERR_CLOUD_CHECK_FAILED)
+            //
+            // Tina Cloud holds the remote schema and did not pick the change up
+            // on its own — three deploy runs failed, with "Last indexed at"
+            // frozen. That blocks EVERY deploy, including the daily cron that
+            // makes date-gated posts publish, so it is not a cost worth paying
+            // for edit-time validation.
+            //
+            // The `ui.validate` below is kept: it gives the same editor-time
+            // feedback and does NOT touch the GraphQL type. Astro's
+            // z.array(...).min(1).max(3) remains the real enforcement.
+            //
+            // To restore `required: true`: update the schema in Tina Cloud
+            // first (dashboard, owner's login), confirm the remote type is
+            // `[String!]!`, then re-add it. See todos/020.
             description: '1–3 tags shown as pills on the post.',
             // The "1–3" above is a DESCRIPTION, which is documentation, not
             // validation. src/content.config.ts enforces
