@@ -430,6 +430,21 @@ main {
    ring changing colour at nearly the same position, which reads as "a
    differently coloured card", not "the focused card". box-shadow leaves
    `outline` free for focus alone. */
+/* Shared by four pages — the two service indexes and both homepages — where it
+   was byte-identical in all four. The .service-CARD rules are deliberately NOT
+   shared: the English homepage uses the label-frame treatment while the other
+   three use a bordered card, and that difference is a design choice, not drift.
+   Astro's scoped styles out-specify this, so a page can still override.
+
+   min(16rem, 100%) rather than a bare 16rem, matching BlogPostGrid: a fixed
+   track wider than its container overflows the viewport instead of shrinking. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
 .label-frame {
   position: relative;
   border: 3px solid currentColor;

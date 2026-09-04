@@ -1,5 +1,12 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+/* Derived, not re-typed. `LOCALES` in src/i18n/ui.ts is the registry, and its
+   own comment says "Adding a language: add it to LOCALES…". Adding one is loud
+   either way (Zod rejects the file); RENAMING or removing one was silent —
+   posts carrying the old value still validated against a stale hand-written
+   enum, getPostsByLocale never matched them, and they vanished from the site
+   with no page, no sitemap entry and no error. */
+import { LOCALES } from './i18n/ui';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -18,7 +25,7 @@ const blog = defineCollection({
     heroCredit: z.string().optional(),
     /** Which of the site's four locales this file is written in. Each
      *  translation of a post is its own file — see translationKey. */
-    locale: z.enum(['en', 'es', 'zh-hans', 'zh-hant']),
+    locale: z.enum(LOCALES),
     /** Shared across every language's version of "the same" post, so
      *  routing can find sibling translations for hreflang. Pick a short,
      *  stable slug-like id (e.g. "website-basics") — it never appears in
