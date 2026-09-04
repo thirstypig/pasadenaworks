@@ -281,10 +281,28 @@ ol {
  * rule that had itself been dead for months. Left recorded rather than silently
  * deleted, because it is the third instance of the same failure in this file's
  * history. */
-/* NOT `:global(...)` — that is an Astro scoped-style construct. This is a plain
- * stylesheet, so Astro never transforms it and `:global(...)` ships verbatim to
- * the browser, which discards the whole rule as an invalid selector. It was dead
- * from the day it was written. Selectors here are already global. */
+/* NOT `:global(...)`. That is an Astro compiler construct, and the condition is
+ * narrower than it looks: @astrojs/compiler-rs strips it only while SCOPING a
+ * scoped <style> block. Not "inside an .astro file" — verified against the
+ * installed compiler, `<style is:global>` leaves `:global(...)` verbatim too. So
+ * "add is:global" is NOT the fix; it reproduces this bug in a different file.
+ *
+ * Untransformed, it reaches the browser, which discards the ENTIRE rule —
+ * declarations included — because any error anywhere in a selector invalidates
+ * the whole statement (CSS 2.2 §4.1.7). Parsing resumes cleanly at the next
+ * rule, which is why it fails so quietly. In a selector LIST it is worse: one
+ * invalid member kills every sibling. `:is()` and `:where()` are the exception —
+ * they take forgiving lists.
+ *
+ * It is not silent at BUILD time, though: lightningcss warns "'global' is not
+ * recognized as a valid pseudo-class" and exits 0 anyway. That warning printed
+ * on every build for months while this rule was dead and CLAUDE.md called it a
+ * working fix. ci.yml now promotes it to a failure, like the duplicate-slug one.
+ *
+ * Selectors in a plain stylesheet are already global — just write it. (The
+ * construct looks plausible because CSS Modules genuinely supports it; a
+ * `*.module.css` file WOULD honour it. Renaming this file is not an option:
+ * every other class in it would become a hashed local name.) */
 html[lang^='zh'] body {
   line-height: 1.8;
 }

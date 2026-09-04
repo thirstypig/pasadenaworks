@@ -10,18 +10,23 @@ import { join } from 'node:path';
  *
  *     :global(html[lang^='zh']) body { line-height: 1.8; }
  *
- * for months. `:global(...)` is an Astro SCOPED-STYLE construct — Astro rewrites
- * it only inside an `.astro` component's <style> block. `global.css` is a plain
- * stylesheet imported by Base.astro, so nothing transformed it: the text reached
- * the browser verbatim, the browser could not parse `:global` as a pseudo-class,
- * and it discarded the WHOLE RULE. Every Chinese page rendered at line-height
- * 1.600 instead of 1.800 while CLAUDE.md documented the rule as a working fix.
+ * for months. `:global(...)` is an Astro compiler construct, stripped only while
+ * SCOPING a scoped <style> block — verified against @astrojs/compiler-rs, which
+ * leaves it verbatim inside `<style is:global>` too, so the condition is the
+ * scoping and not the file extension. `global.css` is a plain stylesheet, so
+ * nothing transformed it: the text reached the browser, which discarded the
+ * WHOLE RULE because any error in a selector invalidates the entire statement.
+ * Every Chinese page rendered at line-height 1.600 instead of 1.800 while
+ * CLAUDE.md documented the rule as a working fix.
  *
  * WHY NOTHING CAUGHT IT — worth stating, because it explains the shape of this
  * test rather than a more obvious one:
- *   - `npm run build` exits 0. Astro hands plain CSS to Lightning CSS, which
- *     drops the unparseable rule silently. The output is simply smaller, which
- *     looks like successful minification.
+ *   - `npm run build` exits 0 — but it is NOT silent, and that is the sharper
+ *     lesson. lightningcss warns "'global' is not recognized as a valid
+ *     pseudo-class" on every build, and did so throughout. Nobody read it.
+ *     ci.yml now promotes that warning to a failure, the same treatment the
+ *     duplicate-slug warning already gets, which makes this file the second
+ *     line of defence rather than the first.
  *   - `npm run typecheck` never reads CSS.
  *   - A linter is not reliable here either: the text is syntactically VALID CSS
  *     — a selector naming a pseudo-class no browser implements — and stylelint
@@ -30,8 +35,9 @@ import { join } from 'node:path';
  *     Chinese text is a few pixels with nothing to compare against; you would
  *     have to read the computed value, having already suspected the rule.
  *
- * Every existing gate checks that the code is WELL-FORMED. None checked that a
- * rule was still DOING anything. This is the first check of the second kind.
+ * Every gate in this repo checked that code was WELL-FORMED; none checked that a
+ * rule was still DOING anything. Two now do: ci.yml promotes the lightningcss
+ * warning, and this file catches the construct at source, before a build.
  */
 
 const STYLES_DIR = fileURLToPath(new URL('.', import.meta.url));
@@ -95,8 +101,10 @@ describe('plain stylesheets carry no component-scoped constructs', () => {
     expect(
       found,
       `${file} contains ${found.join(', ')} — a component-scoped construct in a ` +
-        `plain stylesheet. Astro never transforms it, so the browser discards the ` +
-        `entire rule silently. Write the selector globally; this file already is.`,
+        `plain stylesheet. Nothing transforms it, so the browser discards the ` +
+        `ENTIRE rule — declarations included. Write the selector globally; this ` +
+        `file already is. Adding is:global does NOT help: the transform is keyed ` +
+        `on the block being scoped, not on the file type.`,
     ).toEqual([]);
   });
 });

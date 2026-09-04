@@ -337,8 +337,11 @@ this environment's `ugrep` — it undercounted real matches (`-l` said 1
 file, `-o` implied many) on the same CJK content; use long-form flags
 (`--only-matching`, `-H`) or `/usr/bin/grep` when auditing non-ASCII text.
 
-**`:global(...)` is inert in a plain `.css` file.** It is an Astro *scoped-style*
-construct, transformed only inside an `.astro` `<style>` block. `global.css` is
+**`:global(...)` is inert unless the `<style>` block is SCOPED.** It is an Astro
+compiler construct, and the condition is the scoping — not the file type.
+Verified against `@astrojs/compiler-rs`: it survives verbatim inside
+`<style is:global>` as well, so "add `is:global`" reproduces the bug rather than
+fixing it. `global.css` is
 a plain stylesheet, so Astro never touches it and the selector ships verbatim,
 where the browser discards the whole rule as invalid. The Chinese line-height
 override was written that way and was dead from the day it landed — every zh
@@ -346,6 +349,11 @@ page rendered at Latin spacing (measured ratio 1.600, not 1.800) while this file
 cited it as a working fix. Selectors in `global.css` are already global; the
 `:global()` in `[locale]/index.astro` is correct because that one *is* inside a
 `<style>` block. Fixed 2026-09-03.
+
+The build was never actually silent about it: lightningcss warns *"'global' is
+not recognized as a valid pseudo-class"* and exits 0, and printed that on every
+build for months. `ci.yml` now promotes it to a failure alongside the
+duplicate-slug warning — the same move, for the same reason.
 
 **hreflang has exactly one producer, and it must stay that way.**
 `@astrojs/sitemap`'s `i18n` option was enabled and built its own `xhtml:link`

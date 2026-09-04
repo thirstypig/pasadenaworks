@@ -87,6 +87,18 @@ jobs:
             exit 1
           fi
 
+          # Same treatment, second warning. lightningcss reports an unparseable
+          # selector and the build still exits 0 — which is how
+          # `:global(html[lang^='zh']) body` sat in global.css for months, dead,
+          # printing this warning on every single build while CLAUDE.md
+          # documented the rule as working. The browser discards the WHOLE rule
+          # when any part of a selector is invalid, so an unrecognised
+          # pseudo-class means a block of CSS that silently does nothing.
+          if grep -q "is not recognized as a valid pseudo-class" build.log; then
+            echo "::error::Unparseable CSS selector — the browser will discard the entire rule. See the lightningcss warning above."
+            exit 1
+          fi
+
       # The WHOLE suite runs again here, not just the readability file.
       #
       # Several tests need dist/ and therefore SKIP in the unit-test step above,
