@@ -2,7 +2,7 @@
 status: pending
 priority: p1
 issue_id: 012
-tags: [code-review, typescript, seo, silent-failure, ci, introduced-by-015]
+tags: [code-review, typescript, seo, silent-failure, ci]
 dependencies: []
 ---
 
@@ -151,3 +151,17 @@ this session's own `dist/` while the agent's experiment was live — which is wo
 recording as its own lesson: **verifying against a shared working tree while
 parallel agents mutate it produces real-looking evidence for a bug that is not
 yours.** Re-verify `dist/` findings after agents finish, not during.
+
+### 2026-09-03 — Half done, deliberately
+Option C as recommended. **Landed:** the runtime guard — both dual-purpose routes
+now `throw` on an unrecognized `kind` instead of falling through to an empty
+title and a homepage canonical. Also corrected CLAUDE.md, which claimed the
+typecheck ran "across the repo"; it now states plainly that `.astro` files are
+outside the program, with the `tsc --listFiles` evidence.
+
+**Still open:** adopting `astro check`. Kept separate on purpose — it needs
+`@astrojs/check` added, `public/admin` excluded from tsconfig first (~94 minified
+vendor bundles are in the program today), and it will surface an unknown number
+of pre-existing errors that deserve triage on their own branch rather than
+inside a fix PR. Until then the discriminated-union refactor is not worth doing:
+it would add correct-looking types that nothing compiles.
