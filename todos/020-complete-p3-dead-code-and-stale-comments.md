@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 020
 tags: [code-review, cleanup, dead-code]
@@ -110,3 +110,51 @@ the owner, not cleanup.
 
 ### 2026-09-03 — Found during full-repo review
 `WEAK` was surfaced independently by `astro check` when it was adopted (todo 012).
+
+### 2026-09-04 — Closed, with two items deliberately left open
+
+**The two that were more than cleanup:**
+
+**#1** — the ci.yml comment now says what actually happens. Tina commits to
+`main` and ci.yml is `branches-ignore: [main]`, so the duplicate-slug grep never
+ran on the path the comment named. A Tina collision IS still caught, by
+`blog-content.test.ts` in deploy.yml — so the fix was to correct the claim, not
+to add a gate. Defence in depth is real for pull requests and absent for Tina;
+saying otherwise made it look stronger than it is.
+
+**#2** — `heroAlt` is now enforced by a zod `.refine()` when `heroImage` is set.
+Falsified: `heroAlt: ""` fails the build with *"heroAlt is required when
+heroImage is set — describe the photo."* Same class as the tags/heroImage drift
+closed on 2026-09-03: a constraint that existed only as prose.
+
+**Deleted after confirming zero USAGES** (the raw grep counts were misleading —
+five hits each turned out to be one interface field plus four locale values):
+`buttons.readMore`, `buttons.viewCity`, `misc.languages`,
+`misc.placeholderNotice` — 16 literals and 4 interface fields; `PREFIXED_LOCALES`;
+`--color-brand`; `.contact-schedule`; `WEAK` in readability.mjs.
+
+**Kept, contrary to the finding:** `PARTICLES` and `dropQuotedSamples` are NOT
+dead — both are used inside readability.mjs (lines 296 and 198). Only their
+`export` was unnecessary; that was dropped.
+
+**Other fixes:** the `rgba(200, 134, 43, 0.06)` literal in two files replaced
+with `color-mix()` on the token, so changing `--color-ochre` no longer leaves
+them stale. `cityDisplayName` gained `.filter(Boolean)` — a slug with a doubled
+or leading hyphen produced an empty segment and threw at build. The main nav's
+landmark was labelled "Home"; it now uses a new `misc.mainNav` string in all four
+locales (an intermediate attempt relabelled it "Services", which was no better).
+`/rss.xml` now has a discovery link, emitted only on English pages since the feed
+is English-only by design.
+
+**`'pw-theme'` could not be de-duplicated.** One of the two sites is Base.astro's
+inline pre-paint script, which cannot import anything — that is the whole reason
+it is inline. Both sites now carry a cross-reference comment so a rename is
+caught by grep.
+
+**Left open, both needing a decision rather than a fix:**
+- The arrows (`→`, `←`) fall out of Anton — confirmed visually while checking
+  the contact form: the arrow renders in the fallback face beside ultra-bold
+  condensed text. Fixing means either a pseudo-element or wrapping ~5 markup
+  sites, and it is a design call about how the arrow should look.
+- The English/localized visual divergence (logo hero, frame styles, city hub as
+  list vs card grid) is a deliberate-call question, not drift to be cleaned up.

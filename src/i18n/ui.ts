@@ -18,12 +18,6 @@ export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
-/** Locales that are NOT the default — the ones that get a URL prefix. */
-export const PREFIXED_LOCALES = LOCALES.filter((l) => l !== DEFAULT_LOCALE) as Exclude<
-  Locale,
-  'en'
->[];
-
 /** BCP-47 tag used in <html lang> and hreflang attributes. */
 export const HTML_LANG: Record<Locale, string> = {
   en: 'en',
@@ -66,12 +60,10 @@ export interface UIStrings {
   buttons: {
     getInTouch: string;
     send: string;
-    readMore: string;
     viewService: string;
     backToServices: string;
     backToBlog: string;
     backToCities: string;
-    viewCity: string;
   };
   endCta: {
     heading: string;
@@ -104,9 +96,8 @@ export interface UIStrings {
     whatYouGet: string;
   };
   misc: {
+    mainNav: string;
     skipToContent: string;
-    languages: string;
-    placeholderNotice: string;
     switchToLightMode: string;
     switchToDarkMode: string;
     cookieNotice: string;
@@ -127,12 +118,10 @@ export const ui: Record<Locale, UIStrings> = {
     buttons: {
       getInTouch: 'Get in touch',
       send: 'Send',
-      readMore: 'Read more',
       viewService: 'View service',
       backToServices: 'Back to services',
       backToBlog: 'Back to blog',
       backToCities: 'All cities',
-      viewCity: 'View',
     },
     endCta: {
       heading: 'Ready to fix this?',
@@ -167,9 +156,8 @@ export const ui: Record<Locale, UIStrings> = {
         'Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley.',
     },
     misc: {
+      mainNav: 'Main navigation',
       skipToContent: 'Skip to content',
-      languages: 'Language',
-      placeholderNotice: 'This page is a placeholder and is being filled in.',
       switchToLightMode: 'Switch to light mode',
       switchToDarkMode: 'Switch to dark mode',
       cookieNotice:
@@ -189,12 +177,10 @@ export const ui: Record<Locale, UIStrings> = {
     buttons: {
       getInTouch: 'Contáctenos',
       send: 'Enviar',
-      readMore: 'Leer más',
       viewService: 'Ver servicio',
       backToServices: 'Volver a servicios',
       backToBlog: 'Volver al blog',
       backToCities: 'Todas las ciudades',
-      viewCity: 'Ver',
     },
     endCta: {
       heading: '¿Listo para arreglar esto?',
@@ -229,9 +215,8 @@ export const ui: Record<Locale, UIStrings> = {
         'Artículos claros y directos sobre sitios web, búsqueda local, decisiones de negocio y publicidad paga para dueños de negocios pequeños en el Valle de San Gabriel.',
     },
     misc: {
+      mainNav: 'Navegación principal',
       skipToContent: 'Saltar al contenido',
-      languages: 'Idioma',
-      placeholderNotice: 'Esta página es un borrador y todavía se está completando.',
       switchToLightMode: 'Cambiar a modo claro',
       switchToDarkMode: 'Cambiar a modo oscuro',
       cookieNotice:
@@ -251,12 +236,10 @@ export const ui: Record<Locale, UIStrings> = {
     buttons: {
       getInTouch: '联系我们',
       send: '发送',
-      readMore: '阅读更多',
       viewService: '查看服务',
       backToServices: '返回服务列表',
       backToBlog: '返回博客',
       backToCities: '所有城市',
-      viewCity: '查看',
     },
     endCta: {
       heading: '准备好解决这个问题了吗？',
@@ -287,9 +270,8 @@ export const ui: Record<Locale, UIStrings> = {
       blogDescription: '写给圣盖博谷小生意老板看的文章，说大白话，聊网站、本地搜索、经营决策和付费广告。',
     },
     misc: {
+      mainNav: '主导航',
       skipToContent: '跳到正文',
-      languages: '语言',
-      placeholderNotice: '这个页面还在完善中，内容是占位文字。',
       switchToLightMode: '切换到浅色模式',
       switchToDarkMode: '切换到深色模式',
       cookieNotice: '我们使用分析类 Cookie，以了解本网站的使用情况。不做广告追踪，也不会出售您的信息。',
@@ -308,12 +290,10 @@ export const ui: Record<Locale, UIStrings> = {
     buttons: {
       getInTouch: '聯絡我們',
       send: '傳送',
-      readMore: '閱讀更多',
       viewService: '查看服務',
       backToServices: '返回服務列表',
       backToBlog: '返回部落格',
       backToCities: '所有城市',
-      viewCity: '查看',
     },
     endCta: {
       heading: '準備好解決這個問題了嗎？',
@@ -344,9 +324,8 @@ export const ui: Record<Locale, UIStrings> = {
       blogDescription: '寫給聖蓋博谷小生意老闆看的文章，說白話，聊網站、在地搜尋、經營決策與付費廣告。',
     },
     misc: {
+      mainNav: '主導覽',
       skipToContent: '跳到主要內容',
-      languages: '語言',
-      placeholderNotice: '這個頁面還在完善中，內容是佔位文字。',
       switchToLightMode: '切換到淺色模式',
       switchToDarkMode: '切換到深色模式',
       cookieNotice: '我們使用分析用的 Cookie，藉此瞭解本網站的使用情況，不做廣告追蹤，也不會出售您的資訊。',

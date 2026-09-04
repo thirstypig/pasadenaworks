@@ -68,9 +68,16 @@ jobs:
       # cannot see, and it is not what this check is protecting.
       #
       # The build exits 0 on a duplicate slug, so that warning is promoted to a
-      # failure explicitly. Belt and braces alongside the unit tests: this also
-      # catches a collision introduced through the Tina admin, which can commit
-      # content without ever opening a pull request.
+      # failure explicitly. Belt and braces alongside the unit tests.
+      #
+      # It does NOT cover the Tina path, despite what this comment used to say.
+      # Tina commits to `main` (tina/config.ts: branch: 'main') and this workflow
+      # is `push: branches-ignore: [main]`, so on the one path that claim named,
+      # this step never runs — nor does typecheck, nor the post-build readability
+      # check. A Tina-introduced collision is still caught, but by
+      # blog-content.test.ts, which deploy.yml does run. Defence in depth here is
+      # real for pull requests and absent for Tina; saying otherwise made the
+      # gate look stronger than it is.
       - name: Build, and fail on a duplicate blog slug
         run: |
           set -o pipefail

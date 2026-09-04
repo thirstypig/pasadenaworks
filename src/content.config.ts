@@ -39,7 +39,16 @@ const blog = defineCollection({
     slug: z
       .string()
       .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'lowercase letters, digits and single hyphens only'),
-  }),
+  })
+    /* Tina's field description says heroAlt is "Required if a hero image is
+       set" and nothing enforced it, so a hero photo could ship with alt="" —
+       announced to a screen reader as decorative. Same class as the
+       tags/heroImage drift closed in the 2026-09-03 review: a constraint that
+       existed only as prose. */
+    .refine((data) => !data.heroImage || Boolean(data.heroAlt?.trim()), {
+      message: 'heroAlt is required when heroImage is set — describe the photo.',
+      path: ['heroAlt'],
+    }),
 });
 
 export const collections = { blog };

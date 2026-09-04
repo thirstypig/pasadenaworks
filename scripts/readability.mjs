@@ -147,7 +147,7 @@ export const COLLOQUIAL_MARKERS = [
 ];
 
 /** Sentence-final particles — pure spoken-register signal, no formal use. */
-export const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
+const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
 
 /* ── text extraction ───────────────────────────────────────────────────── */
 
@@ -202,7 +202,7 @@ export function prose(markdown) {
 }
 
 /** Keeps the first blockquote block (the summary), drops every later one. */
-export function dropQuotedSamples(body) {
+function dropQuotedSamples(body) {
   const lines = body.split('\n');
   const out = [];
   let seenFirstQuote = false;
@@ -237,7 +237,6 @@ export function englishSyllables(word) {
 /* ── Spanish ───────────────────────────────────────────────────────────── */
 
 const STRONG = 'aeoáéó';
-const WEAK = 'iuü';
 const ACCENTED_WEAK = 'íú';
 
 /**

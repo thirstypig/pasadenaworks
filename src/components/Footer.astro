@@ -20,7 +20,14 @@ const blogHref = localeUrl(locale, SEGMENTS.blog[locale]);
 /** "monterey-park" -> "Monterey Park". City slugs aren't translated (see
  *  cities.ts), so this is a safe display-name derivation. */
 const cityDisplayName = (slug: string) =>
-  slug.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
+  slug
+    .split('-')
+    // filter(Boolean): a doubled or leading hyphen yields an empty segment, and
+    // word[0] on it is undefined — noUncheckedIndexedAccess is off, so it types
+    // as string and throws at build instead of being caught.
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(' ');
 
 const localCities = cities.filter((c) => cityLocales(c).includes(locale));
 ---

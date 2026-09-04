@@ -39,7 +39,6 @@
   /* Semantic aliases */
   --color-accent: var(--color-ochre);
   --color-accent-dark: var(--color-ochre-dark);
-  --color-brand: var(--color-rose);
   --color-brand-dark: var(--color-rose-dark);
 
   /* Theme-adaptive roles (2026-08-27, light/dark mode; --color-accent-text
