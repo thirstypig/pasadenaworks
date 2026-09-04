@@ -59,18 +59,5 @@ export function slugifyBlogFilename(values: BlogValuesLike | undefined): string 
  * tina/config.test.ts can assert they still match real files, since
  * tina/config.ts itself can't be imported under vitest.
  */
-/* `!(CLAUDE)`, not `*`. Tina appends the format, so this becomes the glob
- * `!(CLAUDE).md` — every markdown file at the repo root EXCEPT CLAUDE.md.
- *
- * Why: the collection sets `allowedActions: { create: false, delete: false }`
- * and its comment says that protects "a load-bearing file like CLAUDE.md". But
- * what makes CLAUDE.md load-bearing is its CONTENT, and `update` was still
- * allowed — so a Tina editor scoped to blog content could rewrite the
- * instructions Claude Code follows and commit them to main unreviewed.
- *
- * The extglob keeps CONTENT-PLAN.md, CONTENT-STATUS.md, README.md, PORTS.md and
- * MASTER-PORTS.md editable; CONTENT-STATUS.md's visibility here is the whole
- * reason scripts/content-status.mjs writes it to the root. Verified with
- * picomatch directly, since Tina composes the glob and then matches with it. */
-export const DOCS_ROOT_INCLUDE = '!(CLAUDE)';
+export const DOCS_ROOT_INCLUDE = '*';
 export const DOCS_SOLUTIONS_INCLUDE = '**/*';

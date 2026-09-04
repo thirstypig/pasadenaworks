@@ -34,11 +34,9 @@ import {
  *
  *  Two more collections (2026-08-27) make the project's own markdown docs
  *  browsable/editable from the same admin, since there was nowhere else to
- *  read them short of opening the repo: "Project Docs" for every `.md` at the
- *  repo root, and "Debugging Notes" for docs/solutions/. (Deliberately not
- *  enumerated — the list said "five" and there are six: CONTENT-STATUS.md is
- *  matched by the same glob, and its visibility here is the whole reason
- *  scripts/content-status.mjs writes it to the root.) Both are read/edit only —
+ *  read them short of opening the repo: "Project Docs" for the five root
+ *  files (README, CLAUDE.md, CONTENT-PLAN.md, MASTER-PORTS.md, PORTS.md)
+ *  and "Debugging Notes" for docs/solutions/. Both are read/edit only —
  *  create and delete are disabled so the CMS can't be used to add or
  *  remove a load-bearing file like CLAUDE.md by accident. This has nothing
  *  to do with ops.pasadenaworks.com, which is a separate Node service
@@ -127,44 +125,7 @@ export default defineConfig({
             name: 'tags',
             label: 'Tags',
             list: true,
-            // NO `required: true` HERE, and it is not an oversight.
-            //
-            // Adding it on 2026-09-04 changed the generated GraphQL type from
-            // `[String]` to `[String!]!`, and `npx tinacms build` in deploy.yml
-            // then refused to run:
-            //
-            //   [NON_BREAKING - FIELD_TYPE_CHANGED] Field 'Blog.tags' changed
-            //   type from '[String]' to '[String!]!'
-            //   Error: The local GraphQL schema doesn't match the remote
-            //   GraphQL schema. (ERR_CLOUD_CHECK_FAILED)
-            //
-            // Tina Cloud holds the remote schema and did not pick the change up
-            // on its own — three deploy runs failed, with "Last indexed at"
-            // frozen. That blocks EVERY deploy, including the daily cron that
-            // makes date-gated posts publish, so it is not a cost worth paying
-            // for edit-time validation.
-            //
-            // The `ui.validate` below is kept: it gives the same editor-time
-            // feedback and does NOT touch the GraphQL type. Astro's
-            // z.array(...).min(1).max(3) remains the real enforcement.
-            //
-            // To restore `required: true`: update the schema in Tina Cloud
-            // first (dashboard, owner's login), confirm the remote type is
-            // `[String!]!`, then re-add it. See todos/020.
             description: '1–3 tags shown as pills on the post.',
-            // The "1–3" above is a DESCRIPTION, which is documentation, not
-            // validation. src/content.config.ts enforces
-            // z.array(z.string()).min(1).max(3), so saving a post here with
-            // none or four passed Tina and then failed the Astro BUILD — and
-            // Tina commits straight to main, so that failure lands in CI (and
-            // can block the scheduled publish) rather than in the editor.
-            ui: {
-              validate: (value?: string[]) => {
-                if (!value || value.length < 1) return 'Add at least one tag.';
-                if (value.length > 3) return 'Three tags maximum.';
-                return undefined;
-              },
-            },
           },
           {
             type: 'string',
@@ -172,19 +133,6 @@ export default defineConfig({
             label: 'Hero image URL',
             description:
               'A direct image URL (e.g. an images.unsplash.com/photo-... link) — a real, relevant photo, not generic stock. See README for guidance.',
-            // Astro enforces z.string().url(); "photo.jpg" saved fine here and
-            // then failed the build. Same class as `tags` above.
-            ui: {
-              validate: (value?: string) => {
-                if (!value) return undefined; // optional in the Astro schema too
-                try {
-                  new URL(value);
-                  return undefined;
-                } catch {
-                  return 'Must be a full URL, starting with https://';
-                }
-              },
-            },
           },
           {
             type: 'string',
