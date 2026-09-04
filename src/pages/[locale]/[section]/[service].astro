@@ -22,11 +22,35 @@ import { LOCALES, type Locale } from '../../../i18n/ui';
 import { getPostsByLocale, getTranslationsFor, postPath } from '../../../utils/blog';
 import { readingTime } from '../../../utils/reading-time';
 
+/** The three page kinds this route serves. Astro cannot have two dynamic routes
+ *  at the same depth, so services, city detail pages and blog posts share this
+ *  file and branch on `kind` — see CLAUDE.md. Typed as a discriminated union so
+ *  a fourth kind is a COMPILE error at the point it is written, rather than a
+ *  page that silently ships an empty <title> and the homepage as its canonical.
+ *
+ *  Note the sibling file one level up uses a DIFFERENT vocabulary for
+ *  overlapping concepts ('service' | 'city-hub' | 'blog', where 'blog' is the
+ *  index and 'city'/'city-hub' swap meaning). Copying a line between them is an
+ *  ordinary edit, and is exactly how this broke before. */
+type RouteProps =
+  | { kind: 'service'; locale: Locale; service: Service }
+  | { kind: 'city'; locale: Locale; city: City }
+  | {
+      kind: 'blog-post';
+      locale: Locale;
+      post: Awaited<ReturnType<typeof getPostsByLocale>>[number];
+      translations: Partial<Record<Locale, string>>;
+    };
+
 export async function getStaticPaths() {
   const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
+  // `props: Record<string, unknown>` used to sit here, which made every `kind:`
+  // literal below `unknown` — so the `as` on the consuming side was asserting
+  // about a value the compiler had already given up on, and constrained nothing
+  // at either end. A `kind` no branch handles was not a compile error.
   const paths: {
     params: { locale: string; section: string; service: string };
-    props: Record<string, unknown>;
+    props: RouteProps;
   }[] = [];
 
   for (const locale of NON_EN) {
@@ -69,10 +93,7 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { kind, locale } = Astro.props as {
-  kind: 'service' | 'city' | 'blog-post';
-  locale: Locale;
-};
+const { kind, locale } = Astro.props as RouteProps;
 
 type BlogPost = Awaited<ReturnType<typeof getPostsByLocale>>[number];
 
