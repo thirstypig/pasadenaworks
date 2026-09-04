@@ -56,8 +56,9 @@ npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index
 npm run readability  # reading level of every post, per locale, against the house targets
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
-npm run typecheck    # astro sync && tsc --noEmit, across the repo including tina/
-                     #   (the build never typechecks tina/; the sync is required, see below)
+npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
+                     #   AND .ts, tina/ included. 62 files. The build itself
+                     #   typechecks neither; the sync is required, see below.
 npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
@@ -108,6 +109,20 @@ fact is why it must not gate the deploy: a type error in `tina/` cannot
 reach the built site, while `deploy.yml`'s cron is the only thing that makes
 a date-gated post publish. Blocking the daily publish over one would stop
 real content from shipping to fix nothing.
+
+**`tsc` alone cannot see `.astro` files** — it has no parser for them, so for a
+while all 28 components, layouts and pages were outside the gate while ~94
+minified vendor bundles under `public/admin` were inside it. That is where every
+unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
+excluded; the gate now covers 62 files and reports 0 errors.
+
+**What that buys, concretely:** the `kind` discriminants on both dual-purpose
+routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
+`Astro.props as {...}`, so a fourth kind — or a `kind` literal copied between
+the two files, which use different vocabularies for overlapping concepts — is a
+**compile error where it is written**. Verified: renaming one literal produces 4
+errors and exit 1. Before this it produced a green build that shipped 12 pages
+with an empty `<title>` canonicalized to the homepage.
 
 The `typecheck` script runs `astro sync` before `tsc`, and that is **not
 optional**. The types for the virtual `astro:content` module are *generated*
@@ -237,7 +252,15 @@ while still advertising the URLs to Google. `getTranslationsFor()` needs the
 same filter or a live post can emit an `hreflang` alternate at an unbuilt page.
 The other half lives in `.github/workflows/deploy.yml`: a static site has no
 clock, so the daily `schedule:` cron is what makes a date arrive. Delete it and
-the filter is still correct and nothing ever publishes. Full write-up in
+the filter is still correct and nothing ever publishes.
+
+**There is a third part, and it is the least obvious: the repo has to stay
+awake.** GitHub disables scheduled workflows in a public repository after 60
+days with no repository activity, and "no one doing anything" is exactly the
+steady state this design aims for. `.github/workflows/keepalive.yml` commits
+monthly to reset that counter — it must *commit*, because the rule is about
+repository activity, not workflow runs. So the mechanism is a filter, a clock,
+and a heartbeat. Full write-up in
 `docs/solutions/logic-errors/static-site-scheduled-publishing-needs-a-clock.md`.
 
 **CJK underlines need a lower baseline.** Chinese glyphs fill the em box and
@@ -300,6 +323,33 @@ uniq -c`. Also watch for short combined-flag forms like `grep -rho` on
 this environment's `ugrep` — it undercounted real matches (`-l` said 1
 file, `-o` implied many) on the same CJK content; use long-form flags
 (`--only-matching`, `-H`) or `/usr/bin/grep` when auditing non-ASCII text.
+
+**`:global(...)` is inert in a plain `.css` file.** It is an Astro *scoped-style*
+construct, transformed only inside an `.astro` `<style>` block. `global.css` is
+a plain stylesheet, so Astro never touches it and the selector ships verbatim,
+where the browser discards the whole rule as invalid. The Chinese line-height
+override was written that way and was dead from the day it landed — every zh
+page rendered at Latin spacing (measured ratio 1.600, not 1.800) while this file
+cited it as a working fix. Selectors in `global.css` are already global; the
+`:global()` in `[locale]/index.astro` is correct because that one *is* inside a
+`<style>` block. Fixed 2026-09-03.
+
+**hreflang has exactly one producer, and it must stay that way.**
+`@astrojs/sitemap`'s `i18n` option was enabled and built its own `xhtml:link`
+alternates by stripping the locale prefix and matching the remaining path — which
+hard rule 3 translates, so it structurally could not see this site's translation
+sets. It paired `/blog/` with `/es/blog/` only, contradicting that page's own
+correct four-locale set, and could not emit `x-default` at all. Conflicting
+annotations are a documented reason Google discards a cluster, so the accidental
+producer was throwing away what `buildAlternates()` earns. Removed 2026-09-03 —
+do not re-enable it. The page-level tags in `Base.astro` are the source of truth.
+
+**A review agent and your own verification can share a working tree.** During the
+2026-09-03 review, `dist/` was grepped while a parallel agent had deliberately
+broken a `kind` literal and rebuilt — producing real evidence for a bug that was
+the agent's experiment, not the repo's state. It looked exactly like a genuine
+finding. When running `/ce:review` with parallel agents, re-verify anything
+`dist/`-based *after* they finish, or build into a separate directory.
 
 ## Design system
 

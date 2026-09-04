@@ -24,8 +24,10 @@ type Post = {
   locale: string;
   translationKey: string;
   pubDate: string;
+  pubDateRaw: string;
   draft: boolean;
   body: string;
+  raw: string;
 };
 
 function field(source: string, name: string, fallback?: string): string {
@@ -52,8 +54,15 @@ const posts: Post[] = LOCALES.flatMap((dir) =>
         locale: field(source, 'locale'),
         translationKey: field(source, 'translationKey'),
         pubDate: field(source, 'pubDate').split('T')[0],
+        pubDateRaw: field(source, 'pubDate'),
         draft: field(source, 'draft', 'false') === 'true',
         body: source.split(/^---$/m)[2] ?? '',
+        // Whole file, frontmatter included. The polarity tripwires check this
+        // rather than `body`: a reversed comparative in a `description` is at
+        // least as damaging as one in the prose, because that is the line the
+        // search result shows. (Distinct from readability, which deliberately
+        // excludes meta descriptions — different job, different rule.)
+        raw: source,
       };
     })
 );
@@ -121,6 +130,54 @@ describe('blog content integrity', () => {
       .filter((p) => p.locale !== 'en' && !english.has(p.translationKey))
       .map((p) => `${p.path} (translationKey: ${p.translationKey})`);
     expect(orphans).toEqual([]);
+  });
+
+  it('gives each locale at most one post per translationKey', () => {
+    // getTranslationsFor() does `siblings.find((p) => p.data.locale === l)`, so
+    // a translationKey reused by two posts in the SAME locale silently binds the
+    // alternates to whichever one the loader happened to return first. Verified
+    // during the 2026-09-03 review by duplicating a key: the affected post
+    // shipped hreflang="en" and x-default pointing at a DIFFERENT URL than its
+    // own canonical, which is the standard way to get dropped from a cluster.
+    // Build exited 0 with 68 pages and every test passed.
+    //
+    // Realistic route: copying an existing post's frontmatter in Tina to start a
+    // follow-up. translationKey is a free string there and nothing else looks at
+    // it. The orphan check below is the mirror of this one — that catches a key
+    // used by NO English post, this catches one used TWICE in a locale.
+    const collisions = [...byKey.entries()].flatMap(([key, group]) => {
+      const seen = new Map<string, string[]>();
+      for (const post of group) seen.set(post.locale, [...(seen.get(post.locale) ?? []), post.path]);
+      return [...seen.entries()]
+        .filter(([, paths]) => paths.length > 1)
+        .map(([locale, paths]) => `${key} has ${paths.length} ${locale} posts: ${paths.join(', ')}`);
+    });
+
+    expect(collisions).toEqual([]);
+  });
+
+  it('dates every post at midnight UTC, so the daily build cannot miss it', () => {
+    // Publication is an INSTANT comparison (`pubDate <= now` in blog.ts) but the
+    // clock that makes a date arrive is a single cron at 13:00 UTC. A pubDate of
+    // T17:00Z is therefore not published on its own day — it waits for the next
+    // day's run. Worse, the parity test above compares only the date PART, so
+    // English at T17:00Z and Spanish at T09:00Z on the same calendar day pass as
+    // identical while the 13:00Z build ships one and not the other: the exact
+    // half-published set the draft-parity test was added to prevent, reachable
+    // through the other half of the same gate.
+    //
+    // The corpus is all midnight today. The exposure is Tina, whose datetime
+    // field seeds a new post from `new Date()` — i.e. the current time of day.
+    // Pinning the invariant here makes the whole class impossible.
+    const notMidnight = posts
+      .filter((p) => {
+        const raw = p.pubDateRaw.trim().replace(/^['"]|['"]$/g, '');
+        if (!raw.includes('T')) return false; // a bare YYYY-MM-DD is midnight
+        return !/T00:00:00(\.000)?Z$/.test(raw);
+      })
+      .map((p) => `${p.path} has pubDate ${p.pubDateRaw}`);
+
+    expect(notMidnight).toEqual([]);
   });
 
   it('matches each post\'s locale field to the directory it lives in', () => {
@@ -215,6 +272,42 @@ const POLARITY_TRIPWIRES: {
     },
     forbidden: ['划算得多', '更划算', 'más rentable', 'pays off considerably more'],
   },
+  // Added 2026-09-03 after a fidelity audit found each of these had drifted.
+  // All four are the shape the automated checks cannot see: a comparative, a
+  // modal, a range, or a direction — correct-looking prose that says something
+  // the English does not.
+  {
+    translationKey: 'redesign-or-fix',
+    note: 'a redesign runs WELL INTO five figures — open-ended, not capped at the middle of the range',
+    expected: {
+      en: 'well into five figures',
+      es: 'bien entradas las cinco cifras',
+      'zh-hant': '五位數以上',
+      'zh-hans': '五位数以上',
+    },
+    // 中段 ("mid-range") pins this to roughly $40-60k. It is the owner's own
+    // pricing, and the same sentence renders "low four figures" correctly as
+    // 四位數低段 — so the idiom was known and the wrong half was chosen.
+    forbidden: ['五位數中段', '五位数中段'],
+  },
+  {
+    translationKey: 'stop-offering-a-service',
+    note: 'keeping a mismatched service CAN confuse customers — possibility, not assertion',
+    expected: { 'zh-hant': '可能會讓潛在客人搞不清楚', 'zh-hans': '可能会让潜在顾客搞不清楚' },
+    forbidden: ['反而會讓潛在客人', '反而会让潜在顾客'],
+  },
+  {
+    translationKey: 'traffic-drop',
+    note: 'you LIFT a suspension; 恢復停權 reads as restoring one',
+    expected: { 'zh-hant': '解除停權', 'zh-hans': '解除停用' },
+    forbidden: ['恢復停權', '恢复停用'],
+  },
+  {
+    translationKey: 'google-ads-worth-it',
+    note: 'the account needs watching WEEKLY — the body says so three times; the meta used to say daily',
+    expected: { en: 'watching the account weekly' },
+    forbidden: ['watching the account daily'],
+  },
 ];
 
 describe('polarity tripwires', () => {
@@ -232,7 +325,7 @@ describe('polarity tripwires', () => {
       const post = posts.find((p) => p.translationKey === t.translationKey && p.locale === locale);
       expect(post, `${t.translationKey} missing its ${locale} version`).toBeDefined();
       expect(
-        post!.body.includes(needle),
+        post!.raw.includes(needle),
         `${post!.path}: expected "${needle}" — ${t.note}`,
       ).toBe(true);
     }
@@ -243,7 +336,7 @@ describe('polarity tripwires', () => {
     // to be absent everywhere, because the wrong claim is just as damaging
     // in a post that merely mentions the topic.
     for (const bad of t.forbidden) {
-      const offenders = posts.filter((p) => p.body.includes(bad)).map((p) => p.path);
+      const offenders = posts.filter((p) => p.raw.includes(bad)).map((p) => p.path);
       expect(offenders, `inverted wording "${bad}" — ${t.note}`).toEqual([]);
     }
   });

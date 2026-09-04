@@ -17,10 +17,32 @@ import { readingTime } from '../../../utils/reading-time';
 import BlogPostGrid from '../../../components/BlogPostGrid.astro';
 import type { CollectionEntry } from 'astro:content';
 
+/** The three hub kinds this route serves. Discriminated so a fourth is a
+ *  COMPILE error where it is written, not a page that silently renders the city
+ *  hub's content and canonical under a new URL.
+ *
+ *  `posts` is required on the blog member and absent on the others, which
+ *  retires the old `posts?:` + `posts ?? []` pairing — that combination let the
+ *  blog index render with zero cards and no error if the prop were ever renamed,
+ *  on a site whose SEO strategy IS the blog.
+ *
+ *  WARNING: this file's vocabulary differs from its sibling
+ *  [locale]/[section]/[service].astro — here 'blog' is the INDEX and the city
+ *  hub is 'city-hub'; there 'blog-post' is a post and the city detail page is
+ *  'city'. Copying a `kind` literal between the two files is how this broke
+ *  before. */
+type HubProps =
+  | { kind: 'service'; locale: Locale }
+  | { kind: 'city-hub'; locale: Locale }
+  | {
+      kind: 'blog';
+      locale: Locale;
+      posts: { post: CollectionEntry<'blog'>; minutes: number }[];
+    };
+
 export async function getStaticPaths() {
   const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
-  const paths: { params: { locale: string; section: string }; props: Record<string, unknown> }[] =
-    [];
+  const paths: { params: { locale: string; section: string }; props: HubProps }[] = [];
 
   for (const locale of NON_EN) {
     paths.push({
@@ -46,11 +68,27 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { kind, locale, posts } = Astro.props as {
-  kind: 'service' | 'city-hub' | 'blog';
-  locale: Locale;
-  posts?: { post: CollectionEntry<'blog'>; minutes: number }[];
-};
+const props = Astro.props as HubProps;
+const { kind, locale } = props;
+const posts = props.kind === 'blog' ? props.posts : undefined;
+
+/* A fourth `kind` must fail LOUDLY. Without this it falls through to the last
+ * branch: title/description/path keep their '' initializers, absoluteUrl('')
+ * resolves to the site root, and the page ships an empty <title> declaring the
+ * HOMEPAGE as its canonical — with the build, the tests and the typecheck all
+ * green. Proven during the 2026-09-03 review by renaming one `kind` literal to
+ * the sibling route's word for the same concept, which shipped exactly that on
+ * all 12 translated posts. CLAUDE.md's mitigation was "grep every if/else
+ * first", i.e. a machine-checkable invariant guarded by hand; it had already
+ * failed once (docs/solutions/logic-errors/
+ * dual-purpose-route-bare-else-broke-on-third-kind.md). */
+if (kind !== 'blog' && kind !== 'service' && kind !== 'city-hub') {
+  throw new Error(
+    `[locale]/[section]/index.astro: unhandled kind ${JSON.stringify(kind)}. ` +
+      `Note this file's vocabulary differs from its sibling: 'blog' is the INDEX ` +
+      `and 'city-hub' is what [service].astro calls 'city'.`
+  );
+}
 const strings = t(locale);
 
 const blogTranslations = {
@@ -109,6 +147,12 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
           >
             <h2>{service.t[locale].title}</h2>
             <p>{service.t[locale].summary}</p>
+            {/* The English index at src/pages/services/index.astro has carried
+                this affordance since launch and the localized twin never did —
+                two copies of one page, diverged in silence. `buttons.viewService`
+                is now free: the localized service DETAIL page was misusing it as
+                a section heading, which is what `hub.whatYouGet` replaced. */}
+            <span class="service-card__link">{strings.buttons.viewService} &rarr;</span>
           </a>
         ))}
       </div>
@@ -144,6 +188,13 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: var(--space-5);
     margin-top: var(--space-6);
+  }
+
+  .service-card__link {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 400;
+    color: var(--color-accent-text);
   }
 
   .service-card,

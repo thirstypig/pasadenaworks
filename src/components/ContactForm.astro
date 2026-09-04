@@ -21,10 +21,15 @@ const strings = t(locale);
   data-msg-success={strings.form.success}
   data-msg-error={strings.form.error}
 >
-  <!-- Honeypot: real people never fill this in; bots usually do. -->
+  <!-- Honeypot: real people never fill this in; bots usually do.
+       The name MUST be `_gotcha` — that is the field Formspree itself drops
+       on. It was `company`, which meant Formspree ignored it, and the submit
+       handler never read it either, so the honeypot was decorative: present in
+       the markup, enforced nowhere. It is checked below as well, because the
+       CRM webhook call does not go through Formspree at all. -->
   <div class="contact-form__hp" aria-hidden="true">
-    <label for="company">Company</label>
-    <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+    <label for="_gotcha">Company</label>
+    <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
   </div>
 
   <input type="hidden" name="_locale" value={locale} />
@@ -71,6 +76,18 @@ const strings = t(locale);
         status.classList.remove('contact-form__status--error');
 
         const data = new FormData(form);
+
+        // Honeypot filled => a bot. Report success and send nothing: a bot that
+        // is told it failed retries, and the CRM webhook is a public endpoint
+        // (see todos/013), so the client-side check is the only thing standing
+        // between a scripted form fill and a forged CRM record.
+        if (String(data.get('_gotcha') ?? '').trim() !== '') {
+          form.reset();
+          button.disabled = false;
+          button.textContent = sendLabel;
+          status.textContent = msgSuccess;
+          return;
+        }
 
         // Twenty CRM forwarding is best-effort via an n8n webhook — the
         // Formspree submission below is the source of truth for delivery.

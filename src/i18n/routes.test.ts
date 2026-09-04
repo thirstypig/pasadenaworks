@@ -13,6 +13,27 @@ describe('buildAlternates', () => {
     expect(buildAlternates({})).toEqual([]);
   });
 
+  it('ignores a locale whose path is explicitly undefined', () => {
+    // Partial<Record<Locale, string>> admits an explicit `undefined`, and
+    // Object.entries COUNTS that key — so this map used to clear the "fewer
+    // than two locales" guard and emit hreflang="es" href=".../undefined",
+    // a 404 alternate produced by the very function written to prevent one.
+    // `{ en: enPath, es: sibling?.path }` is how a partial map gets built.
+    expect(buildAlternates({ en: '/blog/', es: undefined })).toEqual([]);
+  });
+
+  it('drops an undefined locale but still builds the rest', () => {
+    const alternates = buildAlternates({
+      en: '/blog/',
+      es: '/es/blog/',
+      'zh-hant': undefined,
+    });
+    expect(alternates.map((a) => a.hreflang).sort()).toEqual(
+      ['en', 'es', 'x-default'].sort()
+    );
+    expect(alternates.every((a) => !a.href.includes('undefined'))).toBe(true);
+  });
+
   it('emits one alternate per real locale plus x-default, for a 4-locale page', () => {
     const alternates = buildAlternates({
       en: '/websites/alhambra/',

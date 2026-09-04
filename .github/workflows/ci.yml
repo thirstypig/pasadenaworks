@@ -18,10 +18,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Read-only: this workflow only needs the checkout. It runs on
+    # `pull_request` (not `pull_request_target`), so a fork's PR already cannot
+    # reach secrets; this makes the token itself least-privilege too.
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm
@@ -42,6 +47,10 @@ jobs:
       # cannot affect the built site at all — Astro does not compile that
       # folder. Blocking the daily publish over one would stop real content
       # from shipping to fix nothing.
+      #
+      # Covers .astro as well as .ts (via `astro check`), which is what makes the
+      # `kind` unions on the dual-purpose routes enforceable — tsc alone cannot
+      # parse .astro and silently skipped all 28 of them.
       #
       # The script runs `astro sync` first, and that is not optional: the types
       # for the virtual `astro:content` module are GENERATED into .astro/, which

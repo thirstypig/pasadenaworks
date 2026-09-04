@@ -12,10 +12,13 @@ on:
     - cron: '0 13 * * *'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Scoped per JOB, not workflow-wide. `pages: write` and `id-token: write` are
+# what let a job mint an OIDC token and upload a Pages artifact — i.e. publish
+# arbitrary content to pasadenaworks.com. Granting them workflow-wide handed
+# them to `build`, which runs third-party Actions and does not need them; only
+# `deploy` does. Least privilege matters more than usual here because the build
+# job executes actions from outside this repo.
+permissions: {}
 
 concurrency:
   group: pages
@@ -24,12 +27,14 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
 
@@ -52,17 +57,20 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
 
       - name: Install, build, and upload
-        uses: withastro/action@v3
+        uses: withastro/action@56781b97402ce0487b7e61ce2cb960c0e2cc5289 # v3
         with:
           node-version: 22
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

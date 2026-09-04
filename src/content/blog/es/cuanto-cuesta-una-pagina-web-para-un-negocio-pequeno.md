@@ -15,7 +15,7 @@ translationKey: website-cost
 slug: cuanto-cuesta-una-pagina-web-para-un-negocio-pequeno
 ---
 
-> **En corto** — Para la mayoría de los negocios pequeños, una página web genuina cuesta entre 1,500 y 6,000 dólares como construcción única de un freelance o un taller pequeño, o entre 0 y 30 dólares mensuales si usted la construye por su cuenta sobre una plataforma como Squarespace o Wix. Las agencias cobran considerablemente más por el mismo resultado. Los constructores de sitios con IA y las herramientas de "vibe coding" pueden producir una página publicada por casi nada por adelantado — pero barato de lanzar y barato a lo largo de tres años no constituyen la misma pregunta, y ésa permanece genuinamente sin resolver.
+> **En corto** — Para la mayoría de los negocios pequeños, una página web genuina cuesta entre 1,500 y 6,000 dólares como construcción única de un freelance o un taller pequeño, o entre 0 y 30 dólares mensuales si usted la construye por su cuenta sobre una plataforma como Squarespace o Wix. Las agencias cobran considerablemente más por lo que con frecuencia es el mismo resultado. Los constructores de sitios con IA y las herramientas de "vibe coding" pueden producir una página publicada por casi nada por adelantado — pero barato de lanzar y barato a lo largo de tres años no constituyen la misma pregunta, y ésa permanece genuinamente sin resolver.
 
 Si alguien le cotiza 300 dólares por una página web, o alternativamente 30,000, ambos números pueden resultar enteramente correctos, porque están respondiendo preguntas distintas. Lo que sigue es aquello que efectivamente impulsa el precio, y dónde encajan las herramientas de IA dentro de esa aritmética.
 

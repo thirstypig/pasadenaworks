@@ -1,0 +1,59 @@
+name: Keep the publishing cron alive
+
+# WHY THIS EXISTS: GitHub automatically DISABLES scheduled workflows in a public
+# repository after 60 days with no repository activity. This repo is public, and
+# deploy.yml's daily `schedule:` cron is the only thing that makes a date-gated
+# post publish — src/utils/blog.ts filters on `pubDate <= now`, and a static site
+# has no clock of its own.
+#
+# That combination is a silent, total failure. CLAUDE.md describes the intended
+# steady state as posts surfacing "weekly through 2027-01-11 with no one doing
+# anything" — which is exactly the 60-day-quiet condition. All 20 posts are
+# already written and approved, so a long quiet stretch is the EXPECTED state,
+# not an edge case. When it trips: nothing goes red, the site does not break, it
+# simply stops gaining posts — and CONTENT-STATUS.md keeps reporting them as
+# live, because it reads frontmatter, not deployments.
+#
+# It must COMMIT, not merely run. GitHub's rule is about repository activity, so
+# a workflow that only runs does not reset the clock.
+#
+# Runs monthly, which leaves two full cycles of margin inside the 60 days.
+#
+# This workflow is itself a scheduled workflow and so is subject to the same
+# rule — but it is self-sustaining: it commits every 30 days, so the counter is
+# reset at half the deadline and never reaches 60. Its push to main also fires
+# deploy.yml, which means the site gets a guaranteed monthly rebuild even if
+# every other trigger somehow stalls.
+
+on:
+  schedule:
+    - cron: '0 9 1 * *' # 09:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # the whole point: push a commit to reset the clock
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Stamp and push
+        run: |
+          set -euo pipefail
+          date -u +'%Y-%m-%dT%H:%M:%SZ' > .github/last-keepalive
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .github/last-keepalive
+          # --allow-empty is deliberate: an empty commit is still repository
+          # activity, so the clock resets even if the stamp somehow matches.
+          git commit --allow-empty -m 'chore: keep the scheduled publish alive
+
+          Resets GitHub'"'"'s 60-day scheduled-workflow inactivity timer. Without
+          this, deploy.yml'"'"'s cron is disabled and date-gated posts stop
+          publishing with no error anywhere. See .github/workflows/keepalive.yml.'
+          git push
