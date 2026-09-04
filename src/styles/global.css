@@ -81,8 +81,19 @@
      the one that stuck.) Anton ships one weight (400), which is already
      extra-bold by design, so headings set font-weight: 400 rather than
      relying on synthetic bold. */
-  --font-display: 'Anton', Impact, Haettenschweiler, 'Franklin Gothic Bold', sans-serif;
-  --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-display: 'Anton', Impact, Haettenschweiler, 'Franklin Gothic Bold', var(--font-cjk-display);
+  --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', var(--font-cjk-body);
+
+  /* CJK fallbacks. NONE of the eight families above contains Han glyphs, so
+     every Chinese character was rendered by whatever the OS maps the generic
+     to — accidental and different per platform (Windows in particular falls to
+     PMingLiU, a poor screen face). Anton and Source Serif 4 stay FIRST: they
+     cover the Latin runs inside Chinese text, and the browser falls through
+     per character. Scoped by lang below, because Simplified and Traditional
+     want different faces and a shared list would hand SC glyph shapes to
+     zh-Hant readers on any machine that has PingFang SC. */
+  --font-cjk-display: sans-serif;
+  --font-cjk-body: serif;
 
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
   --step-0: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
@@ -264,6 +275,26 @@ html[lang^='zh'] body {
   line-height: 1.8;
 }
 
+html[lang='zh-Hans'] {
+  --font-cjk-display: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif;
+  --font-cjk-body: 'Songti SC', 'Noto Serif CJK SC', 'Source Han Serif SC', serif;
+}
+
+html[lang='zh-Hant'] {
+  --font-cjk-display: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans CJK TC', 'Source Han Sans TC', sans-serif;
+  --font-cjk-body: 'Songti TC', 'Noto Serif CJK TC', 'Source Han Serif TC', serif;
+}
+
+/* Anton is already black, which is why headings set font-weight: 400. The CJK
+   fallback has no such weight, so at 400 a Chinese heading renders as plain
+   regular text where the English renders ultra-bold condensed. */
+html[lang^='zh'] h1,
+html[lang^='zh'] h2,
+html[lang^='zh'] h3,
+html[lang^='zh'] h4 {
+  font-weight: 700;
+}
+
 main {
   display: block;
 }
@@ -331,7 +362,12 @@ main {
 
 .btn:hover {
   background: var(--color-accent-dark);
-  color: var(--color-rose-dark);
+  /* White, not --color-rose-dark. The hover state DARKENS the background, which
+     cuts contrast against dark text: #4a1c22 on #a06a1c measures 3.09:1, under
+     the 4.5:1 AA needs for this size (--step--1, ~13-14px). White on the same
+     background is 4.59:1. The token comment above reasons about
+     --color-accent-dark as a background but never checked the text drawn on it. */
+  color: var(--color-white);
 }
 
 .btn--outline {

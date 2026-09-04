@@ -127,6 +127,12 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
           >
             <h2>{service.t[locale].title}</h2>
             <p>{service.t[locale].summary}</p>
+            {/* The English index at src/pages/services/index.astro has carried
+                this affordance since launch and the localized twin never did —
+                two copies of one page, diverged in silence. `buttons.viewService`
+                is now free: the localized service DETAIL page was misusing it as
+                a section heading, which is what `hub.whatYouGet` replaced. */}
+            <span class="service-card__link">{strings.buttons.viewService} &rarr;</span>
           </a>
         ))}
       </div>
@@ -162,6 +168,13 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: var(--space-5);
     margin-top: var(--space-6);
+  }
+
+  .service-card__link {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 400;
+    color: var(--color-accent-text);
   }
 
   .service-card,

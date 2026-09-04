@@ -115,11 +115,17 @@ const localBusinessSchema = {
   </head>
   <body>
     <a class="skip-link" href="#main">{t(locale).misc.skipToContent}</a>
+    {/* Before the header, not after the footer. It is `position: fixed` over
+        the reading column, so as the last element in the DOM it was also last
+        in tab order — a keyboard user tabbed through all 38 stops, several of
+        them links sitting underneath the banner, before reaching Decline/OK
+        (WCAG 2.2 SC 2.4.11, Focus Not Obscured). Its own CSS pins it to the
+        bottom of the viewport, so moving it here changes nothing visually. */}
+    <CookieConsent locale={locale} />
     <Header locale={locale} translations={translations} />
     <main id="main">
       <slot />
     </main>
     <Footer locale={locale} />
-    <CookieConsent locale={locale} />
   </body>
 </html>

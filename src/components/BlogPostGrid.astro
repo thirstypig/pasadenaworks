@@ -42,7 +42,11 @@ const { locale, posts } = Astro.props;
 <style>
   .post-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    /* min(20rem, 100%), not a bare 20rem: at a 320px viewport the .wrap padding
+       leaves a 288px container but the track still resolved to a hard 320px,
+       overhanging the right edge by 16px and forcing horizontal scroll on all
+       four blog indexes — at the width body{min-width:320px} declares supported. */
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
     gap: var(--space-6);
     margin-top: var(--space-6);
   }
