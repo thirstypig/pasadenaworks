@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 015
 tags: [code-review, seo, hreflang, content-integrity]
@@ -84,3 +84,33 @@ Fix #3, leave #1 and #2 to their tests.
 #2 was reported as a likely P1 and downgraded after checking: `services.test.ts`
 does assert the invariant, so nothing is currently wrong. Recorded at its honest
 severity rather than its alarming shape.
+
+### 2026-09-04 — Closed; two fixed, one dissolved on inspection
+
+**#1 — derived.** `homeTranslations()` in `src/data/home.ts` builds the map from
+`Object.keys(home)` plus an explicit `en` (the English homepage's copy lives in
+`src/pages/index.astro`, not in `home.ts`). Both homepages use it. Proven by
+commenting out the `zh-hant` block: `/zh-hant/` stops being generated **and** the
+English homepage stops advertising it. Before, the alternate would have pointed
+at a 404. It fixes `LangSwitch` at the same time, since that reads the same map.
+Built output otherwise byte-identical.
+
+**#3 — constrained.** `slug` is now
+`/^[a-z0-9]+(?:-[a-z0-9]+)*$/`. Verified first that all 80 existing slugs pass
+and none collide, then falsified: `slug: Website-Costs` fails the build with
+`InvalidContentEntryDataError … lowercase letters, digits and single hyphens
+only`. That closes the inverse of todo 002 — two distinct slugs that both write
+one filename, where the second Tina save silently overwrote the first.
+
+**#2 was not a defect.** Flagged on shape: services map all four locales for
+hreflang where cities filter. But `Service.slugs` and `Service.t` are total
+`Record<Locale, …>` (services.ts:45-46), so a service missing a locale is a
+COMPILE error — the type already is the structural guard this todo asks for.
+`City.t` is `Partial<…>` by design, which is why cities need a runtime filter.
+No code change; a comment now records the distinction so it is not re-flagged,
+and explicitly says not to "fix" it by filtering, which would add a runtime guard
+for a case the compiler rejects.
+
+The useful generalisation: *"hardcodes all four locales"* is not by itself a
+hard-rule-1 violation. Whether it is depends on whether the type permits a
+partial. Two of these three looked identical and only one was real.

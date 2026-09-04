@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: 014
 tags: [code-review, documentation, correctness, seo]
@@ -85,3 +85,35 @@ characters for Chinese and in words for English. The other three are mechanical.
 ### 2026-09-03 — Found during full-repo review
 Grouped deliberately: individually each is trivial, but the pattern is the one
 that has produced this repo's most expensive bugs.
+
+### 2026-09-04 — Closed; one of the four was not a defect
+
+**#1 — the guard now exists.** `MAX_CHARS_PER_SENTENCE = 60` and
+`sentenceGuard()`, deliberately separate from `verdict()` so the "N/M in band"
+counts keep meaning one thing. Scoped to zh, matching the claim the header
+actually made. Threshold chosen from measurement (40 posts: min 30.7, median
+41.0, p90 46.1, max 47.1), set ~27% above the observed max so it is a tripwire
+rather than something prose gets edited to satisfy. Four tests including a
+positive control — without one, the corpus assertion would be satisfied by a
+guard that can never fire, which is the exact bug being fixed.
+
+**`readingEase` was NOT a defect.** Reported as "advertised and never printed".
+It is printed — via `--json`, which the file header points at on line 6. Verified
+by running it: `readingEase: 46` on the English rows. Left alone.
+
+**#2** — `Base.astro` gained a `noindex` prop that emits
+`robots: noindex, follow` and suppresses **both** canonical and `og:url`. A
+canonical asserts the content lives at that address, and `/404/` does not exist
+(Astro emits `dist/404.html`). It was the only canonical in the build that did
+not resolve.
+
+**#3** — removed. Confirmed dead first: the only `text-decoration: underline`
+left in `src/` is in `LangSwitch.astro`. CLAUDE.md's gotcha rewritten to keep the
+*principle* (CJK glyphs have no descenders) while recording that the rule went,
+so nobody re-adds it speculatively.
+
+**#4** — both comments corrected. `content-status.mjs` now names the real glob
+(`DOCS_ROOT_INCLUDE = '*'`) and explains why `'*.md'` is wrong, instead of
+citing the broken value as the fix. `tina/config.ts` no longer enumerates "five
+root files" — there are six; it now says "every `.md` at the repo root", which
+cannot go stale.

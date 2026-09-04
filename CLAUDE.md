@@ -263,9 +263,14 @@ repository activity, not workflow runs. So the mechanism is a filter, a clock,
 and a heartbeat. Full write-up in
 `docs/solutions/logic-errors/static-site-scheduled-publishing-needs-a-clock.md`.
 
-**CJK underlines need a lower baseline.** Chinese glyphs fill the em box and
-have no descenders, so the ochre hero underline cuts through them. There's a
-`:global(html[lang^='zh'])` override in `[locale]/index.astro`.
+**CJK underlines need a lower baseline — kept as a principle, not as live
+code.** Chinese glyphs fill the em box and have no descenders, so an underline
+sized for Latin text cuts through them. There *was* a `text-underline-offset`
+override on the zh hero heading; it was removed 2026-09-04 because nothing
+underlines a hero heading any more (the only `text-decoration: underline` left
+in `src/` is in `LangSwitch.astro`). The rule had been protecting something that
+no longer existed. Re-apply the principle if an underline is ever added to
+display type — but do not re-add the rule speculatively.
 
 **A blog post's `slug` frontmatter field must be unique across ALL locales,
 not just within one.** Astro's glob-loader content collection dedupes
@@ -450,6 +455,21 @@ the targets and the reasoning; `scripts/readability.test.mjs` locks them.
 | `en` | Flesch-Kincaid grade | 13–15 |
 | `es` | Fernández Huerta (**lower = harder**) | 40–55 |
 | `zh-hans` / `zh-hant` | 書面語 register index | 0.55–0.85 |
+
+Chinese also carries a **runaway-sentence ceiling of 60 characters per
+sentence** (`MAX_CHARS_PER_SENTENCE`, checked by `sentenceGuard()`). It exists
+because `registerIndex` measures word choice, not length — the two come apart in
+Chinese, which is the whole reason that metric replaced characters-per-sentence
+— so a post can sit perfectly in band while running 80 characters to a sentence.
+English and Spanish need no equivalent: their primary metrics are already
+length-sensitive and their band maxima catch the same failure.
+
+It is a **tripwire, not a target**. Measured across the 40 Chinese posts: min
+30.7, median 41.0, max 47.1. The ceiling sits ~27% above the observed maximum, so
+nothing is near it and no one is tempted to edit prose to satisfy it — which is
+the inversion the write-up below warns about. Added 2026-09-04, after the file
+header had claimed such a guard existed for months while nothing compared the
+value to anything.
 
 **One formula per language, never one across all four.** Flesch-Kincaid is
 defined over English syllables; on Spanish it inflates, and on Chinese it is

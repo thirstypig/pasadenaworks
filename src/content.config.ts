@@ -26,8 +26,19 @@ const blog = defineCollection({
     translationKey: z.string(),
     /** The real URL slug for this post, in this language. Decoupled from
      *  the filename on purpose: each language gets its own keyword-
-     *  appropriate slug, not a literal translation of the English one. */
-    slug: z.string(),
+     *  appropriate slug, not a literal translation of the English one.
+     *
+     *  The pattern is load-bearing twice over. It is the URL, so an uppercase
+     *  letter or a space would ship in it. And since todo 002, Tina derives a
+     *  new post's FILENAME from this field via asciiSlug() — so without the
+     *  constraint, `Website-Costs` and `website-costs` are two distinct,
+     *  uniqueness-test-passing slugs that both write en/website-costs.md, and
+     *  the second Tina save silently overwrites the first. That is the inverse
+     *  of the collision todo 002 closed. Verified 2026-09-04: all 80 existing
+     *  slugs already satisfy this, and none collide. */
+    slug: z
+      .string()
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'lowercase letters, digits and single hyphens only'),
   }),
 });
 

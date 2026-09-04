@@ -34,9 +34,11 @@ import {
  *
  *  Two more collections (2026-08-27) make the project's own markdown docs
  *  browsable/editable from the same admin, since there was nowhere else to
- *  read them short of opening the repo: "Project Docs" for the five root
- *  files (README, CLAUDE.md, CONTENT-PLAN.md, MASTER-PORTS.md, PORTS.md)
- *  and "Debugging Notes" for docs/solutions/. Both are read/edit only —
+ *  read them short of opening the repo: "Project Docs" for every `.md` at the
+ *  repo root, and "Debugging Notes" for docs/solutions/. (Deliberately not
+ *  enumerated — the list said "five" and there are six: CONTENT-STATUS.md is
+ *  matched by the same glob, and its visibility here is the whole reason
+ *  scripts/content-status.mjs writes it to the root.) Both are read/edit only —
  *  create and delete are disabled so the CMS can't be used to add or
  *  remove a load-bearing file like CLAUDE.md by accident. This has nothing
  *  to do with ops.pasadenaworks.com, which is a separate Node service

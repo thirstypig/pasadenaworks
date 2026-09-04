@@ -77,3 +77,28 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     closingCta: '給我們留言',
   },
 };
+
+/**
+ * The homepage's hreflang map, DERIVED from what this file actually contains.
+ *
+ * Both homepages used to hardcode all four paths while `[locale]/index.astro`
+ * derived its `getStaticPaths` from `Object.keys(home)` — and `home` is
+ * `Partial` on purpose. So commenting out a locale here stopped generating that
+ * page while the English homepage kept advertising it, and `LangSwitch` kept
+ * rendering the link: an hreflang alternate pointing at a 404, which is exactly
+ * what hard rule #1 exists to prevent. TypeScript was satisfied, because
+ * `Partial` is the correct type, and the build passed.
+ *
+ * The homepage was the ONLY page type asserting this rather than deriving it —
+ * cityLocales(), getTranslationsFor() and the services' total Record all get it
+ * right. `en` is added explicitly because the English homepage's copy lives in
+ * src/pages/index.astro, not here.
+ */
+export function homeTranslations(): Partial<Record<Locale, string>> {
+  const entries: [Locale, string][] = [['en', '/']];
+  for (const locale of Object.keys(home) as Locale[]) {
+    entries.push([locale, `/${locale}/`]);
+  }
+  return Object.fromEntries(entries);
+}
+

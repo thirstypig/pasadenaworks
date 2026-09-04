@@ -130,6 +130,16 @@ if (kind === 'service') {
   title = `${serviceCopy.title} — Pasadena Works`;
   description = serviceCopy.meta;
   path = localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]);
+  // A full four-locale map IS correct here, and this is not the pattern hard
+  // rule #1 forbids. `Service.slugs` and `Service.t` are total
+  // `Record<Locale, …>` (src/data/services.ts:45-46), so a service missing a
+  // locale is a COMPILE error — the type is the structural guard. Contrast the
+  // city branch below, where `City.t` is `Partial<…>` by design and therefore
+  // must be filtered through cityLocales() at runtime.
+  //
+  // Flagged during the 2026-09-04 review as a latent hard-rule-1 risk on shape
+  // alone; kept after checking the types. Do not "fix" it by filtering — that
+  // would add a runtime guard for a case the compiler already rejects.
   translations = Object.fromEntries(
     LOCALES.map((l) => [l, localeUrl(l, SEGMENTS.services[l], service!.slugs[l])])
   );
