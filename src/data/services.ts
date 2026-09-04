@@ -32,7 +32,7 @@ export interface ServiceCopy {
   summary: string;
   /** Body paragraphs on the detail page. Renders as HTML — see note above. */
   body: string[];
-  /** Concrete deliverables, shown under the "View service" heading on the
+  /** Concrete deliverables, shown under the "What you get" heading on the
    *  detail page. Renders as HTML — see note above. Keep these things a
    *  client can point at. */
   outcomes: string[];

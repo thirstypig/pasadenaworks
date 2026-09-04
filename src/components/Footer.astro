@@ -15,6 +15,7 @@ const year = new Date().getFullYear();
 
 const home = localePath(locale);
 const servicesHref = localePath(locale, SEGMENTS.services[locale]);
+const blogHref = localePath(locale, SEGMENTS.blog[locale]);
 
 /** "monterey-park" -> "Monterey Park". City slugs aren't translated (see
  *  cities.ts), so this is a safe display-name derivation. */
@@ -37,7 +38,7 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
         <nav aria-label={strings.footer.explore}>
           <a href={home}>{strings.nav.home}</a>
           <a href={servicesHref}>{strings.nav.services}</a>
-          <a href="/blog/">{strings.nav.blog}</a>
+          <a href={blogHref}>{strings.nav.blog}</a>
           <a href={`${home}#contact`}>{strings.nav.contact}</a>
           <a href={site.bookingUrl} target="_blank" rel="noopener">{strings.nav.bookCall}</a>
         </nav>

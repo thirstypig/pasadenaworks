@@ -256,7 +256,11 @@ ol {
 /* Chinese glyphs fill the em box and have no descenders — a hero underline
  * sized for Latin text cuts through them. See [locale]/index.astro for the
  * lang-scoped override that lowers it. */
-:global(html[lang^='zh']) body {
+/* NOT `:global(...)` — that is an Astro scoped-style construct. This is a plain
+ * stylesheet, so Astro never transforms it and `:global(...)` ships verbatim to
+ * the browser, which discards the whole rule as an invalid selector. It was dead
+ * from the day it was written. Selectors here are already global. */
+html[lang^='zh'] body {
   line-height: 1.8;
 }
 
