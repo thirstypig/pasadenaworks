@@ -24,6 +24,7 @@ type Post = {
   locale: string;
   translationKey: string;
   pubDate: string;
+  pubDateRaw: string;
   draft: boolean;
   body: string;
 };
@@ -52,6 +53,7 @@ const posts: Post[] = LOCALES.flatMap((dir) =>
         locale: field(source, 'locale'),
         translationKey: field(source, 'translationKey'),
         pubDate: field(source, 'pubDate').split('T')[0],
+        pubDateRaw: field(source, 'pubDate'),
         draft: field(source, 'draft', 'false') === 'true',
         body: source.split(/^---$/m)[2] ?? '',
       };
@@ -121,6 +123,54 @@ describe('blog content integrity', () => {
       .filter((p) => p.locale !== 'en' && !english.has(p.translationKey))
       .map((p) => `${p.path} (translationKey: ${p.translationKey})`);
     expect(orphans).toEqual([]);
+  });
+
+  it('gives each locale at most one post per translationKey', () => {
+    // getTranslationsFor() does `siblings.find((p) => p.data.locale === l)`, so
+    // a translationKey reused by two posts in the SAME locale silently binds the
+    // alternates to whichever one the loader happened to return first. Verified
+    // during the 2026-09-03 review by duplicating a key: the affected post
+    // shipped hreflang="en" and x-default pointing at a DIFFERENT URL than its
+    // own canonical, which is the standard way to get dropped from a cluster.
+    // Build exited 0 with 68 pages and every test passed.
+    //
+    // Realistic route: copying an existing post's frontmatter in Tina to start a
+    // follow-up. translationKey is a free string there and nothing else looks at
+    // it. The orphan check below is the mirror of this one — that catches a key
+    // used by NO English post, this catches one used TWICE in a locale.
+    const collisions = [...byKey.entries()].flatMap(([key, group]) => {
+      const seen = new Map<string, string[]>();
+      for (const post of group) seen.set(post.locale, [...(seen.get(post.locale) ?? []), post.path]);
+      return [...seen.entries()]
+        .filter(([, paths]) => paths.length > 1)
+        .map(([locale, paths]) => `${key} has ${paths.length} ${locale} posts: ${paths.join(', ')}`);
+    });
+
+    expect(collisions).toEqual([]);
+  });
+
+  it('dates every post at midnight UTC, so the daily build cannot miss it', () => {
+    // Publication is an INSTANT comparison (`pubDate <= now` in blog.ts) but the
+    // clock that makes a date arrive is a single cron at 13:00 UTC. A pubDate of
+    // T17:00Z is therefore not published on its own day — it waits for the next
+    // day's run. Worse, the parity test above compares only the date PART, so
+    // English at T17:00Z and Spanish at T09:00Z on the same calendar day pass as
+    // identical while the 13:00Z build ships one and not the other: the exact
+    // half-published set the draft-parity test was added to prevent, reachable
+    // through the other half of the same gate.
+    //
+    // The corpus is all midnight today. The exposure is Tina, whose datetime
+    // field seeds a new post from `new Date()` — i.e. the current time of day.
+    // Pinning the invariant here makes the whole class impossible.
+    const notMidnight = posts
+      .filter((p) => {
+        const raw = p.pubDateRaw.trim().replace(/^['"]|['"]$/g, '');
+        if (!raw.includes('T')) return false; // a bare YYYY-MM-DD is midnight
+        return !/T00:00:00(\.000)?Z$/.test(raw);
+      })
+      .map((p) => `${p.path} has pubDate ${p.pubDateRaw}`);
+
+    expect(notMidnight).toEqual([]);
   });
 
   it('matches each post\'s locale field to the directory it lives in', () => {
