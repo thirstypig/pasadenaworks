@@ -48,6 +48,10 @@ jobs:
       # folder. Blocking the daily publish over one would stop real content
       # from shipping to fix nothing.
       #
+      # Covers .astro as well as .ts (via `astro check`), which is what makes the
+      # `kind` unions on the dual-purpose routes enforceable — tsc alone cannot
+      # parse .astro and silently skipped all 28 of them.
+      #
       # The script runs `astro sync` first, and that is not optional: the types
       # for the virtual `astro:content` module are GENERATED into .astro/, which
       # is gitignored and therefore absent from a clean checkout. Without it,

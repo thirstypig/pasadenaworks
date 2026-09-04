@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p1
 issue_id: 012
 tags: [code-review, typescript, seo, silent-failure, ci]
@@ -165,3 +165,34 @@ vendor bundles are in the program today), and it will surface an unknown number
 of pre-existing errors that deserve triage on their own branch rather than
 inside a fix PR. Until then the discriminated-union refactor is not worth doing:
 it would add correct-looking types that nothing compiles.
+
+### 2026-09-03 — Closed, Option A landed after all
+The deferred half turned out to be far cheaper than estimated. `astro check` on
+first run reported **0 errors, 0 warnings, 24 hints** — the "unknown error
+count" that justified deferring it did not exist. Order mattered: `public/admin`
+was excluded from tsconfig first, which removed ~94 minified vendor bundles from
+the program.
+
+`npm run typecheck` is now `astro sync && astro check && tsc --noEmit`, covering
+62 files. With `.astro` actually compiled, the discriminated unions became
+worth writing: `RouteProps` and `HubProps` replace `Astro.props as {...}` on both
+dual-purpose routes, and `getStaticPaths` returns them, so each `kind:` literal
+is checked where it is written.
+
+**Escalation confirmed by experiment.** Renaming `'blog-post'` to `'blog'`:
+
+| gate | before any of this | after the runtime throw | after the unions |
+|---|---|---|---|
+| `npm run typecheck` | pass | pass | **4 errors, exit 1** |
+| `npm run build` | pass, 67 pages | **exit 1** | exit 1 |
+
+`HubProps` also retired `posts?:` plus `posts ?? []` — `posts` is now required on
+the blog member and absent on the others, so the blog index can no longer render
+with zero cards and no error.
+
+Two things `astro check` surfaced on its own: a dead `ogImage` in Post.astro
+(Base.astro computes and uses its own, so posts do get an og:image — but the
+dead variable suggests someone intended the post's own `heroImage` there and
+never wired it, which is worth a product decision), and a dead `WEAK` constant
+in readability.mjs. The 23 remaining hints are `is:inline` script advisories and
+`z is deprecated` from Astro's zod re-export — neither actionable here.

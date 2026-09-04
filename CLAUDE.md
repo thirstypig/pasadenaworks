@@ -56,10 +56,9 @@ npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index
 npm run readability  # reading level of every post, per locale, against the house targets
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
-npm run typecheck    # astro sync && tsc --noEmit over the .ts files, tina/ included
-                     #   (the build never typechecks tina/; the sync is required, see below).
-                     #   NOTE: this does NOT check .astro files — tsc has no parser
-                     #   for them, so all 28 are outside the program. See below.
+npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
+                     #   AND .ts, tina/ included. 62 files. The build itself
+                     #   typechecks neither; the sync is required, see below.
 npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
@@ -111,16 +110,19 @@ reach the built site, while `deploy.yml`'s cron is the only thing that makes
 a date-gated post publish. Blocking the daily publish over one would stop
 real content from shipping to fix nothing.
 
-**`npm run typecheck` does not check `.astro` files.** `tsc` has no parser for
-them, so all 28 components, layouts and pages are absent from the program —
-verified with `tsc --listFiles | grep -c '\.astro$'` → 0. That is where every
-unsafe cast lives, including the `Astro.props as {...}` on both dual-purpose
-routes. An earlier version of this file claimed the gate ran "across the repo",
-which was wrong and made it look stronger than it is. The real tool is
-`astro check` (needs `@astrojs/check`); adopting it is deliberately left open
-because it will surface pre-existing errors, and `public/admin` must be added to
-`tsconfig.exclude` first — ~94 minified vendor bundles are currently in the tsc
-program. See `todos/012`.
+**`tsc` alone cannot see `.astro` files** — it has no parser for them, so for a
+while all 28 components, layouts and pages were outside the gate while ~94
+minified vendor bundles under `public/admin` were inside it. That is where every
+unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
+excluded; the gate now covers 62 files and reports 0 errors.
+
+**What that buys, concretely:** the `kind` discriminants on both dual-purpose
+routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
+`Astro.props as {...}`, so a fourth kind — or a `kind` literal copied between
+the two files, which use different vocabularies for overlapping concepts — is a
+**compile error where it is written**. Verified: renaming one literal produces 4
+errors and exit 1. Before this it produced a green build that shipped 12 pages
+with an empty `<title>` canonicalized to the homepage.
 
 The `typecheck` script runs `astro sync` before `tsc`, and that is **not
 optional**. The types for the virtual `astro:content` module are *generated*

@@ -17,10 +17,32 @@ import { readingTime } from '../../../utils/reading-time';
 import BlogPostGrid from '../../../components/BlogPostGrid.astro';
 import type { CollectionEntry } from 'astro:content';
 
+/** The three hub kinds this route serves. Discriminated so a fourth is a
+ *  COMPILE error where it is written, not a page that silently renders the city
+ *  hub's content and canonical under a new URL.
+ *
+ *  `posts` is required on the blog member and absent on the others, which
+ *  retires the old `posts?:` + `posts ?? []` pairing — that combination let the
+ *  blog index render with zero cards and no error if the prop were ever renamed,
+ *  on a site whose SEO strategy IS the blog.
+ *
+ *  WARNING: this file's vocabulary differs from its sibling
+ *  [locale]/[section]/[service].astro — here 'blog' is the INDEX and the city
+ *  hub is 'city-hub'; there 'blog-post' is a post and the city detail page is
+ *  'city'. Copying a `kind` literal between the two files is how this broke
+ *  before. */
+type HubProps =
+  | { kind: 'service'; locale: Locale }
+  | { kind: 'city-hub'; locale: Locale }
+  | {
+      kind: 'blog';
+      locale: Locale;
+      posts: { post: CollectionEntry<'blog'>; minutes: number }[];
+    };
+
 export async function getStaticPaths() {
   const NON_EN = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
-  const paths: { params: { locale: string; section: string }; props: Record<string, unknown> }[] =
-    [];
+  const paths: { params: { locale: string; section: string }; props: HubProps }[] = [];
 
   for (const locale of NON_EN) {
     paths.push({
@@ -46,11 +68,9 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { kind, locale, posts } = Astro.props as {
-  kind: 'service' | 'city-hub' | 'blog';
-  locale: Locale;
-  posts?: { post: CollectionEntry<'blog'>; minutes: number }[];
-};
+const props = Astro.props as HubProps;
+const { kind, locale } = props;
+const posts = props.kind === 'blog' ? props.posts : undefined;
 
 /* A fourth `kind` must fail LOUDLY. Without this it falls through to the last
  * branch: title/description/path keep their '' initializers, absoluteUrl('')
