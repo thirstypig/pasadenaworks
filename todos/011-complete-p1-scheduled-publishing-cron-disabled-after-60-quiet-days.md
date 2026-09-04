@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p1
 issue_id: 011
 tags: [code-review, ci, content-integrity, scheduled-publishing, silent-failure]
@@ -121,3 +121,19 @@ Surfaced by the content-pipeline agent; verified `visibility: PUBLIC` directly.
 Not currently broken — the repo was pushed to today, so the clock is reset. The
 risk is entirely prospective, which is why it is easy to leave and expensive to
 discover later: the first evidence would be a reader noticing a missing post.
+
+### 2026-09-03 — Resolved, Option A
+`.github/workflows/keepalive.yml` runs monthly and commits (plus
+`--allow-empty`, since the rule is about repository activity and an empty commit
+still counts). Self-sustaining: it resets the counter at day 30, so it never
+reaches 60. Its push to main also fires `deploy.yml`, giving a guaranteed
+monthly rebuild as a side benefit.
+
+Chose A over B (external n8n pinger) because B relocates the dependency rather
+than removing it — n8n down for a week is the same silent failure with a
+different owner. Option C (monitor the live site for posts that should be
+published) is strictly more general and still worth doing later; it needs a host,
+which lands back on A or B, and this needed closing now.
+
+CLAUDE.md's scheduled-publishing section now names all three parts: a filter, a
+clock, and a heartbeat.
