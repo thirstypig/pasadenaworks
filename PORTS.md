@@ -1,32 +1,19 @@
-# Port Quick-Reference — All Projects
-> Full registry with reserved blocks, conventions, and conflict-check: **[MASTER-PORTS.md](./MASTER-PORTS.md)**
-> Last Updated: 2026-08-24
+# Ports — pasadenaworks
 
-| Project                     | Frontend | API  | WebSocket | PG   | Redis |
-|-----------------------------|----------|------|-----------|------|-------|
-| thefantasticleagues (app)   | 3010     | 4010 | —         | 5442 | 6381  |
-| thefantasticleagues (www)   | 3011     | —    | —         | —    | —     |
-| bbq-judge (app)             | 3030     | 4030 | —         | 5444 | 6383  |
-| bbq-judge (www)             | 3031     | —    | —         | —    | —     |
-| ktv-singer                  | 3040     | 4040 | 8040      | —    | 6385  |
-| tastemakers (web)           | 3050     | —    | —         | —    | —     |
-| tastemakers (backend)       | —        | 4050 | —         | 5446 | 6384  |
-| alephco.io (app, unified)   | —        | 4060 | —         | —    | —     |
-| alephco.io (www, static)    | 3060     | —    | —         | —    | —     |
-| bahtzang-trader (frontend)  | 3070     | —    | —         | —    | —     |
-| bahtzang-trader (backend)   | —        | 4070 | —         | —    | —     |
-| tabledrop                   | 3080     | —    | —         | 5448 | 6387  |
-| jameschang.co               | 3090     | —    | —         | —    | —     |
-| thirstypig                  | 4321     | —    | —         | —    | —     |
-| cooper-stack3               | —        | 4100 | —         | —    | —     |
-| vouch                       | 3020     | —    | —         | —    | —     |
-| TIP (was spar)              | 3110     | —    | —         | —    | —     |
-| shengchangmd                | 3120     | —    | —         | —    | —     |
-| tobinchang                  | 3130     | —    | —         | —    | —     |
-| jarrenchang                 | 3140     | —    | —         | —    | —     |
-| rhyschang                   | 3150     | —    | —         | —    | —     |
-| theresewhite.com            | 3160     | —    | —         | —    | —     |
-| minmeychang                 | 3170     | —    | —         | —    | —     |
-| pasadenaworks                | 3180     | —    | —         | —    | —     |
-| ops-panel (ops.pasadenaworks.com) | 3181 | —    | —         | —    | —     |
-| **FUTURE-7**                | 3190     | 4190 | —         | 5457 | 6396  |
+> **This repo is public, so it carries only its own block.** The full
+> cross-project registry lives at `~/Projects/MASTER-PORTS.md` and is
+> deliberately **not** mirrored here — see `MASTER-PORTS.md` in this folder for
+> why.
+
+| Project                             | Frontend | API  | WebSocket | PG   | Redis |
+|-------------------------------------|----------|------|-----------|------|-------|
+| pasadenaworks                       | 3180     | —    | —         | —    | —     |
+| ops-panel (ops.pasadenaworks.com)   | 3181     | —    | —         | —    | —     |
+
+Reserved block: **3180–3189 / 4180–4189** (PG 5456, Redis 6395). Static site, so
+API / PostgreSQL / Redis stay unassigned.
+
+Claiming another port for this project: take it from the block above, then update
+**both** this file and the canonical `~/Projects/MASTER-PORTS.md`. Never pick a
+free-looking port without checking the canonical registry first — Astro's default
+4321 is already reserved by another project.

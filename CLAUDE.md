@@ -69,9 +69,14 @@ npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
-registry (`MASTER-PORTS.md` / `PORTS.md` at this repo's root, mirrored from
-`~/Projects/MASTER-PORTS.md` — the canonical source, covering ~20 other local
-projects). Don't let `dev`/`preview` fall back to Astro's default 4321 —
+registry. The canonical source is `~/Projects/MASTER-PORTS.md`, **outside this
+repo**; the `MASTER-PORTS.md` / `PORTS.md` at this root are deliberately
+**trimmed to this project's own block** rather than being the byte-identical
+mirror every other project keeps, because this repo is public and the full
+registry names ~22 projects with their stacks and hosting. (Deleting `registry/`
+on 2026-08-28 was that decision; these two files were set aside as "unrelated"
+and carried the same table, so the exposure outlived the fix. Completed
+2026-09-04.) Don't let `dev`/`preview` fall back to Astro's default 4321 —
 that port is already reserved for a different project (thirstypig) in the
 same registry, and running both at once would collide. If a future task
 needs another port on this project, claim it from pasadenaworks's own
