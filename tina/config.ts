@@ -125,7 +125,21 @@ export default defineConfig({
             name: 'tags',
             label: 'Tags',
             list: true,
+            required: true,
             description: '1–3 tags shown as pills on the post.',
+            // The "1–3" above is a DESCRIPTION, which is documentation, not
+            // validation. src/content.config.ts enforces
+            // z.array(z.string()).min(1).max(3), so saving a post here with
+            // none or four passed Tina and then failed the Astro BUILD — and
+            // Tina commits straight to main, so that failure lands in CI (and
+            // can block the scheduled publish) rather than in the editor.
+            ui: {
+              validate: (value?: string[]) => {
+                if (!value || value.length < 1) return 'Add at least one tag.';
+                if (value.length > 3) return 'Three tags maximum.';
+                return undefined;
+              },
+            },
           },
           {
             type: 'string',
@@ -133,6 +147,19 @@ export default defineConfig({
             label: 'Hero image URL',
             description:
               'A direct image URL (e.g. an images.unsplash.com/photo-... link) — a real, relevant photo, not generic stock. See README for guidance.',
+            // Astro enforces z.string().url(); "photo.jpg" saved fine here and
+            // then failed the build. Same class as `tags` above.
+            ui: {
+              validate: (value?: string) => {
+                if (!value) return undefined; // optional in the Astro schema too
+                try {
+                  new URL(value);
+                  return undefined;
+                } catch {
+                  return 'Must be a full URL, starting with https://';
+                }
+              },
+            },
           },
           {
             type: 'string',
