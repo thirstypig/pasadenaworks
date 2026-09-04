@@ -12,10 +12,13 @@ on:
     - cron: '0 13 * * *'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Scoped per JOB, not workflow-wide. `pages: write` and `id-token: write` are
+# what let a job mint an OIDC token and upload a Pages artifact — i.e. publish
+# arbitrary content to pasadenaworks.com. Granting them workflow-wide handed
+# them to `build`, which runs third-party Actions and does not need them; only
+# `deploy` does. Least privilege matters more than usual here because the build
+# job executes actions from outside this repo.
+permissions: {}
 
 concurrency:
   group: pages
@@ -24,6 +27,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,6 +64,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

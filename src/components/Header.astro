@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n/ui';
-import { t, localePath } from '../i18n/utils';
-import { SEGMENTS } from '../i18n/routes';
+import { t } from '../i18n/utils';
+import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { site } from '../data/site';
 import LangSwitch from './LangSwitch.astro';
 import ThemeToggle from './ThemeToggle.astro';
@@ -15,9 +15,9 @@ interface Props {
 
 const { locale, translations = { [locale]: Astro.url.pathname } } = Astro.props;
 const strings = t(locale);
-const home = localePath(locale);
-const servicesHref = localePath(locale, SEGMENTS.services[locale]);
-const blogHref = localePath(locale, SEGMENTS.blog[locale]);
+const home = localeUrl(locale);
+const servicesHref = localeUrl(locale, SEGMENTS.services[locale]);
+const blogHref = localeUrl(locale, SEGMENTS.blog[locale]);
 ---
 
 <header class="site-header">
