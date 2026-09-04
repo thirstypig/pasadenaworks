@@ -70,6 +70,7 @@ export interface UIStrings {
     viewService: string;
     backToServices: string;
     backToBlog: string;
+    backToCities: string;
     viewCity: string;
   };
   endCta: {
@@ -98,6 +99,9 @@ export interface UIStrings {
     citiesDescription: string;
     citiesIntro: string;
     blogDescription: string;
+    /** Heading above a service's deliverables list. NOT a button label —
+     *  the localized pages used `buttons.viewService` here by mistake. */
+    whatYouGet: string;
   };
   misc: {
     skipToContent: string;
@@ -127,6 +131,7 @@ export const ui: Record<Locale, UIStrings> = {
       viewService: 'View service',
       backToServices: 'Back to services',
       backToBlog: 'Back to blog',
+      backToCities: 'All cities',
       viewCity: 'View',
     },
     endCta: {
@@ -149,6 +154,7 @@ export const ui: Record<Locale, UIStrings> = {
       citiesWeServe: 'Cities we serve',
     },
     hub: {
+      whatYouGet: 'What you get',
       servicesDescription:
         'Websites, local SEO, business consulting, and paid ads for small businesses in Pasadena and the San Gabriel Valley.',
       servicesIntro: 'Four services, ordered by what matters most first.',
@@ -187,6 +193,7 @@ export const ui: Record<Locale, UIStrings> = {
       viewService: 'Ver servicio',
       backToServices: 'Volver a servicios',
       backToBlog: 'Volver al blog',
+      backToCities: 'Todas las ciudades',
       viewCity: 'Ver',
     },
     endCta: {
@@ -209,6 +216,7 @@ export const ui: Record<Locale, UIStrings> = {
       citiesWeServe: 'Ciudades que atendemos',
     },
     hub: {
+      whatYouGet: 'Lo que incluye',
       servicesDescription:
         'Sitios web, SEO local, asesoría de negocios y publicidad paga para negocios pequeños en Pasadena y el Valle de San Gabriel.',
       servicesIntro: 'Cuatro servicios, ordenados por lo que más importa primero.',
@@ -247,6 +255,7 @@ export const ui: Record<Locale, UIStrings> = {
       viewService: '查看服务',
       backToServices: '返回服务列表',
       backToBlog: '返回博客',
+      backToCities: '所有城市',
       viewCity: '查看',
     },
     endCta: {
@@ -269,6 +278,7 @@ export const ui: Record<Locale, UIStrings> = {
       citiesWeServe: '服务城市',
     },
     hub: {
+      whatYouGet: '服务内容',
       servicesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设、本地谷歌推广、经营咨询和付费广告服务。',
       servicesIntro: '四项服务，按最重要的排在前面。',
       citiesTitle: '我们服务的城市',
@@ -302,6 +312,7 @@ export const ui: Record<Locale, UIStrings> = {
       viewService: '查看服務',
       backToServices: '返回服務列表',
       backToBlog: '返回部落格',
+      backToCities: '所有城市',
       viewCity: '查看',
     },
     endCta: {
@@ -324,6 +335,7 @@ export const ui: Record<Locale, UIStrings> = {
       citiesWeServe: '服務城市',
     },
     hub: {
+      whatYouGet: '服務內容',
       servicesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置、在地 Google 推廣、經營諮詢與付費廣告服務。',
       servicesIntro: '四項服務，依最重要的排在前面。',
       citiesTitle: '我們服務的城市',

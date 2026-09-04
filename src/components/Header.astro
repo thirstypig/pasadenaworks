@@ -17,6 +17,7 @@ const { locale, translations = { [locale]: Astro.url.pathname } } = Astro.props;
 const strings = t(locale);
 const home = localePath(locale);
 const servicesHref = localePath(locale, SEGMENTS.services[locale]);
+const blogHref = localePath(locale, SEGMENTS.blog[locale]);
 ---
 
 <header class="site-header">
@@ -28,7 +29,7 @@ const servicesHref = localePath(locale, SEGMENTS.services[locale]);
     <nav class="site-header__nav" aria-label={strings.nav.home}>
       <a href={home}>{strings.nav.home}</a>
       <a href={servicesHref}>{strings.nav.services}</a>
-      <a href="/blog/">{strings.nav.blog}</a>
+      <a href={blogHref}>{strings.nav.blog}</a>
       <a href={`${home}#contact`}>{strings.nav.contact}</a>
     </nav>
 
