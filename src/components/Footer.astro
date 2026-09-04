@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n/ui';
-import { t, localePath } from '../i18n/utils';
-import { SEGMENTS } from '../i18n/routes';
+import { t } from '../i18n/utils';
+import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { site } from '../data/site';
 import { cities, cityLocales } from '../data/cities';
 
@@ -13,9 +13,9 @@ const { locale } = Astro.props;
 const strings = t(locale);
 const year = new Date().getFullYear();
 
-const home = localePath(locale);
-const servicesHref = localePath(locale, SEGMENTS.services[locale]);
-const blogHref = localePath(locale, SEGMENTS.blog[locale]);
+const home = localeUrl(locale);
+const servicesHref = localeUrl(locale, SEGMENTS.services[locale]);
+const blogHref = localeUrl(locale, SEGMENTS.blog[locale]);
 
 /** "monterey-park" -> "Monterey Park". City slugs aren't translated (see
  *  cities.ts), so this is a safe display-name derivation. */
@@ -49,7 +49,7 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
           <p class="site-footer__heading">{strings.footer.citiesWeServe}</p>
           <nav aria-label={strings.footer.citiesWeServe}>
             {localCities.map((city) => (
-              <a href={localePath(locale, SEGMENTS.cityHub[locale], city.slug)}>
+              <a href={localeUrl(locale, SEGMENTS.cityHub[locale], city.slug)}>
                 {cityDisplayName(city.slug)}
               </a>
             ))}

@@ -298,8 +298,21 @@ describe('Chinese corpus grammar guards', () => {
    * `writing-american-english-copy`: passing means "the common cases are
    * clean", never "the scripts do not mix". Widen it when a leak gets past.
    */
-  const SIMPLIFIED = '们网这么马电买卖东车间时个简体为说话业应实让经营对开关产资讯页点线钱价评标题过还进发现样种级结给认识记录导际档条单处务动场广华选择显较观觉该误请谢读变属续总联职号术卫装复规视亲览访语议护财责费质轻输农远适乡银错钟闭阳阶随难静愿类飞饭养验';
-  const TRADITIONAL = '們網這麼馬電買賣東車間時個簡體為說話業應實讓經營對開關產資訊頁點線錢價評標題過還進發現樣種級結給認識記錄導際檔條單處務動場廣華選擇顯較觀覺該誤請謝讀變屬續總聯職號術衛裝複規視親覽訪語議護財責費質輕輸農遠適鄉銀錯鐘閉陽階隨難靜願類飛飯養驗';
+  /* This list is now a strict SUPERSET of the PAIRS table in
+ * src/utils/blog-content.test.ts. The two guards check the same invariant on
+ * the same corpus and had drifted in BOTH directions — 18 characters were
+ * caught only there, 70 only here — so each was silently missing leaks the
+ * other would have caught. The 18 were merged in on 2026-09-03.
+ *
+ * They are kept separate rather than merged into one because of the exemption
+ * asymmetry: this file carries exemptions (two posts deliberately gloss
+ * 簡體（简体）) and blog-content.test.ts has no exemption mechanism at all. It
+ * survives only because 简/体 happen to be absent from its table, so merging
+ * the missing characters the other way would break the build on a deliberate
+ * editorial choice with nowhere to record it. If they are ever unified, this
+ * file is the one to keep. */
+const SIMPLIFIED = '们网这么马电买卖东车间时个简体为说话业应实让经营对开关产资讯页点线钱价评标题过还进发现样种级结给认识记录导际档条单处务动场广华选择显较观觉该误请谢读变属续总联职号术卫装复规视亲览访语议护财责费质轻输农远适乡银错钟闭阳阶随难静愿类飞饭养验员图团够写废据构决确络计设证长队险顾';
+  const TRADITIONAL = '們網這麼馬電買賣東車間時個簡體為說話業應實讓經營對開關產資訊頁點線錢價評標題過還進發現樣種級結給認識記錄導際檔條單處務動場廣華選擇顯較觀覺該誤請謝讀變屬續總聯職號術衛裝複規視親覽訪語議護財責費質輕輸農遠適鄉銀錯鐘閉陽階隨難靜願類飛飯養驗員圖團夠寫廢據構決確絡計設證長隊險顧';
 
   /**
    * One post is allowed to mix, and it is the post about mixing.

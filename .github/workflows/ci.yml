@@ -18,6 +18,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Read-only: this workflow only needs the checkout. It runs on
+    # `pull_request` (not `pull_request_target`), so a fork's PR already cannot
+    # reach secrets; this makes the token itself least-privilege too.
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 

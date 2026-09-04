@@ -139,7 +139,14 @@ export const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'
  * yourself is visibly odd in review.
  */
 export function prose(markdown) {
-  let body = markdown.replace(/^---[\s\S]*?\n---\n/, '');
+  // `\r?\n`, and no required newline AFTER the closing fence. The previous
+  // pattern was /^---[\s\S]*?\n---\n/, which FAILS OPEN: on a CRLF file, or a
+  // file ending at the fence, it strips nothing and every frontmatter line
+  // (title:, pillar:, targetKeyword:, the URLs) is then scored as prose. That
+  // moves the grade with no error, no warning and a green exit code — the
+  // worst shape for a number that governs the writing. scripts/
+  // content-status.mjs already used the \r?\n form; this copy had drifted.
+  let body = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---[ \t]*(\r?\n|$)/, '');
   body = body.replace(/```[\s\S]*?```/g, ' ');
   body = body.replace(/`[^`]*`/g, ' ');
   body = body.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ');
