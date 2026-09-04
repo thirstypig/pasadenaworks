@@ -51,6 +51,24 @@ const { kind, locale, posts } = Astro.props as {
   locale: Locale;
   posts?: { post: CollectionEntry<'blog'>; minutes: number }[];
 };
+
+/* A fourth `kind` must fail LOUDLY. Without this it falls through to the last
+ * branch: title/description/path keep their '' initializers, absoluteUrl('')
+ * resolves to the site root, and the page ships an empty <title> declaring the
+ * HOMEPAGE as its canonical — with the build, the tests and the typecheck all
+ * green. Proven during the 2026-09-03 review by renaming one `kind` literal to
+ * the sibling route's word for the same concept, which shipped exactly that on
+ * all 12 translated posts. CLAUDE.md's mitigation was "grep every if/else
+ * first", i.e. a machine-checkable invariant guarded by hand; it had already
+ * failed once (docs/solutions/logic-errors/
+ * dual-purpose-route-bare-else-broke-on-third-kind.md). */
+if (kind !== 'blog' && kind !== 'service' && kind !== 'city-hub') {
+  throw new Error(
+    `[locale]/[section]/index.astro: unhandled kind ${JSON.stringify(kind)}. ` +
+      `Note this file's vocabulary differs from its sibling: 'blog' is the INDEX ` +
+      `and 'city-hub' is what [service].astro calls 'city'.`
+  );
+}
 const strings = t(locale);
 
 const blogTranslations = {
