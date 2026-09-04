@@ -18,16 +18,33 @@
 
 import { site } from '../data/site';
 import { services } from '../data/services';
-import { DEFAULT_LOCALE, type Locale } from './ui';
+import { DEFAULT_LOCALE, HTML_LANG, type Locale } from './ui';
 
-/** The "services" index path segment, per locale. */
-export const SEGMENTS = {
+/** Path segments per locale.
+ *
+ *  The type here is an ANNOTATION, not an `as` assertion, and that distinction
+ *  is load-bearing. `{...} as Record<Locale, string>` compiles happily with a
+ *  locale missing, because Record<Locale,string> is assignable to the narrower
+ *  literal type — which is all `as` checks. The annotated form errors instead:
+ *
+ *    error TS2741: Property 'ko' is missing in type '{ en: ...; es: ... }'
+ *
+ *  That matters because a missing segment is not a crash. It types as `string`
+ *  while being `undefined`, and localeUrl()'s `segments.filter(Boolean)` then
+ *  silently DROPS it — shipping /zh-hant/wangzhan-jianzhi/ instead of
+ *  /zh-hant/fuwu/wangzhan-jianzhi/, a hard-rule-3 violation that builds green
+ *  with the hreflang alternates dutifully following it to the wrong URL. */
+export const SEGMENTS: {
+  services: Record<Locale, string>;
+  cityHub: Record<Locale, string>;
+  blog: Record<Locale, string>;
+} = {
   services: {
     en: 'services',
     es: 'servicios',
     'zh-hans': 'fuwu',
     'zh-hant': 'fuwu',
-  } as Record<Locale, string>,
+  },
 
   /** The city-hub path segment. Deliberately the same word as the
    *  "websites" service slug — see the URL diagram above. */
@@ -42,8 +59,8 @@ export const SEGMENTS = {
     es: 'blog',
     'zh-hans': 'boke',
     'zh-hant': 'boke',
-  } as Record<Locale, string>,
-} as const;
+  },
+};
 
 /** Build a path for a given locale, joining segments and adding the locale
  *  prefix (skipped for the default locale). Always leading+trailing slash. */
@@ -75,18 +92,19 @@ export interface Alternate {
  * alternates at all — hard rule #1 in CLAUDE.md).
  */
 export function buildAlternates(pathsByLocale: Partial<Record<Locale, string>>): Alternate[] {
-  const entries = Object.entries(pathsByLocale) as [Locale, string][];
+  // FILTER, don't cast. Partial<Record<...>> admits an explicit `undefined`
+  // value, Object.entries COUNTS that key, so `{ en: '/a/', es: undefined }`
+  // cleared the `< 2` guard and the cast promised the compiler a string that
+  // was not there — emitting hreflang="es" href=".../undefined", which is hard
+  // rule #1's exact failure from the one function written to prevent it.
+  // `{ en: enPath, es: sibling?.path }` is how anyone would build a partial map.
+  const entries = Object.entries(pathsByLocale).filter(
+    (entry): entry is [Locale, string] => Boolean(entry[1])
+  );
   if (entries.length < 2) return [];
 
-  const HTML_LANG_MAP: Record<Locale, string> = {
-    en: 'en',
-    es: 'es',
-    'zh-hans': 'zh-Hans',
-    'zh-hant': 'zh-Hant',
-  };
-
   const alternates: Alternate[] = entries.map(([locale, path]) => ({
-    hreflang: HTML_LANG_MAP[locale],
+    hreflang: HTML_LANG[locale],
     href: absoluteUrl(path),
   }));
 

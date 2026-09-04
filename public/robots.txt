@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# The Tina admin bundle is generated into public/admin/ by `npx tinacms build`
+# in deploy.yml, so it ships with the site and returns 200. It carries no write
+# authority (writes go through Tina Cloud OAuth, and no token is baked into the
+# bundle), but it is a thin third-party page under this brand's domain and has
+# no business in a search index.
+Disallow: /admin/
+
 Sitemap: https://pasadenaworks.com/sitemap-index.xml
