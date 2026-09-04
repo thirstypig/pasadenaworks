@@ -42,6 +42,14 @@ jobs:
       # cannot affect the built site at all — Astro does not compile that
       # folder. Blocking the daily publish over one would stop real content
       # from shipping to fix nothing.
+      #
+      # The script runs `astro sync` first, and that is not optional: the types
+      # for the virtual `astro:content` module are GENERATED into .astro/, which
+      # is gitignored and therefore absent from a clean checkout. Without it,
+      # tsc reports "Cannot find module 'astro:content'" plus a cascade of
+      # implicit-any errors — and it passes on any laptop that has ever run a
+      # build. Same trap as the readability step above, caught the same way:
+      # by CI, on the first run.
       - name: Typecheck
         run: npm run typecheck
 

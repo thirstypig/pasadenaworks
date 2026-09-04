@@ -56,7 +56,8 @@ npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index
 npm run readability  # reading level of every post, per locale, against the house targets
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
-npm run typecheck    # tsc --noEmit across the repo, including tina/ (Astro skips it)
+npm run typecheck    # astro sync && tsc --noEmit, across the repo including tina/
+                     #   (the build never typechecks tina/; the sync is required, see below)
 npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
@@ -107,6 +108,14 @@ fact is why it must not gate the deploy: a type error in `tina/` cannot
 reach the built site, while `deploy.yml`'s cron is the only thing that makes
 a date-gated post publish. Blocking the daily publish over one would stop
 real content from shipping to fix nothing.
+
+The `typecheck` script runs `astro sync` before `tsc`, and that is **not
+optional**. The types for the virtual `astro:content` module are *generated*
+into `.astro/`, which is gitignored — so they are absent from a clean checkout
+and `tsc` reports `Cannot find module 'astro:content'` followed by a cascade of
+implicit-`any` errors. It passes on any laptop that has ever run a build, which
+is why the first version of this shipped green locally and red in CI. Exactly
+the stale-`dist/` trap one paragraph up, in a new costume.
 
 ## Where things live
 

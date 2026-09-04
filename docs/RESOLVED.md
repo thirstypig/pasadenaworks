@@ -255,3 +255,16 @@ Read this before re-investigating anything that sounds already-handled.
   content shipping to fix nothing. Verified the gate rather than assuming it:
   a deliberate `const x: number = "s"` in `tina/utils.ts` exits 2, and the file
   was restored and re-verified clean.
+
+  One postscript worth the space, because it repeated a mistake this file
+  already records. The first version of the script was a bare `tsc --noEmit`.
+  It passed locally and failed in CI: the types for the virtual `astro:content`
+  module are generated into `.astro/`, which is gitignored and so absent from a
+  clean checkout, and tsc reported `Cannot find module 'astro:content'` plus a
+  cascade of implicit-`any` errors behind it. That is the stale-`dist/` trap
+  from the readability cross-check exactly, one step removed — a check that
+  passes on a laptop carrying generated state and fails on a clean machine. The
+  script is now `astro sync && tsc --noEmit`, so it is self-sufficient for a
+  fresh clone rather than patched at the CI call site. Reproduced locally by
+  moving `.astro/` aside (exit 2) and confirmed fixed by `astro sync` before
+  changing anything.
