@@ -36,6 +36,14 @@ That means:
   again on 2026-08-27, "final call" — see Resolved).
   `tinacms` and `@tinacms/cli` are devDependencies for the local `/admin`
   editor only — real but deliberate exception, not the site itself.
+  `vitest`, plus `typescript`, `picomatch` and `@types/picomatch` (added
+  2026-09-03), are the other devDependencies. The last three were already
+  being *used* and merely not *declared* — `tina/config.test.ts` imports
+  picomatch, and `tsc` only existed because `@tinacms/cli` depends on it, so
+  both were reaching npm's hoisting of somebody else's dependency tree. That
+  breaks on any future upgrade that changes the hoist layout, with an error
+  pointing at our file rather than at the cause. None of this touches the
+  production five.
 
 ## Commands
 
@@ -48,6 +56,8 @@ npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index
 npm run readability  # reading level of every post, per locale, against the house targets
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
+npm run typecheck    # astro sync && tsc --noEmit, across the repo including tina/
+                     #   (the build never typechecks tina/; the sync is required, see below)
 npm run test         # unit tests (vitest, 155) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
@@ -82,13 +92,30 @@ while the test suite catches it. `ci.yml` also greps the build log for that
 warning and promotes it to a failure, which catches a collision committed
 through Tina without a pull request.
 
-`ci.yml` has a third step, added 2026-09-03: it re-runs the readability tests
+`ci.yml` has a fourth step, added 2026-09-03: it re-runs the readability tests
 **after** the build. The rendered-page cross-check needs `dist/`, and both
 workflows run the suite before building, so in the unit step that test skips
 rather than fails. Without the post-build step it would never execute in CI at
 all — which is exactly how it first shipped broken, passing on a laptop that
 happened to have a stale `dist/` lying around and failing the moment CI ran it
 on a clean checkout.
+
+`ci.yml` also runs `npm run typecheck` (added 2026-09-03), and it runs there
+**and not in `deploy.yml`** on purpose. Nothing in this repo ran `tsc` before,
+so a type error was invisible — `npm run test` does not typecheck and
+`npm run build` passes because Astro never compiles `tina/`. But that same
+fact is why it must not gate the deploy: a type error in `tina/` cannot
+reach the built site, while `deploy.yml`'s cron is the only thing that makes
+a date-gated post publish. Blocking the daily publish over one would stop
+real content from shipping to fix nothing.
+
+The `typecheck` script runs `astro sync` before `tsc`, and that is **not
+optional**. The types for the virtual `astro:content` module are *generated*
+into `.astro/`, which is gitignored — so they are absent from a clean checkout
+and `tsc` reports `Cannot find module 'astro:content'` followed by a cascade of
+implicit-`any` errors. It passes on any laptop that has ever run a build, which
+is why the first version of this shipped green locally and red in CI. Exactly
+the stale-`dist/` trap one paragraph up, in a new costume.
 
 ## Where things live
 
@@ -461,16 +488,6 @@ Full write-up in
   `006`: **a todo is a snapshot, not a live view.** Two of its four findings had
   already been fixed as side effects of `007` and `008`, and nothing marked them
   resolved. Re-verify a finding against the current code before acting on it.
-- **`npx tsc --noEmit` fails on `tina/config.test.ts`** — `picomatch` has no type
-  declarations, and the package is not declared in `package.json` either; the
-  test reaches it transitively through Tina. Pre-existing since 2026-08-31 and
-  invisible because nothing in this repo runs `tsc`: there is no typecheck
-  script, `npm run test` does not typecheck, and `npm run build` passes because
-  Astro does not typecheck `tina/`. Nothing is broken by it. Fixing means either
-  `npm i -D picomatch @types/picomatch` (both devDependencies, so the production
-  five are untouched), a one-line `declare module 'picomatch'`, or reaching
-  picomatch through `@tinacms/schema-tools`, which is what the test actually
-  exercises. Left open deliberately — it needs a call on which.
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
   injection CVEs) have no safe fix available yet, checked 2026-08-27** —
   this isn't "hasn't been done," it's genuinely blocked upstream. We're
@@ -515,3 +532,4 @@ Read that file before re-investigating any of these.
 - Tina no longer writes every Chinese post to the same empty filename (2026-09-01)
 - JSON-LD is escaped before injection; `site.social` is finally read, as schema.org `sameAs` (2026-09-01)
 - A translation set can no longer half-publish through a mismatched `draft` flag (2026-09-01)
+- `npx tsc --noEmit` passes, and `npm run typecheck` now gates pull requests (2026-09-03)

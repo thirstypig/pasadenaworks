@@ -222,3 +222,49 @@ Read this before re-investigating anything that sounds already-handled.
   a grade — a cross-check that found two real bugs and, in its first version,
   failed its own positive control. Full write-up in
   [`docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md`](solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md).
+
+- **The repo typechecks, and a gate keeps it that way** (2026-09-03).
+  `npx tsc --noEmit` had failed on `tina/config.test.ts` since 2026-08-31 with
+  a single error: `picomatch` had no type declarations. The real defect was
+  larger than the error text suggested — the repo was *using* three packages it
+  did not *declare*. `tina/config.test.ts` imports `picomatch` directly, and
+  `tsc` itself only existed in `node_modules/.bin` because `@tinacms/cli`
+  depends on `typescript`. Both were resolving through npm's hoisting of
+  Tina's dependency tree, which is the kind of thing that survives for months
+  and then breaks on an unrelated upgrade, with an error pointing at our file
+  instead of at the cause. Fixed by declaring `typescript`, `picomatch` and
+  `@types/picomatch` as devDependencies; the production five are untouched.
+  Picked `picomatch@^4` because 4.0.7 is what was already hoisted and what the
+  test already resolved — pinning `^2` would have changed the test's behavior
+  while claiming to fix it. (Two majors coexist here: Tina's `@tinacms/graphql`
+  reaches 2.3.2 through `micromatch`. Immaterial for globs this simple, but
+  worth knowing the test and Tina's runtime do not match exactly.)
+
+  Why it survived so long is the more useful half: **nothing in this repo ran
+  `tsc`.** `npm run test` is vitest and does not typecheck, and `npm run build`
+  passes because Astro never compiles `tina/`. So there is now an
+  `npm run typecheck` script, wired into `ci.yml` — the same
+  make-a-command-fail move as the duplicate-slug grep and the post-build
+  readability step, both of which exist for the same reason.
+
+  It gates pull requests and deliberately **not** `deploy.yml`. The argument
+  for gating deploy on the tests does not transfer: a missing post is worse
+  than a delayed deploy, but a type error in `tina/` cannot reach the built
+  site at all, while `deploy.yml`'s cron is the only thing that makes a
+  date-gated post publish. Blocking the daily publish over one would stop real
+  content shipping to fix nothing. Verified the gate rather than assuming it:
+  a deliberate `const x: number = "s"` in `tina/utils.ts` exits 2, and the file
+  was restored and re-verified clean.
+
+  One postscript worth the space, because it repeated a mistake this file
+  already records. The first version of the script was a bare `tsc --noEmit`.
+  It passed locally and failed in CI: the types for the virtual `astro:content`
+  module are generated into `.astro/`, which is gitignored and so absent from a
+  clean checkout, and tsc reported `Cannot find module 'astro:content'` plus a
+  cascade of implicit-`any` errors behind it. That is the stale-`dist/` trap
+  from the readability cross-check exactly, one step removed — a check that
+  passes on a laptop carrying generated state and fails on a clean machine. The
+  script is now `astro sync && tsc --noEmit`, so it is self-sufficient for a
+  fresh clone rather than patched at the CI call site. Reproduced locally by
+  moving `.astro/` aside (exit 2) and confirmed fixed by `astro sync` before
+  changing anything.

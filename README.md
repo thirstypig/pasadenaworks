@@ -66,6 +66,7 @@ npm run dev     # start the dev server at localhost:3180
 npm run build   # build the production site into dist/
 npm run preview # look at the built site before deploying
 npm run test    # run the unit test suite (vitest)
+npm run typecheck  # check TypeScript types (the build does not check tina/)
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 npm run readability     # reading level of every post, per language
 npm run readability -- --dist  # same, for the built pages (run a build first)
@@ -98,7 +99,9 @@ and that Chinese files don't mix scripts. Those all fail *silently* otherwise:
 the build succeeds and the output looks fine.
 
 Run `npm run test` before pushing a change to any of `src/i18n/`, `src/data/`,
-`src/utils/`, `tina/`, or `src/content/blog/`.
+`src/utils/`, `tina/`, or `src/content/blog/`. For `tina/` specifically, also
+run `npm run typecheck` — the production build never compiles that folder, so
+a type error there passes the build and shows up only in the admin.
 
 ---
 
