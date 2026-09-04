@@ -9,13 +9,9 @@ import Lattice from '../components/Lattice.astro';
 import { services } from '../data/services';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { site } from '../data/site';
+import { homeTranslations } from '../data/home';
 
-const translations = {
-  en: '/',
-  es: '/es/',
-  'zh-hans': '/zh-hans/',
-  'zh-hant': '/zh-hant/',
-};
+const translations = homeTranslations();
 ---
 
 <Base

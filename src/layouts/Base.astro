@@ -31,6 +31,12 @@ interface Props {
   /** Only true on the homepage — gates the LocalBusiness JSON-LD. */
   isHome?: boolean;
   ogType?: 'website' | 'article';
+  /** For pages that have no canonical URL of their own — currently just 404.
+   *  Emits `robots: noindex` and suppresses BOTH canonical and og:url, because
+   *  a canonical is a claim that this content lives at that address, and
+   *  /404/ does not exist: Astro emits dist/404.html, not dist/404/index.html.
+   *  It was the only canonical in the whole build that did not resolve. */
+  noindex?: boolean;
 }
 
 const {
@@ -41,6 +47,7 @@ const {
   translations = { [locale]: path },
   isHome = false,
   ogType = 'website',
+  noindex = false,
 } = Astro.props;
 
 const canonical = absoluteUrl(path);
@@ -91,7 +98,11 @@ const localBusinessSchema = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <link rel="canonical" href={canonical} />
+    )}
 
     {alternates.map((alt) => (
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
@@ -100,7 +111,7 @@ const localBusinessSchema = {
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta property="og:site_name" content={site.name} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />

@@ -8,6 +8,8 @@ import {
   englishSyllables,
   spanishSyllables,
   verdict,
+  sentenceGuard,
+  MAX_CHARS_PER_SENTENCE,
   TARGETS,
   FORMAL_MARKERS,
   COLLOQUIAL_MARKERS,
@@ -175,6 +177,42 @@ describe('Chinese register index', () => {
     // quietly flatten the index toward 0.5 for every post.
     const overlap = FORMAL_MARKERS.filter((m) => COLLOQUIAL_MARKERS.includes(m));
     expect(overlap).toEqual([]);
+  });
+});
+
+describe('sentenceGuard (the runaway-sentence ceiling)', () => {
+  it('passes the whole Chinese corpus, with headroom', () => {
+    // A tripwire, not a target. If this ever fails, the prose ran away — do not
+    // raise the ceiling to make it pass. Measured 2026-09-04: max was 47.1
+    // against a ceiling of 60.
+    const tripped = report()
+      .filter((r) => sentenceGuard(r) === 'runaway')
+      .map((r) => `${r.file}: ${r.charsPerSentence} chars/sentence`);
+    expect(tripped).toEqual([]);
+  });
+
+  it('actually fires — positive control', () => {
+    // Without this, the assertion above is satisfied by a guard that can never
+    // trigger, which is precisely the bug being fixed here: the header claimed
+    // this guard existed for months while nothing compared the value to
+    // anything.
+    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: 200 })).toBe('runaway');
+    expect(sentenceGuard({ locale: 'zh-hans', charsPerSentence: MAX_CHARS_PER_SENTENCE + 0.1 })).toBe(
+      'runaway',
+    );
+  });
+
+  it('does not fire at or below the ceiling, and ignores non-zh locales', () => {
+    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: MAX_CHARS_PER_SENTENCE })).toBeNull();
+    // en/es are excluded deliberately: their primary metrics are already
+    // length-sensitive and carry upper bounds that catch the same failure.
+    expect(sentenceGuard({ locale: 'en', charsPerSentence: 500 })).toBeNull();
+    expect(sentenceGuard({ locale: 'es', charsPerSentence: 500 })).toBeNull();
+  });
+
+  it('reports nothing rather than a false pass when the value is missing', () => {
+    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: null })).toBeNull();
+    expect(sentenceGuard(null)).toBeNull();
   });
 });
 

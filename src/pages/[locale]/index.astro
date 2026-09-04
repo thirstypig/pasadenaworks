@@ -4,7 +4,7 @@ import ContactForm from '../../components/ContactForm.astro';
 import Lattice from '../../components/Lattice.astro';
 import { services } from '../../data/services';
 import { site } from '../../data/site';
-import { home } from '../../data/home';
+import { home, homeTranslations } from '../../data/home';
 import { SEGMENTS, localeUrl } from '../../i18n/routes';
 import type { Locale } from '../../i18n/ui';
 
@@ -18,12 +18,7 @@ export function getStaticPaths() {
 const { locale } = Astro.props as { locale: Locale };
 const copy = home[locale]!;
 
-const translations = {
-  en: '/',
-  es: '/es/',
-  'zh-hans': '/zh-hans/',
-  'zh-hant': '/zh-hant/',
-};
+const translations = homeTranslations();
 ---
 
 <Base
@@ -87,10 +82,6 @@ const translations = {
 </Base>
 
 <style>
-  :global(html[lang^='zh']) .hero h1 {
-    text-underline-offset: 0.3em;
-  }
-
   .hero {
     padding-block: var(--space-9);
   }

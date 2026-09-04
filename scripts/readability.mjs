@@ -81,6 +81,48 @@ export const TARGETS = {
 };
 
 /**
+ * The runaway-sentence ceiling, in characters per sentence, for zh only.
+ *
+ * The header above says characters-per-sentence "is kept only as a guard
+ * against runaway sentences." Until 2026-09-04 there was NO SUCH GUARD — the
+ * value was computed and never compared to anything. A stated safety property
+ * with no implementation is worse than an absent one, because it stops the next
+ * reader looking for it.
+ *
+ * Why zh needs its own: `registerIndex` measures word choice, not length, and
+ * the two come apart in Chinese (that is the whole argument in the header). So
+ * a post can sit perfectly in the 0.55–0.85 register band while running 80
+ * characters to a sentence. English and Spanish do not need this — their
+ * primary metrics ARE length-sensitive, and their bands already carry upper
+ * bounds that catch the same failure (CLAUDE.md records a draft that passed a
+ * 13+ floor at grade 15.9 with 29.8-word sentences; the FK max caught it).
+ *
+ * 60 is a TRIPWIRE, not a target. Measured across the 40 Chinese posts on
+ * 2026-09-04: min 30.7, median 41.0, p90 46.1, max 47.1. The ceiling sits ~27%
+ * above the observed maximum, so nothing in the corpus is near it and no one is
+ * ever tempted to edit prose to satisfy it — which is exactly the inversion
+ * CLAUDE.md warns about in
+ * docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md.
+ * It fires only on prose that has genuinely run away.
+ */
+export const MAX_CHARS_PER_SENTENCE = 60;
+
+/**
+ * Separate from `verdict()` on purpose. `verdict` answers one question — is the
+ * primary metric inside its band — and its result feeds the "N/M in band"
+ * counts. Folding a length failure into it would make "above" ambiguous and
+ * silently change what those counts mean.
+ *
+ * Returns 'runaway' or null.
+ */
+export function sentenceGuard(result) {
+  if (!result?.locale?.startsWith('zh')) return null;
+  const value = result.charsPerSentence;
+  if (value == null) return null;
+  return value > MAX_CHARS_PER_SENTENCE ? 'runaway' : null;
+}
+
+/**
  * 書面語 (written/formal) markers and their 口語 (spoken/colloquial)
  * counterparts, in both Simplified and Traditional forms.
  *
@@ -504,6 +546,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       const values = group.map((r) => r[metric]).filter((v) => v != null);
       const mean = values.reduce((a, b) => a + b, 0) / values.length;
       console.log(`  ── ${inBand}/${group.length} in band · mean ${mean.toFixed(1)}`);
+
+      const runaway = group.filter((r) => sentenceGuard(r) === 'runaway');
+      for (const r of runaway) {
+        console.log(
+          `  ⚠️  ${String(r.charsPerSentence).padStart(6)} chars/sentence (max ${MAX_CHARS_PER_SENTENCE})  ${r.file}`,
+        );
+      }
     }
   }
 }
