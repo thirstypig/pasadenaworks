@@ -21,9 +21,22 @@ name: Keep the publishing cron alive
 #
 # This workflow is itself a scheduled workflow and so is subject to the same
 # rule — but it is self-sustaining: it commits every 30 days, so the counter is
-# reset at half the deadline and never reaches 60. Its push to main also fires
-# deploy.yml, which means the site gets a guaranteed monthly rebuild even if
-# every other trigger somehow stalls.
+# reset at half the deadline and never reaches 60.
+#
+# IT DOES NOT TRIGGER A DEPLOY, and an earlier version of this comment wrongly
+# claimed it did. Verified 2026-09-05 by dispatching it: the commit landed
+# (author github-actions[bot]) and NO deploy.yml run started for it. GitHub
+# deliberately suppresses workflow triggers for pushes made with GITHUB_TOKEN,
+# to prevent recursive runs. So this buys the inactivity reset and nothing else
+# — which is the job, but do not count on a monthly rebuild as a side effect.
+#
+# HONEST LIMIT: whether GitHub's 60-day heuristic counts a GITHUB_TOKEN commit
+# as "repository activity" cannot be verified inside a session — it takes 60
+# quiet days to find out. A commit is a commit and should qualify, but if you
+# want certainty (and a deploy trigger with it), give this workflow a
+# fine-grained PAT with contents:write as a secret and use it in the checkout
+# step instead: a PAT-authored push is indistinguishable from a human one and
+# does fire other workflows.
 
 on:
   schedule:
