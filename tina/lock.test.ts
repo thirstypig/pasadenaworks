@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,9 +27,13 @@ import { fileURLToPath } from 'node:url';
  * THIS TEST reproduces the deploy's comparison locally and deterministically:
  * same hashing recipe as checkTinaSchema in @tinacms/cli (strip `version`,
  * JSON.stringify, sha256), lock vs freshly compiled schema. No network, no
- * credentials. It needs tina/__generated__/_schema.json, which is gitignored
- * and written by `npx tinacms dev --no-server --noWatch` (~4s) — so it SKIPS on
- * a fresh checkout, and ci.yml runs that command first so it executes there.
+ * credentials.
+ *
+ * It needs tina/__generated__/_schema.json — gitignored, written by
+ * `npx tinacms dev --no-server --noWatch` (~4s) — and it must be NEWER than
+ * config.ts/utils.ts, or the comparison is between two stale files that agree
+ * with each other. It skips otherwise. ci.yml regenerates before running the
+ * suite, so it always executes there.
  *
  * WHAT COUNTS AS A SCHEMA CHANGE — learned by bisecting: field `type`, `list`,
  * `required`, `options`, `label`, `description`, `match.include`, the SHAPE of
@@ -43,6 +47,26 @@ import { fileURLToPath } from 'node:url';
 const TINA = dirname(fileURLToPath(import.meta.url));
 const LOCK = join(TINA, 'tina-lock.json');
 const GENERATED = join(TINA, '__generated__', '_schema.json');
+const SOURCES = [join(TINA, 'config.ts'), join(TINA, 'utils.ts')];
+
+/**
+ * `_schema.json` is only meaningful if it was compiled from the CURRENT config.
+ *
+ * Without this, the comparison below passes whenever BOTH sides are stale — the
+ * generated file left over from an earlier run agrees with the lock it was
+ * generated alongside, and a config change made since is invisible. That is a
+ * false pass, and it happened on the first run of this very test: it reported
+ * green immediately after `required: true` was re-added, because `_schema.json`
+ * predated the edit.
+ *
+ * Same shape as the stale-`dist/` trap CLAUDE.md documents. Skipping loudly on
+ * a stale artifact is correct; passing over one is not.
+ */
+function generatedIsCurrent(): boolean {
+  if (!existsSync(GENERATED)) return false;
+  const built = statSync(GENERATED).mtimeMs;
+  return SOURCES.every((src) => !existsSync(src) || statSync(src).mtimeMs <= built);
+}
 
 /** The exact recipe from @tinacms/cli's checkTinaSchema. */
 function tinaSchemaSha(schema: Record<string, unknown>): string {
@@ -73,7 +97,7 @@ describe('tina-lock.json', () => {
     expect(a).toMatch(/^[0-9a-f]{64}$/);
   });
 
-  it.skipIf(!existsSync(GENERATED))(
+  it.skipIf(!generatedIsCurrent())(
     'matches the schema compiled from tina/config.ts — the deploy cloud check, locally',
     () => {
       const lock = JSON.parse(readFileSync(LOCK, 'utf8'));
