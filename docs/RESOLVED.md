@@ -268,3 +268,46 @@ Read this before re-investigating anything that sounds already-handled.
   fresh clone rather than patched at the CI call site. Reproduced locally by
   moving `.astro/` aside (exit 2) and confirmed fixed by `astro sync` before
   changing anything.
+
+- **A full-repo review found 4 P1s and 20 P2s; all of them are closed except
+  one** (2026-09-03/05). Nine parallel agents reviewed routing, content, CSS,
+  security, types and tests. The P1s: the publishing cron would have been
+  silently disabled by GitHub after 60 quiet days, stopping all 16 queued posts;
+  `npm run typecheck` was blind to all 28 `.astro` files while `kind` was
+  type-erased, so a one-word typo shipped 12 posts canonicalized to the homepage
+  with every gate green; the blog nav link was hardcoded to English on all 41
+  localized pages, and the localized blog indexes received no navigation links at
+  all; and the CJK line-height rule had been dead CSS since it was written.
+  Roughly a fifth of what the agents reported dissolved on inspection —
+  `readingEase` was reported unprinted but is emitted via `--json`; services
+  "hardcoding four locales" is correct because the type is total where cities'
+  is `Partial`. Full detail in `todos/001`–`020`. Only `013` remains open: the
+  n8n CRM webhook is an unauthenticated write endpoint in page source, and the
+  fix needs a validation node added in the owner's n8n UI.
+
+- **`tina/tina-lock.json` is the schema Tina Cloud serves, and not committing it
+  broke every production deploy** (2026-09-04/05). Four commits edited
+  `tina/config.ts` without regenerating the lock. Tina Cloud never compiles that
+  file — it indexes the committed lock — so it kept re-indexing a schema
+  unchanged since 2026-08-31 while `npx tinacms build` compared against a fresh
+  one and failed with `ERR_CLOUD_CHECK_FAILED`. The daily publish cron failed
+  with it. Recovery took two hotfixes and a full revert, and the first two
+  attempts chased a "sync it in the Tina dashboard" step that does not exist.
+  Three claims written into the repo during recovery were wrong and are
+  corrected: that dashboard remedy; that `ui.validate` and `description` are
+  safe edits (both change the hash — a `validate` function is dropped by
+  `JSON.stringify` but leaves `ui: {}` behind, a new key); and that the remote
+  schema was moving (it had not moved in five days). `ci.yml` now regenerates
+  the lock and fails the PR on drift, and `tina/lock.test.ts` runs the deploy's
+  own hash comparison locally. Full write-up in
+  [`docs/solutions/integration-issues/tina-lock-json-is-the-remote-schema-and-must-be-committed.md`](solutions/integration-issues/tina-lock-json-is-the-remote-schema-and-must-be-committed.md).
+
+- **The publishing cron has a heartbeat** (2026-09-04). GitHub disables
+  scheduled workflows in a public repo after 60 days of inactivity, and
+  "no one doing anything" is precisely this site's intended steady state.
+  `.github/workflows/keepalive.yml` commits monthly to reset that counter, and
+  was verified by dispatching it rather than waiting. It does **not** trigger a
+  deploy — GitHub suppresses workflow triggers for `GITHUB_TOKEN` pushes, and an
+  earlier version of the comment claimed otherwise. Whether GitHub counts a bot
+  commit as repository activity takes 60 quiet days to confirm; a fine-grained
+  PAT removes the doubt if that certainty is wanted.
