@@ -74,13 +74,21 @@ npm run readability -- --dist  # same, for the built pages (run a build first)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a unit test suite (155 tests) covering the parts of this site that are
-easy to get subtly wrong without noticing: `hreflang`/locale-routing logic,
+There's a test suite (191 tests) covering the parts of this site that are easy
+to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the
 blog i18n path/label helpers, and the Tina admin's filename helper — including
 non-ASCII titles, after a bug where every Chinese post created in the admin
 landed at the same empty filename and overwrote the previous one.
+
+Some of it checks the *built* site rather than the source, because a few
+mistakes are only visible there. The navigation links on localized pages are
+one: the header once pointed every Spanish and Chinese page at the English
+blog, and no unit test could have caught it, because the bug was a component
+not calling a helper that already existed. Others check that a CSS rule is
+still doing something, and that `tina/tina-lock.json` still matches the schema
+compiled from `tina/config.ts` — that one has its own story below.
 
 It also measures reading level, per language, against a house target (see
 `npm run readability`). Each language gets its own formula, because
@@ -164,6 +172,27 @@ writes to your working copy and lets you review the diff before committing.
 `tina/config.ts` is the schema Tina edits against — it's a hand-maintained
 mirror of the real schema in `src/content.config.ts`. If you add a field to
 one, add it to the other.
+
+**And regenerate the lock file.** `tina/tina-lock.json` is not a build
+artifact you can ignore — it *is* the schema Tina Cloud serves. Tina Cloud
+never reads `tina/config.ts`; it indexes that committed file. So after any
+change to `tina/config.ts` or `tina/utils.ts`:
+
+```bash
+npx tinacms dev --no-server --noWatch    # ~4s, no credentials, no network
+git add tina/tina-lock.json              # commit it WITH the config change
+```
+
+Skip that and **every deploy fails** with `ERR_CLOUD_CHECK_FAILED` — after
+merge, with the build, the typecheck and the whole test suite green, because
+the check only runs inside `npx tinacms build`, which only runs on `main`.
+That happened here on 2026-09-04 and took two hotfixes to unwind. CI now
+regenerates the lock and fails the pull request if it drifted, so you should
+hit this as a red check rather than a broken deploy. The full write-up is in
+[`docs/solutions/integration-issues/tina-lock-json-is-the-remote-schema-and-must-be-committed.md`](docs/solutions/integration-issues/tina-lock-json-is-the-remote-schema-and-must-be-committed.md).
+
+There is no setting in the Tina dashboard that changes this. The commit is the
+sync.
 
 ---
 

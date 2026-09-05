@@ -59,7 +59,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 62 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 189) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 191) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -610,12 +610,21 @@ Full write-up in
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
   own `pubDate` publishes English-only and does not get a second chance.
-- **No code-review findings are open in `todos/`** — all ten are complete as of
-  2026-09-01. The work logs are still worth reading before related work; they
-  record why the rejected options were rejected. One caveat learned closing
-  `006`: **a todo is a snapshot, not a live view.** Two of its four findings had
-  already been fixed as side effects of `007` and `008`, and nothing marked them
-  resolved. Re-verify a finding against the current code before acting on it.
+- **One code-review finding is open in `todos/`: `013`** (the n8n CRM webhook is
+  an unauthenticated write endpoint published in every page's HTML). It needs a
+  validation node added in the owner's n8n UI, which is not reachable by tooling
+  — the paste-ready config is in the todo. Everything else, `001`–`020`, is
+  complete as of 2026-09-05.
+
+  The work logs are worth reading before related work; they record why the
+  rejected options were rejected, and several record findings that dissolved on
+  inspection rather than being real. Two caveats learned the hard way:
+  **a todo is a snapshot, not a live view** (closing `006`, two of its four
+  findings had already been fixed as side effects of `007`/`008` with nothing
+  marking them resolved), and **a finding's shape is not its severity** —
+  "hardcodes all four locales" was a real hard-rule-1 bug in one place and
+  correct, type-enforced code in another. Re-verify against current code before
+  acting.
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
   injection CVEs) have no safe fix available yet, checked 2026-08-27** —
   this isn't "hasn't been done," it's genuinely blocked upstream. We're
@@ -661,3 +670,6 @@ Read that file before re-investigating any of these.
 - JSON-LD is escaped before injection; `site.social` is finally read, as schema.org `sameAs` (2026-09-01)
 - A translation set can no longer half-publish through a mismatched `draft` flag (2026-09-01)
 - `npx tsc --noEmit` passes, and `npm run typecheck` now gates pull requests (2026-09-03)
+- A full-repo review's 4 P1s and 20 P2s are closed, except `todos/013` (2026-09-05)
+- `tina/tina-lock.json` is the schema Tina Cloud serves; not committing it broke every deploy (2026-09-05)
+- The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)
