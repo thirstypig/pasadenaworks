@@ -137,3 +137,20 @@ which lands back on A or B, and this needed closing now.
 
 CLAUDE.md's scheduled-publishing section now names all three parts: a filter, a
 clock, and a heartbeat.
+
+### 2026-09-05 — verified by running it, and one claim was wrong
+Dispatched the workflow rather than waiting 30 days. It committed successfully
+(author `github-actions[bot]`, `.github/last-keepalive` stamped), so the
+mechanism works.
+
+But no `deploy.yml` run started for that commit. GitHub suppresses workflow
+triggers for pushes authored with `GITHUB_TOKEN`, to prevent recursion — so the
+"guaranteed monthly rebuild" this log and the workflow comment both advertised
+was never real. Corrected in both places.
+
+**The limit that cannot be closed from here:** whether GitHub's 60-day heuristic
+counts a `GITHUB_TOKEN` commit as repository activity takes 60 quiet days to
+find out. A commit is a commit and should qualify. If certainty matters, give
+the workflow a fine-grained PAT with `contents: write` — a PAT-authored push is
+indistinguishable from a human one and fires other workflows too, which would
+also restore the monthly-rebuild benefit.

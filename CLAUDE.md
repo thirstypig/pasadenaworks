@@ -268,7 +268,12 @@ days with no repository activity, and "no one doing anything" is exactly the
 steady state this design aims for. `.github/workflows/keepalive.yml` commits
 monthly to reset that counter — it must *commit*, because the rule is about
 repository activity, not workflow runs. So the mechanism is a filter, a clock,
-and a heartbeat. Full write-up in
+and a heartbeat.
+
+The heartbeat does **not** trigger a deploy, and it is worth knowing why: GitHub
+suppresses workflow triggers for pushes authored with `GITHUB_TOKEN`, to prevent
+recursion. Verified by dispatching it — the commit landed, no deploy ran. Give
+the workflow a fine-grained PAT if you want it to double as a monthly rebuild. Full write-up in
 `docs/solutions/logic-errors/static-site-scheduled-publishing-needs-a-clock.md`.
 
 **CJK underlines need a lower baseline — kept as a principle, not as live
