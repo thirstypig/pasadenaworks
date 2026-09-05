@@ -249,3 +249,17 @@ before merge.
 Also corrected: `ui.validate` is not schema-neutral (it leaves `ui: {}` behind,
 a new key in the hash) and `description` is not safe either. Only comments and
 function bodies are.
+
+### 2026-09-05 — restored, and the diagnosis held
+
+Re-applied with `tina/tina-lock.json` regenerated and committed alongside. The
+deploy passed, including the `Build Tina Cloud admin bundle` step that had
+failed four times — confirming the lock, not the edits, was the cause. New lock
+schema sha `10d9190e…` (was `a3e38d12…`).
+
+The CI lock guard passed on the PR too, which was the open question: a PR that
+genuinely changes the schema now passes, because the guard compares the PR
+against itself rather than against the cloud.
+
+`required: true` and both `ui.validate` blocks are back, so `tags` and
+`heroImage` are validated at edit time again rather than only at build.
