@@ -33,6 +33,26 @@ jobs:
 
       - run: npm ci
 
+      # tina/tina-lock.json IS the schema Tina Cloud indexes from main. The
+      # deploy's `npx tinacms build` compiles tina/config.ts fresh and compares
+      # its hash to that file's; change config.ts without regenerating the lock
+      # and EVERY deploy fails with ERR_CLOUD_CHECK_FAILED — after merge, with
+      # build, typecheck and all tests green. That happened on 2026-09-04 across
+      # four commits and took two hotfixes to recover from.
+      #
+      # `tinacms dev --no-server --noWatch` is the documented way to regenerate
+      # the lock. No credentials, no network, ~4 seconds, so it runs on fork PRs
+      # too. It also writes tina/__generated__/_schema.json, which is what lets
+      # tina/lock.test.ts run the same comparison inside `npm run test` below.
+      - name: Regenerate tina-lock.json and fail if tina/config.ts drifted from it
+        run: |
+          npx tinacms dev --no-server --noWatch --noTelemetry
+          if ! git diff --quiet -- tina/tina-lock.json; then
+            git --no-pager diff -- tina/tina-lock.json | head -c 4000
+            echo "::error file=tina/tina-lock.json::tina/config.ts changed the compiled schema but tina/tina-lock.json was not regenerated. Tina Cloud indexes the schema FROM this file, so the deploy will fail after merge. Fix: run 'npx tinacms dev --no-server --noWatch' locally and commit tina/tina-lock.json in this PR. The diff above is exactly what your schema change does."
+            exit 1
+          fi
+
       # Content integrity, i18n routing, reading time, and the Tina match globs.
       - name: Unit tests
         run: npm run test
