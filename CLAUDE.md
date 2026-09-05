@@ -59,7 +59,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 62 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 188) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 189) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -428,36 +428,42 @@ face, from a European/Bauhaus-adjacent tradition) did — settled on
 call." The serif body is better for the long-form blog reading the SEO
 strategy depends on. Don't "fix" either.
 
-**`tina/config.ts` is not a local file.** Some edits to it are *schema* changes
-that Tina Cloud holds remotely, and they fail at DEPLOY time — after the local
-build and the whole test suite have gone green. Adding `required: true` to the
-blog `tags` field on 2026-09-04 changed the GraphQL type from `[String]` to
-`[String!]!` and broke every deploy with `ERR_CLOUD_CHECK_FAILED`; Tina Cloud did
-not re-index on its own across three runs. Since deploy.yml's cron is the only
-thing that makes a date-gated post publish, that stops content shipping.
+**`tina/tina-lock.json` IS the schema Tina Cloud serves — commit it with every
+`tina/` change.** Tina Cloud does not compile `tina/config.ts`; it indexes the
+committed lock from `main` on every push (verified: its `/schemaSha` endpoint
+returns exactly the SHA-256 of the lock's `schema` member). `deploy.yml`'s
+`npx tinacms build` compiles `config.ts` fresh and compares against that hash.
+Edit `config.ts` without regenerating the lock and **every deploy fails with
+`ERR_CLOUD_CHECK_FAILED`** — after merge, with build, typecheck and all tests
+green — and the daily publish cron fails with it. That happened on 2026-09-04
+across four commits; it took two hotfixes and a full revert to recover, and the
+first two attempts chased a "sync it in the Tina dashboard" step that does not
+exist. There is nothing to sync. The commit is the sync.
 
-The safe list is narrower than it looks. Verified by bisection on 2026-09-04:
-reverting `required` alone was not enough, and `match.include` and `ui.validate`
-also failed the check. Treat **any** edit to `tina/config.ts` or `tina/utils.ts`
-as schema-affecting until proven otherwise. Only `description` and `label`
-changes have been observed to pass.
-
-**Test it locally before merging** — this is the important part. `.env` holds
-`TINA_CLIENT_ID` / `TINA_TOKEN`, so:
+**The rule:** after touching `tina/config.ts` or `tina/utils.ts`, run
 
 ```bash
-set -a; . ./.env; set +a
-npx tinacms build      # runs the same cloud check deploy.yml does
+npx tinacms dev --no-server --noWatch    # ~4s, no credentials, no network
+git add tina/tina-lock.json
 ```
 
-That turns a broken-production discovery into a ten-second local one. Nothing
-else in the local gate can see it: `npm run build`, `npm run typecheck` and the
-whole test suite pass regardless, because the check lives only inside
-`npx tinacms build`, which runs in `deploy.yml` and therefore on `main` alone.
+and commit the lock in the same change. `npm run admin` regenerates it too;
+`npx tinacms build` does **not**. `ci.yml` now regenerates it and fails the PR if
+it differs from the commit, and `tina/lock.test.ts` runs the deploy's own hash
+comparison locally whenever `tina/__generated__/_schema.json` exists.
 
-Also note the remote schema is **not stable while you test**: Tina Cloud
-re-indexes from `main`, so a mismatch can resolve or appear as `main` moves.
-Bisect locally, not by deploy.
+**What counts as a schema change** (learned by bisecting, not by guessing):
+field `type`, `list`, `required`, `options`, `label`, `description`,
+`match.include`, the *shape* of any `ui` object — a `ui.validate` function is
+dropped by `JSON.stringify` but leaves `ui: {}` behind, a new key — and even key
+**order** inside a field. Only comments and function bodies do not reach the
+hash. An earlier version of this section listed `description` and `ui.validate`
+as safe; both were wrong.
+
+**Bisecting by deploy cannot work**, and it looked like the remote was moving.
+It was not: the lock had been unchanged since 2026-08-31 and every re-index
+served the same stale schema. Compare locally — the test above, or
+`npx tinacms build` with `.env` loaded — never by merging.
 
 ## Content
 

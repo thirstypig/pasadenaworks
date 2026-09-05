@@ -137,3 +137,21 @@ honoured for that page view.
   approach — worth its own task.
 - **#5 no consent-withdrawal path.** Fine for CCPA, weak for GDPR. Whether that
   matters depends on the audience, which is a business call.
+
+### 2026-09-05 — the "sync Tina Cloud in the dashboard" remedy does not exist
+
+Verified from `@tinacms/cli` source and by hitting Tina Cloud's own endpoints:
+the remote schema **is** the committed `tina/tina-lock.json`. Tina Cloud indexes
+it from `main` on every push; the cloud's `/schemaSha` returns exactly the
+SHA-256 of that file's `schema` member. It had not been regenerated since
+2026-08-31, which is why four re-indexes all served the same stale schema and
+why "the remote moved" was a misdiagnosis — it never moved.
+
+**The reverted changes here can be restored** without any dashboard: re-apply
+them, run `npx tinacms dev --no-server --noWatch`, commit the regenerated lock
+alongside. `ci.yml` and `tina/lock.test.ts` now catch a missing regeneration
+before merge.
+
+Also corrected: `ui.validate` is not schema-neutral (it leaves `ui: {}` behind,
+a new key in the hash) and `description` is not safe either. Only comments and
+function bodies are.
