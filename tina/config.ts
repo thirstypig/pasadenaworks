@@ -125,7 +125,28 @@ export default defineConfig({
             name: 'tags',
             label: 'Tags',
             list: true,
+            required: true,
             description: '1–3 tags shown as pills on the post.',
+            /* The "1–3" above is DOCUMENTATION, not validation. Astro enforces
+               z.array(z.string()).min(1).max(3), so saving with none or four
+               passed Tina and failed the BUILD — and Tina commits straight to
+               main, so that landed in CI rather than in the editor.
+
+               `required` changes the GraphQL type ([String] -> [String!]!) and
+               `validate` changes the Tina schema hash (the function is dropped
+               by JSON.stringify but leaves `ui: {}` behind, a new key). BOTH
+               therefore require tina/tina-lock.json to be regenerated and
+               committed with this file — the lock IS the schema Tina Cloud
+               serves. Omitting that broke every deploy on 2026-09-04. See
+               docs/solutions/integration-issues/
+               tina-lock-json-is-the-remote-schema-and-must-be-committed.md */
+            ui: {
+              validate: (value?: string[]) => {
+                if (!value || value.length < 1) return 'Add at least one tag.';
+                if (value.length > 3) return 'Three tags maximum.';
+                return undefined;
+              },
+            },
           },
           {
             type: 'string',
@@ -133,6 +154,20 @@ export default defineConfig({
             label: 'Hero image URL',
             description:
               'A direct image URL (e.g. an images.unsplash.com/photo-... link) — a real, relevant photo, not generic stock. See README for guidance.',
+            // Astro enforces z.string().url(); "photo.jpg" saved fine here and
+            // then failed the build. Same class as `tags` above, and the same
+            // lock-file requirement.
+            ui: {
+              validate: (value?: string) => {
+                if (!value) return undefined; // optional in the Astro schema too
+                try {
+                  new URL(value);
+                  return undefined;
+                } catch {
+                  return 'Must be a full URL, starting with https://';
+                }
+              },
+            },
           },
           {
             type: 'string',
