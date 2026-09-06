@@ -209,7 +209,7 @@ if (kind !== 'service' && kind !== 'city' && kind !== 'blog-post') {
       <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
       <p>
         <a href={localeUrl(locale, SEGMENTS.services[locale])}>
-          &larr; {strings.buttons.backToServices}
+          &lsaquo; {strings.buttons.backToServices}
         </a>
       </p>
     </section>
@@ -222,7 +222,7 @@ if (kind !== 'service' && kind !== 'city' && kind !== 'blog-post') {
       <CityBody copy={cityCopy} />
       <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
       <p>
-        <a href={localeUrl(locale, SEGMENTS.cityHub[locale])}>&larr; {strings.buttons.backToCities}</a>
+        <a href={localeUrl(locale, SEGMENTS.cityHub[locale])}>&lsaquo; {strings.buttons.backToCities}</a>
       </p>
     </section>
   )}

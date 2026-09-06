@@ -263,3 +263,59 @@ against itself rather than against the cloud.
 
 `required: true` and both `ui.validate` blocks are back, so `tags` and
 `heroImage` are validated at edit time again rather than only at build.
+
+### 2026-09-06 — The arrow glyphs: closed, and the diagnosis was sharper than the finding
+
+Left open on 2026-09-04 as "the arrows fall out of Anton … a design call about
+how the arrow should look". Measured before deciding anything.
+
+**It is not a missing glyph, it is an uncovered `unicode-range`,** and that
+distinction matters. Anton ships from @fontsource in three subsets — latin,
+latin-ext, vietnamese — and parsing every `unicode-range` they declare shows
+**none covers U+2190 (←) or U+2192 (→)**. `unicode-range` governs whether the
+browser will even *attempt* a face for a character, so the arrows never reached
+Anton at all. They fell straight through the stack: Impact on macOS, Franklin
+Gothic on Windows, Roboto on Android. Identical markup, a different arrow per
+visitor.
+
+**The detail that made the fix obvious:** the same latin subset *does* cover
+U+2191 (↑) and U+2193 (↓), and also U+203A (›) and U+2039 (‹). Only the
+horizontal arrow pair is absent — precisely the pair a call-to-action wants.
+
+So the owner chose, from three options, to swap the character rather than wrap it
+or hack `@font-face`: `&rarr;` → `&rsaquo;` and `&larr;` → `&lsaquo;` across 8
+`.astro` files. No CSS, no wrapper spans, no second typeface inside a button, and
+the glyph now renders in the real display face on every platform.
+
+**Verified in a browser, not by reading CSS.** Served `dist/` and measured advance
+widths on the live page:
+
+| glyph | in Anton | in Impact | in the serif |
+|---|---|---|---|
+| `›` | **11.86px** | 7.91px | 12.12px |
+
+Three distinct advances, and the rendered link matches Anton's — so Anton is
+genuinely being used, not fallen back from.
+
+**A trap for whoever re-checks this:** `document.fonts.check('16px Anton', '→')`
+returns **true**, which appears to contradict all of the above. It does not — that
+API answers "can the font *stack* render this", not "does this face have it".
+Measure advance widths, or parse `unicode-range`. Both are decisive; that call is
+not.
+
+`src/styles/display-glyphs.test.ts` fails if a horizontal arrow returns to any
+`.astro` file, and carries a second assertion that the chevrons are still present
+— without it, deleting every arrow from the site would satisfy the first test
+while removing the affordance it protects (todo 019).
+
+**A process note worth more than the fix.** While falsifying the test, the
+mutations were reverted with `git checkout -- src/`, which also destroyed the
+uncommitted chevron swap itself — the whole change, silently, because it had not
+been committed yet. Nothing else was lost (the other work was already committed)
+and the swap was simply redone. The rule this repo already records applies to the
+restore *command* as much as to the restore *script*: **verify a restore by
+reading the content back, and never use a destructive git command as the undo
+step for a mutation test on uncommitted work.**
+
+**Still open from this todo:** the English/localized visual divergence remains a
+deliberate call.

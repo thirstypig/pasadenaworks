@@ -74,7 +74,7 @@ const articleSchema = {
   )}
   <script slot="head" type="application/ld+json" set:html={jsonLd(articleSchema)} />
   <article class="section wrap post">
-    <a class="post__back" href={blogIndexPath(locale)}>&larr; {strings.buttons.backToBlog}</a>
+    <a class="post__back" href={blogIndexPath(locale)}>&lsaquo; {strings.buttons.backToBlog}</a>
 
     <p class="post__meta">
       <time datetime={pubDate.toISOString()}>
