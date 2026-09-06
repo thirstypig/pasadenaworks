@@ -4,6 +4,11 @@ import {
   DOCS_ROOT_INCLUDE,
   DOCS_SOLUTIONS_INCLUDE,
 } from './utils';
+// Shared with src/i18n/ui.ts and the two build-step-free scripts. Tina compiles
+// this file with its own esbuild pass, so plain ESM is what all three can read.
+// See src/i18n/locales.mjs — this `options` list used to be a fourth hand-kept
+// copy of the same four strings.
+import { LOCALES } from '../src/i18n/locales.mjs';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -191,7 +196,7 @@ export default defineConfig({
             name: 'locale',
             label: 'Language',
             required: true,
-            options: ['en', 'es', 'zh-hans', 'zh-hant'],
+            options: [...LOCALES],
             description:
               'Which of the site\'s four languages this file is written in. Each translation of a post is its own file — set this before saving so the file lands in the right folder.',
           },

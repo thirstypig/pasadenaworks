@@ -60,7 +60,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 66 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 202) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 210) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -151,6 +151,7 @@ src/
 │   ├── cities.ts     ← city landing page copy
 │   └── home.ts       ← homepage copy for es / zh-hans / zh-hant
 ├── i18n/
+│   ├── locales.mjs   ← THE locale list, plain ESM so bare-node scripts + Tina can import it
 │   ├── ui.ts         ← locale registry + UI strings (nav, buttons, forms)
 │   ├── routes.ts     ← translated URL segments + hreflang builders
 │   └── utils.ts      ← t() and localePath()
@@ -617,14 +618,13 @@ Full write-up in
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
-  **Genuinely open work does not live only in files named `pending`.** Six items
+  **Genuinely open work does not live only in files named `pending`.** Five items
   sit inside todos marked `complete`, parked as decisions rather than defects,
   and a filename sweep will miss all of them:
 
   | From | Item |
   |---|---|
   | `013` | The enquiry `message` never reaches Twenty — the HTTP Request body maps only `name` and `email`. Needs a Note on the person, so a second node |
-  | `016` | The locale list is still declared in `tina/config.ts`, `readability.mjs` and `content-status.mjs`; the two `.mjs` scripts run under bare node and cannot import the TS registry |
   | `018` | Unsplash hotlinking — every reader's IP and referrer reach Unsplash before any consent interaction, on 20 posts |
   | `018` | No consent-withdrawal path. Fine for CCPA, weak for GDPR — a business call |
   | `020` | `→` / `←` fall out of Anton into the fallback face, at 20 sites in `src/` |
