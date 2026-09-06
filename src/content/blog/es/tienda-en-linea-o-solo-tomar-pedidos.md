@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "necesito una tienda en línea o formulario de pedido"
 author: "Pasadena Works"
 tags: ["comercio electrónico", "planeación web"]
-heroImage: "https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/online-store-or-just-take-orders.jpg"
 heroAlt: "Una persona sellando con cinta una caja de cartón sobre una mesa"
 heroCredit: "Bench Accounting"
 draft: false

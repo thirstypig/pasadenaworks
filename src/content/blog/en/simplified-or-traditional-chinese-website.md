@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - chinese language website
   - san gabriel valley
-heroImage: 'https://images.unsplash.com/photo-1764416965805-2c13161e4472?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/simplified-or-traditional-chinese-website.jpg'
 heroAlt: Traditional Chinese shop signs with hand-painted calligraphy above a storefront
 heroCredit: MChe Lee
 draft: false

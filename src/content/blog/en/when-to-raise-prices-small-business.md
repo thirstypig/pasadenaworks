@@ -7,7 +7,7 @@ targetKeyword: "when to raise prices small business"
 draft: false
 author: "Pasadena Works"
 tags: ["pricing", "small business finance"]
-heroImage: "https://images.unsplash.com/photo-1707902665498-a202981fb5ac?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-raise-prices-small-business.jpg"
 heroAlt: "A calculator and a notebook sitting on a desk, used to work through pricing numbers"
 heroCredit: "Jakub Żerdzicki"
 locale: en

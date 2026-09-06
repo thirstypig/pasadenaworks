@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - spanish
   - multilingual seo
-heroImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/should-your-website-be-in-spanish.jpg'
 heroAlt: Two colleagues talking across a table in a small office
 heroCredit: Brooke Cagle
 draft: false

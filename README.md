@@ -74,7 +74,7 @@ npm run readability -- --dist  # same, for the built pages (run a build first)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a test suite (210 tests) covering the parts of this site that are easy
+There's a test suite (213 tests) covering the parts of this site that are easy
 to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the

@@ -52,7 +52,10 @@ const articleSchema = {
   datePublished: pubDate.toISOString(),
   ...(updatedDate && { dateModified: updatedDate.toISOString() }),
   author: { '@type': 'Organization', name: author },
-  ...(heroImage && { image: heroImage }),
+  // schema.org wants an absolute URL here. heroImage is a root-relative path
+  // since the images were self-hosted, so it must be absolutised — a bare
+  // `/blog/x.jpg` in JSON-LD is not a resolvable image for Google.
+  ...(heroImage && { image: absoluteUrl(heroImage) }),
   mainEntityOfPage: absoluteUrl(path),
 };
 ---

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - business strategy
   - profitability
-heroImage: 'https://images.unsplash.com/photo-1572610304424-34b7b2b46540?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/which-service-should-you-stop-offering.jpg'
 heroAlt: 'A small business owner sitting at a table, hand on chin, staring hard at a laptop screen'
 heroCredit: Jonas Leupe
 draft: false

@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "有 IG 還需要官網嗎"
 author: "Pasadena Works"
 tags: ["Instagram", "中小企業行銷"]
-heroImage: "https://images.unsplash.com/photo-1753164597612-5e71b83fda91?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/do-i-need-a-website-if-i-have-instagram.jpg"
 heroAlt: "一位小店老闆一邊用筆記型電腦工作，一邊看手機"
 heroCredit: "Vitaly Gariev"
 draft: false

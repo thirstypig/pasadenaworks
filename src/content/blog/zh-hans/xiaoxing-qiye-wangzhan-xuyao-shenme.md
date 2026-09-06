@@ -7,7 +7,7 @@ targetKeyword: "小型企业网站需要什么"
 draft: false
 author: "Pasadena Works"
 tags: ["网站基础知识", "小型企业网站"]
-heroImage: "https://images.unsplash.com/photo-1736667245201-2eea25a07f55?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-a-small-business-website-actually-needs.jpg"
 heroAlt: "一个人在书桌上用笔记本电脑打字"
 heroCredit: "Jakub Żerdzicki"
 locale: zh-hans

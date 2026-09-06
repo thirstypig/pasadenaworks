@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
@@ -15,6 +15,7 @@ import { join } from 'node:path';
  */
 
 const BLOG = fileURLToPath(new URL('../content/blog', import.meta.url));
+const PUBLIC = fileURLToPath(new URL('../../public', import.meta.url));
 const LOCALES = ['en', 'es', 'zh-hans', 'zh-hant'] as const;
 
 type Post = {
@@ -240,6 +241,57 @@ const PAIRS: [string, string][] = [
   ['絡', '络'], ['說', '说'], ['對', '对'], ['開', '开'], ['關', '关'],
   ['檔', '档'],
 ];
+
+describe('hero images are self-hosted', () => {
+  /**
+   * Hero images were hotlinked from images.unsplash.com until 2026-09-06, so
+   * every reader's IP address and referring URL reached a third party before
+   * they had interacted with the consent banner at all — on 20 published posts,
+   * in four languages. See `todos/018`.
+   *
+   * They are served from `public/blog/` now. The schema in `content.config.ts`
+   * rejects an absolute URL outright, which is the real guard; these tests
+   * cover what the schema cannot see — that the file a post names actually
+   * exists, and that nothing has quietly reintroduced a third-party host.
+   */
+  const heroOf = (raw: string): string | null =>
+    raw.match(/^heroImage:\s*['"]?([^'"\s]+)['"]?\s*$/m)?.[1] ?? null;
+
+  it('never points a hero at an external host', () => {
+    const external = posts
+      .filter((post) => {
+        const hero = heroOf(post.raw);
+        return hero !== null && /^[a-z]+:\/\//i.test(hero);
+      })
+      .map((post) => post.path);
+
+    expect(
+      external,
+      `these hotlink a hero image instead of serving it from public/blog/:\n  ${external.join('\n  ')}`,
+    ).toEqual([]);
+  });
+
+  it('names a file that exists in public/blog/', () => {
+    const broken = posts
+      .map((post) => ({ file: post.path, hero: heroOf(post.raw) }))
+      .filter(({ hero }) => hero !== null && !hero.startsWith('http'))
+      .filter(({ hero }) => !existsSync(join(PUBLIC, hero as string)))
+      .map(({ file, hero }) => `${file} -> ${hero}`);
+
+    expect(broken, `hero images missing from public/:\n  ${broken.join('\n  ')}`).toEqual([]);
+  });
+
+  it('shares one image across a translation set, so 4 locales cost 1 file', () => {
+    // Not a style preference: it is why 80 posts need only 20 images. A
+    // translation quietly pointing somewhere else would quadruple the weight
+    // of the directory without anyone noticing.
+    for (const [key, group] of byKey) {
+      const heroes = new Set(group.map((post) => heroOf(post.raw)).filter(Boolean));
+      expect(heroes.size, `translation set "${key}" uses ${heroes.size} different hero images`).
+        toBeLessThanOrEqual(1);
+    }
+  });
+});
 
 describe('Chinese script purity', () => {
   it('writes zh-hant entirely in Traditional characters', () => {

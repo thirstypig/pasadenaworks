@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "网站做简体还是繁体"
 author: "Pasadena Works"
 tags: ["中文网站", "圣盖博谷"]
-heroImage: "https://images.unsplash.com/photo-1764416965805-2c13161e4472?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/simplified-or-traditional-chinese-website.jpg"
 heroAlt: "店面上方手写书法的繁体中文招牌"
 heroCredit: "MChe Lee"
 draft: false

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - web design
   - pricing
-heroImage: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/how-much-should-a-small-business-website-cost.jpg'
 heroAlt: 'Someone typing on a laptop at a desk, working through the numbers on a website project'
 heroCredit: Campaign Creators
 draft: false

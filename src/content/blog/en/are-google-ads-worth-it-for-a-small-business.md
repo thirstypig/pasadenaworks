@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - google ads
   - advertising budget
-heroImage: 'https://images.unsplash.com/photo-1664575197229-3bbebc281874?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/are-google-ads-worth-it-for-a-small-business.jpg'
 heroAlt: A person sitting at a desk reviewing numbers on a laptop
 heroCredit: Windows
 draft: false

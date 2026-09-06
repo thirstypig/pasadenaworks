@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "网站要不要做西班牙语版"
 author: "Pasadena Works"
 tags: ["双语网站", "圣盖博谷"]
-heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/should-your-website-be-in-spanish.jpg"
 heroAlt: "两位同事在小办公室里隔着桌子交谈"
 heroCredit: "Brooke Cagle"
 draft: false

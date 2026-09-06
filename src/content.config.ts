@@ -20,7 +20,23 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     author: z.string().default('Pasadena Works'),
     tags: z.array(z.string()).min(1).max(3),
-    heroImage: z.string().url().optional(),
+    /**
+     * A root-relative path into `public/`, e.g. `/blog/some-post.jpg`.
+     *
+     * This was `z.string().url()` while the heroes were hotlinked from
+     * Unsplash. They are self-hosted now (todos/018: every reader's IP and
+     * referrer reached Unsplash before any consent interaction), so a URL is
+     * exactly what it must NOT be — an absolute one here would silently
+     * reintroduce third-party hotlinking one paste at a time. The regex
+     * rejects that rather than leaving it to review.
+     */
+    heroImage: z
+      .string()
+      .regex(
+        /^\/[A-Za-z0-9._\-\/]+\.(jpg|jpeg|png|webp|avif)$/,
+        'heroImage must be a root-relative path into public/, e.g. /blog/my-post.jpg — not an external URL. Hero images are self-hosted; see todos/018.',
+      )
+      .optional(),
     heroAlt: z.string().optional(),
     heroCredit: z.string().optional(),
     /** Which of the site's four locales this file is written in. Each

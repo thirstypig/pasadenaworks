@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "網站 Google 翻譯 SEO"
 author: "Pasadena Works"
 tags: ["多語言 SEO", "hreflang"]
-heroImage: "https://images.unsplash.com/photo-1543165796-5426273eaab3?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/google-translate-website-seo.jpg"
 heroAlt: "一本攤開的辭典，露出一行行印刷的釋義"
 heroCredit: "Waldemar Brandt"
 draft: false

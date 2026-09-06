@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "clientes que hablan chino san gabriel valley"
 author: "Pasadena Works"
 tags: ["multilingüe", "san gabriel valley"]
-heroImage: "https://images.unsplash.com/photo-1526186550435-406043dc9904?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/reaching-chinese-speaking-customers-san-gabriel-valley.jpg"
 heroAlt: "Un local chino-americano iluminado de noche, con letreros en chino e inglés"
 heroCredit: "Aaron Lau"
 draft: false

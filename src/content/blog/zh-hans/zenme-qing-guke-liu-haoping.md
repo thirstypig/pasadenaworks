@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "怎么请顾客留好评"
 author: "Pasadena Works"
 tags: ["评价", "本地搜索"]
-heroImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-to-ask-for-customer-reviews.jpg"
 heroAlt: "店主隔着柜台把收据递给顾客"
 heroCredit: "Blake Wisz"
 draft: false

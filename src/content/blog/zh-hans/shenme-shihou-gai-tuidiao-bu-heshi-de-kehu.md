@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "什么时候该拒绝客户"
 author: "Pasadena Works"
 tags: ["客户关系", "小生意建议"]
-heroImage: "https://images.unsplash.com/photo-1560250163-17506787d971?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-walk-away-from-a-bad-fit-client.jpg"
 heroAlt: "两个人在一场商务会面中握手"
 heroCredit: "LinkedIn Sales Solutions"
 draft: false

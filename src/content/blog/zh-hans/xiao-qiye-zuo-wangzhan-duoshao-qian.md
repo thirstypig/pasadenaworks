@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "小企业做网站要多少钱"
 author: "Pasadena Works"
 tags: ["定价", "网页设计"]
-heroImage: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-much-should-a-small-business-website-cost.jpg"
 heroAlt: "一个人在书桌前用笔记本电脑核算网站项目的费用"
 heroCredit: "Campaign Creators"
 draft: false

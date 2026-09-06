@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "qué servicio dejar de ofrecer negocio"
 author: "Pasadena Works"
 tags: ["estrategia de negocio", "rentabilidad"]
-heroImage: "https://images.unsplash.com/photo-1572610304424-34b7b2b46540?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/which-service-should-you-stop-offering.jpg"
 heroAlt: "Un dueño de negocio sentado a la mesa, con la mano en la barbilla, mirando fijamente la pantalla de una laptop"
 heroCredit: "Jonas Leupe"
 draft: false

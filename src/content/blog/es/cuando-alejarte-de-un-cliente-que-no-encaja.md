@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "cuándo dejar ir a un cliente"
 author: "Pasadena Works"
 tags: ["relación con clientes", "consejos para negocios"]
-heroImage: "https://images.unsplash.com/photo-1560250163-17506787d971?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-walk-away-from-a-bad-fit-client.jpg"
 heroAlt: "Dos personas dándose la mano durante una reunión de trabajo"
 heroCredit: "LinkedIn Sales Solutions"
 draft: false

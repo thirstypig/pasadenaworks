@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "聖蓋博谷 華人客戶 官網"
 author: "Pasadena Works"
 tags: ["多語言", "聖蓋博谷"]
-heroImage: "https://images.unsplash.com/photo-1526186550435-406043dc9904?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/reaching-chinese-speaking-customers-san-gabriel-valley.jpg"
 heroAlt: "夜裡亮著燈的華人店面，招牌是中英文並列"
 heroCredit: "Aaron Lau"
 draft: false

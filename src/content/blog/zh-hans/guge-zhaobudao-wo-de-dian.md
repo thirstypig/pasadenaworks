@@ -7,7 +7,7 @@ targetKeyword: "顾客在谷歌上找不到我的店"
 draft: false
 author: "Pasadena Works"
 tags: ["谷歌商家资料", "本地搜索"]
-heroImage: "https://images.unsplash.com/photo-1694928850410-b209896782a2?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/why-customers-cant-find-your-business-on-google.jpg"
 heroAlt: "一个红色的谷歌地图定位图钉放在一张纸上"
 heroCredit: "Anandhu Chandran"
 locale: zh-hans

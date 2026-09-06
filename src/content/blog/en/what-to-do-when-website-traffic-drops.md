@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - seo
   - google search console
-heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/what-to-do-when-website-traffic-drops.jpg'
 heroAlt: A laptop screen showing declining analytics graphs and charts
 heroCredit: Luke Chesser
 draft: false

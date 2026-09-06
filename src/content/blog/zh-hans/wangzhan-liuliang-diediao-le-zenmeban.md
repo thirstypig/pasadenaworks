@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "网站流量下降 怎么办"
 author: "Pasadena Works"
 tags: ["SEO", "Google Search Console"]
-heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-to-do-when-website-traffic-drops.jpg"
 heroAlt: "笔记本电脑屏幕上显示着一路下滑的数据图表"
 heroCredit: "Luke Chesser"
 draft: false

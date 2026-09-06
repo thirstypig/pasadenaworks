@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "traductor de google seo página web"
 author: "Pasadena Works"
 tags: ["seo multilingüe", "hreflang"]
-heroImage: "https://images.unsplash.com/photo-1543165796-5426273eaab3?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/google-translate-website-seo.jpg"
 heroAlt: "Un diccionario abierto mostrando filas de definiciones impresas"
 heroCredit: "Waldemar Brandt"
 draft: false

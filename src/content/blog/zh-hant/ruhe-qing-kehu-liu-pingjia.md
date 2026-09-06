@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "如何請客戶留評價"
 author: "Pasadena Works"
 tags: ["評價", "在地搜尋"]
-heroImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-to-ask-for-customer-reviews.jpg"
 heroAlt: "店主隔著櫃台把收據遞給客人"
 heroCredit: "Blake Wisz"
 draft: false

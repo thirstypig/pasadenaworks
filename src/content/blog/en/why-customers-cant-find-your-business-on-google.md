@@ -7,7 +7,7 @@ targetKeyword: "why can't customers find my business on google"
 draft: false
 author: "Pasadena Works"
 tags: ["Google Business Profile", "local search"]
-heroImage: "https://images.unsplash.com/photo-1694928850410-b209896782a2?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/why-customers-cant-find-your-business-on-google.jpg"
 heroAlt: "A red Google Maps location pin resting on top of a sheet of paper"
 heroCredit: "Anandhu Chandran"
 locale: en

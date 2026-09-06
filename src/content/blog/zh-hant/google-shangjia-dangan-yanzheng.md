@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "Google 商家檔案驗證"
 author: "Pasadena Works"
 tags: ["在地搜尋", "Google 商家檔案"]
-heroImage: "https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/google-business-profile-setup.jpg"
 heroAlt: "店面櫥窗裡亮著的 OPEN 霓虹燈招牌"
 heroCredit: "Tim Mossholder"
 draft: false

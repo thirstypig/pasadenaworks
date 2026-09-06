@@ -60,7 +60,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 66 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 210) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 213) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -618,14 +618,13 @@ Full write-up in
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
-  **Genuinely open work does not live only in files named `pending`.** Five items
+  **Genuinely open work does not live only in files named `pending`.** Four items
   sit inside todos marked `complete`, parked as decisions rather than defects,
   and a filename sweep will miss all of them:
 
   | From | Item |
   |---|---|
   | `013` | The enquiry `message` never reaches Twenty — the HTTP Request body maps only `name` and `email`. Needs a Note on the person, so a second node |
-  | `018` | Unsplash hotlinking — every reader's IP and referrer reach Unsplash before any consent interaction, on 20 posts |
   | `018` | No consent-withdrawal path. Fine for CCPA, weak for GDPR — a business call |
   | `020` | `→` / `←` fall out of Anton into the fallback face, at 20 sites in `src/` |
   | `020` | English and localized pages diverge visually (logo hero, frame styles, city hub list vs card grid) — a deliberate call, not drift |
@@ -687,4 +686,5 @@ Read that file before re-investigating any of these.
 - A full-repo review's 20 findings are all closed, `013` last (2026-09-05)
 - `tina/tina-lock.json` is the schema Tina Cloud serves; not committing it broke every deploy (2026-09-05)
 - The contact form's CRM leg wrote blank records into Twenty for ten days; `no-cors` forces text/plain and n8n handed the workflow a string (2026-09-05)
+- Blog hero images are self-hosted from `public/blog/`, not hotlinked from Unsplash; the schema now fails the build on an external URL (2026-09-06)
 - The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)

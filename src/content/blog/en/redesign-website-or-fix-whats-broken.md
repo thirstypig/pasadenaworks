@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - website redesign
   - seo
-heroImage: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/redesign-website-or-fix-whats-broken.jpg'
 heroAlt: 'A computer monitor displaying a design system interface, with plants on a desk beside it'
 heroCredit: Balázs Kétyi
 draft: false

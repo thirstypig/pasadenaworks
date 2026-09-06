@@ -7,7 +7,7 @@ targetKeyword: "中小企業網站需要什麼"
 draft: false
 author: "Pasadena Works"
 tags: ["網站基礎知識", "中小企業網站"]
-heroImage: "https://images.unsplash.com/photo-1736667245201-2eea25a07f55?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-a-small-business-website-actually-needs.jpg"
 heroAlt: "一個人在書桌上用筆記型電腦打字"
 heroCredit: "Jakub Żerdzicki"
 locale: zh-hant

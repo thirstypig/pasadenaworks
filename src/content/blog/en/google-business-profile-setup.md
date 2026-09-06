@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - local seo
   - google business profile
-heroImage: 'https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/google-business-profile-setup.jpg'
 heroAlt: An OPEN neon sign glowing in a shop window
 heroCredit: Tim Mossholder
 draft: false

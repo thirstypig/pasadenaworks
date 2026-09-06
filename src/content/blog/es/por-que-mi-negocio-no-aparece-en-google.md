@@ -7,7 +7,7 @@ targetKeyword: "por qué mi negocio no aparece en Google"
 draft: false
 author: "Pasadena Works"
 tags: ["perfil de Google Business", "búsqueda local"]
-heroImage: "https://images.unsplash.com/photo-1694928850410-b209896782a2?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/why-customers-cant-find-your-business-on-google.jpg"
 heroAlt: "Un pin rojo de ubicación de Google Maps sobre una hoja de papel"
 heroCredit: "Anandhu Chandran"
 locale: es

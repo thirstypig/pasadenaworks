@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "rediseñar página web o arreglarla"
 author: "Pasadena Works"
 tags: ["rediseño web", "seo"]
-heroImage: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/redesign-website-or-fix-whats-broken.jpg"
 heroAlt: "Un monitor mostrando la interfaz de un sistema de diseño, con plantas en el escritorio al lado"
 heroCredit: "Balázs Kétyi"
 draft: false

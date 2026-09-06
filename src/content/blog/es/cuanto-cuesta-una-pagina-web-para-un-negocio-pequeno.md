@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "cuánto cuesta una página web para un negocio pequeño"
 author: "Pasadena Works"
 tags: ["precios", "diseño web"]
-heroImage: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-much-should-a-small-business-website-cost.jpg"
 heroAlt: "Una persona escribiendo en una laptop, sacando las cuentas de un proyecto de página web"
 heroCredit: "Campaign Creators"
 draft: false

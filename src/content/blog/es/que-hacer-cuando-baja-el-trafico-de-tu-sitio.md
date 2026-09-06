@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "bajó el tráfico de mi página web"
 author: "Pasadena Works"
 tags: ["seo", "google search console"]
-heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-to-do-when-website-traffic-drops.jpg"
 heroAlt: "La pantalla de una laptop mostrando gráficas de analítica en descenso"
 heroCredit: "Luke Chesser"
 draft: false

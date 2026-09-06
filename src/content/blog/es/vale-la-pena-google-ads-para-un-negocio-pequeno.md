@@ -6,7 +6,7 @@ pillar: ads
 targetKeyword: "vale la pena google ads negocio pequeño"
 author: "Pasadena Works"
 tags: ["google ads", "presupuesto de publicidad"]
-heroImage: "https://images.unsplash.com/photo-1664575197229-3bbebc281874?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/are-google-ads-worth-it-for-a-small-business.jpg"
 heroAlt: "Una persona sentada en un escritorio revisando números en una laptop"
 heroCredit: "Windows"
 draft: false
