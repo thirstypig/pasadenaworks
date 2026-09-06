@@ -59,7 +59,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BLOG = join(ROOT, 'src/content/blog');
 
-export const LOCALES = ['en', 'es', 'zh-hans', 'zh-hant'];
+export { LOCALES } from '../src/i18n/locales.mjs';
+import { LOCALES } from '../src/i18n/locales.mjs';
 
 /**
  * House targets, set 2026-09-03.

@@ -153,3 +153,63 @@ step — that is a real constraint, and closing it means adding a shared
 `.mjs`/`.json` module, which is a change of shape rather than a deduplication.
 Worth doing; not worth smuggling into this batch. `cityDisplayName` and the
 `pillar` union are likewise left.
+
+### 2026-09-06 — The locale list is now declared once
+
+The item left open on 2026-09-04 ("the locale list survives in `tina/config.ts`,
+`readability.mjs` and `content-status.mjs` … a change of shape rather than a
+deduplication") is closed. `src/i18n/locales.mjs` is the single declaration;
+all four consumers import it.
+
+**Plain ESM was the only format all three worlds can read.** `readability.mjs`
+and `content-status.mjs` run under bare node with no build step — that is the
+point of them — so they cannot import a `.ts`. Tina compiles its config in a
+separate esbuild pass. Astro/Vite reads either. So the list lives in `.mjs` and
+the TypeScript side re-exports it, rather than the reverse.
+
+**The trap, which was measured rather than assumed.** `Locale` is derived from
+this array via `(typeof LOCALES)[number]`, and TypeScript **widens a bare array
+in a `.mjs` to `string[]`** — which would make `Locale` equal to `string` while
+everything still compiled, silently disabling `buildAlternates()`, the
+`RouteProps`/`HubProps` discriminated unions from todo 012, and every
+`Record<Locale, …>` map. Probed both forms against the project's own `tsc`
+before committing to a design:
+
+| form in the `.mjs` | `(typeof LOCALES)[number]` resolves to |
+|---|---|
+| `export const LOCALES = ['en', …]` | `string` — literals lost |
+| same, with `/** @type {readonly ['en', …]} */` | `"en" \| "es" \| "zh-hans" \| "zh-hant"` |
+
+So the annotation is load-bearing, and the list appears twice inside
+`locales.mjs` — adjacent lines, one file to edit. Confirmed afterwards in the
+real repo by assigning `'klingon'` to `Locale`, which errors with the full union.
+
+**`checkJs` is off, so nothing in the compiler checks the annotation is still
+there.** `src/i18n/locales.test.ts` covers that gap two ways:
+
+- A **compile-time** guard, `string extends Locale ? true : false` asserted as
+  `false`. If `Locale` ever widens, this fails `npm run typecheck` — a runtime
+  test cannot see it at all.
+- A repo walk that fails if any **production** file re-declares the four
+  strings. Test files are excluded deliberately: a test that imports the list it
+  checks asserts the list equals itself. Five test files name these strings
+  directly and should keep doing so (todo 019).
+
+Both were falsified before being kept. Removing the annotation fails the
+typecheck with `Type 'false' is not assignable to type 'true'`; adding a fifth
+copy to `src/i18n/utils.ts` fails the walk by name. `locales.mjs` was restored
+from a copy and confirmed byte-identical by sha256.
+
+**`tina/config.ts` was touched, so the lock was regenerated** per the rule in
+CLAUDE.md — `npx tinacms dev --no-server --noWatch`. The hash is **unchanged**
+(`b7c543d7…`): `options: [...LOCALES]` compiles to the same four values, so
+Tina Cloud sees no schema change and there is no `ERR_CLOUD_CHECK_FAILED` risk.
+Verified by `git diff --quiet tina/tina-lock.json` rather than assumed.
+
+`content-status.mjs`'s `TRANSLATIONS` is now the derived `TRANSLATED_LOCALES`
+(everything but the default) rather than a fifth hand-written list. Both bare-node
+scripts were run to confirm they still work: `content:status` regenerated 20
+posts, `readability` scored 20/20 in band.
+
+**Still open from this todo:** `cityDisplayName` and the `pillar` union remain
+declared in more than one place, as recorded on 2026-09-04.
