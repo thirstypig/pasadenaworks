@@ -1,6 +1,6 @@
 # Content status
 
-> **Generated 2026-09-04 by `npm run content:status` — do not edit by hand.**
+> **Generated 2026-09-05 by `npm run content:status` — do not edit by hand.**
 > Editing this file (here or in Tina) will be overwritten the next time it
 > runs. Change the posts themselves; then regenerate.
 
@@ -17,22 +17,22 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2026-06-08 | What a small business website actually needs | websites | ✅ | ✅ | ✅ | ✅ live |
 | 2026-06-15 | How to know if it's time to raise your prices | consulting | ✅ | ✅ | ✅ | ✅ live |
 | 2026-08-31 | How much should a small business website cost? | websites | ✅ | ✅ | ✅ | ✅ live |
-| 2026-09-07 | How to Claim and Fix Your Google Business Profile | search | ✅ | ✅ | ✅ | ⏳ 3 days |
-| 2026-09-14 | Do I need a website if I have Instagram? | websites | ✅ | ✅ | ✅ | ⏳ 10 days |
-| 2026-09-21 | How to ask customers for reviews without being awkward | search | ✅ | ✅ | ✅ | ⏳ 17 days |
-| 2026-09-28 | Should your website be in Spanish too? | websites | ✅ | ✅ | ✅ | ⏳ 24 days |
-| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | ✅ | ✅ | ✅ | ⏳ 31 days |
-| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | ✅ | ✅ | ✅ | ⏳ 38 days |
-| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | ✅ | ✅ | ✅ | ⏳ 45 days |
-| 2026-10-26 | Are Google Ads worth it for a small business? | ads | ✅ | ✅ | ✅ | ⏳ 52 days |
-| 2026-11-02 | What to do when your website traffic drops | search | ✅ | ✅ | ✅ | ⏳ 59 days |
-| 2026-11-09 | Which service should you stop offering? | consulting | ✅ | ✅ | ✅ | ⏳ 66 days |
-| 2026-11-16 | How to fire a customer without burning the relationship | consulting | ✅ | ✅ | ✅ | ⏳ 73 days |
-| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | ✅ | ✅ | ✅ | ⏳ 80 days |
-| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | ✅ | ✅ | ✅ | ⏳ 94 days |
-| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | ✅ | ✅ | ✅ | ⏳ 101 days |
-| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | ✅ | ✅ | ✅ | ⏳ 122 days |
-| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | ✅ | ✅ | ✅ | ⏳ 129 days |
+| 2026-09-07 | How to Claim and Fix Your Google Business Profile | search | ✅ | ✅ | ✅ | ⏳ 2 days |
+| 2026-09-14 | Do I need a website if I have Instagram? | websites | ✅ | ✅ | ✅ | ⏳ 9 days |
+| 2026-09-21 | How to ask customers for reviews without being awkward | search | ✅ | ✅ | ✅ | ⏳ 16 days |
+| 2026-09-28 | Should your website be in Spanish too? | websites | ✅ | ✅ | ✅ | ⏳ 23 days |
+| 2026-10-05 | Why Google Translate on your website does nothing for SEO | search | ✅ | ✅ | ✅ | ⏳ 30 days |
+| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | ✅ | ✅ | ✅ | ⏳ 37 days |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | ✅ | ✅ | ✅ | ⏳ 44 days |
+| 2026-10-26 | Are Google Ads worth it for a small business? | ads | ✅ | ✅ | ✅ | ⏳ 51 days |
+| 2026-11-02 | What to do when your website traffic drops | search | ✅ | ✅ | ✅ | ⏳ 58 days |
+| 2026-11-09 | Which service should you stop offering? | consulting | ✅ | ✅ | ✅ | ⏳ 65 days |
+| 2026-11-16 | How to fire a customer without burning the relationship | consulting | ✅ | ✅ | ✅ | ⏳ 72 days |
+| 2026-11-23 | Should you redesign your website, or just fix what's broken? | websites | ✅ | ✅ | ✅ | ⏳ 79 days |
+| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena businesses should check every December | search | ✅ | ✅ | ✅ | ⏳ 93 days |
+| 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | ✅ | ✅ | ✅ | ⏳ 100 days |
+| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | ✅ | ✅ | ✅ | ⏳ 121 days |
+| 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | ✅ | ✅ | ✅ | ⏳ 128 days |
 
 ## What needs doing
 

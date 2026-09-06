@@ -36,8 +36,9 @@ That means:
   again on 2026-08-27, "final call" — see Resolved).
   `tinacms` and `@tinacms/cli` are devDependencies for the local `/admin`
   editor only — real but deliberate exception, not the site itself.
-  `vitest`, plus `typescript`, `picomatch` and `@types/picomatch` (added
-  2026-09-03), are the other devDependencies. The last three were already
+  `vitest` and `@astrojs/check` (which provides the `astro check` half of
+  `npm run typecheck`), plus `typescript`, `picomatch` and `@types/picomatch`
+  (added 2026-09-03), are the other devDependencies. The last three were already
   being *used* and merely not *declared* — `tina/config.test.ts` imports
   picomatch, and `tsc` only existed because `@tinacms/cli` depends on it, so
   both were reaching npm's hoisting of somebody else's dependency tree. That
@@ -57,15 +58,15 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 62 files. The build itself
+                     #   AND .ts, tina/ included. 66 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 191) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 202) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
                      #   metrics (English FK, Spanish Fernandez Huerta, Chinese register),
                      #   and a polarity tripwire on sentences that have shipped reversed.
-                     #   5 of these need dist/ and SKIP without it — the rendered
+                     #   6 of these need dist/ and SKIP without it — the rendered
                      #   nav-link checks and the readability cross-check — which is
                      #   why ci.yml re-runs the whole suite after the build.
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
@@ -122,7 +123,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate now covers 62 files and reports 0 errors.
+excluded; the gate now covers 66 files and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -610,11 +611,24 @@ Full write-up in
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
   own `pubDate` publishes English-only and does not get a second chance.
-- **One code-review finding is open in `todos/`: `013`** (the n8n CRM webhook is
-  an unauthenticated write endpoint published in every page's HTML). It needs a
-  validation node added in the owner's n8n UI, which is not reachable by tooling
-  — the paste-ready config is in the todo. Everything else, `001`–`020`, is
-  complete as of 2026-09-05.
+- **All 20 code-review findings, `001`–`020`, are complete as of 2026-09-05.**
+  `013` closed last: the n8n workflow now validates before writing to the CRM.
+  Closing it uncovered a live P1 underneath the P2 — the contact form had been
+  writing *blank* records into Twenty since 2026-08-26 — so read that todo before
+  touching the contact form or the n8n workflow.
+
+  **Genuinely open work does not live only in files named `pending`.** Six items
+  sit inside todos marked `complete`, parked as decisions rather than defects,
+  and a filename sweep will miss all of them:
+
+  | From | Item |
+  |---|---|
+  | `013` | The enquiry `message` never reaches Twenty — the HTTP Request body maps only `name` and `email`. Needs a Note on the person, so a second node |
+  | `016` | The locale list is still declared in `tina/config.ts`, `readability.mjs` and `content-status.mjs`; the two `.mjs` scripts run under bare node and cannot import the TS registry |
+  | `018` | Unsplash hotlinking — every reader's IP and referrer reach Unsplash before any consent interaction, on 20 posts |
+  | `018` | No consent-withdrawal path. Fine for CCPA, weak for GDPR — a business call |
+  | `020` | `→` / `←` fall out of Anton into the fallback face, at 20 sites in `src/` |
+  | `020` | English and localized pages diverge visually (logo hero, frame styles, city hub list vs card grid) — a deliberate call, not drift |
 
   The work logs are worth reading before related work; they record why the
   rejected options were rejected, and several record findings that dissolved on
@@ -646,7 +660,7 @@ Read that file before re-investigating any of these.
 
 - Cal.com bookings now reach Twenty CRM, repeat customers included
 - Blog i18n mechanism is built (2026-08-26/27)
-- `site.formEndpoint` now points at a real Formspree endpoint, and the contact form dual-submits into a self-hos…
+- `site.formEndpoint` now points at a real Formspree endpoint, and the contact form dual-submits into a self-hosted n8n workflow → Twenty CRM. **The CRM half silently wrote blank records until 2026-09-05** — `no-cors` forces text/plain, so n8n received `body` as a string and every expression resolved to empty, while all four layers reported success
 - Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories (2026-08-26).
 - `site.phone` is a real Google Voice number, (434) 373-0080 (2026-08-26).
 - The homepage's "Where we work" city grid was removed and replaced with a three-column footer (Explore nav link…
@@ -670,6 +684,7 @@ Read that file before re-investigating any of these.
 - JSON-LD is escaped before injection; `site.social` is finally read, as schema.org `sameAs` (2026-09-01)
 - A translation set can no longer half-publish through a mismatched `draft` flag (2026-09-01)
 - `npx tsc --noEmit` passes, and `npm run typecheck` now gates pull requests (2026-09-03)
-- A full-repo review's 4 P1s and 20 P2s are closed, except `todos/013` (2026-09-05)
+- A full-repo review's 20 findings are all closed, `013` last (2026-09-05)
 - `tina/tina-lock.json` is the schema Tina Cloud serves; not committing it broke every deploy (2026-09-05)
+- The contact form's CRM leg wrote blank records into Twenty for ten days; `no-cors` forces text/plain and n8n handed the workflow a string (2026-09-05)
 - The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)
