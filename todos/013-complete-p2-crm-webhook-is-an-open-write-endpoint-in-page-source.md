@@ -403,3 +403,44 @@ anyone, which is inherent to a static site (hard rule 4) rather than a defect.
 at all, so a captured lead arrives with no indication of what was asked. Twenty's
 `/rest/people` has no field for it; it wants a Note attached to the person, which
 is a second API call and a second node. Raised with the owner 2026-09-05.
+
+### 2026-09-06 — The `message` gap: researched, NOT yet shipped
+
+Twenty's note model was read from the live workspace rather than guessed:
+
+- A note is `POST /rest/notes` with `{ title, bodyV2: { markdown } }`. The body
+  field is **`bodyV2.markdown`**, not `body` — a plain `body` is the older shape
+  and is what produces `Error: Body must be a string`.
+- Attaching it to a person is a **second** record: `POST /rest/noteTargets`
+  linking a `noteId` to a person. Creating a note does not attach it.
+
+So the workflow needs two more nodes after the existing `HTTP Request`:
+
+    … → HTTP Request (create person) → Create enquiry note → Attach note to person
+
+Draft config is at `n8n-enquiry-note.json`, carrying the same
+`Header Auth account 2` credential (`o8lXCHb5oV98kD0v`) and `typeVersion: 4.5`.
+
+**Two things in it are inferred, and it is NOT being handed over until they are
+checked.** This todo already records one recommendation that shipped with "confirm
+the paths before trusting them" attached, and that note was the defect: it moved
+the risk onto the person least able to catch it, and the failure was silent.
+Repeating it would be worse the second time.
+
+| unknown | why it is not settled |
+|---|---|
+| the FK field name on `noteTargets` — `personId` or `targetPersonId` | the MCP tool exposes `targetPersonId`, but that may be tool sugar over the REST FK column |
+| the response envelope of `POST /rest/notes` — `data.createNote.id` | inferred from `data.createPerson.id`, which *is* verified; consistent, but not observed |
+
+Neither is readable without a token: `GET /open-api/core` is unauthenticated but
+returns only the 5 KB prose description, and the full schema at
+`/rest/open-api/core` is 403. `find_many_note_targets` returns **0 records**, so
+there is no existing row to read the field names off either.
+
+**Settling it costs one throwaway write** — create a note against the
+`Guard test — DELETE ME` person (already marked for deletion), read it back with
+`select: ['*']` to see the real field names, then delete it. Not done unasked,
+consistent with the position taken on the earlier CRM write.
+
+Until then the enquiry text still does not reach Twenty: a captured lead has a
+name and an email and no indication of what was asked.
