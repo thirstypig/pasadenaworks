@@ -60,7 +60,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 66 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 215) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 223) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -618,13 +618,11 @@ Full write-up in
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
-  **Genuinely open work does not live only in files named `pending`.** Two items
-  sit inside todos marked `complete`, parked as decisions rather than defects,
-  and a filename sweep will miss all of them:
+  **One item is still open**, parked inside a todo marked `complete` as a
+  deliberate decision rather than a defect, where a filename sweep will miss it:
 
   | From | Item |
   |---|---|
-  | `018` | No consent-withdrawal path. Fine for CCPA, weak for GDPR — a business call |
   | `020` | English and localized pages diverge visually (logo hero, frame styles, city hub list vs card grid) — a deliberate call, not drift |
 
   The work logs are worth reading before related work; they record why the
@@ -686,4 +684,5 @@ Read that file before re-investigating any of these.
 - The contact form's CRM leg wrote blank records into Twenty for ten days; `no-cors` forces text/plain and n8n handed the workflow a string (2026-09-05)
 - Blog hero images are self-hosted from `public/blog/`, not hotlinked from Unsplash; the schema now fails the build on an external URL (2026-09-06)
 - The contact form's enquiry text reaches Twenty as a Note; the workflow is Webhook → Normalise → Valid? → Person → Note → link (2026-09-06)
+- Analytics consent can be withdrawn from the footer, in all four languages; `define:vars` makes that script `is:inline`, so it must delegate (2026-09-06)
 - The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)

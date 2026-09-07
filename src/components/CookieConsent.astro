@@ -73,6 +73,42 @@ const strings = t(locale);
         banner.hidden = false;
       }
 
+      /* WITHDRAWAL. A banner that asks for consent and offers no way to take it
+         back is incoherent on its own terms, whatever the jurisdiction — so the
+         footer carries a "cookie settings" control (rendered only when
+         gaMeasurementId is set, same as this banner).
+
+         Reopening returns the visitor to "no choice recorded", which means
+         analytics must stop NOW and not merely on the next page load. GA4 reads
+         `window['ga-disable-<ID>']` on every hit, so setting it suppresses
+         further hits from the already-loaded script. The tag cannot be
+         unloaded; this is the documented way to silence it. */
+      /* DELEGATED, and that is not a style preference. `define:vars` forces this
+         script to be `is:inline`, so it runs at its own position in the
+         document — and this component renders in <body> ABOVE the footer that
+         carries the control (char ~9k vs ~24k in the built HTML). Binding
+         directly with querySelectorAll finds nothing and fails silently: the
+         link renders, clicks, and does nothing at all. Measured, not guessed —
+         the first version of this shipped that way and the browser test caught
+         it. Delegation on `document` is independent of DOM order. */
+      document.addEventListener('click', (event) => {
+        const control = event.target instanceof Element
+          ? event.target.closest('[data-consent-reopen]')
+          : null;
+        if (!control) return;
+        try {
+          localStorage.removeItem(KEY);
+        } catch {
+          /* Nothing was stored to begin with — the banner still reopens and
+             the choice is still honoured for this page view. */
+        }
+        window['ga-disable-' + measurementId] = true;
+        if (banner) {
+          banner.hidden = false;
+          banner.querySelector('[data-consent]')?.focus();
+        }
+      });
+
       banner?.querySelectorAll('[data-consent]').forEach((button) => {
         button.addEventListener('click', () => {
           const choice = button.dataset.consent === 'accept' ? 'accepted' : 'declined';
@@ -83,7 +119,13 @@ const strings = t(locale);
                this page view — dismiss the banner and respect the answer. */
           }
           banner.hidden = true;
-          if (choice === 'accepted') loadGA(measurementId);
+          if (choice === 'accepted') {
+            /* Clear any opt-out left by a previous withdrawal. Without this,
+               accepting again would hide the banner and look like it worked
+               while GA4 kept dropping every hit on the floor. */
+            window['ga-disable-' + measurementId] = false;
+            loadGA(measurementId);
+          }
         });
       });
     </script>

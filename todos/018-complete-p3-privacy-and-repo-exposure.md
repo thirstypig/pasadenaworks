@@ -225,3 +225,55 @@ they passed at runtime because `undefined` coerced into the failure message.
 
 **Still open from this todo:** #5, the missing consent-withdrawal path, remains a
 business call about GDPR exposure.
+
+### 2026-09-06 — #5 closed: consent can now be withdrawn
+
+Left as a business call on 2026-09-04 ("fine for CCPA, weak for GDPR … depends on
+the audience"). The argument that actually settled it is narrower than GDPR and
+does not depend on where the reader lives: **the site already asks for consent.**
+Asking permission while providing no way to revoke it is incoherent on its own
+terms. The banner was the commitment; this is the other half of it.
+
+A `cookieSettings` control now sits in the footer, rendered only when
+`site.gaMeasurementId` is set — the same condition that governs the banner, since
+a "change your mind" link on a site that never asked is worse than none.
+Localised in all four languages, unlike the English-only legal links beside it,
+because this is a consent control and `cookieAccept`/`cookieDecline` are
+localised too. zh-Hant uses Taiwan lexis: **`Cookie 設定`**, not the mainland
+`设置` (which zh-Hans correctly uses).
+
+**Withdrawal returns the visitor to "no choice recorded", so analytics must stop
+immediately** rather than at the next page load. GA4 reads
+`window['ga-disable-<ID>']` on every hit and the tag cannot be unloaded, so that
+flag is the documented way to silence an already-loaded script. Re-accepting
+clears it again — without that, accepting after a withdrawal would hide the
+banner and look like it worked while GA4 dropped every hit on the floor.
+
+**The first version did nothing at all, and reading the code would not have
+revealed it.** It bound the control with
+`document.querySelectorAll('[data-consent-reopen]').forEach(...)`. `define:vars`
+forces that script to be `is:inline` — Astro emits `astro(4000)` saying exactly
+this, and the warning had been sitting in `npm run typecheck` output unread — so
+it executes at its own position in the document. `CookieConsent` renders in
+`<body>` **above** the `Footer` that carries the control: char ~9,000 versus
+~24,500 in the built HTML. The element did not exist yet, the selector matched
+nothing, and the link rendered and took clicks and did nothing. Delegating from
+`document` is independent of DOM order.
+
+Caught by driving a real browser through the whole cycle rather than by reading:
+
+| step | stored | banner | GA disabled |
+|---|---|---|---|
+| fresh visitor | `null` | shown | no |
+| Accept | `accepted` | hidden | no |
+| **Cookie settings** | `null` | **reopens** | **yes** |
+| Accept again | `accepted` | hidden | **no** |
+| withdraw again | `null` | reopens | yes |
+| Decline | `declined` | hidden | yes |
+
+`src/components/cookie-consent.test.ts` pins the delegation, the immediate
+opt-out, the opt-out being cleared on re-accept, the try/catch around the storage
+removal, the render condition, and the label in all four locales including the
+正體字 check. Falsified: restoring the direct bind fails two of the eight.
+
+**This todo is now fully closed** — all five items resolved.
