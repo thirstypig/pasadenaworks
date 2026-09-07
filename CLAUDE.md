@@ -641,11 +641,21 @@ Full write-up in
   correct, type-enforced code in another. Re-verify against current code before
   acting.
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
-  injection CVEs) have no safe fix available yet, checked 2026-08-27** —
-  this isn't "hasn't been done," it's genuinely blocked upstream. We're
-  already on the latest `tinacms`/`@tinacms/cli` (3.12.1/2.6.1), and even
-  that latest release still pins `react-router-dom: ^6.30.3`, inside the
-  vulnerable range. The only fix `npm audit fix --force` offers is
+  injection CVEs) have no safe fix available yet, re-checked 2026-09-07** —
+  this isn't "hasn't been done," it's genuinely blocked upstream. We are on
+  `tinacms`/`@tinacms/cli` 3.12.1/2.6.1; 3.13.0/2.7.0 have since shipped, and
+  **upgrading would not help** — `npm view tinacms@3.13.0
+  dependencies.react-router-dom` returns `^6.30.3`, the identical vulnerable
+  range 3.12.1 pins. So the audit stays at 8 moderate either way; treat the
+  upgrade as ordinary maintenance, not as a fix.
+
+  **Check the pin, not the version number.** The 2026-08-27 version of this
+  note argued from "we're already on the latest," which stopped being true
+  within days and would have made a stale claim look like a current one. The
+  load-bearing fact is which `react-router-dom` range Tina pins, and that is
+  one `npm view` away.
+
+  The only fix `npm audit fix --force` offers is
   downgrading to `tinacms@0.59.1` — a pre-3.x release with a different,
   incompatible config API from what `tina/config.ts` uses now, which would
   almost certainly break `npm run admin` rather than fix anything. Real
