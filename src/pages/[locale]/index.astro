@@ -31,10 +31,18 @@ const translations = homeTranslations();
 >
   <section class="section--dark hero">
     <div class="wrap hero__inner">
-      <p class="hero__eyebrow">{copy.heroEyebrow}</p>
-      <h1>{copy.heroHeading}</h1>
-      <p class="hero__subhead prose">{copy.heroSubhead}</p>
-      <a class="btn" href="#contact">{copy.heroCta}</a>
+      <div class="hero__text">
+        <p class="hero__eyebrow">{copy.heroEyebrow}</p>
+        <h1>{copy.heroHeading}</h1>
+        <p class="hero__subhead prose">{copy.heroSubhead}</p>
+        <a class="btn" href="#contact">{copy.heroCta}</a>
+      </div>
+      {/* Same lockup the English homepage carries, so all four languages match
+          above the fold. The alt text is the brand name and stays in Latin in
+          every locale: it IS the name, not a phrase to be translated. */}
+      <div class="hero__logo-frame label-frame">
+        <img src="/logo-lockup.png" width="1600" height="578" alt={site.name} />
+      </div>
     </div>
   </section>
 
@@ -47,7 +55,7 @@ const translations = homeTranslations();
       <div class="service-grid">
         {services.map((service) => (
           <a
-            class="service-card"
+            class="service-card label-frame"
             href={localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale])}
           >
             <h3>{service.t[locale].title}</h3>
@@ -84,6 +92,37 @@ const translations = homeTranslations();
 <style>
   .hero {
     padding-block: var(--space-9);
+  }
+  /* Mirrors src/pages/index.astro. The two homepages are separate files — the
+     English one holds its copy inline, the localized one reads home.ts — so
+     these rules exist twice on purpose. `homepages.test.ts` fails if they
+     diverge again; they had, and nobody chose it. */
+  .hero__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    flex-wrap: wrap-reverse;
+  }
+  .hero__text {
+    flex: 1 1 28rem;
+    min-width: 0;
+  }
+  .hero__logo-frame {
+    flex: 0 0 auto;
+    width: min(560px, 85vw);
+    padding: var(--space-6) var(--space-5);
+    color: var(--color-rose-dark);
+    background: var(--color-bg);
+    border-width: 5px;
+    outline-width: 2px;
+    outline-offset: 8px;
+    filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
+  }
+  .hero__logo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .hero__eyebrow {

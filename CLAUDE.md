@@ -60,7 +60,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 66 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 223) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 229) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -618,12 +618,12 @@ Full write-up in
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
-  **One item is still open**, parked inside a todo marked `complete` as a
-  deliberate decision rather than a defect, where a filename sweep will miss it:
-
-  | From | Item |
-  |---|---|
-  | `020` | English and localized pages diverge visually (logo hero, frame styles, city hub list vs card grid) — a deliberate call, not drift |
+  **Every finding is closed, including the items parked inside todos marked
+  `complete` as decisions rather than defects.** The last of them, `020`'s
+  English/localized visual divergence, closed 2026-09-06 with one deliberate
+  exception: the Chinese city hub keeps the body serif because `--font-display`
+  falls through to a CJK face for Han glyphs, so a Latin city name inside CJK
+  prose would render in two faces inside one line. Per-script, not per-locale.
 
   The work logs are worth reading before related work; they record why the
   rejected options were rejected, and several record findings that dissolved on
@@ -685,4 +685,5 @@ Read that file before re-investigating any of these.
 - Blog hero images are self-hosted from `public/blog/`, not hotlinked from Unsplash; the schema now fails the build on an external URL (2026-09-06)
 - The contact form's enquiry text reaches Twenty as a Note; the workflow is Webhook → Normalise → Valid? → Person → Note → link (2026-09-06)
 - Analytics consent can be withdrawn from the footer, in all four languages; `define:vars` makes that script `is:inline`, so it must delegate (2026-09-06)
+- The four homepages are one design again — localized heroes carry the logo lockup and framed service cards (2026-09-06)
 - The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)
