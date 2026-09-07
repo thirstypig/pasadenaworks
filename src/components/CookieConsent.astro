@@ -79,10 +79,20 @@ const strings = t(locale);
          gaMeasurementId is set, same as this banner).
 
          Reopening returns the visitor to "no choice recorded", which means
-         analytics must stop NOW and not merely on the next page load. GA4 reads
-         `window['ga-disable-<ID>']` on every hit, so setting it suppresses
-         further hits from the already-loaded script. The tag cannot be
-         unloaded; this is the documented way to silence it. */
+         analytics must stop NOW and not merely on the next page load. The tag
+         cannot be unloaded, so `window['ga-disable-<ID>']` is the lever.
+
+         BE PRECISE ABOUT WHAT IS DOCUMENTED HERE. Google documents this flag as
+         a *pre-tag, per-page* switch — "the window property must be set before
+         any calls to gtag() are made" — and says nothing about setting it after
+         the tag has loaded, which is exactly this case. What Google does state
+         is that the check happens at hit time ("when a product attempts to
+         set a cookie or send data back … it will first check"), which implies a
+         runtime lookup rather than a load-time snapshot, and measuring a real
+         gtag.js confirms zero further /g/collect requests once it is set. So:
+         observed to work, not a documented guarantee. Consent Mode is the
+         documented mechanism for a live toggle and is the upgrade path if this
+         ever stops holding. Hits already sent are not retracted either way. */
       /* DELEGATED, and that is not a style preference. `define:vars` forces this
          script to be `is:inline`, so it runs at its own position in the
          document — and this component renders in <body> ABOVE the footer that
