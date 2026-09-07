@@ -62,9 +62,16 @@ export const site = {
   },
 
   /* GA4 Measurement ID (format "G-XXXXXXXXXX"). Leave blank to keep
-     analytics off entirely — CookieConsent.astro and Base.astro both
+     analytics off entirely — CookieConsent.astro and Footer.astro both
      check this and render nothing at all when it's empty, so there's no
-     half-wired banner asking for consent to a script that isn't there.
+     half-wired banner asking for consent to a script that isn't there,
+     and no "cookie settings" control offering to reopen it.
+     This said "CookieConsent.astro and Base.astro". Base.astro has no
+     gtag, no dataLayer and no googletagmanager reference at all — the tag
+     is injected by CookieConsent's own loadGA() after consent, and the only
+     other reader is the footer control. A reader trusting the old text
+     would go looking for a second gate that does not exist, on the file
+     that governs a consent control.
      To get one: analytics.google.com → Admin → Create Property → name it
      "Pasadena Works" → add a Web data stream for https://pasadenaworks.com
      → it gives you the Measurement ID. Recommended: under Admin > Data

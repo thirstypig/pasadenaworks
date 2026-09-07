@@ -80,6 +80,20 @@ describe('consent can be withdrawn', () => {
     expect(guard, 'the removal must sit inside a try block').toBeGreaterThan(-1);
   });
 
+  it('loads gtag.js at most once per page view', () => {
+    // accept → withdraw → accept again reaches loadGA() a second time. Without
+    // a guard that appends a SECOND gtag.js and fires a second `config`, which
+    // GA4 counts as another page_view for the same page — so the visitors who
+    // engage most with the consent control are the ones who inflate the
+    // numbers. Clearing `ga-disable` is what resumes collection; re-loading the
+    // tag never was.
+    expect(consent).toMatch(/__pwGaLoaded/);
+    expect(
+      /if \(window\.__pwGaLoaded\) return;/.test(consent),
+      'loadGA must return early when the tag is already on the page',
+    ).toBe(true);
+  });
+
   it('renders the control only when analytics is actually configured', () => {
     // A "change your mind" control on a site that never asked for consent is
     // worse than none. Same condition that governs the banner itself.
