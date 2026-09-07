@@ -8,6 +8,42 @@ import { glob } from 'astro/loaders';
    with no page, no sitemap entry and no error. */
 import { LOCALES } from './i18n/ui';
 import { PILLARS } from './data/pillars';
+import { HERO_IMAGE_PATTERN, isProtocolRelative, hasTraversalSegment } from './data/hero-image';
+
+/**
+ * A hero image must be a root-relative path into `public/`, e.g. `/blog/x.jpg`.
+ *
+ * This was `z.string().url()` while the heroes were hotlinked from Unsplash.
+ * They are self-hosted now (todos/018: every reader's IP and referrer reached
+ * Unsplash before any consent interaction), so a URL is exactly what it must
+ * NOT be — one pasted here would reintroduce third-party hotlinking silently.
+ *
+ * THE HOLE THIS SHAPE EXISTS FOR. The first version was one regex,
+ * `^\/[A-Za-z0-9._\-\/]+\.(jpg|...)$`. It rejected `https://host/x.jpg` and
+ * `http://host/x.jpg` and looked airtight — but ACCEPTED
+ * `//images.unsplash.com/photo-1.jpg`. A protocol-relative URL carries no
+ * scheme and begins with a slash, so it satisfied "starts with /" while the
+ * browser resolves it to `https://images.unsplash.com/...`. The guard rejected
+ * the two spellings of an external image that announce themselves, and admitted
+ * the one that does not. It also accepted `/blog/../../etc/passwd.jpg`.
+ *
+ * Three checks rather than one denser regex, so each failure names its own
+ * cause: the person pasting a bad value is not the person who wrote the pattern.
+ */
+export const heroImagePath = z
+  .string()
+  .regex(
+    HERO_IMAGE_PATTERN,
+    'heroImage must be a root-relative path into public/, e.g. /blog/my-post.jpg — not an external URL and not a bare filename. Hero images are self-hosted; see todos/018.',
+  )
+  .refine((value) => !isProtocolRelative(value), {
+    message:
+      'heroImage starts with "//", a protocol-relative URL: the browser resolves it to https://<host>/... and fetches from a third party. Use a path inside public/.',
+  })
+  .refine((value) => !hasTraversalSegment(value), {
+    message: 'heroImage must not contain a ".." path segment.',
+  });
+
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -21,23 +57,7 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     author: z.string().default('Pasadena Works'),
     tags: z.array(z.string()).min(1).max(3),
-    /**
-     * A root-relative path into `public/`, e.g. `/blog/some-post.jpg`.
-     *
-     * This was `z.string().url()` while the heroes were hotlinked from
-     * Unsplash. They are self-hosted now (todos/018: every reader's IP and
-     * referrer reached Unsplash before any consent interaction), so a URL is
-     * exactly what it must NOT be — an absolute one here would silently
-     * reintroduce third-party hotlinking one paste at a time. The regex
-     * rejects that rather than leaving it to review.
-     */
-    heroImage: z
-      .string()
-      .regex(
-        /^\/[A-Za-z0-9._\-\/]+\.(jpg|jpeg|png|webp|avif)$/,
-        'heroImage must be a root-relative path into public/, e.g. /blog/my-post.jpg — not an external URL. Hero images are self-hosted; see todos/018.',
-      )
-      .optional(),
+      heroImage: heroImagePath.optional(),
     heroAlt: z.string().optional(),
     heroCredit: z.string().optional(),
     /** Which of the site's four locales this file is written in. Each
