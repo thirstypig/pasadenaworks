@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "cómo despedir a un cliente"
 author: "Pasadena Works"
 tags: ["manejo de clientes", "operación del negocio"]
-heroImage: "https://images.unsplash.com/photo-1638262052640-82e94d64664a?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-to-fire-a-customer.jpg"
 heroAlt: "Dos personas dándose la mano sobre una mesa, cerrando una conversación"
 heroCredit: "Rock Staar"
 draft: false

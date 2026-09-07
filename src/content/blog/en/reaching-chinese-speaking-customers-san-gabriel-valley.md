@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - multilingual
   - san gabriel valley
-heroImage: 'https://images.unsplash.com/photo-1526186550435-406043dc9904?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/reaching-chinese-speaking-customers-san-gabriel-valley.jpg'
 heroAlt: 'A Chinese-American storefront lit up at night, signage in Chinese and English'
 heroCredit: Aaron Lau
 draft: false

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - lunar new year
   - san gabriel valley
-heroImage: 'https://images.unsplash.com/photo-1680444029037-5a718fad16c0?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/lunar-new-year-marketing-san-gabriel-valley.jpg'
 heroAlt: Red paper lanterns lit up against a dark night sky
 heroCredit: Thomas Kinto
 draft: false

@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "mi página web debería estar en español"
 author: "Pasadena Works"
 tags: ["español", "SEO multilingüe"]
-heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/should-your-website-be-in-spanish.jpg"
 heroAlt: "Dos colegas conversando frente a una mesa en una oficina pequeña"
 heroCredit: "Brooke Cagle"
 draft: false

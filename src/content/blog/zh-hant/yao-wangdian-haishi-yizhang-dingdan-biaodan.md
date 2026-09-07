@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "小生意需要網路商店嗎"
 author: "Pasadena Works"
 tags: ["電商", "網站規劃"]
-heroImage: "https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/online-store-or-just-take-orders.jpg"
 heroAlt: "一個人在桌上用膠帶封住一個紙箱"
 heroCredit: "Bench Accounting"
 draft: false

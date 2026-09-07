@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "中小企業網站架設費用"
 author: "Pasadena Works"
 tags: ["定價", "網頁設計"]
-heroImage: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-much-should-a-small-business-website-cost.jpg"
 heroAlt: "一個人在書桌前用筆記型電腦計算網站專案的費用"
 heroCredit: "Campaign Creators"
 draft: false

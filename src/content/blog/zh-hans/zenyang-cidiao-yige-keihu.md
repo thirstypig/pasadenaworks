@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "怎么辞掉难缠的客户"
 author: "Pasadena Works"
 tags: ["客户管理", "小生意运营"]
-heroImage: "https://images.unsplash.com/photo-1638262052640-82e94d64664a?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-to-fire-a-customer.jpg"
 heroAlt: "两个人隔着桌子握手，把一段对话收尾"
 heroCredit: "Rock Staar"
 draft: false

@@ -7,7 +7,7 @@ targetKeyword: "qué debe tener la página web de una pequeña empresa"
 draft: false
 author: "Pasadena Works"
 tags: ["fundamentos de sitios web", "sitios web para pequeñas empresas"]
-heroImage: "https://images.unsplash.com/photo-1736667245201-2eea25a07f55?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-a-small-business-website-actually-needs.jpg"
 heroAlt: "Una persona escribiendo en el teclado de una laptop sobre un escritorio"
 heroCredit: "Jakub Żerdzicki"
 locale: es

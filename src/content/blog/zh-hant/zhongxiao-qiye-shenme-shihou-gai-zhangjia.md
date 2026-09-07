@@ -7,7 +7,7 @@ targetKeyword: "中小企業什麼時候該漲價"
 draft: false
 author: "Pasadena Works"
 tags: ["定價", "小生意財務"]
-heroImage: "https://images.unsplash.com/photo-1707902665498-a202981fb5ac?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-raise-prices-small-business.jpg"
 heroAlt: "一台計算機和一本筆記本放在書桌上，用來算價格"
 heroCredit: "Jakub Żerdzicki"
 locale: zh-hant

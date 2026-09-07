@@ -170,3 +170,58 @@ against itself rather than against the cloud.
 `DOCS_ROOT_INCLUDE` is back to `!(CLAUDE)`, so a Tina editor can no longer
 `update` CLAUDE.md. That closes this todo's remaining item and the security
 finding raised against the revert.
+
+### 2026-09-06 — #2 closed: the hero images are self-hosted
+
+The Unsplash hotlinking left as a decision on 2026-09-04 is done. Every reader's
+IP address and referring URL used to reach `images.unsplash.com` before they had
+touched the consent banner, on 20 published posts across four languages. The
+images now come from `public/blog/`, and the built site contains **zero**
+references to any third-party image host.
+
+**A counting bug nearly left three of them behind.** The first sweep found 17
+distinct URLs; a second found 20. Two quote styles are in use — the English posts
+were written with `'single'` quotes and the translations with `"double"` (Tina's
+output), and the first regex only matched single. Three images were referenced
+*only* by translation files. Worth remembering: the two halves of this corpus were
+written by different tools and are not lexically uniform, so a frontmatter regex
+that works on the English posts can silently miss 63 of the 80 files.
+
+**Sized to what the page actually renders, not to what Unsplash served.** The
+hero frame is `max-width: 38rem` (608 CSS px) with `max-height: 400px` and
+`object-fit: cover`, so at 2× DPR an image needs to cover 1216×800 — every pixel
+beyond that is downloaded and thrown away by the browser. Resampled to
+`max(1216/w, 800/h)` and capped at 1000px tall, quality 72:
+
+| | |
+|---|---|
+| downloaded | 5.0 MB, largest 988 KB (a 1600×2400 portrait) |
+| shipped | **3.3 MB**, largest 395 KB |
+
+A first attempt resized on width alone and produced three landscape images only
+684–798px tall, which no longer covered the frame at 2×. Caught by asserting the
+cover condition rather than eyeballing the sizes, and redone from the originals
+with the correct maths.
+
+**The guard is structural, not a test.** `heroImage` was `z.string().url()` —
+which, now that the images are local, is exactly what it must *not* be. It is a
+regex requiring a root-relative path into `public/`, so pasting an external URL
+back in **fails the build** with a message naming the reason. Verified: doing so
+reports 2 schema violations and the build stops.
+
+`Post.astro` absolutises the JSON-LD `image` via `absoluteUrl()`. A root-relative
+path is not a resolvable image for schema.org, and this would have been a silent
+SEO regression — the built page now carries
+`"image":"https://pasadenaworks.com/blog/…jpg"` while the `<img>` stays relative.
+
+Three tests added to `blog-content.test.ts`: no hero points at an external host,
+every hero names a file that exists, and a translation set shares one image (why
+80 posts need only 20 files). All three falsified against deliberately broken
+posts; the mutated files were restored and confirmed by content, not assumed.
+`tsc` caught that two of them read `post.file`, which does not exist on `Post` —
+they passed at runtime because `undefined` coerced into the failure message.
+
+`heroCredit` is untouched on all 80 files, so the photographers stay credited.
+
+**Still open from this todo:** #5, the missing consent-withdrawal path, remains a
+business call about GDPR exposure.

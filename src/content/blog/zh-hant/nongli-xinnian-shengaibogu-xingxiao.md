@@ -6,7 +6,7 @@ pillar: ads
 targetKeyword: "聖蓋博谷 農曆新年 行銷"
 author: "Pasadena Works"
 tags: ["農曆新年", "聖蓋博谷"]
-heroImage: "https://images.unsplash.com/photo-1680444029037-5a718fad16c0?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/lunar-new-year-marketing-san-gabriel-valley.jpg"
 heroAlt: "深色夜空下亮著的紅色紙燈籠"
 heroCredit: "Thomas Kinto"
 draft: false

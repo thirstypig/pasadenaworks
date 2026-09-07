@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "什麼時候該婉拒客戶"
 author: "Pasadena Works"
 tags: ["客戶關係", "中小企業建議"]
-heroImage: "https://images.unsplash.com/photo-1560250163-17506787d971?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-walk-away-from-a-bad-fit-client.jpg"
 heroAlt: "兩個人在一場商務會面中握手"
 heroCredit: "LinkedIn Sales Solutions"
 draft: false

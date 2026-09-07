@@ -12,11 +12,18 @@
  *  you missed.
  */
 
-export const LOCALES = ['en', 'es', 'zh-hans', 'zh-hant'] as const;
+// The list itself lives in locales.mjs — plain ESM, because two build-step-free
+// scripts and Tina's separate esbuild pass all need to read it too. Re-exported
+// here so `import { LOCALES } from '@/i18n/ui'` keeps working everywhere.
+export { LOCALES, TRANSLATED_LOCALES } from './locales.mjs';
+import { LOCALES, DEFAULT_LOCALE as SHARED_DEFAULT_LOCALE } from './locales.mjs';
 
 export type Locale = (typeof LOCALES)[number];
 
-export const DEFAULT_LOCALE: Locale = 'en';
+// Re-annotated rather than re-declared: the value comes from locales.mjs, and
+// the `: Locale` here is what fails the typecheck if that file's default ever
+// stops being one of its own locales.
+export const DEFAULT_LOCALE: Locale = SHARED_DEFAULT_LOCALE;
 
 /** BCP-47 tag used in <html lang> and hreflang attributes. */
 export const HTML_LANG: Record<Locale, string> = {

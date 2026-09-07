@@ -7,7 +7,7 @@ targetKeyword: "顧客在Google上找不到我的店"
 draft: false
 author: "Pasadena Works"
 tags: ["Google 商家檔案", "在地搜尋"]
-heroImage: "https://images.unsplash.com/photo-1694928850410-b209896782a2?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/why-customers-cant-find-your-business-on-google.jpg"
 heroAlt: "一個紅色的 Google 地圖定位圖釘放在一張紙上"
 heroCredit: "Anandhu Chandran"
 locale: zh-hant

@@ -30,7 +30,7 @@ const BLOG = join(ROOT, 'src/content/blog');
 const OUT = join(ROOT, 'CONTENT-STATUS.md');
 
 /** The three languages every English post is supposed to reach. */
-const TRANSLATIONS = ['es', 'zh-hans', 'zh-hant'];
+import { TRANSLATED_LOCALES as TRANSLATIONS } from '../src/i18n/locales.mjs';
 const HEADS = { es: 'ES', 'zh-hans': '简', 'zh-hant': '繁' };
 
 /**

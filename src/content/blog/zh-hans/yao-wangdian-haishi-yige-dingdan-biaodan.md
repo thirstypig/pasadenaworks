@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "小生意需要网店吗"
 author: "Pasadena Works"
 tags: ["电商", "网站规划"]
-heroImage: "https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/online-store-or-just-take-orders.jpg"
 heroAlt: "一个人在桌上用胶带封住一个纸箱"
 heroCredit: "Bench Accounting"
 draft: false

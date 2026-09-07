@@ -7,7 +7,7 @@ targetKeyword: "小生意什么时候该涨价"
 draft: false
 author: "Pasadena Works"
 tags: ["定价", "小生意财务"]
-heroImage: "https://images.unsplash.com/photo-1707902665498-a202981fb5ac?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-raise-prices-small-business.jpg"
 heroAlt: "一个计算器和一个笔记本放在桌子上，用来算价格"
 heroCredit: "Jakub Żerdzicki"
 locale: zh-hans

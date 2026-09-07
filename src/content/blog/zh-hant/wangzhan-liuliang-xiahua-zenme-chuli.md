@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "網站流量下降 怎麼辦"
 author: "Pasadena Works"
 tags: ["SEO", "Google Search Console"]
-heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-to-do-when-website-traffic-drops.jpg"
 heroAlt: "筆記型電腦螢幕上顯示著一路下滑的數據圖表"
 heroCredit: "Luke Chesser"
 draft: false

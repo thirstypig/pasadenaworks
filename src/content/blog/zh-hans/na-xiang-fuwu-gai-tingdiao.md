@@ -6,7 +6,7 @@ pillar: consulting
 targetKeyword: "该停掉哪项服务"
 author: "Pasadena Works"
 tags: ["经营策略", "利润"]
-heroImage: "https://images.unsplash.com/photo-1572610304424-34b7b2b46540?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/which-service-should-you-stop-offering.jpg"
 heroAlt: "小生意老板坐在桌边，手撑着下巴，盯着笔记本电脑屏幕"
 heroCredit: "Jonas Leupe"
 draft: false

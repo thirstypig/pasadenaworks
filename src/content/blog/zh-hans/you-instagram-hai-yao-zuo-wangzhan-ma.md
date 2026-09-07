@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "有 Instagram 还需要做网站吗"
 author: "Pasadena Works"
 tags: ["Instagram", "小企业营销"]
-heroImage: "https://images.unsplash.com/photo-1753164597612-5e71b83fda91?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/do-i-need-a-website-if-i-have-instagram.jpg"
 heroAlt: "一位小企业老板一边用笔记本电脑工作，一边看手机"
 heroCredit: "Vitaly Gariev"
 draft: false

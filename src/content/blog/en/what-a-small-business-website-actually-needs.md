@@ -7,7 +7,7 @@ targetKeyword: "what should a small business website include"
 draft: false
 author: "Pasadena Works"
 tags: ["website basics", "small business websites"]
-heroImage: "https://images.unsplash.com/photo-1736667245201-2eea25a07f55?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/what-a-small-business-website-actually-needs.jpg"
 heroAlt: "A person typing on a laptop keyboard on a desk"
 heroCredit: "Jakub Żerdzicki"
 locale: en

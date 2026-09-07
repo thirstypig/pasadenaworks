@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "desfile de las rosas pasadena negocios"
 author: "Pasadena Works"
 tags: ["seo local", "pasadena"]
-heroImage: "https://images.unsplash.com/photo-1713496130804-c313e91a209f?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/rose-parade-season-business-checklist.jpg"
 heroAlt: "La torre del reloj del Ayuntamiento de Pasadena sobre una calle bordeada de palmeras en el centro"
 heroCredit: "Elena Takmakova"
 draft: false

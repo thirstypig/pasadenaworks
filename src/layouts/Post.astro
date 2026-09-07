@@ -52,7 +52,10 @@ const articleSchema = {
   datePublished: pubDate.toISOString(),
   ...(updatedDate && { dateModified: updatedDate.toISOString() }),
   author: { '@type': 'Organization', name: author },
-  ...(heroImage && { image: heroImage }),
+  // schema.org wants an absolute URL here. heroImage is a root-relative path
+  // since the images were self-hosted, so it must be absolutised — a bare
+  // `/blog/x.jpg` in JSON-LD is not a resolvable image for Google.
+  ...(heroImage && { image: absoluteUrl(heroImage) }),
   mainEntityOfPage: absoluteUrl(path),
 };
 ---
@@ -71,7 +74,7 @@ const articleSchema = {
   )}
   <script slot="head" type="application/ld+json" set:html={jsonLd(articleSchema)} />
   <article class="section wrap post">
-    <a class="post__back" href={blogIndexPath(locale)}>&larr; {strings.buttons.backToBlog}</a>
+    <a class="post__back" href={blogIndexPath(locale)}>&lsaquo; {strings.buttons.backToBlog}</a>
 
     <p class="post__meta">
       <time datetime={pubDate.toISOString()}>

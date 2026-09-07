@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "帕萨迪纳 玫瑰花车游行 商家"
 author: "Pasadena Works"
 tags: ["本地 SEO", "帕萨迪纳"]
-heroImage: "https://images.unsplash.com/photo-1713496130804-c313e91a209f?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/rose-parade-season-business-checklist.jpg"
 heroAlt: "帕萨迪纳市政厅的钟楼，立在市中心一条棕榈树夹道的街上"
 heroCredit: "Elena Takmakova"
 draft: false

@@ -7,7 +7,7 @@ targetKeyword: "cuándo subir los precios de mi negocio"
 draft: false
 author: "Pasadena Works"
 tags: ["precios", "finanzas de pequeños negocios"]
-heroImage: "https://images.unsplash.com/photo-1707902665498-a202981fb5ac?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/when-to-raise-prices-small-business.jpg"
 heroAlt: "Una calculadora y un cuaderno sobre un escritorio, usados para calcular precios"
 heroCredit: "Jakub Żerdzicki"
 locale: es

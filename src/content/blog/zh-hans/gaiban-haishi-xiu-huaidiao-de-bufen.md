@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "网站要不要重做"
 author: "Pasadena Works"
 tags: ["网站改版", "SEO"]
-heroImage: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/redesign-website-or-fix-whats-broken.jpg"
 heroAlt: "显示器上是一套设计系统界面，旁边的桌上放着植物"
 heroCredit: "Balázs Kétyi"
 draft: false

@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "necesito una página web si tengo instagram"
 author: "Pasadena Works"
 tags: ["instagram", "marketing para negocios pequeños"]
-heroImage: "https://images.unsplash.com/photo-1753164597612-5e71b83fda91?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/do-i-need-a-website-if-i-have-instagram.jpg"
 heroAlt: "Una dueña de negocio revisando su teléfono mientras trabaja en su laptop"
 heroCredit: "Vitaly Gariev"
 draft: false

@@ -6,7 +6,7 @@ pillar: ads
 targetKeyword: "小企业投 Google Ads 值得吗"
 author: "Pasadena Works"
 tags: ["Google Ads", "广告预算"]
-heroImage: "https://images.unsplash.com/photo-1664575197229-3bbebc281874?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/are-google-ads-worth-it-for-a-small-business.jpg"
 heroAlt: "一个人坐在书桌前，用笔记本电脑核对数字"
 heroCredit: "Windows"
 draft: false

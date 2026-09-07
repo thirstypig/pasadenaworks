@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - client relationships
   - small business advice
-heroImage: 'https://images.unsplash.com/photo-1560250163-17506787d971?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/when-to-walk-away-from-a-bad-fit-client.jpg'
 heroAlt: Two people shaking hands during a business meeting
 heroCredit: LinkedIn Sales Solutions
 draft: false

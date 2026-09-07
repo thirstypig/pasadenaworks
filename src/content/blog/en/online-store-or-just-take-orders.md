@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - e-commerce
   - website planning
-heroImage: 'https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/online-store-or-just-take-orders.jpg'
 heroAlt: A person taping shut a cardboard shipping box on a table
 heroCredit: Bench Accounting
 draft: false

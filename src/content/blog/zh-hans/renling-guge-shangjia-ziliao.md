@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "谷歌商家资料认领"
 author: "Pasadena Works"
 tags: ["本地搜索", "Google 商家资料"]
-heroImage: "https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/google-business-profile-setup.jpg"
 heroAlt: "店铺橱窗里亮着的 OPEN 霓虹灯招牌"
 heroCredit: "Tim Mossholder"
 draft: false

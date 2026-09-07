@@ -6,7 +6,7 @@ pillar: ads
 targetKeyword: "año nuevo lunar marketing san gabriel valley"
 author: "Pasadena Works"
 tags: ["año nuevo lunar", "san gabriel valley"]
-heroImage: "https://images.unsplash.com/photo-1680444029037-5a718fad16c0?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/lunar-new-year-marketing-san-gabriel-valley.jpg"
 heroAlt: "Faroles rojos de papel iluminados contra un cielo nocturno"
 heroCredit: "Thomas Kinto"
 draft: false

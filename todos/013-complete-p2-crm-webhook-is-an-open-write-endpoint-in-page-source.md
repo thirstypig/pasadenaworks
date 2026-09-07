@@ -403,3 +403,95 @@ anyone, which is inherent to a static site (hard rule 4) rather than a defect.
 at all, so a captured lead arrives with no indication of what was asked. Twenty's
 `/rest/people` has no field for it; it wants a Note attached to the person, which
 is a second API call and a second node. Raised with the owner 2026-09-05.
+
+### 2026-09-06 — The `message` gap: researched, NOT yet shipped
+
+Twenty's note model was read from the live workspace rather than guessed:
+
+- A note is `POST /rest/notes` with `{ title, bodyV2: { markdown } }`. The body
+  field is **`bodyV2.markdown`**, not `body` — a plain `body` is the older shape
+  and is what produces `Error: Body must be a string`.
+- Attaching it to a person is a **second** record: `POST /rest/noteTargets`
+  linking a `noteId` to a person. Creating a note does not attach it.
+
+So the workflow needs two more nodes after the existing `HTTP Request`:
+
+    … → HTTP Request (create person) → Create enquiry note → Attach note to person
+
+Draft config is at `n8n-enquiry-note.json`, carrying the same
+`Header Auth account 2` credential (`o8lXCHb5oV98kD0v`) and `typeVersion: 4.5`.
+
+**Two things in it are inferred, and it is NOT being handed over until they are
+checked.** This todo already records one recommendation that shipped with "confirm
+the paths before trusting them" attached, and that note was the defect: it moved
+the risk onto the person least able to catch it, and the failure was silent.
+Repeating it would be worse the second time.
+
+| unknown | why it is not settled |
+|---|---|
+| the FK field name on `noteTargets` — `personId` or `targetPersonId` | the MCP tool exposes `targetPersonId`, but that may be tool sugar over the REST FK column |
+| the response envelope of `POST /rest/notes` — `data.createNote.id` | inferred from `data.createPerson.id`, which *is* verified; consistent, but not observed |
+
+Neither is readable without a token: `GET /open-api/core` is unauthenticated but
+returns only the 5 KB prose description, and the full schema at
+`/rest/open-api/core` is 403. `find_many_note_targets` returns **0 records**, so
+there is no existing row to read the field names off either.
+
+**Settling it costs one throwaway write** — create a note against the
+`Guard test — DELETE ME` person (already marked for deletion), read it back with
+`select: ['*']` to see the real field names, then delete it. Not done unasked,
+consistent with the position taken on the earlier CRM write.
+
+Until then the enquiry text still does not reach Twenty: a captured lead has a
+name and an email and no indication of what was asked.
+
+### 2026-09-06 — The `message` gap is closed, and the guess was wrong
+
+The probe settled both unknowns, and it is worth recording that **the inferred
+field name was incorrect**. A throwaway note was created against the
+`Guard test — DELETE ME` person, read back with `select: ['*']`, and deleted. The
+stored record's real fields:
+
+    noteId · targetPersonId · targetCompanyId · targetOpportunityId · position
+
+It is **`targetPersonId`**, not `personId`. The MCP's naming was not tool sugar
+over a shorter REST column, which is what the draft config had assumed. Shipping
+that guess would have failed the link on every enquiry — and the failure would
+have been quiet, because the person record is created by an earlier node that
+would have gone on succeeding.
+
+The note shape was confirmed at the same time: `title` plus
+`bodyV2: { markdown }`. Twenty generates the `blocknote` representation itself
+from the markdown, so sending markdown alone is correct.
+
+**The workflow is now six nodes**, published as "Attach the enquiry message as a
+Note":
+
+    Webhook → Normalise payload → Valid submission? →(true)→ HTTP Request
+            → Create enquiry note → Attach note to person
+
+**Verified against the live system.** One test submission produced, in Twenty:
+
+| record | content |
+|---|---|
+| person | `Note test — DELETE ME`, `note-test-delete-me@example.com` |
+| note | title `Website enquiry — Note test — DELETE ME`; body carries the full message **with its newlines and paragraph break intact**, then a footer with the sender's email and `Language: es` from `_locale` |
+| noteTarget | links that note to that person |
+
+That last row also settles the final inference in this todo: the link resolved a
+real person id, so `POST /rest/notes` does return `data.createNote.id`, matching
+`data.createPerson.id`. Confirmed by observation rather than by consistency
+argument.
+
+**A process note.** Pasting the six-node workflow went wrong twice and both
+failures were mine, not n8n's. The first paste *had* worked; the screenshot was
+taken before it rendered, so a second paste produced a duplicate of every node.
+Then a verification script crashed midway through printing the connection map —
+n8n drops an empty `false` branch, so `main[1]` does not exist — and the partial
+output looked exactly like a workflow missing its last two connections. Both were
+resolved by reading state back rather than trusting a screenshot or a truncated
+loop. **In a browser-driven edit, confirm by round-tripping the JSON, not by
+looking at the canvas.**
+
+All five acceptance criteria remain met, and the enquiry text now reaches the
+CRM. Rate limiting is still a deliberate second step.

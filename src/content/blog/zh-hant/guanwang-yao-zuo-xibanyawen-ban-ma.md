@@ -6,7 +6,7 @@ pillar: websites
 targetKeyword: "官網要不要做西班牙文版"
 author: "Pasadena Works"
 tags: ["雙語網站", "聖蓋博谷"]
-heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/should-your-website-be-in-spanish.jpg"
 heroAlt: "兩位同事在小辦公室裡隔著桌子交談"
 heroCredit: "Brooke Cagle"
 draft: false

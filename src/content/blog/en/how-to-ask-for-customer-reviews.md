@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - reviews
   - local seo
-heroImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/how-to-ask-for-customer-reviews.jpg'
 heroAlt: A shop owner handing a receipt across a counter to a customer
 heroCredit: Blake Wisz
 draft: false

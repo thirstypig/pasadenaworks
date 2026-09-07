@@ -6,7 +6,7 @@ pillar: search
 targetKeyword: "cómo pedir reseñas a los clientes"
 author: "Pasadena Works"
 tags: ["reseñas", "SEO local"]
-heroImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
+heroImage: "/blog/how-to-ask-for-customer-reviews.jpg"
 heroAlt: "Un dueño de tienda entregando un recibo a un cliente sobre el mostrador"
 heroCredit: "Blake Wisz"
 draft: false

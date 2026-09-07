@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - multilingual seo
   - hreflang
-heroImage: 'https://images.unsplash.com/photo-1543165796-5426273eaab3?auto=format&fit=crop&w=1600&q=80'
+heroImage: '/blog/google-translate-website-seo.jpg'
 heroAlt: An open dictionary showing rows of printed word definitions
 heroCredit: Waldemar Brandt
 draft: false
