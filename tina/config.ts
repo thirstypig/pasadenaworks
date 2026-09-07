@@ -9,6 +9,9 @@ import {
 // See src/i18n/locales.mjs — this `options` list used to be a fourth hand-kept
 // copy of the same four strings.
 import { LOCALES } from '../src/i18n/locales.mjs';
+// Same reasoning as LOCALES above, one file over: this `options` list was a
+// fourth hand-kept copy of the four pillar names. See src/data/pillars.ts.
+import { PILLARS } from '../src/data/pillars';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -110,7 +113,7 @@ export default defineConfig({
             name: 'pillar',
             label: 'Pillar (which service this links to)',
             required: true,
-            options: ['websites', 'search', 'consulting', 'ads'],
+            options: [...PILLARS],
           },
           {
             type: 'string',

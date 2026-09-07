@@ -7,6 +7,7 @@ import { absoluteUrl } from '../i18n/routes';
 import { blogIndexPath, formatPostDate, readingLabel, updatedLabel, byLabel } from '../utils/blog';
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
+import type { Pillar } from '../data/pillars';
 
 interface Props {
   title: string;
@@ -18,7 +19,7 @@ interface Props {
   translations?: Partial<Record<Locale, string>>;
   author: string;
   tags: string[];
-  pillar: 'websites' | 'search' | 'consulting' | 'ads';
+  pillar: Pillar;
   readingMinutes: number;
   heroImage?: string;
   heroAlt?: string;
