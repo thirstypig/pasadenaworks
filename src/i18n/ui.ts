@@ -110,6 +110,7 @@ export interface UIStrings {
     cookieNotice: string;
     cookieAccept: string;
     cookieDecline: string;
+    cookieSettings: string;
   };
 }
 
@@ -171,6 +172,7 @@ export const ui: Record<Locale, UIStrings> = {
         'We use analytics cookies to see how people use this site. No ad tracking, no selling your data.',
       cookieAccept: 'OK',
       cookieDecline: 'Decline',
+      cookieSettings: 'Cookie settings',
     },
   },
   es: {
@@ -230,6 +232,7 @@ export const ui: Record<Locale, UIStrings> = {
         'Usamos cookies analíticas para ver cómo se usa este sitio. Sin rastreo publicitario, sin vender tus datos.',
       cookieAccept: 'Aceptar',
       cookieDecline: 'Rechazar',
+      cookieSettings: 'Preferencias de cookies',
     },
   },
   'zh-hans': {
@@ -284,6 +287,7 @@ export const ui: Record<Locale, UIStrings> = {
       cookieNotice: '我们使用分析类 Cookie，以了解本网站的使用情况。不做广告追踪，也不会出售您的信息。',
       cookieAccept: '同意',
       cookieDecline: '拒绝',
+      cookieSettings: 'Cookie 设置',
     },
   },
   'zh-hant': {
@@ -338,6 +342,7 @@ export const ui: Record<Locale, UIStrings> = {
       cookieNotice: '我們使用分析用的 Cookie，藉此瞭解本網站的使用情況，不做廣告追蹤，也不會出售您的資訊。',
       cookieAccept: '接受',
       cookieDecline: '拒絕',
+      cookieSettings: 'Cookie 設定',
     },
   },
 };

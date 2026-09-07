@@ -81,11 +81,37 @@ const localCities = cities.filter((c) => cityLocales(c).includes(locale));
       &nbsp;·&nbsp;<a href="/privacy/">Privacy</a>
       &nbsp;·&nbsp;<a href="/terms/">Terms</a>
       &nbsp;·&nbsp;<a href="/accessibility/">Accessibility</a>
+      {/* Only when analytics is actually wired up — the same condition that
+          governs the banner itself. A "change your mind" control that appears
+          when nothing ever asked for consent is worse than no control.
+          Localised, unlike the legal links above it: this is a consent
+          control, and the banner's own buttons are localised too. */}
+      {site.gaMeasurementId && (
+        <>
+          &nbsp;·&nbsp;
+          <button type="button" class="site-footer__consent" data-consent-reopen>
+            {strings.misc.cookieSettings}
+          </button>
+        </>
+      )}
     </p>
   </div>
 </footer>
 
 <style>
+  /* The consent control is a <button> because it performs an action rather than
+     navigating, but it sits in a row of links and must read as one. */
+  .site-footer__consent {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
   .site-footer {
     background: var(--color-rose-dark);
     color: var(--color-blush);
