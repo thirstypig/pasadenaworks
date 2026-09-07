@@ -58,7 +58,7 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 66 files. The build itself
+                     #   AND .ts, tina/ included. 76 files. The build itself
                      #   typechecks neither; the sync is required, see below.
 npm run test         # tests (vitest, 261) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
@@ -126,7 +126,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate now covers 66 files and reports 0 errors.
+excluded; the gate now covers 76 files and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -151,15 +151,18 @@ src/
 ├── data/
 │   ├── site.ts       ← email, phone, form endpoint, service-area cities
 │   ├── services.ts   ← ALL service copy, all four languages
-│   ├── cities.ts     ← city landing page copy
-│   └── home.ts       ← homepage copy for es / zh-hans / zh-hant
+│   ├── cities.ts     ← city landing page copy + cityDisplayName()
+│   ├── home.ts       ← homepage copy for es / zh-hans / zh-hant
+│   ├── pillars.ts    ← THE pillar list (schema, both components, Tina all read it)
+│   └── hero-image.ts ← what a heroImage path may be; rejects protocol-relative URLs
 ├── i18n/
 │   ├── locales.mjs   ← THE locale list, plain ESM so bare-node scripts + Tina can import it
 │   ├── ui.ts         ← locale registry + UI strings (nav, buttons, forms)
 │   ├── routes.ts     ← translated URL segments + hreflang builders
 │   └── utils.ts      ← t() and localePath()
 ├── content/blog/     ← articles, one .md file per language, under en/ es/ zh-hans/ zh-hant/
-├── components/       ← Header, Footer, ContactForm, LangSwitch, Lattice, CityBody
+├── components/       ← Header, Footer, ContactForm, CookieConsent, LangSwitch,
+│                        Lattice, CityBody, EndCta, BlogPostGrid, TagPill, ThemeToggle
 ├── layouts/          ← Base (ALL SEO tags live here), Post
 ├── pages/
 └── styles/global.css ← design tokens
@@ -684,7 +687,7 @@ Read that file before re-investigating any of these.
 - `npx tsc --noEmit` passes, and `npm run typecheck` now gates pull requests (2026-09-03)
 - A full-repo review's 20 findings are all closed, `013` last (2026-09-05)
 - `tina/tina-lock.json` is the schema Tina Cloud serves; not committing it broke every deploy (2026-09-05)
-- The contact form's CRM leg wrote blank records into Twenty for ten days; `no-cors` forces text/plain and n8n handed the workflow a string (2026-09-05)
+- The contact form's CRM leg wrote blank records into Twenty for ten days; `no-cors` forces text/plain and n8n handed the workflow a string (2026-09-05) — full write-up in `docs/solutions/integration-issues/no-cors-forces-text-plain-and-the-webhook-received-a-string.md`
 - Blog hero images are self-hosted from `public/blog/`, not hotlinked from Unsplash; the schema now fails the build on an external URL (2026-09-06)
 - The contact form's enquiry text reaches Twenty as a Note; the workflow is Webhook → Normalise → Valid? → Person → Note → link (2026-09-06)
 - Analytics consent can be withdrawn from the footer, in all four languages; `define:vars` makes that script `is:inline`, so it must delegate (2026-09-06)
