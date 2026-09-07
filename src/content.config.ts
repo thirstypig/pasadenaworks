@@ -7,6 +7,7 @@ import { glob } from 'astro/loaders';
    enum, getPostsByLocale never matched them, and they vanished from the site
    with no page, no sitemap entry and no error. */
 import { LOCALES } from './i18n/ui';
+import { PILLARS } from './data/pillars';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -15,7 +16,7 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    pillar: z.enum(['websites', 'search', 'consulting', 'ads']),
+    pillar: z.enum(PILLARS),
     targetKeyword: z.string(),
     draft: z.boolean().default(false),
     author: z.string().default('Pasadena Works'),

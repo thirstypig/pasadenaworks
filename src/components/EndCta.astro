@@ -3,9 +3,10 @@ import { services } from '../data/services';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
+import type { Pillar } from '../data/pillars';
 
 interface Props {
-  pillar: 'websites' | 'search' | 'consulting' | 'ads';
+  pillar: Pillar;
   locale: Locale;
 }
 

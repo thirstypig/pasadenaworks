@@ -213,3 +213,58 @@ posts, `readability` scored 20/20 in band.
 
 **Still open from this todo:** `cityDisplayName` and the `pillar` union remain
 declared in more than one place, as recorded on 2026-09-04.
+
+### 2026-09-06 — `cityDisplayName` and the `pillar` union, closed
+
+The two items left open on 2026-09-04. One of them turned out to be a live bug,
+not just duplication.
+
+**`cityDisplayName` had diverged, and the divergence threw at build.** The helper
+existed in `Footer.astro` and in `pages/websites/index.astro`. During todo 020 a
+`.filter(Boolean)` guard was added to the Footer copy — and only that one. Run
+against the same inputs:
+
+| slug | Footer (guarded) | websites/index (not) |
+|---|---|---|
+| `south-pasadena` | `"South Pasadena"` | `"South Pasadena"` |
+| `-pasadena` | `"Pasadena"` | **throws** |
+| `south--pasadena` | `"South Pasadena"` | **throws** |
+
+`word[0]` on an empty segment is `undefined`; `noUncheckedIndexedAccess` is off,
+so it types as `string` and the compiler cannot see it. A city added with a
+typo'd slug would have failed the build with
+`Cannot read properties of undefined (reading 'toUpperCase')`, pointing at a
+`.map()` rather than at the slug — and only from one of the two call sites.
+
+This is this todo's thesis caught in the act: **a fix applied to one copy of a
+duplicated answer and not the other.** The unguarded copy even carried
+`/** … Matches the same derivation Footer.astro uses. */` — an assertion that had
+stopped being true and was actively hiding the divergence. It is gone with the
+code it described. One implementation now lives in `cities.ts`, the module that
+owns city data.
+
+**The `pillar` union was in four places** — the Zod enum in `content.config.ts`,
+TypeScript unions in `EndCta.astro` and `Post.astro`, and `options` in
+`tina/config.ts`. All four now read `src/data/pillars.ts`.
+
+**`.ts`, not `.mjs`, and the difference from `locales.mjs` is worth stating.**
+The locale list is plain ESM because two bare-node scripts import it and cannot
+read TypeScript. Nothing needs the pillar list that way: `readability.mjs` and
+`content-status.mjs` pass a post's `pillar` value straight through from
+frontmatter without ever declaring the set. `tina/config.ts` is TypeScript
+compiled by @tinacms/cli's esbuild and already imports `./utils`, so every
+consumer can reach a `.ts` module. The format followed the consumers, not habit.
+
+`tina/config.ts` was touched, so the lock was regenerated per the CLAUDE.md rule.
+Hash **unchanged** (`b7c543d7…`) — `[...PILLARS]` compiles to the same four
+values — verified with `git diff --quiet`, not assumed.
+
+Tests: `cities.test.ts` gains the malformed-slug regression and a repo walk that
+fails if `cityDisplayName` is redefined anywhere; `pillars.test.ts` adds a
+compile-time guard (`string extends Pillar ? true : false` asserted `false`,
+which fails `npm run typecheck` if the `as const` is dropped and the union
+widens to `string`) plus a walk for a fifth copy. All four falsified: removing
+the guard, redefining the helper, re-declaring the union, and dropping the
+`as const` each turn something red — the last one failing both vitest and tsc.
+
+**todos/016 is now fully closed.**

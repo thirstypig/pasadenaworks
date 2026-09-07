@@ -1,15 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { cities, cityLocales } from '../../data/cities';
+import { cities, cityLocales, cityDisplayName } from '../../data/cities';
 import { SEGMENTS, localeUrl, cityHubPaths } from '../../i18n/routes';
 
 const translations = cityHubPaths();
 
 const englishCities = cities.filter((c) => cityLocales(c).includes('en'));
 
-/** "monterey-park" -> "Monterey Park". Matches the same derivation Footer.astro uses. */
-const cityDisplayName = (slug: string) =>
-  slug.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
 const description = `Website and local SEO work for small businesses across ${englishCities
   .map((c) => cityDisplayName(c.slug))
   .join(', ')}.`;

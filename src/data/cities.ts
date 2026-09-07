@@ -258,6 +258,30 @@ export const cities: City[] = [
 /** The locales a given city has real, published copy for. This is the only
  *  source of truth routing/hreflang code should use — never assume a city
  *  has all four locales. */
+/**
+ * "south-pasadena" -> "South Pasadena".
+ *
+ * ONE implementation, deliberately. This existed twice — in `Footer.astro` and
+ * in `pages/websites/index.astro` — and the two had DIVERGED: the `.filter(Boolean)`
+ * guard below was added to the Footer copy during todo 020 and never to the
+ * other. Measured, not assumed: on `-pasadena` or `south--pasadena` the
+ * unguarded copy threw `Cannot read properties of undefined (reading
+ * 'toUpperCase')` at build time, pointing at a `.map()` rather than at the bad
+ * slug. That is todos/016's whole thesis caught in the act — a fix applied to
+ * one copy of a duplicated answer and not the other.
+ *
+ * `.filter(Boolean)`: a doubled or leading hyphen yields an empty segment, and
+ * `word[0]` on it is undefined — `noUncheckedIndexedAccess` is off, so it types
+ * as `string` and throws at runtime instead of being caught by the compiler.
+ */
+export function cityDisplayName(slug: string): string {
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export function cityLocales(city: City): Locale[] {
   return (Object.keys(city.t) as Locale[]).filter((locale) => Boolean(city.t[locale]));
 }
