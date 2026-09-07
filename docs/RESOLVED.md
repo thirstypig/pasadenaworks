@@ -44,6 +44,18 @@ Read this before re-investigating anything that sounds already-handled.
   forwards leads into Twenty CRM via its REST API (2026-08-25/26). Zapier
   and Make.com were evaluated first but both paywall webhooks on their free
   tiers.
+
+  **Corrected 2026-09-05: the CRM half of that did not actually work until
+  then.** The POST was made and a record was created, but every field in it
+  was blank. `mode: 'no-cors'` forces the request to `text/plain`, n8n
+  delivers a text/plain body as a raw string, and `{{ $json.body.name }}` on
+  a string is `undefined` — rendered by n8n as an empty value. The site, n8n,
+  Twenty and the n8n dashboard all reported success throughout. Fixed by a
+  `Normalise payload` node ahead of the request, plus a `Valid submission?`
+  guard; verified against live executions ID#14 and ID#15. No leads were lost
+  — every prior execution came from the owner's own dev server. Full account
+  in `todos/013-complete-p2-crm-webhook-is-an-open-write-endpoint-in-page-source.md`,
+  and `src/components/contact-form.test.ts` now pins the contract.
 - Astro upgraded 5 → 7.2.7, resolving the high-severity XSS advisories
   (2026-08-26). No application code changes were needed for the migration.
 - `site.phone` is a real Google Voice number, (434) 373-0080 (2026-08-26).

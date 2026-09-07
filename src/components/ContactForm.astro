@@ -93,10 +93,24 @@ const strings = t(locale);
         // Formspree submission below is the source of truth for delivery.
         if (crmWebhookUrl) {
           const payload = Object.fromEntries(data.entries());
+          // `mode: 'no-cors'` is required here — the n8n webhook returns no
+          // CORS headers, so an ordinary request is blocked outright. The cost
+          // is that the browser then allows only three Content-Type values and
+          // SILENTLY DROPS anything else, so this body always arrives as
+          // text/plain no matter what we ask for. Confirmed in n8n's own
+          // execution log (ID#5): `content-type: text/plain;charset=UTF-8`.
+          //
+          // We therefore declare what is actually sent instead of a value the
+          // browser discards. This header said `application/json` for ten days
+          // and read as though the receiver would get parsed JSON; it got a
+          // string, `$json.body.name` was undefined, and every enquiry created
+          // a BLANK person in Twenty while the site, n8n and the CRM all
+          // reported success. The workflow's `Normalise payload` node now
+          // parses it. See todos/013.
           fetch(crmWebhookUrl, {
             method: 'POST',
             mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
             body: JSON.stringify(payload),
           }).catch(() => {});
         }
