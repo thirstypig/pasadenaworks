@@ -618,13 +618,12 @@ Full write-up in
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
-  **Genuinely open work does not live only in files named `pending`.** Three items
+  **Genuinely open work does not live only in files named `pending`.** Two items
   sit inside todos marked `complete`, parked as decisions rather than defects,
   and a filename sweep will miss all of them:
 
   | From | Item |
   |---|---|
-  | `013` | The enquiry `message` never reaches Twenty — the HTTP Request body maps only `name` and `email`. Needs a Note on the person, so a second node |
   | `018` | No consent-withdrawal path. Fine for CCPA, weak for GDPR — a business call |
   | `020` | English and localized pages diverge visually (logo hero, frame styles, city hub list vs card grid) — a deliberate call, not drift |
 
@@ -686,4 +685,5 @@ Read that file before re-investigating any of these.
 - `tina/tina-lock.json` is the schema Tina Cloud serves; not committing it broke every deploy (2026-09-05)
 - The contact form's CRM leg wrote blank records into Twenty for ten days; `no-cors` forces text/plain and n8n handed the workflow a string (2026-09-05)
 - Blog hero images are self-hosted from `public/blog/`, not hotlinked from Unsplash; the schema now fails the build on an external URL (2026-09-06)
+- The contact form's enquiry text reaches Twenty as a Note; the workflow is Webhook → Normalise → Valid? → Person → Note → link (2026-09-06)
 - The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)

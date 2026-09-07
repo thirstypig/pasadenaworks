@@ -444,3 +444,54 @@ consistent with the position taken on the earlier CRM write.
 
 Until then the enquiry text still does not reach Twenty: a captured lead has a
 name and an email and no indication of what was asked.
+
+### 2026-09-06 — The `message` gap is closed, and the guess was wrong
+
+The probe settled both unknowns, and it is worth recording that **the inferred
+field name was incorrect**. A throwaway note was created against the
+`Guard test — DELETE ME` person, read back with `select: ['*']`, and deleted. The
+stored record's real fields:
+
+    noteId · targetPersonId · targetCompanyId · targetOpportunityId · position
+
+It is **`targetPersonId`**, not `personId`. The MCP's naming was not tool sugar
+over a shorter REST column, which is what the draft config had assumed. Shipping
+that guess would have failed the link on every enquiry — and the failure would
+have been quiet, because the person record is created by an earlier node that
+would have gone on succeeding.
+
+The note shape was confirmed at the same time: `title` plus
+`bodyV2: { markdown }`. Twenty generates the `blocknote` representation itself
+from the markdown, so sending markdown alone is correct.
+
+**The workflow is now six nodes**, published as "Attach the enquiry message as a
+Note":
+
+    Webhook → Normalise payload → Valid submission? →(true)→ HTTP Request
+            → Create enquiry note → Attach note to person
+
+**Verified against the live system.** One test submission produced, in Twenty:
+
+| record | content |
+|---|---|
+| person | `Note test — DELETE ME`, `note-test-delete-me@example.com` |
+| note | title `Website enquiry — Note test — DELETE ME`; body carries the full message **with its newlines and paragraph break intact**, then a footer with the sender's email and `Language: es` from `_locale` |
+| noteTarget | links that note to that person |
+
+That last row also settles the final inference in this todo: the link resolved a
+real person id, so `POST /rest/notes` does return `data.createNote.id`, matching
+`data.createPerson.id`. Confirmed by observation rather than by consistency
+argument.
+
+**A process note.** Pasting the six-node workflow went wrong twice and both
+failures were mine, not n8n's. The first paste *had* worked; the screenshot was
+taken before it rendered, so a second paste produced a duplicate of every node.
+Then a verification script crashed midway through printing the connection map —
+n8n drops an empty `false` branch, so `main[1]` does not exist — and the partial
+output looked exactly like a workflow missing its last two connections. Both were
+resolved by reading state back rather than trusting a screenshot or a truncated
+loop. **In a browser-driven edit, confirm by round-tripping the JSON, not by
+looking at the canvas.**
+
+All five acceptance criteria remain met, and the enquiry text now reaches the
+CRM. Rate limiting is still a deliberate second step.
