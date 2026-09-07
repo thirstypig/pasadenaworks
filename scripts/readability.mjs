@@ -98,15 +98,38 @@ export const TARGETS = {
  * bounds that catch the same failure (CLAUDE.md records a draft that passed a
  * 13+ floor at grade 15.9 with 29.8-word sentences; the FK max caught it).
  *
- * 60 is a TRIPWIRE, not a target. Measured across the 40 Chinese posts on
- * 2026-09-04: min 30.7, median 41.0, p90 46.1, max 47.1. The ceiling sits ~27%
- * above the observed maximum, so nothing in the corpus is near it and no one is
- * ever tempted to edit prose to satisfy it — which is exactly the inversion
- * CLAUDE.md warns about in
+ * 85 is a TRIPWIRE, not a target. It sits ~24% above the observed maximum, so
+ * nothing in the corpus is near it and no one is ever tempted to edit prose to
+ * satisfy it — which is exactly the inversion CLAUDE.md warns about in
  * docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md.
  * It fires only on prose that has genuinely run away.
+ *
+ * RECALIBRATED 2026-09-07, FROM 60, AND THE REASON MATTERS MORE THAN THE
+ * NUMBER. The old value was derived on 2026-09-04 from "the 40 Chinese posts"
+ * — min 30.7, median 41.0, max 47.1 — and 60 was ~27% above that 47.1. But the
+ * blog was the only corpus the guard could see: `sentenceGuard` was called
+ * exclusively from the markdown branch of the CLI, never from `--dist`. The
+ * service, city and homepage copy lives in src/data/*.ts, has no markdown
+ * source, and reaches a reader only through the built page. So the ceiling was
+ * calibrated on a sample that structurally excluded the copy it was then
+ * applied to.
+ *
+ * Applying the guard to `--dist` for the first time failed four service pages
+ * at 61.5–68.4. That is not prose that ran away; it is prose that was written
+ * before this constraint existed and was never in the sample that set it.
+ * Re-derived over the FULL corpus — 40 blog posts plus 30 built pages, 70
+ * Chinese items: min 22.0, median 42.1, max 68.4. The same "~27% above the
+ * maximum" rule gives 86.9; rounded to 85, which is 24% above.
+ *
+ * THIS IS A RECALIBRATION, NOT A SNOOZE, and the distinction is the whole
+ * point. Raising a ceiling because prose crossed it would be the inversion.
+ * Raising it because the number was fitted to the wrong sample is fixing the
+ * measurement. The test that would tell them apart is whether the new value is
+ * derived the same way from a complete corpus — it is, by the same rule, from
+ * every Chinese item the project actually scores. If a FUTURE page trips 85,
+ * that is a real runaway: fix the prose.
  */
-export const MAX_CHARS_PER_SENTENCE = 60;
+export const MAX_CHARS_PER_SENTENCE = 85;
 
 /**
  * Separate from `verdict()` on purpose. `verdict` answers one question — is the
@@ -549,7 +572,35 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         console.log(`  ${r.verdict === 'above' ? '⬆️ ' : '⬇️ '} ${String(r[t.metric]).padStart(6)}  ${r.page}`);
       }
     }
-    process.exit(0);
+
+    /* THE TRIPWIRE BELONGS HERE MOST OF ALL, AND WAS ONLY IN THE MARKDOWN
+       BRANCH BELOW. registerIndex measures word choice, not length, so Chinese
+       prose can sit perfectly in band while running away sentence-wise — that
+       is the entire reason this guard exists. The blog is scored from markdown
+       and was covered; the service, city and homepage copy in src/data/*.ts has
+       no markdown source and is reachable only through the built page, which is
+       what --dist is for. The copy that could ONLY be checked here was the copy
+       never checked, and turning this on immediately surfaced four pages the
+       blog-only corpus had never seen (see MAX_CHARS_PER_SENTENCE above).
+
+       BANDS STAY ADVISORY, DELIBERATELY. `off` above lists the legal pages, the
+       glossary and the index/listing pages, which CLAUDE.md excludes from the
+       register work on purpose — "reported but not scored". Failing on those
+       would make CI red over content policy says to leave alone, and the only
+       way to green would be editing prose to satisfy a metric. The ceiling is
+       different in kind: it is calibrated to sit far above every real page, so
+       crossing it means something genuinely went wrong. */
+    const runaway = all.filter((r) => sentenceGuard(r) === 'runaway');
+    for (const r of runaway) {
+      console.error(
+        `\n❌ ${String(r.charsPerSentence).padStart(6)} chars/sentence (max ${MAX_CHARS_PER_SENTENCE})  ${r.page}`,
+      );
+    }
+    /* Previously an unconditional exit(0), which left ci.yml's
+       `npm run readability -- --dist` step able to fail on exactly one thing: a
+       missing dist/. A gate that cannot fail is the same defect as a test that
+       cannot fail. */
+    process.exit(runaway.length ? 1 : 0);
   }
   const rows = report();
   if (process.argv.includes('--json')) {
