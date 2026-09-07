@@ -12,6 +12,14 @@ import { LOCALES } from '../src/i18n/locales.mjs';
 // Same reasoning as LOCALES above, one file over: this `options` list was a
 // fourth hand-kept copy of the four pillar names. See src/data/pillars.ts.
 import { PILLARS } from '../src/data/pillars';
+// Same reasoning again, one file over. `heroImage`'s rule lives in one place so
+// this validator and the Astro schema cannot disagree — which they did, in
+// opposite directions, from 2026-09-06 until 2026-09-07. See the field below.
+import {
+  isValidHeroImagePath,
+  isProtocolRelative,
+  hasTraversalSegment,
+} from '../src/data/hero-image';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -159,21 +167,40 @@ export default defineConfig({
           {
             type: 'string',
             name: 'heroImage',
-            label: 'Hero image URL',
+            label: 'Hero image path',
             description:
-              'A direct image URL (e.g. an images.unsplash.com/photo-... link) — a real, relevant photo, not generic stock. See README for guidance.',
-            // Astro enforces z.string().url(); "photo.jpg" saved fine here and
-            // then failed the build. Same class as `tags` above, and the same
-            // lock-file requirement.
+              'A path to an image in public/blog/, e.g. /blog/my-photo.jpg. Upload the file to the repo first. External URLs are rejected — see README.',
+            // THIS VALIDATOR WAS ONCE THE EXACT INVERSE OF THE BUILD'S RULE.
+            // It called `new URL(value)` and demanded a full https:// URL,
+            // which was right while Astro enforced z.string().url(). PR #30
+            // self-hosted the hero images on 2026-09-06 and flipped the Astro
+            // rule to root-relative paths — and this side was not flipped with
+            // it. For a day, Tina rejected every legal value and accepted the
+            // one value that fails the build, while the description above told
+            // editors to paste an images.unsplash.com link.
+            //
+            // That combination is worse than either half. Tina commits straight
+            // to `main` with no PR gate, and `deploy.yml`'s cron is the only
+            // thing that publishes a date-gated post — so an editor following
+            // this field's own instructions turned the daily publish red.
+            //
+            // It now imports the rule instead of restating it, so the two ends
+            // cannot drift again. The three checks are reported separately
+            // because whoever pastes a bad value is not whoever wrote the
+            // pattern; see src/data/hero-image.ts.
             ui: {
               validate: (value?: string) => {
                 if (!value) return undefined; // optional in the Astro schema too
-                try {
-                  new URL(value);
-                  return undefined;
-                } catch {
-                  return 'Must be a full URL, starting with https://';
+                if (isProtocolRelative(value)) {
+                  return 'A path starting with // is an external image — use /blog/your-photo.jpg.';
                 }
+                if (hasTraversalSegment(value)) {
+                  return 'No ".." segments — the path must point inside public/.';
+                }
+                if (!isValidHeroImagePath(value)) {
+                  return 'Must be a path like /blog/your-photo.jpg (.jpg, .jpeg, .png, .webp or .avif). External URLs are not allowed.';
+                }
+                return undefined;
               },
             },
           },
@@ -182,6 +209,22 @@ export default defineConfig({
             name: 'heroAlt',
             label: 'Hero image alt text',
             description: 'Required if a hero image is set — describe what’s in the photo.',
+            // The description above said "Required" for months and nothing
+            // enforced it here, so a hero photo could be saved with no alt and
+            // fail the build — the same prose-only constraint that
+            // src/content.config.ts calls out at its `.refine()`. Not
+            // `required: true`, which would demand alt text on posts that have
+            // no hero image at all; this mirrors the Astro rule exactly, which
+            // is conditional on heroImage.
+            ui: {
+              validate: (value: string | undefined, allValues?: { heroImage?: string }) => {
+                if (!allValues?.heroImage) return undefined;
+                if (!value?.trim()) {
+                  return 'Required when a hero image is set — describe the photo for screen readers.';
+                }
+                return undefined;
+              },
+            },
           },
           {
             type: 'string',
