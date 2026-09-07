@@ -319,3 +319,55 @@ step for a mutation test on uncommitted work.**
 
 **Still open from this todo:** the English/localized visual divergence remains a
 deliberate call.
+
+### 2026-09-06 — The English/localized divergence, closed with one deliberate exception
+
+The last open item. Investigating it first showed the one-line description was
+partly wrong, so the finding is worth restating before the fix:
+
+| difference | verdict |
+|---|---|
+| Localized homepages carry service-area and closing sections English lacks | **Authored content.** `home.ts` defines `serviceAreaHeading`, `serviceAreaIntro`, `closingHeading`, `closingBody`, `closingCta` for exactly this. Not drift; left alone |
+| English hero shows the logo lockup, localized heroes show no image | Drift. Three of four languages looked like a different brand above the fold |
+| English service cards use `label-frame`, localized ones plain | Drift |
+| "city hub as list vs card grid" | **Backwards, and stale.** Both are `display: grid`; the *localized* one is the card-styled version. The real difference was typography |
+
+The owner chose full parity including the logo. Localized heroes now carry the
+same lockup in the same `label-frame`, the same two-column `.hero__inner`, and
+the service cards carry the frame.
+
+**One difference was kept, and only because rendering it proved the "fix" was
+worse.** Setting `.city-list` in the display face — matching English — looked
+correct in the diff and wrong on the page. `--font-display` is
+`'Anton', …, var(--font-cjk-display)`: Anton holds no Han glyphs, so the stack
+deliberately hands Chinese to PingFang/Noto while Latin gets Anton. That is
+right for a heading, which is one script throughout. It is wrong for a zh
+city-hub item, which embeds a Latin city name inside CJK prose —
+亞凱迪亞（Arcadia）商家網站設計與在地推廣 — where "Arcadia" renders ultra-bold
+condensed against regular-weight Chinese **inside a single line**. English and
+Spanish items are pure Latin and never show it.
+
+So the rule is per-script, not per-locale: `es` matches English in Anton at
+`--step-1`; `zh` keeps the body serif at `--step-0`. Confirmed by computed style
+on the rendered pages — the es hub reports Anton at 22.4px, the zh hub the
+Source Serif stack at 18px.
+
+`:global()` is correct there because it sits inside a **scoped** `<style>` block;
+verified in the built CSS, which contains `html[lang^=zh] .city-list[data-astro-cid-…]`
+and **zero** occurrences of `:global` — the documented failure mode where the
+selector ships verbatim and the browser discards the whole rule.
+
+**A mistake worth recording.** The parity test was first written to
+`src/pages/homepages.test.ts`. Everything under `src/pages/` is a **route**, so
+Astro tried to build it as `/homepages.test`, which failed the build and left a
+half-written `dist/` containing a `.prerender` directory — briefly looking like
+the build output had been corrupted by something external. Colocating tests works
+everywhere else in this repo because those directories are not the router. It
+now lives at `src/i18n/homepage-parity.test.ts`, beside `rendered-links.test.ts`,
+which is where a cross-locale invariant belongs anyway.
+
+Six tests pin the lockup, the card frame, the hero's two-column rules, the
+display face on both hubs, the zh exception, and that parity was not achieved by
+hardcoding English into the localized page. All falsified individually.
+
+**todos/020 is now fully closed**, and with it every finding in `todos/`.

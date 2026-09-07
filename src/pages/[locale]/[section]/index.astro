@@ -198,5 +198,29 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
     display: grid;
     gap: var(--space-3);
     margin-top: var(--space-5);
+    /* Matches the English city hub in src/pages/websites/index.astro, which
+       sets these in the display face. */
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+
+  /* EXCEPT in Chinese, and this is not a preference.
+
+     `--font-display` is `'Anton', …, var(--font-cjk-display)` — Anton holds no
+     Han glyphs, so the stack deliberately hands Chinese to PingFang/Noto while
+     Latin gets Anton. That is right for a heading, which is all one script. It
+     is wrong here: a zh city-hub item embeds a Latin city name inside CJK
+     prose — 亞凱迪亞（Arcadia）商家網站設計與在地推廣 — so "Arcadia" renders
+     ultra-bold condensed against regular-weight Chinese, a visible mismatch
+     inside a single line. The English hub never shows it because its items are
+     pure Latin, and Spanish does not either.
+
+     Seen on the rendered page, not deduced: applying the display face here
+     uniformly was tried on 2026-09-06 and looked worse than the inconsistency
+     it removed. `:global()` is valid because this IS a scoped <style> block —
+     see the gotcha in CLAUDE.md about it being inert in plain .css. */
+  :global(html[lang^='zh']) .city-list {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
   }
 </style>
