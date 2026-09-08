@@ -181,13 +181,36 @@ describe('Chinese register index', () => {
 });
 
 describe('sentenceGuard (the runaway-sentence ceiling)', () => {
-  it('passes the whole Chinese corpus, with headroom', () => {
+  it('passes the whole Chinese blog corpus, with headroom', () => {
     // A tripwire, not a target. If this ever fails, the prose ran away — do not
-    // raise the ceiling to make it pass. Measured 2026-09-04: max was 47.1
-    // against a ceiling of 60.
+    // raise the ceiling to make it pass. Blog max measured 47.1 against a
+    // ceiling of 85.
     const tripped = report()
       .filter((r) => sentenceGuard(r) === 'runaway')
       .map((r) => `${r.file}: ${r.charsPerSentence} chars/sentence`);
+    expect(tripped).toEqual([]);
+  });
+
+  /*
+   * THE HALF THAT WAS MISSING, AND IT IS THE HALF THAT MATTERS. The assertion
+   * above reads markdown, so it covers the blog and nothing else. Service, city
+   * and homepage copy lives in src/data/*.ts, has no markdown source, and is
+   * measurable only from the built page — and `sentenceGuard` was never called
+   * on that path at all. The ceiling was therefore calibrated on a corpus that
+   * structurally could not contain the copy most likely to trip it, which is
+   * exactly how four service pages sat at 61.5–68.4 under a ceiling of 60
+   * without anything noticing.
+   *
+   * Skips without dist/ like the cross-check below, which is why ci.yml re-runs
+   * this suite AFTER the build.
+   */
+  it.skipIf(!existsSync(DIST_DIR))('passes the built pages too, which is where the copy with no markdown source lives', () => {
+    const rendered = reportDist(DIST_DIR);
+    const zh = rendered.filter((r) => r.locale?.startsWith('zh') && r.charsPerSentence != null);
+    expect(zh.length, 'dist/ yielded no Chinese pages to measure').toBeGreaterThan(0);
+    const tripped = zh
+      .filter((r) => sentenceGuard(r) === 'runaway')
+      .map((r) => `${r.page}: ${r.charsPerSentence} chars/sentence`);
     expect(tripped).toEqual([]);
   });
 

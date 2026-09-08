@@ -522,7 +522,7 @@ the targets and the reasoning; `scripts/readability.test.mjs` locks them.
 | `es` | Fernández Huerta (**lower = harder**) | 40–55 |
 | `zh-hans` / `zh-hant` | 書面語 register index | 0.55–0.85 |
 
-Chinese also carries a **runaway-sentence ceiling of 60 characters per
+Chinese also carries a **runaway-sentence ceiling of 85 characters per
 sentence** (`MAX_CHARS_PER_SENTENCE`, checked by `sentenceGuard()`). It exists
 because `registerIndex` measures word choice, not length — the two come apart in
 Chinese, which is the whole reason that metric replaced characters-per-sentence
@@ -530,12 +530,34 @@ Chinese, which is the whole reason that metric replaced characters-per-sentence
 English and Spanish need no equivalent: their primary metrics are already
 length-sensitive and their band maxima catch the same failure.
 
-It is a **tripwire, not a target**. Measured across the 40 Chinese posts: min
-30.7, median 41.0, max 47.1. The ceiling sits ~27% above the observed maximum, so
-nothing is near it and no one is tempted to edit prose to satisfy it — which is
-the inversion the write-up below warns about. Added 2026-09-04, after the file
-header had claimed such a guard existed for months while nothing compared the
-value to anything.
+It is a **tripwire, not a target**. Measured across the full Chinese corpus —
+40 blog posts plus 30 built pages, 70 items: min 22.0, median 42.1, max 68.4.
+The ceiling sits ~24% above the observed maximum, so nothing is near it and no
+one is tempted to edit prose to satisfy it — which is the inversion the write-up
+below warns about. Added 2026-09-04, after the file header had claimed such a
+guard existed for months while nothing compared the value to anything.
+
+**It was 60 until 2026-09-07, and why it moved is the lesson.** `sentenceGuard()`
+was called only from the CLI's markdown branch, never from `--dist` — so the
+guard could see the blog and nothing else, and the 60 was derived from that
+blog-only sample (max 47.1, +27%). But service, city and homepage copy lives in
+`src/data/*.ts`, has no markdown source, and is measurable *only* from the built
+page. The ceiling was calibrated on a sample that structurally excluded the copy
+most likely to trip it. Wiring the guard into `--dist` failed four service pages
+at once (61.5–68.4).
+
+**That is a recalibration, not a snooze, and the difference is testable.**
+Raising a ceiling because prose crossed it is the metric-corrupts-prose
+inversion. Raising it because the number was fitted to the wrong sample is
+fixing the measurement — and the check is whether the new value comes from the
+same rule applied to a *complete* corpus. It does. If a future page trips 85,
+that is a genuine runaway: fix the prose, not the number.
+
+`scripts/readability.test.mjs` now asserts the guard against **both** corpora,
+and the built-page half skips without `dist/` — which is why `ci.yml` re-runs
+the suite after the build. `npm run readability -- --dist` also exits non-zero
+on a runaway now; it previously ended in an unconditional `exit(0)`, so that CI
+step could fail on exactly one thing, a missing `dist/`.
 
 **One formula per language, never one across all four.** Flesch-Kincaid is
 defined over English syllables; on Spanish it inflates, and on Chinese it is
