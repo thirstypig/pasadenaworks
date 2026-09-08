@@ -91,6 +91,29 @@ reserved block (3180–3189 / 4180–4189) and update both the local and root
 copies of the registry — never just pick a free-looking port without
 checking there first.
 
+**`--port` is a preference, not a reservation, and that is how a pinned port
+still ends up in someone else's slot.** Astro increments when the port it was
+given is busy, silently and with a success message. Found 2026-09-07: a second
+`npm run preview` started 2026-09-06 23:07 was serving on **3181** with
+`--port 3180` on its own command line, because a first preview already held
+3180. 3181 is the ops-panel's assigned slot (`~/Projects/property-page/
+ops-panel`, deliberately taken from *this* project's block because ops-panel
+deploys into the same Railway project), so `npm run dev` there would have been
+answered by a stale copy of this site. The tell is confusing: a request to the
+ops panel returns **200 with GA tags** instead of the panel's 401.
+
+So a leftover `preview` is not harmless background noise — it is a squatter one
+port to the right. Before blaming a port, check who actually holds it and what
+they were *asked* to hold:
+
+```bash
+lsof -nP -iTCP:3181 -sTCP:LISTEN            # who is really there
+ps -o lstart=,command= -p <pid>             # since when, and with which --port
+```
+
+A mismatch between the `--port` argument and the listening port is the whole
+diagnosis.
+
 Deployment is automatic: pushing to `main` triggers
 `.github/workflows/deploy.yml`. Never build and commit `dist/` — it's gitignored
 and the Action handles it.
