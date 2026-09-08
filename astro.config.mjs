@@ -3,6 +3,33 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://pasadenaworks.com',
+
+  // FAIL on a busy port instead of quietly taking the next one.
+  //
+  // `--port 3180` is a preference, not a reservation: Astro increments when the
+  // port is busy and still reports success. On 2026-09-06 a second `preview`
+  // carrying `--port 3180` on its own command line ended up serving on 3181,
+  // which is the ops-panel's reserved slot — so a request to the ops panel
+  // answered 200 with GA tags instead of its 401. The mismatch between the
+  // `--port` argument and the listening port was the whole diagnosis, and
+  // nothing surfaced it, because both halves of the system were reporting
+  // success.
+  //
+  // strictPort turns that into `exit 1` and "Preview server process exited
+  // before becoming ready." Ports here come from a cross-project registry
+  // (~/Projects/MASTER-PORTS.md), so a busy reserved port is never something to
+  // route around — it means a stale server is already holding it, and the right
+  // answer is `astro preview stop`, not a silent move one slot to the right.
+  //
+  // Note `astro preview` is a DETACHED DAEMON in Astro 7: `npm run preview`
+  // returns to the prompt and leaves the server running past the terminal.
+  // That is how four of these accumulated across two repos. `npm run
+  // preview:status` / `preview:stop` are the way out.
+  vite: {
+    server: { strictPort: true },
+    preview: { strictPort: true },
+  },
+
   integrations: [
     // NO `i18n` OPTION HERE, deliberately.
     //
