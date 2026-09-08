@@ -27,7 +27,7 @@ roots. Only this repo's mirror is reduced.
 | Product / Service                   | Frontend | API  | WebSocket | PostgreSQL | Redis | Notes |
 |-------------------------------------|----------|------|-----------|------------|-------|-------|
 | **pasadenaworks**                   | 3180     | —    | —         | —          | —     | Astro marketing site, static, GitHub Pages at pasadenaworks.com. `npm run dev` / `npm run preview` are pinned to `-p 3180`. |
-| **ops-panel** (ops.pasadenaworks.com) | 3181   | —    | —         | —          | —     | Password-gated internal dashboard, `~/Projects/ops-panel`. Assigned 2026-08-31 from this block rather than opening a new one. |
+| **ops-panel** (ops.pasadenaworks.com) | 3181   | —    | —         | —          | —     | Password-gated internal dashboard, `~/Projects/property-page/ops-panel`. Assigned 2026-08-31 from this block rather than opening a new one. |
 
 **Reserved range: 3180–3189 / 4180–4189, PG 5456, Redis 6395.**
 
