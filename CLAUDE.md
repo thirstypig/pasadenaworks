@@ -60,7 +60,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 76 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 261) — i18n/hreflang, reading time, city/service
+npm run test         # tests (vitest, 264) — i18n/hreflang, reading time, city/service
                      #   lookups, blog i18n helpers, blog content integrity, the content-status
                      #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
                      #   match globs + filename slugifier, the per-locale readability
@@ -748,3 +748,7 @@ Read that file before re-investigating any of these.
 - Analytics consent can be withdrawn from the footer, in all four languages; `define:vars` makes that script `is:inline`, so it must delegate (2026-09-06)
 - The four homepages are one design again — localized heroes carry the logo lockup and framed service cards (2026-09-06)
 - The publishing cron has a monthly heartbeat, so GitHub cannot disable it for inactivity (2026-09-04)
+- The booking CTA was dead for nine days — a Testing-mode Google OAuth app expires refresh tokens after 7 days, and Cal.com answers an unreadable calendar with zero slots rather than an error (2026-09-07) — full write-up in `docs/solutions/integration-issues/calcom-testing-mode-oauth-expires-and-availability-goes-silently-empty.md`
+- The contact form's honeypot no longer eats a real lead to Chrome autofill, and a retry no longer duplicates the CRM record; verified from a real browser against production (2026-09-07)
+- The Chinese sentence ceiling is calibrated on the corpus it governs, and `readability -- --dist` can actually fail (2026-09-07)
+- The ops panel sends `no-store` and no longer hotlinks Google Fonts (2026-09-07, property-page#2)
