@@ -323,3 +323,33 @@ Read this before re-investigating anything that sounds already-handled.
   earlier version of the comment claimed otherwise. Whether GitHub counts a bot
   commit as repository activity takes 60 quiet days to confirm; a fine-grained
   PAT removes the doubt if that certainty is wanted.
+
+- **The booking CTA was dead for nine days, and nothing reported it**
+  (2026-09-07). `site.bookingUrl` led to a Cal.com page offering no times in any
+  month. The availability schedule was never the problem — it was correct
+  throughout. The Google Calendar OAuth credential had expired because the Cloud
+  project sat in **Testing** publishing status, where Google expires refresh
+  tokens after 7 days regardless of whether the test user is still listed; and
+  Cal.com answers an unreadable conflict calendar by offering **zero slots**
+  rather than an error, which to a visitor is indistinguishable from being fully
+  booked. Fixed by publishing the OAuth app (Testing → In production), which
+  removes the expiry, then reconnecting. Railway's own logs dated the breakage to
+  2026-08-29 and settled which Google account owned which half — the Cal.com
+  login and the connected calendar are different accounts, and conflating them
+  cost an hour. Verified by loading the public page and confirming slot patterns
+  that **differ by day**, which is what proves real free/busy is being read.
+  Full write-up in
+  [`docs/solutions/integration-issues/calcom-testing-mode-oauth-expires-and-availability-goes-silently-empty.md`](solutions/integration-issues/calcom-testing-mode-oauth-expires-and-availability-goes-silently-empty.md).
+
+- **The contact form no longer loses a lead to autofill, or duplicates one on a
+  retry** (2026-09-07). The honeypot's label read "Company"; Chrome's address
+  autofill matches on the label and ignores `autocomplete="off"` for address
+  forms, so a visitor with a saved profile could have the trap filled for them —
+  and the handler discarded the enquiry while showing the success message.
+  Separately, the CRM webhook fires before the awaited Formspree submit (so an
+  outage still lands the lead somewhere), which meant a Formspree failure plus a
+  retry wrote a second Person *and* Note for one enquiry. Verified against
+  production from a real browser after deploy: one submission produced a
+  populated person, a note with its paragraph breaks intact and a `noteTarget`
+  linking them; an identical resubmit produced **no second n8n execution and no
+  second record**.
