@@ -10,6 +10,8 @@
     "dev": "astro dev --port 3180",
     "build": "astro build",
     "preview": "astro preview --port 3180",
+    "preview:status": "astro preview status",
+    "preview:stop": "astro preview stop",
     "admin": "tinacms dev -c \"astro dev --port 3180\"",
     "test": "vitest run",
     "typecheck": "astro sync && astro check && tsc --noEmit",

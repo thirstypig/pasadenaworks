@@ -52,7 +52,11 @@ That means:
 npm install          # once
 npm run dev          # dev server at localhost:3180 (see cross-project port registry below)
 npm run build        # production build into dist/ — RUN THIS BEFORE FINISHING
-npm run preview      # serve the built site, also on localhost:3180
+npm run preview      # serve the built site, also on localhost:3180. DETACHED —
+                     #   it returns to the prompt and keeps running past the
+                     #   terminal. Use the two commands below to see and stop it.
+npm run preview:status  # is a background preview running, on what port, since when
+npm run preview:stop    # stop it
 npm run admin        # dev server + Tina CMS admin at localhost:3180/admin/index.html
 npm run readability  # reading level of every post, per locale, against the house targets
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
@@ -113,6 +117,32 @@ ps -o lstart=,command= -p <pid>             # since when, and with which --port
 
 A mismatch between the `--port` argument and the listening port is the whole
 diagnosis.
+
+**Astro no longer increments — `strictPort` is on (2026-09-07).**
+`astro.config.mjs` sets `vite.server.strictPort` and `vite.preview.strictPort`,
+so a busy port is now `exit 1` and *"Dev/Preview server process exited before
+becoming ready"* instead of a success message one slot to the right. Verified
+both ways: without it, `npm run preview` against a held 3180 exits **0** and
+serves 3181; with it, nothing binds and the exit code is **1**. Ports here come
+from a registry, so a busy reserved port is never something to route around — it
+means something stale is holding it.
+
+This works because Astro's dev and preview servers are both Vite servers
+underneath, and Astro sets `preview.port` but never `strictPort`, so a
+user-supplied one survives the `mergeConfig`. There is no Astro-level option for
+this — `strictPort` appears nowhere in Astro's own source, only Vite's.
+
+**`astro preview` is a DETACHED DAEMON in Astro 7, and that is the real reason
+these accumulate.** `npm run preview` prints a URL and returns to the prompt;
+the server keeps running after the terminal closes, never appears in the shell's
+job list, and survives until it is explicitly stopped. Four had piled up across
+this repo and property-page by 2026-09-07, the oldest seven days old. Astro
+tracks one per project, so a second `npm run preview` here now answers *"Preview
+server already running at :3180"* rather than starting another — but a `dev`
+server and a `preview` server are different daemons and will still contend,
+which is exactly how property-page ended up with `dev` on 3190 and `preview`
+displaced onto 3191. Reach for `npm run preview:status` before assuming a port
+is free, and `npm run preview:stop` rather than hunting a pid.
 
 Deployment is automatic: pushing to `main` triggers
 `.github/workflows/deploy.yml`. Never build and commit `dist/` — it's gitignored
