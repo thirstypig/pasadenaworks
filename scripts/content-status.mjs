@@ -11,8 +11,13 @@
  *  tinacms 3.12.1's own types). So there is no way to see publish dates or
  *  translation coverage without opening each post. This writes a table
  *  instead, at the repo root, where Tina's "Project Docs" collection picks
- *  it up — its glob is `DOCS_ROOT_INCLUDE = '*'` in tina/utils.ts, i.e. every
- *  `.md` at the repo root. NOT `'*.md'`: Tina appends the collection's format
+ *  it up — its glob is `DOCS_ROOT_INCLUDE = '!(CLAUDE)'` in tina/utils.ts, i.e.
+ *  every `.md` at the repo root except CLAUDE.md, which is deliberately kept
+ *  out of the editor. (This comment quoted `'*'`, the value before that
+ *  write-protection landed; the conclusion — that CONTENT-STATUS.md is picked
+ *  up at the root — still held, but the quoted glob misstated what a Tina
+ *  editor can actually reach.)
+ *  NOT `'*.md'` in either case: Tina appends the collection's format
  *  itself, so writing the extension produces `*.md.md` and the collection
  *  indexes zero documents with no error. That is the bug this comment used to
  *  describe as the fix — see docs/solutions/integration-issues/

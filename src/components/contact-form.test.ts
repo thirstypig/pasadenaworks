@@ -68,8 +68,19 @@ describe('contact form → n8n → Twenty CRM contract', () => {
   it('still sends the body as JSON text, because the workflow parses it', () => {
     // Normalise payload does JSON.parse on this string. If the body ever stops
     // being JSON text, that node yields {} and the guard rejects everything.
+    //
+    // This used to assert the literal `body: JSON.stringify(payload)`, which
+    // broke when the value was hoisted into `serialised` to dedupe retries —
+    // a rename, not a regression. Follow the binding instead of the spelling:
+    // whatever `body` is given must be JSON.stringify of the payload.
     const crmCall = source.slice(source.indexOf('fetch(crmWebhookUrl'));
-    expect(crmCall).toMatch(/body:\s*JSON\.stringify\(payload\)/);
+    const bodyExpr = crmCall.match(/body:\s*([A-Za-z0-9_.()]+)/)?.[1] ?? '';
+    expect(bodyExpr, 'the CRM fetch must pass a body').not.toBe('');
+    if (bodyExpr.startsWith('JSON.stringify')) return;
+    expect(
+      source.includes(`const ${bodyExpr} = JSON.stringify(payload)`),
+      `body is \`${bodyExpr}\`, which must be assigned JSON.stringify(payload)`,
+    ).toBe(true);
   });
 
   it('keeps mode: no-cors — the webhook sends no CORS headers', () => {
@@ -93,9 +104,45 @@ describe('contact form → n8n → Twenty CRM contract', () => {
     // Formspree drops on the literal name `_gotcha`, and the n8n guard now
     // checks the same field, so the two ends agree only if this holds.
     expect(source).toContain('name="_gotcha"');
+    // The second half of this used to be
+    //   source.includes("get('_gotcha')") || source.includes('_gotcha')
+    // whose right-hand side is already guaranteed by the line above, so the
+    // whole assertion was a tautology: deleting the handler's honeypot check
+    // outright still passed. That is exactly the "rendered but read by nobody"
+    // state this test was written to prevent. Falsified by deleting the
+    // `data.get('_gotcha')` branch — now red.
     expect(
-      source.includes("get('_gotcha')") || source.includes('_gotcha'),
+      source.includes("data.get('_gotcha')"),
       'the handler must read the honeypot, not merely render it',
+    ).toBe(true);
+  });
+
+  it('does not label the honeypot with a field name autofill recognises', () => {
+    // Chrome's address autofill matches on the LABEL and ignores
+    // autocomplete="off" for address forms. The label said "Company", so a
+    // visitor with a saved address profile could have the trap filled for them
+    // — and the handler discards that enquiry while showing the success
+    // message. Silent loss of a real lead on the only conversion path.
+    const AUTOFILL_PROFILE_LABELS = ['Company', 'Organization', 'Address', 'Name', 'Email'];
+    const honeypotLabel = source.match(/<label for="_gotcha">([^<]*)<\/label>/)?.[1] ?? '';
+    expect(honeypotLabel, 'the honeypot needs a label element to check').not.toBe('');
+    for (const word of AUTOFILL_PROFILE_LABELS) {
+      expect(
+        honeypotLabel.toLowerCase().includes(word.toLowerCase()),
+        `honeypot label "${honeypotLabel}" names an autofill profile field (${word})`,
+      ).toBe(false);
+    }
+  });
+
+  it('does not re-send an identical payload to the CRM on a retry', () => {
+    // The CRM call fires before the awaited Formspree submit, deliberately, so
+    // a Formspree outage still lands the lead somewhere. Without a guard, the
+    // visitor sees msgError, presses Send again, and Twenty gets a second
+    // person AND a second note for one enquiry.
+    expect(source).toMatch(/lastCrmPayload/);
+    expect(
+      source.includes('serialised !== lastCrmPayload'),
+      'the CRM call must be skipped when the payload matches the one already sent',
     ).toBe(true);
   });
 

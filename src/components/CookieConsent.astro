@@ -39,6 +39,16 @@ const strings = t(locale);
       const KEY = 'pw-analytics-consent';
 
       function loadGA(id) {
+        /* ONCE PER PAGE VIEW. Accept, withdraw, then accept again calls this a
+           second time, and without the guard that appends a second gtag.js and
+           fires a second `config`, which GA4 counts as another page_view for
+           the same page — inflating pageviews and sessions for the visitors who
+           engage most with the consent control. The `ga-disable` flag set by the
+           caller is enough on its own to resume the tag that is already loaded;
+           re-loading it was never what resumed collection. */
+        if (window.__pwGaLoaded) return;
+        window.__pwGaLoaded = true;
+
         const script = document.createElement('script');
         script.async = true;
         script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;

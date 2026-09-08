@@ -26,9 +26,20 @@ const strings = t(locale);
        on. It was `company`, which meant Formspree ignored it, and the submit
        handler never read it either, so the honeypot was decorative: present in
        the markup, enforced nowhere. It is checked below as well, because the
-       CRM webhook call does not go through Formspree at all. -->
+       CRM webhook call does not go through Formspree at all.
+
+       THE LABEL IS NOT DECORATIVE, AND IT USED TO SAY "Company". That is an
+       address-profile field name, and Chrome's address autofill matches on the
+       label — it also ignores `autocomplete="off"` for address forms, which is
+       long-standing documented behaviour, not a bug. So a visitor with a saved
+       address profile could have this filled FOR them, and the handler below
+       discards a real enquiry while showing the success message: total, silent
+       lead loss on the site's only conversion path. The name must stay
+       `_gotcha` (Formspree drops on it) but the label must not name a field
+       any autofill profile knows. Nothing reads this text — the wrapper is
+       aria-hidden and the input is tabindex="-1" — so it costs nothing. -->
   <div class="contact-form__hp" aria-hidden="true">
-    <label for="_gotcha">Company</label>
+    <label for="_gotcha">Leave this field empty</label>
     <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
   </div>
 
@@ -66,6 +77,17 @@ const strings = t(locale);
 
     if (button instanceof HTMLButtonElement && status instanceof HTMLElement) {
       const sendLabel = button.dataset.label ?? button.textContent ?? '';
+
+      // The last payload actually sent to the CRM, serialised. The CRM call
+      // below is deliberately NOT awaited and fires BEFORE Formspree, so that a
+      // Formspree outage still puts the lead somewhere — two independent paths
+      // is the point. The cost is that a failed Formspree submit shows
+      // msgError, the visitor presses Send again, and Twenty gets a SECOND
+      // person and note for one enquiry. Remembering what was sent keeps the
+      // redundancy and drops the duplicate; it never clears, because a
+      // byte-identical enquiry twice in one page view is a double-submit, not
+      // two enquiries.
+      let lastCrmPayload: string | null = null;
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -107,12 +129,16 @@ const strings = t(locale);
           // a BLANK person in Twenty while the site, n8n and the CRM all
           // reported success. The workflow's `Normalise payload` node now
           // parses it. See todos/013.
-          fetch(crmWebhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-            body: JSON.stringify(payload),
-          }).catch(() => {});
+          const serialised = JSON.stringify(payload);
+          if (serialised !== lastCrmPayload) {
+            lastCrmPayload = serialised;
+            fetch(crmWebhookUrl, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+              body: serialised,
+            }).catch(() => {});
+          }
         }
 
         try {
