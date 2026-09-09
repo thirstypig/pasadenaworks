@@ -1,5 +1,5 @@
 ---
-status: ready
+status: complete
 priority: p3
 issue_id: 024
 tags: [code-review, css, duplication]
@@ -83,6 +83,20 @@ Option A.
 ### 2026-09-09 — Found during full-repo review
 Pattern-recognition-specialist agent, part of an 8-agent intensive review
 requested by the owner.
+
+### 2026-09-09 — Closed, Option A landed
+Promoted `.service-card`, `.service-card:hover`, and `.service-card__link`
+(also identical between `services/index.astro` and `[section]/index.astro`,
+folded in for the same reason) to `global.css`, beside `.service-grid`.
+Removed the three local copies. In `[section]/index.astro`, the combined
+selector (`.service-card, .city-list a`) became just `.city-list a`, which
+stays local since it's not shared elsewhere. The homepage's distinct
+`.service-card` (label-frame treatment) was left untouched, as intended.
+
+Verified in the built output, not just the diff: `grep -o
+"\.service-card{[^}]*}" dist/_astro/*.css` shows the rule renders correctly
+from the shared stylesheet. `npm run typecheck` (0 errors), `npm run test`
+(307 passing, 1 pre-existing dist-timing skip), `npm run build` (71 pages).
 
 ## Resources
 

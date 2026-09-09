@@ -1,5 +1,5 @@
 ---
-status: ready
+status: complete
 priority: p3
 issue_id: 026
 tags: [code-review, performance, fonts]
@@ -63,6 +63,15 @@ Owner's call based on whether the visual difference at that one spot
 ### 2026-09-09 — Found during full-repo review
 Performance-oracle agent, part of an 8-agent intensive review requested by the
 owner. Recorded for completeness; genuinely optional.
+
+### 2026-09-09 — Closed, Option A landed (owner's call)
+Owner chose to drop it. Removed the `@fontsource/source-serif-4/latin-600.css`
+import from `Base.astro`. The one usage spot (`Post.astro:225`) keeps its
+`font-weight: 600` declaration — the browser now synthesizes (fake-bolds) it
+from the loaded 400-weight face instead of rendering a real 600 glyph set.
+Verified in the built output: `grep -o "@font-face{[^}]*font-weight:[0-9]*"
+dist/_astro/*.css` shows only weight-400 faces remain (Anton, Source Serif
+roman, Source Serif italic — 3 total, 0 at weight 600).
 
 ## Resources
 

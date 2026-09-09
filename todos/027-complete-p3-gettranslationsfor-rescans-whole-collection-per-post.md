@@ -1,5 +1,5 @@
 ---
-status: ready
+status: complete
 priority: p3
 issue_id: 027
 tags: [code-review, performance, blog, scaling]
@@ -71,6 +71,13 @@ here instead of re-deriving it.
 ### 2026-09-09 — Found during full-repo review
 Performance-oracle agent, part of an 8-agent intensive review requested by the
 owner. Deliberately left as informational, not actioned.
+
+### 2026-09-09 — Closed as Option B (no code change)
+Confirmed the recommendation still holds: no action taken, by design. Closing
+this out of `pending`/`ready` rather than leaving it open indefinitely, since
+"no action needed right now" is itself the resolution — re-open (or just
+re-read this file) if post count ever grows enough that build time becomes
+worth checking.
 
 ## Resources
 

@@ -1,5 +1,5 @@
 ---
-status: ready
+status: complete
 priority: p3
 issue_id: 025
 tags: [code-review, performance, images]
@@ -58,6 +58,13 @@ Option A — not worth a dedicated trip; fix in passing next time this post is e
 ### 2026-09-09 — Found during full-repo review
 Performance-oracle agent, part of an 8-agent intensive review requested by the
 owner. Recorded for completeness; not urgent.
+
+### 2026-09-09 — Closed, Option B landed (done immediately rather than deferred)
+Re-compressed via `sips -s formatOptions 70` — 404,179 → 385,533 bytes, same
+1216×1000 dimensions. Confirmed visually (no perceptible quality loss on this
+night photo) and in the built output (`dist/blog/....jpg` matches the new
+size). `public/` files are copied verbatim by the build, so this is the final
+served size.
 
 ## Resources
 

@@ -25,8 +25,13 @@ import { readingTime } from '../../../utils/reading-time';
 /** The three page kinds this route serves. Astro cannot have two dynamic routes
  *  at the same depth, so services, city detail pages and blog posts share this
  *  file and branch on `kind` — see CLAUDE.md. Typed as a discriminated union so
- *  a fourth kind is a COMPILE error at the point it is written, rather than a
- *  page that silently ships an empty <title> and the homepage as its canonical.
+ *  a `kind` LITERAL TYPO (e.g. copying the sibling file's 'blog' for this
+ *  file's 'blog-post') is a compile error where it's written — `tsc` flags a
+ *  comparison against a literal outside the union. A genuinely NEW, unhandled
+ *  `kind` is caught by the runtime throw at the bottom of this file instead
+ *  (which fails the build, not `tsc`) — there's no exhaustiveness check here,
+ *  so don't over-trust `typecheck` alone to catch that case. Found overstated
+ *  in the 2026-09-09 full-repo review, todos/028.
  *
  *  Note the sibling file one level up uses a DIFFERENT vocabulary for
  *  overlapping concepts ('service' | 'city-hub' | 'blog', where 'blog' is the
