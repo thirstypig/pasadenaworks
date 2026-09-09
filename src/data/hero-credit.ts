@@ -55,8 +55,47 @@ export function isUnsplashProfileUrl(value: string): boolean {
   );
 }
 
-/** Append the campaign parameters the API guidelines require. */
+/**
+ * Whether the credit pair is renderable — a link must carry a name.
+ *
+ * Post.astro renders the linked caption only when BOTH fields are set, and the
+ * bare `Photo: name` caption only when the name is set WITHOUT a URL. So the
+ * fourth state — a URL with a blank name — renders no caption at all: no
+ * photographer, no profile link, no Unsplash link. That is exactly the
+ * attribution the API guidelines require, silently absent, on a green build.
+ *
+ * Nothing prevented it: `heroCredit` and `heroCreditUrl` are two independent
+ * optional strings in both schemas, and Tina presents them as two unrelated
+ * boxes. This is the same shape as the `heroAlt`/`heroImage` rule beside it —
+ * a constraint that has to be conditional, because the 80 pre-API files
+ * legitimately carry a name and no URL.
+ */
+export function hasCreditNameWhenLinked(
+  heroCredit: string | undefined,
+  heroCreditUrl: string | undefined,
+): boolean {
+  if (!heroCreditUrl) return true;
+  return Boolean(heroCredit?.trim());
+}
+
+/**
+ * Append the campaign parameters the API guidelines require.
+ *
+ * PARSED, NOT CONCATENATED. Choosing the separator with `url.includes('?')` is
+ * blind to fragments, and `isUnsplashProfileUrl` compares `url.pathname`, which
+ * a fragment is not part of — so `https://unsplash.com/@x#bio` validates, and
+ * appending to it puts the parameters INSIDE the fragment, where a browser
+ * never sends them. Unsplash then receives no referral while the rendered link
+ * still looks right. Concatenation also stacks a second `utm_source` onto a URL
+ * that already had one. `searchParams.set` fixes both by construction.
+ *
+ * Assumes an absolute URL, which is what both callers pass: `heroCreditUrl` has
+ * already been through `isUnsplashProfileUrl` at the schema, and UNSPLASH_HOME
+ * is a constant.
+ */
 export function withReferral(url: string): string {
-  const separator = url.includes('?') ? '&' : '?';
-  return `${url}${separator}utm_source=${UTM_SOURCE}&utm_medium=referral`;
+  const tagged = new URL(url);
+  tagged.searchParams.set('utm_source', UTM_SOURCE);
+  tagged.searchParams.set('utm_medium', 'referral');
+  return tagged.href;
 }

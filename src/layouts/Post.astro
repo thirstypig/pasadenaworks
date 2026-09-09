@@ -116,17 +116,19 @@ const articleSchema = {
             link. See src/data/hero-credit.ts. */}
         {heroCredit && heroCreditUrl && (
           <figcaption>
-            Photo by{' '}
+            {strings.misc.photoCreditBy}{' '}
             <a href={withReferral(heroCreditUrl)} rel="noopener">
               {heroCredit}
             </a>{' '}
-            on{' '}
+            {strings.misc.photoCreditBetween}{' '}
             <a href={withReferral(UNSPLASH_HOME)} rel="noopener">
               Unsplash
             </a>
           </figcaption>
         )}
-        {heroCredit && !heroCreditUrl && <figcaption>Photo: {heroCredit}</figcaption>}
+        {heroCredit && !heroCreditUrl && (
+          <figcaption>{strings.misc.photoCreditPlain}{heroCredit}</figcaption>
+        )}
       </figure>
     )}
 

@@ -111,6 +111,16 @@ export interface UIStrings {
     cookieAccept: string;
     cookieDecline: string;
     cookieSettings: string;
+    /** Hero-image photo credit, in two slots because the photographer's name
+     *  and "Unsplash" are both LINKS: `<by> <name> <between> <Unsplash>`.
+     *  Rendered with `{' '}` around each link, which is also the space Chinese
+     *  requires on either side of inline Latin. */
+    photoCreditBy: string;
+    photoCreditBetween: string;
+    /** The pre-API form, for the 80 images covered by the plain Unsplash
+     *  licence, which requires no link. Carries its own separator: Chinese
+     *  takes a full-width colon and no following space, Latin a space. */
+    photoCreditPlain: string;
   };
 }
 
@@ -173,6 +183,9 @@ export const ui: Record<Locale, UIStrings> = {
       cookieAccept: 'OK',
       cookieDecline: 'Decline',
       cookieSettings: 'Cookie settings',
+      photoCreditBy: 'Photo by',
+      photoCreditBetween: 'on',
+      photoCreditPlain: 'Photo: ',
     },
   },
   es: {
@@ -233,6 +246,9 @@ export const ui: Record<Locale, UIStrings> = {
       cookieAccept: 'Aceptar',
       cookieDecline: 'Rechazar',
       cookieSettings: 'Preferencias de cookies',
+      photoCreditBy: 'Foto de',
+      photoCreditBetween: 'en',
+      photoCreditPlain: 'Foto: ',
     },
   },
   'zh-hans': {
@@ -288,6 +304,9 @@ export const ui: Record<Locale, UIStrings> = {
       cookieAccept: '同意',
       cookieDecline: '拒绝',
       cookieSettings: 'Cookie 设置',
+      photoCreditBy: '照片由',
+      photoCreditBetween: '拍摄，来自',
+      photoCreditPlain: '照片：',
     },
   },
   'zh-hant': {
@@ -343,6 +362,9 @@ export const ui: Record<Locale, UIStrings> = {
       cookieAccept: '接受',
       cookieDecline: '拒絕',
       cookieSettings: 'Cookie 設定',
+      photoCreditBy: '照片由',
+      photoCreditBetween: '拍攝，來自',
+      photoCreditPlain: '照片：',
     },
   },
 };

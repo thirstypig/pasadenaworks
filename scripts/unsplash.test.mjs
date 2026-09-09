@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { heroImagePathFor, heroFrontmatter, imageFileUrl, HERO_WIDTH } from './unsplash.mjs';
 import { isValidHeroImagePath } from '../src/data/hero-image.ts';
 import { isUnsplashProfileUrl } from '../src/data/hero-credit.ts';
+import { isValidPostSlug } from '../src/data/post-slug.mjs';
 
 /**
  * WHAT THIS SCRIPT IS FOR. Using the Unsplash API puts this site under the API
@@ -123,5 +124,37 @@ describe('imageFileUrl', () => {
 
   it('stays within the house width, so a hero cannot arrive 9000px wide again', () => {
     expect(HERO_WIDTH).toBeLessThanOrEqual(1600);
+  });
+});
+
+describe('isValidPostSlug', () => {
+  /**
+   * THE PATH THIS GUARDS. `use()` joins the slug straight into
+   * `public/blog/<slug>.jpg`. A slug containing `../` therefore writes OUTSIDE
+   * the image directory, and one containing a `/` writes into a directory that
+   * may not exist. The slug is typed on a command line by whoever is sourcing
+   * the image, so it is exactly the kind of value that is usually fine and
+   * occasionally a mistake with no error message.
+   *
+   * Same rule as the `slug` frontmatter field, imported rather than copied —
+   * a second regex here could drift from the schema and let the script emit
+   * frontmatter the build then rejects.
+   */
+  it('accepts the slug shape the schema requires', () => {
+    expect(isValidPostSlug('small-business-website-cost')).toBe(true);
+    expect(isValidPostSlug('seo101')).toBe(true);
+  });
+
+  it('rejects a traversal that would write outside public/blog/', () => {
+    expect(isValidPostSlug('../../etc/passwd')).toBe(false);
+    expect(isValidPostSlug('nested/slug')).toBe(false);
+  });
+
+  it('rejects the spellings the schema also rejects', () => {
+    expect(isValidPostSlug('Capitalised')).toBe(false);
+    expect(isValidPostSlug('trailing-')).toBe(false);
+    expect(isValidPostSlug('double--hyphen')).toBe(false);
+    expect(isValidPostSlug('')).toBe(false);
+    expect(isValidPostSlug('小型企業')).toBe(false);
   });
 });
