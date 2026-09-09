@@ -71,6 +71,7 @@ const articleSchema = {
   path={path}
   translations={translations}
   ogType="article"
+  ogImage={heroImage}
 >
   <meta slot="head" property="article:published_time" content={pubDate.toISOString()} />
   {updatedDate && (

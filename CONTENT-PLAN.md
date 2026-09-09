@@ -27,10 +27,12 @@ than no blog.
 All 20 planned posts are written and approved (`draft: false`) as of
 2026-08-31. That is not the same as visible: since 2026-08-31 the site is
 **date-gated**, so a post appears on its own `pubDate` and not before.
-Four are visible today; the rest surface weekly through 2027-01-11 on their
-own. 5 of the 20 are translated into all three other languages; 15 are not
-— that backlog is now the schedule's real constraint, since an untranslated
-post publishes English-only when its date arrives.
+A handful are visible today; the rest surface weekly through 2027-01-11 on
+their own. **All 20 are translated into Spanish, Simplified, and Traditional
+Chinese** (backlog closed 2026-09-01) — the rule that still binds going
+forward is translating alongside the English draft, not afterwards, since a
+date-gated post whose translations miss its own `pubDate` publishes
+English-only with no second chance.
 
 **For the live picture, see [`CONTENT-STATUS.md`](CONTENT-STATUS.md)** — a
 generated table of every post, its publish date, and which translations

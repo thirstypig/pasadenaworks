@@ -196,3 +196,15 @@ dead variable suggests someone intended the post's own `heroImage` there and
 never wired it, which is worth a product decision), and a dead `WEAK` constant
 in readability.mjs. The 23 remaining hints are `is:inline` script advisories and
 `z is deprecated` from Astro's zod re-export — neither actionable here.
+
+### 2026-09-09 — The parked product decision, decided
+The owner asked for it: a blog post's own `heroImage` is now its social-share
+image, not the site-wide `/og.png`. `Base.astro` gained an optional `ogImage`
+prop (root-relative, defaulting to `/og.png`), and `Post.astro` passes its
+`heroImage` through — no `<Image>`/`astro:assets`, so this doesn't touch the
+AVIF-optimization surface the 2026-09-08 npm-audit note ruled out as
+unreachable. Verified against `dist/`, not just the diff:
+`why-customers-cant-find-your-business-on-google`'s `og:image` is now its own
+`.jpg`, and the homepage (no hero of its own) still gets `/og.png`. Two tests
+added in `src/layouts/og-image.test.ts`, same dist-dependent skip-without-it
+pattern as `rendered-links.test.ts`. `npm run typecheck`: 0 errors, 82 files.

@@ -353,3 +353,60 @@ Read this before re-investigating anything that sounds already-handled.
   populated person, a note with its paragraph breaks intact and a `noteTarget`
   linking them; an identical resubmit produced **no second n8n execution and no
   second record**.
+
+- **The npm audit had drifted, and CLAUDE.md's own note is what hid it**
+  (2026-09-09). Found during a full-source review: `npm audit` was at 10, not
+  the 8 moderate CLAUDE.md documented — a **critical** RCE in `astro` itself
+  (GHSA-26w7-cxv4-gfx2, AVIF image optimization, `<7.2.8`) and a **high** in
+  `js-yaml`. Both sat in the *production* dependency tree, not Tina's, and both
+  were already permitted by `package.json` — a lockfile refresh cleared them,
+  no override and no semver-major. `property-page`, which declares the
+  identical `astro: ^7.2.7`, had resolved to 7.2.9 on its own and was never
+  exposed. Neither was reachable here either (nothing uses `astro:assets`,
+  `<Image>`, `getImage`, or any image service, so no AVIF is ever optimized) —
+  but reachability is the second question; the first is whether anyone looked,
+  and the old note's own confident "the audit stays at 8 moderate either way"
+  is exactly what stopped anyone looking. `npm audit` is now verified back to
+  exactly 8 moderate, all Tina/react-router, still blocked upstream (see
+  Known outstanding work in CLAUDE.md). Lesson carried into that note: read
+  severities, not the count, every time — a total that can't move by one
+  mechanism can still move by an unrelated one.
+
+- **Four Unsplash-attribution bugs were fixed before any of them could fire**
+  (2026-09-09, #45). All four were latent — 0 of the 80 posts carry
+  `heroCreditUrl` yet, so each would trip on the next hero image fetched, not
+  at the time they were found. The exception was the caption localization,
+  live on all 80 posts already:
+  - `hasCreditNameWhenLinked`: a credit **link** with no **name** rendered no
+    caption at all — no photographer, no profile link, no Unsplash link, on a
+    green build. Both `figcaption` branches required `heroCredit` and nothing
+    tied the two fields together. One shared predicate now refines the Astro
+    schema and validates the Tina field, mirroring the `heroAlt`/`heroImage`
+    rule beside it.
+  - `withReferral`: chose its query separator with `includes('?')`, blind to
+    URL fragments — and `isUnsplashProfileUrl` compares `pathname`, which a
+    fragment is not part of. `https://unsplash.com/@x#bio` validated and came
+    back `#bio?utm_source=…`, putting the required tracking parameters
+    **inside the fragment**, where a browser never sends them. Rebuilt on
+    `new URL`/`searchParams`, which also stops a duplicate `utm_source` from
+    stacking.
+  - Caption localization was hardcoded English on Spanish and both Chinese
+    posts — not latent, `Photo: <name>` was rendering on all 80 posts in every
+    language today. Now four locales, with a full-width colon and no trailing
+    space in Chinese.
+  - `scripts/unsplash.mjs` wrote the slug straight into `public/blog/<slug>.jpg`
+    unvalidated, so a `../` in the slug would write outside the directory, and
+    a reused slug would silently replace an existing post's hero image in all
+    four locales — both printing success. Now checked against a real path
+    allowlist before the file is written.
+
+- **A blog post's social-share image is now its own hero photo, not the
+  site-wide `/og.png`** (2026-09-09, todos/012's parked product decision).
+  `astro check` had flagged a dead `ogImage` variable in `Post.astro` back on
+  2026-09-03 — `Base.astro` was already computing and using its own image, so
+  every post shared one generic card regardless of what its hero actually
+  showed. `Base.astro` gained an optional `ogImage` prop (root-relative,
+  defaulting to `/og.png`), and `Post.astro` passes its `heroImage` through.
+  Verified against built pages: a real post's `og:image` is now its own
+  `.jpg`; the homepage, which has no hero image of its own, still gets
+  `/og.png`. Two tests in `src/layouts/og-image.test.ts`.
