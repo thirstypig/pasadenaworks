@@ -55,6 +55,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isMain } from './is-main.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BLOG = join(ROOT, 'src/content/blog');
@@ -554,7 +555,7 @@ export function reportDist(distDir) {
 
 /* ── CLI ───────────────────────────────────────────────────────────────── */
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (isMain(import.meta.url)) {
   if (process.argv.includes('--dist')) {
     const all = reportDist(join(ROOT, 'dist'));
     if (!all.length) {

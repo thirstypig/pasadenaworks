@@ -23,6 +23,13 @@ import {
 // And once more, for the credit link. Same reason: the Astro schema and this
 // validator must not be able to disagree about what an Unsplash profile URL is.
 import { isUnsplashProfileUrl, hasCreditNameWhenLinked } from '../src/data/hero-credit';
+// And once more, for `slug`. Same class of drift as heroImage/heroCredit
+// above: `slugifyBlogFilename` (below) derives the FILENAME from this value,
+// but the frontmatter FIELD itself was saved verbatim with no validation — an
+// editor typing "Website Costs" got a file at en/website-costs.md while the
+// slug field held "Website Costs", which the Astro build's regex then rejects
+// after Tina had already committed it straight to main.
+import { isValidPostSlug } from '../src/data/post-slug.mjs';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -301,7 +308,18 @@ export default defineConfig({
             label: 'URL slug',
             required: true,
             description:
-              'The real URL slug for this post, in this language — not a literal translation of the English slug, the keyword-appropriate one for this language.',
+              'The real URL slug for this post, in this language — not a literal translation of the English slug, the keyword-appropriate one for this language. Lowercase letters, digits, and single hyphens only.',
+            // Mirrors src/content.config.ts's POST_SLUG_PATTERN, for the same
+            // reason as heroImage/heroCredit above — see the import comment.
+            ui: {
+              validate: (value?: string) => {
+                if (!value) return undefined; // `required: true` already covers empty
+                if (!isValidPostSlug(value)) {
+                  return 'Lowercase letters, digits, and single hyphens only — no spaces, no capital letters, no punctuation.';
+                }
+                return undefined;
+              },
+            },
           },
           {
             type: 'rich-text',

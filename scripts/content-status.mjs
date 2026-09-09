@@ -29,6 +29,7 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isMain } from './is-main.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BLOG = join(ROOT, 'src/content/blog');
@@ -209,4 +210,4 @@ top down.
   console.log(`Wrote CONTENT-STATUS.md — ${posts.filter((p) => p.locale === 'en').length} posts, generated ${stamp}`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) main();
+if (isMain(import.meta.url)) main();

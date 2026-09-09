@@ -36,8 +36,9 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import { isValidPostSlug } from '../src/data/post-slug.mjs';
+import { isMain } from './is-main.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://api.unsplash.com';
@@ -204,12 +205,8 @@ async function use(photoId, slug) {
 
 const [command, ...args] = process.argv.slice(2);
 
-/* CANONICAL COMPARISON. `file://${process.argv[1]}` is a string, not a URL:
-   `import.meta.url` percent-encodes spaces and non-ASCII characters, so on a
-   checkout path containing either, this test is false and the script exits 0
-   having done nothing at all — no output, no error. `pathToFileURL` produces
-   the same encoding both sides. */
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+// See scripts/is-main.mjs for why this can't be a naive string comparison.
+if (isMain(import.meta.url)) {
   if (command === 'search' && args[0]) {
     await search(args.join(' '));
   } else if (command === 'use' && args.length === 2) {
