@@ -20,6 +20,9 @@ import {
   isProtocolRelative,
   hasTraversalSegment,
 } from '../src/data/hero-image';
+// And once more, for the credit link. Same reason: the Astro schema and this
+// validator must not be able to disagree about what an Unsplash profile URL is.
+import { isUnsplashProfileUrl } from '../src/data/hero-credit';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -231,6 +234,32 @@ export default defineConfig({
             name: 'heroCredit',
             label: 'Hero image credit',
             description: 'Photographer name/attribution.',
+          },
+          {
+            type: 'string',
+            name: 'heroCreditUrl',
+            label: 'Hero image credit link',
+            description:
+              'The photographer’s Unsplash profile, e.g. https://unsplash.com/@name. Required for images sourced through the Unsplash API; leave blank for older images. `npm run unsplash` prints this for you.',
+            // Optional here exactly as in the Astro schema: the twenty images
+            // that predate the API are covered by the plain Unsplash licence,
+            // where attribution is appreciated but not required. Requiring it
+            // would block editing any of those posts in Tina.
+            //
+            // The host check is strict because this value becomes an outbound
+            // link on every rendering of the post, and it is typed here by
+            // someone who is not reading this file. A lookalike such as
+            // https://unsplash.com.evil.example/@x contains the literal string
+            // "unsplash.com" and passes any `includes` check.
+            ui: {
+              validate: (value?: string) => {
+                if (!value) return undefined;
+                if (!isUnsplashProfileUrl(value)) {
+                  return 'Must be an https link to an Unsplash profile, e.g. https://unsplash.com/@name.';
+                }
+                return undefined;
+              },
+            },
           },
           {
             type: 'boolean',

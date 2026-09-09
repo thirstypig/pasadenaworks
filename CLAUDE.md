@@ -77,6 +77,8 @@ npm run test         # tests (vitest, 264) — i18n/hreflang, reading time, city
                      #   nav-link checks and the readability cross-check — which is
                      #   why ci.yml re-runs the whole suite after the build.
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
+npm run unsplash -- search "small business storefront"   # find a hero image
+npm run unsplash -- use <photoId> <post-slug>            # download it + print frontmatter
 ```
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
@@ -542,6 +544,53 @@ which translations exist, and whether it is live, due in N days, published
 English-only (🚩) or still a draft. It is **generated** — run
 `npm run content:status` after any content change rather than editing it. It
 also shows up inside Tina under Project Docs.
+
+### Hero images: the API changed the obligations, not just the source
+
+An Unsplash API key was added 2026-09-08 (`UNSPLASH_ACCESS_KEY` in `.env`,
+gitignored, never committed — verified against full history, which matters
+because this repo is public). **Use `npm run unsplash` rather than doing this by
+hand**, because signing up moved the site from the Unsplash *licence* to the
+Unsplash *API guidelines*, and they are stricter in three ways that all fail
+**silently** — the page renders, the build passes, nothing complains:
+
+1. the photographer must be credited **with a link** to their profile,
+2. Unsplash must be linked too, both carrying `utm_source`/`utm_medium`,
+3. `links.download_location` must be **called** when a photo is used. Fetching
+   the image file does not count; that endpoint alone is what credits the
+   contributor with a download.
+
+`scripts/unsplash.mjs` does all three and prints the frontmatter, so compliance
+is automatic rather than remembered. `search` lists candidates and stops —
+choosing the photo for an article is editorial and stays human.
+
+**`heroCreditUrl` is optional on purpose.** The 20 images already in
+`public/blog/` predate the API and remain covered by the plain licence, where
+attribution is appreciated but not required. Requiring the field would fail the
+build on 80 existing files to satisfy a rule that does not reach them.
+`Post.astro` renders the linked form when the URL is present and the old bare
+`Photo: Name` when it is not. Both ends validate through the same predicate in
+`src/data/hero-credit.ts` — Astro's schema and Tina's field — because those two
+already drifted into exact opposition once over `heroImage`.
+
+**The host is compared, never the string.** `heroCreditUrl` becomes an outbound
+link on every rendering of a post and is typed by whoever is editing. A
+lookalike like `https://unsplash.com.evil.example/@x` contains the literal
+"unsplash.com" and passes any `includes` check, so the URL is parsed and
+`hostname` compared.
+
+**Fetch a sized image, never the original.** The first working version of the
+script downloaded what `download_location` returns, which is the full-resolution
+file: **5,596 KB at 9000×6000**, against a corpus that runs 1216–1422px and
+100–400 KB. On a site whose entire acquisition strategy is organic search that
+is a self-inflicted Core Web Vitals wound, and no build step objects to it. The
+script now builds a resized URL from `urls.raw` (`HERO_WIDTH = 1400`) and still
+calls `download_location` for the compliance obligation, discarding its URL —
+148 KB at 1400×933 for the same photo.
+
+Note the API key is on the **Demo** tier: 50 requests/hour, not the 5,000 of
+Production, which needs a separate application to Unsplash. A 403 from the
+script is almost always that limit rather than a bad key, and it says so.
 
 ## Voice
 
