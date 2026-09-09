@@ -470,6 +470,34 @@ main {
   margin-top: var(--space-6);
 }
 
+/* The bordered-card treatment, shared by the three pages where it was
+   byte-identical: the services index, the localized homepages, and the
+   section/city-hub index (there merged into `.city-list a` too). The
+   English homepage's `.service-card` stays local and unmerged — it uses the
+   label-frame treatment instead, a design choice, not drift (see the comment
+   on .service-grid above). Missed in the same pass that consolidated
+   .service-grid; found in the 2026-09-09 full-repo review, todos/024. */
+.service-card {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  text-decoration: none;
+  color: var(--color-ink);
+}
+
+.service-card:hover {
+  border-color: var(--color-accent);
+}
+
+.service-card__link {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--color-accent-text);
+}
+
 .label-frame {
   position: relative;
   border: 3px solid currentColor;

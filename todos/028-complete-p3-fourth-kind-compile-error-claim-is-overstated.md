@@ -1,5 +1,5 @@
 ---
-status: ready
+status: complete
 priority: p3
 issue_id: 028
 tags: [code-review, documentation, typescript]
@@ -81,6 +81,18 @@ already a sound belt-and-suspenders layer either way, so this isn't urgent.
 ### 2026-09-09 — Found during full-repo review
 Architecture-strategist agent, part of an 8-agent intensive review requested by
 the owner.
+
+### 2026-09-09 — Closed, Option A landed
+Corrected both files' header comments (`[service].astro:25-34`,
+`index.astro:20-25`) to describe the real two-layer mechanism: a `kind`
+literal typo IS a genuine `tsc` compile error (comparison against a literal
+outside the union), but a brand-new, unhandled `kind` is caught by the runtime
+throw at the bottom of each file instead, which fails the build, not
+`typecheck` — there's no exhaustiveness check. Option B (adding a real
+`const _exhaustive: never = kind` assertion) left as a possible future
+follow-up, not done now — the runtime throw is already a sound guard.
+
+Verified: `npm run typecheck` still 0 errors (comment-only change).
 
 ## Resources
 

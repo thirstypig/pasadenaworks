@@ -17,9 +17,13 @@ import { readingTime } from '../../../utils/reading-time';
 import BlogPostGrid from '../../../components/BlogPostGrid.astro';
 import type { CollectionEntry } from 'astro:content';
 
-/** The three hub kinds this route serves. Discriminated so a fourth is a
- *  COMPILE error where it is written, not a page that silently renders the city
- *  hub's content and canonical under a new URL.
+/** The three hub kinds this route serves. Discriminated so a `kind` LITERAL
+ *  TYPO is a compile error where it's written — `tsc` flags a comparison
+ *  against a literal outside the union. A genuinely NEW, unhandled `kind` is
+ *  caught by the runtime throw at the bottom of this file instead (which
+ *  fails the build, not `tsc`) — there's no exhaustiveness check here, so
+ *  don't over-trust `typecheck` alone to catch that case. Found overstated in
+ *  the 2026-09-09 full-repo review, todos/028.
  *
  *  `posts` is required on the blog member and absent on the others, which
  *  retires the old `posts?:` + `posts ?? []` pairing — that combination let the
@@ -169,14 +173,10 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 
 <style>
 
-  .service-card__link {
-    font-family: var(--font-display);
-    font-size: var(--step--1);
-    font-weight: 400;
-    color: var(--color-accent-text);
-  }
+  /* .service-card/:hover/__link now live in global.css (todos/024) — this
+     page's copy was byte-identical to two others, merged here with
+     .city-list a, which stays local since it's not shared elsewhere. */
 
-  .service-card,
   .city-list a {
     display: block;
     background: var(--color-surface);
@@ -187,7 +187,6 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
     color: var(--color-ink);
   }
 
-  .service-card:hover,
   .city-list a:hover {
     border-color: var(--color-accent);
   }
