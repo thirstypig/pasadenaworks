@@ -93,7 +93,15 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { kind, locale } = Astro.props as RouteProps;
+// Narrow through ONE cast, then read every field off `props` itself — never
+// `Astro.props.<field> as <Type>` again below. That re-cast pattern is exactly
+// the erasure this union exists to prevent (todos/012), just one line further
+// downstream: it type-checks even if a RouteProps variant's field is renamed,
+// because each re-cast asserts a fresh, unrelated shape instead of narrowing
+// through the one already-typed value. Found in a 2026-09-09 full-repo review
+// (todos/023) — see the sibling file one level up, which does this correctly.
+const props = Astro.props as RouteProps;
+const { kind, locale } = props;
 
 type BlogPost = Awaited<ReturnType<typeof getPostsByLocale>>[number];
 
@@ -102,8 +110,7 @@ let BlogContent: Awaited<ReturnType<typeof render>>['Content'] | undefined;
 let blogReadingMinutes = 0;
 let blogTranslations: Partial<Record<Locale, string>> = {};
 
-if (kind === 'blog-post') {
-  const props = Astro.props as { post: BlogPost; translations: Partial<Record<Locale, string>> };
+if (props.kind === 'blog-post') {
   blogPost = props.post;
   blogTranslations = props.translations;
   const rendered = await render(blogPost);
@@ -124,8 +131,8 @@ let serviceCopy: Service['t'][Locale] | undefined;
 let city: City | undefined;
 let cityCopy: NonNullable<City['t'][Locale]> | undefined;
 
-if (kind === 'service') {
-  service = Astro.props.service as Service;
+if (props.kind === 'service') {
+  service = props.service;
   serviceCopy = service.t[locale];
   title = `${serviceCopy.title} — Pasadena Works`;
   description = serviceCopy.meta;
@@ -143,8 +150,8 @@ if (kind === 'service') {
   translations = Object.fromEntries(
     LOCALES.map((l) => [l, localeUrl(l, SEGMENTS.services[l], service!.slugs[l])])
   );
-} else if (kind === 'city') {
-  city = Astro.props.city as City;
+} else if (props.kind === 'city') {
+  city = props.city;
   cityCopy = city.t[locale]!;
   title = `${cityCopy.title} — Pasadena Works`;
   description = cityCopy.meta;
