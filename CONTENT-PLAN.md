@@ -123,6 +123,126 @@ slower pace beats a burst followed by another gap.
 
 ---
 
+## Phase two — 2027-01-18 onward
+
+The first 90 days answered the questions a small business already asks out
+loud. This phase does two different jobs: it claims a lane nobody local is
+writing in yet, and it follows a deliberate shift in who the customer is.
+
+**Twenty articles, weekly Mondays from 2027-01-18**, which is the first free
+slot after the current plan runs out. Three seasonal pieces are held back to
+autumn on purpose — holiday advice published in May is worthless.
+
+### The calendar
+
+| Date | Article | Pillar | Cluster |
+|---|---|---|---|
+| 2027-01-18 | Will AI answers replace Google for finding a local business? | search | AI search |
+| 2027-01-25 | Is "GEO" real, or SEO with a new name? | search | AI search |
+| 2027-02-01 | What Google's AI Overviews changed for small business search | search | AI search |
+| 2027-02-08 | How to show up in ChatGPT, Claude, Gemini and Perplexity answers | search | AI search |
+| 2027-02-15 | Which AI assistant are your customers actually using? | search | AI search |
+| 2027-02-22 | Does your website need an `llms.txt`? | websites | AI search |
+| 2027-03-01 | How to tell whether AI search is sending you customers | search | AI search |
+| 2027-03-08 | What a physician's website actually needs | websites | Clinics |
+| 2027-03-15 | Local SEO for medical practices | search | Clinics |
+| 2027-03-22 | HIPAA and your website: the parts that trip people up | websites | Clinics |
+| 2027-03-29 | Choosing an EHR: what actually matters for a small practice | consulting | Clinics |
+| 2027-04-05 | Switching EHR without losing your schedule | consulting | Clinics |
+| 2027-04-12 | Are Google Ads worth it for an optometrist? | ads | Clinics |
+| 2027-04-19 | In-N-Out's website has barely changed in 20 years | websites | SoCal |
+| 2027-04-26 | Own your name online: what the Sriracha fight teaches small businesses | websites | SoCal |
+| 2027-05-03 | Trader Joe's doesn't buy ads. Why that's a bad model to copy. | ads | SoCal |
+| 2027-05-10 | How an independent outranks a chain in local search | search | SoCal |
+| 2027-09-27 | Q4 checklist: what to fix before the holiday rush | consulting | Seasonal |
+| 2027-11-08 | Small Business Saturday: worth the effort? | ads | Seasonal |
+| 2027-11-15 | Holiday hours on your Google Business Profile | search | Seasonal |
+
+**2027-05-17 through 2027-09-20 is deliberately unplanned** — about eighteen
+Mondays. Better to name the gap than pad it with filler eight months early,
+and by May there will be a year of analytics saying which pillar earns its
+keep.
+
+### AI search — seven articles, because the lane is empty
+
+None of the first twenty articles touch AI search, and only one mentions AI at
+all. That is the whole argument: it is the one topic where a small consultancy
+can still rank without fighting an established page.
+
+The per-engine article (2027-02-08) will date fastest and needs revisiting
+every six months. The other six are written to survive without edits — which is
+why only one names specific engines. Resist the urge to write six posts that
+each list the same four products.
+
+### Clinics — six articles, following a shift in customer base
+
+Physicians and optometrists, covering both marketing and EHR consulting.
+
+**These are decision frameworks, not software reviews.** No "best EHR for
+optometrists", no vendor comparison tables. Reviews are a different business —
+it means competing with Capterra and vendor affiliate programs, on a topic
+where this site has no demonstrated expertise, and thin comparison content is
+the same doorway-page trap hard rule 2 exists to prevent for city pages.
+
+**No fifth pillar.** EHR consulting is `consulting`; the marketing pieces are
+`websites`, `search` and `ads`. Adding a pillar means touching
+`src/data/pillars.ts`, `src/content.config.ts` and `tina/config.ts` — and a
+`tina-lock.json` regeneration, which breaks every deploy when it is forgotten.
+Not worth it to relabel work the existing four already describe.
+
+**Before any of these ship, `src/data/services.ts` has to change.** Six
+articles positioning this business as a clinic consultant, while the services
+page never mentions clinics or EHR, is exactly the disconnect hard rule 2 was
+written to prevent — a page claiming something the site cannot back up.
+Sequence the services copy first, in all four languages.
+
+### Southern California companies — four articles that have to earn their place
+
+Real names, and every factual claim cited to public reporting. No implied
+relationship with any of them.
+
+**The test each one has to pass: does the lesson point at something this
+business actually sells?** A first draft of this cluster was In-N-Out's
+franchising model, Trader Joe's loyalty program and the Huy Fong chili
+supplier dispute — genuinely interesting, and none of it leads a reader
+anywhere near a website, a search problem or an ad budget. Business trivia
+with a local accent is still filler. Rewritten so each lands on a service:
+
+- **In-N-Out** → the website's job is answering questions fast, not looking
+  current. Points at website builds, and it is a useful counter to the
+  assumption that a redesign is the answer.
+- **Sriracha** → Huy Fong never trademarked the name, so competitors use it
+  freely. The lesson is owning your own brand assets — domain, Google profile,
+  site — which is the same argument this site already makes about not holding a
+  client's website hostage.
+- **Trader Joe's** → they famously do not buy conventional advertising. The
+  honest reading is that this is a *bad* model to copy, because it rests on
+  decades of accumulated word of mouth a new business does not have. Points at
+  the ads service by arguing against the easy answer.
+- **Independent vs chain** → the most directly useful of the four, and the one
+  closest to what local clients actually face.
+
+**Verify the facts before drafting.** The two load-bearing claims are the Huy
+Fong trademark position and Trader Joe's advertising policy; both are widely
+reported and both must be cited, not asserted. An article that gets a real
+company's history wrong is worse than no article.
+
+### What this costs
+
+Twenty articles is **eighty files** — every one ships in English, Spanish,
+Simplified and Traditional Chinese, translated alongside the English draft
+rather than after it. That is the binding constraint on this plan, not the
+writing. A date-gated article whose translations miss its own `pubDate`
+publishes English-only and does not get a second chance.
+
+**Considered and not scheduled:** a Spanish-first article for clinics — SGV
+practices serve a heavily Spanish- and Chinese-speaking patient base, so
+"does my practice website need Spanish" may be stronger than anything in the
+clinics cluster above. Left out only because it was not decided; add it if the
+answer is yes.
+
+---
+
 ## Weeks 1–4 — the questions people already ask you
 
 _Real target dates: 2026-08-31 through 2026-09-21 — see the publishing
