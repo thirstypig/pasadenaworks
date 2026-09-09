@@ -31,6 +31,10 @@ interface Props {
   /** Only true on the homepage — gates the LocalBusiness JSON-LD. */
   isHome?: boolean;
   ogType?: 'website' | 'article';
+  /** Root-relative path to a page-specific share image (e.g. a blog post's
+   *  own hero image). Defaults to the site-wide /og.png when not given —
+   *  every page got that one image for its social-share card until now. */
+  ogImage?: string;
   /** For pages that have no canonical URL of their own — currently just 404.
    *  Emits `robots: noindex` and suppresses BOTH canonical and og:url, because
    *  a canonical is a claim that this content lives at that address, and
@@ -47,12 +51,13 @@ const {
   translations = { [locale]: path },
   isHome = false,
   ogType = 'website',
+  ogImage: ogImagePath = '/og.png',
   noindex = false,
 } = Astro.props;
 
 const canonical = absoluteUrl(path);
 const alternates = buildAlternates(translations);
-const ogImage = absoluteUrl('/og.png');
+const ogImage = absoluteUrl(ogImagePath);
 const profiles = Object.values(site.social).filter(Boolean);
 
 const localBusinessSchema = {

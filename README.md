@@ -74,7 +74,7 @@ npm run readability -- --dist  # same, for the built pages (run a build first)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a test suite (261 tests) covering the parts of this site that are easy
+There's a test suite (304 tests) covering the parts of this site that are easy
 to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the
@@ -376,13 +376,19 @@ src/
 │   ├── site.ts         ← settings: email, phone, form endpoint, cities
 │   ├── services.ts     ← all service copy, all four languages
 │   ├── cities.ts       ← city landing page copy
-│   └── home.ts         ← homepage copy for es / zh-hans / zh-hant
+│   ├── home.ts         ← homepage copy for es / zh-hans / zh-hant
+│   ├── pillars.ts      ← the pillar list (schema, components, and Tina all read it)
+│   ├── hero-image.ts   ← what a heroImage path may be (rejects protocol-relative URLs)
+│   ├── hero-credit.ts  ← photographer credit rules, plain and Unsplash-linked
+│   └── glossary.ts     ← the plain-English SEO/GEO glossary content
 ├── i18n/
+│   ├── locales.mjs     ← the locale list (plain ESM, so scripts and Tina can import it too)
 │   ├── ui.ts           ← locale registry + UI strings (nav, buttons, forms)
 │   ├── routes.ts       ← translated URL segments + hreflang builders
 │   └── utils.ts        ← t() and path helpers
 ├── content/blog/       ← your articles, one .md file per language (en/es/zh-hans/zh-hant)
-├── components/         ← Header, Footer, ContactForm, LangSwitch, Lattice
+├── components/         ← Header, Footer, ContactForm, CookieConsent, LangSwitch,
+│                          Lattice, CityBody, EndCta, BlogPostGrid, TagPill, ThemeToggle
 ├── layouts/            ← Base (all SEO tags live here), Post
 ├── pages/
 │   ├── index.astro     ← English homepage

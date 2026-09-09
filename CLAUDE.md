@@ -62,17 +62,20 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 76 files. The build itself
+                     #   AND .ts, tina/ included. 82 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 264) — i18n/hreflang, reading time, city/service
-                     #   lookups, blog i18n helpers, blog content integrity, the content-status
-                     #   generator and its Pacific clock, JSON-LD escaping, Tina's collection
-                     #   match globs + filename slugifier, the per-locale readability
-                     #   metrics (English FK, Spanish Fernandez Huerta, Chinese register),
-                     #   a polarity tripwire on sentences that have shipped reversed, and
-                     #   the hero-image path rules (todos/018) — which reject a
-                     #   PROTOCOL-RELATIVE `//host/x.jpg` as well as `https://`, because
-                     #   the first guard caught only the spellings that announce themselves.
+npm run test         # tests (vitest, 304 across 25 files) — i18n/hreflang, reading
+                     #   time, city/service lookups, blog i18n helpers, blog content
+                     #   integrity, the content-status generator and its Pacific clock,
+                     #   JSON-LD escaping, Tina's collection match globs + filename
+                     #   slugifier, the per-locale readability metrics (English FK,
+                     #   Spanish Fernandez Huerta, Chinese register), a polarity tripwire
+                     #   on sentences that have shipped reversed, the hero-image path
+                     #   rules (todos/018) — which reject a PROTOCOL-RELATIVE
+                     #   `//host/x.jpg` as well as `https://`, because the first guard
+                     #   caught only the spellings that announce themselves — the
+                     #   hero-credit link-needs-a-name predicate, and the Unsplash
+                     #   script's slug/traversal validation and UTM-fragment handling.
                      #   6 of these need dist/ and SKIP without it — the rendered
                      #   nav-link checks and the readability cross-check — which is
                      #   why ci.yml re-runs the whole suite after the build.
@@ -181,7 +184,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate now covers 76 files and reports 0 errors.
+excluded; the gate now covers 82 files and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -765,7 +768,7 @@ Full write-up in
   correct, type-enforced code in another. Re-verify against current code before
   acting.
 - **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
-  injection CVEs) have no safe fix available yet, re-checked 2026-09-07** —
+  injection CVEs) have no safe fix available yet, re-checked 2026-09-09** —
   this isn't "hasn't been done," it's genuinely blocked upstream. We are on
   `tinacms`/`@tinacms/cli` 3.12.1/2.6.1; 3.13.0/2.7.0 have since shipped, and
   **upgrading would not help** — `npm view tinacms@3.13.0
@@ -789,26 +792,11 @@ Full write-up in
   `npm audit` next time `tinacms` gets touched — nothing to act on until
   Tina ships a version with an unaffected react-router-dom.
 
-  **"8 moderate" is a claim to re-check, not a standing fact, and reading it as
-  one hid a critical advisory for a day.** On 2026-09-08 the audit was **10**:
-  the documented 8 moderate, plus a **critical** RCE in `astro` itself
-  (GHSA-26w7-cxv4-gfx2, AVIF image optimization, `<7.2.8`) and a **high** in
-  `js-yaml`. Both were in the *production* dependency tree, not Tina's — and
-  both were one lockfile refresh away, because `package.json` already permitted
-  the fixed versions. `property-page`, which declares the identical
-  `astro: ^7.2.7`, had resolved to 7.2.9 on its own and was never exposed.
-  Neither was reachable here (nothing uses `astro:assets`, `<Image>` or any
-  image service, so no AVIF is ever optimized), but reachability is the second
-  question. The first is whether anyone looked.
-
-  The paragraph above is what stopped anyone looking: it names a total, gives a
-  good reason that total cannot move, and invites the reader to skip the
-  command. **The Tina findings are the floor of this audit, never the whole of
-  it.** Read the severities, not the count — `npm audit` and treat anything
-  above moderate, or anything outside `tinacms`/`@tinacms/cli`, as a live
-  finding regardless of what this file says the number is. Same failure as the
-  "we're already on the latest" version two paragraphs up, one level out: there
-  the stale thing was a version, here it is a total.
+  **"8 moderate" is a claim to re-check every time, not a standing fact.**
+  It briefly hid a critical advisory (see Resolved, 2026-09-09) — read the
+  severities, not the count, and treat anything above moderate or outside
+  `tinacms`/`@tinacms/cli` as a live finding regardless of what this file
+  says the number is.
 ## Resolved
 
 Already solved — **details and reasoning in [`docs/RESOLVED.md`](docs/RESOLVED.md)**.
@@ -852,3 +840,6 @@ Read that file before re-investigating any of these.
 - The contact form's honeypot no longer eats a real lead to Chrome autofill, and a retry no longer duplicates the CRM record; verified from a real browser against production (2026-09-07)
 - The Chinese sentence ceiling is calibrated on the corpus it governs, and `readability -- --dist` can actually fail (2026-09-07)
 - The ops panel sends `no-store` and no longer hotlinks Google Fonts (2026-09-07, property-page#2)
+- The npm audit drift that briefly hid a critical advisory is fixed, and the audit is verified back to exactly 8 moderate (Tina only) as of 2026-09-09 — see the Tina audit note above for what's still open
+- Four latent Unsplash-attribution bugs are fixed before any could fire: a credit link with no name rendered no caption at all, a UTM-fragment bug put required params where a browser never sends them, captions were hardcoded English on the other three locales, and `scripts/unsplash.mjs` wrote an unvalidated slug straight into a file path (2026-09-09, #45)
+- A blog post's social-share image is its own hero photo now, not the site-wide `/og.png` — todos/012's parked product decision (2026-09-09)
