@@ -36,7 +36,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { isValidPostSlug } from '../src/data/post-slug.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://api.unsplash.com';
@@ -151,6 +152,32 @@ async function search(query) {
 }
 
 async function use(photoId, slug) {
+  /* Checked BEFORE the network calls, because the second of them registers a
+     download against the photographer — there is no point spending that on a
+     run that cannot write its file. `slug` is typed on a command line and is
+     joined straight into a path below, so `../` would land the image outside
+     public/blog/ with the ordinary success message still printed. */
+  if (!isValidPostSlug(slug)) {
+    console.error(
+      `"${slug}" is not a valid post slug: lowercase letters, digits and single hyphens only.\n` +
+        'Use the same slug as the post’s frontmatter — the image is shared by all four locales.',
+    );
+    process.exit(1);
+  }
+
+  const destination = path.join(ROOT, 'public', 'blog', `${slug}.jpg`);
+  /* Overwriting is almost always a mistyped slug rather than an intended
+     replacement, and it is silent: the four locale files of an existing post
+     all point at this one path, so the wrong photo appears on a published post
+     in every language at once. */
+  if (fs.existsSync(destination)) {
+    console.error(
+      `public/blog/${slug}.jpg already exists.\n` +
+        'Delete it first if you mean to replace that post’s hero image.',
+    );
+    process.exit(1);
+  }
+
   const photo = await api(`${API}/photos/${photoId}`);
 
   /* REQUIRED by the API guidelines, and the reason this is not just a curl of
@@ -165,7 +192,6 @@ async function use(photoId, slug) {
     console.error(`Downloading the image failed with ${response.status}.`);
     process.exit(1);
   }
-  const destination = path.join(ROOT, 'public', 'blog', `${slug}.jpg`);
   fs.writeFileSync(destination, Buffer.from(await response.arrayBuffer()));
 
   const { yaml } = heroFrontmatter(photo, slug);
@@ -178,7 +204,12 @@ async function use(photoId, slug) {
 
 const [command, ...args] = process.argv.slice(2);
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+/* CANONICAL COMPARISON. `file://${process.argv[1]}` is a string, not a URL:
+   `import.meta.url` percent-encodes spaces and non-ASCII characters, so on a
+   checkout path containing either, this test is false and the script exits 0
+   having done nothing at all — no output, no error. `pathToFileURL` produces
+   the same encoding both sides. */
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   if (command === 'search' && args[0]) {
     await search(args.join(' '));
   } else if (command === 'use' && args.length === 2) {

@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { isUnsplashProfileUrl, withReferral, UNSPLASH_HOME, UTM_SOURCE } from './hero-credit';
+import {
+  isUnsplashProfileUrl,
+  withReferral,
+  hasCreditNameWhenLinked,
+  UNSPLASH_HOME,
+  UTM_SOURCE,
+} from './hero-credit';
 
 /**
  * WHY THESE RULES EXIST. Signing up for the Unsplash API on 2026-09-08 moved
@@ -67,5 +73,56 @@ describe('withReferral', () => {
   it('tags the Unsplash home link too, which the guidelines require alongside the profile', () => {
     expect(withReferral(UNSPLASH_HOME)).toContain(`utm_source=${UTM_SOURCE}`);
     expect(withReferral(UNSPLASH_HOME)).toContain('utm_medium=referral');
+  });
+  /**
+   * A FRAGMENT MUST NOT SWALLOW THE PARAMETERS. `isUnsplashProfileUrl` compares
+   * `url.pathname`, and a fragment is not part of the path — so
+   * `https://unsplash.com/@x#bio` is a valid profile URL and reaches this
+   * function. Appending with a bare `?` puts the campaign parameters INSIDE the
+   * fragment, which a browser never sends, so Unsplash receives no referral at
+   * all while the rendered link still looks correct. Silent, exactly like the
+   * other three obligations this file exists to keep.
+   */
+  it('keeps the parameters in the query when the URL carries a fragment', () => {
+    const tagged = new URL(withReferral('https://unsplash.com/@x#bio'));
+    expect(tagged.searchParams.get('utm_source')).toBe(UTM_SOURCE);
+    expect(tagged.searchParams.get('utm_medium')).toBe('referral');
+    expect(tagged.hash).toBe('#bio');
+  });
+
+  /** Re-tagging must not stack a second copy of either parameter. */
+  it('replaces existing campaign parameters rather than appending a duplicate', () => {
+    const tagged = new URL(withReferral('https://unsplash.com/@x?utm_source=somewhere-else'));
+    expect(tagged.searchParams.getAll('utm_source')).toEqual([UTM_SOURCE]);
+    expect(tagged.searchParams.getAll('utm_medium')).toEqual(['referral']);
+  });
+});
+
+describe('hasCreditNameWhenLinked', () => {
+  /**
+   * THE STATE THIS EXISTS TO FORBID. Post.astro renders the linked caption only
+   * when BOTH fields are set and the bare caption only when the name is set
+   * without a URL — so a URL with no name renders NO caption at all: no
+   * photographer, no profile link, no Unsplash link. That is precisely the
+   * attribution the API guidelines require, absent, on a build that passes.
+   */
+  it('rejects a credit link with no photographer name', () => {
+    expect(hasCreditNameWhenLinked('', 'https://unsplash.com/@x')).toBe(false);
+    expect(hasCreditNameWhenLinked(undefined, 'https://unsplash.com/@x')).toBe(false);
+    expect(hasCreditNameWhenLinked('   ', 'https://unsplash.com/@x')).toBe(false);
+  });
+
+  it('accepts the linked pair the API guidelines require', () => {
+    expect(hasCreditNameWhenLinked('Annie Spratt', 'https://unsplash.com/@anniespratt')).toBe(true);
+  });
+
+  /** The 80 pre-API files carry a name and no URL, and must keep building. */
+  it('accepts a bare name with no link, which is what the pre-API images have', () => {
+    expect(hasCreditNameWhenLinked('Annie Spratt', undefined)).toBe(true);
+  });
+
+  /** A post with no hero image at all has neither field. */
+  it('accepts both fields absent', () => {
+    expect(hasCreditNameWhenLinked(undefined, undefined)).toBe(true);
   });
 });

@@ -9,7 +9,8 @@ import { glob } from 'astro/loaders';
 import { LOCALES } from './i18n/ui';
 import { PILLARS } from './data/pillars';
 import { HERO_IMAGE_PATTERN, isProtocolRelative, hasTraversalSegment } from './data/hero-image';
-import { isUnsplashProfileUrl } from './data/hero-credit';
+import { isUnsplashProfileUrl, hasCreditNameWhenLinked } from './data/hero-credit';
+import { POST_SLUG_PATTERN } from './data/post-slug.mjs';
 
 /**
  * A hero image must be a root-relative path into `public/`, e.g. `/blog/x.jpg`.
@@ -99,7 +100,7 @@ const blog = defineCollection({
      *  slugs already satisfy this, and none collide. */
     slug: z
       .string()
-      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'lowercase letters, digits and single hyphens only'),
+      .regex(POST_SLUG_PATTERN, 'lowercase letters, digits and single hyphens only'),
   })
     /* Tina's field description says heroAlt is "Required if a hero image is
        set" and nothing enforced it, so a hero photo could ship with alt="" —
@@ -109,6 +110,16 @@ const blog = defineCollection({
     .refine((data) => !data.heroImage || Boolean(data.heroAlt?.trim()), {
       message: 'heroAlt is required when heroImage is set — describe the photo.',
       path: ['heroAlt'],
+    })
+    /* A credit LINK with no NAME renders no caption at all — see
+       hasCreditNameWhenLinked. The Unsplash API guidelines require the
+       photographer to be named and linked, so the state that drops both is the
+       one worth failing the build over. Conditional, not `required`, because
+       the 80 pre-API files carry a name and no URL. */
+    .refine((data) => hasCreditNameWhenLinked(data.heroCredit, data.heroCreditUrl), {
+      message:
+        'heroCredit is required when heroCreditUrl is set — a credit link with no photographer name renders no attribution at all.',
+      path: ['heroCredit'],
     }),
 });
 

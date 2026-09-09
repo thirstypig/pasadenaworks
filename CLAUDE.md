@@ -788,6 +788,27 @@ Full write-up in
   link while the local dev server happens to be running. Re-check
   `npm audit` next time `tinacms` gets touched — nothing to act on until
   Tina ships a version with an unaffected react-router-dom.
+
+  **"8 moderate" is a claim to re-check, not a standing fact, and reading it as
+  one hid a critical advisory for a day.** On 2026-09-08 the audit was **10**:
+  the documented 8 moderate, plus a **critical** RCE in `astro` itself
+  (GHSA-26w7-cxv4-gfx2, AVIF image optimization, `<7.2.8`) and a **high** in
+  `js-yaml`. Both were in the *production* dependency tree, not Tina's — and
+  both were one lockfile refresh away, because `package.json` already permitted
+  the fixed versions. `property-page`, which declares the identical
+  `astro: ^7.2.7`, had resolved to 7.2.9 on its own and was never exposed.
+  Neither was reachable here (nothing uses `astro:assets`, `<Image>` or any
+  image service, so no AVIF is ever optimized), but reachability is the second
+  question. The first is whether anyone looked.
+
+  The paragraph above is what stopped anyone looking: it names a total, gives a
+  good reason that total cannot move, and invites the reader to skip the
+  command. **The Tina findings are the floor of this audit, never the whole of
+  it.** Read the severities, not the count — `npm audit` and treat anything
+  above moderate, or anything outside `tinacms`/`@tinacms/cli`, as a live
+  finding regardless of what this file says the number is. Same failure as the
+  "we're already on the latest" version two paragraphs up, one level out: there
+  the stale thing was a version, here it is a total.
 ## Resolved
 
 Already solved — **details and reasoning in [`docs/RESOLVED.md`](docs/RESOLVED.md)**.

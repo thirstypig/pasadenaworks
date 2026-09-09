@@ -22,7 +22,7 @@ import {
 } from '../src/data/hero-image';
 // And once more, for the credit link. Same reason: the Astro schema and this
 // validator must not be able to disagree about what an Unsplash profile URL is.
-import { isUnsplashProfileUrl } from '../src/data/hero-credit';
+import { isUnsplashProfileUrl, hasCreditNameWhenLinked } from '../src/data/hero-credit';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -233,7 +233,19 @@ export default defineConfig({
             type: 'string',
             name: 'heroCredit',
             label: 'Hero image credit',
-            description: 'Photographer name/attribution.',
+            description:
+              'Photographer name/attribution. Required if a credit link is set — a link with no name renders no attribution at all.',
+            // Mirrors the Astro schema's refine, through the same predicate,
+            // for the reason the heroAlt field above gives: a constraint that
+            // exists only as prose is not a constraint. Without this, Tina
+            // saves the link-with-no-name state happily and the build fails
+            // afterwards, which is a worse place to find out.
+            ui: {
+              validate: (value: string | undefined, allValues?: { heroCreditUrl?: string }) =>
+                hasCreditNameWhenLinked(value, allValues?.heroCreditUrl)
+                  ? undefined
+                  : 'Required when a credit link is set — name the photographer, or clear the link.',
+            },
           },
           {
             type: 'string',
