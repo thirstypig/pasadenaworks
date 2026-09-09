@@ -9,6 +9,7 @@ import { glob } from 'astro/loaders';
 import { LOCALES } from './i18n/ui';
 import { PILLARS } from './data/pillars';
 import { HERO_IMAGE_PATTERN, isProtocolRelative, hasTraversalSegment } from './data/hero-image';
+import { isUnsplashProfileUrl } from './data/hero-credit';
 
 /**
  * A hero image must be a root-relative path into `public/`, e.g. `/blog/x.jpg`.
@@ -60,6 +61,22 @@ const blog = defineCollection({
       heroImage: heroImagePath.optional(),
     heroAlt: z.string().optional(),
     heroCredit: z.string().optional(),
+    /** The photographer's Unsplash profile, e.g. https://unsplash.com/@name.
+     *
+     *  Optional, and deliberately so. The 20 images already in public/blog/
+     *  predate the Unsplash API and are covered by the plain licence, where
+     *  attribution is appreciated but not required. Requiring a URL would fail
+     *  the build on 80 existing files to satisfy a rule that does not reach
+     *  them. Anything sourced THROUGH the API is under the API guidelines,
+     *  which do require it — scripts/unsplash.mjs emits this field so that
+     *  compliance is automatic rather than remembered. */
+    heroCreditUrl: z
+      .string()
+      .refine(isUnsplashProfileUrl, {
+        message:
+          'heroCreditUrl must be an https link to an Unsplash profile, e.g. https://unsplash.com/@name. The HOST is compared, not the string, so a lookalike like https://unsplash.com.evil.example/@x fails here.',
+      })
+      .optional(),
     /** Which of the site's four locales this file is written in. Each
      *  translation of a post is its own file — see translationKey. */
     locale: z.enum(LOCALES),

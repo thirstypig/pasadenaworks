@@ -8,6 +8,7 @@ import { blogIndexPath, formatPostDate, readingLabel, updatedLabel, byLabel } fr
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 import type { Pillar } from '../data/pillars';
+import { withReferral, UNSPLASH_HOME } from '../data/hero-credit';
 
 interface Props {
   title: string;
@@ -24,6 +25,7 @@ interface Props {
   heroImage?: string;
   heroAlt?: string;
   heroCredit?: string;
+  heroCreditUrl?: string;
 }
 
 const {
@@ -41,6 +43,7 @@ const {
   heroImage,
   heroAlt,
   heroCredit,
+  heroCreditUrl,
 } = Astro.props;
 
 const strings = t(locale);
@@ -106,7 +109,24 @@ const articleSchema = {
         <div class="post__hero-frame label-frame">
           <img src={heroImage} alt={heroAlt ?? ''} loading="eager" />
         </div>
-        {heroCredit && <figcaption>Photo: {heroCredit}</figcaption>}
+        {/* Unsplash's API guidelines require the photographer AND Unsplash to
+            be linked, both carrying utm_source/utm_medium. Images sourced
+            before the API have no heroCreditUrl and keep the bare string —
+            they are covered by the plain licence, which does not require a
+            link. See src/data/hero-credit.ts. */}
+        {heroCredit && heroCreditUrl && (
+          <figcaption>
+            Photo by{' '}
+            <a href={withReferral(heroCreditUrl)} rel="noopener">
+              {heroCredit}
+            </a>{' '}
+            on{' '}
+            <a href={withReferral(UNSPLASH_HOME)} rel="noopener">
+              Unsplash
+            </a>
+          </figcaption>
+        )}
+        {heroCredit && !heroCreditUrl && <figcaption>Photo: {heroCredit}</figcaption>}
       </figure>
     )}
 

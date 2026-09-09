@@ -16,6 +16,7 @@
     "test": "vitest run",
     "typecheck": "astro sync && astro check && tsc --noEmit",
     "content:status": "node scripts/content-status.mjs",
+    "unsplash": "node scripts/unsplash.mjs",
     "readability": "node scripts/readability.mjs"
   },
   "dependencies": {
