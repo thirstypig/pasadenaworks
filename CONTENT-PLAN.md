@@ -130,10 +130,11 @@ loud. This phase does three jobs: it claims a lane nobody local is writing in,
 it follows a deliberate shift in who the customer is, and it takes a position
 on the thing every owner is currently being sold.
 
-**Thirty-four articles, weekly Mondays from 2027-01-18 through 2027-08-16**,
-plus three seasonal pieces held to autumn — holiday advice published in May is
-worthless. Clusters are interleaved rather than run in blocks, so the blog does
-not spend seven consecutive weeks on one subject.
+**Forty-eight articles, weekly Mondays from 2027-01-18 through 2027-12-13**,
+with three seasonal pieces placed at the dates they are actually useful —
+holiday advice published in May is worthless. Clusters are interleaved rather
+than run in blocks, so the blog does not spend seven consecutive weeks on one
+subject.
 
 ### The calendar
 
@@ -170,12 +171,31 @@ not spend seven consecutive weeks on one subject.
 | 2027-08-02 | Own your name online: what the Sriracha fight teaches small businesses | websites | SoCal |
 | 2027-08-09 | What to tell an employee who wants to "use AI" for marketing | consulting | AI for SMBs |
 | 2027-08-16 | Trader Joe's doesn't buy ads. Why that's a bad model to copy. | ads | SoCal |
+| 2027-08-23 | What an ADA website lawsuit actually looks like, read from the filing | websites | Use cases |
+| 2027-08-30 | The California businesses sued over their websites, and what they had in common | websites | Use cases |
+| 2027-09-06 | Accessibility overlay widgets did not stop the lawsuits | websites | Use cases |
+| 2027-09-13 | What "ADA compliant" vendors promise, against what the filings say | consulting | Use cases |
+| 2027-09-20 | Google Business Profile suspensions: what gets a real business shut out | search | Use cases |
 | 2027-09-27 | Q4 checklist: what to fix before the holiday rush | consulting | Seasonal |
+| 2027-10-04 | Fake reviews and review extortion: documented cases, and what worked | search | Use cases |
+| 2027-10-11 | When a competitor reports your listing: what the appeals record shows | search | Use cases |
+| 2027-10-18 | Businesses that lost their own domain name, and how | websites | Use cases |
+| 2027-10-25 | What happens to your site when your developer's company dissolves | consulting | Use cases |
+| 2027-11-01 | Disputed handovers: who owned the website, according to the record | consulting | Use cases |
 | 2027-11-08 | Small Business Saturday: worth the effort? | ads | Seasonal |
 | 2027-11-15 | Holiday hours on your Google Business Profile | search | Seasonal |
+| 2027-11-22 | What published research says about how people actually use AI search | search | Use cases |
+| 2027-11-29 | When an assistant gets your details wrong: documented cases | search | Use cases |
+| 2027-12-06 | What agencies actually charge, read from published rate surveys | consulting | Use cases |
+| 2027-12-13 | What owners report spending on a website: the survey data | consulting | Use cases |
+| 2027-12-20 | *Skipped — Christmas week.* | — | — |
+| 2027-12-27 | *Skipped — New Year's week.* | — | — |
 
-Only **2027-08-23 through 2027-09-20** is left open, five Mondays, plus October.
-Earlier drafts left a four-month hole; extending the run closed it.
+**Every Monday from 2027-01-18 to 2027-12-27 now carries a topic**, with
+Christmas and New Year's weeks skipped as usual. That is forty-eight articles.
+Read the two sections at the end before treating that as a finished plan: the
+back half is deliberately placeholders, and the size of this is the main risk
+in it.
 
 ### AI, in two clusters that are not the same subject
 
@@ -273,15 +293,80 @@ charge, and for what?"* The two most substantial articles written so far are the
 cost and the pricing ones, which is the clearest signal available about what
 this audience reads. Direct question, number in the answer.
 
+### Use cases — fourteen articles, every one built on a public record
+
+The gap from late August 2027 onward is filled with case-study articles, and
+they carry a rule the rest of the plan does not need.
+
+**Never imply these are your own clients.** This is a small consultancy with no
+published client work. An article shaped like "how we helped a local dentist
+recover from a Google suspension", written from a composite or an imagined
+example, is fabrication — the same failure hard rule 2 exists to prevent on
+city pages, and considerably worse in a case study, because a reader takes it
+as evidence you have done the work. Every one of these is a **publicly
+documented case involving someone else**, framed as observed, and cited.
+
+**Why these four seams and not others** — each has a real, checkable record:
+
+- **Accessibility litigation** is public court filings. California carries more
+  web-accessibility suits than any other state, the complaints are readable,
+  and the overlay-widget articles can be argued from the docket rather than
+  from a vendor's marketing. This is the strongest-sourced group here.
+- **Profile suspensions, fake reviews and listing reports** are covered in
+  trade press and in Google's own documentation, and the appeal outcomes are
+  discussed openly by the people they happened to.
+- **Domain and handover disputes** are the ownership cluster's evidence.
+  Argument is one thing; a business that lost its own name is another.
+- **Pricing and AI-usage research** are published surveys. Read them honestly,
+  including where the sample is thin or the publisher is selling something.
+
+**Cut anything that will not source.** *"When an assistant gets your details
+wrong"* is the weakest of the fourteen — the phenomenon is real and widely
+complained about, but a citable, verifiable instance may not exist. If a
+credible source cannot be found at drafting time, drop the article and leave
+the Monday empty. An uncited case study is worth less than no article, because
+it teaches the reader that the citations elsewhere might be decorative too.
+
+### Citations — the standard for every article, not just the case studies
+
+Measured across the twenty English articles written so far: **23 outbound
+citations, 14 articles carrying at least one, and 6 carrying none.** That is a
+real improvement — an earlier note in this project recorded one citation across
+twenty articles — and it is not yet a standard.
+
+From here: **every article cites at least one source a reader could check, and
+no article ships with zero.** The register work already established that
+raising the reading level without raising the rigour only makes assertions
+sound more confident. Citations are what stop that.
+
+Two rules learned the expensive way and worth repeating here:
+
+- **Verify the URL before citing it.** Checking one claim in the postcard
+  article is what revealed the article had been overstating it.
+- **Cite the localized page.** Google's own documentation takes an `?hl=`
+  parameter; a Spanish article citing an English page is a worse citation than
+  it looks.
+
+### These fourteen are placeholders, and should be re-cut in March
+
+The plan already says the first ten articles publish by late March 2027, and
+that is the point to read Search Console and revise everything after it. These
+fourteen sit eight months past that checkpoint.
+
+They are here so that every Monday has an argued topic rather than a blank,
+which makes the shape of the year visible and reviewable. They are **not**
+commitments. Treat a slot with a topic and a rationale as better than an empty
+one and worse than a decision made with data.
+
 ### What this costs, stated plainly
 
-Thirty-four articles is **one hundred and thirty-six files** — every one ships
+Forty-eight articles is **one hundred and ninety-two files** — every one ships
 in English, Spanish, Simplified and Traditional Chinese, translated alongside
 the English draft rather than after it. A date-gated article whose translations
 miss its own `pubDate` publishes English-only and does not get a second chance.
 
-At one article a week this is roughly eighteen months of work, and it lands on
-top of fifteen finished articles already queued and unpublished through January.
+At one article a week this is roughly two years of work, and it lands on top of
+fifteen finished articles already queued and unpublished through January.
 
 **That is the real risk in this plan, and it is not the topics.** Publishing
 is the bottleneck. Nothing here has been tested against traffic, and the three
