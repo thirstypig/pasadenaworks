@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: llms-txt-necessary
 slug: does-your-website-need-an-llms-txt

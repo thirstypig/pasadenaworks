@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 医疗
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: hipaa-website-traps
 slug: hipaa-yu-zhensuo-wangzhan-de-xianjing

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: answers-without-clicking
 slug: answers-without-clicking-what-it-means

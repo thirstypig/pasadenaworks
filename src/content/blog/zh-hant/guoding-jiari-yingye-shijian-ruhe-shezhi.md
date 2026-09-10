@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 商家檔案
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: holiday-hours
 slug: guoding-jiari-yingye-shijian-ruhe-shezhi

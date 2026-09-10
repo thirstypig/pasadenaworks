@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: ai-overviews-local-impact
 slug: ai-zonglan-gaibian-le-naxie-shi

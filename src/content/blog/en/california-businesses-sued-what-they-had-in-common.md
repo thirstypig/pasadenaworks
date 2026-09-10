@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accessibility
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: who-gets-sued
 slug: california-businesses-sued-what-they-had-in-common

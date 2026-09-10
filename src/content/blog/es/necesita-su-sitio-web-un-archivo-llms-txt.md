@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: llms-txt-necessary
 slug: necesita-su-sitio-web-un-archivo-llms-txt

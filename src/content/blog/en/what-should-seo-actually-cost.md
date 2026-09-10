@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - pricing
   - seo
-draft: true
+draft: false
 locale: en
 translationKey: what-seo-should-cost
 slug: what-should-seo-actually-cost

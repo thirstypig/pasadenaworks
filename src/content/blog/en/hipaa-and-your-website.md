@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - healthcare
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: hipaa-website-traps
 slug: hipaa-and-your-website

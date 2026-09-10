@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - healthcare
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: local-seo-medical
 slug: local-seo-for-medical-practices

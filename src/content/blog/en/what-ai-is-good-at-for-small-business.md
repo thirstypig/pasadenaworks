@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - small business advice
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: what-ai-is-good-at
 slug: what-ai-is-good-at-for-small-business

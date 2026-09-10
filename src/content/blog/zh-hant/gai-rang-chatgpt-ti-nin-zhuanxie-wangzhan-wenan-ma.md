@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 網站設計
-draft: true
+draft: false
 locale: zh-hant
 translationKey: chatgpt-website-copy
 slug: gai-rang-chatgpt-ti-nin-zhuanxie-wangzhan-wenan-ma

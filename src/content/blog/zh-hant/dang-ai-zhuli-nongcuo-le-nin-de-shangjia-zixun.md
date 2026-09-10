@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 商家檔案
-draft: true
+draft: false
 locale: zh-hant
 translationKey: assistant-wrong-details
 slug: dang-ai-zhuli-nongcuo-le-nin-de-shangjia-zixun

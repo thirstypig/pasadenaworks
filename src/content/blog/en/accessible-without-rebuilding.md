@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accessibility
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: accessible-without-rebuild
 slug: accessible-without-rebuilding

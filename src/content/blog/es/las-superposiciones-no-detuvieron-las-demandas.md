@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accesibilidad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: overlays-did-not-work
 slug: las-superposiciones-no-detuvieron-las-demandas

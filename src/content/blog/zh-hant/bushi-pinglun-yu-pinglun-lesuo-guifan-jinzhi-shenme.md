@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 評論
   - 商家檔案
-draft: true
+draft: false
 locale: zh-hant
 translationKey: fake-reviews-rule
 slug: bushi-pinglun-yu-pinglun-lesuo-guifan-jinzhi-shenme

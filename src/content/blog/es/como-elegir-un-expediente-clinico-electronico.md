@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - salud
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: choosing-an-ehr
 slug: como-elegir-un-expediente-clinico-electronico

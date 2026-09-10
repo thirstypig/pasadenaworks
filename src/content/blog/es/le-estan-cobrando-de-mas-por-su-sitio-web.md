@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - precios
-draft: true
+draft: false
 locale: es
 translationKey: overcharged-for-website
 slug: le-estan-cobrando-de-mas-por-su-sitio-web

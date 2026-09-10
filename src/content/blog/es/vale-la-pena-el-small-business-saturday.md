@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - marketing para negocios pequenos
   - san gabriel valley
-draft: true
+draft: false
 locale: es
 translationKey: small-business-saturday
 slug: vale-la-pena-el-small-business-saturday

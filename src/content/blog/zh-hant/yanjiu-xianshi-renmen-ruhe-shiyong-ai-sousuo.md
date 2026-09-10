@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - search console
-draft: true
+draft: false
 locale: zh-hant
 translationKey: ai-search-research
 slug: yanjiu-xianshi-renmen-ruhe-shiyong-ai-sousuo

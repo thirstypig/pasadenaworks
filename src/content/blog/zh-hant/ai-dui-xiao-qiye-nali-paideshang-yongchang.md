@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 小型企業建議
   - 經營策略
-draft: true
+draft: false
 locale: zh-hant
 translationKey: what-ai-is-good-at
 slug: ai-dui-xiao-qiye-nali-paideshang-yongchang

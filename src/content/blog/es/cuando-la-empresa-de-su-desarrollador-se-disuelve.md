@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: developer-dissolves
 slug: cuando-la-empresa-de-su-desarrollador-se-disuelve

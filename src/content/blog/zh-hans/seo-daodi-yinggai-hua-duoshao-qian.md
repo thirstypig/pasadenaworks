@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 定价
   - seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: what-seo-should-cost
 slug: seo-daodi-yinggai-hua-duoshao-qian

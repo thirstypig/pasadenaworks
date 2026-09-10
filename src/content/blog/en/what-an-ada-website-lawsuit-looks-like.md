@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accessibility
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: ada-lawsuit-shape
 slug: what-an-ada-website-lawsuit-looks-like

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - consejos para negocios
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: what-ai-is-good-at
 slug: para-que-sirve-de-verdad-la-ia-en-un-negocio-pequeno

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - san gabriel valley
-draft: true
+draft: false
 locale: en
 translationKey: own-your-name-sriracha
 slug: own-your-name-online-sriracha

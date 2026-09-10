@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - healthcare
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: physician-website-needs
 slug: what-a-physicians-website-needs

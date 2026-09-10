@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - pricing
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: agency-rate-surveys
 slug: why-agency-rate-surveys-dont-answer-the-question

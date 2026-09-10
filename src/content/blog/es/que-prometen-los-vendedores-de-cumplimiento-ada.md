@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accesibilidad
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: ada-vendor-claims
 slug: que-prometen-los-vendedores-de-cumplimiento-ada

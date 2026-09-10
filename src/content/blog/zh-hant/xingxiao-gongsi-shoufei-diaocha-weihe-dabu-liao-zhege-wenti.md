@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 價格
   - 經營策略
-draft: true
+draft: false
 locale: zh-hant
 translationKey: agency-rate-surveys
 slug: xingxiao-gongsi-shoufei-diaocha-weihe-dabu-liao-zhege-wenti

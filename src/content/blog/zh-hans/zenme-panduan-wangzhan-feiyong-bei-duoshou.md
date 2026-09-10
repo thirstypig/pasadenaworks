@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 所有权
   - 定价
-draft: true
+draft: false
 locale: zh-hans
 translationKey: overcharged-for-website
 slug: zenme-panduan-wangzhan-feiyong-bei-duoshou

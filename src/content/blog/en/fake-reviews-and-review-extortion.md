@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - reviews
   - google business profile
-draft: true
+draft: false
 locale: en
 translationKey: fake-reviews-rule
 slug: fake-reviews-and-review-extortion

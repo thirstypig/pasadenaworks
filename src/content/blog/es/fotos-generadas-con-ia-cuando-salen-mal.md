@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - sitios web
   - diseno web
-draft: true
+draft: false
 locale: es
 translationKey: ai-photos-backfire
 slug: fotos-generadas-con-ia-cuando-salen-mal

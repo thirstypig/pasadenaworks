@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - google business profile
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: competitor-reports-listing
 slug: when-a-competitor-reports-your-listing

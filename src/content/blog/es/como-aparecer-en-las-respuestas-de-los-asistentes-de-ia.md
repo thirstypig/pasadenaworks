@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: show-up-in-ai-answers
 slug: como-aparecer-en-las-respuestas-de-los-asistentes-de-ia

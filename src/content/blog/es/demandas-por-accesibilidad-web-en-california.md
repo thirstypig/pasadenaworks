@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accesibilidad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: accessibility-lawsuits-real
 slug: demandas-por-accesibilidad-web-en-california

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - small business advice
   - client relationships
-draft: true
+draft: false
 locale: en
 translationKey: ai-customer-enquiries
 slug: using-ai-for-customer-enquiries

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - perfil de negocio
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: holiday-hours
 slug: horarios-de-festivos-en-su-perfil-de-negocio

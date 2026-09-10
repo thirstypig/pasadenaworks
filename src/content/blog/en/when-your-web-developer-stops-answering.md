@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: developer-stops-answering
 slug: when-your-web-developer-stops-answering

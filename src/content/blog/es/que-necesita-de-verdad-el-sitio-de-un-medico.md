@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - salud
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: physician-website-needs
 slug: que-necesita-de-verdad-el-sitio-de-un-medico

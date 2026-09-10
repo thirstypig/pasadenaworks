@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 本地 seo
   - 圣盖博谷
-draft: true
+draft: false
 locale: zh-hans
 translationKey: independent-vs-chain
 slug: duli-xiaodian-zenyang-zai-bendi-sousuo-yingguo-liansuo

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 醫療
   - 網站
-draft: true
+draft: false
 locale: zh-hant
 translationKey: hipaa-website-traps
 slug: hipaa-yu-zhensuo-wangzhan-rongyi-chucuo-zhi-chu

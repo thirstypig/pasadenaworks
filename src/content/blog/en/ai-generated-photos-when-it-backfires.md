@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - websites
   - web design
-draft: true
+draft: false
 locale: en
 translationKey: ai-photos-backfire
 slug: ai-generated-photos-when-it-backfires

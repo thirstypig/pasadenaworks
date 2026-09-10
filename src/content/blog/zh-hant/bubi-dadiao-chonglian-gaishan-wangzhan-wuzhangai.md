@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 無障礙
   - 網站
-draft: true
+draft: false
 locale: zh-hant
 translationKey: accessible-without-rebuild
 slug: bubi-dadiao-chonglian-gaishan-wangzhan-wuzhangai

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - precios
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: agency-rate-surveys
 slug: lo-que-cobran-las-agencias-y-por-que-las-encuestas-no-lo-dicen

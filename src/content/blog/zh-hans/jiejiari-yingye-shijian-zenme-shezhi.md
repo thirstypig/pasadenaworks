@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 商家资料
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: holiday-hours
 slug: jiejiari-yingye-shijian-zenme-shezhi

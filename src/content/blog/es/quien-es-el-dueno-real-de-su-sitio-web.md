@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: who-owns-your-website
 slug: quien-es-el-dueno-real-de-su-sitio-web

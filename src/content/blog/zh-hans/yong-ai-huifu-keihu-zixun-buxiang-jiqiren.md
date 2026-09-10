@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 小生意建议
   - 客户关系
-draft: true
+draft: false
 locale: zh-hans
 translationKey: ai-customer-enquiries
 slug: yong-ai-huifu-keihu-zixun-buxiang-jiqiren

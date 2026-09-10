@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: chatgpt-business-visibility
 slug: why-chatgpt-doesnt-show-your-business

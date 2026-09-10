@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: who-owns-your-website
 slug: who-actually-owns-your-website

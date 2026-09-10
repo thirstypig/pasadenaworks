@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 定价
   - 经营策略
-draft: true
+draft: false
 locale: zh-hans
 translationKey: agency-rate-surveys
 slug: daili-gongsi-baojia-diaocha-weihe-huida-buliao-wenti

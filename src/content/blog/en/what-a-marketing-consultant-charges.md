@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - pricing
   - small business advice
-draft: true
+draft: false
 locale: en
 translationKey: consultant-charges
 slug: what-a-marketing-consultant-charges

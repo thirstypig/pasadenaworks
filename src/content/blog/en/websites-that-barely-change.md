@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - websites
   - web design
-draft: true
+draft: false
 locale: en
 translationKey: websites-that-barely-change
 slug: websites-that-barely-change

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - perfil de negocio
-draft: true
+draft: false
 locale: es
 translationKey: assistant-wrong-details
 slug: cuando-un-asistente-de-ia-se-equivoca-con-sus-datos

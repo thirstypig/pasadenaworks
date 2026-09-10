@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 无障碍
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: overlays-did-not-work
 slug: wuzhangai-fugai-gongju-bing-wei-zuzhi-susong

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accessibility
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: accessibility-lawsuits-real
 slug: website-accessibility-lawsuits-california

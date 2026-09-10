@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - diseno web
-draft: true
+draft: false
 locale: es
 translationKey: chatgpt-website-copy
 slug: deberia-dejar-que-chatgpt-escriba-su-sitio-web

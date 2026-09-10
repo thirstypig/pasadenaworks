@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 小生意营销
   - 圣盖博谷
-draft: true
+draft: false
 locale: zh-hans
 translationKey: small-business-saturday
 slug: xiaoshangjia-xingqiliu-zhide-canyu-ma

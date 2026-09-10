@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: chatgpt-business-visibility
 slug: chatgpt-zhaobudao-nin-de-shangjia

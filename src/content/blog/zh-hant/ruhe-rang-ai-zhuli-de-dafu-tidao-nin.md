@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: show-up-in-ai-answers
 slug: ruhe-rang-ai-zhuli-de-dafu-tidao-nin

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 醫療
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: local-seo-medical
 slug: zhensuo-zaidi-seo-ruhe-jingying

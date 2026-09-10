@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - local seo
   - san gabriel valley
-draft: true
+draft: false
 locale: en
 translationKey: independent-vs-chain
 slug: how-an-independent-outranks-a-chain

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 無障礙
   - 網站
-draft: true
+draft: false
 locale: zh-hant
 translationKey: accessibility-lawsuits-real
 slug: jiazhou-wangzhan-wuzhangai-susong-shiqing-ruhe

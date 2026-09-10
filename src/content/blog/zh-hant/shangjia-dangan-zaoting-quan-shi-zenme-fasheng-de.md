@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 商家檔案
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: gbp-suspensions
 slug: shangjia-dangan-zaoting-quan-shi-zenme-fasheng-de

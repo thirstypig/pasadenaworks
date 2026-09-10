@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 醫療
   - 經營策略
-draft: true
+draft: false
 locale: zh-hant
 translationKey: switching-ehr
 slug: genghuan-dianzi-binglu-buyao-nongdiu-menzhen-biao
