@@ -24,6 +24,8 @@ Small Business Saturday is a shopping day created by American Express in 2010, h
 
 It has become a genuine cultural fixture, which matters because it means some proportion of your neighbors will be looking for somewhere local to spend money that day without needing to be persuaded of the premise.
 
+The scale of that is measurable, and the trend line is worth reading honestly rather than just repeating the round numbers. American Express, which still runs its own Consumer Insights survey on the day every year, reported an estimated $18 billion in consumer spending at small businesses on the 2025 Small Business Saturday — down nearly 20% from an estimated $22 billion in 2024, though still above where the figure stood in 2023. Across the full run of the campaign from 2021 through 2025, American Express reports a cumulative $100 billion in consumer-reported spending, a goal it set for itself and met. Both things are true at once: the day still moves real, substantial money toward small businesses, and the single-year number just went through its sharpest drop in the campaign's recent history. Neither fact cancels the other out, and a business deciding whether to participate should hold both.
+
 ## Who it genuinely helps
 
 The businesses that do well are the ones where the mechanism actually works, and the mechanism is walking in and buying.
@@ -64,4 +66,4 @@ Spend it on the things that work every week rather than one Saturday: ask this m
 
 None of that is festive and all of it compounds, which is the opposite trade from a single day in November. For a service business that is the better deal, and saying so is more useful than encouraging you to decorate a window nobody is going to walk past.
 
-**Sources:** [Wikipedia, Small Business Saturday](https://en.wikipedia.org/wiki/Small_Business_Saturday) · [Google Business Profile Help, Create and manage posts on your Business Profile](https://support.google.com/business/answer/7342169?hl=en)
+**Sources:** [American Express Newsroom, On Small Business Saturday, American Express Reaches Goal to Drive $100 Billion in Consumer-Reported Spending](https://www.americanexpress.com/en-us/newsroom/articles/shop-small/on-small-business-saturday--american-express-reaches-goal-to-dri.html) · [Forbes, Small Business Saturday Hopes Dashed By 18% Spending Decline In 2025](https://www.forbes.com/sites/pamdanziger/2025/12/03/small-business-saturday-hopes-dashed-by-18-spending-decline-in-2025/) · [Google Business Profile Help, Create and manage posts on your Business Profile](https://support.google.com/business/answer/7342169?hl=en)
