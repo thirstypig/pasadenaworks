@@ -59,6 +59,7 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2027-06-28 | How an independent outranks a chain in local search | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-07-05 | AI-generated photos on your website: when it backfires | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-07-12 | What does a marketing consultant charge, and for what? | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-07-19 | Websites that barely change: what restraint is actually worth | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-07-26 | Does your website need an llms.txt file? | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-08-02 | Own your name online: what the Sriracha fight teaches small businesses | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-08-09 | What to tell an employee who wants to "use AI" for marketing | consulting | ✅ | ✅ | ✅ | ✏️ draft |
@@ -72,8 +73,14 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2027-10-04 | Fake reviews and review extortion: what the rule actually bans | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-10-11 | When a competitor reports your listing, or quietly edits it | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-10-18 | Businesses that lost their own domain name, and how | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-10-25 | What happens to your site when your developer's company dissolves | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-11-01 | Disputed handovers: who owned the website, according to the record | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-11-08 | Small Business Saturday: worth the effort? | ads | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-11-15 | Holiday hours on your Google Business Profile | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-11-22 | What published research says about how people actually use AI search | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-11-29 | When an assistant gets your business details wrong | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-12-06 | What agencies actually charge, and why the \"rate surveys\" don't answer it | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-12-13 | What owners report about their websites: the survey data | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 
 ## What needs doing
 
