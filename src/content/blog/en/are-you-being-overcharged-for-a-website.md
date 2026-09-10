@@ -34,7 +34,7 @@ Ask your supplier what they actually did during the previous month, and pay atte
 
 A good answer names specific things that happened: a plugin updated, a page changed, a form repaired, a backup verified, a report actually read by somebody. It may well be short, and a short honest answer is fine — some months genuinely are quiet, and a supplier who says "nothing needed doing, here is the uptime record" is being straight with you.
 
-The answer to be alert to is the one that describes a category rather than an action. "Ongoing optimisation," "continued maintenance," and "monitoring your rankings" are not statements about last month; they are statements about the shape of the arrangement. If you cannot get past that after asking twice, you are not being told, and there is usually a reason.
+The answer to be alert to is the one that describes a category rather than an action. "Ongoing optimization," "continued maintenance," and "monitoring your rankings" are not statements about last month; they are statements about the shape of the arrangement. If you cannot get past that after asking twice, you are not being told, and there is usually a reason.
 
 ## Test two: does the claim survive the documentation?
 
@@ -56,7 +56,7 @@ Ask which accounts stand in the business's name, and note that a supplier who mo
 
 ## What a fair arrangement looks like
 
-There is no universally correct number here, although there are recognisable structural shapes worth identifying.
+There is no universally correct number here, although there are recognizable structural shapes worth identifying.
 
 You should be able to say, in one sentence and without looking anything up, what you are paying for; you should hold the accounts yourself; and the work described should be work the platform's own documentation actually supports. And leaving should be possible — irritating, perhaps, but possible — without anything being held.
 

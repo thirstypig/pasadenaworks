@@ -24,9 +24,9 @@ The good news is that a handful of questions do most of the predictive work, and
 
 Vendors describe their certification status in marketing language, and certification is in fact a matter of public record that you can check in a few minutes without asking anybody.
 
-Health IT certification under the federal programme means a product has been tested against specified criteria by an accredited body, and certified products are listed publicly on the Certified Health IT Product List. Look the product up, confirm the version you are actually being sold is the version listed, and note what it is certified for, since certification is granted against particular criteria rather than as a general seal of quality.
+Health IT certification under the federal program means a product has been tested against specified criteria by an accredited body, and certified products are listed publicly on the Certified Health IT Product List. Look the product up, confirm the version you are actually being sold is the version listed, and note what it is certified for, since certification is granted against particular criteria rather than as a general seal of quality.
 
-This matters practically because certification interacts with programme participation and reporting obligations, and discovering a mismatch after implementation is expensive in a way that checking a public database is not.
+This matters practically because certification interacts with program participation and reporting obligations, and discovering a mismatch after implementation is expensive in a way that checking a public database is not.
 
 ## Make them let you drive
 
@@ -48,7 +48,7 @@ Get the answer in writing before signing, because the negotiating position never
 
 The monthly per-provider figure is the number everybody compares, and it is regularly the smaller half of the real total.
 
-Implementation and data migration from your current system are frequently charged separately and are frequently substantial. Training is usually billed and always costs more in lost clinic time than in fees. Interfaces to a lab, an imaging centre or a billing clearinghouse are commonly individually priced. Support may be tiered, so the responsive support is an upgrade rather than the default.
+Implementation and data migration from your current system are frequently charged separately and are frequently substantial. Training is usually billed and always costs more in lost clinic time than in fees. Interfaces to a lab, an imaging center or a billing clearinghouse are commonly individually priced. Support may be tiered, so the responsive support is an upgrade rather than the default.
 
 Ask for a three-year total including all of the above, not a monthly figure. Vendors can produce this and mostly do not volunteer it.
 

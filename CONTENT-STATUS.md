@@ -39,17 +39,25 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2027-02-08 | People are getting answers without clicking. What that means for you. | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-02-15 | What a physician's website actually needs | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-02-22 | Local SEO for medical practices | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-03-01 | What AI is genuinely good at for a small business, and what it isn't | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-03-08 | Who actually owns your website? | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-03-15 | What to do when your web developer stops answering | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-03-22 | How to show up in ChatGPT, Claude, Gemini and Perplexity answers | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-03-29 | HIPAA and your website: the parts that trip people up | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-04-05 | Choosing an EHR: what actually matters for a small practice | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-04-12 | Using AI to answer customer enquiries without sounding like a robot | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-04-19 | How to get your domain name back | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-05-03 | Is "GEO" real, or SEO with a new name? | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-05-10 | Switching EHR without losing your schedule | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-05-17 | Are Google Ads worth it for an optometrist? | ads | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-05-24 | Can AI write your Google Business Profile posts? | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-05-31 | How to tell whether you're being overcharged for a website | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-06-07 | Website accessibility lawsuits in California: what's actually real | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-06-14 | Making your site accessible without rebuilding it | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-06-21 | How to tell whether AI search is sending you customers | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-07-05 | AI-generated photos on your website: when it backfires | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-07-26 | Does your website need an llms.txt file? | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-08-09 | What to tell an employee who wants to "use AI" for marketing | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 
 ## What needs doing
 

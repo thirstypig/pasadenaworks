@@ -30,7 +30,7 @@ Ask for the migration scope in writing, item by item, and read it looking for wh
 
 Practices approach an outgoing vendor apologetically, which is unnecessary, because the regulatory environment is more helpful here than most people realise.
 
-Certification under the federal programme includes a criterion for exporting electronic health information, so a certified system is expected to be able to produce your data rather than to hold it. Separately, practices that obstruct or unreasonably interfere with access to electronic health information can be engaged in what the rules call information blocking, and that framework exists precisely because this situation was common enough to legislate about.
+Certification under the federal program includes a criterion for exporting electronic health information, so a certified system is expected to be able to produce your data rather than to hold it. Separately, practices that obstruct or unreasonably interfere with access to electronic health information can be engaged in what the rules call information blocking, and that framework exists precisely because this situation was common enough to legislate about.
 
 None of that means you should open with a legal threat, which mostly slows things down. It means that a vendor telling you your data cannot be extracted, or quoting an implausible figure to extract it, is making a claim worth questioning rather than a fact worth accepting.
 

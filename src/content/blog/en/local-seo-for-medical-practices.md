@@ -24,13 +24,13 @@ Google's own documentation on improving local ranking names relevance, distance 
 
 **Relevance** is how well your profile matches what somebody searched for. This is mostly an exercise in completeness: the correct primary category, the secondary categories that genuinely apply, the services listed, the hours accurate including holidays. It is unglamorous and it is largely finishable — there is an end state, and once you have reached it there is little more to extract.
 
-**Distance** is how far you are from the searcher or from the area they named. You cannot change this without moving, and any vendor implying otherwise is selling something that does not exist. It is worth understanding because it explains a result that otherwise looks like failure: a practice can be genuinely well optimised and still not appear for somebody searching from six miles away, because a nearer practice satisfied the query adequately.
+**Distance** is how far you are from the searcher or from the area they named. You cannot change this without moving, and any vendor implying otherwise is selling something that does not exist. It is worth understanding because it explains a result that otherwise looks like failure: a practice can be genuinely well optimized and still not appear for somebody searching from six miles away, because a nearer practice satisfied the query adequately.
 
 **Prominence** is how well known the practice is, drawn from information Google gathers across the web, and it includes review count and score. This is the only one of the three that responds to sustained effort, which is why it deserves most of the attention.
 
 ## Claim a listing for each physician
 
-The single most commonly missed opportunity for a multi-physician practice is that Google's guidelines treat an individual practitioner as an entity in their own right, entitled to a profile alongside the organisation's.
+The single most commonly missed opportunity for a multi-physician practice is that Google's guidelines treat an individual practitioner as an entity in their own right, entitled to a profile alongside the organization's.
 
 An individual practitioner, the guidelines say, is "a public-facing professional, typically with their own customer base," and doctors are named among the examples. That matters because referral traffic behaves differently from symptom traffic: a patient handed a physician's name searches that name, and if nothing authoritative comes back, the practice has lost a patient who had already decided to come.
 

@@ -50,7 +50,7 @@ If you have been quoted a monthly figure for an AI-specific file, a new markup l
 
 ## Corroboration does more work than wording
 
-Where assistants do exercise something resembling judgement, it tends to run in favour of claims that more than one independent source is willing to support, and against claims that only you make about yourself.
+Where assistants do exercise something resembling judgement, it tends to run in favor of claims that more than one independent source is willing to support, and against claims that only you make about yourself.
 
 If your address is one thing on your website, something else on your Google Business Profile, and a third version on an old directory listing that outlived the business that made it, an assembled answer has to choose. It frequently chooses to leave you out rather than assert something it cannot settle. That is not a penalty; it is a system declining to guess.
 

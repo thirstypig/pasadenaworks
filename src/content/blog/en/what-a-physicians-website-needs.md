@@ -36,7 +36,7 @@ Somebody looking for a doctor is running a short checklist, mostly in a hurry, a
 
 For a practice with a physical location, the Google Business Profile frequently drives more first appointments than the site does, and it has a feature that many practices never use.
 
-Google's guidelines for representing a business treat an individual practitioner as its own entity: "An individual practitioner is a public-facing professional, typically with their own customer base," and doctors are named explicitly among them. Practitioners "may have separate pages" alongside the organisation's, and a profile may include a title or degree.
+Google's guidelines for representing a business treat an individual practitioner as its own entity: "An individual practitioner is a public-facing professional, typically with their own customer base," and doctors are named explicitly among them. Practitioners "may have separate pages" alongside the organization's, and a profile may include a title or degree.
 
 The practical consequence is that a three-physician practice may reasonably hold four listings — the practice and each doctor — rather than one. Patients frequently search a physician by name, particularly after a referral, and the name search is the one where an absent listing costs the most.
 
@@ -46,7 +46,7 @@ This is not a manipulation of the system, and the guidelines impose real constra
 
 A redesign is usually not the answer, because the questions above are content problems rather than design problems, and a new template will reproduce all of them in a nicer typeface.
 
-Stock photography of models in white coats is worse than a plain page, since patients recognise it instantly and it makes a real practice look like a directory listing. A photograph of the actual building — the door they will walk through, the sign they are looking for — is worth more than any of it, and it doubles as directions.
+Stock photography of models in white coats is worse than a plain page, since patients recognize it instantly and it makes a real practice look like a directory listing. A photograph of the actual building — the door they will walk through, the sign they are looking for — is worth more than any of it, and it doubles as directions.
 
 Long biography pages describing a philosophy of care are read by very few people, whereas the same page listing where somebody trained, what they treat, and which languages they speak is read closely. Language is worth calling out specifically in the San Gabriel Valley, where it is frequently the deciding factor and is frequently missing from the page.
 
