@@ -16,7 +16,7 @@ slug: hipaa-and-your-website
 
 > **TL;DR** — In June 2024 a federal court vacated the part of the government's online-tracking guidance that treated an IP address plus a visit to a public health page as protected information, finding the agency had acted "in clear excess" of its authority, and the government withdrew its appeal that August. The rest of the guidance stands, anything behind a patient login was never in question, and the Federal Trade Commission runs a separate breach rule that reaches organizations HIPAA does not. The practical answer did not change much: know what your site sends to third parties.
 
-Almost everything a small practice hears about HIPAA and websites arrives from somebody selling either a remedy or a fright. It is worth separating the part that a court has actually ruled on from the part that remains a judgement call, because the two get quoted interchangeably and they are not the same.
+Almost everything a small practice hears about HIPAA and websites arrives from somebody selling either a remedy or a fright. It is worth separating the part that a court has actually ruled on from the part that remains a judgment call, because the two get quoted interchangeably and they are not the same.
 
 ## What the court actually decided
 

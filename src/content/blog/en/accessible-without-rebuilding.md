@@ -46,7 +46,7 @@ The reference everybody uses is the Web Content Accessibility Guidelines, publis
 
 The Department of Justice describes WCAG and the Section 508 standards as providing "helpful guidance concerning how to ensure accessibility of website features," while stating that it "does not have a regulation setting out detailed standards" and that businesses "can currently choose how they will ensure" their online offerings are accessible.
 
-So WCAG is the sensible thing to work from, and it is not a statute you can be measured against clause by clause. Practically, that means judgement matters more than completeness: a site that has fixed contrast, alt text, keyboard access and form labels is in a substantially better position than one that has purchased a compliance badge and changed nothing.
+So WCAG is the sensible thing to work from, and it is not a statute you can be measured against clause by clause. Practically, that means judgment matters more than completeness: a site that has fixed contrast, alt text, keyboard access and form labels is in a substantially better position than one that has purchased a compliance badge and changed nothing.
 
 ## Doing it without a project
 

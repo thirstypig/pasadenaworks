@@ -28,7 +28,7 @@ Ask for the migration scope in writing, item by item, and read it looking for wh
 
 ## Your leverage is larger than it feels
 
-Practices approach an outgoing vendor apologetically, which is unnecessary, because the regulatory environment is more helpful here than most people realise.
+Practices approach an outgoing vendor apologetically, which is unnecessary, because the regulatory environment is more helpful here than most people realize.
 
 Certification under the federal program includes a criterion for exporting electronic health information, so a certified system is expected to be able to produce your data rather than to hold it. Separately, practices that obstruct or unreasonably interfere with access to electronic health information can be engaged in what the rules call information blocking, and that framework exists precisely because this situation was common enough to legislate about.
 

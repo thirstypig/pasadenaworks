@@ -14,7 +14,7 @@ translationKey: ai-customer-enquiries
 slug: using-ai-for-customer-enquiries
 ---
 
-> **TL;DR** — Sort your enquiries into three groups before automating anything: the ones with a single correct answer, the ones needing judgement, and the ones where being wrong is expensive. Only the first group is safe to automate, and it is usually a larger share of the total than owners expect. Whatever an assistant says on your behalf is a statement by your business, so it should be built from your own written answers rather than from whatever the model believes about your industry.
+> **TL;DR** — Sort your enquiries into three groups before automating anything: the ones with a single correct answer, the ones needing judgment, and the ones where being wrong is expensive. Only the first group is safe to automate, and it is usually a larger share of the total than owners expect. Whatever an assistant says on your behalf is a statement by your business, so it should be built from your own written answers rather than from whatever the model believes about your industry.
 
 The complaint about automated replies is almost always described as a problem of tone, and tone is genuinely the least consequential part of it. A reply that sounds slightly stiff but nonetheless answers the question is perfectly acceptable, whereas a reply that sounds warm and tells somebody the wrong opening hours has cost you a customer and quite possibly a review as well.
 
@@ -26,11 +26,11 @@ Spend an hour reading through your last hundred enquiries and place each one int
 
 **Group one: a single correct answer exists.** Are you open on Sunday, where do I park, do you take that insurance, how long does the repair usually take, do you deliver to Arcadia. These are questions where an answer is either right or wrong and you already know which, and they are frequently sixty per cent or more of the total.
 
-**Group two: judgement is required before answering.** Can you fit me in this week, is this particular item covered under what we already agreed, would you recommend the cheaper option given my situation. These require somebody who knows the current state of the business, and an assistant attempting to answer them will produce something that is plausible and owned by nobody.
+**Group two: judgment is required before answering.** Can you fit me in this week, is this particular item covered under what we already agreed, would you recommend the cheaper option given my situation. These require somebody who knows the current state of the business, and an assistant attempting to answer them will produce something that is plausible and owned by nobody.
 
 **Group three: expensive to get wrong.** This covers anything involving a complaint, a refund, a legal or medical question, or a person who is already unhappy with you. Automating these constitutes a false economy, since the cost of a bad answer is not a single enquiry but the entire relationship, and quite possibly a public review as well.
 
-Automate the first group, route the second to whoever can exercise the judgement it requires, and put the third in front of a person immediately.
+Automate the first group, route the second to whoever can exercise the judgment it requires, and put the third in front of a person immediately.
 
 ## Build the answers from your own words
 

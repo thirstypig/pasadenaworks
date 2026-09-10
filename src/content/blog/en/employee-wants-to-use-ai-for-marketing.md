@@ -32,7 +32,7 @@ The first rule concerns what an employee may type into one of these tools, and i
 
 Customer information does not go in, and neither do supplier contracts, unpublished prices, employee details, anything covered by a confidentiality agreement, or anything a customer told you in confidence. The reason is straightforward: material entered into a third-party service has left your control, and the fact that it probably will not resurface is not the same as a guarantee, particularly on a free consumer tier.
 
-State this as a short list of concrete examples rather than as a principle, because "use good judgement about confidential information" is not an instruction that anybody can actually follow at three o'clock in the afternoon.
+State this as a short list of concrete examples rather than as a principle, because "use good judgment about confidential information" is not an instruction that anybody can actually follow at three o'clock in the afternoon.
 
 ## Rule two: what never comes out unchecked
 
