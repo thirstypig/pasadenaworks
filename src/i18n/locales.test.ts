@@ -47,7 +47,22 @@ void _localeIsStillALiteralUnion;
 /** Every source file that could plausibly re-declare the list. */
 function sourceFiles(): string[] {
   const out: string[] = [];
-  const skip = new Set(['node_modules', 'dist', '.git', '.astro', 'public', 'todos', 'docs']);
+  /* `.claude` holds git worktrees, which are whole second checkouts of this
+     repository. Without it, `.claude/worktrees/<name>/src/i18n/locales.mjs` is
+     found and reported as a fifth copy of the list — so simply having a
+     worktree open turns this suite red, on a repo whose own tooling creates
+     them. The offender is a copy of the file this test exempts by path, and
+     the exemption compares a repo-relative path that the copy does not match. */
+  const skip = new Set([
+    'node_modules',
+    'dist',
+    '.git',
+    '.claude',
+    '.astro',
+    'public',
+    'todos',
+    'docs',
+  ]);
   const walk = (dir: string) => {
     for (const entry of readdirSync(dir)) {
       if (skip.has(entry)) continue;
