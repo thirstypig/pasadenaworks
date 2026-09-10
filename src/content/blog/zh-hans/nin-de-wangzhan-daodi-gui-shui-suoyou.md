@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 所有权
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: who-owns-your-website
 slug: nin-de-wangzhan-daodi-gui-shui-suoyou

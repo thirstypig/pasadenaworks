@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accesibilidad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: who-gets-sued
 slug: negocios-de-california-demandados-que-tenian-en-comun

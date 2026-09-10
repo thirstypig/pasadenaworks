@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accessibility
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: ada-vendor-claims
 slug: what-ada-compliant-vendors-promise

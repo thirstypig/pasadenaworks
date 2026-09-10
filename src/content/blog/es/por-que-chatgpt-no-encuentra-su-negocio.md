@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: chatgpt-business-visibility
 slug: por-que-chatgpt-no-encuentra-su-negocio

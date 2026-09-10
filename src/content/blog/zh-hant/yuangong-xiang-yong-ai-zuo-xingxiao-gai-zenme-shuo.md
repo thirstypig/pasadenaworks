@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 小型企業建議
   - 經營策略
-draft: true
+draft: false
 locale: zh-hant
 translationKey: employee-ai-policy
 slug: yuangong-xiang-yong-ai-zuo-xingxiao-gai-zenme-shuo

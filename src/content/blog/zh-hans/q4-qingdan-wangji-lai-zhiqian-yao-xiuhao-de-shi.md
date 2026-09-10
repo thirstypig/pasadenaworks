@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 门店运营
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: q4-checklist
 slug: q4-qingdan-wangji-lai-zhiqian-yao-xiuhao-de-shi

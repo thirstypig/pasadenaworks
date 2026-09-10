@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 所有权
   - 圣盖博谷
-draft: true
+draft: false
 locale: zh-hans
 translationKey: own-your-name-sriracha
 slug: zhangwo-ziji-de-mingzi-cong-sriracha-shuoqi

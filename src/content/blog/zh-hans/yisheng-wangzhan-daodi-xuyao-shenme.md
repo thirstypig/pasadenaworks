@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 医疗
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: physician-website-needs
 slug: yisheng-wangzhan-daodi-xuyao-shenme

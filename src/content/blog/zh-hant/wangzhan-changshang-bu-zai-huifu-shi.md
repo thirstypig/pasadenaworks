@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 擁有權
   - 網站
-draft: true
+draft: false
 locale: zh-hant
 translationKey: developer-stops-answering
 slug: wangzhan-changshang-bu-zai-huifu-shi

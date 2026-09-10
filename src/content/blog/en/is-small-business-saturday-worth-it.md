@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - small business marketing
   - san gabriel valley
-draft: true
+draft: false
 locale: en
 translationKey: small-business-saturday
 slug: is-small-business-saturday-worth-it

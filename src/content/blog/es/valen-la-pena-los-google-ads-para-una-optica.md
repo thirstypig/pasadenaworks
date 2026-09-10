@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - salud
   - google ads
-draft: true
+draft: false
 locale: es
 translationKey: ads-for-optometrist
 slug: valen-la-pena-los-google-ads-para-una-optica

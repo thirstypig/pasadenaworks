@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 價格
   - seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: what-seo-should-cost
 slug: seo-jiujing-gai-hua-duoshao-yusuan

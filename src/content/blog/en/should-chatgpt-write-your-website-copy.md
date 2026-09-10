@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - web design
-draft: true
+draft: false
 locale: en
 translationKey: chatgpt-website-copy
 slug: should-chatgpt-write-your-website-copy

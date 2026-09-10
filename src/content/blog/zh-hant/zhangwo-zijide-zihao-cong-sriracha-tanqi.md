@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 擁有權
   - 聖蓋博谷
-draft: true
+draft: false
 locale: zh-hant
 translationKey: own-your-name-sriracha
 slug: zhangwo-zijide-zihao-cong-sriracha-tanqi

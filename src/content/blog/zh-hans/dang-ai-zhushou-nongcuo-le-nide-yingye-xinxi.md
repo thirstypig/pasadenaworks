@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - 商家资料
-draft: true
+draft: false
 locale: zh-hans
 translationKey: assistant-wrong-details
 slug: dang-ai-zhushou-nongcuo-le-nide-yingye-xinxi

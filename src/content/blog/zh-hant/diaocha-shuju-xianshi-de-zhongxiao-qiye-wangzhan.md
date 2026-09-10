@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 價格
   - 小型企業建議
-draft: true
+draft: false
 locale: zh-hant
 translationKey: website-survey-data
 slug: diaocha-shuju-xianshi-de-zhongxiao-qiye-wangzhan

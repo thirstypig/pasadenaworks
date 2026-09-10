@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - perfil de negocio
-draft: true
+draft: false
 locale: es
 translationKey: ai-gbp-posts
 slug: puede-la-ia-escribir-sus-publicaciones-de-google

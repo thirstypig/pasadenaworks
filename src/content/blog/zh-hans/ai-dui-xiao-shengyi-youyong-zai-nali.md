@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 小生意建议
   - 经营策略
-draft: true
+draft: false
 locale: zh-hans
 translationKey: what-ai-is-good-at
 slug: ai-dui-xiao-shengyi-youyong-zai-nali

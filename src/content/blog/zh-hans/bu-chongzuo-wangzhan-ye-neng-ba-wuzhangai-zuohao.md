@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 无障碍
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: accessible-without-rebuild
 slug: bu-chongzuo-wangzhan-ye-neng-ba-wuzhangai-zuohao

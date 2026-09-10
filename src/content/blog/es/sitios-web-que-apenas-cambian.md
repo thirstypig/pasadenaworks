@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - sitios web
   - diseno web
-draft: true
+draft: false
 locale: es
 translationKey: websites-that-barely-change
 slug: sitios-web-que-apenas-cambian

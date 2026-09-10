@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 医疗
   - 经营策略
-draft: true
+draft: false
 locale: zh-hans
 translationKey: switching-ehr
 slug: huan-dianzi-binglu-xitong-bie-nongdiu-paiban

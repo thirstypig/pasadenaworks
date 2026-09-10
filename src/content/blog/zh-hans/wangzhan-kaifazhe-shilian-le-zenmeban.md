@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 所有权
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: developer-stops-answering
 slug: wangzhan-kaifazhe-shilian-le-zenmeban

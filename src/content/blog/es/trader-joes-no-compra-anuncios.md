@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - presupuesto publicitario
   - san gabriel valley
-draft: true
+draft: false
 locale: es
 translationKey: trader-joes-no-ads
 slug: trader-joes-no-compra-anuncios

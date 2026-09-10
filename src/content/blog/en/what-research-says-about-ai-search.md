@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - google search console
-draft: true
+draft: false
 locale: en
 translationKey: ai-search-research
 slug: what-research-says-about-ai-search

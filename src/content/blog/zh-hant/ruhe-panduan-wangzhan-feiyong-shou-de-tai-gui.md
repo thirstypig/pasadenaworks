@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 擁有權
   - 價格
-draft: true
+draft: false
 locale: zh-hant
 translationKey: overcharged-for-website
 slug: ruhe-panduan-wangzhan-feiyong-shou-de-tai-gui

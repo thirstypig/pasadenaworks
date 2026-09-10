@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 所有权
   - 经营策略
-draft: true
+draft: false
 locale: zh-hans
 translationKey: developer-dissolves
 slug: kaifa-gongsi-daobi-hou-nide-wangzhan

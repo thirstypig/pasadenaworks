@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - pricing
-draft: true
+draft: false
 locale: en
 translationKey: overcharged-for-website
 slug: are-you-being-overcharged-for-a-website

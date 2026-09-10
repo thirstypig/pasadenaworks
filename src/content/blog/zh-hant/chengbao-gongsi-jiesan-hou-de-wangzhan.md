@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 擁有權
   - 經營策略
-draft: true
+draft: false
 locale: zh-hant
 translationKey: developer-dissolves
 slug: chengbao-gongsi-jiesan-hou-de-wangzhan

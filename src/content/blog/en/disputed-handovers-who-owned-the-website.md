@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - client relationships
-draft: true
+draft: false
 locale: en
 translationKey: disputed-handovers
 slug: disputed-handovers-who-owned-the-website

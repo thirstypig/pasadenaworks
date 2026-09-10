@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - operaciones
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: q4-checklist
 slug: lista-de-q4-antes-de-la-temporada-alta

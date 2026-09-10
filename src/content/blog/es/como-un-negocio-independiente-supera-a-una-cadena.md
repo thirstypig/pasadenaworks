@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - seo local
   - san gabriel valley
-draft: true
+draft: false
 locale: es
 translationKey: independent-vs-chain
 slug: como-un-negocio-independiente-supera-a-una-cadena

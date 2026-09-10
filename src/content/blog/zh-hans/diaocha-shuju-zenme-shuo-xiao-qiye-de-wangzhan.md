@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 定价
   - 小生意建议
-draft: true
+draft: false
 locale: zh-hans
 translationKey: website-survey-data
 slug: diaocha-shuju-zenme-shuo-xiao-qiye-de-wangzhan

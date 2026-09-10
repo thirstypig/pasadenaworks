@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: llms-txt-necessary
 slug: wangzhan-xuyao-llms-txt-ma

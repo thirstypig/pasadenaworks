@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: lost-domain-names
 slug: businesses-that-lost-their-domain-name

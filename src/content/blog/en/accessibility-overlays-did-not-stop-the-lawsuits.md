@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accessibility
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: overlays-did-not-work
 slug: accessibility-overlays-did-not-stop-the-lawsuits

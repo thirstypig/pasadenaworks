@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: ai-overviews-local-impact
 slug: que-cambiaron-los-resumenes-de-ia-para-su-negocio

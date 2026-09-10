@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: show-up-in-ai-answers
 slug: how-to-show-up-in-ai-assistant-answers

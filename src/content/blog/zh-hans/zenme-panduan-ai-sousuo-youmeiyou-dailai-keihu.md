@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - search console
-draft: true
+draft: false
 locale: zh-hans
 translationKey: measuring-ai-search
 slug: zenme-panduan-ai-sousuo-youmeiyou-dailai-keihu

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 商家资料
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: competitor-reports-listing
 slug: dang-tongxing-jubao-le-nin-de-shangjia-ziliao

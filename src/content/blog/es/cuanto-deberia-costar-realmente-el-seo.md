@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - precios
   - seo
-draft: true
+draft: false
 locale: es
 translationKey: what-seo-should-cost
 slug: cuanto-deberia-costar-realmente-el-seo

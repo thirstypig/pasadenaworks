@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: ai-overviews-local-impact
 slug: ai-gailan-gaibian-le-shenme

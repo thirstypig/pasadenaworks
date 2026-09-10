@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - precios
   - consejos para negocios
-draft: true
+draft: false
 locale: es
 translationKey: website-survey-data
 slug: lo-que-dicen-las-encuestas-sobre-los-sitios-web

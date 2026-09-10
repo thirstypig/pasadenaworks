@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - google business profile
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: gbp-suspensions
 slug: google-business-profile-suspensions

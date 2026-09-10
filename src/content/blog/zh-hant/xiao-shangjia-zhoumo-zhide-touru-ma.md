@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 小型企業行銷
   - 聖蓋博谷
-draft: true
+draft: false
 locale: zh-hant
 translationKey: small-business-saturday
 slug: xiao-shangjia-zhoumo-zhide-touru-ma

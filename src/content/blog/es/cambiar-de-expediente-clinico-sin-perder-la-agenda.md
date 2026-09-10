@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - salud
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: switching-ehr
 slug: cambiar-de-expediente-clinico-sin-perder-la-agenda

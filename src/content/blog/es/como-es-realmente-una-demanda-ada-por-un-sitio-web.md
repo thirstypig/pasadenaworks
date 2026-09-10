@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accesibilidad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: ada-lawsuit-shape
 slug: como-es-realmente-una-demanda-ada-por-un-sitio-web

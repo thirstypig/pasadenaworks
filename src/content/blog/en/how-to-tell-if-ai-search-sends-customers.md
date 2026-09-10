@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - google search console
-draft: true
+draft: false
 locale: en
 translationKey: measuring-ai-search
 slug: how-to-tell-if-ai-search-sends-customers

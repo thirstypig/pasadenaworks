@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: developer-dissolves
 slug: when-your-developers-company-dissolves

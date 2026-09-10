@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - healthcare
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: switching-ehr
 slug: switching-ehr-without-losing-your-schedule

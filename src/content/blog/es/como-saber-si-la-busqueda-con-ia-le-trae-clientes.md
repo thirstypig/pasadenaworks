@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - search console
-draft: true
+draft: false
 locale: es
 translationKey: measuring-ai-search
 slug: como-saber-si-la-busqueda-con-ia-le-trae-clientes

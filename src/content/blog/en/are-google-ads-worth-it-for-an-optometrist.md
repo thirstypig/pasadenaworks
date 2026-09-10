@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - healthcare
   - google ads
-draft: true
+draft: false
 locale: en
 translationKey: ads-for-optometrist
 slug: are-google-ads-worth-it-for-an-optometrist

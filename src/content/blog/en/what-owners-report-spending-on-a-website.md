@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - pricing
   - small business advice
-draft: true
+draft: false
 locale: en
 translationKey: website-survey-data
 slug: what-owners-report-spending-on-a-website

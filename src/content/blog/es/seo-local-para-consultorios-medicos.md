@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - salud
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: local-seo-medical
 slug: seo-local-para-consultorios-medicos

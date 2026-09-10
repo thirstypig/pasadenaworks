@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 医疗
   - 经营策略
-draft: true
+draft: false
 locale: zh-hans
 translationKey: choosing-an-ehr
 slug: xiaoxing-zhensuo-zenyang-tiaoxuan-dianzi-binglu

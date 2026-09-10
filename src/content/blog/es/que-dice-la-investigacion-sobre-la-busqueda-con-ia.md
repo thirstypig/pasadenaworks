@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - search console
-draft: true
+draft: false
 locale: es
 translationKey: ai-search-research
 slug: que-dice-la-investigacion-sobre-la-busqueda-con-ia

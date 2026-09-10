@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 商家檔案
-draft: true
+draft: false
 locale: zh-hant
 translationKey: ai-gbp-posts
 slug: ai-neng-daixie-shangjia-dangan-tiewen-ma

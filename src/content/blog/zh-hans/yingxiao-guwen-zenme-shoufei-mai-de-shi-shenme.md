@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 定价
   - 小生意建议
-draft: true
+draft: false
 locale: zh-hans
 translationKey: consultant-charges
 slug: yingxiao-guwen-zenme-shoufei-mai-de-shi-shenme

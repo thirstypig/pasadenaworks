@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: answers-without-clicking
 slug: buyong-dianji-jiu-you-daan

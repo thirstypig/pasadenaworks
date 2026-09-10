@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - google business profile
-draft: true
+draft: false
 locale: en
 translationKey: assistant-wrong-details
 slug: when-an-assistant-gets-your-details-wrong

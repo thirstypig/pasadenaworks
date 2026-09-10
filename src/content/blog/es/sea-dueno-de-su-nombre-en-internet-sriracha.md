@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - san gabriel valley
-draft: true
+draft: false
 locale: es
 translationKey: own-your-name-sriracha
 slug: sea-dueno-de-su-nombre-en-internet-sriracha

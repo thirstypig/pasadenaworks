@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - seo
-draft: true
+draft: false
 locale: es
 translationKey: is-geo-real
 slug: es-real-el-geo-o-es-seo-con-otro-nombre

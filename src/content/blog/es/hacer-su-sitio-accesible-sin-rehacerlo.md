@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - accesibilidad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: accessible-without-rebuild
 slug: hacer-su-sitio-accesible-sin-rehacerlo

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - busqueda con ia
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: answers-without-clicking
 slug: respuestas-sin-clic-que-significa-para-usted

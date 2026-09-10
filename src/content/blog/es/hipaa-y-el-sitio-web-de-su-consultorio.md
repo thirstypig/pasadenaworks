@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - salud
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: hipaa-website-traps
 slug: hipaa-y-el-sitio-web-de-su-consultorio

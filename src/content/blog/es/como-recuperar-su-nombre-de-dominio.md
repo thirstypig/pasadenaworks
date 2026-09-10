@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: get-your-domain-back
 slug: como-recuperar-su-nombre-de-dominio

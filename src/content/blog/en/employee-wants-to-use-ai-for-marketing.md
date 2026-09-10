@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - small business advice
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: employee-ai-policy
 slug: employee-wants-to-use-ai-for-marketing

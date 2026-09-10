@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - sitios web
-draft: true
+draft: false
 locale: es
 translationKey: lost-domain-names
 slug: negocios-que-perdieron-su-nombre-de-dominio

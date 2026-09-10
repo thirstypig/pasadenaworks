@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 在地 seo
   - 聖蓋博谷
-draft: true
+draft: false
 locale: zh-hant
 translationKey: independent-vs-chain
 slug: duli-dianjia-ruhe-zai-zaidi-sousuo-yingguo-liansuo

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 廣告預算
   - 聖蓋博谷
-draft: true
+draft: false
 locale: zh-hant
 translationKey: trader-joes-no-ads
 slug: trader-joes-bu-mai-guanggao-weihe-xuebulai

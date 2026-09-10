@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 門市營運
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: q4-checklist
 slug: disi-jidu-qingdan-wangji-qian-gai-xiuhao-de-shi

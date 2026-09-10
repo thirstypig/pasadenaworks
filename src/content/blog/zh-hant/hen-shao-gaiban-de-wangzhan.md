@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 網站
   - 網頁設計
-draft: true
+draft: false
 locale: zh-hant
 translationKey: websites-that-barely-change
 slug: hen-shao-gaiban-de-wangzhan

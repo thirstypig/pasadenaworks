@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ownership
   - websites
-draft: true
+draft: false
 locale: en
 translationKey: get-your-domain-back
 slug: how-to-get-your-domain-name-back

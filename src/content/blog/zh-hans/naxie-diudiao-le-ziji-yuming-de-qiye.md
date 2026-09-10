@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 所有权
   - 网站
-draft: true
+draft: false
 locale: zh-hans
 translationKey: lost-domain-names
 slug: naxie-diudiao-le-ziji-yuming-de-qiye

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - advertising budget
   - san gabriel valley
-draft: true
+draft: false
 locale: en
 translationKey: trader-joes-no-ads
 slug: trader-joes-doesnt-buy-ads

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - google business profile
-draft: true
+draft: false
 locale: en
 translationKey: ai-gbp-posts
 slug: can-ai-write-your-google-business-profile-posts

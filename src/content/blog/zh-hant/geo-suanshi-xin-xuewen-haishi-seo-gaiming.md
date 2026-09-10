@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: is-geo-real
 slug: geo-suanshi-xin-xuewen-haishi-seo-gaiming

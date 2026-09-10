@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 评价
   - 商家资料
-draft: true
+draft: false
 locale: zh-hans
 translationKey: fake-reviews-rule
 slug: xujia-pinglun-yu-pinglun-lesuo-guiding-jinzhi-shenme

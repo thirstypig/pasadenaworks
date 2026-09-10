@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜尋
   - 在地 seo
-draft: true
+draft: false
 locale: zh-hant
 translationKey: answers-without-clicking
 slug: wuxu-dianji-jiu-you-dafu

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 医疗
   - google ads
-draft: true
+draft: false
 locale: zh-hans
 translationKey: ads-for-optometrist
 slug: yanke-zhensuo-tou-google-ads-zhide-ma

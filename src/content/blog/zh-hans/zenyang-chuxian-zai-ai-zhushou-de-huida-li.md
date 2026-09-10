@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: show-up-in-ai-answers
 slug: zenyang-chuxian-zai-ai-zhushou-de-huida-li

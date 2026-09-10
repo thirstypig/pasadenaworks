@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai 搜索
   - seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: is-geo-real
 slug: geo-shi-zhen-de-haishi-seo-huan-ge-mingzi

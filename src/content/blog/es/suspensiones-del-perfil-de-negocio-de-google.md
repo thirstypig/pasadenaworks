@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - perfil de negocio
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: gbp-suspensions
 slug: suspensiones-del-perfil-de-negocio-de-google

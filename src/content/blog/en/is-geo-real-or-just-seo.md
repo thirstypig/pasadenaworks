@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - seo
-draft: true
+draft: false
 locale: en
 translationKey: is-geo-real
 slug: is-geo-real-or-just-seo

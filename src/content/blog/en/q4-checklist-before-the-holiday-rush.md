@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - small business operations
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: q4-checklist
 slug: q4-checklist-before-the-holiday-rush

@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - perfil de negocio
   - seo local
-draft: true
+draft: false
 locale: es
 translationKey: competitor-reports-listing
 slug: cuando-un-competidor-denuncia-su-ficha

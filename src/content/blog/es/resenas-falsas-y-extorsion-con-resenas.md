@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - resenas
   - perfil de negocio
-draft: true
+draft: false
 locale: es
 translationKey: fake-reviews-rule
 slug: resenas-falsas-y-extorsion-con-resenas

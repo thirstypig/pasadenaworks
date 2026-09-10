@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 医疗
   - 本地 seo
-draft: true
+draft: false
 locale: zh-hans
 translationKey: local-seo-medical
 slug: zhensuo-bendi-seo-zenme-zuo

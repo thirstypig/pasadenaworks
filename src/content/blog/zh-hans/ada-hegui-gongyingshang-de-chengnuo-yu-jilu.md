@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 无障碍
   - 经营策略
-draft: true
+draft: false
 locale: zh-hans
 translationKey: ada-vendor-claims
 slug: ada-hegui-gongyingshang-de-chengnuo-yu-jilu

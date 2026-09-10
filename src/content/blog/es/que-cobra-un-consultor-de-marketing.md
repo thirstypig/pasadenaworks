@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - precios
   - consejos para negocios
-draft: true
+draft: false
 locale: es
 translationKey: consultant-charges
 slug: que-cobra-un-consultor-de-marketing

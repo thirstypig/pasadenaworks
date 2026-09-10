@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - 醫療
   - google ads
-draft: true
+draft: false
 locale: zh-hant
 translationKey: ads-for-optometrist
 slug: yanjing-hang-mai-google-guanggao-huasuan-ma

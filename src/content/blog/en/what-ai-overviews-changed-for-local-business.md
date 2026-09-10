@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - ai search
   - local seo
-draft: true
+draft: false
 locale: en
 translationKey: ai-overviews-local-impact
 slug: what-ai-overviews-changed-for-local-business

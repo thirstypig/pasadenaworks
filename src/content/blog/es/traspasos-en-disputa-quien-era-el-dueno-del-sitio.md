@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - propiedad
   - relaciones con clientes
-draft: true
+draft: false
 locale: es
 translationKey: disputed-handovers
 slug: traspasos-en-disputa-quien-era-el-dueno-del-sitio

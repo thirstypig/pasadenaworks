@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - healthcare
   - business strategy
-draft: true
+draft: false
 locale: en
 translationKey: choosing-an-ehr
 slug: choosing-an-ehr-for-a-small-practice

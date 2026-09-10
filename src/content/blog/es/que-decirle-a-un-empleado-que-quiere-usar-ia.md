@@ -8,7 +8,7 @@ author: Pasadena Works
 tags:
   - consejos para negocios
   - estrategia
-draft: true
+draft: false
 locale: es
 translationKey: employee-ai-policy
 slug: que-decirle-a-un-empleado-que-quiere-usar-ia
