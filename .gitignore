@@ -27,3 +27,12 @@ npm-debug.log*
 !.vscode/extensions.json
 .idea/
 .playwright-mcp/
+
+# Playwright MCP writes screenshots to the CWD, which is the repo root when a
+# browser check runs during a session. One (queue.png, 131KB) reached main on
+# 2026-09-10 via `git add -A`. Ignore the shapes it produces so a broad add
+# cannot sweep a screenshot into a content commit again.
+*.png.tmp
+/queue.png
+/page-*.png
+/screenshot*.png
