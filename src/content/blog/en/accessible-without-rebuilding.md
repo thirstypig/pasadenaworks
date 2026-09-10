@@ -32,7 +32,7 @@ That ordering has a useful side effect. The pages carrying transactions are the 
 
 **Alternative text on images** comes first, because every image carrying information needs a text description, and the test for whether a given image qualifies is straightforward: if it vanished from the page entirely, would anything be lost? A photograph of your shopfront needs a description; a decorative divider does not, and marking it as decorative is the correct handling rather than describing it.
 
-**Color contrast** is the next, and text sitting too close in tone to its background is unreadable for a great many people — the most common single failure on small business sites, usually arriving because grey looked elegant to somebody in a design tool. This one is measurable — contrast checkers are free and immediate — and fixing it is often a matter of changing a few color values rather than anything structural.
+**Color contrast** is the next, and text sitting too close in tone to its background is unreadable for a great many people — the most common single failure on small business sites, usually arriving because gray looked elegant to somebody in a design tool. This one is measurable — contrast checkers are free and immediate — and fixing it is often a matter of changing a few color values rather than anything structural.
 
 **Keyboard operation** matters because not everybody uses a mouse, and the way to establish where you stand is to put yours aside entirely and move through your own site using the Tab key: navigate the menu, reach the form, fill it in, and submit it. Menus that only open on hover and buttons that focus never reaches are frequent offenders, and both are fixable in the theme rather than the architecture.
 

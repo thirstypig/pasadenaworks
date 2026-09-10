@@ -36,7 +36,7 @@ A national brand selling a commodity online can decorate a page with anything, b
 
 A local business is in an entirely different trade, because somebody choosing between two dentists in Monrovia is trying to work out what walking through that door will be like, and the photographs are doing most of that work. A generated exterior means the person arriving cannot find your entrance. A generated team means the person who arrives is greeted by strangers. A generated example of your work sets an expectation you will then fail to meet, in front of somebody who came in because of it.
 
-The photograph of your actual building — imperfect, badly lit, with the neighbouring shop half in frame — outperforms the generated one, because it does a job the generated one cannot do at any quality level.
+The photograph of your actual building — imperfect, badly lit, with the neighboring shop half in frame — outperforms the generated one, because it does a job the generated one cannot do at any quality level.
 
 ## The "nobody can tell" assumption is weakening
 

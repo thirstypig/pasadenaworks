@@ -1,6 +1,6 @@
 ---
 title: Google 的 AI 總覽為在地商家改變了哪些事？
-description: '比恐慌所暗示的要少，但確實存在。真正改變的主要是衡量方式，而 Google 如今已將其單獨列為一份報表。'
+description: ' 比恐慌所暗示的要少，但確實存在。真正改變的主要是衡量方式，而 Google 如今已將其單獨列為一份報表。'
 pubDate: 2027-02-01T00:00:00.000Z
 pillar: search
 targetKeyword: google ai 總覽 對 中小企業 影響

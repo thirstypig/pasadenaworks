@@ -32,7 +32,7 @@ And the economics of the transaction extend well past the examination itself. An
 
 Before spending anything, establish what a new patient is worth to you across their first year, including eyewear, contact lens supply and any second family member who follows them in.
 
-Then perform the division honestly rather than optimistically. If a new patient is worth several hundred dollars in the first year and a booked appointment costs you a fraction of that in advertising, the arithmetic works with room to spare. If your practice refers most eyewear out, or sits in a market where patients take the prescription elsewhere, the same click costs the same and returns considerably less, and the answer may simply be no.
+Then perform the division honestly rather than optimiztically. If a new patient is worth several hundred dollars in the first year and a booked appointment costs you a fraction of that in advertising, the arithmetic works with room to spare. If your practice refers most eyewear out, or sits in a market where patients take the prescription elsewhere, the same click costs the same and returns considerably less, and the answer may simply be no.
 
 This calculation is neither optional nor a formality that can be completed afterwards to justify a decision already taken. It constitutes the entire decision, and every other question raised in this article sits downstream of whatever answer it produces.
 

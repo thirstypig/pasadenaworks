@@ -1,6 +1,6 @@
 ---
 title: Google 的 AI 概览为本地商家改变了什么？
-description: '比恐慌所暗示的要少，但确实存在。真正改变的主要是衡量方式，而 Google 如今已将其单独列为一份报告。'
+description: ' 比恐慌所暗示的要少，但确实存在。真正改变的主要是衡量方式，而 Google 如今已将其单独列为一份报告。'
 pubDate: 2027-02-01T00:00:00.000Z
 pillar: search
 targetKeyword: google ai 概览 对 小企业 影响
