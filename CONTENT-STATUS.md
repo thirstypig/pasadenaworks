@@ -33,6 +33,10 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2026-12-14 | Do you need an online store, or just a way to take orders? | websites | ✅ | ✅ | ✅ | ⏳ 96 days |
 | 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | ads | ✅ | ✅ | ✅ | ⏳ 117 days |
 | 2027-01-11 | How to know when to walk away from a bad-fit client | consulting | ✅ | ✅ | ✅ | ⏳ 124 days |
+| 2027-01-18 | Why doesn't my business come up when someone asks ChatGPT? | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-02-01 | What Google's AI Overviews changed for a local business | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-02-08 | People are getting answers without clicking. What that means for you. | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-07-26 | Does your website need an llms.txt file? | websites | ✅ | ✅ | ✅ | ✏️ draft |
 
 ## What needs doing
 
