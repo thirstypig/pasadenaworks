@@ -126,78 +126,106 @@ slower pace beats a burst followed by another gap.
 ## Phase two — 2027-01-18 onward
 
 The first 90 days answered the questions a small business already asks out
-loud. This phase does two jobs: it claims a lane nobody local is writing in,
-and it follows a deliberate shift in who the customer is.
+loud. This phase does three jobs: it claims a lane nobody local is writing in,
+it follows a deliberate shift in who the customer is, and it takes a position
+on the thing every owner is currently being sold.
 
-**Twenty articles, weekly Mondays from 2027-01-18**, the first free slot after
-the current plan runs out. Three seasonal pieces are held back to autumn on
-purpose — holiday advice published in May is worthless.
+**Thirty-four articles, weekly Mondays from 2027-01-18 through 2027-08-16**,
+plus three seasonal pieces held to autumn — holiday advice published in May is
+worthless. Clusters are interleaved rather than run in blocks, so the blog does
+not spend seven consecutive weeks on one subject.
 
 ### The calendar
 
 | Date | Article | Pillar | Cluster |
 |---|---|---|---|
 | 2027-01-18 | Why doesn't my business come up when someone asks ChatGPT? | search | AI search |
-| 2027-01-25 | Should you let ChatGPT write your website? | websites | AI search |
-| 2027-02-01 | People are getting answers without clicking. What that means for you. | search | AI search |
-| 2027-02-08 | What Google's AI Overviews changed for a local business | search | AI search |
+| 2027-01-25 | Should you let ChatGPT write your website copy? | websites | AI for SMBs |
+| 2027-02-01 | What Google's AI Overviews changed for a local business | search | AI search |
+| 2027-02-08 | People are getting answers without clicking. What that means for you. | search | AI search |
 | 2027-02-15 | What a physician's website actually needs | websites | Clinics |
 | 2027-02-22 | Local SEO for medical practices | search | Clinics |
-| 2027-03-01 | HIPAA and your website: the parts that trip people up | websites | Clinics |
-| 2027-03-08 | Choosing an EHR: what actually matters for a small practice | consulting | Clinics |
-| 2027-03-15 | Switching EHR without losing your schedule | consulting | Clinics |
-| 2027-03-22 | Are Google Ads worth it for an optometrist? | ads | Clinics |
-| 2027-03-29 | Who actually owns your website? | consulting | Ownership |
-| 2027-04-05 | What to do when your web developer stops answering | consulting | Ownership |
-| 2027-04-12 | How to get your domain name back | websites | Ownership |
-| 2027-04-19 | How to tell whether you're being overcharged for a website | consulting | Ownership |
-| 2027-04-26 | Website accessibility lawsuits in California: what's actually real | websites | Accessibility |
-| 2027-05-03 | Making your site accessible without rebuilding it | websites | Accessibility |
-| 2027-05-10 | How an independent outranks a chain in local search | search | SoCal |
+| 2027-03-01 | What AI is genuinely good at for a small business, and what it isn't | consulting | AI for SMBs |
+| 2027-03-08 | Who actually owns your website? | consulting | Ownership |
+| 2027-03-15 | What to do when your web developer stops answering | consulting | Ownership |
+| 2027-03-22 | How to show up in ChatGPT, Claude, Gemini and Perplexity answers | search | AI search |
+| 2027-03-29 | HIPAA and your website: the parts that trip people up | websites | Clinics |
+| 2027-04-05 | Choosing an EHR: what actually matters for a small practice | consulting | Clinics |
+| 2027-04-12 | Using AI to answer customer enquiries without sounding like a robot | consulting | AI for SMBs |
+| 2027-04-19 | How to get your domain name back | websites | Ownership |
+| 2027-04-26 | What should SEO actually cost? | consulting | Money |
+| 2027-05-03 | Is "GEO" real, or SEO with a new name? | search | AI search |
+| 2027-05-10 | Switching EHR without losing your schedule | consulting | Clinics |
+| 2027-05-17 | Are Google Ads worth it for an optometrist? | ads | Clinics |
+| 2027-05-24 | Can AI write your Google Business Profile posts? | search | AI for SMBs |
+| 2027-05-31 | How to tell whether you're being overcharged for a website | consulting | Ownership |
+| 2027-06-07 | Website accessibility lawsuits in California: what's actually real | websites | Accessibility |
+| 2027-06-14 | Making your site accessible without rebuilding it | websites | Accessibility |
+| 2027-06-21 | How to tell whether AI search is sending you customers | search | AI search |
+| 2027-06-28 | How an independent outranks a chain in local search | search | SoCal |
+| 2027-07-05 | AI-generated photos on your website: when it backfires | websites | AI for SMBs |
+| 2027-07-12 | What does a marketing consultant charge, and for what? | consulting | Money |
+| 2027-07-19 | In-N-Out's website has barely changed in 20 years | websites | SoCal |
+| 2027-07-26 | Does your website need an `llms.txt`? | websites | AI search |
+| 2027-08-02 | Own your name online: what the Sriracha fight teaches small businesses | websites | SoCal |
+| 2027-08-09 | What to tell an employee who wants to "use AI" for marketing | consulting | AI for SMBs |
+| 2027-08-16 | Trader Joe's doesn't buy ads. Why that's a bad model to copy. | ads | SoCal |
 | 2027-09-27 | Q4 checklist: what to fix before the holiday rush | consulting | Seasonal |
 | 2027-11-08 | Small Business Saturday: worth the effort? | ads | Seasonal |
 | 2027-11-15 | Holiday hours on your Google Business Profile | search | Seasonal |
 
-**2027-05-17 through 2027-09-20 is deliberately unplanned** — about eighteen
-Mondays. Better to name the gap than pad it eight months early, and by May
-there will be a year of analytics saying which pillar earns its keep.
+Only **2027-08-23 through 2027-09-20** is left open, five Mondays, plus October.
+Earlier drafts left a four-month hole; extending the run closed it.
 
-### Ownership — four articles, and the reason this cluster exists
+### AI, in two clusters that are not the same subject
+
+This is the largest bet in the plan — thirteen of thirty-four articles — and it
+is deliberately split, because the two halves serve different readers.
+
+**AI search (7)** is about being *found*: what happens to a local business when
+customers ask an assistant instead of typing into Google. None of the first
+twenty target keywords touch it, so it is a rare topic where this site can rank
+without fighting an established page.
+
+**AI for small businesses (6)** is about *using* it: whether to let a chatbot
+write your copy, where AI-generated photos backfire, what to say to the
+employee who wants to run marketing through it. This is the cluster with the
+most immediate commercial value, because it is what owners are actually asking
+right now, and most of the answers they are getting come from people selling
+them something.
+
+**Write both in the customer's words.** An earlier draft used titles like
+*"Is GEO real, or SEO with a new name?"* — read by other agencies, not by a dry
+cleaner in Alhambra, who does not search *generative engine optimization*. That
+article survives here because the underlying question is fair, but the rule
+holds: ask it the way an owner would.
+
+**Keep the evergreen ones evergreen.** Only three articles name specific
+products; those need revisiting every six months. The rest should still read
+correctly in 2029.
+
+**The honest risk:** thirteen articles is a heavy bet on a subject that may look
+different by the time the last one publishes in August 2027. Accepted knowingly
+— the lane is empty now, and being early is the entire advantage.
+
+### Ownership — four articles, and the gap that mattered most
 
 This site's most distinctive sentence is *"Holding a client's website hostage
-is a bad business model and a worse way to treat people."* Until now there was
-no article behind it. That was the largest gap in the plan — a strong,
-differentiated position, stated once on a services page and never argued.
+is a bad business model and a worse way to treat people."* Nothing argued it.
 
-Somebody searching "what to do when my web developer stops answering" is
-**actively unhappy with a vendor they are currently paying**. That is a buying
+Somebody searching *"what to do when my web developer stops answering"* is
+actively unhappy with a vendor they are currently paying. That is a buying
 moment, not a research one, and most agencies will not write it because it
 implicates them. This site can, because it already took the position.
 
-### AI search — four articles, in the customer's words, not a marketer's
-
-An earlier draft of this plan gave AI search **seven** articles with titles like
-"Is GEO real, or SEO with a new name?" and "Does your website need an
-`llms.txt`?" Those are read by other agencies. A dry cleaner in Alhambra does
-not search *generative engine optimization* — that is marketer vocabulary, and
-ranking for it buys traffic from peers and competitors rather than customers.
-
-The lane is still worth claiming: none of the first twenty target keywords
-touch AI, so it is a rare topic where this site can rank without fighting an
-established page. But it is worth four articles asked the way an owner would
-ask them, not seven written the way an agency would.
-
-Keep them evergreen. Only one names specific products, and it will need
-revisiting every six months.
-
 ### Clinics — six articles, following a shift in customer base
 
-Physicians and optometrists, covering both marketing and EHR consulting.
+Physicians and optometrists, covering marketing and EHR consulting.
 
 **Decision frameworks, not software reviews.** No "best EHR for optometrists",
-no vendor comparison tables. Reviews mean competing with Capterra and vendor
+no comparison tables. Reviews mean competing with Capterra and vendor
 affiliates on a topic this site has no demonstrated expertise in, and thin
-comparison content is the same doorway-page trap hard rule 2 exists to prevent.
+comparison content is the doorway-page trap hard rule 2 exists to prevent.
 
 **No fifth pillar.** EHR consulting is `consulting`; the marketing pieces are
 `websites`, `search` and `ads`. A new pillar means touching
@@ -212,53 +240,59 @@ Sequence the services copy first, in all four languages.
 ### Accessibility — two articles, because California is where this bites
 
 California carries the highest volume of web-accessibility lawsuits in the
-country, and it frightens small business owners who have no idea whether they
-are exposed. This site is credible on it: there is an `/accessibility/` page,
-and a real WCAG contrast failure was found and fixed here in September 2026.
+country, and it frightens owners who have no idea whether they are exposed.
+This site is credible on it: there is an `/accessibility/` page, and a real
+WCAG contrast failure was found and fixed here in September 2026.
 
-Write the first one to calm people down and tell the truth about what is and
-is not a real risk. The second is practical: most of the fixes are cheap and do
-not need a rebuild.
+Write the first to calm people down and tell the truth about what is and is not
+a real risk. The second is practical — most fixes are cheap and need no rebuild.
 
-### Southern California companies — one article, down from four
+### Southern California — four articles that have to earn their place
 
 Real names, every factual claim cited to public reporting, no implied
-relationship.
+relationship with any of them.
 
-The first draft of this plan gave the idea four articles — In-N-Out's
-franchising model, Trader Joe's loyalty program, the Huy Fong supplier dispute.
-Rewriting them to point at a service helped, but the shape stayed wrong: this
-site's best-performing article is a direct question with a number in the answer,
-and a famous-company parable is two steps removed from a buying decision. One
-survives, the one closest to what a local client actually faces.
+**The test each one has to pass: does the lesson point at something this
+business sells?** A first draft was In-N-Out's franchising model, Trader Joe's
+loyalty program and the Huy Fong supplier dispute — interesting, and none of it
+led a reader near a website, a search problem or an ad budget. Business trivia
+with a local accent is still filler. Each now lands on a service: In-N-Out on
+what a website is *for*, Sriracha on owning your own brand assets, Trader Joe's
+as an argument *against* copying their no-advertising model, and
+independent-versus-chain on local search.
 
-### What was cut, and why the total did not grow
+**Verify before drafting.** The load-bearing claims are Huy Fong's trademark
+position and Trader Joe's advertising policy. Both are widely reported; both
+must be cited, not asserted. Getting a real company's history wrong is worse
+than not writing the article.
 
-Twenty articles is **eighty files** — four languages each, translated alongside
-the English draft, because a date-gated post whose translations miss its own
-`pubDate` publishes English-only permanently. That cost is the reason this pass
-redistributed the plan instead of extending it.
+### Money — two articles, the proven shape
 
-Cut to make room: three AI articles, three Southern California articles.
+*"What should SEO actually cost?"* and *"What does a marketing consultant
+charge, and for what?"* The two most substantial articles written so far are the
+cost and the pricing ones, which is the clearest signal available about what
+this audience reads. Direct question, number in the answer.
 
-**Deferred, not rejected — the money questions.** "What should SEO cost?",
-"What does a marketing consultant charge?" Direct, high-intent, and the proven
-shape here: the two most substantial articles written so far are the cost and
-the pricing ones. They are the first candidates for the unplanned May–September
-block, once there is data saying whether that shape still performs.
+### What this costs, stated plainly
 
-### Read this before adding anything else
+Thirty-four articles is **one hundred and thirty-six files** — every one ships
+in English, Spanish, Simplified and Traditional Chinese, translated alongside
+the English draft rather than after it. A date-gated article whose translations
+miss its own `pubDate` publishes English-only and does not get a second chance.
 
-**Topics are not the bottleneck; publishing and measurement are.** Fifteen
-finished articles are already queued and unpublished through January. These
-twenty put roughly thirty-five in the queue — well over a year of inventory, in
-four languages, written before anything says whether it works. Meanwhile the
-three oldest live articles run about half the length of everything written
-since.
+At one article a week this is roughly eighteen months of work, and it lands on
+top of fifteen finished articles already queued and unpublished through January.
 
-Confirm Search Console is verified and read which of the live articles actually
-earns impressions before committing to the May–September block. A plan without
-a scoreboard is a bet, however well argued.
+**That is the real risk in this plan, and it is not the topics.** Publishing
+and measurement are the bottleneck. Nothing here has been tested against
+traffic: the three oldest live articles run about half the length of everything
+written since, and Search Console has no verification tag in this repository —
+it may be verified by DNS or through Analytics, but nobody has confirmed it.
+
+**Confirm the scoreboard before writing the back half.** The first ten articles
+publish by late March 2027; that is the natural point to check which pillar
+earns impressions and re-cut everything after it. A plan this size should be
+revised once in flight, not written once and followed to the end.
 
 ---
 
