@@ -349,6 +349,31 @@ describe('Chinese corpus grammar guards', () => {
   });
 
   /**
+   * `之所以…是因為` is a formal construction whose first half CONTAINS 所以,
+   * which COLLOQUIAL_MARKERS counts. Raising a post's register by rewriting
+   * 所以→因此 therefore mangles it into `之因此…`, which is not Chinese.
+   *
+   * This is not hypothetical. It happened twice in one session — ten
+   * occurrences the first time, two the second — because the fix for a
+   * below-band register score is a blanket connective swap, and 之所以 is the
+   * one place where 所以 is not the colloquial word it looks like.
+   *
+   * The right repair is not 之所以 either, since that re-adds the colloquial
+   * hit the swap was made to remove. Rewrite the clause as `X 的重要性在於…`
+   * or `X 的要緊之處在於…`, which is higher register and carries no marker.
+   */
+  it('never mangles 之所以 into 之因此', () => {
+    const offenders = [];
+    for (const row of zh) {
+      const raw = readFileSync(join(BLOG_DIR, row.locale, row.file), 'utf8');
+      for (const m of raw.matchAll(/之因此/g)) {
+        offenders.push(`${row.locale}/${row.file}: …${raw.slice(Math.max(0, m.index - 18), m.index + 10)}…`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  /**
    * A SAMPLE, NOT AN ALPHABET. These are ~90 of the most common characters
    * that differ between the scripts, chosen for frequency in this corpus.
    * A first version used twelve and let an injected 个/简/体 through during
