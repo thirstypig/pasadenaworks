@@ -284,15 +284,20 @@ At one article a week this is roughly eighteen months of work, and it lands on
 top of fifteen finished articles already queued and unpublished through January.
 
 **That is the real risk in this plan, and it is not the topics.** Publishing
-and measurement are the bottleneck. Nothing here has been tested against
-traffic: the three oldest live articles run about half the length of everything
-written since, and Search Console has no verification tag in this repository —
-it may be verified by DNS or through Analytics, but nobody has confirmed it.
+is the bottleneck. Nothing here has been tested against traffic, and the three
+oldest live articles run about half the length of everything written since.
 
-**Confirm the scoreboard before writing the back half.** The first ten articles
-publish by late March 2027; that is the natural point to check which pillar
-earns impressions and re-cut everything after it. A plan this size should be
-revised once in flight, not written once and followed to the end.
+**The scoreboard exists — use it.** Search Console is verified for
+pasadenaworks.com by a DNS TXT record on the domain, which is why no
+verification tag appears anywhere in this repository; looking for one and not
+finding it proves nothing. So query performance is available today, and the
+plan above was still written without consulting it.
+
+**Re-cut the back half against real data.** The first ten articles publish by
+late March 2027. That is the natural point to read which pillar actually earns
+impressions and revise everything after it. A plan this size should be revised
+once in flight, not written once and followed to the end — and unlike most such
+promises, this one has the data to keep it.
 
 ---
 
