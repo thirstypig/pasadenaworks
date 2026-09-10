@@ -14,7 +14,7 @@ translationKey: hipaa-website-traps
 slug: hipaa-and-your-website
 ---
 
-> **TL;DR** — In June 2024 a federal court vacated the part of the government's online-tracking guidance that treated an IP address plus a visit to a public health page as protected information, finding the agency had acted "in clear excess" of its authority, and the government withdrew its appeal that August. The rest of the guidance stands, anything behind a patient login was never in question, and the Federal Trade Commission runs a separate breach rule that reaches organisations HIPAA does not. The practical answer did not change much: know what your site sends to third parties.
+> **TL;DR** — In June 2024 a federal court vacated the part of the government's online-tracking guidance that treated an IP address plus a visit to a public health page as protected information, finding the agency had acted "in clear excess" of its authority, and the government withdrew its appeal that August. The rest of the guidance stands, anything behind a patient login was never in question, and the Federal Trade Commission runs a separate breach rule that reaches organizations HIPAA does not. The practical answer did not change much: know what your site sends to third parties.
 
 Almost everything a small practice hears about HIPAA and websites arrives from somebody selling either a remedy or a fright. It is worth separating the part that a court has actually ruled on from the part that remains a judgement call, because the two get quoted interchangeably and they are not the same.
 
@@ -38,7 +38,7 @@ The rest of the bulletin also stands. The decision struck one specific propositi
 
 The trap that surprises people most is that HIPAA is not the only regime in play, and a practice can be outside it and still be regulated.
 
-The Federal Trade Commission enforces a Health Breach Notification Rule covering certain organisations handling health information that are not HIPAA-covered entities. Health apps, wellness services and various digital health products have found themselves answering to it. For a medical practice the relevant point is narrower but real: "HIPAA does not apply to this" is not the same statement as "no rule applies to this," and vendors sometimes make the first claim while implying the second.
+The Federal Trade Commission enforces a Health Breach Notification Rule covering certain organizations handling health information that are not HIPAA-covered entities. Health apps, wellness services and various digital health products have found themselves answering to it. For a medical practice the relevant point is narrower but real: "HIPAA does not apply to this" is not the same statement as "no rule applies to this," and vendors sometimes make the first claim while implying the second.
 
 ## What this means for an ordinary practice website
 

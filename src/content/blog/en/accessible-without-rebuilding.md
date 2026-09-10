@@ -14,7 +14,7 @@ translationKey: accessible-without-rebuild
 slug: accessible-without-rebuilding
 ---
 
-> **TL;DR** — Alternative text, colour contrast, keyboard operation, form labels and captions cover most of what matters, and every one of them is an edit rather than a rebuild. The Web Content Accessibility Guidelines are the standard everybody works from, described by the Department of Justice as "helpful guidance" rather than a legal requirement. Start with the pages that carry your money — contact, booking, services — because they are where an inaccessible site actually costs you a customer.
+> **TL;DR** — Alternative text, color contrast, keyboard operation, form labels and captions cover most of what matters, and every one of them is an edit rather than a rebuild. The Web Content Accessibility Guidelines are the standard everybody works from, described by the Department of Justice as "helpful guidance" rather than a legal requirement. Start with the pages that carry your money — contact, booking, services — because they are where an inaccessible site actually costs you a customer.
 
 The word "accessibility" tends to arrive attached to either a legal threat or a quotation, and both encourage the belief that this is a large project requiring a new website.
 
@@ -32,7 +32,7 @@ That ordering has a useful side effect. The pages carrying transactions are the 
 
 **Alternative text on images** comes first, because every image carrying information needs a text description, and the test for whether a given image qualifies is straightforward: if it vanished from the page entirely, would anything be lost? A photograph of your shopfront needs a description; a decorative divider does not, and marking it as decorative is the correct handling rather than describing it.
 
-**Colour contrast** is the next, and text sitting too close in tone to its background is unreadable for a great many people — the most common single failure on small business sites, usually arriving because grey looked elegant to somebody in a design tool. This one is measurable — contrast checkers are free and immediate — and fixing it is often a matter of changing a few colour values rather than anything structural.
+**Color contrast** is the next, and text sitting too close in tone to its background is unreadable for a great many people — the most common single failure on small business sites, usually arriving because grey looked elegant to somebody in a design tool. This one is measurable — contrast checkers are free and immediate — and fixing it is often a matter of changing a few color values rather than anything structural.
 
 **Keyboard operation** matters because not everybody uses a mouse, and the way to establish where you stand is to put yours aside entirely and move through your own site using the Tab key: navigate the menu, reach the form, fill it in, and submit it. Menus that only open on hover and buttons that focus never reaches are frequent offenders, and both are fixable in the theme rather than the architecture.
 
@@ -60,6 +60,6 @@ The exception is a site old enough that its underlying template fights you — w
 
 Whatever you do, write down what you changed and when. This is worth doing for your own benefit rather than anybody else's, because it converts a vague recollection that somebody looked at this once into a dated account of specific work actually performed.
 
-That is worth having if the subject ever becomes formal, and it is worth having simply because accessibility drifts. Pages get added, a new plugin arrives with its own colour scheme, somebody uploads twenty photographs without descriptions. The list above is not a task to complete so much as a short habit to keep, and habits survive better when somebody has written them down.
+That is worth having if the subject ever becomes formal, and it is worth having simply because accessibility drifts. Pages get added, a new plugin arrives with its own color scheme, somebody uploads twenty photographs without descriptions. The list above is not a task to complete so much as a short habit to keep, and habits survive better when somebody has written them down.
 
 **Sources:** [ADA.gov, Guidance on Web Accessibility and the ADA](https://www.ada.gov/resources/web-guidance/) · [W3C, Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/)

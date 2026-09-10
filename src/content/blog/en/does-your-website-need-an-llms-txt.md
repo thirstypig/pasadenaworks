@@ -22,7 +22,7 @@ The question worth answering is narrower than the debate around it: does a small
 
 ## What Google actually says
 
-Google's documentation on AI features is unusually blunt on this point, and it is worth quoting rather than summarising, because the summary is what gets contested.
+Google's documentation on AI features is unusually blunt on this point, and it is worth quoting rather than summarizing, because the summary is what gets contested.
 
 There are, Google writes, "no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary." It then names the category directly: "you don't need to create new machine readable files, AI text files, or markup to appear in these features. There's also no special schema.org structured data that you need to add."
 
@@ -46,7 +46,7 @@ An `llms.txt` file is, in the end, a text file: writing a sensible one for a sma
 
 A proposal to add one is therefore not objectionable in itself. A proposal to charge you monthly for having added one deserves the question you would ask about any recurring charge, which is what specifically happens next month that justifies it. If the honest answer is that the file continues to exist, you are paying rent on twenty minutes of typing.
 
-It is also worth watching for the bundling, which is where most of the money in this actually sits. It is common for a genuinely useful engagement — fixing a site that is slow, hard to crawl, or full of contradictory business details — to be presented under an AI-optimisation heading, because that sells more readily in the current climate than the same work described accurately. The work underneath may well be worth paying for, but it is old work addressing old problems, and it ought to be priced and explained as such rather than reframed to match whatever is currently generating anxiety.
+It is also worth watching for the bundling, which is where most of the money in this actually sits. It is common for a genuinely useful engagement — fixing a site that is slow, hard to crawl, or full of contradictory business details — to be presented under an AI-optimization heading, because that sells more readily in the current climate than the same work described accurately. The work underneath may well be worth paying for, but it is old work addressing old problems, and it ought to be priced and explained as such rather than reframed to match whatever is currently generating anxiety.
 
 ## The honest case for adding one anyway
 

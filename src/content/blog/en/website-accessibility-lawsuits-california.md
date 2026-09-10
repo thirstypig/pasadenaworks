@@ -48,7 +48,7 @@ Treat an overlay the way you would treat any product sold primarily as protectio
 
 The unglamorous work is also the effective work, and most of it is neither expensive nor a rebuild.
 
-Images need text alternatives, for the straightforward reason that a screen reader cannot describe a photograph, and colour contrast needs to be sufficient — a measurable property, and frequently a matter of adjusting a few values in a theme. Everything usable with a mouse needs to be usable with a keyboard, which is a genuine failure mode on menus and forms. Forms need labels attached to their fields rather than placeholder text standing in for them. Videos need captions.
+Images need text alternatives, for the straightforward reason that a screen reader cannot describe a photograph, and color contrast needs to be sufficient — a measurable property, and frequently a matter of adjusting a few values in a theme. Everything usable with a mouse needs to be usable with a keyboard, which is a genuine failure mode on menus and forms. Forms need labels attached to their fields rather than placeholder text standing in for them. Videos need captions.
 
 That list is short, dull, and covers a substantial share of what these complaints actually cite. It is worth doing on its own merits, since the people it helps are also customers, and it happens to be the same list that a serious remediation engagement would begin with.
 

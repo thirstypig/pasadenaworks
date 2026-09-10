@@ -62,6 +62,6 @@ Complete the profile first and advertise afterwards, since that ordering costs n
 
 For an independent optometrist who dispenses eyewear, tracks calls, and targets a realistic radius, paid search is one of the few healthcare categories where a small monthly budget can be justified with actual numbers.
 
-For a practice that refers eyewear out, cannot attribute bookings, or is competing with a chain in the same shopping centre on brand terms, the money is better spent on the profile, the reviews and the website answering what patients actually ask. That is a less satisfying recommendation than a campaign, and it is more often the correct one.
+For a practice that refers eyewear out, cannot attribute bookings, or is competing with a chain in the same shopping center on brand terms, the money is better spent on the profile, the reviews and the website answering what patients actually ask. That is a less satisfying recommendation than a campaign, and it is more often the correct one.
 
 **Sources:** [Google Ads Policies Help, Healthcare and medicines](https://support.google.com/adspolicy/answer/176031?hl=en) · [Google Business Profile Help, Tips to improve your local ranking on Google](https://support.google.com/business/answer/7091?hl=en)

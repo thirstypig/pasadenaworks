@@ -34,7 +34,7 @@ Search Console reports on generative AI features separately, and the report is n
 
 Sit with that for a moment, because it has a practical consequence. You can establish that Google showed your link inside an AI answer, and you cannot establish from that report whether anybody followed it. The traffic that does arrive still lands in your ordinary analytics, but the connection between an impression in an AI feature and a visit to your site is not something the report draws for you.
 
-Anyone quoting you a monthly figure to "optimise for AI Overviews" and promising to report on the results is promising to report on something Google does not currently expose in that detail. That is worth asking about directly, and the answer will tell you a good deal about the proposal.
+Anyone quoting you a monthly figure to "optimize for AI Overviews" and promising to report on the results is promising to report on something Google does not currently expose in that detail. That is worth asking about directly, and the answer will tell you a good deal about the proposal.
 
 ## The shift is in intent, not in mechanics
 
@@ -48,7 +48,7 @@ The first category of question was never worth much to you, even when it did pro
 
 Because the generative AI report gives impressions without clicks, the useful approach is to stop trying to isolate that channel and instead watch the outcomes that have always mattered.
 
-Look at whether telephone calls and direction requests on your Google Business Profile are holding steady or declining, since those actions happen without a website visit at all and are unaffected by however somebody arrived at the decision. Watch your overall organic traffic as a trend across quarters rather than weeks, because a single month tells you almost nothing at this scale. And read the generative AI impressions report for what it genuinely offers, which is confirmation that Google is willing to show your pages inside these features, rather than as a number to be optimised.
+Look at whether telephone calls and direction requests on your Google Business Profile are holding steady or declining, since those actions happen without a website visit at all and are unaffected by however somebody arrived at the decision. Watch your overall organic traffic as a trend across quarters rather than weeks, because a single month tells you almost nothing at this scale. And read the generative AI impressions report for what it genuinely offers, which is confirmation that Google is willing to show your pages inside these features, rather than as a number to be optimized.
 
 If those outcomes are steady, the change has not damaged you, whatever the commentary says. If they are declining, the cause is worth investigating properly, and it is at least as likely to be a competitor who improved, a profile that has gone stale, or a seasonal pattern, as it is to be an AI feature.
 
