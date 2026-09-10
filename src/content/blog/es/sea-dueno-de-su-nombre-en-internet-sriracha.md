@@ -22,9 +22,9 @@ La mayor parte de los consejos sobre proteger el nombre de un negocio proceden d
 
 La empresa de David Tran —con sede en Irwindale, a pocos kilómetros al este de Pasadena— construyó una salsa picante que se convirtió en una categoría, y lo hizo sin registrar jamás la palabra de la etiqueta.
 
-A Tran se le disuadió de asegurar una marca sobre la palabra *sriracha* sobre la base de que resulta difícil obtener una nombrada a partir de un lugar real: la salsa toma su nombre de Si Racha, una ciudad costera de Tailandia. La Oficina de Patentes y Marcas de Estados Unidos trata "sriracha" como un término genérico, y la consecuencia es exactamente la esperable: otros fabricantes producen y venden productos llamados sriracha, y huy Fong no puede impedirlo.
+A Tran se le disuadió de asegurar una marca sobre la palabra *sriracha* sobre la base de que resulta difícil obtener una nombrada a partir de un lugar real: la salsa toma su nombre de Si Racha, una ciudad costera de Tailandia. La Oficina de Patentes y Marcas de Estados Unidos trata "sriracha" como un término genérico, y la consecuencia es exactamente la esperable: otros fabricantes producen y comercializan productos llamados sriracha, y Huy Fong no puede impedirlo en absoluto.
 
-Lo que la empresa sí sostiene, y sostiene con seguridad, es la parte distintiva del envase, y la tapa verde y el logotipo del gallo están registrados. Esos constituyen los elementos que un competidor no puede copiar en absoluto.
+Lo que la empresa sí sostiene, y sostiene con seguridad, es la parte distintiva del envase, puesto que la tapa verde y el logotipo del gallo están debidamente registrados. Esos constituyen los elementos que un competidor no puede copiar en absoluto.
 
 ## La distinción que merece conservarse
 
@@ -32,7 +32,7 @@ La división útil se establece entre un nombre que describe lo que usted hace y
 
 Un nombre descriptivo o geográfico es el que los negocios pequeños eligen instintivamente, porque explica el negocio de inmediato: Fontanería Pasadena, Dental del Valle, Autos Foothill. Ese instinto resulta comercialmente razonable y produce el tipo de nombre más difícil de proteger, ya que usted está pidiendo poseer unas palabras que todos los de su oficio tienen motivo legítimo para emplear.
 
-Un nombre distintivo —inventado, arbitrario, o una marca gráfica antes que una palabra— resulta más difícil de explicar y mucho más fácil de poseer. La mayoría de los negocios pequeños no van a cambiarlo, y no deberían hacerlo solo por esto, y lo que sí deberían es comprender cuál de los dos tienen, porque eso determina qué significa siquiera proteger el nombre.
+Un nombre distintivo —inventado, arbitrario, o una marca gráfica antes que una palabra— resulta más difícil de explicar y mucho más fácil de poseer. La mayoría de los negocios pequeños no van a cambiarlo, y tampoco deberían hacerlo únicamente por esto, mientras que lo que sí deberían es comprender cuál de los dos poseen, porque eso determina qué significa siquiera proteger el nombre.
 
 ## Qué puede poseer efectivamente, esta semana
 
@@ -40,11 +40,11 @@ Sea cual sea la posición jurídica de su nombre, existe una lista breve de cosa
 
 **El dominio**, registrado a nombre del negocio, con una tarjeta que el negocio controla, y considere las variantes evidentes —la del guion, el `.net`, el error de escritura habitual— no porque sean valiosas sino porque resultan baratas e incómodas en manos ajenas.
 
-**El Perfil de Negocio de Google**, reclamado y verificado bajo su propio control antes que el de un proveedor, y este es el que con mayor frecuencia queda sin reclamar, y con frecuencia vale más que el sitio web.
+**El Perfil de Negocio de Google**, reclamado y verificado bajo su propio control antes que el de un proveedor, puesto que este constituye el que con mayor frecuencia queda sin reclamar, y habitualmente vale considerablemente más que el sitio web.
 
-**Los nombres de usuario en redes**, incluso en plataformas que no piensa utilizar, y una cuenta en la que nunca publica sigue impidiendo que otra persona sea usted.
+**Los nombres de usuario en redes**, incluso en plataformas que no piensa utilizar, puesto que una cuenta en la que nunca publica continúa impidiendo que otra persona sea usted.
 
-**El resultado de búsqueda evidente.** Si un competidor anuncia sobre el nombre de su negocio, usted no puede impedirlo, y merece saberlo antes que descubrirlo.
+**El resultado de búsqueda evidente.** Si un competidor anuncia sobre el nombre de su negocio, usted no puede impedirlo, y merece conocerlo anticipadamente antes que descubrirlo posteriormente.
 
 Esa lista es una tarde y un coste anual modesto, y constituye el significado práctico de "ser dueño de su nombre" para casi todos los negocios que lean esto.
 
@@ -60,8 +60,8 @@ Lo que merece saberse antes es que un registro protege un nombre; no recupera un
 
 La historia se cuenta habitualmente como una advertencia, y únicamente lo es a medias, porque la empresa siguió teniendo un éxito enorme sin poseer la palabra.
 
-Tran ha descrito a los imitadores como publicidad gratuita, que constituye una posición defendible cuando su botella resulta reconocible desde el otro lado de una habitación. Esa reconocibilidad es el activo, y se construyó deliberadamente: una tapa concreta, un logotipo concreto, una botella concreta, y esos sí son poseíbles. Son precisamente aquello que la empresa se ocupó de registrar.
+Tran ha descrito a los imitadores como publicidad gratuita, que constituye una posición defendible cuando su botella resulta reconocible desde el otro lado de una habitación. Esa reconocibilidad constituye el activo, y se construyó enteramente de manera deliberada: una tapa concreta, un logotipo concreto, una botella concreta, y esos sí resultan poseíbles. Son precisamente aquello que la empresa se ocupó de registrar.
 
-La versión para un negocio pequeño resulta poco vistosa pero exacta, y puede que usted no logre poseer "Fontanería Pasadena", y sí puede poseer el dominio, la ficha, los nombres de usuario y la reputación adherida a ellos. Esas constituyen las cosas que un competidor con un nombre parecido no puede llevarse de ninguna manera.
+La versión para un negocio pequeño resulta poco vistosa pero exacta, puesto que puede que usted no logre poseer "Fontanería Pasadena", mientras que sí puede poseer el dominio, la ficha, los nombres de usuario y la reputación adherida a ellos. Esas constituyen las cosas que un competidor con un nombre parecido no puede llevarse de ninguna manera.
 
 **Fuentes:** [Wikipedia, Huy Fong sriracha (en inglés)](https://en.wikipedia.org/wiki/Huy_Fong_sriracha) · [USPTO, Search our trademark database (en inglés)](https://www.uspto.gov/trademarks/search)

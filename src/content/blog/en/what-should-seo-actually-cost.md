@@ -38,7 +38,7 @@ A line item selling AI-specific files as necessary is therefore contradicted by 
 
 Work divides into things that stay with you and things that stop the moment you stop paying, and the ratio matters more than the price.
 
-Content on your own site, a corrected Business Profile, fixed directory listings, improved page speed and a site somebody can edit are all assets you keep. Monthly reporting, "ongoing optimization" with no named deliverable, and rented links are not, and A proposal weighted toward the first kind can be expensive and still be good value; one weighted toward the second is a subscription to a service that leaves nothing behind.
+Content on your own site, a corrected Business Profile, fixed directory listings, improved page speed and a site somebody can edit are all assets you keep. Monthly reporting, "ongoing optimization" with no named deliverable, and rented links are not. A proposal weighted toward the first kind can be expensive and still be good value; one weighted toward the second is a subscription to a service that leaves nothing behind.
 
 Ask the question directly — if we stopped in six months, what would we still have? — because a vendor who answers it well is describing a real engagement rather than a subscription.
 

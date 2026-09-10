@@ -24,31 +24,29 @@ The NFIB Research Center fielded a Small Business and Technology Survey by email
 
 The respondents spanned industries: 21% services, 16% retail, 16% construction, 14% manufacturing, and the remainder distributed across other sectors.
 
-**The caveat, stated plainly.** A sample drawn from a membership organization is not a random sample of all US small businesses. Members of a trade body skew toward established, employer firms that chose to join something, and that is likely to bias website adoption upward relative to the true population. The figures are worth having and they are not the national picture, and anybody quoting them without that sentence is overstating them.
+**The caveat, stated plainly.** A sample drawn from a membership organization does not constitute a random sample of all US small businesses, because members of a trade body skew toward established, employer firms that actively chose to join something, and that is likely to bias website adoption upward relative to the genuine population. The figures are worth having and they are not the national picture, and anybody quoting them without that sentence is overstating them.
 
 ## The headline numbers
 
-**82%** of the small businesses surveyed had a website.
+**82%** of the small businesses surveyed had a website, and adoption climbed sharply with size: **75%** among firms with 1–9 employees, **90%** at 10–24, **96%** at 25–49, and **97%** among firms employing 50 or more, while among non-employer businesses it was considerably lower.
 
-Adoption climbed sharply with size: **75%** among firms with 1–9 employees, **90%** at 10–24, **96%** at 25–49, and **97%** among firms with 50 or more. Among non-employer businesses it was considerably lower.
-
-That gradient is the interesting part. It suggests a website is not treated as a marketing choice so much as a threshold that businesses cross as they take on staff and formalise, which matches what actually happens in practice more closely than the framing of a website as a discretionary purchase.
+That gradient constitutes the genuinely interesting part, because it suggests a website is not treated as a marketing choice so much as a threshold that businesses cross as they take on staff and formalize, which corresponds to what actually happens in practice considerably more closely than the framing of a website as a discretionary purchase.
 
 ## The finding that changed
 
 Among businesses without a website, cost was the primary barrier for **16%** in 2025, against **26%** in 2018.
 
-That is the number worth carrying, because it quietly kills a common sales premise. Ten years ago "a website is too expensive for us" was a widespread objection and a reasonable one. It is now a minority explanation, which means the businesses without a site mostly have some other reason — they do not think they need one, nobody has time, or the last attempt went badly.
+That is the number worth carrying, because it quietly eliminates a common sales premise: ten years ago "a website is too expensive for us" constituted a widespread objection and an entirely reasonable one. It is now a minority explanation, which means the businesses without a site mostly have some other reason — they do not think they need one, nobody has time, or the last attempt went badly.
 
 If you are selling to those businesses, or you are one of them, the useful conversation is about that other reason. A pitch built entirely on affordability is answering an objection most of the remaining holdouts are not making.
 
 ## How to use survey data without being misled by it
 
-Three habits, and they generalise well past this particular survey.
+Three habits are worth acquiring here, and they generalize considerably further than this particular survey.
 
-**Find the method before the headline.** Sample size, field dates, and how respondents were selected. A figure without those is not a finding, it is a claim.
+**Find the method before the headline.** Sample size, field dates, and the procedure by which respondents were selected are the elements to establish, because a figure lacking those is not a finding but merely an assertion.
 
-**Ask who paid.** A survey published by a company that sells the thing being surveyed is not disqualified, and it should be read knowing which direction the incentive points. This one comes from a membership body rather than a vendor, which is a different and generally better position.
+**Ask who paid.** A survey published by a company that sells the thing being surveyed is not thereby disqualified, and it should be read with an understanding of which direction the incentive points; this one originates from a membership body rather than from a vendor, which is a different and generally better position.
 
 **Check whether the sample resembles you.** A statistic about firms with 25–49 employees says very little about a two-person operation in Monrovia, and much of the published data in this area is dominated by larger businesses precisely because they are easier to survey.
 

@@ -24,7 +24,7 @@ Business owners ask about the rate, which is understandable and slightly beside 
 
 **Fixed-price project** moves the risk to the consultant, which is generally where it belongs, and creates the opposite pressure: once the price is agreed, everything that can be trimmed is money earned. That is fine when the deliverable is specified precisely and becomes an argument when it is not, and specify the deliverable in writing, in the sort of unglamorous detail that feels excessive at the time.
 
-**Monthly retainer** buys availability and continuity, and it is the model most likely to drift into paying for nothing, and the failure is quiet: work happens for three months, then attention moves elsewhere. The invoice keeps clearing because nobody wants to have the conversation. A retainer with a named monthly deliverable is a different object from one that buys "ongoing support".
+**Monthly retainer** buys availability and continuity, and it is the model most likely to drift into paying for nothing, because the failure is quiet: work happens for three months, then attention moves elsewhere while the invoice keeps clearing because nobody wants to have the conversation. A retainer with a named monthly deliverable is a different object from one that buys "ongoing support".
 
 **Percentage of advertising spend** aligns the consultant with your budget growing rather than your results improving, which is a genuine conflict rather than a theoretical one. It is common because it is easy to administer, and if you use it, agree in advance what happens when the correct advice is to spend less.
 
@@ -38,11 +38,11 @@ Consultants charge for three quite different things, and conflating them is how 
 
 **Being accountable** — somebody whose job it is to notice, in October, that the thing you set up in June stopped working. Small businesses buy this without naming it, and then feel they are paying for very little in a quiet month.
 
-Decide which of the three you actually want, and A business that has staff to execute needs the second and third; a business with nobody available needs the first as well, and should expect to pay accordingly.
+Decide which of the three you actually want, because a business that has staff to execute needs the second and third, whereas a business with nobody available needs the first as well, and should expect to pay accordingly.
 
 ## The questions that sort a good one from an expensive one
 
-Ask what they would do first and why, before any engagement, and A good answer is specific to your situation and frequently unflattering; a poor one is a list of services.
+Ask what they would do first and why, before any engagement begins, because a good answer is specific to your situation and frequently unflattering, whereas a poor one is merely a list of services.
 
 Ask them what they will not do, since anybody serious has boundaries, and hearing "we do not do social media, and for your business I would not prioritize it anyway" is more reassuring than a full-service list.
 
@@ -56,7 +56,7 @@ Some line items are contradicted by the platforms they claim to serve, and those
 
 Google's own documentation states there are "no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary" and that no new machine-readable files or markup are needed for those features. A proposal charging for AI-specific files as a requirement is charging for something the platform says is unnecessary.
 
-Similarly, local ranking comes down to relevance, distance and prominence by Google's own account, and distance is not something anybody can sell you. A proposal implying otherwise is either uninformed or counting on you being so.
+Similarly, local ranking comes down to relevance, distance and prominence by Google's own account, and distance is not something anybody can sell you, so a proposal implying otherwise is either uninformed or counting on you being uninformed.
 
 ## A reasonable shape for a small business
 

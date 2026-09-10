@@ -22,25 +22,25 @@ Overlays are sold on a specific promise — add one line of script and the acces
 
 Plaintiffs filed **3,117** website accessibility lawsuits in federal court in 2025, up 27% on the 2,452 filed in 2024, during a period when overlay products were widely marketed and widely adopted.
 
-That is correlation and it is not proof, and anybody presenting it as proof is overreaching in the other direction, and filing volumes move for many reasons — plaintiff firm activity, jurisdictional rulings, sheer fashion — and attributing the change to any single cause would be the same error the overlay vendors make.
+That is correlation rather than proof, and anybody presenting it as proof is overreaching in the opposite direction. Filing volumes move for numerous reasons — plaintiff firm activity, jurisdictional rulings, sheer fashion — and attributing the change to any single cause would replicate exactly the error the overlay vendors themselves make.
 
-The stronger argument against them is not a statistical one at all, but a mechanical one.
+The considerably stronger argument against them is not statistical whatsoever, but fundamentally mechanical.
 
 ## Why a script cannot do most of this
 
-WebAIM's 2026 survey of one million home pages found six failure types accounting for **96%** of all detected errors, and take them in order and ask what a script could do about each.
+WebAIM's 2026 survey of one million home pages found six failure types accounting for **96%** of all detected errors, so take them in order and ask what a script could realistically accomplish against each of them.
 
-**Low contrast text**, on 83.9% of pages, is a design decision, and A script can override colors, and doing so either breaks the design or produces a variant nobody chose. It has no way of knowing which of those grays were deliberate design choices.
+**Low contrast text**, on 83.9% of pages, constitutes a design decision, and although a script can override colors, doing so either breaks the design or produces a variant nobody actually chose, because it has no way of determining which of those grays were deliberate.
 
-**Missing alternative text**, on 53.1%, requires knowing what the image depicts and why it is on the page, and automated description has improved considerably and it still cannot know that the photograph is your storefront rather than a generic building, which is the entire informational content.
+**Missing alternative text**, on 53.1%, requires knowing what the image depicts and why it occupies the page. Automated description has improved considerably, and it still cannot determine that the photograph is your storefront rather than a generic building, which is the entire informational content.
 
-**Missing form labels**, on 51%, requires knowing what the field is for, and A script can guess from placeholder text when placeholder text exists, and when it does not, it has nothing to work from.
+**Missing form labels**, on 51%, requires knowing what the field is actually asking for. A script can guess from placeholder text wherever placeholder text exists, and when it does not exist, the script has nothing whatsoever to work from.
 
-**Empty links and empty buttons**, on 46.3% and 30.6%, are controls with no accessible name, and the name is the thing that was never written down, and there is nowhere for a script to read it from.
+**Empty links and empty buttons**, on 46.3% and 30.6%, are controls possessing no accessible name. The name is precisely the thing that was never written down, so there is nowhere for a script to read it from.
 
-**Missing document language**, on 13.5%, is the one item on the list a script genuinely can fix, and it is the least consequential of the six.
+**Missing document language**, on 13.5%, is the single item on the list a script genuinely can repair, and it is simultaneously the least consequential of the six.
 
-That is the whole case, and five of the six failures that dominate the data are missing *information*, not missing *code*, and adding a layer on top does not supply information that was never there.
+That is the entire case: five of the six failures dominating the data are missing *information* rather than missing *code*, and adding a layer on top cannot supply information that was never recorded.
 
 ## The certification claim, separately
 
@@ -52,14 +52,14 @@ The Department of Justice states that it "does not have a regulation setting out
 
 This is not an argument that the products do nothing, and pretending otherwise would be the mirror image of the overselling.
 
-They provide user-preference controls — text sizing, spacing, contrast modes, a reading guide — and some people genuinely use those, and offering them is a small courtesy. The error is not in having one; it is in treating it as the work rather than as a supplement to it.
+They provide user-preference controls — text sizing, spacing, contrast modes, a reading guide — and some people genuinely use those, so offering them constitutes a small courtesy. The error is not in having one; it is in treating it as the work itself rather than as a supplement to it.
 
 ## What to do instead, and what it costs
 
 Fix the six things directly, which is a week of unremarkable effort rather than a subscription.
 
-Contrast is a handful of theme values, and alternative text is written by whoever knows what the pictures are, as pages are touched for other reasons. Form labels are a markup change, and empty links and buttons need names typed in once. Document language is a single attribute on a single line of markup.
+Contrast amounts to a handful of theme values, and alternative text gets written by whoever knows what the pictures actually are, as pages are touched for other reasons. Form labels are a markup change, and empty links and buttons need names typed in exactly once, while document language is a single attribute on a single line of markup.
 
-Then keep a dated record of what was done, and that record is worth more than a badge if anything ever arrives, because it describes work rather than asserting a status nobody is empowered to confer.
+Then keep a dated record of what was actually done, because that record is worth considerably more than a badge if anything ever arrives, since it describes actual work rather than asserting a status nobody is empowered to confer.
 
 **Sources:** [WebAIM, The WebAIM Million (2026 report)](https://webaim.org/projects/million/) · [ADA.gov, Guidance on Web Accessibility and the ADA](https://www.ada.gov/resources/web-guidance/)

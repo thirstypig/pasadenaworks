@@ -1,6 +1,6 @@
 ---
 title: Qué cambiaron los Resúmenes de IA de Google para un negocio local
-description: 'Menos de lo que sugiere el pánico, y algo real. Lo que cambió es sobre todo la manera de medirlo, y google ahora lo reporta por separado.'
+description: 'Menos de lo que sugiere el pánico, y algo real. Lo que cambió es sobre todo la manera de medirlo, y Google ahora lo reporta por separado.'
 pubDate: 2027-02-01T00:00:00.000Z
 pillar: search
 targetKeyword: resumenes de ia google impacto negocio local

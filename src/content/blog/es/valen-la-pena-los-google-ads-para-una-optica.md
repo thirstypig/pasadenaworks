@@ -46,7 +46,7 @@ Sin esto, usted no puede distinguir una campaña cara que funciona de una barata
 
 ## Qué restringen las políticas
 
-La publicidad sanitaria conlleva condiciones de política que la publicidad minorista ordinaria no tiene, y google las publica.
+La publicidad sanitaria conlleva condiciones de política que la publicidad minorista ordinaria no tiene, y Google las publica.
 
 Lea la política de cuidado de la salud y medicamentos antes de redactar los anuncios y no después de un rechazo, puesto que las restricciones afectan a lo que puede afirmarse y, para algunas categorías, a si se exige certificación en absoluto. La optometría rutinaria se sitúa cómodamente dentro de lo permitido, y el efecto práctico para la mayoría de los consultorios recae sobre la redacción antes que sobre la elegibilidad. Resulta de todos modos bastante más barato leer la política durante veinte minutos que ver una campaña rechazada a mitad de lanzamiento.
 

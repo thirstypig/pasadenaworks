@@ -36,9 +36,9 @@ Service-area businesses without a storefront, home-based businesses, businesses 
 
 The preparation costs ten minutes and it is the difference between a two-day recovery and a three-week one.
 
-Photograph your signage, your storefront, and the interior with the business name visible. Keep a utility bill or lease showing the business name at that address, and keep the business registration. Screenshot the profile as it currently stands, so you can prove what it said before the change.
+Photograph your signage, your storefront, and the interior with the business name clearly visible, and keep a utility bill or lease demonstrating the business name at that address, together with the business registration. Screenshot the profile as it currently stands, so you can prove what it said before the change.
 
-Then make one change at a time and wait several days between them. A profile that changes name, address and category in the same afternoon looks exactly like a profile being repurposed, which is the thing the review exists to catch.
+Then make one change at a time and wait several days between them, because a profile that changes name, address and category in the same afternoon looks exactly like a profile being repurposed, which is the thing the review exists to catch.
 
 ## If it is already suspended
 
@@ -46,7 +46,7 @@ Google documents the reinstatement process, and the important thing to understan
 
 Read what the notification actually says, since a suspension for a guideline issue and a disabled profile for a different reason are not the same thing and do not take the same route. Then complete the reinstatement form once, attaching the evidence above. Do not submit repeatedly — duplicate submissions slow the queue rather than speeding it, and the temptation to resubmit daily is strong precisely because the wait is uncomfortable.
 
-While you wait, do not create a new listing for the same business. That converts one recoverable problem into two, and the duplicate will itself be flagged.
+While you wait, do not create a new listing for the same business, because that converts one recoverable problem into two and the duplicate will itself eventually be flagged.
 
 ## What to fix while it is down
 
