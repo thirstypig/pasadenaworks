@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p2
 issue_id: 013
 tags: [code-review, security, crm, contact-form, static-hosting, needs-owner-action]
@@ -209,11 +209,11 @@ abuse.
 
 ## Acceptance Criteria
 
-- [ ] n8n rejects a submission with `_gotcha` filled
-- [ ] n8n rejects a submission missing `email` or `message`
-- [ ] A real test submission still creates a Twenty CRM record
-- [ ] Confirm what content type n8n actually receives
-- [ ] Reconcile the `80f3d` / `94d1d` host discrepancy
+- [x] n8n rejects a submission with `_gotcha` filled
+- [x] n8n rejects a submission missing `email` or `message`
+- [x] A real test submission still creates a Twenty CRM record
+- [x] Confirm what content type n8n actually receives
+- [x] Reconcile the `80f3d` / `94d1d` host discrepancy
 
 ## Work Log
 
