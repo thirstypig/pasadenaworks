@@ -22,7 +22,7 @@ Que un proveedor cierre difiere de que un proveedor se quede callado, y resulta 
 
 El alojamiento y los dominios se prepagan y se automatizan, lo cual significa que la infraestructura sobrevive a la empresa exactamente lo que dure el ciclo de facturación.
 
-El sitio sigue sirviendo páginas. El correo sigue circulando. Nada se anuncia. Después una tarjeta archivada expira, o una renovación anual vence contra una cuenta bancaria ya cerrada, y un servicio se detiene sin aviso, habitualmente el dominio, y habitualmente se advierte primero porque el correo deja de llegar.
+El sitio sigue sirviendo páginas, el correo sigue circulando, nada se anuncia en absoluto, y después una tarjeta archivada expira, o una renovación anual vence contra una cuenta bancaria ya cerrada, y un servicio se detiene sin aviso, habitualmente el dominio, y habitualmente se advierte primero porque el correo deja de llegar.
 
 El intervalo entre el cierre de la empresa y el primer fallo constituye su ventana entera, y típicamente abarca de semanas a meses.
 
@@ -30,7 +30,7 @@ El intervalo entre el cierre de la empresa y el primer fallo constituye su venta
 
 **¿Dónde está el dominio, y de quién es?** Una consulta pública de WHOIS o de la ICANN nombrará al registrador y la fecha de expiración, y esa fecha convierte esto de una ansiedad en un plazo. Después intente iniciar sesión. Si no puede, usted no lo controla, sea cual sea lo que el papeleo sugiera.
 
-**¿Dónde está el alojamiento, y quién paga?** Localice la factura, o la línea del extracto de la tarjeta, e identifique al proveedor. Si la cuenta figura a nombre de la empresa disuelta, contacte directamente con el proveedor y explique la situación: tratan esto con regularidad y tienen procedimientos.
+**¿Dónde está el alojamiento, y quién paga?** Localice la factura, o alternativamente la línea del extracto de la tarjeta, e identifique al proveedor; posteriormente, si la cuenta figura a nombre de la empresa disuelta, contacte directamente con el proveedor y explique la situación, puesto que tratan esto con regularidad y disponen de procedimientos establecidos.
 
 **¿Qué tiene usted realmente?** Tome copias completas ahora, mientras el sitio sigue en pie: las páginas tal como se muestran, las imágenes, el texto, y cualquier dato que el sitio conserve, sean consultas, suscriptores o reservas. Hacer esto sobre un sitio en funcionamiento cuesta una tarde; reconstruirlo desde un archivo después de que se apague cuesta considerablemente más y produce menos.
 
@@ -44,18 +44,18 @@ De modo que el momento barato es ahora, y el momento caro llega dentro de unos m
 
 ## Tratar con un registrador cuando el titular ya no existe
 
-Este constituye el escenario incómodo, y resulta más tratable de lo que suena.
+Este constituye el escenario genuinamente incómodo, y resulta considerablemente más tratable de lo que inicialmente suena.
 
 Los registradores disponen de procedimientos para un titular que se ha disuelto, y son documentales: prueba de la relación comercial, facturas que muestren que usted pagó el dominio, correspondencia, su propio registro mercantil. Diríjase al registrador directamente antes que intentar localizar a un antiguo administrador, y espere un proceso lento y guiado por formularios antes que una conversación.
 
-Empiece antes de la fecha de expiración, no después. Todo esto se vuelve más difícil una vez que el nombre ha caducado.
+Empiece antes de la fecha de expiración antes que después, porque absolutamente todo esto se vuelve más difícil una vez que el nombre ha caducado.
 
 ## Qué dejar montado después
 
-Una vez que tenga el control, dedique la tarde que evita la repetición.
+Una vez que haya recuperado el control, dedique la única tarde que evita que esta situación entera se repita.
 
-Registre el dominio a nombre del negocio, con una tarjeta que el negocio controle, con la renovación automática activada y una dirección de contacto que sea un buzón compartido del negocio antes que el de una sola persona. Considere registrarlo varios años por adelantado, lo cual elimina la ocasión anual de que esto ocurra. Sea usted el titular de la cuenta de alojamiento y añada como usuario a quien haga el trabajo. Y anote, en algún sitio localizable, qué cuentas existen y dónde.
+Registre el dominio a nombre del negocio, con una tarjeta que el negocio controle, con la renovación automática activada y una dirección de contacto que sea un buzón compartido del negocio antes que el de una sola persona. Considere registrarlo varios años por adelantado, lo cual elimina la ocasión anual de que esto ocurra. Sea usted mismo el titular de la cuenta de alojamiento y añada como usuario adicional a quien haga el trabajo, y anote, en algún sitio genuinamente localizable, exactamente qué cuentas existen y dónde residen.
 
-Esa lista constituye lo que la mayoría de los negocios no tiene, y marca la diferencia entre una tarde de gestiones y una temporada de reconstrucción.
+Esa lista constituye precisamente lo que la mayoría de los negocios simplemente no tiene, y marca la diferencia entre una tarde de gestiones administrativas y una temporada entera de reconstrucción.
 
 **Fuentes:** [ICANN, Uniform Domain-Name Dispute-Resolution Policy (en inglés)](https://www.icann.org/resources/pages/help/dndr/udrp-en) · [OMPI, Total Number of Domain Name Cases per Year (en inglés)](https://www.wipo.int/amc/en/domains/statistics/cases.jsp)

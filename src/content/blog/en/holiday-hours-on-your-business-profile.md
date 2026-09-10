@@ -24,7 +24,7 @@ Your profile carries regular weekly hours, and separately it supports special ho
 
 That covers both closures and changes: shut entirely on Christmas Day, opening late on New Year's Day, closing early on Christmas Eve, or the odd Tuesday in January when you take stock. Google documents how to set these, and the mechanism exists precisely because regular weekly hours cannot express a holiday.
 
-The important property to understand is that special hours override the ordinary weekly ones for whichever dates you set, and google shows them to somebody looking at your listing on that day. That is what stops the profile confidently telling a customer you are open when you are not.
+The important property to understand is that special hours override the ordinary weekly ones for whichever dates you set, and Google shows them to somebody looking at your listing on that day. That is what stops the profile confidently telling a customer you are open when you are not.
 
 ## Why this specific failure is so expensive
 

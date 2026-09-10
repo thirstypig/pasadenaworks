@@ -24,7 +24,7 @@ Su perfil lleva un horario semanal habitual y, por separado, admite horarios esp
 
 Eso cubre tanto cierres como cambios: cerrado del todo el día de Navidad, abrir tarde el día de Año Nuevo, cerrar temprano en Nochebuena, o el martes suelto de enero en que hace inventario. Google documenta cómo configurarlos, y el mecanismo existe precisamente porque un horario semanal habitual no puede expresar un festivo.
 
-La propiedad importante consiste en que los horarios especiales prevalecen sobre los semanales en las fechas que usted fije, y google se los muestra a quien mire su ficha ese día. Eso es lo que impide que el perfil le diga a un cliente con toda seguridad que usted está abierto cuando no lo está.
+La propiedad importante consiste en que los horarios especiales prevalecen sobre los semanales en las fechas que usted fije, y Google se los muestra a quien mire su ficha ese día. Eso es lo que impide que el perfil le diga a un cliente con toda seguridad que usted está abierto cuando no lo está.
 
 ## Por qué este fallo concreto sale tan caro
 

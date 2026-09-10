@@ -14,7 +14,7 @@ translationKey: trader-joes-no-ads
 slug: trader-joes-doesnt-buy-ads
 ---
 
-> **TL;DR** — Trader Joe's is famous for not buying conventional advertising, and the strategy plainly works for them. It works because of a structure a local business cannot reproduce: roughly 661 stores across 43 states, about 4,000 products where an ordinary supermarket carries something closer to 50,000, and around 80% of those products under its own brands. The word of mouth is an output of that curation, not a substitute for a marketing budget. Copy the mechanism if you like; do not copy the conclusion.
+> **TL;DR** — Trader Joe's is famous for not buying conventional advertising, and the strategy plainly works for them. It works because of a structure a local business cannot reproduce: roughly 661 stores across 43 states, about 4,000 products where an ordinary supermarket carries something closer to 50,000, and around 80% of those products under its own brands. The word of mouth is an output of that curation rather than a substitute for a marketing budget. Copy the mechanism if you like; do not copy the conclusion.
 
 Every few months a business owner arrives having read that Trader Joe's does not advertise, and asks a reasonable question: if they can do it, why are we paying for ads?
 
@@ -26,7 +26,7 @@ The scale involved is easy to underestimate, and it changes what "word of mouth"
 
 Trader Joe's operates something in the region of 661 stores across 43 states, and each of those carries about 4,000 items, against roughly 50,000 in a conventional supermarket, and and approximately 80% of what it sells bears one of its own brand names.
 
-Read those three facts alongside one another and the marketing strategy stops looking like restraint and starts looking instead like a consequence of something else entirely, and A tightly curated range of mostly own-brand products, sold in hundreds of locations, produces a stream of things nobody else has, and that is precisely what people end up talking about, whether it is the discontinued item, the seasonal thing that came back, the product you cannot get elsewhere — those are the conversation. They exist because of a merchandising decision rather than a marketing one.
+Read those three facts alongside one another and the marketing strategy stops looking like restraint and starts looking instead like a consequence of something else entirely. A tightly curated range of mostly own-brand products, sold in hundreds of locations, produces a stream of things nobody else has, and that is precisely what people end up talking about. The discontinued item, the seasonal thing that came back, the product you cannot obtain elsewhere — those constitute the conversation, and they exist because of a merchandising decision rather than a marketing one.
 
 ## Why the model does not transfer
 
@@ -34,25 +34,25 @@ A single-location business trying to run this strategy is missing three things, 
 
 **Distribution.** Word of mouth needs somewhere to travel to, and when somebody in Arcadia recommends a product, there is a store within reach of whoever hears it, and when somebody recommends your shop to a friend in Glendora, the recommendation may be true and still not convert.
 
-**Product exclusivity.** If you sell what everybody else sells, there is nothing to tell a friend about that they could not get from a competitor, and trader Joe's manufactures its own reason to be discussed, and most local businesses sell a service that is genuinely similar to the one down the road. The differentiation has to come from somewhere else.
+**Product exclusivity.** If you sell what everybody else sells, there is nothing to tell a friend about that they could not obtain from a competitor. Trader Joe's manufactures its own reason to be discussed, whereas most local businesses sell a service genuinely similar to the one down the road, so the differentiation has to originate somewhere else.
 
-**Time.** They have had decades to accumulate this, and were not profitable and famous in year two, and A new business copying the end state of a fifty-year strategy is copying the wrong end of it.
+**Time.** They have had decades to accumulate this, and they were certainly not profitable and famous in year two, so a new business copying the end state of a fifty-year strategy is copying entirely the wrong end of it.
 
 ## What is genuinely worth copying
 
 Setting the advertising question aside, several things in that structure are available to you and cost nothing.
 
-**A narrow range, chosen deliberately.** Four thousand items instead of fifty thousand is a decision to be excellent at a subset, and A small business offering nine services badly would frequently do better offering three well, and the three become the thing people describe.
+**A narrow range, chosen deliberately.** Four thousand items instead of fifty thousand constitutes a decision to be excellent at a subset, and a small business offering nine services badly would frequently do considerably better offering three well, because those three become the thing people actually describe.
 
-**Something specific to talk about.** Word of mouth requires a sentence somebody can repeat, and "They're good" does not qualify as that sentence, whereas "they'll tell you if you don't need the repair" does, and so is "they do the thing nobody else in the valley does". If you cannot supply that sentence, no amount of advertising budget will manufacture it.
+**Something specific to talk about.** Word of mouth requires a sentence somebody can repeat, and "They're good" does not qualify, whereas "they'll tell you if you don't need the repair" does, as does "they do the thing nobody else in the valley does". If you cannot supply that sentence, no quantity of advertising budget will manufacture it.
 
-**Making it easy to recommend.** Ask for reviews consistently, keep the listing accurate so the recommendation lands somewhere correct, and make sure a person who was told your name can find you in one search.
+**Making it easy to recommend.** Ask for reviews consistently, keep the listing accurate so the recommendation lands somewhere correct, and ensure that a person who was told your name can locate you within a single search.
 
 ## What to do about advertising in the meantime
 
 The honest position is that a business without an established reputation usually needs to buy attention while it builds one, and the two are not alternatives.
 
-Advertising is how you reach people who have not heard of you yet, and word of mouth is what happens after they have, and A business that stops advertising before the second mechanism is working has not adopted the Trader Joe's strategy; it has simply become quiet.
+Advertising is how you reach people who have not heard of you yet, and word of mouth is what happens after they have. A business that stops advertising before the second mechanism is working has not adopted the Trader Joe's strategy; it has simply become quiet.
 
 The reasonable order is to fix the free things first — the profile, the reviews, the site that answers what people ask — because advertising into a broken version of those wastes the money. Then advertise if the arithmetic works, and expect the amount you need to spend to fall over time as the reputation does more of the work.
 

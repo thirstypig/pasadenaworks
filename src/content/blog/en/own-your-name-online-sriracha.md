@@ -22,7 +22,7 @@ Most advice about protecting a business name arrives from somebody selling a tra
 
 David Tran's company — based in Irwindale, a few miles east of Pasadena — built a hot sauce that became a category, and it did so without ever registering the word on the label.
 
-Tran was dissuaded from securing a trademark on the word *sriracha* on the basis that it is difficult to obtain one named after a real-life location — the sauce takes its name from Si Racha, a coastal city in Thailand. The US Patent and Trademark Office treats "sriracha" as a generic term, and the consequence is exactly what you would expect: other manufacturers make and sell products called sriracha, and huy Fong cannot stop them.
+Tran was dissuaded from securing a trademark on the word *sriracha* on the basis that it is difficult to obtain one named after a real-life location — the sauce takes its name from Si Racha, a coastal city in Thailand. The US Patent and Trademark Office treats "sriracha" as a generic term, and the consequence is exactly what you would expect: other manufacturers make and sell products called sriracha, and Huy Fong cannot stop them.
 
 What the company does hold, and holds securely, is the distinctive part of the packaging, and the green cap and the rooster logo are trademarked. Those are the elements a competitor cannot copy.
 
