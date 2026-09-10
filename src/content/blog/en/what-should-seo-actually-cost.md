@@ -32,7 +32,7 @@ This is the sharpest available test, and it costs one question per line item.
 
 When a proposal lists something as required, ask where the platform that operates the thing says it is required. Google's documentation on its AI features is a useful worked example, since it states that there are "no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary" and that "you don't need to create new machine readable files, AI text files, or markup to appear in these features."
 
-A line item selling AI-specific files as necessary is therefore contradicted by the vendor's own published position. Apply the same test to structured data, to "technical SEO audits" that produce a report and no changes, and to anything described as a requirement rather than as a judgement.
+A line item selling AI-specific files as necessary is therefore contradicted by the vendor's own published position. Apply the same test to structured data, to "technical SEO audits" that produce a report and no changes, and to anything described as a requirement rather than as a judgment.
 
 ## Test two: do you keep it if you leave?
 

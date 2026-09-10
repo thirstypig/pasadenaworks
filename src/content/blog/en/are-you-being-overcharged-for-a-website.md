@@ -38,7 +38,7 @@ The answer to be alert to is the one that describes a category rather than an ac
 
 ## Test two: does the claim survive the documentation?
 
-This is the sharpest test available to you, principally because it does not depend on your own judgement about value at all. It depends on whether the thing being sold is described as necessary by the people who run the platform.
+This is the sharpest test available to you, principally because it does not depend on your own judgment about value at all. It depends on whether the thing being sold is described as necessary by the people who run the platform.
 
 Google's documentation on its AI features is a useful example, since it is where a great deal of current selling happens. It states that there are "no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary," and specifically that "you don't need to create new machine readable files, AI text files, or markup to appear in these features." An invoice line for AI-specific files or markup, sold as necessary to appear in those features, is contradicted by the vendor's own published position.
 
