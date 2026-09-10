@@ -372,6 +372,94 @@ describe('Chinese corpus grammar guards', () => {
     }
     expect(offenders).toEqual([]);
   });
+});
+
+/**
+ * The Latin-script twin of the two guards above, and it exists for exactly
+ * the same reason: a below-band reading score tempts a blanket edit, and a
+ * blanket edit damages prose in a way the score itself cannot see.
+ *
+ * English and Spanish are graded partly on words-per-sentence, so the cheap
+ * way to raise a post is to splice adjacent sentences together with a
+ * conjunction. Done mechanically that leaves the second sentence's capital
+ * letter stranded mid-clause — `..., and A brochure site with a telephone
+ * number presents less of one.` The grade goes up. The sentence is broken.
+ *
+ * This is not hypothetical either. Eighteen of these shipped to main across
+ * four merged pull requests before anybody read the prose again, in eight
+ * English posts and one Spanish one, and every one of them was produced by
+ * the same automated join. They were split back apart on 2026-09-10.
+ *
+ * The repair is always to restore the sentence break, never to lowercase the
+ * stranded word — the two sentences were joined because of a number, not
+ * because they belonged in one sentence.
+ */
+describe('Latin-script corpus grammar guards', () => {
+  const latin = report().filter((r) => r.locale === 'en' || r.locale === 'es');
+
+  it('never strands a capitalized word mid-sentence after a conjunction', () => {
+    const offenders = [];
+    for (const row of latin) {
+      const raw = readFileSync(join(BLOG_DIR, row.locale, row.file), 'utf8');
+      for (const m of raw.matchAll(/,\s+(?:and|y)\s+(?:A|An|The|It|This|That|These|Those|There)\s/g)) {
+        offenders.push(`${row.locale}/${row.file}: …${raw.slice(Math.max(0, m.index - 40), m.index + 24)}…`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  /**
+   * The same join, caught from the other end. Where the swallowed sentence
+   * began with a BRAND rather than an article, the mechanical edit lowercased
+   * it instead of stranding a capital — `..., and google publishes those
+   * conditions`, `..., and huy Fong cannot stop them`. Fourteen of these were
+   * live on main alongside the eighteen above, and they are invisible to the
+   * capitalized-word check because nothing about them looks capitalized.
+   *
+   * A SAMPLE, NOT AN INVENTORY — the same caveat the script-purity table
+   * carries. These are the proper nouns this corpus actually uses; passing
+   * means the common cases are clean, never that no brand was lowercased.
+   * Widen it when a new one gets past.
+   *
+   * Matching is deliberately anchored to `, and` / `, y` rather than to the
+   * bare lowercase word, because URLs, slugs, frontmatter keys and tag lists
+   * legitimately carry `google` in lower case all over this corpus.
+   */
+  const BRANDS = ['google', 'yelp', 'instagram', 'venmo', 'shopify', 'squarespace',
+    'stripe', 'wix', 'facebook', 'bing', 'chatgpt', 'perplexity', 'gemini',
+    'huy Fong', 'trader Joe'];
+
+  it('never lowercases a brand name after a joining conjunction', () => {
+    const offenders = [];
+    const re = new RegExp(`,\\s+(?:and|y|but|pero)\\s+(?:${BRANDS.join('|')})(?![A-Za-z-])`, 'g');
+    for (const row of latin) {
+      const raw = readFileSync(join(BLOG_DIR, row.locale, row.file), 'utf8');
+      for (const m of raw.matchAll(re)) {
+        offenders.push(`${row.locale}/${row.file}: …${raw.slice(Math.max(0, m.index - 40), m.index + 30)}…`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  /**
+   * `..., y Y cerca del 80% de lo que vende` — the join ran into a sentence
+   * that already opened with a conjunction and produced two in a row. One of
+   * these was live in the Spanish Trader Joe's post.
+   */
+  it('never doubles a conjunction', () => {
+    const offenders = [];
+    for (const row of latin) {
+      const raw = readFileSync(join(BLOG_DIR, row.locale, row.file), 'utf8');
+      for (const m of raw.matchAll(/\b(?:and|y|but|pero|or|o)\s+(?:And|Y|But|Pero|Or|O)\b/g)) {
+        offenders.push(`${row.locale}/${row.file}: …${raw.slice(Math.max(0, m.index - 40), m.index + 24)}…`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+});
+
+describe('Chinese corpus script purity', () => {
+  const zh = report().filter((r) => r.locale.startsWith('zh'));
 
   /**
    * A SAMPLE, NOT AN ALPHABET. These are ~90 of the most common characters

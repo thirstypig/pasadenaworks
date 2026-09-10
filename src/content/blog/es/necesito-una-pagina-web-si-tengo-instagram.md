@@ -15,7 +15,7 @@ translationKey: instagram-vs-website
 slug: necesito-una-pagina-web-si-tengo-instagram
 ---
 
-> **En corto** — A veces no. Si el suyo es un negocio intensamente visual, que vive de las recomendaciones, y si Instagram ya le está trayendo clientes, puede llevarle considerablemente más lejos de lo que supondría. No obstante, esa audiencia la está rentando en lugar de poseerla, y google continúa considerando una página web independiente como una señal de confianza más sólida que un perfil. La mayoría de los negocios necesita ambas cosas, en lugar de una sustituyendo a la otra.
+> **En corto** — A veces no. Si el suyo es un negocio intensamente visual, que vive de las recomendaciones, y si Instagram ya le está trayendo clientes, puede llevarle considerablemente más lejos de lo que supondría. No obstante, esa audiencia la está rentando en lugar de poseerla, y Google continúa considerando una página web independiente como una señal de confianza más sólida que un perfil. La mayoría de los negocios necesita ambas cosas, en lugar de una sustituyendo a la otra.
 
 A veces, con toda honestidad, no: si elabora pasteles por encargo, hace tatuajes o compone arreglos florales, y los clientes ya le descubren en Instagram y le escriben para apartar fecha, entonces añadir una página web quizá no modifique demasiado la situación inmediata. Sin embargo, para la mayoría de los negocios pequeños de Pasadena y el San Gabriel Valley — el plomero, el preparador de impuestos, el fisioterapeuta, la taquería que la gente busca por su nombre — depender únicamente de Instagram deja sin reclamar dinero auténtico y clientes auténticos. Lo que sigue constituye la explicación honesta de por qué, en lugar de la versión alarmista.
 

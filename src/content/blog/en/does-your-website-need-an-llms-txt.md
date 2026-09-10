@@ -14,7 +14,7 @@ translationKey: llms-txt-necessary
 slug: does-your-website-need-an-llms-txt
 ---
 
-> **TL;DR** — No, not for Google, and google says so in its own documentation rather than leaving it to be inferred: you do not need to create AI text files, machine-readable files, or special markup to appear in its AI features. The file is a proposed convention that no major search or assistant provider currently requires. If somebody has quoted you a monthly fee to add one, the file is not the problem — the pricing of a text file as an ongoing service is.
+> **TL;DR** — No, not for Google, and Google says so in its own documentation rather than leaving it to be inferred: you do not need to create AI text files, machine-readable files, or special markup to appear in its AI features. The file is a proposed convention that no major search or assistant provider currently requires. If somebody has quoted you a monthly fee to add one, the file is not the problem — the pricing of a text file as an ongoing service is.
 
 Every few years a new file appears that a certain kind of consultant will offer to sell you, and the current one is called `llms.txt` — proposed to sit at the root of your domain much as `robots.txt` already does, on the argument that it tells AI systems how to understand your site.
 
@@ -36,7 +36,7 @@ The underlying idea is not absurd, which is a large part of why it has spread as
 
 A website is built for a person with a browser, and much of it is navigation, styling, and repeated furniture that carries no meaning. The proposal is that a site could publish a plain-text summary of itself — what it is, which pages matter, where the substance lives — so that a system reading it does not have to infer all of that from markup.
 
-As an idea about machine-readable structure that has a long and entirely reasonable history behind it, the proposal is defensible; what it conspicuously lacks at present is adoption by the systems that would have to honour it. A convention accomplishes something only once the reader has agreed to read it, which means a file that no major provider has committed to using is, for the moment, a file that simply sits there.
+As an idea about machine-readable structure that has a long and entirely reasonable history behind it, the proposal is defensible; what it conspicuously lacks at present is adoption by the systems that would have to honor it. A convention accomplishes something only once the reader has agreed to read it, which means a file that no major provider has committed to using is, for the moment, a file that simply sits there.
 
 ## Where the money is
 
