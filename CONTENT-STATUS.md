@@ -37,6 +37,12 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2027-01-25 | Should you let ChatGPT write your website copy? | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-02-01 | What Google's AI Overviews changed for a local business | search | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-02-08 | People are getting answers without clicking. What that means for you. | search | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-03-08 | Who actually owns your website? | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-03-15 | What to do when your web developer stops answering | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-04-19 | How to get your domain name back | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-05-31 | How to tell whether you're being overcharged for a website | consulting | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-06-07 | Website accessibility lawsuits in California: what's actually real | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-06-14 | Making your site accessible without rebuilding it | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-07-26 | Does your website need an llms.txt file? | websites | ✅ | ✅ | ✅ | ✏️ draft |
 
 ## What needs doing
