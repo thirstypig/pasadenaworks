@@ -24,7 +24,7 @@ Your profile carries regular weekly hours, and separately it supports special ho
 
 That covers both closures and changes: shut entirely on Christmas Day, opening late on New Year's Day, closing early on Christmas Eve, or the odd Tuesday in January when you take stock. Google documents how to set these, and the mechanism exists precisely because regular weekly hours cannot express a holiday.
 
-The important property is that special hours override the weekly ones for the dates you set, and Google shows them to somebody looking at your listing on that day. That is what stops the profile confidently telling a customer you are open when you are not.
+The important property to understand is that special hours override the ordinary weekly ones for whichever dates you set, and google shows them to somebody looking at your listing on that day. That is what stops the profile confidently telling a customer you are open when you are not.
 
 ## Why this specific failure is so expensive
 
@@ -44,9 +44,9 @@ Ten minutes of work, done once, covers the entire period, and setting a recurrin
 
 ## Check it the way a customer would
 
-Setting the hours and confirming they display are two different things, and the second takes thirty seconds.
+Setting the hours and confirming that they actually display are two entirely different things, and the second of them takes about thirty seconds.
 
-Search your own business on your phone, signed out, and look at what the listing says, and dashboards show you what you entered; a phone shows you what a customer sees, and those occasionally differ — particularly if you have more than one listing, which is more common than people expect and worth discovering now rather than on 24 December.
+Search your own business on your phone, signed out, and look at what the listing says, and dashboards show you what you entered; a phone shows you what a customer sees. Those occasionally differ — particularly if you have more than one listing, which is more common than people expect and worth discovering now rather than on 24 December.
 
 If you discover a duplicate listing carrying the wrong hours, deal with it before the season begins rather than in the middle of it.
 

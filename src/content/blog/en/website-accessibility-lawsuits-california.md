@@ -34,7 +34,7 @@ Here the very same guidance is equally direct, and it is quoted considerably les
 
 Read those two sections together and the position is coherent rather than contradictory. The obligation is real and stated in general terms, while the method of meeting it is left to you — which means there is no federal checklist that, once completed, renders a website compliant.
 
-That has an immediate consequence for anything sold to you as certification, because nobody is in a position to certify you against a standard the government has not actually adopted. A vendor may genuinely improve your site, and a badge saying it is compliant is a marketing artefact rather than a legal shield.
+That has an immediate consequence for anything sold to you as certification, because nobody is in a position to certify you against a standard the government has not actually adopted. A vendor may genuinely improve your site, and a badge saying it is compliant is a marketing artifact rather than a legal shield.
 
 ## Where overlays fit
 

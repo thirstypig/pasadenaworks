@@ -29,7 +29,7 @@ La ciudad cierra tramos del recorrido la noche anterior para el acomodo de los c
 
 El Rose Bowl aporta una segunda oleada, porque el tráfico del día de juego congestiona la 210 y las calles cercanas al estadio durante horas antes del saque inicial, y en los años en que el Rose Bowl alberga una semifinal del College Football Playoff, tanto la ocupación hotelera como el interés de búsqueda se elevan antes y persisten más tiempo.
 
-El comportamiento de búsqueda sigue la curva idéntica. Desde mediados de diciembre en adelante, "cerca del Desfile de las Rosas", "hoteles cerca del recorrido" y "restaurantes abiertos el 1 de enero en Pasadena" ascienden todos, y Google se apoya considerablemente en los datos del Perfil de Negocio — horarios, horas concurridas, fotografías — al decidir quién aparece ante esas búsquedas. Un perfil que arrastra horarios festivos desactualizados o ninguna fotografía reciente pierde ante un competidor que sí actualizó los suyos.
+El comportamiento de búsqueda sigue la curva idéntica. Desde mediados de diciembre en adelante, "cerca del Desfile de las Rosas", "hoteles cerca del recorrido" y "restaurantes abiertos el 1 de enero en Pasadena" ascienden todos, y google se apoya considerablemente en los datos del Perfil de Negocio — horarios, horas concurridas, fotografías — al decidir quién aparece ante esas búsquedas. Un perfil que arrastra horarios festivos desactualizados o ninguna fotografía reciente pierde ante un competidor que sí actualizó los suyos.
 
 ## Su lista de diciembre
 

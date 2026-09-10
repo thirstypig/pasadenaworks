@@ -24,7 +24,7 @@ Business owners ask about the rate, which is understandable and slightly beside 
 
 **Fixed-price project** moves the risk to the consultant, which is generally where it belongs, and creates the opposite pressure: once the price is agreed, everything that can be trimmed is money earned. That is fine when the deliverable is specified precisely and becomes an argument when it is not, and specify the deliverable in writing, in the sort of unglamorous detail that feels excessive at the time.
 
-**Monthly retainer** buys availability and continuity, and it is the model most likely to drift into paying for nothing, and the failure is quiet: work happens for three months, then attention moves elsewhere, and the invoice keeps clearing because nobody wants to have the conversation. A retainer with a named monthly deliverable is a different object from one that buys "ongoing support".
+**Monthly retainer** buys availability and continuity, and it is the model most likely to drift into paying for nothing, and the failure is quiet: work happens for three months, then attention moves elsewhere. The invoice keeps clearing because nobody wants to have the conversation. A retainer with a named monthly deliverable is a different object from one that buys "ongoing support".
 
 **Percentage of advertising spend** aligns the consultant with your budget growing rather than your results improving, which is a genuine conflict rather than a theoretical one. It is common because it is easy to administer, and if you use it, agree in advance what happens when the correct advice is to spend less.
 

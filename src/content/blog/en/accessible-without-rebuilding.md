@@ -30,7 +30,7 @@ That ordering has a useful side effect. The pages carrying transactions are the 
 
 ## The short list that covers most of it
 
-**Alternative text on images** comes first, because every image carrying information needs a text description, and the test for whether a given image qualifies is straightforward: if it vanished from the page entirely, would anything be lost? A photograph of your shopfront needs a description; a decorative divider does not, and marking it as decorative is the correct handling rather than describing it.
+**Alternative text on images** comes first, because every image carrying information needs a text description, and the test for whether a given image qualifies is straightforward: if it vanished from the page entirely, would anything be lost? A photograph of your storefront needs a description; a decorative divider does not, and marking it as decorative is the correct handling rather than describing it.
 
 **Color contrast** is the next, and text sitting too close in tone to its background is unreadable for a great many people — the most common single failure on small business sites, usually arriving because gray looked elegant to somebody in a design tool. This one is measurable — contrast checkers are free and immediate — and fixing it is often a matter of changing a few color values rather than anything structural.
 

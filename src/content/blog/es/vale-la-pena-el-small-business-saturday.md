@@ -34,7 +34,7 @@ Una tienda, una panadería, una librería, un restaurante, un negocio cercano al
 
 Para un negocio de servicios, la jornada resulta bastante más débil, y merece decirlo antes que insinuar lo contrario.
 
-Un dentista, un fontanero, un contador, una consultoría: nadie va a reservar por impulso una endodoncia un sábado de noviembre porque una campaña le animara a comprar localmente, y la compra es meditada, se agenda, y con frecuencia pasa por un seguro, y nada de eso responde a una jornada comercial.
+Un dentista, un fontanero, un contador, una consultoría: nadie va a reservar por impulso una endodoncia un sábado de noviembre porque una campaña le animara a comprar localmente, y la compra es meditada, se agenda, y con frecuencia pasa por un seguro. Nada de eso responde a una jornada comercial.
 
 Eso no significa ignorar la jornada por completo, sino más bien que el objetivo realista consiste en visibilidad antes que en ingresos del mismo día, y que el esfuerzo debería resultar proporcionado a eso.
 
@@ -44,7 +44,7 @@ La jornada premia la preparación y castiga la improvisación, y la preparación
 
 **Confirme que su horario es correcto para ese sábado concreto**, empleando horarios especiales si difiere, y que un tráfico peatonal adicional llegue a una puerta cerrada el único día en que la gente hizo un esfuerzo por comprar localmente resulta peor que no participar.
 
-**Tenga una cosa concreta que ofrecer**, y declárela con llaneza, y "Venga a apoyar al comercio local" no constituye una oferta en ningún sentido útil, y "Todo pedido superior a $50 el sábado incluye el envoltorio de regalo que normalmente cobramos" sí lo es, y esa concreción es lo que la hace repetible por alguien que se lo cuente a un amigo.
+**Tenga una cosa concreta que ofrecer**, y declárela con llaneza, y "Venga a apoyar al comercio local" no constituye una oferta en ningún sentido útil. "Todo pedido superior a $50 el sábado incluye el envoltorio de regalo que normalmente cobramos" sí lo es. Esa concreción es lo que la hace repetible por alguien que se lo cuente a un amigo.
 
 **Publíquelo donde la gente vaya a verlo**, que para un negocio local significa el Perfil de Negocio tanto como las redes sociales, y una publicación adherida a su ficha alcanza a alguien que ya le está mirando y decidiendo, que constituye mejor audiencia que un muro.
 

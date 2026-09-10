@@ -14,7 +14,7 @@ translationKey: llms-txt-necessary
 slug: does-your-website-need-an-llms-txt
 ---
 
-> **TL;DR** — No, not for Google, and Google says so in its own documentation rather than leaving it to be inferred: you do not need to create AI text files, machine-readable files, or special markup to appear in its AI features. The file is a proposed convention that no major search or assistant provider currently requires. If somebody has quoted you a monthly fee to add one, the file is not the problem — the pricing of a text file as an ongoing service is.
+> **TL;DR** — No, not for Google, and google says so in its own documentation rather than leaving it to be inferred: you do not need to create AI text files, machine-readable files, or special markup to appear in its AI features. The file is a proposed convention that no major search or assistant provider currently requires. If somebody has quoted you a monthly fee to add one, the file is not the problem — the pricing of a text file as an ongoing service is.
 
 Every few years a new file appears that a certain kind of consultant will offer to sell you, and the current one is called `llms.txt` — proposed to sit at the root of your domain much as `robots.txt` already does, on the argument that it tells AI systems how to understand your site.
 

@@ -46,7 +46,7 @@ Without this, you cannot distinguish an expensive campaign that works from a che
 
 ## What the policies constrain
 
-Healthcare advertising carries policy conditions that ordinary retail advertising does not, and Google publishes those conditions in documentation anybody can consult beforehand.
+Healthcare advertising carries policy conditions that ordinary retail advertising does not, and google publishes those conditions in documentation anybody can consult beforehand.
 
 Read the healthcare and medicines policy before writing ad copy rather than after a disapproval, since the restrictions affect what may be claimed and, for some categories, whether certification is required at all. Routine optometry sits comfortably within what is permitted, and the practical effect for most practices is on wording rather than eligibility. It is still considerably cheaper to read the policy for twenty minutes than to have a campaign rejected mid-launch.
 

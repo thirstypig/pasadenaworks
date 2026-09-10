@@ -54,7 +54,7 @@ Be particularly careful with any guarantee of a specific ranking position, and n
 
 For most single-location businesses in the San Gabriel Valley, the honest shape is a concentrated block of work followed by something much smaller.
 
-The concentrated block fixes the profile, corrects the listings, repairs the site's obvious problems, and writes the handful of pages that answer what customers actually ask. That is finite work with a recognisable end state, rather than an open-ended commitment, and what follows is genuinely lighter: reviews, occasional content, keeping details current when something changes.
+The concentrated block fixes the profile, corrects the listings, repairs the site's obvious problems, and writes the handful of pages that answer what customers actually ask. That is finite work with a recognizable end state, rather than an open-ended commitment, and what follows is genuinely lighter: reviews, occasional content, keeping details current when something changes.
 
 An indefinite retainer at a constant monthly figure describes neither of those phases accurately, which is worth noticing when one is proposed.
 

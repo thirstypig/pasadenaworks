@@ -63,6 +63,10 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2027-08-02 | Own your name online: what the Sriracha fight teaches small businesses | websites | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-08-09 | What to tell an employee who wants to "use AI" for marketing | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-08-16 | Trader Joe's doesn't buy ads. Why that's a bad model to copy. | ads | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-08-23 | What an ADA website lawsuit actually looks like, read from the filing | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-08-30 | The California businesses sued over their websites, and what they had in common | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-09-06 | Accessibility overlay widgets did not stop the lawsuits | websites | ✅ | ✅ | ✅ | ✏️ draft |
+| 2027-09-13 | What "ADA compliant" vendors promise, against what the record says | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-09-27 | Q4 checklist: what to fix before the holiday rush | consulting | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-11-08 | Small Business Saturday: worth the effort? | ads | ✅ | ✅ | ✅ | ✏️ draft |
 | 2027-11-15 | Holiday hours on your Google Business Profile | search | ✅ | ✅ | ✅ | ✏️ draft |

@@ -1,6 +1,6 @@
 ---
 title: Marketing to the San Gabriel Valley's Lunar New Year crowd
-description: 'Lunar New Year 2027 falls on February 6. Here''s how SGV restaurants, salons, and shops in Monterey Park, Alhambra, and Arcadia should market to it.'
+description: 'Lunar New Year 2027 falls on February 6. Here''s how SGV restaurants, salons, and shops in Monterey Park, Alhambra, and arcadia should market to it.'
 pubDate: 2027-01-04T00:00:00.000Z
 pillar: ads
 targetKeyword: lunar new year marketing san gabriel valley
@@ -44,7 +44,7 @@ A handful of specific customs translate into genuine revenue if you are prepared
 Red and gold decor in your storefront or across your homepage banner is perfectly acceptable as a signal, but it does not constitute marketing on its own, because every business on the block will have it. What genuinely moves people:
 
 * **Google Business Profile posts written in the customer's language**, rather than English carrying a red border. A Mandarin or Cantonese post describing your reunion-dinner menu, published well ahead of time, appears in local search results for people searching in that language.
-* **Local Chinese-language press and community calendars.** World Journal and Sing Tao Daily still carry genuine classified and event listings in this area, and community Facebook groups for Monterey Park, Alhambra, and Arcadia generate real engagement across the weeks preceding the holiday. This is not nostalgia advertising; it is where the audience actually looks.
+* **Local Chinese-language press and community calendars.** World Journal and Sing Tao Daily still carry genuine classified and event listings in this area, and community Facebook groups for Monterey Park, Alhambra, and arcadia generate real engagement across the weeks preceding the holiday. This is not nostalgia advertising; it is where the audience actually looks.
 * **A specific, bookable offer**, rather than a vague sale. "Reunion dinner menu, book by \[date]" comfortably beats "Happy Lunar New Year, everyone welcome."
 
 None of this demands a substantial budget. It demands knowing what the holiday actually means to the people walking into your business, and saying something specific about it rather than hanging a banner and hoping.

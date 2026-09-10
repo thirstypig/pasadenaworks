@@ -42,7 +42,7 @@ La debilidad se deriva de la misma estructura que la hace fuerte, y aparece prec
 
 Google describe los resultados locales como ordenados por relevancia, distancia y prominencia, y leer eso frente a la lista anterior muestra dónde está la apertura.
 
-**La relevancia** constituye un ejercicio de exhaustividad, y es el que usted puede sencillamente terminar, y Categoría principal correcta, las secundarias que genuinamente correspondan, cada servicio nombrado, horarios exactos incluyendo festivos, los atributos completados. Una cadena rara vez hace esto a nivel de sucursal, porque hacerlo cuatrocientas veces no es trabajo de nadie.
+**La relevancia** constituye un ejercicio de exhaustividad, y es el que usted puede sencillamente terminar, y categoría principal correcta, las secundarias que genuinamente correspondan, cada servicio nombrado, horarios exactos incluyendo festivos, los atributos completados. Una cadena rara vez hace esto a nivel de sucursal, porque hacerlo cuatrocientas veces no es trabajo de nadie.
 
 **La distancia** resulta fija para ambos, lo cual es neutral antes que una desventaja, y explica además la forma de su objetivo realista: usted compite por la gente cercana, y cerca de usted la cadena tampoco tiene ventaja de distancia.
 

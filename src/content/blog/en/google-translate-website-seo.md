@@ -23,7 +23,7 @@ Somebody asks us this almost every time we raise the subject of multilingual SEO
 
 ## What the widget actually does
 
-A Google Translate widget — the small flag dropdown, or the "Translate this page" banner that Chrome displays automatically — operates entirely within the visitor's browser, after your page has already finished loading. Your server transmits the identical English HTML it always transmits, and JavaScript running in the browser subsequently substitutes Spanish or Chinese words for the English ones, on that particular visitor's screen alone.
+A Google Translate widget — the small flag dropdown, or the "Translate this page" banner that Chrome displays automatically — operates entirely within the visitor's browser, after your page has already finished loading. Your server transmits the identical English HTML it always transmits, and javaScript running in the browser subsequently substitutes Spanish or Chinese words for the English ones, on that particular visitor's screen alone.
 
 Nothing about your site has changed. There exists no new URL, and no file on your server containing the translated words. The translation persists precisely as long as that single browser tab remains open, and it evaporates the moment the tab closes.
 
