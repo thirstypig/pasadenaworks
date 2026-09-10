@@ -24,9 +24,9 @@ Los dueños de negocio preguntan por la tarifa, lo cual resulta comprensible y l
 
 **El proyecto a precio cerrado** traslada el riesgo al consultor, que es generalmente donde corresponde, y crea la presión opuesta: acordado el precio, todo lo que pueda recortarse es dinero ganado. Eso funciona cuando el entregable está especificado con precisión y se convierte en una discusión cuando no lo está, y especifique el entregable por escrito, con la clase de detalle poco vistoso que en su momento parece excesivo.
 
-**El contrato mensual** compra disponibilidad y continuidad, y constituye el modelo con mayor probabilidad de derivar hacia pagar por nada, y el fallo resulta silencioso: se trabaja durante tres meses, después la atención se desplaza a otra parte, y la factura sigue pasando porque nadie quiere mantener esa conversación. Un contrato mensual con un entregable nombrado constituye un objeto distinto de otro que compra "soporte continuado".
+**El contrato mensual** compra disponibilidad y continuidad, y constituye el modelo con mayor probabilidad de derivar hacia pagar por nada, y el fallo resulta silencioso: se trabaja durante tres meses, después la atención se desplaza a otra parte. La factura sigue pasando porque nadie quiere mantener esa conversación. Un contrato mensual con un entregable nombrado constituye un objeto distinto de otro que compra "soporte continuado".
 
-**El porcentaje de la inversión publicitaria** alinea al consultor con el crecimiento de su presupuesto antes que con la mejora de sus resultados, lo cual constituye un conflicto genuino y no teórico. Resulta común porque es fácil de administrar, y Si lo emplea, acuerde por adelantado qué ocurre cuando el consejo correcto consista en gastar menos.
+**El porcentaje de la inversión publicitaria** alinea al consultor con el crecimiento de su presupuesto antes que con la mejora de sus resultados, lo cual constituye un conflicto genuino y no teórico. Resulta común porque es fácil de administrar, y si lo emplea, acuerde por adelantado qué ocurre cuando el consejo correcto consista en gastar menos.
 
 ## Por qué está pagando realmente
 

@@ -31,11 +31,11 @@ The city closes sections of the route the night before for float staging, and gr
 
 The Rose Bowl Game contributes a second surge, because game-day traffic backs up the 210 and the surface streets near the stadium for hours before kickoff, and in years when the Rose Bowl hosts a College Football Playoff semifinal, both hotel occupancy and search interest rise earlier and persist longer.
 
-Search behavior follows the identical curve. From mid-December onward, "near Rose Parade," "hotels near Rose Parade route," and "restaurants open New Year's Day Pasadena" all climb, and Google leans heavily on Business Profile data — hours, popular times, photographs — when deciding who appears for those searches. A profile carrying stale holiday hours or no recent photographs loses to a competitor who updated theirs.
+Search behavior follows the identical curve. From mid-December onward, "near Rose Parade," "hotels near Rose Parade route," and "restaurants open New Year's Day Pasadena" all climb, and google leans heavily on Business Profile data — hours, popular times, photographs — when deciding who appears for those searches. A profile carrying stale holiday hours or no recent photographs loses to a competitor who updated theirs.
 
 ## Your December checklist
 
-**Update Google Business Profile hours by December 15.** Do not wait until Christmas week. Set your genuine hours for December 24th, 25th, 31st, and January 1st, including whether you are closing early or remaining open for the crowds. An out-of-date "open" status while you are actually closed damages your rating considerably more than being accurately closed does.
+**Update Google Business Profile hours by December 15.** Do not wait until Christmas week. Set your genuine hours for December 24th, 25th, 31st, and january 1st, including whether you are closing early or remaining open for the crowds. An out-of-date "open" status while you are actually closed damages your rating considerably more than being accurately closed does.
 
 **Publish an update about parade-week access.** If customers need to know that a street will be closed, or that parking near you disappears for two days, say so in a Business Profile post or a banner on your site. People searching "near Rose Parade" during parade week are frequently visiting the area for the first time, and they do not know your neighborhood's ordinary traffic pattern, let alone its parade-week one.
 

@@ -22,9 +22,9 @@ La mayor parte de los consejos sobre proteger el nombre de un negocio proceden d
 
 La empresa de David Tran —con sede en Irwindale, a pocos kilómetros al este de Pasadena— construyó una salsa picante que se convirtió en una categoría, y lo hizo sin registrar jamás la palabra de la etiqueta.
 
-A Tran se le disuadió de asegurar una marca sobre la palabra *sriracha* sobre la base de que resulta difícil obtener una nombrada a partir de un lugar real: la salsa toma su nombre de Si Racha, una ciudad costera de Tailandia. La Oficina de Patentes y Marcas de Estados Unidos trata "sriracha" como un término genérico, y la consecuencia es exactamente la esperable: otros fabricantes producen y venden productos llamados sriracha, y Huy Fong no puede impedirlo.
+A Tran se le disuadió de asegurar una marca sobre la palabra *sriracha* sobre la base de que resulta difícil obtener una nombrada a partir de un lugar real: la salsa toma su nombre de Si Racha, una ciudad costera de Tailandia. La Oficina de Patentes y Marcas de Estados Unidos trata "sriracha" como un término genérico, y la consecuencia es exactamente la esperable: otros fabricantes producen y venden productos llamados sriracha, y huy Fong no puede impedirlo.
 
-Lo que la empresa sí sostiene, y sostiene con seguridad, es la parte distintiva del envase, y la tapa verde y el logotipo del gallo están registrados, y esos son los elementos que un competidor no puede copiar.
+Lo que la empresa sí sostiene, y sostiene con seguridad, es la parte distintiva del envase, y la tapa verde y el logotipo del gallo están registrados. Esos constituyen los elementos que un competidor no puede copiar en absoluto.
 
 ## La distinción que merece conservarse
 
@@ -52,16 +52,16 @@ Esa lista es una tarde y un coste anual modesto, y constituye el significado pr�
 
 Nada de esto argumenta contra el registro, y existen situaciones donde este se gana claramente su coste.
 
-Si su nombre resulta distintivo antes que descriptivo, si se expande más allá de una sede, si vende un producto antes que servicios locales, o si alguien ya empezó a operar bajo algo cercano a su nombre, una solicitud constituye una conversación seria que mantener con alguien cualificado. Este artículo no constituye en absoluto esa conversación, ni sustituye a ninguna.
+Si su nombre resulta distintivo antes que descriptivo, si se expande más allá de una sede, si vende un producto antes que servicios locales, o si alguien ya empezó a operar bajo algo cercano a su nombre, una solicitud constituye una conversación seria que mantener con alguien cualificado. Este artículo no constituye en absoluto esa conversación, ni pretende sustituir a ninguna que deba mantenerse con un profesional.
 
 Lo que merece saberse antes es que un registro protege un nombre; no recupera un dominio que usted nunca registró, y no reclama un Perfil de Negocio que dejó sin verificar.
 
 ## La parte que Huy Fong hizo bien
 
-La historia se cuenta habitualmente como una advertencia, y solo lo es a medias, porque la empresa siguió teniendo un éxito enorme sin poseer la palabra.
+La historia se cuenta habitualmente como una advertencia, y únicamente lo es a medias, porque la empresa siguió teniendo un éxito enorme sin poseer la palabra.
 
-Tran ha descrito a los imitadores como publicidad gratuita, que constituye una posición defendible cuando su botella resulta reconocible desde el otro lado de una habitación. Esa reconocibilidad es el activo, y se construyó deliberadamente: una tapa concreta, un logotipo concreto, una botella concreta, y esos sí son poseíbles, y son lo que la empresa registró.
+Tran ha descrito a los imitadores como publicidad gratuita, que constituye una posición defendible cuando su botella resulta reconocible desde el otro lado de una habitación. Esa reconocibilidad es el activo, y se construyó deliberadamente: una tapa concreta, un logotipo concreto, una botella concreta, y esos sí son poseíbles. Son precisamente aquello que la empresa se ocupó de registrar.
 
-La versión para un negocio pequeño resulta poco vistosa pero exacta, y puede que usted no logre poseer "Fontanería Pasadena", y Sí puede poseer el dominio, la ficha, los nombres de usuario y la reputación adherida a ellos, y esas son las cosas que un competidor con un nombre parecido no puede llevarse.
+La versión para un negocio pequeño resulta poco vistosa pero exacta, y puede que usted no logre poseer "Fontanería Pasadena", y sí puede poseer el dominio, la ficha, los nombres de usuario y la reputación adherida a ellos. Esas constituyen las cosas que un competidor con un nombre parecido no puede llevarse de ninguna manera.
 
 **Fuentes:** [Wikipedia, Huy Fong sriracha (en inglés)](https://en.wikipedia.org/wiki/Huy_Fong_sriracha) · [USPTO, Search our trademark database (en inglés)](https://www.uspto.gov/trademarks/search)

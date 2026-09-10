@@ -62,6 +62,6 @@ Un contrato indefinido a una cifra mensual constante no describe con exactitud n
 
 No existe un número correcto y el rango resulta enorme, lo cual constituye una respuesta real antes que una evasiva.
 
-Más útil: calcule cuánto vale para usted un cliente nuevo a lo largo de un año, y pregunte después cuántos clientes adicionales al mes tendría que producir este trabajo para pagarse solo. Si la respuesta es uno o dos, la propuesta probablemente merece intentarse, y Si es ocho, pida al proveedor que explique cómo van a ocurrir esos ocho, y lea la respuesta con atención.
+Más útil: calcule cuánto vale para usted un cliente nuevo a lo largo de un año, y pregunte después cuántos clientes adicionales al mes tendría que producir este trabajo para pagarse solo. Si la respuesta es uno o dos, la propuesta probablemente merece intentarse, y si es ocho, pida al proveedor que explique cómo van a ocurrir esos ocho, y lea la respuesta con atención.
 
 **Fuentes:** [Central de la Búsqueda de Google, Funciones potenciadas por IA y tu sitio web](https://developers.google.com/search/docs/appearance/ai-features?hl=es-419) · [Ayuda de Perfil de Negocio de Google, Sugerencias para mejorar tu ranking local en Google](https://support.google.com/business/answer/7091?hl=es-419)

@@ -29,7 +29,7 @@ Having initiated the claim, Google walks you through confirming your business de
 
 **Mail verification still exists, contrary to a good deal of published advice.** Video became the recommended and most frequently offered route during 2026, and postcards now surface far less often than they once did — particularly for service-area businesses without a storefront. But Google's own documentation continues to list mail among the available methods, so the widely repeated claim that postcards have been discontinued should be treated as an overstatement rather than as fact, which in practice means planning around video without assuming that mail has vanished entirely.
 
-**Phone, text, and email verification** remain available to some businesses, and they are by far the least demanding of the routes on offer: a code arrives within minutes, you enter it, and the matter is settled.
+**Phone, text, and email verification** remain available to some businesses, and they are by far the least demanding of the routes on offer: a code arrives within minutes, you enter it. The matter is settled.
 
 **A live video call** is a distinct option from the recorded walkthrough, one in which a support representative joins you in real time rather than reviewing a file afterward. Owners frequently conflate the two and then find themselves unprepared when an actual person appears on the call.
 

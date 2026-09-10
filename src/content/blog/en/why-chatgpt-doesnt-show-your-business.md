@@ -14,7 +14,7 @@ translationKey: chatgpt-business-visibility
 slug: why-chatgpt-doesnt-show-your-business
 ---
 
-> **TL;DR** — Assistants do not keep a directory of businesses to rank. They read the live web when somebody asks, so if your pages are not indexed, or a crawler has been told to stay out, there is nothing for them to find. Google states plainly that appearing in its AI features needs no special files, markup, or optimization beyond ordinary search visibility, and OpenAI documents one specific crawler that controls whether you can be quoted at all. Almost everything being sold as "AI optimization" sits outside those two facts.
+> **TL;DR** — Assistants do not keep a directory of businesses to rank. They read the live web when somebody asks, so if your pages are not indexed, or a crawler has been told to stay out, there is nothing for them to find. Google states plainly that appearing in its AI features needs no special files, markup, or optimization beyond ordinary search visibility, and openAI documents one specific crawler that controls whether you can be quoted at all. Almost everything being sold as "AI optimization" sits outside those two facts.
 
 A customer who would once have typed "dry cleaner near me" into Google now asks an assistant instead, and the answer names three businesses within a mile of yours without mentioning you at all. Discovering that is unsettling in a particular way, because unlike a search result there is no page two to console yourself with, and the industry that has assembled itself around the problem over the past two years is more than willing to explain it to you on a monthly retainer.
 

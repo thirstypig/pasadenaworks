@@ -23,7 +23,7 @@ If a customer in Monterey Park or Alhambra is going to read your website in Chin
 
 ## The actual difference, and why it matters more than it sounds
 
-Simplified Chinese was introduced by the mainland Chinese government during the 1950s in order to raise literacy, and many common characters were redrawn with fewer strokes. Traditional Chinese retained the older character forms, and because Taiwan, Hong Kong, and Macau never adopted the simplification, they continue to use Traditional today. Singapore and Malaysia predominantly use Simplified.
+Simplified Chinese was introduced by the mainland Chinese government during the 1950s in order to raise literacy, and many common characters were redrawn with fewer strokes. Traditional Chinese retained the older character forms, and because Taiwan, Hong Kong, and macau never adopted the simplification, they continue to use Traditional today. Singapore and Malaysia predominantly use Simplified.
 
 A reader fluent in one can frequently puzzle through the other, much as an English speaker can ordinarily work out British against American spelling. But "can puzzle through" does not constitute the bar for a business website. A native reader notices the mismatch instantly, and the effect is not neutral: it reads as evidence that this business does not know whom it is addressing. For a service business selling trust as much as anything else, that constitutes a poor first impression before you have said a word about your prices.
 

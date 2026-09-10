@@ -26,7 +26,7 @@ The scale involved is easy to underestimate, and it changes what "word of mouth"
 
 Trader Joe's operates something in the region of 661 stores across 43 states, and each of those carries about 4,000 items, against roughly 50,000 in a conventional supermarket, and and approximately 80% of what it sells bears one of its own brand names.
 
-Read those three facts alongside one another and the marketing strategy stops looking like restraint and starts looking instead like a consequence of something else entirely, and A tightly curated range of mostly own-brand products, sold in hundreds of locations, produces a stream of things nobody else has, and that is precisely what people end up talking about, whether it is the discontinued item, the seasonal thing that came back, the product you cannot get elsewhere — those are the conversation, and they exist because of a merchandising decision rather than a marketing one.
+Read those three facts alongside one another and the marketing strategy stops looking like restraint and starts looking instead like a consequence of something else entirely, and A tightly curated range of mostly own-brand products, sold in hundreds of locations, produces a stream of things nobody else has, and that is precisely what people end up talking about, whether it is the discontinued item, the seasonal thing that came back, the product you cannot get elsewhere — those are the conversation. They exist because of a merchandising decision rather than a marketing one.
 
 ## Why the model does not transfer
 
@@ -34,7 +34,7 @@ A single-location business trying to run this strategy is missing three things, 
 
 **Distribution.** Word of mouth needs somewhere to travel to, and when somebody in Arcadia recommends a product, there is a store within reach of whoever hears it, and when somebody recommends your shop to a friend in Glendora, the recommendation may be true and still not convert.
 
-**Product exclusivity.** If you sell what everybody else sells, there is nothing to tell a friend about that they could not get from a competitor, and Trader Joe's manufactures its own reason to be discussed, and most local businesses sell a service that is genuinely similar to the one down the road, and the differentiation has to come from somewhere else.
+**Product exclusivity.** If you sell what everybody else sells, there is nothing to tell a friend about that they could not get from a competitor, and trader Joe's manufactures its own reason to be discussed, and most local businesses sell a service that is genuinely similar to the one down the road. The differentiation has to come from somewhere else.
 
 **Time.** They have had decades to accumulate this, and were not profitable and famous in year two, and A new business copying the end state of a fifty-year strategy is copying the wrong end of it.
 

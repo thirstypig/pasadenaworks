@@ -34,9 +34,9 @@ A un negocio de una sola sede que intente aplicar esta estrategia le faltan tres
 
 **Distribución.** El boca a boca necesita un sitio adonde viajar, y cuando alguien en Arcadia recomienda un producto, hay una tienda al alcance de quien lo escuche, y cuando alguien recomienda su local a un amigo de Glendora, la recomendación puede ser cierta y aun así no convertir.
 
-**Exclusividad del producto.** Si usted vende lo que vende todo el mundo, no hay nada que contarle a un amigo que este no pudiera conseguir de un competidor, y Trader Joe's fabrica su propio motivo para ser comentada, y la mayoría de los negocios locales venden un servicio genuinamente parecido al de la calle de al lado, y la diferenciación tiene que proceder de otro sitio.
+**Exclusividad del producto.** Si usted vende lo que vende todo el mundo, no hay nada que contarle a un amigo que este no pudiera conseguir de un competidor, y trader Joe's fabrica su propio motivo para ser comentada, y la mayoría de los negocios locales venden un servicio genuinamente parecido al de la calle de al lado. La diferenciación, por tanto, tiene que proceder necesariamente de algún otro sitio.
 
-**Tiempo.** Ellos han dispuesto de décadas enteras para acumular todo esto, y no eran rentables ni famosos en el año dos, y un negocio nuevo que copia el estado final de una estrategia de cincuenta años está copiando el extremo equivocado de ella.
+**Tiempo.** La empresa ha dispuesto de décadas enteras para acumular todo esto, y no eran rentables ni famosos en el año dos, y un negocio nuevo que copia el estado final de una estrategia de cincuenta años está copiando el extremo equivocado de ella.
 
 ## Qué merece copiarse genuinamente
 
@@ -44,7 +44,7 @@ Dejando de lado la cuestión publicitaria, varias cosas de esa estructura sí es
 
 **Una gama estrecha, elegida deliberadamente.** Cuatro mil artículos en lugar de cincuenta mil constituye una decisión de ser excelente en un subconjunto, y un negocio pequeño que ofrece nueve servicios mal haría con frecuencia mejor ofreciendo tres bien, y esos tres se convierten en aquello que la gente describe.
 
-**Algo concreto de lo que hablar.** El boca a boca requiere una frase que alguien pueda repetir, y "Son buenos" no cumple los requisitos de esa frase, mientras que "te dicen si no hace falta la reparación" sí los cumple, y también "hacen aquello que nadie más en el valle hace". Si usted no puede suministrar esa frase, ninguna cantidad de presupuesto publicitario la fabricará.
+**Algo concreto de lo que hablar.** El boca a boca requiere una frase que alguien pueda repetir, y "Son buenos" no cumple los requisitos de esa frase, mientras que "te dicen si no hace falta la reparación" sí los cumple, y también "hacen aquello que nadie más en el valle hace". Si usted no se encuentra en condiciones de suministrar esa frase, ninguna cantidad de presupuesto publicitario llegará a fabricarla por usted.
 
 **Ponerlo fácil de recomendar.** Pida reseñas de manera constante, mantenga la ficha exacta para que la recomendación aterrice en algún sitio correcto, y asegúrese de que quien recibió su nombre pueda encontrarle en una sola búsqueda.
 

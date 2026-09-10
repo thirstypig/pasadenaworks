@@ -24,7 +24,7 @@ Google admite horarios especiales para las fechas en que usted abre a horas dist
 
 Haga el Día de Acción de Gracias, los días alrededor de Navidad, Nochevieja y Año Nuevo, más cualquier cierre propio de su negocio: la semana que siempre se toma, el día de la fiesta del personal, la tarde que cierra para inventario. Un perfil que muestra horario normal un día en que usted está cerrado produce un cliente irritado y, con bastante frecuencia, una reseña sobre ello.
 
-Este es el elemento de mayor rendimiento de la lista, y es el que más a menudo se deja hasta que alguien se queja.
+Este constituye el elemento de mayor rendimiento de la lista entera, y es simultáneamente el que más a menudo se deja sin hacer hasta que alguien termina por quejarse.
 
 ## 2. Pruebe su propio formulario de contacto
 
@@ -38,13 +38,13 @@ Ya que está, compruebe adónde van efectivamente los mensajes, y un formulario 
 
 Sus clientes de diciembre miran su sitio en un estacionamiento, desde un teléfono, con una raya de cobertura, mientras deciden si conducir hasta usted.
 
-Cárguelo en esas condiciones antes que en el wifi de la oficina, y cronometre cuánto tarda hasta que aparece algo útil, y confirme que el número de teléfono se marca al tocarlo, que el horario resulta visible sin desplazarse mucho, y que la dirección es texto sobre el que una aplicación de mapas pueda actuar.
+Cárguelo en esas condiciones antes que en el wifi de la oficina, y cronometre cuánto tarda hasta que aparece algo útil, y confirme que el número de teléfono se marca al tocarlo, que el horario resulta visible sin desplazarse mucho. Que la dirección es texto sobre el que una aplicación de mapas pueda actuar.
 
 Todo lo que se haya acumulado en el sitio desde el año pasado —una ventana de chat, un módulo de reservas incrustado, un script de seguimiento, una ventana emergente— le está costando tiempo de carga exactamente en el dispositivo que importa.
 
 ## 4. Decida qué ocurre cuando no puede atender
 
-Los días de más trabajo son aquellos en que el teléfono suena mientras usted está con un cliente, y el desenlace por defecto consiste en que quien llama se va a un competidor.
+Los días de más trabajo son precisamente aquellos en los que el teléfono suena mientras usted se encuentra ya con un cliente, y el desenlace por defecto consiste en que quien llama se va a un competidor.
 
 Decida el asunto por adelantado antes que en el momento, ya sea mediante un mensaje de voz que efectivamente indique cuándo devolverá la llamada, una nota en el perfil explicando que el correo recibe respuesta más rápida este mes, o una persona cuyo trabajo los sábados sea el teléfono. Cualquiera de esas resulta mejor que la versión donde nadie decide y las llamadas sencillamente quedan sin atender.
 
@@ -52,7 +52,7 @@ Decida el asunto por adelantado antes que en el momento, ya sea mediante un mens
 
 Los negocios de temporada modifican lo que ofrecen y con frecuencia olvidan decirlo.
 
-Si toma pedidos con una fecha límite, publique la fecha límite, y Si algo no está disponible hasta enero, dígalo en lugar de dejar que alguien se presente a por ello. Si añade algo para la temporada, añádalo a los servicios de su perfil, dado que un servicio que no ha enumerado es uno por el que no pueden encontrarle.
+Si toma pedidos con una fecha límite, publique la fecha límite, y si algo no está disponible hasta enero, dígalo en lugar de dejar que alguien se presente a por ello. Si añade algo para la temporada, añádalo a los servicios de su perfil, dado que un servicio que no ha enumerado es uno por el que no pueden encontrarle.
 
 ## 6. Anote las cifras de este año mientras las tiene delante
 

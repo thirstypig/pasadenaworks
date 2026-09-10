@@ -14,7 +14,7 @@ translationKey: llms-txt-necessary
 slug: necesita-su-sitio-web-un-archivo-llms-txt
 ---
 
-> **En resumen** — No, no para Google, y Google lo afirma en su propia documentación en lugar de dejarlo a la deducción: usted no necesita crear archivos de texto para IA, archivos legibles por máquina ni marcado especial para aparecer en sus funciones de IA. El archivo constituye una convención propuesta que ningún proveedor importante de búsqueda o de asistentes exige actualmente. Si alguien le ha cotizado una cuota mensual por añadir uno, el archivo no es el problema: el problema consiste en tarifar un archivo de texto como si fuera un servicio permanente.
+> **En resumen** — No, no para Google, y google lo afirma en su propia documentación en lugar de dejarlo a la deducción: usted no necesita crear archivos de texto para IA, archivos legibles por máquina ni marcado especial para aparecer en sus funciones de IA. El archivo constituye una convención propuesta que ningún proveedor importante de búsqueda o de asistentes exige actualmente. Si alguien le ha cotizado una cuota mensual por añadir uno, el archivo no es el problema: el problema consiste en tarifar un archivo de texto como si fuera un servicio permanente.
 
 Cada pocos años aparece un archivo nuevo que cierta clase de consultor se ofrecerá a venderle, y el actual se llama `llms.txt` —propuesto para residir en la raíz de su dominio tal como ya lo hace `robots.txt`, bajo el argumento de que indica a los sistemas de IA cómo comprender su sitio.
 

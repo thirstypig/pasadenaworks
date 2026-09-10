@@ -24,7 +24,7 @@ Google supports special hours for dates on which you are open at different times
 
 Do Thanksgiving, the days around Christmas, New Year's Eve and New Year's Day, plus any closure specific to your business — the week you always take, the day of the staff party, the afternoon you close for stocktaking. A profile showing normal hours on a day you are shut produces an irritated customer and, quite often, a review about it.
 
-This is comfortably the highest-return item on the list, and it is also the one most often left undone until somebody eventually complains about it.
+This is comfortably the highest-return item on the entire list, and it is simultaneously the one most often left undone until somebody eventually complains about it.
 
 ## 2. Test your own contact form
 
@@ -38,19 +38,19 @@ While you are there, check where the messages actually go, and A form delivering
 
 Your customers in December are looking at your site in a car park, on a phone, with one bar, while deciding whether to drive to you.
 
-Load it under those conditions rather than on the office wifi, and time how long it takes before anything useful appears, and confirm that the phone number is tappable, the hours are visible without scrolling far, and the address is text a map application can act on.
+Load it under those conditions rather than on the office wifi, and time how long it takes before anything useful appears, and confirm that the phone number is tappable, the hours are visible without scrolling far. The address appears as text that a map application can actually act on.
 
 Anything that has accumulated on the site since last year — a chat widget, a booking embed, a tracking script, a pop-up — is costing you load time on exactly the device that matters.
 
 ## 4. Decide what happens when you cannot answer
 
-The busiest days are the ones where the phone rings while you are with a customer, and the default outcome is that the caller goes to a competitor.
+The busiest days are precisely the ones on which the phone rings while you are already with a customer, and the default outcome in that situation is that the caller goes to a competitor instead.
 
 Decide the matter in advance rather than in the moment, whether that means a voicemail message that actually says when you will call back, a note on the profile explaining that email gets a faster answer this month, or a person whose job on Saturdays is the phone. Any of those is better than the version where nobody decides and the calls simply go unanswered.
 
 ## 5. Check what your listing says you sell
 
-Seasonal businesses change what they offer and frequently forget to say so.
+Seasonal businesses change what they offer as the year turns, and frequently forget to say so anywhere a customer would see it.
 
 If you take orders with a deadline, publish the deadline, and if something is unavailable until January, say that rather than letting somebody arrive for it, and if you add something for the season, add it to the services on your profile, since a service you have not listed is one you cannot be found for.
 
@@ -62,7 +62,7 @@ Use Search Console's performance report to see which queries brought people in d
 
 ## The one that is not on the list
 
-Do not start a new marketing initiative in the fourth quarter.
+Do not begin a new marketing initiative of any kind during the fourth quarter.
 
 A new website, a new booking system, a rebrand or a first advertising campaign are all reasonable projects and all wrong for the season, because the cost of something going wrong is at its annual maximum and your attention is at its minimum. Do the six items above, get through the quarter, and start the interesting work in January when a mistake is survivable.
 

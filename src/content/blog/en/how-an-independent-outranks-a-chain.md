@@ -20,15 +20,15 @@ The instinct on discovering that a chain appears above you is to conclude that s
 
 ## Where a chain is genuinely strong
 
-It is worth being honest about this first, because a strategy built on underestimating a competitor tends to fail.
+It is worth being honest about this before anything else, because a strategy built on underestimating a competitor tends to fail in predictable ways.
 
-A chain has a recognizable brand, so people search its name directly and it wins those searches permanently, and it has authority accumulated across hundreds of locations and a site nobody has to argue about, and it has a marketing budget that will outlast your patience, and it can afford to be present in categories where the return is thin.
+A chain has a recognizable brand, so people search its name directly and it wins those searches permanently, and it has authority accumulated across hundreds of locations and a site nobody has to argue about, and it has a marketing budget that will outlast your patience. It can afford to be present in categories where the return is thin.
 
 None of that is winnable by you, and none of it needs to be in order for this to work.
 
 ## Where a chain is structurally weak
 
-The weakness follows from the same structure that makes it strong, and it shows up precisely at the level a local business operates on.
+The weakness follows directly from the same structure that makes the chain strong, and it shows up precisely at the level on which a local business actually operates.
 
 **Listings are maintained centrally.** One person, somewhere else, is responsible for hundreds of profiles, and that is why chain listings so often carry generic categories, no services listed, the wrong holiday hours, and photographs taken by a photographer who visited a different branch in 2019.
 

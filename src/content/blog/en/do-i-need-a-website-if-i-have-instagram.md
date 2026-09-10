@@ -17,7 +17,7 @@ translationKey: instagram-vs-website
 slug: do-i-need-a-website-if-i-have-instagram
 ---
 
-> **TL;DR** — Sometimes, no. If yours is an intensely visual, referral-driven business and Instagram is already delivering customers, it can carry you considerably further than you would expect. You are nonetheless renting that audience rather than owning it, and Google continues to treat an independent website as a stronger trust signal than a profile page. Most businesses require both, rather than one in place of the other.
+> **TL;DR** — Sometimes, no. If yours is an intensely visual, referral-driven business and Instagram is already delivering customers, it can carry you considerably further than you would expect. You are nonetheless renting that audience rather than owning it, and google continues to treat an independent website as a stronger trust signal than a profile page. Most businesses require both, rather than one in place of the other.
 
 Sometimes, honestly, no: if you produce custom cakes, tattoo, or arrange flowers, and customers already discover you through Instagram and message you to book, then adding a website may not move very much in the immediate term. For most small businesses in Pasadena and the San Gabriel Valley, however — the plumber, the tax preparer, the physical therapist, the taco counter that people search for by name — relying on Instagram alone leaves genuine money and genuine customers unclaimed. What follows is the honest account of why, rather than the frightening one.
 
