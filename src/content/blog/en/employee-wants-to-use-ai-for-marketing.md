@@ -16,7 +16,7 @@ slug: employee-wants-to-use-ai-for-marketing
 
 > **TL;DR** — Say yes, because a prohibition will not be obeyed and will only ensure you stop hearing about it. Then write one page covering three things: what may never go in, what may never come out unchecked, and who approves what before it is published. The business remains responsible for everything published in its name, which is the reason the page exists, and it is a fifteen-minute document rather than a policy project.
 
-An employee who asks this question is doing you a considerable favour, since the alternative version of this conversation is the one in which you find out about it afterwards. Treat the question as a good sign, and answer it with the seriousness it deserves.
+An employee who asks this question is doing you a considerable favor, since the alternative version of this conversation is the one in which you find out about it afterwards. Treat the question as a good sign, and answer it with the seriousness it deserves.
 
 ## Why a ban is the worst available answer
 
@@ -62,6 +62,6 @@ Also worth saying plainly: the writing still has to sound like your business. Go
 
 The document runs to a single page, with three headings matching the rules above, each carrying three or four concrete examples drawn from your actual business rather than from a template somebody downloaded.
 
-Review the document whenever something material changes, whether that is a new tool, a new service line, or a customer complaint that touched on the subject. This is not a governance programme and treating it as one is how it ends up unwritten. It is the fifteen minutes that stops the two failures you would otherwise find out about from a customer.
+Review the document whenever something material changes, whether that is a new tool, a new service line, or a customer complaint that touched on the subject. This is not a governance program and treating it as one is how it ends up unwritten. It is the fifteen minutes that stops the two failures you would otherwise find out about from a customer.
 
 **Sources:** [Google Search Central, Google Search's guidance about AI-generated content](https://developers.google.com/search/blog/2023/02/google-search-and-ai-content?hl=en) · [Federal Trade Commission, Advertising and Marketing guidance](https://www.ftc.gov/business-guidance/advertising-marketing)
