@@ -62,9 +62,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 82 files. The build itself
+                     #   AND .ts, tina/ included. 84 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 304 across 25 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 623 across 52 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -184,7 +184,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate now covers 82 files and reports 0 errors.
+excluded; the gate now covers 84 files and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -728,19 +728,61 @@ a 1.3-grade gap, so the prose really was thin and the metric was left alone.
 Full write-up in
 `docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md`.
 
+**That inversion has a second, quieter form, and it shipped: an edit that
+RAISES the score while BREAKING the prose.** English and Spanish are graded
+partly on words-per-sentence, so splicing two adjacent sentences together
+with a conjunction improves the number every time. Done mechanically it also
+strands the swallowed sentence's capital mid-clause — `..., and A brochure
+site with a telephone number presents less of one.` Thirty-two of these
+reached `main` across four merged pull requests in September 2026, because
+every number moved the right way and nobody re-read the half that got worse.
+
+They came in three shapes, and the second is the one a reviewer's eye slides
+past: a stranded capital (18), a LOWERCASED brand where the swallowed
+sentence began with one — `..., and google publishes those conditions`,
+`..., and huy Fong cannot stop them` (14) — and a doubled conjunction,
+`..., y Y cerca del 80%` (1). More were findable only by reading: a mangled
+list, a non-sequitur, `is not a courthouse, and it is a letter`.
+
+`scripts/readability.test.mjs` now carries a **`Latin-script corpus grammar
+guards`** block covering all three, the Latin-script twin of the `由於` and
+`之因此` guards above and written for the same reason. It carries the same
+"a sample, not an inventory" caveat as the script-purity table: the brand
+list is the proper nouns this corpus actually uses, and matching is anchored
+to `, and` / `, y` because URLs, slugs and tag lists legitimately carry
+`google` in lower case everywhere. Each guard was verified to FAIL on an
+injected violation before being kept.
+
+**The rule this leaves:** close a band gap by hand, post by post, measuring
+after each — merge sentences with real subordination, choose more precise
+words, and split anything that overshoots the ceiling. Never run a regex over
+prose to move a score. All four locales reached 68/68 in band that way on
+2026-09-10 (en mean 13.6, es 52.3, zh 0.6).
+
 ## Known outstanding work
 
-- `CONTENT-PLAN.md`'s full 90-day schedule is done and approved: all 20
-  English posts are `draft: false` as of 2026-08-31 (the owner reviewed and
-  flipped the last 5 via Tina). Since the same date the site is
-  **date-gated** — a post appears on its `pubDate` and not before — so 4 are
-  visible today and the rest surface weekly through 2027-01-11 with no one
-  doing anything. **Never read "20 approved" as "20 visible."**
-  **All 20 now have Spanish, Simplified and Traditional Chinese versions**
-  (2026-08-31), so nothing on the schedule will publish English-only and there
-  is no translation backlog left to work. Don't take the count here on trust —
-  `CONTENT-STATUS.md` is generated from the frontmatter and is the live answer;
-  this line is the one that goes stale.
+- **Both schedules are written, translated and approved: 68 sets, every one
+  in all four languages, all `draft: false` as of 2026-09-10.** The original
+  90-day run (20 sets) was approved 2026-08-31; `CONTENT-PLAN.md`'s phase two
+  (48 sets, weekly Mondays 2027-01-18 → 2027-12-13) was approved 2026-09-10
+  after the owner reviewed every article. There is no content backlog and no
+  translation backlog.
+
+  The site is **date-gated** — a post appears on its `pubDate` and not before —
+  so approving all 68 published nothing on the day: the build was 71 pages
+  before and after, and reaches ~323 once the whole schedule has surfaced.
+  **Never read "68 approved" as "68 visible."** Don't take the count here on
+  trust either — `CONTENT-STATUS.md` is generated from the frontmatter and is
+  the live answer; this line is the one that goes stale.
+
+  Two articles do not match the titles in `CONTENT-PLAN.md`, on purpose.
+  2027-07-19 was planned around In-N-Out's website and is now "Websites that
+  barely change" built on the Wayback Machine, because in-n-out.com cannot be
+  read by any method available here (curl returns an 843-byte shell, a real
+  browser gets an Incapsula block page). 2027-12-06 was planned as a summary
+  of published agency rate surveys and now reports the search instead, because
+  every such survey found is vendor-published and states no sample size, field
+  dates or selection method.
 
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
@@ -767,36 +809,37 @@ Full write-up in
   "hardcodes all four locales" was a real hard-rule-1 bug in one place and
   correct, type-enforced code in another. Re-verify against current code before
   acting.
-- **Tina's moderate `npm audit` findings (react-router open-redirect/SSR
-  injection CVEs) have no safe fix available yet, re-checked 2026-09-09** —
-  this isn't "hasn't been done," it's genuinely blocked upstream. We are on
-  `tinacms`/`@tinacms/cli` 3.12.1/2.6.1; 3.13.0/2.7.0 have since shipped, and
-  **upgrading would not help** — `npm view tinacms@3.13.0
-  dependencies.react-router-dom` returns `^6.30.3`, the identical vulnerable
-  range 3.12.1 pins. So the audit stays at 8 moderate either way; treat the
-  upgrade as ordinary maintenance, not as a fix.
+- **The Tina `npm audit` findings are fixed — 8 moderate down to 2, as of
+  2026-09-10 (#66).** The two that remain are `express` and `qs`, reached
+  through a different dependency path; nothing in `tinacms`/`@tinacms/cli`
+  is outstanding. This entry used to say the opposite at length, and the
+  reasoning it gave was correct when written.
 
-  **Check the pin, not the version number.** The 2026-08-27 version of this
-  note argued from "we're already on the latest," which stopped being true
-  within days and would have made a stale claim look like a current one. The
-  load-bearing fact is which `react-router-dom` range Tina pins, and that is
-  one `npm view` away.
+  **`package.json` now carries an `overrides` block, and it is load-bearing:**
 
-  The only fix `npm audit fix --force` offers is
-  downgrading to `tinacms@0.59.1` — a pre-3.x release with a different,
-  incompatible config API from what `tina/config.ts` uses now, which would
-  almost certainly break `npm run admin` rather than fix anything. Real
-  risk is low regardless: Tina admin only runs locally, never reaches the
-  live site, and both CVEs need a browser actually navigating a malicious
-  link while the local dev server happens to be running. Re-check
-  `npm audit` next time `tinacms` gets touched — nothing to act on until
-  Tina ships a version with an unaffected react-router-dom.
+  ```json
+  "overrides": { "react-router": "7.18.3", "react-router-dom": "7.18.3" }
+  ```
 
-  **"8 moderate" is a claim to re-check every time, not a standing fact.**
-  It briefly hid a critical advisory (see Resolved, 2026-09-09) — read the
-  severities, not the count, and treat anything above moderate or outside
-  `tinacms`/`@tinacms/cli` as a live finding regardless of what this file
-  says the number is.
+  Tina pins `react-router-dom` at `^6.30.3`, and the patched release is 7.x,
+  so the only route to a clean audit was forcing a MAJOR version past the
+  pin. That is exactly the kind of override that breaks the thing it is
+  overriding, which is why it was verified in a real browser rather than by
+  a green `npm audit` — `npm run admin` was opened and exercised. **Do not
+  remove this block as cruft, and if you bump `tinacms`, re-open the admin
+  and click through it rather than trusting the build.**
+
+  What survives from the old entry is the habit, not the number:
+
+  **Check the pin, not the version number.** An earlier version of this note
+  argued from "we're already on the latest", which stopped being true within
+  days and made a stale claim look current. The load-bearing fact is which
+  range Tina pins, and that is one `npm view` away.
+
+  **The count is a claim to re-check every time, not a standing fact.** It
+  once briefly hid a critical advisory (see Resolved, 2026-09-09) — read the
+  severities, not the total, and treat anything above moderate or outside the
+  known packages as a live finding regardless of what this file says.
 ## Resolved
 
 Already solved — **details and reasoning in [`docs/RESOLVED.md`](docs/RESOLVED.md)**.
