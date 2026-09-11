@@ -62,9 +62,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 82 files. The build itself
+                     #   AND .ts, tina/ included. 84 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 304 across 25 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 623 across 52 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -184,7 +184,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate now covers 82 files and reports 0 errors.
+excluded; the gate now covers 84 files and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -728,20 +728,66 @@ a 1.3-grade gap, so the prose really was thin and the metric was left alone.
 Full write-up in
 `docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md`.
 
+**That inversion has a second, quieter form, and it shipped: an edit that
+RAISES the score while BREAKING the prose.** English and Spanish are graded
+partly on words-per-sentence, so splicing two adjacent sentences together
+with a conjunction improves the number every time. Done mechanically it also
+strands the swallowed sentence's capital mid-clause — `..., and A brochure
+site with a telephone number presents less of one.` Thirty-two of these
+reached `main` across four merged pull requests in September 2026, because
+every number moved the right way and nobody re-read the half that got worse.
+
+They came in three shapes, and the second is the one a reviewer's eye slides
+past: a stranded capital (18), a LOWERCASED brand where the swallowed
+sentence began with one — `..., and google publishes those conditions`,
+`..., and huy Fong cannot stop them` (14) — and a doubled conjunction,
+`..., y Y cerca del 80%` (1). More were findable only by reading: a mangled
+list, a non-sequitur, `is not a courthouse, and it is a letter`.
+
+`scripts/readability.test.mjs` now carries a **`Latin-script corpus grammar
+guards`** block covering all three, the Latin-script twin of the `由於` and
+`之因此` guards above and written for the same reason. It carries the same
+"a sample, not an inventory" caveat as the script-purity table: the brand
+list is the proper nouns this corpus actually uses, and matching is anchored
+to `, and` / `, y` because URLs, slugs and tag lists legitimately carry
+`google` in lower case everywhere. Each guard was verified to FAIL on an
+injected violation before being kept.
+
+**The rule this leaves:** close a band gap by hand, post by post, measuring
+after each — merge sentences with real subordination, choose more precise
+words, and split anything that overshoots the ceiling. Never run a regex over
+prose to move a score. All four locales reached 68/68 in band that way on
+2026-09-10 (en mean 13.6, es 52.3, zh 0.6).
+
 ## Known outstanding work
 
-- `CONTENT-PLAN.md`'s full calendar is done: the original 90-day schedule (20
-  posts) plus the 48-article phase-two calendar (2027-01-18 through
-  2027-12-13), for **68 posts total, all `draft: true` pending owner review**
-  in Tina, exactly as the first 20 were before they were flipped one batch at
-  a time. **All 68 have Spanish, Simplified and Traditional Chinese
-  versions** — there is no translation backlog anywhere on the schedule.
-  One phase-two Monday, 2027-11-29, was flagged in `CONTENT-PLAN.md` itself
-  as the weakest of the case-study articles and instructed to be dropped if
-  no citable source could be found; a source was found and it shipped, so
-  every one of the 48 Mondays now has an article. Don't take any of this on
-  trust — `CONTENT-STATUS.md` is generated from the frontmatter and is the
-  live answer; this line is the one that goes stale.
+- **Both schedules are written, translated and approved: 68 sets, every one
+  in all four languages, all `draft: false` as of 2026-09-10.** The original
+  90-day run (20 sets) was approved 2026-08-31; `CONTENT-PLAN.md`'s phase two
+  (48 sets, weekly Mondays 2027-01-18 → 2027-12-13) was approved 2026-09-10
+  after the owner reviewed every article. There is no content backlog and no
+  translation backlog.
+
+  The site is **date-gated** — a post appears on its `pubDate` and not before —
+  so approving all 68 published nothing on the day: the build was 71 pages
+  before and after, and reaches ~323 once the whole schedule has surfaced.
+  **Never read "68 approved" as "68 visible."** Don't take the count here on
+  trust either — `CONTENT-STATUS.md` is generated from the frontmatter and is
+  the live answer; this line is the one that goes stale.
+
+  Two articles do not match the titles in `CONTENT-PLAN.md`, on purpose.
+  2027-07-19 was planned around In-N-Out's website and is now "Websites that
+  barely change" built on the Wayback Machine, because in-n-out.com cannot be
+  read by any method available here (curl returns an 843-byte shell, a real
+  browser gets an Incapsula block page). 2027-12-06 was planned as a summary
+  of published agency rate surveys and now reports the search instead, because
+  every such survey found is vendor-published and states no sample size, field
+  dates or selection method.
+
+  One phase-two Monday, 2027-11-29, was flagged in `CONTENT-PLAN.md` itself as
+  the weakest of the case-study articles, to be dropped if no citable source
+  could be found. A source was found and it shipped, so all 48 Mondays carry
+  an article and the run has no gaps.
 
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
@@ -756,9 +802,16 @@ Full write-up in
   That gap let 13 English and roughly as many Spanish posts — mostly the
   newer phase-two batch — ship outside the 13–15 / 40–55 target bands with
   nothing red in CI. Fixed 2026-09-10 (68/68 in band, all four locales; see
-  Resolved), but the gap in the test suite itself is not fixed — running
-  `npm run readability` by hand after any content batch is still the only
-  way to catch a repeat of this.
+  Resolved), **and the test-suite gap is now closed too**: a
+  `corpus reading level` block in `scripts/readability.test.mjs` scores the
+  real corpus and fails with the offending file, its score and the target
+  band. It also asserts each locale scored at least one post, so a locale
+  that silently stopped being scored cannot pass the check vacuously.
+
+  The gap was proven before it was closed: a post mangled into short
+  declaratives left `npm run test` at 623 passing and `npm run readability
+  -- --dist` at exit 0. Note why the CLI did not help — `--dist` exits
+  non-zero only on a RUNAWAY SENTENCE, never on a band miss.
 - **All 28 code-review findings, `001`–`028`, are complete** (`001`–`020` as
   of 2026-09-05; `021`–`028` added and closed since). `013` closed the
   original batch: the n8n workflow now validates before writing to the CRM.

@@ -317,6 +317,48 @@ title: x
   });
 });
 
+/**
+ * THE BAND ITSELF, ASSERTED AGAINST THE REAL CORPUS.
+ *
+ * Everything else in this file tests the scoring ENGINE — syllable counting,
+ * the grading formulas, the sentence guard, the grammar guards — against
+ * synthetic sample text. Nothing asserted that an actual post lands inside
+ * the house band, and `npm run readability` reports but does not fail, so
+ * the only thing standing between a below-band post and `main` was somebody
+ * remembering to read the output.
+ *
+ * They did not. Thirteen English posts and roughly as many Spanish ones
+ * shipped outside the 13-15 / 40-55 bands with nothing red in CI, and were
+ * only found when the owner asked for the numbers directly (2026-09-10).
+ *
+ * Proven before this guard was written, on the corpus as it then stood: a
+ * post mangled into short declaratives dropped the English report to 67/68
+ * in band while `npm run test` still reported 623 passing and
+ * `npm run readability -- --dist` still exited 0.
+ *
+ * The `--dist` CLI exits non-zero only on a RUNAWAY SENTENCE, never on a
+ * band miss, so it does not cover this either. That is what this test is
+ * for. The bands are a house standard the owner set deliberately after
+ * seeing the measurements; a standard nothing enforces is a preference.
+ */
+describe('corpus reading level', () => {
+  const rows = report();
+
+  it.each([...LOCALES])('every %s post sits inside the house band', (locale) => {
+    const mine = rows.filter((r) => r.locale === locale);
+    // A locale that silently stopped being scored would pass an "all in band"
+    // check vacuously — the same absence-cannot-be-proven trap the script
+    // purity table documents. Assert the corpus is actually there.
+    expect(mine.length, `no ${locale} posts were scored at all`).toBeGreaterThan(0);
+
+    const target = TARGETS[locale];
+    const offenders = mine
+      .filter((r) => verdict(r) !== 'ok')
+      .map((r) => `${locale}/${r.file}: ${r[target.metric]} (${verdict(r)}, target ${target.label})`);
+    expect(offenders).toEqual([]);
+  });
+});
+
 describe('Chinese corpus grammar guards', () => {
   const zh = report().filter((r) => r.locale.startsWith('zh'));
 
