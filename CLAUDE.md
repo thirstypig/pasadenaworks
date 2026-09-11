@@ -784,21 +784,46 @@ prose to move a score. All four locales reached 68/68 in band that way on
   every such survey found is vendor-published and states no sample size, field
   dates or selection method.
 
+  One phase-two Monday, 2027-11-29, was flagged in `CONTENT-PLAN.md` itself as
+  the weakest of the case-study articles, to be dropped if no citable source
+  could be found. A source was found and it shipped, so all 48 Mondays carry
+  an article and the run has no gaps.
+
   The rule still binds anything written from here on: translate alongside the
   English draft, not afterwards. A date-gated post whose translations miss its
   own `pubDate` publishes English-only and does not get a second chance.
-- **All 20 code-review findings, `001`–`020`, are complete as of 2026-09-05.**
-  `013` closed last: the n8n workflow now validates before writing to the CRM.
+
+  Separately, **the college reading-level bands (register bands) apply to
+  this whole 68-post corpus, and `npm run readability` is the only thing
+  that checks it — `npm run test` does not.** `scripts/readability.test.mjs`
+  unit-tests the scoring *engine* (syllable counting, the grading formulas,
+  the sentence-guard, the grammar guards) against synthetic sample text; it
+  does not iterate the actual blog corpus and assert every post is in band.
+  That gap let 13 English and roughly as many Spanish posts — mostly the
+  newer phase-two batch — ship outside the 13–15 / 40–55 target bands with
+  nothing red in CI. Fixed 2026-09-10 (68/68 in band, all four locales; see
+  Resolved), **and the test-suite gap is now closed too**: a
+  `corpus reading level` block in `scripts/readability.test.mjs` scores the
+  real corpus and fails with the offending file, its score and the target
+  band. It also asserts each locale scored at least one post, so a locale
+  that silently stopped being scored cannot pass the check vacuously.
+
+  The gap was proven before it was closed: a post mangled into short
+  declaratives left `npm run test` at 623 passing and `npm run readability
+  -- --dist` at exit 0. Note why the CLI did not help — `--dist` exits
+  non-zero only on a RUNAWAY SENTENCE, never on a band miss.
+- **All 28 code-review findings, `001`–`028`, are complete** (`001`–`020` as
+  of 2026-09-05; `021`–`028` added and closed since). `013` closed the
+  original batch: the n8n workflow now validates before writing to the CRM.
   Closing it uncovered a live P1 underneath the P2 — the contact form had been
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
   **Every finding is closed, including the items parked inside todos marked
-  `complete` as decisions rather than defects.** The last of them, `020`'s
-  English/localized visual divergence, closed 2026-09-06 with one deliberate
-  exception: the Chinese city hub keeps the body serif because `--font-display`
-  falls through to a CJK face for Han glyphs, so a Latin city name inside CJK
-  prose would render in two faces inside one line. Per-script, not per-locale.
+  `complete` as decisions rather than defects.** Findings `020` (English/
+  localized visual divergence) and `028` (a fourth-`kind` compile-error claim
+  found to be overstated on inspection) both closed with the same lesson as
+  `006` below: read the work log, don't assume the title describes the fix.
 
   The work logs are worth reading before related work; they record why the
   rejected options were rejected, and several record findings that dissolved on
@@ -809,37 +834,49 @@ prose to move a score. All four locales reached 68/68 in band that way on
   "hardcodes all four locales" was a real hard-rule-1 bug in one place and
   correct, type-enforced code in another. Re-verify against current code before
   acting.
-- **The Tina `npm audit` findings are fixed — 8 moderate down to 2, as of
-  2026-09-10 (#66).** The two that remain are `express` and `qs`, reached
-  through a different dependency path; nothing in `tinacms`/`@tinacms/cli`
-  is outstanding. This entry used to say the opposite at length, and the
-  reasoning it gave was correct when written.
+- **Tina's `npm audit` is down to 2 moderate (from 8), fixed 2026-09-10, and
+  the remaining 2 are a genuinely different problem from the ones that were
+  fixed — not a smaller version of the same one.**
 
-  **`package.json` now carries an `overrides` block, and it is load-bearing:**
+  Three separate causes were hiding under one "8 moderate" number:
 
-  ```json
-  "overrides": { "react-router": "7.18.3", "react-router-dom": "7.18.3" }
-  ```
+  1. **body-parser's own CVE** (nested `qs` dependency) — fixed by plain
+     `npm audit fix`, no `--force`, from a clean `npm ci` baseline. Bumped
+     `@tinacms/cli` 2.6.1 → 2.7.0 and `@tinacms/graphql` 2.4.10 → 2.4.11,
+     both already inside package.json's declared `^` ranges. Ordinary
+     maintenance, not a forced change.
+  2. **The react-router cluster** (`react-router`, `react-router-dom`,
+     `tinacms`, `@tinacms/cli`, `@tinacms/app` — 5 of the original 8) — the
+     GHSA advisories cover the *entire* range `>=6.0.0 <7.18.0`, so there
+     never was a patched 6.x release to move to; 6.30.6 (the actual latest
+     6.x, confirmed via `npm view`) is still vulnerable. The only fix is the
+     7.x major, which Tina's own `^6.30.3` pin excludes — this is the part
+     the 2026-08-27/2026-09-09 versions of this note called "genuinely
+     blocked upstream," and that reasoning was correct as far as it went.
+     What it missed: npm's `overrides` field can force a transitive
+     dependency past an ancestor's declared range when the forced version
+     stays API-compatible, and react-router-dom kept its plain
+     `Routes`/`Route`/`useNavigate`/`Link` API compatible from 6 into 7 (the
+     breaking changes are in framework/data mode, which Tina's admin app
+     doesn't use). Forced to `7.18.3` via `overrides` in `package.json`.
+     **Verified in a real browser, not assumed from the changelog** — booted
+     the local Tina admin dev server and drove it end to end: collection
+     list, folder navigation across all four locales, hash-based route
+     changes at every depth, and the full post editor form all rendered and
+     worked. One cosmetic React "missing key prop" warning in Tina's own
+     `Breadcrumb` component, unrelated to routing.
+  3. **`express`/`qs` — still open, and not the same issue as #2.** `express`
+     is a transitive dependency of `@tinacms/cli`'s
+     `altair-express-middleware` (the local GraphQL playground), pinned to
+     `express@4.22.2`, whose own declared range (`qs: ~6.15.1`) caps below
+     the `qs@6.16.0` fix. Express 5.x fixes this but is a major bump
+     `altair-express-middleware` doesn't support yet. This one really is
+     blocked upstream — re-check next time `@tinacms/cli` gets touched.
 
-  Tina pins `react-router-dom` at `^6.30.3`, and the patched release is 7.x,
-  so the only route to a clean audit was forcing a MAJOR version past the
-  pin. That is exactly the kind of override that breaks the thing it is
-  overriding, which is why it was verified in a real browser rather than by
-  a green `npm audit` — `npm run admin` was opened and exercised. **Do not
-  remove this block as cruft, and if you bump `tinacms`, re-open the admin
-  and click through it rather than trusting the build.**
-
-  What survives from the old entry is the habit, not the number:
-
-  **Check the pin, not the version number.** An earlier version of this note
-  argued from "we're already on the latest", which stopped being true within
-  days and made a stale claim look current. The load-bearing fact is which
-  range Tina pins, and that is one `npm view` away.
-
-  **The count is a claim to re-check every time, not a standing fact.** It
-  once briefly hid a critical advisory (see Resolved, 2026-09-09) — read the
-  severities, not the total, and treat anything above moderate or outside the
-  known packages as a live finding regardless of what this file says.
+  **The standing rule from the old note still holds and generalizes past
+  this specific fix:** "N moderate" is a claim to re-check every time, not a
+  standing fact, and a single reported count can hide more than one root
+  cause. Read what's actually blocking each package, not just the total.
 ## Resolved
 
 Already solved — **details and reasoning in [`docs/RESOLVED.md`](docs/RESOLVED.md)**.
@@ -886,3 +923,6 @@ Read that file before re-investigating any of these.
 - The npm audit drift that briefly hid a critical advisory is fixed, and the audit is verified back to exactly 8 moderate (Tina only) as of 2026-09-09 — see the Tina audit note above for what's still open
 - Four latent Unsplash-attribution bugs are fixed before any could fire: a credit link with no name rendered no caption at all, a UTM-fragment bug put required params where a browser never sends them, captions were hardcoded English on the other three locales, and `scripts/unsplash.mjs` wrote an unvalidated slug straight into a file path (2026-09-09, #45)
 - A blog post's social-share image is its own hero photo now, not the site-wide `/og.png` — todos/012's parked product decision (2026-09-09)
+- The 48-article phase-two content calendar is fully drafted, all in four languages — 47 written Mondays plus one (2027-11-29) that CONTENT-PLAN.md had pre-flagged as droppable if uncitable, for which a real source was ultimately found (2026-09-10)
+- 13 English and roughly as many Spanish posts (mostly the phase-two batch) had drifted outside the college reading-level bands with nothing in CI catching it; all four locales are back to 68/68 in band, and 32 sentences a mechanical sentence-join had damaged (a stranded capital, a lowercased brand name, a doubled conjunction) were repaired along the way — three new Latin-script grammar guards added to `scripts/readability.test.mjs` so the specific damage pattern can't ship silently again (2026-09-10)
+- Tina's `npm audit` is down to 2 moderate from 8 — one real fix via plain `npm audit fix` (body-parser's nested `qs`), one via an `overrides` pin to a patched react-router-dom major, verified working in a real browser session against the local admin — see the Tina audit note above for what's still open and why (2026-09-10)
