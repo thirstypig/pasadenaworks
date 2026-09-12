@@ -62,9 +62,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 84 files. The build itself
+                     #   AND .ts, tina/ included. 85 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 623 across 52 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 316 across 26 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -76,9 +76,12 @@ npm run test         # tests (vitest, 623 across 52 files) — i18n/hreflang, re
                      #   caught only the spellings that announce themselves — the
                      #   hero-credit link-needs-a-name predicate, and the Unsplash
                      #   script's slug/traversal validation and UTM-fragment handling.
-                     #   6 of these need dist/ and SKIP without it — the rendered
-                     #   nav-link checks and the readability cross-check — which is
-                     #   why ci.yml re-runs the whole suite after the build.
+                     #   9 of these need dist/ and SKIP without it — the rendered
+                     #   nav-link checks, the og:image and stylesheet checks, and
+                     #   the readability cross-check — which is why ci.yml re-runs
+                     #   the whole suite after the build. Both counts are what CI
+                     #   reports on a CLEAN checkout; see the worktree gotcha below
+                     #   before believing a bigger number measured locally.
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 npm run unsplash -- search "small business storefront"   # find a hero image
 npm run unsplash -- use <photoId> <post-slug>            # download it + print frontmatter
@@ -184,7 +187,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate now covers 84 files and reports 0 errors.
+excluded; the gate now covers 85 files and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -442,6 +445,33 @@ broken a `kind` literal and rebuilt — producing real evidence for a bug that w
 the agent's experiment, not the repo's state. It looked exactly like a genuine
 finding. When running `/ce:review` with parallel agents, re-verify anything
 `dist/`-based *after* they finish, or build into a separate directory.
+
+**A leftover worktree makes the test suite count itself twice.** A git worktree
+under `.claude/worktrees/` is a full second checkout, so every `*.test.ts` in it
+is a real file on disk — and `.claude/` is not in vitest's default `exclude`.
+From 2026-09-09 to 2026-09-11 a stale worktree made `npm run test` report **623
+tests across 52 files** while CI, on a clean checkout, reported **316 across
+26**. The doubled figure was written into this file as the project's test count.
+
+Three things kept it invisible:
+
+- **It does not look like a 2x.** The stale copy sits at an OLDER commit with
+  fewer tests, so the total is a plausible number rather than an obvious double
+  (316 + 307 = 623).
+- **`git status` is clean.** `.git/info/exclude` — a local, uncommitted,
+  per-clone file — lists `.claude/worktrees/`, so git never mentions it. That
+  rule means nothing to a test runner walking the filesystem.
+- **Everything passes.** The duplicate run is green; only the count moves. And a
+  count is exactly the kind of number that gets copied into docs unexamined.
+
+`vitest.config.ts` now excludes `.claude/**` (added 2026-09-11; verified by
+running a deliberately failing test from both locations — red in `src/`, not
+collected under `.claude/`). The rule worth carrying past this specific fix:
+**a number measured on a laptop is a claim about that laptop.** CI on a clean
+checkout is the authority, which is the same lesson as the stale-`dist/` trap
+and the `astro sync` one. `npm run typecheck` was re-measured with the worktree
+gone and was never inflated — it reported 84 either way, and reads 85 now only
+because this fix added `vitest.config.ts` to the files it checks.
 
 ## Design system
 
@@ -809,7 +839,7 @@ prose to move a score. All four locales reached 68/68 in band that way on
   that silently stopped being scored cannot pass the check vacuously.
 
   The gap was proven before it was closed: a post mangled into short
-  declaratives left `npm run test` at 623 passing and `npm run readability
+  declaratives left `npm run test` fully green and `npm run readability
   -- --dist` at exit 0. Note why the CLI did not help — `--dist` exits
   non-zero only on a RUNAWAY SENTENCE, never on a band miss.
 - **All 28 code-review findings, `001`–`028`, are complete** (`001`–`020` as
