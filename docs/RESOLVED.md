@@ -410,3 +410,26 @@ Read this before re-investigating anything that sounds already-handled.
   Verified against built pages: a real post's `og:image` is now its own
   `.jpg`; the homepage, which has no hero image of its own, still gets
   `/og.png`. Two tests in `src/layouts/og-image.test.ts`.
+
+- **A leftover git worktree made `npm run test` count itself twice, and the
+  doubled number had been written into `CLAUDE.md` as the project's test
+  count** (2026-09-11, #71). The local suite reported **623 tests across 52
+  files**; CI, on a clean checkout, reported **316 across 26** — and had been
+  saying so for two days while nobody compared. A worktree under
+  `.claude/worktrees/` is a full second checkout, so every `*.test.ts` in it is
+  a real file, and `.claude/` is not in vitest's default `exclude`. The suite
+  was running against two commits at once. It does not read as a doubled count
+  because the stale copy sits at an older commit with fewer tests
+  (316 + 307 = 623), and `git status` never mentioned the directory because
+  `.git/info/exclude` — local, uncommitted, per-clone — hides it from git and
+  from nothing else. Fixed with the project's first `vitest.config.ts`,
+  excluding `.claude/**` on top of `configDefaults.exclude` (spreading the
+  defaults matters; replacing them would put `node_modules` back in scope).
+  Proven by mutation: one deliberately failing test is red in `src/` (27 files,
+  1 failed), not collected under `.claude/worktrees/` (26 files, green), and
+  `npx vitest run` aimed at it directly answers "No test files found". Two
+  further stale numbers were corrected in the same sentence of `CLAUDE.md` —
+  dist-gated skips 6 → 9, and typecheck 84 → 85 (the new config file itself;
+  that one had never been inflated). Full write-up, including why the count
+  looked plausible, in
+  [`docs/solutions/process-errors/a-stale-worktree-made-the-test-suite-count-itself-twice.md`](solutions/process-errors/a-stale-worktree-made-the-test-suite-count-itself-twice.md).
