@@ -79,9 +79,13 @@ npm run test         # tests (vitest, 316 across 26 files) — i18n/hreflang, re
                      #   9 of these need dist/ and SKIP without it — the rendered
                      #   nav-link checks, the og:image and stylesheet checks, and
                      #   the readability cross-check — which is why ci.yml re-runs
-                     #   the whole suite after the build. Both counts are what CI
-                     #   reports on a CLEAN checkout; see the worktree gotcha below
-                     #   before believing a bigger number measured locally.
+                     #   the whole suite after the build. deploy.yml reports 10
+                     #   skipped, not 9: it tests BEFORE `npx tinacms build`, so
+                     #   tina/__generated__/_schema.json is absent and the lock
+                     #   test skips too — ci.yml regenerates that file first, so
+                     #   it runs there. Both counts are what CI reports on a
+                     #   CLEAN checkout; see the worktree gotcha below before
+                     #   believing a bigger number measured locally.
 npm run content:status  # regenerate CONTENT-STATUS.md from the post frontmatter
 npm run unsplash -- search "small business storefront"   # find a hero image
 npm run unsplash -- use <photoId> <post-slug>            # download it + print frontmatter
