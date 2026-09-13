@@ -68,8 +68,8 @@ export function slugifyBlogFilename(values: BlogValuesLike | undefined): string 
  * allowed — so a Tina editor scoped to blog content could rewrite the
  * instructions Claude Code follows and commit them to main unreviewed.
  *
- * The extglob keeps CONTENT-PLAN.md, CONTENT-STATUS.md, README.md, PORTS.md and
- * MASTER-PORTS.md editable; CONTENT-STATUS.md's visibility here is the whole
+ * The extglob keeps CONTENT-PLAN.md, CONTENT-STATUS.md and README.md editable
+ * (MASTER-PORTS.md is gitignored in this public repo, so Tina never sees it); CONTENT-STATUS.md's visibility here is the whole
  * reason scripts/content-status.mjs writes it to the root.
  *
  * `match` is serialized into the Tina schema, so changing this requires

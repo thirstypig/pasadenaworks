@@ -36,3 +36,7 @@ npm-debug.log*
 /queue.png
 /page-*.png
 /screenshot*.png
+
+# Cross-project port registry: kept on disk, never published (names private projects).
+# Synced from ~/Projects/MASTER-PORTS.md by ~/Projects/sync-master-ports.sh.
+MASTER-PORTS.md

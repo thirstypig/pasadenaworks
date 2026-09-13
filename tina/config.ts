@@ -60,8 +60,8 @@ import { isValidPostSlug } from '../src/data/post-slug.mjs';
  *
  *  Two more collections (2026-08-27) make the project's own markdown docs
  *  browsable/editable from the same admin, since there was nowhere else to
- *  read them short of opening the repo: "Project Docs" for the five root
- *  files (README, CLAUDE.md, CONTENT-PLAN.md, MASTER-PORTS.md, PORTS.md)
+ *  read them short of opening the repo: "Project Docs" for the root
+ *  markdown files (README, CONTENT-PLAN.md, CONTENT-STATUS.md)
  *  and "Debugging Notes" for docs/solutions/. Both are read/edit only —
  *  create and delete are disabled so the CMS can't be used to add or
  *  remove a load-bearing file like CLAUDE.md by accident. This has nothing

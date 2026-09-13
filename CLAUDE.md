@@ -93,18 +93,17 @@ npm run unsplash -- use <photoId> <post-slug>            # download it + print f
 
 **Port 3180 is this repo's reserved slot** in the owner's cross-project port
 registry. The canonical source is `~/Projects/MASTER-PORTS.md`, **outside this
-repo**; the `MASTER-PORTS.md` / `PORTS.md` at this root are deliberately
-**trimmed to this project's own block** rather than being the byte-identical
-mirror every other project keeps, because this repo is public and the full
-registry names ~22 projects with their stacks and hosting. (Deleting `registry/`
-on 2026-08-28 was that decision; these two files were set aside as "unrelated"
-and carried the same table, so the exposure outlived the fix. Completed
-2026-09-04.) Don't let `dev`/`preview` fall back to Astro's default 4321 —
+repo**. A full, byte-identical copy of that file sits at this repo's root for
+local testing, but it is **gitignored and never committed**: this repo is public,
+and the registry names ~25 projects along with their stacks and hosting. (Deleting
+`registry/` on 2026-08-28 began that fix. The root copies were trimmed on
+2026-09-04 and gitignored on 2026-09-12, when `PORTS.md` was retired everywhere.)
+Don't let `dev`/`preview` fall back to Astro's default 4321 —
 that port is already reserved for a different project (thirstypig) in the
 same registry, and running both at once would collide. If a future task
 needs another port on this project, claim it from pasadenaworks's own
-reserved block (3180–3189 / 4180–4189) and update both the local and root
-copies of the registry — never just pick a free-looking port without
+reserved block (3180–3189 / 4180–4189): edit `~/Projects/MASTER-PORTS.md`, then
+run `~/Projects/sync-master-ports.sh`. Never just pick a free-looking port without
 checking there first.
 
 **`--port` is a preference, not a reservation, and that is how a pinned port
