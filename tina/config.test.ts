@@ -81,7 +81,7 @@ describe('the docs-root glob excludes CLAUDE.md', () => {
   });
 
   it('still matches the docs that are meant to be editable', () => {
-    for (const file of ['README.md', 'CONTENT-PLAN.md', 'CONTENT-STATUS.md', 'PORTS.md']) {
+    for (const file of ['README.md', 'CONTENT-PLAN.md', 'CONTENT-STATUS.md']) {
       expect(isMatch(file), `${file} should stay editable in Tina`).toBe(true);
     }
   });

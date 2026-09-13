@@ -110,10 +110,10 @@ Read this before re-investigating anything that sounds already-handled.
 - The `registry/` folder (a mirror of the owner's cross-project
   `MASTER-PORTS.md`/`PORTS.md`/`README.md`) was removed 2026-08-28 — it
   exposed other local projects' names, stacks, and ports in this public
-  repo for no reason this repo needed. The real port reservation for this
-  repo (3180–3189/4180–4189) still lives in the root-level
-  `MASTER-PORTS.md`/`PORTS.md`, which are unrelated tracked files, not part
-  of what got removed.
+  repo for no reason this repo needed. This repo's port reservation (3180–3189/4180–4189) lives in
+  `~/Projects/MASTER-PORTS.md`. Since 2026-09-12 the root-level copy here is
+  gitignored and `PORTS.md` is retired everywhere, which finishes this fix
+  (the two root files had carried the same table).
 - The ops dashboard's "Blog editor (Tina)" card now links to the real
   `pasadenaworks.com/admin/index.html` (2026-08-28) instead of describing
   it as local-only — it's backed by Tina Cloud (see the blog-i18n entry
