@@ -622,6 +622,40 @@ describe('rendered-page extraction', () => {
   });
 
   /**
+   * LIST ITEMS END SENTENCES, on both paths and in every script. Bullets carry
+   * no terminal punctuation by house style, and both splitters break only on
+   * punctuation, so a seven-bullet list used to score as ONE sentence of a
+   * hundred words. Found 2026-09-14 when a list-heavy service page measured
+   * FK 25.4 while its paragraphs read near grade 11. Measured across the whole
+   * corpus before adopting it: no blog post in any locale changed verdict
+   * (largest shift 0.3), and the only pages that did were the ones being
+   * rewritten in the same change.
+   */
+  it('counts each list item as its own sentence on the built page', () => {
+    const two = '<main><ul><li>First plain item on the list</li><li>Second plain item on the list</li></ul></main>';
+    expect(analyze(mainProse(two), 'en').sentences).toBe(2);
+    expect(analyze(mainProse(two), 'es').sentences).toBe(2);
+  });
+
+  it('counts each list item as its own sentence in markdown, so the two paths agree', () => {
+    const md = '- First plain item on the list\n- Second plain item on the list\n';
+    expect(analyze(md, 'en').sentences).toBe(2);
+    expect(analyze(mainProse('<main><ul><li>First plain item on the list</li><li>Second plain item on the list</li></ul></main>'), 'en').sentences)
+      .toBe(analyze(md, 'en').sentences);
+  });
+
+  it('counts each list item as its own sentence in Chinese too', () => {
+    const zh = '<main><ul><li>第一項服務內容的簡短說明</li><li>第二項服務內容的簡短說明</li></ul></main>';
+    expect(analyze(mainProse(zh), 'zh-hant').sentences).toBe(2);
+    expect(analyze('- 第一项服务内容的简短说明\n- 第二项服务内容的简短说明\n', 'zh-hans').sentences).toBe(2);
+  });
+
+  it('does not double-count an item that already ends in punctuation', () => {
+    const punctuated = '<main><ul><li>This item is a full sentence.</li><li>So is this second one here.</li></ul></main>';
+    expect(analyze(mainProse(punctuated), 'en').sentences).toBe(2);
+  });
+
+  /**
    * THE CROSS-CHECK. Blog posts are the only content measurable both ways,
    * and their agreement is the only evidence the rendered extraction is
    * faithful. They started 1.1 grades apart; the whole gap was page
