@@ -80,6 +80,10 @@ export interface UIStrings {
     name: string;
     email: string;
     message: string;
+    /** Shown under the message box. The form posts to Formspree, n8n and the
+     *  CRM, none of which is covered by a business associate agreement, so
+     *  patient details must not be typed into it. */
+    messageHint: string;
     send: string;
     sending: string;
     success: string;
@@ -149,6 +153,7 @@ export const ui: Record<Locale, UIStrings> = {
       name: 'Name',
       email: 'Email',
       message: 'Message',
+      messageHint: 'Please don’t include patient names or health details.',
       send: 'Send',
       sending: 'Sending…',
       success: 'Thanks — your message is on its way. We’ll get back to you soon.',
@@ -156,15 +161,15 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: 'All rights reserved.',
-      serviceAreaBlurb: 'Serving small businesses in Pasadena and the San Gabriel Valley.',
+      serviceAreaBlurb: 'Consulting for independent health practices, based in the San Gabriel Valley.',
       explore: 'Explore',
       citiesWeServe: 'Cities we serve',
     },
     hub: {
       whatYouGet: 'What you get',
       servicesDescription:
-        'Websites, local SEO, business consulting, and paid ads for small businesses in Pasadena and the San Gabriel Valley.',
-      servicesIntro: 'Four services, ordered by what matters most first.',
+        'A practice checkup, office digitization, and more new patients, for independent medical, dental, and eye care practices throughout Southern California.',
+      servicesIntro: 'Start with the checkup; what it finds decides which of the other two comes next.',
       citiesTitle: 'Cities we work in',
       citiesDescription:
         'Website and local SEO work for small businesses across Pasadena and the San Gabriel Valley.',
@@ -212,6 +217,7 @@ export const ui: Record<Locale, UIStrings> = {
       name: 'Nombre',
       email: 'Correo electrónico',
       message: 'Mensaje',
+      messageHint: 'Por favor, no incluya nombres de pacientes ni datos de salud.',
       send: 'Enviar',
       sending: 'Enviando…',
       success: 'Gracias — tu mensaje va en camino. Te responderemos pronto.',
@@ -219,15 +225,15 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: 'Todos los derechos reservados.',
-      serviceAreaBlurb: 'Atendemos a negocios pequeños en Pasadena y el Valle de San Gabriel.',
+      serviceAreaBlurb: 'Consultoría para consultorios de salud independientes, con base en el Valle de San Gabriel.',
       explore: 'Explorar',
       citiesWeServe: 'Ciudades que atendemos',
     },
     hub: {
       whatYouGet: 'Lo que incluye',
       servicesDescription:
-        'Sitios web, SEO local, asesoría de negocios y publicidad paga para negocios pequeños en Pasadena y el Valle de San Gabriel.',
-      servicesIntro: 'Cuatro servicios, ordenados por lo que más importa primero.',
+        'Revisión integral, digitalización del consultorio y más pacientes nuevos para consultorios médicos, dentales y de optometría del sur de California.',
+      servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá cuál de los otros dos servicios sigue.',
       citiesTitle: 'Ciudades donde trabajamos',
       citiesDescription:
         'Sitios web y SEO local para negocios pequeños en Pasadena y el Valle de San Gabriel.',
@@ -275,6 +281,7 @@ export const ui: Record<Locale, UIStrings> = {
       name: '姓名',
       email: '电子邮箱',
       message: '留言',
+      messageHint: '请勿填写患者姓名或健康信息。',
       send: '发送',
       sending: '发送中…',
       success: '谢谢，您的留言已送出，我们会尽快回复。',
@@ -282,14 +289,14 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: '版权所有。',
-      serviceAreaBlurb: '为帕萨迪纳和圣盖博谷的小型企业提供服务。',
+      serviceAreaBlurb: '以圣盖博谷为基地，为独立诊所提供顾问服务。',
       explore: '探索',
       citiesWeServe: '服务城市',
     },
     hub: {
       whatYouGet: '服务内容',
-      servicesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设、本地谷歌推广、经营咨询和付费广告服务。',
-      servicesIntro: '四项服务，按最重要的排在前面。',
+      servicesDescription: '为南加州各地的独立医疗、牙科与眼科诊所提供经营诊断、诊所数字化与新患者开发服务。',
+      servicesIntro: '先从经营诊断开始，诊断的结果将决定接下来进行另外两项中的哪一项。',
       citiesTitle: '我们服务的城市',
       citiesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设与本地谷歌推广服务。',
       citiesIntro: '我们为整个圣盖博谷的小型企业提供服务。选择您所在的城市，看看当地最重要的事。',
@@ -333,6 +340,7 @@ export const ui: Record<Locale, UIStrings> = {
       name: '姓名',
       email: '電子郵件',
       message: '留言',
+      messageHint: '請勿填寫病患姓名或健康資訊。',
       send: '傳送',
       sending: '傳送中…',
       success: '謝謝，您的留言已送出，我們將盡快回覆。',
@@ -340,14 +348,14 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: '版權所有。',
-      serviceAreaBlurb: '為帕薩迪納和聖蓋博谷的小型企業提供服務。',
+      serviceAreaBlurb: '以聖蓋博谷為據點，為獨立診所提供顧問服務。',
       explore: '探索',
       citiesWeServe: '服務城市',
     },
     hub: {
       whatYouGet: '服務內容',
-      servicesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置、在地 Google 推廣、經營諮詢與付費廣告服務。',
-      servicesIntro: '四項服務，依最重要的排在前面。',
+      servicesDescription: '為南加州各地的獨立醫療、牙科與眼科診所提供經營診斷、診所數位化與新病患開發服務。',
+      servicesIntro: '先從經營診斷開始，診斷的結果將決定接下來進行另外兩項中的哪一項。',
       citiesTitle: '我們服務的城市',
       citiesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置與在地 Google 推廣服務。',
       citiesIntro: '我們為整個聖蓋博谷的小型企業提供服務。選擇您所在的城市，看看當地最重要的事。',

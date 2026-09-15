@@ -205,6 +205,27 @@ const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
  * pretending it is closed; the guard is that quoting prose you wrote
  * yourself is visibly odd in review.
  */
+/**
+ * ── A LIST ITEM ENDS A SENTENCE ──
+ *
+ * Bullets carry no terminal punctuation by house style, and both splitters
+ * below break only on punctuation — so a seven-bullet list used to score as ONE
+ * sentence of a hundred words. A list-heavy service page measured FK 25.4 that
+ * way while its paragraphs read near grade 11 (2026-09-14).
+ *
+ * Both extraction paths mark the end of every list item with this character,
+ * and both splitters treat it as a sentence end, so markdown and rendered
+ * scores still agree. It is a private-use code point on purpose: a real
+ * separator such as U+2029 is whitespace to JavaScript's `\s`, and the
+ * whitespace collapse at the end of mainProse() would silently erase it.
+ *
+ * Measured across the complete corpus before adopting it, which is the test
+ * for a recalibration rather than a snooze: no blog post in any locale changed
+ * verdict (largest shift 0.3 grades), and the only pages that did were the
+ * service pages and Spanish homepage being rewritten in the same change.
+ */
+const LIST_ITEM_END = '';
+
 export function prose(markdown) {
   // `\r?\n`, and no required newline AFTER the closing fence. The previous
   // pattern was /^---[\s\S]*?\n---\n/, which FAILS OPEN: on a CRLF file, or a
@@ -221,6 +242,7 @@ export function prose(markdown) {
   body = body.replace(/^\s{0,3}#{1,6}\s+.*$/gm, ' ');
   body = body.replace(/^\s*\|.*\|\s*$/gm, ' ');
   body = dropQuotedSamples(body);
+  body = body.replace(/^(\s*(?:[-*+]|\d+\.)\s+.*\S)\s*$/gm, `$1 ${LIST_ITEM_END}`);
   body = body.replace(/^\s*[-*+>]\s+/gm, '');
   body = body.replace(/[*_]{1,3}/g, '');
   return body;
@@ -297,8 +319,9 @@ export function spanishSyllables(word) {
 
 /* ── analysis ──────────────────────────────────────────────────────────── */
 
-const CJK_SENTENCE_END = /[。！？!?]+/;
-const CJK_CLAUSE_END = /[。！？，、；：!?,;:]+/;
+const CJK_SENTENCE_END = new RegExp(`[。！？!?${LIST_ITEM_END}]+`);
+const CJK_CLAUSE_END = new RegExp(`[。！？，、；：!?,;:${LIST_ITEM_END}]+`);
+const LATIN_SENTENCE_END = new RegExp(`[.!?${LIST_ITEM_END}]+(?=\\s|$)`);
 
 export function analyze(markdown, locale) {
   const body = prose(markdown);
@@ -340,7 +363,7 @@ export function analyze(markdown, locale) {
   }
 
   const sentences = body
-    .split(/[.!?]+(?=\s|$)/)
+    .split(LATIN_SENTENCE_END)
     .map((s) => s.trim())
     .filter((s) => s.split(/\s+/).filter(Boolean).length > 1);
   const words = body.match(/\b[\w'’À-ɏ-]+\b/g) || [];
@@ -506,6 +529,10 @@ export function mainProse(html) {
   // style keeps plain, and on the homepage they were pulling the score
   // down by three grades on their own.
   t = t.replace(/<form\b[\s\S]*?<\/form>/g, ' ');
+  // The localized homepages' service-area list is place names, not prose.
+  // Once list items became sentence ends, each two-word city scored as a
+  // two-word sentence and dragged the page toward zero (2026-09-14).
+  t = t.replace(/<ul\b[^>]*\bclass="[^"]*\bservice-area\b[^"]*"[^>]*>[\s\S]*?<\/ul>/g, ' ');
   // Quoted samples: keep the opening summary, drop later blockquotes,
   // matching dropQuotedSamples() on the markdown side.
   {
@@ -515,6 +542,7 @@ export function mainProse(html) {
       return ' ';
     });
   }
+  t = t.replace(/<\/li>/g, ` ${LIST_ITEM_END} </li>`);
   t = t.replace(/<[^>]+>/g, ' ');
   t = t.replace(/&([a-z#0-9]+);/gi, (_, e) => ENTITIES[e.toLowerCase()] ?? ' ');
   return t.replace(/\s+/g, ' ').trim();

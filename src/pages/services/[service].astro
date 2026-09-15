@@ -23,7 +23,7 @@ const translations = Object.fromEntries(
 ---
 
 <Base
-  title={`${copy.title} — Pasadena Works`}
+  title={`${copy.seoTitle ?? copy.title} — Pasadena Works`}
   description={copy.meta}
   locale="en"
   path={localeUrl('en', SEGMENTS.services.en, service.slugs.en)}

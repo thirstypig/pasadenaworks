@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { buildAlternates, localeUrl, absoluteUrl } from './routes';
+import { buildAlternates, localeUrl, absoluteUrl, SEGMENTS } from './routes';
+
+describe('SEGMENTS.cityHub', () => {
+  it('stays pinned, because every city page URL hangs off it', () => {
+    expect(
+      SEGMENTS.cityHub,
+      'changing a city-hub segment moves every city page in that locale — add a redirect for each one first'
+    ).toEqual({ en: 'websites', es: 'sitios-web', 'zh-hans': 'wangzhan-jianshe', 'zh-hant': 'wangzhan-jianzhi' });
+  });
+});
 
 describe('buildAlternates', () => {
   it('emits zero alternates for an English-only page', () => {

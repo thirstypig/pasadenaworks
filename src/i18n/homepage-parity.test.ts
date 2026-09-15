@@ -107,9 +107,21 @@ describe('the four homepages are one design', () => {
 
   it('keeps the localized homepage reading its copy from home.ts', () => {
     // Guards the other direction: parity must not be achieved by hardcoding
-    // English strings into the localized page.
+    // English strings into the localized page. The needle is the English H1,
+    // asserted present in the English page first so the absence check below
+    // cannot pass vacuously after the next copy change.
+    const needle = 'For independent practices ready to stop running on paper and word of mouth.';
+    expect(english).toContain(needle);
     expect(localized).toContain('copy.heroHeading');
     expect(localized).toContain('copy.servicesHeading');
-    expect(localized).not.toContain('Digital work for small businesses');
+    expect(localized).not.toContain(needle);
+  });
+
+  it('carries the "worth more" section in every language', () => {
+    for (const [label, source] of [['english', english], ['localized', localized]] as const) {
+      expect(source, `${label} homepage is missing the worth-more section`).toContain('id="worth-more"');
+    }
+    expect(localized).toContain('copy.valueHeading');
+    expect(localized).toContain('copy.valueBody');
   });
 });

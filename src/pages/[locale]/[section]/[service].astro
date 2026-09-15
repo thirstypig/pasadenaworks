@@ -139,7 +139,7 @@ let cityCopy: NonNullable<City['t'][Locale]> | undefined;
 if (props.kind === 'service') {
   service = props.service;
   serviceCopy = service.t[locale];
-  title = `${serviceCopy.title} — Pasadena Works`;
+  title = `${serviceCopy.seoTitle ?? serviceCopy.title} — Pasadena Works`;
   description = serviceCopy.meta;
   path = localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]);
   // A full four-locale map IS correct here, and this is not the pattern hard

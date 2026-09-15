@@ -9,15 +9,14 @@
  *  translated — a Spanish speaker searches "sitios web," not "websites."
  *  Never mix an English segment with a translated slug.
  *
- *  The city-landing hub reuses the "websites" service slug as its own path
- *  segment, per the URL diagram in README.md:
+ *  The city-landing hub uses the same words as the "websites" service slug,
+ *  per the URL diagram in README.md:
  *
  *    /websites/            /es/sitios-web/            city hub
  *    /websites/pasadena/   /es/sitios-web/alhambra/    city detail
  */
 
 import { site } from '../data/site';
-import { services } from '../data/services';
 import { DEFAULT_LOCALE, HTML_LANG, LOCALES, type Locale } from './ui';
 
 /** Path segments per locale.
@@ -46,9 +45,17 @@ export const SEGMENTS: {
     'zh-hant': 'fuwu',
   },
 
-  /** The city-hub path segment. Deliberately the same word as the
-   *  "websites" service slug — see the URL diagram above. */
-  cityHub: services.find((s) => s.id === 'websites')!.slugs,
+  /** The city-hub path segment. The same words as the "websites" service slug
+   *  today, but written out rather than read from services.ts (2026-09-14):
+   *  every city page URL hangs off these values, so a service rename must not
+   *  move them. Changing one moves every city page in that locale and needs a
+   *  redirect for each — routes.test.ts pins them to say so. */
+  cityHub: {
+    en: 'websites',
+    es: 'sitios-web',
+    'zh-hans': 'wangzhan-jianshe',
+    'zh-hant': 'wangzhan-jianzhi',
+  },
 
   /** The blog index path segment, per locale. "blog" stays as-is for
    *  Spanish (a naturalized loanword, not read as English) — zh-hans/

@@ -1,4 +1,5 @@
 import type { Locale } from '../i18n/ui';
+import type { Pillar } from './pillars';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -11,9 +12,15 @@ import type { Locale } from '../i18n/ui';
  *              searchers type "sitios web", not "websites". Real SEO value.
  *    t       — the copy, per language.
  *
- *  Order of this array = display order on the site. Reordered 2026-08-27:
- *  websites → search → online marketing (id stays 'ads' internally, see
- *  below) → consulting last.
+ *  Order of this array = display order on the site: Practice Checkup, then
+ *  Digitize the office, then Get more patients (2026-09-14).
+ *
+ *  `id` and `slugs` are what indexed URLs are built from. Changing a slug moves
+ *  a page; retiring a service needs a redirect for every locale in
+ *  src/data/retired-services.mjs, as `search` and `ads` got on 2026-09-14.
+ *  retired-services.test.ts holds every service URL ever published and fails
+ *  if one stops resolving. The city pages' `/websites/` segment is declared
+ *  separately in routes.ts, so renaming a service never moves them.
  *
  *  `body` and `outcomes` strings render as raw HTML (`set:html` in
  *  [service].astro), not plain text — so `<a href="/glossary/#...">term</a>`
@@ -23,8 +30,52 @@ import type { Locale } from '../i18n/ui';
  *  English definition page would be a worse experience than no link.
  */
 
+/** Every outside source the service copy links to, verified in
+ *  docs/superpowers/specs/2026-09-14-practice-services-sources.md. A claim a
+ *  reader could check carries one of these, or it is not on the site.
+ *  Values go straight into `href`s rendered through `set:html`, so any `&` is
+ *  written `&amp;`. */
+const SOURCES = {
+  section504Extension:
+    'https://www.federalregister.gov/documents/2026/05/11/2026-09266/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web',
+  medicarePartBCoverage:
+    'https://www.alston.com/en/insights/publications/2026/03/compliance-section-504-rehabilitation-act',
+  googlePractitionerListings: 'https://support.google.com/business/answer/3038177',
+  googleReviewPolicy: 'https://support.google.com/contributionpolicy/answer/7400114',
+  hhsReviewResponseSettlement:
+    'https://www.hhs.gov/about/news/2022/03/28/four-hipaa-enforcement-actions-hold-healthcare-providers-accountable-with-compliance.html',
+  hipaaMarketing: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/marketing/index.html',
+  ocrTrackingTech:
+    'https://www.hklaw.com/en/insights/publications/2024/06/american-hospital-assn-v-becerra-are-tracking-tools-ok-again',
+  calBusProf650:
+    'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=650',
+  federalAks:
+    'https://uscode.house.gov/view.xhtml?req=granuleid%3AUSC-prelim-title42-section1320a-7b&amp;num=0&amp;edition=prelim',
+  hipaaRiskAnalysis:
+    'https://www.hhs.gov/hipaa/for-professionals/security/guidance/guidance-risk-analysis/index.html',
+  hipaaCoveredEntities:
+    'https://www.cms.gov/priorities/key-initiatives/burden-reduction/administrative-simplification/hipaa/covered-entities',
+  remindersNoShows: 'https://doi.org/10.1002/14651858.CD007458.pub3',
+} as const;
+
+const GOOGLE_HL: Record<Locale, string> = { en: 'en', es: 'es-419', 'zh-hans': 'zh-CN', 'zh-hant': 'zh-TW' };
+
+/** Google's help pages exist in each reader's language; the federal and state
+ *  sources do not, so only Google links get a per-locale `hl`. */
+function google(url: string, locale: Locale): string {
+  const u = new URL(url);
+  u.searchParams.set('hl', GOOGLE_HL[locale]);
+  return u.toString();
+}
+
 export interface ServiceCopy {
+  /** The on-page heading, and the card name on the services index. */
   title: string;
+  /** Optional `<title>` for search results and the browser tab, used when
+   *  the display title alone would not tell a searcher what the page is
+   *  ("Get more patients" names no specialty and no search term). Falls back
+   *  to `title`. Like `title`, not scored for reading level. */
+  seoTitle?: string;
   tagline: string;
   /** Shown on the services index card. One sentence — keep it short; the
    *  detail page (title/tagline/body/outcomes below) is where the fuller
@@ -40,300 +91,19 @@ export interface ServiceCopy {
   meta: string;
 }
 
+/** The live service ids. Retired ids (`search`, `ads`) redirect — see
+ *  src/data/retired-services.mjs. Blog pillars reach a service through
+ *  PILLAR_SERVICE below, never by matching this id. */
+export type ServiceId = 'consulting' | 'digitize' | 'websites';
+
 export interface Service {
-  id: string;
+  id: ServiceId;
   slugs: Record<Locale, string>;
   t: Record<Locale, ServiceCopy>;
 }
 
 export const services: Service[] = [
-  /* ── 1. Website development ─────────────────────────────────────────── */
-  {
-    id: 'websites',
-    slugs: {
-      en: 'websites',
-      es: 'sitios-web',
-      'zh-hans': 'wangzhan-jianshe',
-      'zh-hant': 'wangzhan-jianzhi',
-    },
-    t: {
-      en: {
-        title: 'Websites that bring in work',
-        tagline: "So a slow, outdated site doesn't send customers to someone else.",
-        summary:
-          "If your site loads slowly, appears outdated, or fails to state clearly what you do, visitors leave and go elsewhere. We build fast, straightforward sites that you genuinely own the moment we have finished, with no hidden fees and no arrangement that locks you into anything afterward.",
-        body: [
-          '<p>Most small business websites were constructed once, years ago, by somebody who has since stopped answering emails. The maintenance nobody scheduled simply never happened. Meanwhile the customer has already given up and telephoned the shop down the street.</p>',
-          '<h2>How it works</h2><ul><li>Fast on a phone, correct information, a phone number or form that\'s impossible to miss</li><li>Built so Google can actually read it — most sites quietly fail here</li><li>Optional: <a href="/glossary/#integrations">integrations</a> with your CRM or calendar, so new leads land where you already work</li></ul>',
-          '<p>You retain ownership of everything involved: the site, the domain, and the content. Holding a client\'s website hostage is a poor business model and a worse way to treat people.</p>',
-        ],
-        outcomes: [
-          'A site that loads in under two seconds on a phone',
-          'Clean, real HTML so Google — and AI tools — can actually read your content, not just display it',
-          'A contact form that reaches your inbox, not a black hole',
-          '<a href="/glossary/#google-business-profile">Google Business Profile</a> connected and verified',
-          'Optional: CRM or calendar <a href="/glossary/#integrations">integrations</a>, so new leads land where you already work',
-          'Optional: the whole site in Spanish or Chinese',
-        ],
-        meta: 'Small business website design for Pasadena and the San Gabriel Valley. Fast, clear sites that load on a phone and are easy for customers to find.',
-      },
-      es: {
-        title: 'Sitios web que traen clientes',
-        tagline: 'Para que un sitio lento y anticuado no le mande sus clientes a otro.',
-        summary:
-          'Si su sitio carga lentamente, parece anticuado, o no logra declarar con claridad qué hace usted, los visitantes se marchan a otro lado. Construimos sitios rápidos y directos que usted posee genuinamente una vez que hemos terminado — sin cargos ocultos, y sin ningún arreglo que le deje atrapado.',
-        body: [
-          '<p>La mayoría de los sitios web de negocios pequeños se construyeron una sola vez, hace años, por alguien que desde entonces dejó de contestar los correos, y el mantenimiento que nadie programó sencillamente nunca ocurrió. Mientras tanto, el cliente ya desistió y telefoneó al negocio de la otra cuadra.</p>',
-          '<h2>Cómo funciona</h2><ul><li>Rápido en el teléfono, con información correcta, un número o formulario imposible de pasar por alto</li><li>Hecho para que Google realmente pueda leerlo — la mayoría de los sitios fallan aquí sin que nadie se dé cuenta</li><li>Opcional: integraciones con su CRM o calendario, para que los clientes nuevos lleguen a donde usted ya trabaja</li></ul>',
-          '<p>Usted conserva la propiedad de todo lo involucrado — el sitio, el dominio y el contenido — porque retener como rehén la página web de un cliente constituye un modelo de negocio deficiente y una manera considerablemente peor de tratar a la gente.</p>',
-        ],
-        outcomes: [
-          'Un sitio que carga en menos de dos segundos en el teléfono',
-          'HTML limpio y real para que Google — y las herramientas de IA — puedan leer su contenido de verdad',
-          'Un formulario de contacto que llega a su correo, no al vacío',
-          'Perfil de Google Business conectado y verificado',
-          'Opcional: integraciones con su CRM o calendario, para que los clientes nuevos lleguen a donde usted ya trabaja',
-          'Opcional: el sitio completo en inglés o chino',
-        ],
-        meta: 'Diseño de sitios web para negocios pequeños en Pasadena y el Valle de San Gabriel. Sitios rápidos y claros que sus clientes sí encuentran.',
-      },
-      'zh-hans': {
-        title: '能带来生意的网站',
-        tagline: '别让又慢又旧的网站，把客人送去了别家。',
-        summary:
-          '倘若网站加载缓慢、外观过时，或者未能清楚说明您所从事的是什么，访客便会转身离开，前往别家。这样的流失通常不会留下任何痕迹。我们建设快速而直接的网站，完工之后其所有权确实归您——没有隐藏费用，也没有任何将您绑住的安排。',
-        body: [
-          '<p>多数小生意的网站都是许多年前建成的，然而当初经手的人早已联系不上；至于没有人排定的后续维护，则从来不曾发生。此外，在这段期间之内，客人早已放弃，转头打给了隔壁那一家。</p>',
-          '<h2>怎么做</h2><ul><li>手机上打开快、信息准确、电话和留言表单一眼就能看到</li><li>做到让谷歌真的能读懂——大多数网站正是在这一步悄悄地失败了</li><li>可选：接入您的 CRM 或日历，让新客人直接进到您已经在用的工具里</li></ul>',
-          '<p>其中的一切所有权皆归您所有——网站、域名与内容并无例外——因为把客户的网站扣在手上当作筹码，既是一种拙劣的商业模式，也是一种更加糟糕的待人方式。</p>',
-        ],
-        outcomes: [
-          '手机上两秒之内打开的网站',
-          '干净、真正的 HTML，让谷歌和 AI 工具都能真正读懂您的内容',
-          '客人留言直接进您的邮箱，不会石沉大海',
-          '连接并验证谷歌商家资料（Google Business Profile）',
-          '可选：接入您的 CRM 或日历，让新客人直接进到您已经在用的工具里',
-          '可选：整个网站也做英文版或西班牙文版',
-        ],
-        meta: '为帕萨迪纳和圣盖博谷的小型企业提供网站设计。速度快、内容清楚、客人在手机上真的找得到您。',
-      },
-      'zh-hant': {
-        title: '能帶來生意的網站',
-        tagline: '別讓又慢又舊的網站，把客人送去了別家。',
-        summary:
-          '倘若網站載入緩慢、外觀過時，或者未能清楚說明您所從事的是什麼，訪客便會轉身離開，前往別家。這樣的流失通常不會留下任何痕跡。我們建置快速而直接的網站，完工之後其所有權確實歸您——沒有隱藏費用，也沒有任何將您綁住的安排。',
-        body: [
-          '<p>多數小生意的網站都是許多年前建成的，然而當初經手的人早已聯絡不上；至於沒有人排定的後續維護，則從來不曾發生。此外，在這段期間之內，客人早已放棄，轉頭打給了隔壁那一家。</p>',
-          '<h2>怎麼做</h2><ul><li>手機上開啟快、資訊正確、電話和留言表單一眼就看得到</li><li>做到讓 Google 真的能讀懂——大多數網站正是在這一步悄悄地失敗了</li><li>可選：接入您的 CRM 或行事曆，讓新客人直接進到您已經在用的工具裡</li></ul>',
-          '<p>其中的一切所有權皆歸您所有——網站、網域與內容並無例外——因為把客戶的網站扣在手上當作籌碼，既是一種拙劣的商業模式，也是一種更加糟糕的待人方式。</p>',
-        ],
-        outcomes: [
-          '手機上兩秒之內開啟的網站',
-          '乾淨、真正的 HTML，讓 Google 和 AI 工具都能真正讀懂您的內容',
-          '客人留言直接進您的信箱，不會石沉大海',
-          '連接並驗證 Google 商家檔案（Google Business Profile）',
-          '可選：接入您的 CRM 或行事曆，讓新客人直接進到您已經在用的工具裡',
-          '可選：整個網站也做英文版或西班牙文版',
-        ],
-        meta: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置。速度快、內容清楚、客人在手機上真的找得到您。',
-      },
-    },
-  },
-
-  /* ── 2. Organic / SEO ───────────────────────────────────────────────── */
-  {
-    id: 'search',
-    slugs: {
-      en: 'get-found-on-google',
-      es: 'aparecer-en-google',
-      'zh-hans': 'guge-tuiguang',
-      'zh-hant': 'google-tuiguang',
-    },
-    t: {
-      en: {
-        title: 'Getting found online',
-        tagline: 'The customers are already searching. Be the result they see.',
-        summary:
-          'When somebody nearby searches for what you sell, you want to be the result they actually see — on Google, on Yelp, and now on AI tools such as ChatGPT. It takes several months to begin working, and then continues working long after you have stopped paying for it.',
-        body: [
-          '<p>Somebody within three miles of you is typing your service into their phone at this moment, and the only genuine question is whose name appears when they do.</p>',
-          '<h2>How it works</h2><ul><li>Your <a href="/glossary/#google-business-profile">Google Business Profile</a> and <a href="/glossary/#reviews">reviews</a>, fully handled</li><li>Your name, address, and phone number made consistent everywhere online</li><li>How you actually look on Yelp, Quora, and Reddit — not just Google</li><li>Pages and articles that answer the exact questions your customers are typing</li></ul>',
-          '<p>This is slow work — three to six months before it compounds, and that now includes the <a href="/glossary/#geo">GEO</a> side too. Anyone promising page one by next Tuesday is selling you something else.</p>',
-        ],
-        outcomes: [
-          '<a href="/glossary/#google-business-profile">Google Business Profile</a> fully filled out and verified',
-          'A <a href="/glossary/#keyword">keyword</a> list built from what your customers actually type',
-          'Pages for each service and each neighborhood you serve',
-          'A look at what\'s actually showing up for you on Yelp, Quora, and Reddit — not just Google',
-          'Content written to be quoted correctly by AI tools, not just ranked by Google',
-          'A one-page report each month in words, not charts',
-        ],
-        meta: 'Local SEO and AI search (GEO) for small businesses in Pasadena and greater LA. Get found on Google, Google Maps, and AI answers.',
-      },
-      es: {
-        title: 'Aparecer en línea',
-        tagline: 'Los clientes ya están buscando. Sea el resultado que ven.',
-        summary:
-          'Cuando alguien cercano busca aquello que usted vende, conviene ser el resultado que efectivamente aparece — en Google, en Yelp, y ahora en herramientas de inteligencia artificial como ChatGPT. Nosotros nos encargamos del trabajo técnico detrás. Tarda unos meses, pero una vez que funciona, sigue funcionando aunque deje de pagarnos.',
-        body: [
-          '<p>En este momento hay alguien a menos de cinco kilómetros escribiendo su servicio en el teléfono, y la única pregunta genuina es qué nombre aparece cuando lo hace.</p>',
-          '<h2>Cómo funciona</h2><ul><li>Su perfil de Google Business y sus reseñas, completamente manejados</li><li>Su nombre, dirección y teléfono, consistentes en todos lados</li><li>Cómo se ve usted en Yelp, Quora y Reddit — no solo en Google</li><li>Páginas y artículos que responden exactamente lo que sus clientes escriben</li></ul>',
-          '<p>Este trabajo resulta inherentemente lento — de tres a seis meses antes de que comience a acumularse, y eso ahora incorpora igualmente la vertiente GEO. Quien le prometa la primera página para el martes le está vendiendo otra cosa.</p>',
-        ],
-        outcomes: [
-          'Perfil de Google Business completo y verificado',
-          'Una lista de palabras clave basada en lo que sus clientes escriben',
-          'Páginas para cada servicio y cada zona que atiende',
-          'Una revisión de lo que aparece de usted en Yelp, Quora y Reddit — no solo en Google',
-          'Contenido escrito para que las herramientas de IA lo citen correctamente, no solo para el ranking de Google',
-          'Un reporte mensual de una página, en palabras y no en gráficas',
-        ],
-        meta: 'SEO local para negocios pequeños en Pasadena y Los Ángeles. Aparezca en Google Maps y en las búsquedas sin pagar por cada clic.',
-      },
-      'zh-hans': {
-        title: '网上曝光',
-        tagline: '客人已经在搜索了，问题是他们看到的是谁。',
-        summary:
-          '附近的人搜索您卖的东西时，您希望被看到的是您——在谷歌上、在 Yelp 上，现在甚至是在 ChatGPT 这样的 AI 工具上。我们负责背后的技术活儿。这事儿要几个月才见效，但一旦见效，哪怕您不再付钱，它也会继续管用。',
-        body: [
-          '<p>此时此刻，距离您数公里之内便有人正在手机上搜索您所从事的这个行业；然而唯一真正的问题在于：跳出来的究竟是谁的名字。此外，答案并非取决于运气。</p>',
-          '<h2>怎么做</h2><ul><li>谷歌商家资料和客户评价，全部帮您处理好</li><li>店名、地址、电话，在网上各处保持一致</li><li>您在 Yelp、Quora、Reddit 上到底是什么样子——不只是谷歌</li><li>页面和文章回答客人真正会搜的那些问题</li></ul>',
-          '<p>这件事很慢——三到六个月才会开始见效并逐步累积，现在也包括 GEO 这一块。任何人跟您保证「下周就上第一页」，那他卖给您的是别的东西。</p>',
-        ],
-        outcomes: [
-          '完整填写并通过验证的谷歌商家资料',
-          '一份根据客人实际搜索词整理的关键词清单',
-          '为每项服务和每个服务区域制作专门页面',
-          '看看您在 Yelp、Quora、Reddit 上到底是什么样子——不只是谷歌',
-          '内容写得能被 AI 工具正确引用，不只是被谷歌排名',
-          '每月一页纸的报告，用大白话写，不是一堆图表',
-        ],
-        meta: '为帕萨迪纳和大洛杉矶地区小型企业提供本地谷歌推广服务。不用为每次点击付费，也能让客人找到您。',
-      },
-      'zh-hant': {
-        title: '網路曝光',
-        tagline: '客人已經在搜尋了，問題是他們看到的是誰。',
-        summary:
-          '附近的人搜尋您賣的東西時，您希望被看到的是您——在 Google 上、在 Yelp 上，現在甚至是在 ChatGPT 這樣的 AI 工具上。我們負責背後的技術活兒。這件事要幾個月才見效，但一旦見效，就算您不再付費，它也會繼續管用。',
-        body: [
-          '<p>此時此刻，距離您數公里之內便有人正在手機上搜尋您所從事的這個行業；然而唯一真正的問題在於：跳出來的究竟是誰的名字。此外，答案並非取決於運氣。</p>',
-          '<h2>怎麼做</h2><ul><li>Google 商家檔案和客戶評價，全部幫您處理好</li><li>店名、地址、電話，在網路上各處保持一致</li><li>您在 Yelp、Quora、Reddit 上到底是什麼樣子——不只是 Google</li><li>頁面和文章回答客人真正會搜尋的那些問題</li></ul>',
-          '<p>這件事很慢——三到六個月才會開始見效並逐步累積，現在也包括 GEO 這一塊。任何人跟您保證「下週就上第一頁」，那他賣給您的是別的東西。</p>',
-        ],
-        outcomes: [
-          '完整填寫並通過驗證的 Google 商家檔案',
-          '一份根據客人實際搜尋字詞整理的關鍵字清單',
-          '為每項服務和每個服務區域製作專門頁面',
-          '看看您在 Yelp、Quora、Reddit 上到底是什麼樣子——不只是 Google',
-          '內容寫得能被 AI 工具正確引用，不只是被 Google 排名',
-          '每月一頁的報告，用白話寫，不是一堆圖表',
-        ],
-        meta: '為帕薩迪納和大洛杉磯地區小型企業提供在地 Google 推廣服務。不用為每次點擊付費，也能讓客人找到您。',
-      },
-    },
-  },
-
-  /* ── 3. Online marketing (id/slug stay 'ads'/'paid-advertising' — never
-   *      change per the rule above; already indexed/live URLs — but the
-   *      customer-facing title/copy was reframed 2026-08-27 from
-   *      "just paid ads" to organic + paid, per the owner's direction:
-   *      not just how customers find you (that's the search service
-   *      above), but the ongoing campaigns — content/SEO/GEO and paid —
-   *      that keep bringing them. ───────────────────────────────────── */
-  {
-    id: 'ads',
-    slugs: {
-      en: 'paid-advertising',
-      es: 'publicidad-pagada',
-      'zh-hans': 'fufei-guanggao',
-      'zh-hant': 'fufei-guanggao',
-    },
-    t: {
-      en: {
-        title: 'Paid and organic marketing',
-        tagline: "So you don't waste money on marketing that never made sense.",
-        summary:
-          "Paid advertising can bring in customers quickly, and organic content continues working long after you stop paying for it — but both waste money unless they are built around what a customer is genuinely worth to you. We will say so honestly if paid advertising does not yet make sense for your situation.",
-        body: [
-          '<p>Paid advertising is the fastest route to getting in front of people, and equally the fastest method of burning money. Most businesses require some combination of paid and organic. The genuine question concerns which combination.</p>',
-          '<h2>How it works</h2><ul><li>We work out what a customer is actually worth to you, first</li><li>If paid ads don\'t make sense yet, we say so and point you toward <a href="/glossary/#seo">SEO</a>, <a href="/glossary/#geo">GEO</a>, or your existing customer list instead</li><li>When ads do make sense: a small number of campaigns, a real budget cap, tracked calls and forms</li></ul>',
-          '<p>Either way you receive a plain monthly account of what you spent and what it actually returned.</p>',
-        ],
-        outcomes: [
-          'An honest answer on whether paid ads suit your business right now',
-          'Campaigns built around what a customer is actually worth, not a guess',
-          'A budget cap that cannot quietly run away from you',
-          'Call and form tracking, so you know what came from where',
-          'Ongoing <a href="/glossary/#seo">SEO</a> and <a href="/glossary/#geo">GEO</a> content running alongside any paid campaigns, not instead of them',
-          'A monthly note: spent this, got that',
-        ],
-        meta: 'Paid and organic marketing for Southern California small businesses. We start by checking what actually makes sense for you.',
-      },
-      es: {
-        title: 'Marketing pagado y orgánico',
-        tagline: 'Para que no desperdicie dinero en marketing que nunca tuvo sentido.',
-        summary:
-          'Los anuncios pagados pueden traer clientes rápido, y el contenido orgánico sigue funcionando después de dejar de pagar — pero ambos desperdician dinero si no se basan en lo que un cliente vale para usted. Le decimos con honestidad si lo pagado todavía no tiene sentido.',
-        body: [
-          '<p>La publicidad pagada constituye simultáneamente la vía más rápida para llegar a la gente y el método disponible más rápido para quemar dinero. La mayoría de los negocios requiere alguna combinación de pagado y orgánico, y la pregunta genuina concierne a cuál combinación.</p>',
-          '<h2>Cómo funciona</h2><ul><li>Primero calculamos cuánto vale un cliente para usted de verdad</li><li>Si los anuncios pagados todavía no tienen sentido, se lo decimos y le señalamos SEO, GEO, o su propia lista de clientes en su lugar</li><li>Cuando sí tiene sentido pagar: pocas campañas, un tope de presupuesto real, llamadas y formularios rastreados</li></ul>',
-          '<p>De cualquier forma usted recibe un informe mensual claro de cuánto gastó y cuánto regresó efectivamente.</p>',
-        ],
-        outcomes: [
-          'Una respuesta honesta sobre si los anuncios pagados le convienen ahora mismo',
-          'Campañas armadas según lo que vale un cliente de verdad, no una suposición',
-          'Un tope de presupuesto que no se le puede escapar',
-          'Seguimiento de llamadas y formularios, para saber qué vino de dónde',
-          'Contenido de SEO y GEO funcionando junto con cualquier campaña pagada, no en su lugar',
-          'Una nota mensual: gastó esto, entró aquello',
-        ],
-        meta: 'Marketing pagado y orgánico para negocios pequeños del sur de California. Primero revisamos qué de verdad le conviene.',
-      },
-      'zh-hans': {
-        title: '付费与自然营销',
-        tagline: '别把钱浪费在从一开始就没道理的营销上。',
-        summary:
-          '付费广告能很快带来客人，自然内容则会在您停止付费之后继续管用——但如果不是围绕一位客人的真实价值来做，两者都会浪费时间和金钱。我们会把两者放在一起看，如果付费广告现在还没道理，我们会照实说。',
-        body: [
-          '<p>付费广告既是让人看见您最快的途径，同时也是烧钱最快的方式。多数生意所需要的是付费与自然流量的某种组合；然而真正的问题在于究竟是哪一种组合。此外，这并非一劳永逸的判断。</p>',
-          '<h2>怎么做</h2><ul><li>先算清楚一位客人对您来说到底值多少钱</li><li>如果付费广告现在还没道理，我们会直说，改为指向 SEO、GEO，或者您手上已有的老客户名单</li><li>如果确实该投广告：广告系列数量少、设定真正管用的预算上限、来电和留言都有追踪</li></ul>',
-          '<p>无论属于哪一种情况，您每月皆会收到一份平实的说明：花掉了多少，以及实际带回来了多少。此外，其中并不会有任何模糊的措辞。</p>',
-        ],
-        outcomes: [
-          '关于「您现在到底适不适合投广告」的实话',
-          '按一位客人的真实价值来设计广告投放，不是瞎猜',
-          '不会悄悄超支的预算上限',
-          '来电和留言追踪，弄清楚客人从哪儿来的',
-          '持续的 SEO 和 GEO 内容跟付费广告一起进行，而不是取而代之',
-          '每月一份简单说明：花了这些，收回这些',
-        ],
-        meta: '为南加州小型企业提供付费和自然营销服务。我们会先帮您算清楚，什么对您才是真正划算的。',
-      },
-      'zh-hant': {
-        title: '付費與自然行銷',
-        tagline: '別把錢浪費在從一開始就沒道理的行銷上。',
-        summary:
-          '付費廣告能很快帶來客人，自然內容則會在您停止付費之後繼續管用——但如果不是圍繞一位客人的真實價值來做，兩者都會浪費時間和金錢。我們會把兩者放在一起看，如果付費廣告現在還沒道理，我們會照實說。',
-        body: [
-          '<p>付費廣告既是讓人看見您最快的途徑，同時也是燒錢最快的方式。多數生意所需要的是付費與自然流量的某種組合；然而真正的問題在於究竟是哪一種組合。此外，這並非一勞永逸的判斷。</p>',
-          '<h2>怎麼做</h2><ul><li>先算清楚一位客人對您來說到底值多少錢</li><li>如果付費廣告現在還沒道理，我們會直說，改為指向 SEO、GEO，或者您手上已有的老客戶名單</li><li>如果確實該投廣告：廣告系列數量少、設定真正管用的預算上限、來電和留言都有追蹤</li></ul>',
-          '<p>無論屬於哪一種情況，您每月皆會收到一份平實的說明：花掉了多少，以及實際帶回來了多少。此外，其中並不會有任何模糊的措辭。</p>',
-        ],
-        outcomes: [
-          '關於「您現在到底適不適合投廣告」的實話',
-          '按一位客人的真實價值來設計廣告投放，不是瞎猜',
-          '不會悄悄超支的預算上限',
-          '來電和留言追蹤，弄清楚客人從哪裡來的',
-          '持續的 SEO 和 GEO 內容跟付費廣告一起進行，而不是取而代之',
-          '每月一份簡單說明：花了這些，收回這些',
-        ],
-        meta: '為南加州小型企業提供付費和自然行銷服務。我們會先幫您算清楚，什麼對您才是真正划算的。',
-      },
-    },
-  },
-
-  /* ── 4. Business consulting (moved last, 2026-08-27, per the owner's
-   *      call) ────────────────────────────────────────────────────────── */
+  /* ── 1. Practice Checkup (id stays 'consulting'; URL unchanged) ─────── */
   {
     id: 'consulting',
     slugs: {
@@ -344,80 +114,301 @@ export const services: Service[] = [
     },
     t: {
       en: {
-        title: 'Online consulting',
-        tagline: 'An honest answer, from someone with nothing to gain either way.',
+        title: 'Practice Checkup',
+        seoTitle: 'Medical & Dental Practice Checkup',
+        tagline: 'Find out precisely what is costing your practice patients before you pay anyone to fix it.',
         summary:
-          "Uncertain whether to invest next in a new website, greater visibility on Google, or paid advertising? We examine your existing online efforts together and tell you honestly what is genuinely worth doing, and equally what is worth skipping entirely.",
+          'One fixed-price review of the whole practice — the phones and intake forms, the records and the EHR, the website and the Google listing — ending in a short written plan that ranks what to fix first, and if you continue with us, the fee is credited toward that work.',
         body: [
-          "<p>Call it a consultancy session, a strategy check-in, or just a second opinion — the label doesn't matter. This isn't general business consulting; it's specifically about your online presence — your website, your visibility, your marketing — and how to sequence and implement it well.</p>",
-          '<h2>How it works</h2><ul><li>A working session, not a lecture — we look at what\'s actually happening across your website, search visibility, and ads together</li><li>Help deciding what to invest in online next, and what to leave alone</li><li>A short written summary you can act on, not a slide deck</li></ul>',
-          "<p>Sometimes the honest answer is that your online presence already works perfectly well. We will tell you that just as readily.</p>",
+          '<p>Most practices that contact us believe they have a marketing problem, and although some genuinely do, just as often the prospective patients are already calling while the practice loses them somewhere between an unreturned voicemail and a clipboard of intake paperwork that takes twenty minutes to complete. Advertising cannot repair either of those failures, which is precisely why we examine the entire practice before recommending anything.</p>',
+          '<h2>How it works</h2><ul><li>A conversation with you and your reception staff, because the people answering the telephones generally understand better than anyone where the day goes wrong</li><li>A walk through one patient\'s complete experience, from the initial search or telephone call through registration, the appointment itself, and the reminder for their next visit</li><li>A review of how your <a href="/glossary/#ehr">EHR</a> is actually configured, how your patient records are organized, and how your <a href="/glossary/#google-business-profile">Google Business Profile</a>, reviews, and website present the practice to someone deciding whether to call</li><li>A concise written plan that ranks every recommendation by how quickly it will pay for itself, with a fixed price for any subsequent work agreed in writing before we begin</li></ul>',
+          '<p>Occasionally the plan concludes that the practice is in considerably better condition than you feared, and that the most valuable next step costs very little; when that happens, we will document it just as plainly as we would an expensive recommendation.</p>',
         ],
         outcomes: [
-          'A working session on what to fix first, online',
-          "A plain look at which of your online efforts are actually paying off",
-          'A short written summary you keep, not a slide deck',
-          "A simple plan for what to implement next quarter, not a five-year strategy nobody will read",
-          'A follow-up check-in to see if it worked',
+          'A documented map of one patient\'s path through your practice, identifying every point at which prospective patients currently give up',
+          'A candid assessment of how effectively your records, your EHR configuration, and your front-desk workflow actually serve the practice',
+          'An evaluation of how the practice appears to a prospective patient who searches for it, whether on Google, in reviews, on your website, or in health directories',
+          'A written plan ranked by priority, rather than a presentation deck that nobody opens a second time',
+          'The checkup fee, credited toward any subsequent work you choose to do with us',
         ],
-        meta: 'Online strategy consulting for small business owners in Southern California — deciding what to invest in for your website, visibility, and marketing, and what to skip.',
+        meta: 'A fixed-price checkup for independent medical, dental, and eye care practices in Southern California: records, EHR, front desk, and online presence, ranked.',
       },
       es: {
-        title: 'Consultoría en línea',
-        tagline: 'Una respuesta honesta, de alguien que no gana nada de cualquier forma.',
+        title: 'Revisión integral del consultorio',
+        seoTitle: 'Revisión de consultorios médicos y dentales',
+        tagline: 'Descubra con precisión qué le está costando pacientes a su consultorio antes de pagarle a alguien para corregirlo.',
         summary:
-          '¿No sabe si invertir en un sitio nuevo, más visibilidad en Google, o publicidad paga? Vemos sus esfuerzos en línea juntos y le decimos con honestidad qué de verdad vale la pena — y qué no.',
+          'Una revisión de precio fijo de todo el consultorio —los teléfonos y los formularios de admisión, los expedientes y el EHR, el sitio web y su Perfil de Negocio de Google— que concluye con un plan breve por escrito que ordena qué corregir primero, y si continúa con nosotros, el costo de la revisión se abona al trabajo posterior.',
         body: [
-          '<p>Llámelo sesión de consultoría, revisión de estrategia, o simplemente una segunda opinión — el nombre no importa. Esto no es asesoría de negocios en general; es específicamente sobre su presencia en línea — su sitio web, su visibilidad, su marketing — y cómo ordenarlo e implementarlo bien.</p>',
-          '<h2>Cómo funciona</h2><ul><li>Una sesión de trabajo, no una conferencia: vemos juntos qué está pasando de verdad con su sitio, su visibilidad y sus anuncios</li><li>Le ayudamos a decidir en qué invertir en línea y qué dejar en paz</li><li>Un resumen corto por escrito que usted puede usar, no una presentación</li></ul>',
-          '<p>A veces la respuesta honesta es que su presencia en línea ya funciona perfectamente bien, y se lo diremos con la misma prontitud que cualquier otra cosa.</p>',
+          '<p>La mayoría de los consultorios que se comunican con nosotros creen tener un problema de marketing, y aunque algunos efectivamente lo tienen, con igual frecuencia los pacientes potenciales ya están llamando mientras el consultorio los pierde en algún punto entre un mensaje de voz que nadie devuelve y un portapapeles con formularios de admisión que tarda veinte minutos en completarse. La publicidad no puede reparar ninguna de esas fallas, y precisamente por eso examinamos el consultorio completo antes de recomendar cualquier cosa.</p>',
+          '<h2>Cómo funciona</h2><ul><li>Una conversación con usted y con su personal de recepción, porque quienes contestan los teléfonos suelen entender mejor que nadie en qué momento se complica el día</li><li>Un recorrido por la experiencia completa de un paciente, desde la primera búsqueda o llamada telefónica, pasando por el registro y la cita en sí, hasta el recordatorio de su próxima visita</li><li>Una revisión de cómo está configurado realmente su sistema de registros médicos electrónicos (EHR), de cómo están organizados los expedientes de sus pacientes y de cómo su Perfil de Negocio de Google, sus reseñas y su sitio web presentan el consultorio ante alguien que está decidiendo si llamar</li><li>Un plan conciso por escrito que ordena cada recomendación según la rapidez con la que se pagará sola, con un precio fijo para cualquier trabajo posterior acordado por escrito antes de empezar</li></ul>',
+          '<p>En ocasiones el plan concluye que el consultorio se encuentra en condiciones considerablemente mejores de lo que usted temía, y que el siguiente paso más valioso cuesta muy poco; cuando eso sucede, lo documentaremos con la misma franqueza con que documentaríamos una recomendación costosa.</p>',
         ],
         outcomes: [
-          'Una sesión de trabajo sobre qué arreglar primero, en línea',
-          'Una mirada clara a cuáles de sus esfuerzos en línea de verdad están funcionando',
-          'Un resumen corto por escrito que usted conserva',
-          'Un plan sencillo de qué implementar el próximo trimestre, no una estrategia a cinco años que nadie va a leer',
-          'Una llamada de seguimiento para ver si funcionó',
+          'Un mapa documentado del recorrido de un paciente por su consultorio, que identifica cada punto en el que los pacientes potenciales se dan por vencidos hoy',
+          'Una evaluación franca de qué tan bien sirven al consultorio sus expedientes, la configuración de su EHR y el flujo de trabajo de la recepción',
+          'Un análisis de cómo se presenta el consultorio ante un paciente potencial que lo busca, ya sea en Google, en las reseñas, en su sitio web o en los directorios de salud',
+          'Un plan por escrito ordenado por prioridad, en lugar de una presentación que nadie vuelve a abrir',
+          'El costo de la revisión, abonado a cualquier trabajo posterior que decida realizar con nosotros',
         ],
-        meta: 'Consultoría de estrategia en línea para dueños de negocios pequeños en el sur de California — qué invertir en su sitio, visibilidad y marketing, y qué dejar de lado.',
+        meta: 'Revisión de precio fijo para consultorios médicos, dentales y de optometría del sur de California: expedientes, EHR, recepción y presencia en línea.',
       },
       'zh-hans': {
-        title: '线上咨询',
-        tagline: '一个诚实的答案，来自一个怎么说都没有利害关系的人。',
+        title: '诊所经营诊断',
+        tagline: '在花钱请任何人修正之前，先准确找出究竟是什么让您的诊所流失患者。',
         summary:
-          '不确定究竟应当投资新网站、提升谷歌曝光，还是投放付费广告？我们会与您一同检视现有的线上工作，并且诚实告知何者真正值得投入，至于何者则可以暂且搁置。',
+          '针对整间诊所进行一次固定价格的检视——电话与初诊表格、病历与电子病历系统、网站与 Google 商家资料——最后提出一份简短的书面计划，依轻重缓急排列应当优先处理的事项；若您后续继续与我们合作，这笔费用将抵扣后续工作的费用。',
         body: [
-          '<p>无论称之为经营咨询、战略会谈，抑或单纯就是第二意见，名称本身并不重要。此外，这并非一般性的经营咨询，而是专门针对您的线上呈现——您的网站、您的曝光度、您的营销——以及这些事项究竟应当依何种顺序推进、又该如何落地。</p>',
-          '<h2>怎么做</h2><ul><li>一次会谈而非授课——我们将一同检视您的网站、搜索曝光与广告目前究竟处于何种状况</li><li>协助您判断接下来应当于线上投入何处，至于何者则可以暂且搁置</li><li>一份能直接用的简短书面总结，不是一堆幻灯片</li></ul>',
-          '<p>有时候诚实的答案是：您的线上呈现已经运作得相当良好，因此并不需要我们。此外，这句话我们同样会照实说出来，与其他任何结论并无二致。</p>',
+          '<p>多数联系我们的诊所都认为自己面临的是营销问题；尽管其中确实有些诊所如此，但同样常见的情况是，潜在患者早已打来电话，诊所却在一则无人回复的语音留言与一叠需要二十分钟才填得完的初诊表格之间，把他们流失掉。广告无法弥补上述任何一项缺失，因此我们在提出任何建议之前，都会先检视整间诊所。</p>',
+          '<h2>怎么做</h2><ul><li>与您以及前台人员面谈，因为负责接听电话的人往往比任何人都清楚，一天的工作究竟在哪个环节出了问题</li><li>完整走一遍一位患者的就诊经历：从最初的搜索或来电，经过挂号与看诊本身，一直到下次复诊的提醒</li><li>检视您的电子病历系统实际如何配置、患者病历如何整理，以及您的 Google 商家资料、评价与网站，在一位正考虑是否来电的人眼中呈现出怎样的诊所</li><li>一份简明的书面计划，依每项建议回本的快慢排列优先顺序，后续任何工作的固定价格都会在开工前以书面方式约定</li></ul>',
+          '<p>有时候，计划的结论是诊所的状况比您担心的好得多，而最有价值的下一步花费甚少；遇到这种情况，我们会像记录一项昂贵建议那样，同样照实写下来。</p>',
         ],
         outcomes: [
-          '一次会谈，藉此厘清线上应当优先处理何事',
-          '厘清您既有的线上投入之中，何者真正产生回报',
-          '一份留予您的简短书面总结，而非一叠无人翻阅的幻灯片',
-          '一份供下个季度使用的简明执行计划，而非无人阅读的五年战略',
-          '一次后续回访，藉以确认前述方法是否确实奏效',
+          '一份书面记录的患者就诊路径图，标出目前潜在患者会在哪些环节放弃',
+          '一份坦率的评估，说明您的病历、电子病历系统配置与前台作业流程，实际上为诊所发挥了多少作用',
+          '一份评估，说明潜在患者搜索您的诊所时——无论是在 Google、评价、网站还是医疗名录上——看到的是怎样的诊所',
+          '一份按优先顺序排列的书面计划，而非一份没有人会再打开第二次的简报',
+          '诊断费用可抵扣您日后选择与我们合作的任何后续工作',
         ],
-        meta: '为南加州小型企业主提供线上策略咨询——网站、曝光度、营销该投资什么，什么可以先放一放，不讲行话。',
+        meta: '为南加州独立医疗、牙科与眼科诊所提供固定价格的经营诊断：检视病历、电子病历系统、前台流程与线上曝光，并排出优先顺序。',
       },
       'zh-hant': {
-        title: '線上諮詢',
-        tagline: '一個誠實的答案，來自一個怎麼說都沒有利害關係的人。',
+        title: '診所經營診斷',
+        tagline: '在花錢請任何人修正之前，先準確找出究竟是什麼讓您的診所流失病患。',
         summary:
-          '不確定究竟應當投資新網站、提升 Google 曝光，還是投放付費廣告？我們會與您一同檢視現有的線上工作，並且誠實告知何者真正值得投入，至於何者則可以暫且擱置。',
+          '針對整間診所進行一次固定價格的檢視——電話與初診表單、病歷與電子病歷系統、網站與 Google 商家檔案——最後提出一份簡短的書面計畫，依輕重緩急排列應當優先處理的事項；若您後續繼續與我們合作，這筆費用將抵扣後續工作的費用。',
         body: [
-          '<p>無論稱之為經營諮詢、策略會談，抑或單純就是第二意見，名稱本身並不重要。此外，這並非一般性的經營諮詢，而是專門針對您的線上呈現——您的網站、您的曝光度、您的行銷——以及這些事項究竟應當依何種順序推進、又該如何落地。</p>',
-          '<h2>怎麼做</h2><ul><li>一次會談而非授課——我們將一同檢視您的網站、搜尋曝光與廣告目前究竟處於何種狀況</li><li>協助您判斷接下來應當於線上投入何處，至於何者則可以暫且擱置</li><li>一份能直接用的簡短書面總結，不是一堆簡報</li></ul>',
-          '<p>有時候誠實的答案是：您的線上呈現已經運作得相當良好，因此並不需要我們。此外，這句話我們同樣會照實說出來，與其他任何結論並無二致。</p>',
+          '<p>多數聯絡我們的診所都認為自己面臨的是行銷問題；儘管其中確實有些診所如此，但同樣常見的情況是，潛在病患早已打來電話，診所卻在一則無人回覆的語音留言與一疊需要二十分鐘才填得完的初診表單之間，把他們流失掉。廣告無法彌補上述任何一項缺失，因此我們在提出任何建議之前，都會先檢視整間診所。</p>',
+          '<h2>怎麼做</h2><ul><li>與您以及櫃檯人員面談，因為負責接聽電話的人往往比任何人都清楚，一天的工作究竟在哪個環節出了問題</li><li>完整走一遍一位病患的就診經驗：從最初的搜尋或來電，經過掛號與看診本身，一直到下次回診的提醒</li><li>檢視您的電子病歷系統實際如何設定、病患病歷如何整理，以及您的 Google 商家檔案、評論與網站，在一位正考慮是否來電的人眼中呈現出怎樣的診所</li><li>一份簡明的書面計畫，依每項建議回本的快慢排列優先順序，後續任何工作的固定價格都會在開工前以書面方式約定</li></ul>',
+          '<p>有時候，計畫的結論是診所的狀況比您擔心的好得多，而最有價值的下一步花費甚少；遇到這種情況，我們會像記錄一項昂貴建議那樣，同樣照實寫下來。</p>',
         ],
         outcomes: [
-          '一次會談，藉此釐清線上應當優先處理何事',
-          '釐清您既有的線上投入之中，何者真正產生回報',
-          '一份留予您的簡短書面總結，而非一疊無人翻閱的簡報',
-          '一份供下一季使用的簡明執行計畫，而非無人閱讀的五年戰略',
-          '一次後續回訪，藉以確認前述方法是否確實奏效',
+          '一份書面記錄的病患就診路徑圖，標出目前潛在病患會在哪些環節放棄',
+          '一份坦率的評估，說明您的病歷、電子病歷系統設定與櫃檯作業流程，實際上為診所發揮了多少作用',
+          '一份評估，說明潛在病患搜尋您的診所時——無論是在 Google、評論、網站還是醫療名錄網站上——看到的是怎樣的診所',
+          '一份按優先順序排列的書面計畫，而非一份沒有人會再打開第二次的簡報',
+          '診斷費用可抵扣您日後選擇與我們合作的任何後續工作',
         ],
-        meta: '為南加州小型企業主提供線上策略諮詢——網站、曝光度、行銷該投資什麼，什麼可以先放一放，不講行話。',
+        meta: '為南加州獨立醫療、牙科與眼科診所提供固定價格的經營診斷：檢視病歷、電子病歷系統、櫃檯流程與線上曝光，並排出優先順序。',
+      },
+    },
+  },
+
+  /* ── 2. Digitize the office (added 2026-09-14) ──────────────────────────
+   *
+   *  Terminology, verified before writing rather than translated:
+   *   - EHR: es "registros médicos electrónicos" (HHS's own Spanish privacy
+   *     guide, hhs.gov …/privacy-security-20130205-spn.pdf); zh-hant 電子病歷
+   *     (Taiwan MOHW, 醫療機構電子病歷製作及管理辦法); zh-hans 电子病历
+   *     (National Health Commission, 电子病历应用管理规范).
+   *   - Business associate agreement: es "contrato de socio comercial";
+   *     zh-hant 業務夥伴合約 and zh-hans 业务伙伴协议 (Microsoft Learn's HIPAA
+   *     compliance page in each locale).
+   *   - HIPAA stays "HIPAA" in every locale.
+   *  Two modals were checked against the English: "so that people use it"
+   *  and "so that the practice runs the same way" are 讓/让, not 確保/确保,
+   *  which would promise an outcome the English does not. */
+  {
+    id: 'digitize',
+    slugs: {
+      en: 'practice-digitization',
+      es: 'digitalizacion-del-consultorio',
+      'zh-hans': 'zhensuo-shuzihua',
+      'zh-hant': 'zhensuo-shuweihua',
+    },
+    t: {
+      en: {
+        title: 'Digitize the office',
+        seoTitle: 'Practice Digitization: EHR, Intake & HIPAA',
+        tagline: 'Less paperwork, fewer interrupting telephone calls, and a reception desk that is no longer overwhelmed.',
+        summary:
+          'We move patient records, scheduling, intake forms, and reminders onto systems that work together, starting from how patients actually move through your office rather than from whatever software someone wants to sell you, and we take no commissions from software vendors.',
+        body: [
+          '<p>Many independent practices run on an <a href="/glossary/#ehr">EHR</a> that was only ever half configured, a telephone line the front desk is perpetually behind on, and paper forms that someone retypes after every appointment. Each of those deficiencies consumes staff time every single day, and several of them quietly cost the practice prospective patients who abandoned the call before anyone answered.</p>',
+          `<h2>How it works</h2><ul><li>We follow one patient from the initial telephone call to the follow-up reminder, then repair the specific steps where time and money consistently leak out</li><li>Online scheduling, intake and consent forms that patients complete on their own phones before arriving, and <a href="${SOURCES.remindersNoShows}">automated reminders that reduce no-shows</a></li><li>Paper charts scanned and organized, and your EHR configured around how your clinicians and staff actually work, so that people genuinely use it</li><li>A <a href="/glossary/#hipaa">HIPAA</a> security risk analysis, <a href="${SOURCES.hipaaRiskAnalysis}">which HIPAA requires</a> of <a href="${SOURCES.hipaaCoveredEntities}">practices that bill insurance electronically</a>, together with a signed <a href="/glossary/#business-associate-agreement">business associate agreement</a> with every vendor that handles patient information</li><li>Written office procedures, so that the practice operates identically on the days you are absent and on the days you are present</li></ul>`,
+          '<p>We recommend software strictly on its merits and accept no commissions or referral fees from any vendor, which is the only way that advice about which system to purchase can be worth anything. We also deliberately stay out of computer repairs and medical billing, and we will gladly refer you to specialists who handle those responsibilities well.</p>',
+        ],
+        outcomes: [
+          'Patients who book appointments, complete their paperwork, and receive reminders without ever needing to telephone the front desk',
+          'Paper charts digitized, and an EHR configured around the way your practice actually operates from day to day',
+          'A completed HIPAA security risk analysis, together with the corrective steps it identifies',
+          'A business associate agreement signed with every vendor that touches patient information, or a plan to replace any vendor that will not sign one',
+          'Written procedures for the front desk and the back office that a newly hired employee can actually follow',
+          'Advice from someone who is compensated by you and by nobody else',
+        ],
+        meta: 'EHR setup, digital intake, online scheduling, and HIPAA risk analysis for independent practices in Southern California. No commissions from software vendors.',
+      },
+      es: {
+        title: 'Digitalizar el consultorio',
+        seoTitle: 'Digitalizar el consultorio: EHR y HIPAA',
+        tagline: 'Menos papel, menos llamadas telefónicas y una recepción que ya no está desbordada.',
+        summary:
+          'Trasladamos los expedientes de los pacientes, la programación de citas, los formularios de admisión y los recordatorios a sistemas que funcionan en conjunto, partiendo de cómo se mueven realmente los pacientes por su consultorio y no del software que alguien quiera venderle, y no aceptamos comisiones de los proveedores de software.',
+        body: [
+          '<p>Muchos consultorios independientes funcionan con un sistema de registros médicos electrónicos (EHR) que nunca llegó a configurarse del todo, una línea telefónica que la recepción no alcanza a atender y formularios en papel que alguien vuelve a transcribir después de cada cita. Cada uno de estos problemas consume tiempo del personal todos los días, y varios de ellos le cuestan al consultorio, sin que nadie lo note, pacientes que se rindieron antes de que alguien contestara.</p>',
+          `<h2>Cómo funciona</h2><ul><li>Seguimos a un paciente desde la primera llamada telefónica hasta el recordatorio de seguimiento, y luego reparamos los pasos concretos por los que se pierden tiempo y dinero de manera constante</li><li>Programación de citas en línea, formularios de admisión y de consentimiento que los pacientes completan en su propio teléfono antes de llegar, y <a href="${SOURCES.remindersNoShows}">recordatorios automáticos que reducen las inasistencias a las citas</a></li><li>Expedientes en papel escaneados y organizados, y un sistema EHR configurado según la forma en que realmente trabajan su equipo clínico y su personal, para que de verdad lo utilicen</li><li>Un análisis de riesgos de seguridad conforme a HIPAA, <a href="${SOURCES.hipaaRiskAnalysis}">que HIPAA exige</a> a los <a href="${SOURCES.hipaaCoveredEntities}">consultorios que facturan a las aseguradoras de forma electrónica</a>, junto con un contrato de socio comercial firmado con cada proveedor que maneja información de pacientes</li><li>Procedimientos escritos para el consultorio, de modo que funcione igual los días en que usted no está que los días en que sí está</li></ul>`,
+          '<p>Recomendamos software exclusivamente por sus méritos y no aceptamos comisiones ni pagos por recomendación de ningún proveedor, porque solo así un consejo sobre qué sistema comprar puede valer algo. Tampoco nos dedicamos a reparar computadoras ni a la facturación, y con gusto le recomendaremos a personas que hacen bien ese trabajo.</p>',
+        ],
+        outcomes: [
+          'Pacientes que reservan citas, completan sus formularios y reciben recordatorios sin necesidad de llamar a la recepción',
+          'Expedientes en papel digitalizados y un sistema EHR configurado según la manera en que su consultorio realmente opera',
+          'Un análisis de riesgos de seguridad conforme a HIPAA ya terminado, junto con las medidas correctivas que identifique',
+          'Un contrato de socio comercial firmado con cada proveedor que maneja información de pacientes, o un plan para reemplazar a cualquier proveedor que se niegue a firmarlo',
+          'Procedimientos escritos para la recepción y la administración que un empleado nuevo realmente pueda seguir',
+          'Asesoría de alguien a quien le paga usted y nadie más',
+        ],
+        meta: 'EHR, formularios digitales, citas en línea y análisis de riesgos HIPAA para consultorios del sur de California, sin comisiones de proveedores de software.',
+      },
+      'zh-hans': {
+        title: '诊所数字化',
+        seoTitle: '诊所数字化：电子病历、在线预约与 HIPAA',
+        tagline: '更少的纸质文件、更少的电话，前台也不再应接不暇。',
+        summary:
+          '我们将病历、预约、初诊表格与提醒迁移到彼此协同运作的系统，出发点是患者在您诊所中的实际就诊流程，而非某人想卖给您的软件，并且我们不收取任何软件供应商的佣金。',
+        body: [
+          '<p>许多独立诊所的日常运作，依赖的是一套从未完整配置的电子病历（EHR）系统、一条前台始终接听不及的电话线路，以及每次看诊后都得有人重新录入的纸质表格。上述每一项都日复一日地消耗员工的时间；此外，其中数项更在无人察觉的情况下，使尚未等到有人接听便已放弃的患者就此流失。</p>',
+          `<h2>怎么做</h2><ul><li>追踪一位患者从第一通电话到复诊提醒的完整流程，进而修补时间与金钱持续流失的具体环节</li><li>在线预约、患者到诊前即可在自己手机上填写的初诊表与知情同意书，以及<a href="${SOURCES.remindersNoShows}">能减少患者爽约的自动提醒</a></li><li>纸质病历经扫描后妥善整理，电子病历系统亦按照医护人员与员工的实际工作方式配置，从而让大家真正用起来</li><li>一份 HIPAA 安全风险分析（<a href="${SOURCES.hipaaCoveredEntities}">以电子方式申报保险理赔的诊所</a>均须<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 规定完成此项分析</a>），并与每一家经手患者信息的供应商签署业务伙伴协议</li><li>书面化的诊所作业流程，让诊所在您不在场的日子，也能与您在场时一样运作</li></ul>`,
+          '<p>我们只依软件本身的优劣提出建议，也不收取任何供应商的佣金或转介费，因为只有这样，关于该买哪一套系统的建议才有价值。电脑维修与医疗账务则并非我们的业务，我们会把您转介给在这些方面做得出色的专业人士。</p>',
+        ],
+        outcomes: [
+          '患者无须致电前台，便能自行预约、填写表格并收到提醒',
+          '纸质病历完成数字化，电子病历系统也按照诊所实际的运作方式配置妥当',
+          '一份已完成的 HIPAA 安全风险分析，以及分析所找出的改进措施',
+          '与每一家经手患者信息的供应商签署的业务伙伴协议；若有供应商拒签，则提出更换方案',
+          '前台与后勤的书面作业流程，新入职员工也能照着执行',
+          '只由您付费、不受任何其他人支付报酬的专业建议',
+        ],
+        meta: '为南加州独立诊所提供电子病历配置、在线预约、数字化初诊表与 HIPAA 安全风险分析，且不收取任何软件供应商的佣金。',
+      },
+      'zh-hant': {
+        title: '診所數位化',
+        seoTitle: '診所數位化：電子病歷、線上預約與 HIPAA',
+        tagline: '更少的紙本、更少的電話，櫃檯也不再應接不暇。',
+        summary:
+          '我們將病歷、預約、初診表單與提醒移轉到彼此協同運作的系統，出發點是病患在您診所中的實際動線，而非某人想賣給您的軟體，並且我們不收取任何軟體廠商的佣金。',
+        body: [
+          '<p>許多獨立診所的日常運作，仰賴的是一套從未完整設定的電子病歷（EHR）系統、一條櫃檯始終接聽不及的電話線路，以及每次看診後都得有人重新輸入的紙本表單。上述每一項都日復一日地消耗員工的時間；此外，其中數項更在無人察覺的情況下，使尚未等到有人接聽便已放棄的病患就此流失。</p>',
+          `<h2>怎麼做</h2><ul><li>追蹤一位病患從第一通電話到回診提醒的完整流程，進而修補時間與金錢持續流失的具體環節</li><li>線上預約、病患到診前即可在自己手機上填寫的初診資料表與同意書，以及<a href="${SOURCES.remindersNoShows}">能減少病患爽約的自動提醒</a></li><li>紙本病歷經掃描後妥善整理，電子病歷系統亦依照醫護人員與員工的實際工作方式設定，從而讓大家真正用起來</li><li>一份 HIPAA 資安風險分析（<a href="${SOURCES.hipaaCoveredEntities}">以電子方式申報保險理賠的診所</a>皆須<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 規定完成此項分析</a>），並與每一家經手病患資訊的廠商簽署業務夥伴合約</li><li>書面化的診所作業流程，讓診所在您不在場的日子，也能與您在場時一樣運作</li></ul>`,
+          '<p>我們只依軟體本身的優劣提出建議，也不收取任何廠商的佣金或轉介費，因為只有這樣，關於該買哪一套系統的建議才有價值。電腦維修與醫療帳務則並非我們的業務，我們會把您轉介給在這些方面做得出色的專業人士。</p>',
+        ],
+        outcomes: [
+          '病患無須致電櫃檯，便能自行預約、填寫表單並收到提醒',
+          '紙本病歷完成數位化，電子病歷系統也依照診所實際的運作方式設定妥當',
+          '一份已完成的 HIPAA 資安風險分析，以及分析所找出的改善措施',
+          '與每一家經手病患資訊的廠商簽署的業務夥伴合約；若有廠商拒簽，則提出更換方案',
+          '櫃檯與後勤的書面作業流程，新進員工也能照著執行',
+          '只由您付費、不受任何其他人支付報酬的專業建議',
+        ],
+        meta: '為南加州獨立診所提供電子病歷設定、線上預約、數位初診表與 HIPAA 資安風險分析，且不收取任何軟體廠商的佣金。',
+      },
+    },
+  },
+
+  /* ── 3. Get more patients (id stays 'websites'; URL unchanged) ──────── */
+  {
+    id: 'websites',
+    slugs: {
+      en: 'websites',
+      es: 'sitios-web',
+      'zh-hans': 'wangzhan-jianshe',
+      'zh-hant': 'wangzhan-jianzhi',
+    },
+    t: {
+      en: {
+        title: 'Get more patients',
+        seoTitle: 'Dental & Medical Practice Marketing, Local SEO',
+        tagline: 'More of the patients you want, with honest evidence of where they came from.',
+        summary:
+          'Before most patients call, they check your Google listing, your reviews, and your website, so we get those right first. Then we bring back the patients who are overdue and advertise only the treatments worth advertising, keeping track of where new patients come from.',
+        body: [
+          '<p>A prospective patient usually wants to know five things before calling: whether you accept their insurance, whether you are accepting new patients, which languages you speak, where to park, and whether they can book an appointment online. A practice that answers those questions immediately often receives the call instead of a competitor down the street that does not, which is why no amount of advertising helps until those fundamentals are right.</p>',
+          `<h2>First, the basics</h2><ul><li>Your <a href="/glossary/#google-business-profile">Google Business Profile</a> completed and verified so that the practice appears in Google Maps and local search results, <a href="${google(SOURCES.googlePractitionerListings, 'en')}">with a separate listing for each doctor</a>, since prospective patients frequently search for a practitioner by name</li><li>A steady, predictable flow of <a href="/glossary/#reviews">reviews</a>: an automatic text after each appointment asking every patient, <a href="${google(SOURCES.googleReviewPolicy, 'en')}">never only the satisfied ones, and never with anything offered in return</a></li><li>Replies to reviews written so that they reveal nothing about a patient, not even that the reviewer is one, since <a href="${SOURCES.hhsReviewResponseSettlement}">federal regulators fined one dental practice $50,000 for a reply that disclosed a patient's details</a></li><li>Healthgrades, Zocdoc, WebMD, and your insurers' provider directories corrected so that every one of them agrees with your Google listing</li><li>A fast website built and tested to the <a href="/glossary/#wcag">WCAG 2.1 AA</a> accessibility standard, available in Spanish or Chinese wherever your patients speak those languages</li></ul>`,
+          `<p><a href="${SOURCES.medicarePartBCoverage}">Practices that accept Medicare Part B</a> or Medi-Cal must make their websites meet that accessibility standard under a federal regulation, <a href="${SOURCES.section504Extension}">by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones</a>, although HHS said in the same notice that it may still revise the requirements.</p>`,
+          `<h2>Then, growth</h2><p>The least expensive appointment most practices will ever book comes from a patient who is already overdue: the annual eye examination, the six-month cleaning, the follow-up visit that never got scheduled. Most practices remind those patients inconsistently or not at all, so growth begins there, before a single dollar goes to advertising.</p><ul><li>Tracking that records where new patients originally came from, so that the monthly report can answer honestly whether the spending paid for itself</li><li>Recall and reactivation messages for patients who are overdue for a visit, <a href="${SOURCES.hipaaMarketing}">written within HIPAA's rules on marketing to patients</a></li><li>A dedicated page for each high-value treatment you offer, written around the specific way prospective patients actually search for it</li><li>Google search advertising only for treatments where a new patient is genuinely worth the cost, with a budget cap that cannot quietly run away from you</li></ul>`,
+          `<p>Some things we will not do: target advertising at people based on a health condition, place advertising-tracking code on appointment or intake pages <a href="${SOURCES.ocrTrackingTech}">where it can pass patient information to an advertising platform</a>, or pay anyone for referrals, which <a href="${SOURCES.calBusProf650}">state</a> and <a href="${SOURCES.federalAks}">federal</a> anti-kickback laws generally prohibit. You retain ownership of the website, the domain, and the content, because holding a client's website hostage is a poor business model and a worse way to treat people.</p>`,
+        ],
+        outcomes: [
+          'Google Business Profile listings for the practice and for each individual practitioner, completed and verified',
+          'A review request that reaches every patient after every appointment, and replies that never confirm anyone is a patient',
+          'Health directory and insurance company listings that agree with your Google listing',
+          'A website that loads quickly on a phone, answers the questions patients ask first, and is built and tested to WCAG 2.1 AA, in Spanish or Chinese if your patients need it',
+          'Recall messages that systematically bring overdue patients back into the appointment schedule',
+          'Search advertising with a hard budget cap, used only where the numbers genuinely work',
+          'A monthly note explaining what you spent, what it returned, and where new patients came from',
+        ],
+        meta: 'Websites, Google profiles, reviews, patient recall, and search ads for independent medical, dental, and eye care practices in Southern California, tracked.',
+      },
+      es: {
+        title: 'Conseguir más pacientes',
+        seoTitle: 'Marketing y SEO local para consultorios',
+        tagline: 'Más de los pacientes que usted busca, con evidencia honesta de su procedencia.',
+        summary:
+          'Antes de llamar, la mayoría de los pacientes revisan su Perfil de Negocio de Google, sus reseñas y su sitio web, así que primero ponemos todo eso en orden. Después recuperamos a los pacientes con visitas atrasadas y anunciamos solo los tratamientos que vale la pena anunciar, registrando de dónde llegan los pacientes nuevos.',
+        body: [
+          '<p>Antes de llamar, un paciente potencial suele querer saber cinco cosas: si usted acepta su seguro, si está recibiendo pacientes nuevos, qué idiomas se hablan en el consultorio, dónde estacionarse y si puede reservar una cita en línea. Un consultorio que responde esas preguntas de inmediato frecuentemente recibe la llamada en lugar de un competidor de la misma calle que no lo hace, y por eso ninguna cantidad de publicidad ayuda mientras esos fundamentos no estén en orden.</p>',
+          `<h2>Primero, lo básico</h2><ul><li>Su Perfil de Negocio de Google completo y verificado, para que el consultorio aparezca en Google Maps y en las búsquedas locales, <a href="${google(SOURCES.googlePractitionerListings, 'es')}">con un perfil separado para cada profesional de la salud</a>, ya que los pacientes potenciales con frecuencia buscan a un profesional por su nombre</li><li>Un flujo constante y predecible de reseñas: un mensaje de texto automático después de cada cita que se las pide a todos los pacientes, <a href="${google(SOURCES.googleReviewPolicy, 'es')}">nunca solo a los satisfechos y nunca a cambio de algo</a></li><li>Respuestas a las reseñas redactadas de modo que no revelen nada sobre un paciente, ni siquiera que quien escribe lo es, ya que <a href="${SOURCES.hhsReviewResponseSettlement}">las autoridades federales multaron a un consultorio dental con 50,000 dólares por una respuesta que divulgó datos de un paciente</a></li><li>Healthgrades, Zocdoc, WebMD y los directorios de proveedores de sus aseguradoras, corregidos para que todos coincidan con su Perfil de Negocio de Google</li><li>Un sitio web rápido, construido y probado conforme al estándar de accesibilidad WCAG 2.1 AA, disponible en español o en chino dondequiera que sus pacientes hablen esos idiomas</li></ul>`,
+          `<p><a href="${SOURCES.medicarePartBCoverage}">Los consultorios que aceptan la Parte B de Medicare</a> o Medi-Cal deben, conforme a una regulación federal, lograr que sus sitios web cumplan dicho estándar de accesibilidad <a href="${SOURCES.section504Extension}">a más tardar en mayo de 2027 si tienen quince empleados o más y en mayo de 2028 si son más pequeños</a>, aunque el HHS señaló en ese mismo aviso que todavía podría modificar los requisitos.</p>`,
+          `<h2>Después, el crecimiento</h2><p>La cita más económica que la mayoría de los consultorios llegará a agendar proviene de un paciente que ya está atrasado: el examen anual de la vista, la limpieza dental de cada seis meses, la consulta de seguimiento que nunca se programó. La mayoría de los consultorios les recuerda a esos pacientes de forma irregular o sencillamente no lo hace, por lo que el crecimiento comienza precisamente ahí, antes de destinar un solo dólar a la publicidad.</p><ul><li>Un sistema de seguimiento que registra de dónde vinieron originalmente los pacientes nuevos, para que el informe mensual pueda responder con honestidad si la inversión se pagó sola</li><li>Mensajes de recordatorio y reactivación para pacientes con visitas atrasadas, <a href="${SOURCES.hipaaMarketing}">redactados dentro de las reglas de HIPAA sobre el marketing dirigido a pacientes</a></li><li>Una página dedicada a cada tratamiento de alto valor que usted ofrece, escrita según la forma específica en que los pacientes potenciales realmente lo buscan</li><li>Publicidad en la búsqueda de Google solo para tratamientos en los que un paciente nuevo realmente justifica el costo, con un tope de presupuesto que no se le puede escapar sin que usted lo note</li></ul>`,
+          `<p>Hay cosas que no haremos: dirigir publicidad a personas según una condición de salud, colocar código de rastreo publicitario en páginas de citas o de admisión <a href="${SOURCES.ocrTrackingTech}">donde puede transmitir información de pacientes a una plataforma de publicidad</a>, ni pagarle a nadie por referencias, algo que por lo general prohíben las leyes <a href="${SOURCES.calBusProf650}">estatales</a> y <a href="${SOURCES.federalAks}">federales</a> contra los sobornos. Usted conserva la propiedad del sitio web, del dominio y del contenido, porque retener como rehén el sitio web de un cliente constituye un modelo de negocio deficiente y una manera todavía peor de tratar a las personas.</p>`,
+        ],
+        outcomes: [
+          'Perfiles de Negocio de Google completos y verificados para el consultorio y para cada profesional de la salud',
+          'Una solicitud de reseña que llega a cada paciente después de cada cita, y respuestas que nunca confirman que alguien es paciente',
+          'Fichas en directorios de salud y de aseguradoras que coinciden con su Perfil de Negocio de Google',
+          'Un sitio web que carga rápidamente en el teléfono, responde en primer lugar las preguntas que formulan los pacientes y está construido y probado conforme a WCAG 2.1 AA, en español o en chino si sus pacientes lo necesitan',
+          'Mensajes de recordatorio que reincorporan sistemáticamente a los pacientes atrasados a la agenda de citas',
+          'Publicidad en buscadores con un tope de presupuesto firme, usada solo donde los números realmente cuadran',
+          'Una nota mensual que explica cuánto invirtió, qué rendimiento obtuvo y de dónde provinieron los pacientes nuevos',
+        ],
+        meta: 'Sitios web, Perfil de Negocio de Google, reseñas, recordatorios y anuncios para consultorios independientes del sur de California, con resultados medidos.',
+      },
+      'zh-hans': {
+        title: '获取更多患者',
+        seoTitle: '诊所营销与本地 SEO：获取更多患者',
+        tagline: '更多您想要的患者，并如实掌握他们从何而来。',
+        summary:
+          '多数患者在来电之前，都会先查看您的 Google 商家资料、评价与网站，因此我们会先把这些做好。接着，我们会召回逾期未复诊的患者，并只为值得投放的治疗项目做广告，同时记录新患者的来源。',
+        body: [
+          '<p>潜在患者在来电之前，通常想知道五件事：您是否接受他们的保险、是否仍在接收新患者、诊所使用哪些语言、在哪里停车，以及能否在线预约。能立即回答这些问题的诊所，往往能接到这通电话，而非让它落入同一条街上做不到这点的竞争对手手中；因此，在这些基本功做好之前，再多的广告也无济于事。</p>',
+          `<h2>第一步：打好基础</h2><ul><li>完整填写并验证您的 Google 商家资料，让诊所出现在 Google 地图与本地搜索结果中；潜在患者经常直接搜索医生的名字，因此<a href="${google(SOURCES.googlePractitionerListings, 'zh-hans')}">应为每一位医生分别建立商家资料</a></li><li>稳定而可预期的评价来源：每次看诊后自动发送短信邀请每一位患者留下评价，<a href="${google(SOURCES.googleReviewPolicy, 'zh-hans')}">绝不只邀请满意的患者，也绝不以任何回报作为交换</a></li><li>回复评价时不透露任何患者信息，甚至不证实评价者是患者；<a href="${SOURCES.hhsReviewResponseSettlement}">美国联邦监管机构曾因一家牙科诊所在回复中披露患者资料，对其处以 50,000 美元罚款</a></li><li>Healthgrades、Zocdoc、WebMD 以及各保险公司的医疗服务提供者名录，全部更正至与您的 Google 商家资料一致</li><li>按照 WCAG 2.1 AA 无障碍标准构建并测试的快速网站，并视患者使用的语言提供西班牙文或中文版本</li></ul>`,
+          `<p><a href="${SOURCES.medicarePartBCoverage}">接受联邦医疗保险（Medicare）B 部分</a>或加州医疗补助（Medi-Cal）的诊所，依联邦法规须让网站符合上述无障碍标准，<a href="${SOURCES.section504Extension}">员工十五人以上的诊所须在 2027 年 5 月前完成，规模较小的诊所则须在 2028 年 5 月前完成</a>。不过，美国卫生与公众服务部（HHS）在公布上述期限的同一份文件中表示，仍可能修订相关要求。</p>`,
+          `<h2>第二步：带动增长</h2><p>多数诊所所能获得的成本最低的一次预约，来自一位早已逾期的患者：每年一次的眼科检查、每半年一次的洗牙、始终没有排上的复诊。多数诊所对这些患者的提醒时有时无，甚至完全没有，因此增长从这里开始，在花任何一分钱做广告之前。</p><ul><li>记录新患者最初从何而来的追踪机制，让每月报告能如实回答这笔支出是否已经回本</li><li>针对逾期未复诊患者的召回与重新联系信息，<a href="${SOURCES.hipaaMarketing}">内容符合 HIPAA 关于向患者进行营销的规定</a></li><li>为您提供的每一项高价值治疗建立专属页面，按照潜在患者实际的搜索方式撰写</li><li>只为新患者确实值得这笔成本的治疗项目投放 Google 搜索广告，并设定不会在不知不觉中超支的预算上限</li></ul>`,
+          `<p>有些事情我们不会做：根据健康状况定向投放广告；在预约或初诊页面放置广告追踪代码，<a href="${SOURCES.ocrTrackingTech}">这类代码可能将患者信息传给广告平台</a>；或者为转介向任何人付费，<a href="${SOURCES.calBusProf650}">加州</a>与<a href="${SOURCES.federalAks}">联邦</a>的反回扣法律一般均禁止此类行为。网站、域名与内容的所有权始终归您，因为把客户的网站扣作筹码，既是拙劣的商业模式，更是糟糕的待人之道。</p>`,
+        ],
+        outcomes: [
+          '为诊所及每一位个体从业者完成并验证 Google 商家资料',
+          '每次看诊后都会送达每一位患者的评价邀请，以及绝不证实任何人是患者的评价回复',
+          '与您的 Google 商家资料一致的医疗名录与保险公司信息',
+          '在手机上加载迅速、优先回答患者最先询问的问题，并按照 WCAG 2.1 AA 构建与测试的网站，如有需要可提供西班牙文或中文版本',
+          '有系统地将逾期患者带回预约排程的召回信息',
+          '设有严格预算上限、只在数字确实划算时才投放的搜索广告',
+          '每月一份说明：花了多少、带来多少回报，以及新患者来自何处',
+        ],
+        meta: '为南加州独立医疗、牙科与眼科诊所提供网站、Google 商家资料、评价管理、患者召回与搜索广告，并追踪新患者的来源。',
+      },
+      'zh-hant': {
+        title: '吸引更多病患',
+        seoTitle: '診所行銷與在地 SEO：吸引更多病患',
+        tagline: '更多您想要的病患，並如實掌握他們從何而來。',
+        summary:
+          '多數病患在來電之前，都會先查看您的 Google 商家檔案、評論與網站，因此我們會先把這些做好。接著，我們會召回逾期未回診的病患，並只為值得投放的治療項目刊登廣告，同時記錄新病患的來源。',
+        body: [
+          '<p>潛在病患在來電之前，通常想知道五件事：您是否接受他們的保險、是否仍在接受新病患、診所使用哪些語言、在哪裡停車，以及能否線上預約。能立即回答這些問題的診所，往往能接到這通電話，而非讓它落入同一條街上做不到這點的競爭對手手中；因此，在這些基本功做好之前，再多的廣告也無濟於事。</p>',
+          `<h2>第一步：打好基礎</h2><ul><li>完整填寫並驗證您的 Google 商家檔案，讓診所出現在 Google 地圖與在地搜尋結果中；潛在病患經常直接搜尋醫師的名字，因此<a href="${google(SOURCES.googlePractitionerListings, 'zh-hant')}">應為每一位醫師分別建立商家檔案</a></li><li>穩定而可預期的評論來源：每次看診後自動傳送簡訊邀請每一位病患留下評論，<a href="${google(SOURCES.googleReviewPolicy, 'zh-hant')}">絕不只邀請滿意的病患，也絕不以任何回饋作為交換</a></li><li>回覆評論時不透露任何病患資訊，甚至不證實評論者是病患；<a href="${SOURCES.hhsReviewResponseSettlement}">美國聯邦主管機關曾因一家牙醫診所在回覆中揭露病患資料，對其處以 50,000 美元罰款</a></li><li>Healthgrades、Zocdoc、WebMD 以及各保險公司的醫療服務提供者名錄，全部更正至與您的 Google 商家檔案一致</li><li>依照 WCAG 2.1 AA 無障礙標準建置並測試的快速網站，並視病患使用的語言提供西班牙文或中文版本</li></ul>`,
+          `<p><a href="${SOURCES.medicarePartBCoverage}">接受聯邦醫療保險（Medicare）B 部分</a>或加州醫療補助（Medi-Cal）的診所，依聯邦法規須讓網站符合上述無障礙標準，<a href="${SOURCES.section504Extension}">員工十五人以上的診所須在 2027 年 5 月前完成，規模較小的診所則須在 2028 年 5 月前完成</a>。不過，美國衛生及公共服務部（HHS）在公布上述期限的同一份文件中表示，仍可能修訂相關要求。</p>`,
+          `<h2>第二步：帶動成長</h2><p>多數診所所能獲得的成本最低的一次預約，來自一位早已逾期的病患：每年一次的眼科檢查、每半年一次的洗牙、始終沒有排上的回診。多數診所對這些病患的提醒時有時無，甚至完全沒有，因此成長從這裡開始，在花任何一塊錢刊登廣告之前。</p><ul><li>記錄新病患最初從何而來的追蹤機制，讓每月報告能如實回答這筆支出是否已經回本</li><li>針對逾期未回診病患的召回與重新聯繫訊息，<a href="${SOURCES.hipaaMarketing}">內容符合 HIPAA 關於向病患進行行銷的規定</a></li><li>為您提供的每一項高價值治療建立專屬頁面，依照潛在病患實際的搜尋方式撰寫</li><li>只為新病患確實值得這筆成本的治療項目刊登 Google 搜尋廣告，並設定不會在不知不覺中超支的預算上限</li></ul>`,
+          `<p>有些事情我們不會做：依健康狀況鎖定投放廣告；在預約或初診頁面放置廣告追蹤程式碼，<a href="${SOURCES.ocrTrackingTech}">這類程式碼可能將病患資訊傳給廣告平台</a>；或是為轉介向任何人付費，<a href="${SOURCES.calBusProf650}">加州</a>與<a href="${SOURCES.federalAks}">聯邦</a>的反回扣法律一般皆禁止此類行為。網站、網域與內容的所有權始終歸您，因為把客戶的網站扣作籌碼，既是拙劣的商業模式，更是糟糕的待人之道。</p>`,
+        ],
+        outcomes: [
+          '為診所及每一位個人專業執業人員完成並驗證 Google 商家檔案',
+          '每次看診後都會送達每一位病患的評論邀請，以及絕不證實任何人是病患的評論回覆',
+          '與您的 Google 商家檔案一致的醫療名錄與保險公司資訊',
+          '在手機上載入迅速、優先回答病患最先詢問的問題，並依照 WCAG 2.1 AA 建置與測試的網站，如有需要可提供西班牙文或中文版本',
+          '有系統地將逾期病患帶回預約排程的召回訊息',
+          '設有嚴格預算上限、只在數字確實划算時才刊登的搜尋廣告',
+          '每月一份說明：花了多少、帶來多少回報，以及新病患來自何處',
+        ],
+        meta: '為南加州獨立醫療、牙科與眼科診所提供網站、Google 商家檔案、評論管理、病患召回與搜尋廣告，並追蹤新病患的來源。',
       },
     },
   },
@@ -426,4 +417,27 @@ export const services: Service[] = [
 /** Look up a service by its localized slug. */
 export function serviceBySlug(locale: Locale, slug: string): Service | undefined {
   return services.find((s) => s.slugs[locale] === slug);
+}
+
+/**
+ * Which service each blog pillar's end-of-post call to action points at.
+ * The pillars are a blog taxonomy and outlived two services, so this is an
+ * explicit map rather than `services.find((s) => s.id === pillar)` — that
+ * lookup crashed the build the moment a pillar's service was retired. A pillar
+ * missing here is a compile error; a mapped id missing from `services` throws.
+ */
+export const PILLAR_SERVICE: Record<Pillar, ServiceId> = {
+  websites: 'websites',
+  search: 'websites',
+  ads: 'websites',
+  consulting: 'consulting',
+};
+
+export function serviceForPillar(pillar: Pillar): Service {
+  const id = PILLAR_SERVICE[pillar];
+  const service = services.find((s) => s.id === id);
+  if (!service) {
+    throw new Error(`services.ts: pillar "${pillar}" maps to "${id}", which is not in services[]`);
+  }
+  return service;
 }

@@ -51,6 +51,11 @@ export const site = {
     'Los Angeles',
   ],
 
+  /* Beyond the home-base cities: the practice work reaches across Southern
+     California (2026-09-14). Emitted as schema.org AdministrativeArea. City
+     landing pages are still driven by serviceArea alone. */
+  regionServed: ['Los Angeles County', 'Orange County', 'Riverside County', 'San Bernardino County'],
+
   /* Profiles the business actually maintains. These are emitted as schema.org
      `sameAs` on the homepage, which is how Google ties this site to the same
      business entity elsewhere — so a wrong or dead URL here is worse than an

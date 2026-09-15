@@ -3,7 +3,7 @@
  *  GLOSSARY — plain-English definitions of the jargon this site uses.
  * ─────────────────────────────────────────────────────────────────────────
  *
- *  English only, on purpose: it exists so a small business owner reading
+ *  English only, on purpose: it exists so a practice owner reading
  *  the (English) service pages isn't left guessing what a term means.
  *  Keep every definition to 2-3 short sentences, no jargon inside the
  *  jargon explanation. If you can't explain it simply, the term probably
@@ -71,5 +71,29 @@ export const glossary: GlossaryTerm[] = [
     term: 'Workflow automation',
     definition:
       "A set-it-once rule that moves information between your tools without you doing it manually — e.g., a new contact-form submission automatically creates a lead in your CRM and sends you a text. It's not \"AI\" in any complicated sense, just plumbing that saves you the copy-paste.",
+  },
+  {
+    id: 'ehr',
+    term: 'EHR (electronic health record)',
+    definition:
+      "The software a practice uses to keep patient charts, visit notes, prescriptions and test results instead of paper folders. Most EHRs can also handle scheduling and billing, but many practices only ever switch on a fraction of what they paid for.",
+  },
+  {
+    id: 'hipaa',
+    term: 'HIPAA',
+    definition:
+      "The federal law that sets the rules for how medical practices, and the companies they hire, protect patient information. It covers who may see a patient's records, how those records are kept secure, and what has to happen when they leak.",
+  },
+  {
+    id: 'business-associate-agreement',
+    term: 'Business associate agreement (BAA)',
+    definition:
+      'A contract HIPAA requires between a practice and any outside company that handles its patient information, such as an EHR vendor, a billing service or a consultant. It commits that company to protect the information the way the practice itself must.',
+  },
+  {
+    id: 'wcag',
+    term: 'WCAG 2.1 AA',
+    definition:
+      'The Web Content Accessibility Guidelines: the standard for making a website usable by people who are blind, have low vision, or cannot use a mouse. "AA" is the middle of its three levels, and it is the level most accessibility laws point to.',
   },
 ];
