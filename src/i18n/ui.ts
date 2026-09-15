@@ -105,6 +105,8 @@ export interface UIStrings {
     /** Heading above a service's deliverables list. NOT a button label —
      *  the localized pages used `buttons.viewService` here by mistake. */
     whatYouGet: string;
+    /** Heading above a city page's list of sources. */
+    citySources: string;
   };
   misc: {
     mainNav: string;
@@ -167,6 +169,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     hub: {
       whatYouGet: 'What you get',
+      citySources: 'Sources',
       servicesDescription:
         'A practice checkup, office digitization, and more new patients, for independent medical, dental, and eye care practices throughout Southern California.',
       servicesIntro: 'Start with the checkup; what it finds decides what comes next.',
@@ -231,6 +234,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     hub: {
       whatYouGet: 'Lo que incluye',
+      citySources: 'Fuentes',
       servicesDescription:
         'Revisión integral, digitalización del consultorio y más pacientes nuevos para consultorios médicos, dentales y de optometría del sur de California.',
       servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá qué sigue.',
@@ -295,6 +299,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     hub: {
       whatYouGet: '服务内容',
+      citySources: '资料来源',
       servicesDescription: '为南加州各地的独立医疗、牙科与眼科诊所提供经营诊断、诊所数字化与新患者开发服务。',
       servicesIntro: '先从经营诊断开始，诊断的结果将决定下一步。',
       citiesTitle: '我们服务的城市',
@@ -354,6 +359,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     hub: {
       whatYouGet: '服務內容',
+      citySources: '資料來源',
       servicesDescription: '為南加州各地的獨立醫療、牙科與眼科診所提供經營診斷、診所數位化與新病患開發服務。',
       servicesIntro: '先從經營診斷開始，診斷的結果將決定下一步。',
       citiesTitle: '我們服務的城市',

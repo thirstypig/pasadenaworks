@@ -663,6 +663,17 @@ describe('rendered-page extraction', () => {
     expect(out).not.toContain('South Pasadena');
   });
 
+  /**
+   * A city page's source list is citations, not prose: "CMS NPI Registry,
+   * queried September 2026" would score as a five-word sentence per item and
+   * drag every city page toward the bottom of its band.
+   */
+  it('excludes a city page’s source list', () => {
+    const out = mainProse('<main><p>Real prose about the practice.</p><ul class="city-sources"><li><a href="https://x.example/">CMS NPI Registry, queried September 2026</a></li></ul></main>');
+    expect(out).toContain('Real prose');
+    expect(out).not.toContain('NPI Registry');
+  });
+
   it('does not double-count an item that already ends in punctuation', () => {
     const punctuated = '<main><ul><li>This item is a full sentence.</li><li>So is this second one here.</li></ul></main>';
     expect(analyze(mainProse(punctuated), 'en').sentences).toBe(2);

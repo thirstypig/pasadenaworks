@@ -1,45 +1,106 @@
 import { describe, it, expect } from 'vitest';
-import { cities, cityLocales, cityBySlug, cityDisplayName } from './cities';
+import { cities, cityLocales, cityBySlug, cityDisplayName, type CityCopy } from './cities';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
 
+const COPY: CityCopy = { title: 't', summary: 's', body: ['b'], meta: 'm', sources: [{ label: 'l', url: 'https://example.com/' }] };
+
 describe('cityLocales', () => {
-  it('reads real locales straight from the data, never assuming all four', () => {
-    // Alhambra is written with all 4 locales in the data.
-    const alhambra = cityBySlug('alhambra')!;
-    expect(cityLocales(alhambra).sort()).toEqual(['en', 'es', 'zh-hans', 'zh-hant'].sort());
+  it('reports only the locales a city defines, never a fixed list', () => {
+    // Synthetic cities on purpose. Every real city now carries all four
+    // locales, so the old data-driven "the shapes must differ" check could no
+    // longer fail — and a function returning a hardcoded four-locale list is
+    // exactly what hard rule 1 forbids.
+    expect(cityLocales({ slug: 'pasadena', t: { en: COPY } })).toEqual(['en']);
+    expect(cityLocales({ slug: 'arcadia', t: { en: COPY, 'zh-hant': COPY } }).sort()).toEqual(['en', 'zh-hant']);
+    expect(cityLocales({ slug: 'alhambra', t: { en: COPY, es: undefined } })).toEqual(['en']);
   });
 
-  it('returns only the locales a city actually has copy for (en-only city)', () => {
-    // Pasadena only has an `en` entry in the data.
-    const pasadena = cityBySlug('pasadena')!;
-    expect(cityLocales(pasadena)).toEqual(['en']);
-  });
-
-  it('returns exactly 2 locales for a partial-translation city (Arcadia: en + zh-hant)', () => {
-    const arcadia = cityBySlug('arcadia')!;
-    expect(cityLocales(arcadia).sort()).toEqual(['en', 'zh-hant'].sort());
-  });
-
-  it('never fabricates a locale absent from a city\'s own data', () => {
-    // `cityLocales` is Object.keys(city.t).filter(Boolean), so asserting that
-    // every reported locale exists in `city.t` was true BY CONSTRUCTION for any
-    // content — it could not fail. What can actually go wrong is the function
-    // being rewritten to return a fixed list, which is what hard rule 1 forbids
-    // ("Don't hardcode a full four-locale map for consistency"). So assert the
-    // property that would break: the reported set must DIFFER between cities.
-    expect(cities.length).toBeGreaterThan(3); // control: an empty array must not pass
-    const shapes = new Set(cities.map((city) => cityLocales(city).sort().join(',')));
-    expect(shapes.size).toBeGreaterThan(1);
-
-    // and it must still agree with the data, per city
+  it('agrees with the data for every real city', () => {
+    expect(cities.length).toBe(10);
     for (const city of cities) {
       expect(cityLocales(city).sort()).toEqual(
-        (Object.keys(city.t) as (keyof typeof city.t)[])
-          .filter((l) => city.t[l])
-          .sort(),
+        (Object.keys(city.t) as (keyof typeof city.t)[]).filter((l) => city.t[l]).sort(),
       );
+    }
+  });
+});
+
+/** Figures a reader could check, with formatting that legitimately differs
+ *  between languages removed: thousands separators, and a Chinese
+ *  "2026 年 9 月", reduced to its year because English writes the month as a word. */
+function figures(text: string): string[] {
+  return (text.replace(/(\d{4})\s*年\s*\d{1,2}\s*月/g, '$1').match(/\d+(?:[.,]\d+)*/g) ?? [])
+    .map((n) => n.replace(/,(?=\d{3}\b)/g, ''))
+    .sort();
+}
+
+const prose = (c: CityCopy) => [c.summary, ...c.body].join(' ');
+
+describe('city copy', () => {
+  it('normalizes figures the same way in every language', () => {
+    expect(figures('1,200 dentists and 23.0% in September 2026')).toEqual(figures('2026 年 9 月，1200 名牙醫，23.0%'));
+    expect(figures('26 dentists')).not.toEqual(figures('62 dentists'));
+  });
+
+  it('gives every page three plain paragraphs and at least two https sources', () => {
+    for (const city of cities) {
+      for (const locale of cityLocales(city)) {
+        const c = city.t[locale]!;
+        const where = `${city.slug}/${locale}`;
+        expect(c.body, where).toHaveLength(3);
+        for (const p of [c.title, c.summary, c.meta, ...c.body]) expect(p, where).not.toMatch(/[<>]/);
+        expect(c.sources.length, where).toBeGreaterThanOrEqual(2);
+        for (const s of c.sources) {
+          expect(new URL(s.url).protocol, `${where}: ${s.url}`).toBe('https:');
+          expect(s.label.trim(), where).not.toBe('');
+        }
+      }
+    }
+  });
+
+  it('titles every English page with the searched phrase', () => {
+    for (const city of cities) {
+      expect(city.t.en!.title).toBe(`More patients for medical and dental practices in ${cityDisplayName(city.slug)}`);
+    }
+  });
+
+  it('keeps meta descriptions in the service pages’ bands', () => {
+    const BAND = { en: [150, 158], es: [130, 160] } as const;
+    for (const city of cities) {
+      for (const locale of ['en', 'es'] as const) {
+        const c = city.t[locale];
+        if (!c) continue;
+        const n = [...c.meta].length;
+        expect(n, `${city.slug}/${locale} meta is ${n}`).toBeGreaterThanOrEqual(BAND[locale][0]);
+        expect(n, `${city.slug}/${locale} meta is ${n}`).toBeLessThanOrEqual(BAND[locale][1]);
+      }
+    }
+  });
+
+  it('never reuses a paragraph with only the city name and figures swapped (hard rule 2)', () => {
+    // The doorway pattern a data-backed page is most tempted by: one template,
+    // new numbers. Longest names first, so "South Pasadena" masks before "Pasadena".
+    const names = cities.map((c) => cityDisplayName(c.slug)).sort((a, b) => b.length - a.length);
+    const mask = (p: string) =>
+      names.reduce((s, n) => s.replaceAll(n, '<CITY>'), p).replace(/\d+(?:[.,]\d+)*/g, '<N>');
+    const seen = new Map<string, string>();
+    for (const city of cities) {
+      for (const p of city.t.en!.body) {
+        const key = mask(p);
+        expect(seen.get(key), `${city.slug} repeats a paragraph from ${seen.get(key)}`).toBeUndefined();
+        seen.set(key, city.slug);
+      }
+    }
+    expect(seen.size).toBe(cities.length * 3);
+  });
+
+  it('carries exactly the English figures into every translation', () => {
+    for (const city of cities) {
+      for (const locale of cityLocales(city).filter((l) => l !== 'en')) {
+        expect(figures(prose(city.t[locale]!)), `${city.slug}/${locale}`).toEqual(figures(prose(city.t.en!)));
+      }
     }
   });
 });
@@ -47,6 +108,7 @@ describe('cityLocales', () => {
 describe('cityBySlug', () => {
   it('finds a city by its exact slug', () => {
     expect(cityBySlug('monterey-park')?.slug).toBe('monterey-park');
+    expect(cityBySlug('san-gabriel')?.slug).toBe('san-gabriel');
   });
 
   it('returns undefined for a slug that does not exist', () => {

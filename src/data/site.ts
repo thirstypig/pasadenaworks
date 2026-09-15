@@ -48,6 +48,7 @@ export const site = {
     'Monrovia',
     'San Marino',
     'Monterey Park',
+    'San Gabriel',
     'Los Angeles',
   ],
 
