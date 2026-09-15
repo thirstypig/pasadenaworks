@@ -1,9 +1,9 @@
 # City pages for independent health practices
 
-**Date:** 2026-09-14 · **Status:** design, awaiting owner review · **Branch:** `feat/practice-city-pages`, stacked on `feat/practice-services` (PR #75)
+**Date:** 2026-09-14 · **Status:** design, awaiting owner review · **Branch:** `feat/practice-city-pages`, based on `main`
 
 Follows `2026-09-14-practice-services-design.md` §9 item 1. Nothing here is live.
-This repository is public: no client or family member is named anywhere.
+This repository is public: no client is named anywhere.
 
 ---
 
@@ -156,6 +156,7 @@ planned (owner decision, 2026-09-14).
 
 ## 9. Branching
 
-This branch is stacked on `feat/practice-services`. **Before PR #75 is merged,
-retarget this branch's PR to `main`**, or merge #75 without `--delete-branch`;
-deleting a base branch closes every PR stacked on it.
+This branch began stacked on `feat/practice-services`. That base merged as #75
+and was deleted, and #76 followed, so the branch was replayed onto `main` with
+`git rebase --onto`, dropping the commits #75's squash already carried. It now
+opens a pull request against `main` like any other.
