@@ -161,7 +161,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: 'All rights reserved.',
-      serviceAreaBlurb: 'Consulting for independent health practices, based in the San Gabriel Valley.',
+      serviceAreaBlurb: 'New patients and a smoother front office for independent health practices, based in the San Gabriel Valley.',
       explore: 'Explore',
       citiesWeServe: 'Cities we serve',
     },
@@ -225,7 +225,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: 'Todos los derechos reservados.',
-      serviceAreaBlurb: 'Consultoría para consultorios de salud independientes, con base en el Valle de San Gabriel.',
+      serviceAreaBlurb: 'Pacientes nuevos y una recepción más fluida para consultorios de salud independientes, con base en el Valle de San Gabriel.',
       explore: 'Explorar',
       citiesWeServe: 'Ciudades que atendemos',
     },
@@ -289,7 +289,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: '版权所有。',
-      serviceAreaBlurb: '以圣盖博谷为基地，为独立诊所提供顾问服务。',
+      serviceAreaBlurb: '以圣盖博谷为基地，为独立诊所带来新患者与更顺畅的前台运作。',
       explore: '探索',
       citiesWeServe: '服务城市',
     },
@@ -348,7 +348,7 @@ export const ui: Record<Locale, UIStrings> = {
     },
     footer: {
       rights: '版權所有。',
-      serviceAreaBlurb: '以聖蓋博谷為據點，為獨立診所提供顧問服務。',
+      serviceAreaBlurb: '以聖蓋博谷為據點，為獨立診所帶來新病患與更順暢的櫃檯運作。',
       explore: '探索',
       citiesWeServe: '服務城市',
     },
