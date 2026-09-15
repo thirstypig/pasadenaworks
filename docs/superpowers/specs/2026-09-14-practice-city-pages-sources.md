@@ -153,4 +153,6 @@ Each confirmed to respond 200 on 2026-09-15 before being listed:
 
 - NPI Registry search: <https://npiregistry.cms.hhs.gov/search>
 - HCAI healthcare facility locations dataset: <https://data.chhs.ca.gov/dataset/healthcare-facility-locations>
-- Census Reporter, table C16001 (append the city's place ID as `geo_ids`, e.g. `?geo_ids=16000US0656000` for Pasadena): <https://censusreporter.org/tables/C16001/?geo_ids=16000US0656000>
+- U.S. Census Bureau, data.census.gov, table C16001 pinned to the ACS 2024 5-year detailed tables and one place (replace the seven-digit state + place code, e.g. `0656000` for Pasadena): <https://data.census.gov/table/ACSDT5Y2024.C16001?g=160XX00US0656000>
+  Verified 2026-09-15 by rendering all ten places in a real browser and recomputing each share from the page's own Total, Spanish and Chinese (incl. Mandarin, Cantonese) estimates: every Spanish and Chinese share above matched to one decimal place (Pasadena 31,629 and 7,222 of 130,511, giving 24.2% and 5.5%, the 5-year values, not the 1-year 20.9%/4.5%).
+  The Census Reporter link recorded here earlier (`censusreporter.org/tables/C16001/?geo_ids=…`) was replaced the same day: that page is a generic table description that ignores `geo_ids` until a reader picks a place, so it showed none of the cited figures.
