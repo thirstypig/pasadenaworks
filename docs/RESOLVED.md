@@ -452,3 +452,22 @@ Read this before re-investigating anything that sounds already-handled.
   redirect now fails a test), a source-side check of service links inside
   date-gated posts, and a pinned city-hub segment that no longer borrows the
   `websites` slug. Findings are `todos/029`–`046`.
+
+- **The readability scorer counted a bulleted list as one sentence, and the fix
+  had a side effect of its own** (2026-09-14, #75). Bullets carry no terminal
+  punctuation by house style, and both sentence splitters broke only on
+  punctuation, so a list-heavy service page measured FK 25.4 while its
+  paragraphs read near grade 11. Both scoring paths (`prose()` on markdown,
+  `mainProse()` on built HTML) now end every list item with a private-use
+  marker, U+E000, which every splitter treats as a sentence end. Before the fix
+  was adopted it was measured across the whole corpus: no blog post in any
+  locale changed verdict, and the largest shift was 0.3. It then turned each
+  two-word city in the localized homepages' service-area list into a two-word
+  sentence and pulled `/es/` from 46 to 58, outside the band. The first
+  check's note had grouped that page with the ones being rewritten. The list
+  is now excluded as furniture, and the blog corpus was re-checked at 68/68.
+  The Checkup and Get more patients drafts measured FK 7.1 and 10.7 once lists
+  were scored fairly and were raised by hand to 13.4 and 13.0. Two built-page
+  tests guard the `service-area` class the exclusion depends on. Full
+  write-up in
+  [`docs/solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md`](solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md).
