@@ -111,6 +111,22 @@ describe('city copy', () => {
       }
     }
   });
+
+  it('cites the same source URLs, in the same order, in every language', () => {
+    // Source links are written out per locale, so a link corrected in en.ts
+    // would otherwise leave a translation pointing at the old one with nothing
+    // failing (Task 3 review, 2026-09-15).
+    let compared = 0;
+    for (const city of cities) {
+      const english = city.t.en!.sources.map((s) => s.url);
+      for (const locale of cityLocales(city).filter((l) => l !== 'en')) {
+        expect(city.t[locale]!.sources.map((s) => s.url), `${city.slug}/${locale}`).toEqual(english);
+        compared++;
+      }
+    }
+    // Control: with no translations at all this would pass vacuously.
+    expect(compared).toBeGreaterThan(0);
+  });
 });
 
 describe('cityBySlug', () => {
