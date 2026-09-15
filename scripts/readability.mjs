@@ -529,6 +529,10 @@ export function mainProse(html) {
   // style keeps plain, and on the homepage they were pulling the score
   // down by three grades on their own.
   t = t.replace(/<form\b[\s\S]*?<\/form>/g, ' ');
+  // The localized homepages' service-area list is place names, not prose.
+  // Once list items became sentence ends, each two-word city scored as a
+  // two-word sentence and dragged the page toward zero (2026-09-14).
+  t = t.replace(/<ul\b[^>]*\bclass="[^"]*\bservice-area\b[^"]*"[^>]*>[\s\S]*?<\/ul>/g, ' ');
   // Quoted samples: keep the opening summary, drop later blockquotes,
   // matching dropQuotedSamples() on the markdown side.
   {

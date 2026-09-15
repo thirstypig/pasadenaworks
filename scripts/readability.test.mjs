@@ -650,6 +650,19 @@ describe('rendered-page extraction', () => {
     expect(analyze('- 第一项服务内容的简短说明\n- 第二项服务内容的简短说明\n', 'zh-hans').sentences).toBe(2);
   });
 
+  /**
+   * A list of place names is furniture, not prose — the same category as the
+   * nav and the form. Once list items became sentence ends, each two-word city
+   * ("South Pasadena", "Monterey Park") scored as a two-word sentence and
+   * dragged the localized homepages' averages toward zero; before that change
+   * the names merely ran together unnoticed. Found 2026-09-14 on /es/.
+   */
+  it('excludes the service-area city list', () => {
+    const out = mainProse('<main><p>Real prose about the practice.</p><ul class="service-area"><li>South Pasadena</li><li>Monterey Park</li></ul></main>');
+    expect(out).toContain('Real prose');
+    expect(out).not.toContain('South Pasadena');
+  });
+
   it('does not double-count an item that already ends in punctuation', () => {
     const punctuated = '<main><ul><li>This item is a full sentence.</li><li>So is this second one here.</li></ul></main>';
     expect(analyze(mainProse(punctuated), 'en').sentences).toBe(2);
