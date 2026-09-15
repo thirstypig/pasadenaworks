@@ -133,9 +133,9 @@ are listed in §5.
   1. Many independent practices run on an <a href="/glossary/#ehr">EHR</a> that is only half set up, a phone line the front desk is always behind on, and paper forms that someone retypes after the visit. Each of those costs staff time, and several of them cost patients who gave up before anyone answered.
   2. **How it works**
      - We follow one patient from the first call to the follow-up reminder, and fix the steps where time and money leak out
-     - Online scheduling, intake and consent forms that patients complete on their phone before the visit, and automated reminders that reduce no-shows **[cite]**
+     - Online scheduling, intake and consent forms that patients complete on their phone before the visit, and automated reminders that reduce no-shows **[cite: remindersNoShows]**
      - Paper charts scanned and organized, and your EHR configured so your staff actually use it
-     - A <a href="/glossary/#hipaa">HIPAA</a> security risk analysis, which HIPAA requires of practices that bill insurance electronically **[cite]**, and a signed <a href="/glossary/#business-associate-agreement">business associate agreement</a> with every vendor that handles patient information, including us
+     - A <a href="/glossary/#hipaa">HIPAA</a> security risk analysis, which HIPAA requires **[cite: hipaaRiskAnalysis]** of practices that bill insurance electronically **[cite: hipaaCoveredEntities]**, and a signed <a href="/glossary/#business-associate-agreement">business associate agreement</a> with every vendor that handles patient information, including us
      - Written office procedures, so the practice runs the same way on the days you are not there
   3. We recommend software on its merits and accept no commissions or referral fees from any vendor, which is the only way advice about which system to buy can be worth anything. We also stay out of IT repairs and billing, and will point you to people who do those well.
 - **outcomes:**
@@ -159,11 +159,11 @@ Merges the draft "Online presence" and "Marketing and advertising" pages
   1. A prospective patient usually wants to know five things: whether you take their insurance, whether you are accepting new patients, which languages you speak, where to park, and whether they can book online. A practice that answers those questions quickly often gets the call over one down the street that does not, which is why no amount of advertising helps until the basics are right.
   2. **First, the basics**
      - Your <a href="/glossary/#google-business-profile">Google Business Profile</a> completed and verified, with a separate listing for each doctor, since patients often search by name **[cite: Google's individual-practitioner guidelines]**
-     - A steady flow of <a href="/glossary/#reviews">reviews</a>: a text after each visit asking every patient, never only the satisfied ones, and never with anything offered in return **[cite: Google review policy; FTC consumer review rule]**
-     - Replies to reviews written so they never confirm that the reviewer is a patient, a HIPAA violation federal regulators have fined practices for **[cite: HHS OCR enforcement]**
+     - A steady flow of <a href="/glossary/#reviews">reviews</a>: a text after each visit asking every patient, never only the satisfied ones, and never with anything offered in return **[cite: googleReviewPolicy]**
+     - Replies to reviews written so they never confirm that the reviewer is a patient, a HIPAA violation federal regulators fined one dental practice $50,000 for **[cite: hhsReviewResponseSettlement]**
      - Healthgrades, Zocdoc, WebMD, and your insurers' provider directories made consistent with Google
      - A fast website that meets the <a href="/glossary/#wcag">WCAG 2.1 AA</a> accessibility standard, in Spanish or Chinese where your patients speak it
-  3. Practices that accept Medicare Part B are now required by federal rule to make their websites meet that accessibility standard, by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones **[cite: Federal Register 2026-09266]**.
+  3. Practices that accept Medicare Part B **[cite: medicarePartBCoverage]** are now required by federal rule to make their websites meet that accessibility standard, by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones **[cite: Federal Register 2026-09266]**.
   4. **Then, growth.** The least expensive appointment most practices will ever book comes from a patient who is already overdue: the annual eye exam, the six-month cleaning, the follow-up that never got scheduled. Most practices remind those patients poorly or not at all, so growth starts there, before a dollar goes to advertising.
      - Tracking that records where every new patient came from, so the monthly report can answer whether the spending paid for itself
      - Recall and reactivation messages for patients who are overdue for a visit, written within HIPAA's rules on marketing to patients **[cite]**
