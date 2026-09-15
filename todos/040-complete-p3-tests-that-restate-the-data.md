@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "040"
 tags: [code-review, tests, duplication, maintainability]
@@ -55,7 +55,7 @@ schema test into `og-image.test.ts`.
 
 ## Recommended Action
 
-To be decided in triage.
+See the 2026-09-15 work-log entry.
 
 ## Technical Details
 
@@ -64,15 +64,22 @@ To be decided in triage.
 
 ## Acceptance Criteria
 
-- [ ] (a) confirmed resolved by the 036 ledger once merged
-- [ ] No test name claims more than its assertion proves
-- [ ] Translated-locale lists come from `src/i18n/locales.mjs`; one built-page walker
-- [ ] `npm run test` passes before and after `npm run build`; any count change explained
+- [x] (a) confirmed resolved by the 036 ledger once merged
+- [x] No test name claims more than its assertion proves
+- [x] Translated-locale lists come from `src/i18n/locales.mjs`; one built-page walker
+- [x] `npm run test` passes before and after `npm run build`; any count change explained
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the code-simplicity, pattern-recognition and kieran-typescript review agents.
+
+### 2026-09-15 — Fixed
+(a) done by 036. (b) Removed the Digitize slug echo test (the published-URL list pins every slug) and the placeholder check; kept the display-order test, renamed to say the order is the owner's decision. (c) Renamed the derived pillar test to "resolves every blog pillar to a service without throwing"; the hardcoded mapping test stays as the real assertion. (d) The homepage-parity needle is read from the English page's H1, with a positive control on its length. (e) services.test.ts uses LOCALES and TRANSLATED_LOCALES. (f) The built-page walker lives once in src/utils/built-pages.ts, imported by both tests. (g) local-business-schema.test.ts was kept as its own file: with todo 042 it now carries five checks, not one.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/040 is closed.**
 
 ## Resources
 

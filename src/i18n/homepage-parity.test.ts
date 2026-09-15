@@ -108,10 +108,11 @@ describe('the four homepages are one design', () => {
   it('keeps the localized homepage reading its copy from home.ts', () => {
     // Guards the other direction: parity must not be achieved by hardcoding
     // English strings into the localized page. The needle is the English H1,
-    // asserted present in the English page first so the absence check below
-    // cannot pass vacuously after the next copy change.
-    const needle = 'For independent practices ready to stop running on paper and word of mouth.';
-    expect(english).toContain(needle);
+    // read from the English page itself so a headline edit cannot break this
+    // test, and checked to be real text so the absence check below cannot pass
+    // vacuously.
+    const needle = english.match(/<h1[^>]*>\s*([^<{]+?)\s*<\/h1>/)?.[1] ?? '';
+    expect(needle.length, 'positive control: the English H1 is literal text').toBeGreaterThan(20);
     expect(localized).toContain('copy.heroHeading');
     expect(localized).toContain('copy.servicesHeading');
     expect(localized).not.toContain(needle);

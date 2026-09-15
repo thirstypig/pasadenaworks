@@ -22,7 +22,7 @@
 - **Glossary links** (`/glossary/#…`) appear in English copy only; the glossary is English-only.
 - **Every checkable claim ships with a source link or is cut** (spec §3). Sources are produced by Task 2.
 - **Translation method:** phrasing from research, every fact from the English; a translation never asserts more than its English twin. Product and regulatory names come from the vendor's or regulator's own localized pages (verify, don't translate). Re-read every sentence containing "never", "only", "not", "no", or a modal against the English before committing. Use the `writing-taiwan-mandarin-copy` skill before writing any `zh-hant` string.
-- **Public repository:** no client or family member is named in code, docs, commits, or the PR.
+- **Public repository:** no client is named or described in code, docs, commits, or the PR.
 - **Never `rm -rf` inside the project** — move generated directories to the session scratchpad instead. Never commit `dist/`.
 - **Scoped readability check** (used by several tasks; run after `npm run build`). It must run from a FILE: `readability.mjs` calls `isMain()`, which reads `process.argv[1]` and throws under `node -e` (found in Task 3). Save once to `$TMPDIR/scoped-readability.mjs`, with `REPO` replaced by the output of `pwd`:
 
@@ -42,7 +42,7 @@
 
   ```
   Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-  Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy
+  Claude-Session: <session URL>
   ```
 
 - **Branch:** `feat/practice-services` (already checked out; the spec is committed on it).
@@ -354,7 +354,7 @@ Blog pillars now reach a service through a typed PILLAR_SERVICE map, since
 matching a pillar to a service id crashes once a service is retired.
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -415,7 +415,7 @@ git add docs/superpowers/specs/2026-09-14-practice-services-sources.md docs/supe
 git commit -m "Source every checkable claim in the practice services copy
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -627,7 +627,7 @@ Adds EHR, HIPAA, BAA and WCAG glossary entries and links every checkable
 claim to its verified source.
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -741,7 +741,7 @@ git add src/data/services.ts src/data/services.test.ts
 git commit -m "Add Digitize the office in all four languages
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -821,7 +821,7 @@ Adds a parity test pinning body blocks, list items, outcomes and source links
 to the English. Polarity read: 6 objects checked.
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -951,7 +951,7 @@ git add src/pages/index.astro src/data/home.ts src/pages/\[locale\]/index.astro 
 git commit -m "Reposition all four homepages for practices and add the worth-more section
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -1091,7 +1091,7 @@ git add src/i18n/ui.ts src/data/site.ts src/layouts/Base.astro src/layouts/local
 git commit -m "Re-aim hub and footer copy, structured data and the share image at practices
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 ```
 
 ---
@@ -1172,7 +1172,7 @@ git add CLAUDE.md
 git commit -m "Document the practice repositioning, retired-service redirects and pillar map
 
 Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy"
+Claude-Session: <session URL>"
 git push -u origin feat/practice-services
 ```
 
@@ -1193,7 +1193,7 @@ Moves Pasadena Works from general small-business services to three for independe
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-https://claude.ai/code/session_01V3F6Xwi4r3Ggp3N5bsedoy
+<session URL>
 ```
 
 Wait for CI. Read the reported test count from the CI log, amend CLAUDE.md's count if it differs from what Step 1 wrote, commit, push. **Do not merge.** Report the PR URL and the three owner checklist items to the owner.

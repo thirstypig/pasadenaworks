@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "045"
 tags: [code-review, i18n, zh-hans, zh-hant, es, copy]
@@ -55,7 +55,7 @@ Spanish, qualify the listing claim in all four locales, swap the source.
 
 ## Recommended Action
 
-To be decided in triage.
+See the 2026-09-15 work-log entry.
 
 ## Technical Details
 
@@ -64,15 +64,22 @@ To be decided in triage.
 
 ## Acceptance Criteria
 
-- [ ] No Taiwan-only vocabulary in zh-hans service or homepage copy
-- [ ] "Associate" rendered as someone taking over the practice, not a partner
-- [ ] Listing claim qualified for multi-doctor practices, in all four locales
-- [ ] `npm run readability`, `npm run test` and `npm run build` pass after the edits
+- [x] No Taiwan-only vocabulary in zh-hans service or homepage copy
+- [x] "Associate" rendered as someone taking over the practice, not a partner
+- [x] Listing claim qualified for multi-doctor practices, in all four locales
+- [x] `npm run readability`, `npm run test` and `npm run build` pass after the edits
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the copy-claims review agent.
+
+### 2026-09-15 — Fixed
+(a) zh-hans: 简报→演示文稿, 检视→审视, 作业流程→工作流程, 排程→日程, 转介→推荐, 纸质作业→纸质文件; zh-hant keeps its Taiwan terms. (b) 合伙医生→执业医生 and 合夥醫師→醫師, "the doctor taking over". (c) Spanish: referencias→referidos; "da un paso atrás"→"se hace a un lado"; the meta already named software vendors (todo 035). (d) The per-doctor listing advice now applies when several doctors practice at one location, in body and outcomes, all four locales. (e) ocrTrackingTech now links HHS's own tracking-technologies bulletin, which carries the vacatur notice; the sources doc row records how it was checked.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/045 is closed.**
 
 ## Resources
 

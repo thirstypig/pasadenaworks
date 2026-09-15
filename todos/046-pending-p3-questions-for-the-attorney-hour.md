@@ -74,6 +74,9 @@ Bring this list to the attorney hour listed in PR #75's owner checklist.
 ### 2026-09-14 — Found in PR #75 review
 Collected from legal-adjacent notes across the PR #75 review agents; none was filed as a copy error.
 
+### 2026-09-15 — Sent for review
+The owner's healthcare-law contact received a PDF with these questions and eight more (business-associate status, the accessibility paragraph, testimonials, tracking pixels, directory fees, the glossary definition, an engagement agreement, business structure), each quoting the site word for word. The PDF is kept outside this public repo. This todo stays pending until the answers come back; any copy changes they prompt get their own todo.
+
 ## Resources
 
 - PR #75 (owner checklist); todos 029 and 031 (related legal-copy findings)

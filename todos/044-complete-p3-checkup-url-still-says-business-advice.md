@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "044"
 tags: [code-review, seo, i18n, urls, owner-decision]
@@ -64,15 +64,22 @@ the architecture-strategist recommended Option A in this PR.
 
 ## Acceptance Criteria
 
-- [ ] Decision recorded in spec §2, with the reason
-- [ ] If renamed: four redirects added, each old URL verified in `dist/` to redirect
-- [ ] If renamed: new slugs researched per locale, not character-converted
-- [ ] `npm run test` and `npm run build` pass; hreflang set for the page still has 4 + x-default
+- [x] Decision recorded in spec §2, with the reason
+- [x] If renamed: four redirects added, each old URL verified in `dist/` to redirect
+- [x] If renamed: new slugs researched per locale, not character-converted
+- [x] `npm run test` and `npm run build` pass; hreflang set for the page still has 4 + x-default
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the SEO, agent-native and architecture-strategist review agents.
+
+### 2026-09-15 — Fixed
+Owner chose to rename (2026-09-15). Slugs are now practice-checkup / revision-del-consultorio / jingying-zhenduan (both Chinese variants, matching 经营诊断 / 經營診斷 from todo 033). Four redirects from the old URLs were added to retired-services.mjs, the new URLs appended to PUBLISHED_SERVICE_URLS, and the four posts linking the old URL updated. The guard proved itself in real use: with the slugs renamed and no redirects yet, the test failed naming all four old URLs. Checked in a browser: /services/business-advice/ lands on /services/practice-checkup/.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/044 is closed.**
 
 ## Resources
 

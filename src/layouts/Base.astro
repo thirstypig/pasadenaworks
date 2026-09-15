@@ -6,8 +6,9 @@
 import { jsonLd } from '../utils/json-ld';
 import type { Locale } from '../i18n/ui';
 import { HTML_LANG } from '../i18n/ui';
-import { buildAlternates, absoluteUrl } from '../i18n/routes';
+import { buildAlternates, absoluteUrl, localeUrl, SEGMENTS } from '../i18n/routes';
 import { site } from '../data/site';
+import { services } from '../data/services';
 import { t } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -66,10 +67,32 @@ const localBusinessSchema = {
   url: site.url,
   email: site.email,
   telephone: site.phone,
+  /* The homepage's own meta description, in the page's language: what the
+     business does, which areaServed alone never said (todos/042). */
+  description,
   areaServed: [
     ...site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
-    ...site.regionServed.map((region) => ({ '@type': 'AdministrativeArea', name: region })),
+    /* "Orange County" alone names counties in several states. */
+    ...site.regionServed.map((region) => ({
+      '@type': 'AdministrativeArea',
+      name: region,
+      containedInPlace: { '@type': 'State', name: 'California' },
+    })),
   ],
+  /* The live services, read from services.ts so a retired or renamed service
+     can never linger here. Names and URLs follow the page's language. */
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: site.name,
+    itemListElement: services.map((service) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service.t[locale].title,
+        url: absoluteUrl(localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale])),
+      },
+    })),
+  },
   /* Empty entries dropped and the key omitted entirely when nothing is set —
      the reasoning lives on `social` in src/data/site.ts, where someone is
      actually tempted to paste a placeholder. */

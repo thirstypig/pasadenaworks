@@ -41,7 +41,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     servicesHeading: 'En qué le podemos ayudar',
     servicesIntro:
       'Todo trabajo comienza con una revisión, porque un consultorio que cree necesitar publicidad con frecuencia necesita primero corregir sus formularios de admisión, y no existe una manera honesta de saber cuál de las dos cosas hace falta hasta que alguien lo haya examinado.',
-    valueHeading: 'Vale más cuando usted da un paso atrás',
+    valueHeading: 'Vale más cuando usted se hace a un lado',
     valueBody:
       'Nada de esto se trata solo de este año: un consultorio con expedientes digitales, procedimientos escritos y un flujo constante de pacientes nuevos funciona sin que su dueño esté presente, que es precisamente lo que pagará un comprador o un asociado que tome el relevo. Cuando usted esté listo para vender, preparamos el consultorio y le presentamos a un corredor que se encarga de la venta en sí; nosotros no intermediamos ventas de consultorios y no aceptamos ningún pago de quienes sí lo hacen.',
     serviceAreaHeading: 'Dónde trabajamos',
@@ -57,16 +57,16 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     metaDescription:
       '我们协助南加州的独立医疗、牙科与眼科诊所实现诊所数字化、提升线上曝光，并带来更多新患者。',
     heroEyebrow: '圣盖博谷与南加州',
-    heroHeading: '献给准备告别纸质作业与口耳相传的独立诊所。',
+    heroHeading: '献给准备告别纸质文件与口耳相传的独立诊所。',
     heroSubhead:
       '我们协助南加州各地的医疗、牙科与眼科诊所将前台作业数字化，让搜索诊所的患者看到值得信赖的形象，并带来来源可追踪的新患者；此外，我们从不收取所推荐软件厂商的任何报酬。',
     heroCta: '联系我们',
     servicesHeading: '我们能帮您做什么',
     servicesIntro:
-      '每一次合作都从经营诊断开始，因为自认为需要广告的诊所，往往首先需要修正的是初诊表格；在有人实际检视之前，并没有诚实的办法判断究竟需要哪一项。',
+      '每一次合作都从经营诊断开始，因为自认为需要广告的诊所，往往首先需要修正的是初诊表格；在有人实际审视之前，并没有诚实的办法判断究竟需要哪一项。',
     valueHeading: '当您退居幕后，诊所更有价值',
     valueBody:
-      '这一切并非只着眼于今年：拥有电子病历、书面作业流程与稳定新患者来源的诊所，即使负责人不在场也能正常运作，而这恰恰是买家或接手的合伙医生愿意付费的原因。当您准备出售时，我们会协助诊所做好准备，并为您介绍负责实际交易的经纪人；我们不从事诊所买卖的中介，也不收取任何从事中介者的费用。',
+      '这一切并非只着眼于今年：拥有电子病历、书面工作流程与稳定新患者来源的诊所，即使负责人不在场也能正常运作，而这恰恰是买家或接手的执业医生愿意付费的原因。当您准备出售时，我们会协助诊所做好准备，并为您介绍负责实际交易的经纪人；我们不从事诊所买卖的中介，也不收取任何从事中介者的费用。',
     serviceAreaHeading: '我们的服务区域',
     serviceAreaIntro: '我们以圣盖博谷为基地，服务南加州各地的诊所，包括以下城市。',
     closingHeading: '准备好聊聊了吗？',
@@ -88,7 +88,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
       '每一次合作都從經營診斷開始，因為自認為需要廣告的診所，往往首先需要修正的是初診表單；在有人實際檢視之前，並沒有誠實的辦法判斷究竟需要哪一項。',
     valueHeading: '當您退居幕後，診所更有價值',
     valueBody:
-      '這一切並非只著眼於今年：擁有電子病歷、書面作業流程與穩定新病患來源的診所，即使負責人不在場也能正常運作，而這正是買家或接手的合夥醫師願意付費的原因。當您準備出售時，我們會協助診所做好準備，並為您介紹負責實際交易的仲介；我們不從事診所買賣的仲介業務，也不收取任何仲介業者的費用。',
+      '這一切並非只著眼於今年：擁有電子病歷、書面作業流程與穩定新病患來源的診所，即使負責人不在場也能正常運作，而這正是買家或接手的醫師願意付費的原因。當您準備出售時，我們會協助診所做好準備，並為您介紹負責實際交易的仲介；我們不從事診所買賣的仲介業務，也不收取任何仲介業者的費用。',
     serviceAreaHeading: '我們的服務區域',
     serviceAreaIntro: '我們以聖蓋博谷為據點，服務南加州各地的診所，包括以下城市。',
     closingHeading: '準備好聊聊了嗎？',

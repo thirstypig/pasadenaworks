@@ -2,13 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DIST, builtPages } from '../utils/built-pages';
 import { RETIRED_SERVICE_REDIRECTS } from './retired-services.mjs';
 import { services } from './services';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { LOCALES } from '../i18n/ui';
 
 /**
- * The service pages retired on 2026-09-14 were indexed in four languages.
+ * Retired and renamed service pages were indexed in four languages.
  * GitHub Pages has no server, so each one is an Astro static redirect: an
  * instant meta refresh, `noindex`, and a canonical to the page that absorbed it.
  * The source half runs everywhere; the built half needs dist/ and SKIPS without
@@ -32,11 +33,16 @@ const PUBLISHED_SERVICE_URLS = [
   '/es/servicios/sitios-web/',
   '/zh-hans/fuwu/wangzhan-jianshe/',
   '/zh-hant/fuwu/wangzhan-jianzhi/',
-  // consulting — "Practice Checkup" since 2026-09-14
+  // consulting — "Practice Checkup" since 2026-09-14; redirected 2026-09-15
   '/services/business-advice/',
   '/es/servicios/asesoria-de-negocios/',
   '/zh-hans/fuwu/jingying-zixun/',
   '/zh-hant/fuwu/jingying-zixun/',
+  // consulting — the Checkup's own slugs, from 2026-09-15
+  '/services/practice-checkup/',
+  '/es/servicios/revision-del-consultorio/',
+  '/zh-hans/fuwu/jingying-zhenduan/',
+  '/zh-hant/fuwu/jingying-zhenduan/',
   // digitize — added 2026-09-14
   '/services/practice-digitization/',
   '/es/servicios/digitalizacion-del-consultorio/',
@@ -121,22 +127,6 @@ describe('service links inside blog posts (source)', () => {
     expect(broken).toEqual([]);
   });
 });
-
-const DIST = join(dirname(fileURLToPath(import.meta.url)), '../../dist');
-
-function builtPages(dir = ''): string[] {
-  const out: string[] = [];
-  for (const entry of readdirSync(join(DIST, dir), { withFileTypes: true })) {
-    const rel = dir ? `${dir}/${entry.name}` : entry.name;
-    if (entry.isDirectory()) {
-      if (entry.name === '_astro' || entry.name === 'admin') continue;
-      out.push(...builtPages(rel));
-    } else if (entry.name === 'index.html') {
-      out.push(rel);
-    }
-  }
-  return out;
-}
 
 describe.skipIf(!existsSync(DIST))('retired service redirects (built)', () => {
   const entries = Object.entries(RETIRED_SERVICE_REDIRECTS);
