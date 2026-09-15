@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { services, serviceBySlug, serviceForPillar, PILLAR_SERVICE } from './services';
 import { PILLARS } from './pillars';
+import { glossary } from './glossary';
 
 describe('serviceBySlug', () => {
   it('finds a service by its locale-specific slug', () => {
@@ -54,5 +55,44 @@ describe('serviceForPillar', () => {
     expect(serviceForPillar('ads').id).toBe('websites');
     expect(serviceForPillar('websites').id).toBe('websites');
     expect(serviceForPillar('consulting').id).toBe('consulting');
+  });
+});
+
+describe('glossary links in service copy', () => {
+  it('links English copy only to glossary entries that exist', () => {
+    const ids = new Set(glossary.map((g) => g.id));
+    const text = JSON.stringify(services.map((s) => s.t.en));
+    const anchors = [...text.matchAll(/\/glossary\/#([a-z0-9-]+)/g)].map((m) => m[1]);
+    expect(anchors, 'positive control: English copy should link the glossary').toContain('ehr');
+    expect(anchors.filter((a) => !ids.has(a))).toEqual([]);
+  });
+
+  it('keeps glossary links out of non-English copy, because the glossary is English-only', () => {
+    for (const service of services) {
+      for (const locale of ['es', 'zh-hans', 'zh-hant'] as const) {
+        expect(JSON.stringify(service.t[locale]), `${service.id}/${locale}`).not.toContain('/glossary/');
+      }
+    }
+  });
+});
+
+describe('English copy rules', () => {
+  it('keeps every English meta description between 150 and 158 characters', () => {
+    for (const service of services) {
+      const n = [...service.t.en.meta].length;
+      expect(n, `${service.id} meta is ${n} characters`).toBeGreaterThanOrEqual(150);
+      expect(n, `${service.id} meta is ${n} characters`).toBeLessThanOrEqual(158);
+    }
+  });
+
+  it('uses none of the banned marketing words', () => {
+    const text = JSON.stringify(services.map((s) => s.t.en)).toLowerCase();
+    for (const word of ['leverage', 'solutions', 'empower', 'transformation']) {
+      expect(text).not.toContain(word);
+    }
+  });
+
+  it('carries no unfilled source placeholder', () => {
+    expect(JSON.stringify(services)).not.toContain('URL from sources file');
   });
 });

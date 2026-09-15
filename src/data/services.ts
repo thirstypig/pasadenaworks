@@ -29,6 +29,44 @@ import type { Pillar } from './pillars';
  *  English definition page would be a worse experience than no link.
  */
 
+/** Every outside source the service copy links to, verified in
+ *  docs/superpowers/specs/2026-09-14-practice-services-sources.md. A claim a
+ *  reader could check carries one of these, or it is not on the site.
+ *  Values go straight into `href`s rendered through `set:html`, so any `&` is
+ *  written `&amp;`. */
+const SOURCES = {
+  section504Extension:
+    'https://www.federalregister.gov/documents/2026/05/11/2026-09266/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web',
+  medicarePartBCoverage:
+    'https://www.alston.com/en/insights/publications/2026/03/compliance-section-504-rehabilitation-act',
+  googlePractitionerListings: 'https://support.google.com/business/answer/3038177',
+  googleReviewPolicy: 'https://support.google.com/contributionpolicy/answer/7400114',
+  hhsReviewResponseSettlement:
+    'https://www.hhs.gov/about/news/2022/03/28/four-hipaa-enforcement-actions-hold-healthcare-providers-accountable-with-compliance.html',
+  hipaaMarketing: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/marketing/index.html',
+  ocrTrackingTech:
+    'https://www.hklaw.com/en/insights/publications/2024/06/american-hospital-assn-v-becerra-are-tracking-tools-ok-again',
+  calBusProf650:
+    'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=650',
+  federalAks:
+    'https://uscode.house.gov/view.xhtml?req=granuleid%3AUSC-prelim-title42-section1320a-7b&amp;num=0&amp;edition=prelim',
+  hipaaRiskAnalysis:
+    'https://www.hhs.gov/hipaa/for-professionals/security/guidance/guidance-risk-analysis/index.html',
+  hipaaCoveredEntities:
+    'https://www.cms.gov/priorities/key-initiatives/burden-reduction/administrative-simplification/hipaa/covered-entities',
+  remindersNoShows: 'https://doi.org/10.1002/14651858.CD007458.pub3',
+} as const;
+
+const GOOGLE_HL: Record<Locale, string> = { en: 'en', es: 'es-419', 'zh-hans': 'zh-CN', 'zh-hant': 'zh-TW' };
+
+/** Google's help pages exist in each reader's language; the federal and state
+ *  sources do not, so only Google links get a per-locale `hl`. */
+function google(url: string, locale: Locale): string {
+  const u = new URL(url);
+  u.searchParams.set('hl', GOOGLE_HL[locale]);
+  return u.toString();
+}
+
 export interface ServiceCopy {
   title: string;
   tagline: string;
@@ -69,23 +107,23 @@ export const services: Service[] = [
     },
     t: {
       en: {
-        title: 'Online consulting',
-        tagline: 'An honest answer, from someone with nothing to gain either way.',
+        title: 'Practice Checkup',
+        tagline: 'Find out precisely what is costing your practice patients before you pay anyone to fix it.',
         summary:
-          "Uncertain whether to invest next in a new website, greater visibility on Google, or paid advertising? We examine your existing online efforts together and tell you honestly what is genuinely worth doing, and equally what is worth skipping entirely.",
+          'One fixed-price review of the whole practice — the phones and intake forms, the records and the EHR, the website and the Google listing — ending in a short written plan that ranks what to fix first. If you continue with us, the fee is credited toward that work.',
         body: [
-          "<p>Call it a consultancy session, a strategy check-in, or just a second opinion — the label doesn't matter. This isn't general business consulting; it's specifically about your online presence — your website, your visibility, your marketing — and how to sequence and implement it well.</p>",
-          '<h2>How it works</h2><ul><li>A working session, not a lecture — we look at what\'s actually happening across your website, search visibility, and ads together</li><li>Help deciding what to invest in online next, and what to leave alone</li><li>A short written summary you can act on, not a slide deck</li></ul>',
-          "<p>Sometimes the honest answer is that your online presence already works perfectly well. We will tell you that just as readily.</p>",
+          '<p>Most practices that contact us believe they have a marketing problem, and although some genuinely do, just as often the prospective patients are already calling while the practice loses them somewhere between an unreturned voicemail and a clipboard of intake paperwork that takes twenty minutes to complete. Advertising cannot repair either of those failures, which is precisely why we examine the entire practice before recommending anything.</p>',
+          '<h2>How it works</h2><ul><li>A conversation with you and your reception staff, because the people answering the telephones generally understand better than anyone where the day goes wrong</li><li>A walk through one patient\'s complete experience, from the initial search or telephone call through registration, the appointment itself, and the reminder for their next visit</li><li>A review of how your <a href="/glossary/#ehr">EHR</a> is actually configured, how your patient records are organized, and how your <a href="/glossary/#google-business-profile">Google Business Profile</a>, reviews, and website present the practice to someone deciding whether to call</li><li>A concise written plan that ranks every recommendation by how quickly it will pay for itself, with a fixed price for any subsequent work agreed in writing before we begin</li></ul>',
+          '<p>Occasionally the plan concludes that the practice is in considerably better condition than you feared, and that the most valuable next step costs very little; when that happens, we will document it just as plainly as we would an expensive recommendation.</p>',
         ],
         outcomes: [
-          'A working session on what to fix first, online',
-          "A plain look at which of your online efforts are actually paying off",
-          'A short written summary you keep, not a slide deck',
-          "A simple plan for what to implement next quarter, not a five-year strategy nobody will read",
-          'A follow-up check-in to see if it worked',
+          'A documented map of one patient\'s path through your practice, identifying every point at which prospective patients currently give up',
+          'A candid assessment of how effectively your records, your EHR configuration, and your front-desk workflow actually serve the practice',
+          'An evaluation of how the practice appears to a prospective patient who searches for it, whether on Google, in reviews, on your website, or in health directories',
+          'A written plan ranked by priority, rather than a presentation deck that nobody opens a second time',
+          'The checkup fee, credited toward any subsequent work you choose to do with us',
         ],
-        meta: 'Online strategy consulting for small business owners in Southern California — deciding what to invest in for your website, visibility, and marketing, and what to skip.',
+        meta: 'A fixed-price checkup for independent medical, dental, and eye care practices in Southern California: records, EHR, front desk, and online presence, ranked.',
       },
       es: {
         title: 'Consultoría en línea',
@@ -158,24 +196,27 @@ export const services: Service[] = [
     },
     t: {
       en: {
-        title: 'Websites that bring in work',
-        tagline: "So a slow, outdated site doesn't send customers to someone else.",
+        title: 'Get more patients',
+        tagline: 'More of the patients you want, with evidence of exactly where each one came from.',
         summary:
-          "If your site loads slowly, appears outdated, or fails to state clearly what you do, visitors leave and go elsewhere. We build fast, straightforward sites that you genuinely own the moment we have finished, with no hidden fees and no arrangement that locks you into anything afterward.",
+          'Before most patients call, they check your Google listing, your reviews, and your website, so we get those right first. Then we bring back the patients who are overdue and advertise only the treatments worth advertising, with every new patient traced to its source.',
         body: [
-          '<p>Most small business websites were constructed once, years ago, by somebody who has since stopped answering emails. The maintenance nobody scheduled simply never happened. Meanwhile the customer has already given up and telephoned the shop down the street.</p>',
-          '<h2>How it works</h2><ul><li>Fast on a phone, correct information, a phone number or form that\'s impossible to miss</li><li>Built so Google can actually read it — most sites quietly fail here</li><li>Optional: <a href="/glossary/#integrations">integrations</a> with your CRM or calendar, so new leads land where you already work</li></ul>',
-          '<p>You retain ownership of everything involved: the site, the domain, and the content. Holding a client\'s website hostage is a poor business model and a worse way to treat people.</p>',
+          '<p>A prospective patient usually wants to know five things before calling: whether you accept their insurance, whether you are accepting new patients, which languages you speak, where to park, and whether they can book an appointment online. A practice that answers those questions immediately often receives the call instead of a competitor down the street that does not, which is why no amount of advertising helps until those fundamentals are right.</p>',
+          `<h2>First, the basics</h2><ul><li>Your <a href="/glossary/#google-business-profile">Google Business Profile</a> completed and verified, <a href="${google(SOURCES.googlePractitionerListings, 'en')}">with a separate listing for each doctor</a>, since prospective patients frequently search for a practitioner by name</li><li>A steady, predictable flow of <a href="/glossary/#reviews">reviews</a>: an automatic text after each appointment asking every patient, <a href="${google(SOURCES.googleReviewPolicy, 'en')}">never only the satisfied ones, and never with anything offered in return</a></li><li>Replies to reviews written so they never confirm that the reviewer is a patient, <a href="${SOURCES.hhsReviewResponseSettlement}">a HIPAA violation for which federal regulators fined one dental practice $50,000</a></li><li>Healthgrades, Zocdoc, WebMD, and your insurers' provider directories corrected so that every one of them agrees with your Google listing</li><li>A fast website that meets the <a href="/glossary/#wcag">WCAG 2.1 AA</a> accessibility standard, available in Spanish or Chinese wherever your patients speak those languages</li></ul>`,
+          `<p><a href="${SOURCES.medicarePartBCoverage}">Practices that accept Medicare Part B</a> are now required by federal regulation to make their websites meet that accessibility standard, <a href="${SOURCES.section504Extension}">by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones</a>.</p>`,
+          `<h2>Then, growth</h2><p>The least expensive appointment most practices will ever book comes from a patient who is already overdue: the annual eye examination, the six-month cleaning, the follow-up visit that never got scheduled. Most practices remind those patients inconsistently or not at all, so growth begins there, before a single dollar goes to advertising.</p><ul><li>Tracking that records where every new patient originally came from, so that the monthly report can answer honestly whether the spending paid for itself</li><li>Recall and reactivation messages for patients who are overdue for a visit, <a href="${SOURCES.hipaaMarketing}">written within HIPAA's rules on marketing to patients</a></li><li>A dedicated page for each high-value treatment you offer, written around the specific way prospective patients actually search for it</li><li>Google search advertising only for treatments where a new patient is genuinely worth the cost, with a budget cap that cannot quietly run away from you</li></ul>`,
+          `<p>Some things we will not do: target advertising at people based on a health condition, place advertising-tracking code on appointment or intake pages <a href="${SOURCES.ocrTrackingTech}">where it can pass patient information to an advertising platform</a>, or pay anyone for referrals, which <a href="${SOURCES.calBusProf650}">state</a> and <a href="${SOURCES.federalAks}">federal</a> anti-kickback laws prohibit. You retain ownership of the website, the domain, and the content, because holding a client's website hostage is a poor business model and a worse way to treat people.</p>`,
         ],
         outcomes: [
-          'A site that loads in under two seconds on a phone',
-          'Clean, real HTML so Google — and AI tools — can actually read your content, not just display it',
-          'A contact form that reaches your inbox, not a black hole',
-          '<a href="/glossary/#google-business-profile">Google Business Profile</a> connected and verified',
-          'Optional: CRM or calendar <a href="/glossary/#integrations">integrations</a>, so new leads land where you already work',
-          'Optional: the whole site in Spanish or Chinese',
+          'Google Business Profile listings for the practice and for each individual practitioner, completed and verified',
+          'A review request that reaches every patient after every appointment, and replies that never confirm anyone is a patient',
+          'Health directory and insurance company listings that agree with your Google listing',
+          'A website that loads quickly on a phone, answers the questions patients ask first, and meets WCAG 2.1 AA, in Spanish or Chinese if your patients need it',
+          'Recall messages that systematically bring overdue patients back into the appointment schedule',
+          'Search advertising with a hard budget cap, used only where the numbers genuinely work',
+          'A monthly note explaining what you spent, what it returned, and where each new patient came from',
         ],
-        meta: 'Small business website design for Pasadena and the San Gabriel Valley. Fast, clear sites that load on a phone and are easy for customers to find.',
+        meta: 'Websites, Google profiles, reviews, patient recall, and search ads for independent medical, dental, and eye care practices in Southern California, tracked.',
       },
       es: {
         title: 'Sitios web que traen clientes',
