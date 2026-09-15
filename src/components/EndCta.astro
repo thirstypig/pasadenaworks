@@ -1,5 +1,5 @@
 ---
-import { services } from '../data/services';
+import { serviceForPillar } from '../data/services';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
@@ -12,7 +12,7 @@ interface Props {
 
 const { pillar, locale } = Astro.props;
 
-const service = services.find((s) => s.id === pillar)!;
+const service = serviceForPillar(pillar);
 const href = localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]);
 const copy = service.t[locale];
 const strings = t(locale);

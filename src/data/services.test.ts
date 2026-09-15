@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { services, serviceBySlug } from './services';
+import { services, serviceBySlug, serviceForPillar, PILLAR_SERVICE } from './services';
+import { PILLARS } from './pillars';
 
 describe('serviceBySlug', () => {
   it('finds a service by its locale-specific slug', () => {
@@ -27,5 +28,31 @@ describe('serviceBySlug', () => {
         expect(service.t[locale]).toBeDefined();
       }
     }
+  });
+});
+
+describe('retired services', () => {
+  it('no longer resolves a retired slug in any locale', () => {
+    expect(serviceBySlug('en', 'get-found-on-google')).toBeUndefined();
+    expect(serviceBySlug('en', 'paid-advertising')).toBeUndefined();
+    expect(serviceBySlug('es', 'aparecer-en-google')).toBeUndefined();
+    expect(serviceBySlug('es', 'publicidad-pagada')).toBeUndefined();
+    expect(serviceBySlug('zh-hans', 'guge-tuiguang')).toBeUndefined();
+    expect(serviceBySlug('zh-hant', 'fufei-guanggao')).toBeUndefined();
+  });
+});
+
+describe('serviceForPillar', () => {
+  it('gives every blog pillar a live service', () => {
+    for (const pillar of PILLARS) {
+      expect(serviceForPillar(pillar).id).toBe(PILLAR_SERVICE[pillar]);
+    }
+  });
+
+  it('sends the retired pillars to Get more patients, and consulting to the Checkup', () => {
+    expect(serviceForPillar('search').id).toBe('websites');
+    expect(serviceForPillar('ads').id).toBe('websites');
+    expect(serviceForPillar('websites').id).toBe('websites');
+    expect(serviceForPillar('consulting').id).toBe('consulting');
   });
 });

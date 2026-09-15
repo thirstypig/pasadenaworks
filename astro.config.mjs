@@ -1,8 +1,14 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { RETIRED_SERVICE_REDIRECTS } from './src/data/retired-services.mjs';
 
 export default defineConfig({
   site: 'https://pasadenaworks.com',
+
+  // Retired service pages (2026-09-14). On a static build Astro writes each as
+  // an instant meta refresh with noindex and a canonical to the target, and
+  // @astrojs/sitemap lists only real pages, so none of these reach the sitemap.
+  redirects: RETIRED_SERVICE_REDIRECTS,
 
   // FAIL on a busy port instead of quietly taking the next one.
   //
