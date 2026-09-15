@@ -107,3 +107,23 @@ describe('English copy rules', () => {
     expect(JSON.stringify(services)).not.toContain('URL from sources file');
   });
 });
+
+describe('translation parity', () => {
+  const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
+
+  it('gives every locale the same structure as English: body blocks, list items, outcomes, source links', () => {
+    for (const service of services) {
+      const en = service.t.en;
+      for (const locale of ['es', 'zh-hans', 'zh-hant'] as const) {
+        const tr = service.t[locale];
+        const where = `${service.id}/${locale}`;
+        expect(tr.body.length, `${where} body blocks`).toBe(en.body.length);
+        expect(tr.outcomes.length, `${where} outcomes`).toBe(en.outcomes.length);
+        expect(count(tr.body.join(''), /<li>/g), `${where} list items`).toBe(count(en.body.join(''), /<li>/g));
+        expect(count(tr.body.join(''), /href="https?:/g), `${where} source links`).toBe(
+          count(en.body.join(''), /href="https?:/g),
+        );
+      }
+    }
+  });
+});
