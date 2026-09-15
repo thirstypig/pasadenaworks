@@ -254,16 +254,34 @@ Simplified sources write 帕萨迪纳), and `zh-hant` should make its own call.
 | Monterey Park | 蒙特利公园 | CCYP, <https://cn.ccyp.com/subjects/91126> | 蒙特利公園 | City of Monterey Park news release, <https://www.montereypark.ca.gov/DocumentCenter/View/8703> |
 | San Gabriel | 圣盖博 | CCYP, <https://cn.ccyp.com/subjects/91136> | 聖蓋博 | City of San Gabriel housing relief guidelines (Chinese), <https://sangabrieled.com/DocumentCenter/View/494/CHINESE--Housing-Relief-Guidlines>; World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖蓋博> |
 
+These names supersede the spellings in the site's earlier `zh-hans` blog posts — 阿凯迪亚 and 阿卡迪亚 for Arcadia, 门罗维亚 for Monrovia. The city pages keep 亚凯迪亚 and 蒙罗维亚 (controller ruling R14, 2026-09-15); aligning the blog is a separate, later task.
+
 Two judgment calls:
 
 - **Arcadia is 亚凯迪亚, not 阿凯迪亚.** The plan's example was 阿凯迪亚, and
   national outlets vary (VOA 阿卡迪亚, RFA 阿凯迪亚). The local press agrees on
   亚凯迪亚 in both scripts — 美洲华联社 in Simplified, World Journal's 亞凱迪亞
   tag in Traditional — and so does the CCYP directory, so the local form wins.
-- **Hospital names stay in English** (Huntington Hospital, Garfield Medical
-  Center, …). No hospital's own Chinese-language material was checked, so no
-  Chinese rendering is asserted. A neighboring city's hospital is always
-  written with 附近 / 相邻城市 / 邻近 and that city's name plus 市.
+- **A hospital gets a Chinese name only where its own material uses one**, and
+  the English name follows in parentheses on first use on each page; every
+  other hospital stays in English. A neighboring city's hospital is always
+  written with 附近 / 相邻城市 and that city's name plus 市. Checked once per
+  hospital on 2026-09-15 (fetched by script unless noted):
+
+  | Hospital (HCAI name) | Chinese name on the hospital's own material | As printed (script) | Simplified used on the pages | Where |
+  |---|---|---|---|---|
+  | Garfield Medical Center (AHMC) | found | 嘉惠爾醫院 (Traditional) | 嘉惠尔医院（Garfield Medical Center） | Garfield's own Chinese visitor guidelines, <https://www.ahmchealth.com/gmc/docs/Visitor-Restriction-Guidelines-Chinese-new.pdf> (3 occurrences); also the San Gabriel Valley Medical Center notice that refers patients to "我們仁愛醫療集團旗下的嘉惠爾醫院", <https://www.ahmchealth.com/sgvmc/getpage.php?name=%E5%85%AC%E5%91%8A_20231025155451>. CCYP and 美新社 write 嘉惠尔医院 in Simplified (reported by review; not re-fetched). |
+  | San Gabriel Valley Medical Center (AHMC) | found | 聖蓋博醫院 (Traditional) | 圣盖博医院（San Gabriel Valley Medical Center） | The hospital's own Chinese page, titled "聖蓋博醫院60多年專業與關懷同行｜親人般的照護！" on its site at 438 West Las Tunas Dr. (9 occurrences), <https://www.ahmchealth.com/sgvmc/getpage.php?name=%E8%81%96%E8%93%8B%E5%8D%9A%E9%86%AB%E9%99%A260%E5%A4%9A%E5%B9%B4%E5%B0%88%E6%A5%AD%E8%88%87%E9%97%9C%E6%87%B7%E5%90%8C%E8%A1%8C%EF%BD%9C%E8%A6%AA%E4%BA%BA%E8%88%AC%E7%9A%84%E7%85%A7%E8%AD%B7%EF%BC%81>; the notice above signs off "聖蓋博醫院關懷您！". No Simplified form on its own site; 圣盖博医院 is the character conversion. |
+  | Alhambra Hospital Medical Center (AHMC) | not found | — | English | <https://www.alhambrahospital.com/>, its visitor and financial-assistance pages: no Chinese text. Directories call it 仁爱医院 / 仁愛醫院 (<https://cn.ccyp.com/subjects/4265>), and AHMC's group name is 仁愛醫療集團, but no page of the hospital's own was found using 仁愛醫院, so it is not used. |
+  | Monterey Park Hospital (AHMC) | not found | — | English | <https://www.ahmchealth.com/mph/> and its About Us, Patient Information and Financial Resources pages: no Chinese text. Third-party birth-tourism sites write 蒙特利公园医院; not the hospital's own. |
+  | Huntington Hospital | not checked by script | — | English | <https://www.huntingtonhealth.org/patients/language-services/> returns 403 to scripts and to WebFetch; search results show no Chinese name. |
+  | USC Arcadia Hospital | not found | — | English | <https://www.keckmedicine.org/usc-arcadia-hospital/patients-visitors/> carries Chinese text only for the state hospital-bill complaint notice, not a hospital name. |
+  | Monrovia Memorial Hospital | not found | — | English | <https://monroviamemorial.com/>: no Chinese text. |
+  | Adventist Health Glendale | not found | — | English | <https://www.adventisthealth.org/glendale/>: no Chinese text. |
+  | USC Verdugo Hills Hospital | not found | — | English | <https://www.keckmedicine.org/usc-verdugo-hills-hospital/>: no Chinese text. |
+  | Glendale Memorial Hospital and Health Center | not found | — | English | <https://www.dignityhealth.org/socal/locations/glendalememorial>: no Chinese text. |
+
+  The Traditional forms above are recorded as printed for the `zh-hant` pages.
 
 ## Simplified Chinese phrasing (`zh-hans` city pages)
 
