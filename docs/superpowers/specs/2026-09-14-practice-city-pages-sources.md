@@ -235,26 +235,48 @@ source was found, and was **overruled** where it disagrees with local use
 圣加布里埃尔; nobody local writes either). Every URL below was fetched on
 2026-09-15 and the name counted in the returned page, except where noted.
 
-The Traditional column records what a source actually prints, for the
-`zh-hant` task to weigh; it is **not** a character-by-character conversion of
-the Simplified column. Local Traditional-script usage differs from Simplified
-usage for several cities (World Journal writes 巴沙迪那 for Pasadena, where
-Simplified sources write 帕萨迪纳), and `zh-hant` should make its own call.
+The "Traditional, as printed" column records what a source actually prints; it
+is **not** a character-by-character conversion of the Simplified column. Local
+Traditional-script usage differs from Simplified usage for several cities
+(World Journal writes 巴沙迪那 for Pasadena, where Simplified sources write
+帕萨迪纳).
 
-| City | Simplified (`zh-hans`) | Simplified source | Traditional, as printed | Traditional source |
-|---|---|---|---|---|
-| Pasadena | 帕萨迪纳 | VOA Chinese, <https://www.voachinese.com/a/california-wildfires-could-be-leaving-deeper-inequality-in-their-wake-20250112/7934221.html> | 巴沙迪那 (World Journal); 帕沙第納 (zh.wikipedia zh-tw) | <https://www.worldjournal.com/wj/story/121362/9729757> |
-| Altadena | 阿尔塔迪纳 | VOA Chinese, same article (11 occurrences) | 阿爾塔迪納 | zh.wikipedia zh-tw, <https://zh.wikipedia.org/zh-tw/阿爾塔迪納_(加利福尼亞州)>; World Journal headlines write 艾塔迪那 (seen in search results, page not fetchable by script) |
-| South Pasadena | 南帕萨迪纳 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/南帕萨迪纳_(加利福尼亚州)> — follows Pasadena, so the two related names are searched together | 南帕薩迪那 (CCYP directory) | <https://www.ccyp.com/subjects/91143> |
-| Glendale | 格伦代尔 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/格倫代爾_(加利福尼亞州)> | 格倫代爾 (zh.wikipedia zh-tw); 格蘭岱 (CCYP) | <https://zh.wikipedia.org/zh-tw/格倫代爾_(加利福尼亞州)>, <https://www.ccyp.com/subjects/91114> |
-| Alhambra | 阿罕布拉 | CCYP directory (Simplified edition), <https://cn.ccyp.com/subjects/91081> | 阿罕布拉 | City of Alhambra, water-rate assistance guidelines, <https://www.alhambraca.gov/DocumentCenter/View/6724/CITY-OF-ALHAMBRA-LIWRAP-Final-Guildelines-TCH> |
-| Arcadia | 亚凯迪亚 | 美洲华联社 (LA, Simplified), <https://huarenone.com/2026/02/04/%E7%8E%8B%E7%88%B1%E6%9E%97%E5%B0%B1%E4%BB%BB%E4%BA%9A%E5%87%AF%E8%BF%AA%E4%BA%9A%E5%B8%82%E5%B8%82%E9%95%BF-%E9%83%91%E5%8D%9A%E4%BB%81%E5%BE%8B%E5%B8%88%E6%8B%85%E4%BB%BB%E5%89%AF%E5%B8%82%E9%95%BF/>; CCYP, <https://cn.ccyp.com/subjects/91083> | 亞凱迪亞 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/亞凱迪亞> |
-| Monrovia | 蒙罗维亚 | CCYP, <https://cn.ccyp.com/subjects/91124> | 蒙羅維亞 | CCYP, <https://www.ccyp.com/subjects/91124> |
-| San Marino | 圣马力诺 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/圣玛利诺_(加利福尼亚州)> (renders 圣马力诺); the China Press (侨报) also wrote 圣马力诺市, but its 2014 article URL now returns 404 | 聖瑪利諾 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖瑪利諾> |
-| Monterey Park | 蒙特利公园 | CCYP, <https://cn.ccyp.com/subjects/91126> | 蒙特利公園 | City of Monterey Park news release, <https://www.montereypark.ca.gov/DocumentCenter/View/8703> |
-| San Gabriel | 圣盖博 | CCYP, <https://cn.ccyp.com/subjects/91136> | 聖蓋博 | City of San Gabriel housing relief guidelines (Chinese), <https://sangabrieled.com/DocumentCenter/View/494/CHINESE--Housing-Relief-Guidlines>; World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖蓋博> |
+The "Decided `zh-hant`" column is the **one** name each city carries in
+Traditional Chinese across the site — city pages, UI strings and blog —
+decided 2026-09-15 for `src/data/city-copy/zh-hant.ts`, pinned in
+`cities.test.ts`, and chosen in this order (controller ruling R14): the form
+the site's existing `zh-hant` strings already use (`src/i18n/ui.ts`,
+`src/data/home.ts`, `src/data/services.ts`, `src/content/blog/zh-hant/`); then
+the San Gabriel Valley's Traditional-script press, above all World Journal
+(世界日報); then Taiwan usage. Occurrences in the site were counted with
+`LC_ALL=C /usr/bin/grep` and long-form flags. World Journal pages were fetched
+by script on 2026-09-15 and the name counted in the returned HTML; its search
+results page (`/search/word/8877/<name>`) was used only to find articles, since
+it matches loosely.
+
+| City | Simplified (`zh-hans`) | Simplified source | Traditional, as printed | Traditional source | Decided `zh-hant` |
+|---|---|---|---|---|---|
+| Pasadena | 帕萨迪纳 | VOA Chinese, <https://www.voachinese.com/a/california-wildfires-could-be-leaving-deeper-inequality-in-their-wake-20250112/7934221.html> | 巴沙迪那 (World Journal); 帕沙第納 (zh.wikipedia zh-tw) | <https://www.worldjournal.com/wj/story/121362/9729757> | **帕薩迪納.** The site already writes it: `ui.ts` (`citiesDescription`) and 20 times across eight `zh-hant` posts, with no other spelling anywhere. World Journal's news desk writes 巴沙迪那 (22 times in the article cited), but its own literary supplement prints 帕薩迪納 (5 times, <https://www.worldjournal.com/wj/story/121250/9569656>), so readers recognize both; 帕薩迪納 is also the same name as the Simplified pages' 帕萨迪纳. No reason found strong enough to change the site's existing form. |
+| Altadena | 阿尔塔迪纳 | VOA Chinese, same article (11 occurrences) | 阿爾塔迪納 (zh.wikipedia zh-tw); 艾塔迪那 (World Journal) | zh.wikipedia zh-tw, <https://zh.wikipedia.org/zh-tw/阿爾塔迪納_(加利福尼亞州)>; World Journal, <https://www.worldjournal.com/wj/story/121359/9688465> (6 occurrences, a 2026 rebuilding story) and <https://www.worldjournal.com/wj/story/121359/9671593> (伊頓大火 headline) | **艾塔迪那.** The site had no Traditional name for it. World Journal's news desk writes 艾塔迪那 throughout its fire and rebuilding coverage; 阿爾塔迪納 and 阿塔迪納 appear there only in advertiser-supplied items. Differs from the Simplified pages' 阿尔塔迪纳 — flagged for the blog-alignment task. |
+| South Pasadena | 南帕萨迪纳 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/南帕萨迪纳_(加利福尼亚州)> — follows Pasadena, so the two related names are searched together | 南帕薩迪那 (CCYP directory); 南巴沙迪那 (World Journal) | <https://www.ccyp.com/subjects/91143>; <https://www.worldjournal.com/wj/story/121362/9572085> (21 occurrences) | **南帕薩迪納.** Follows the site's Pasadena. World Journal's 南巴沙迪那 follows its own 巴沙迪那; putting 南巴沙迪那 beside the site's 帕薩迪納 would make two related names look unrelated. Same name as the Simplified pages' 南帕萨迪纳. |
+| Glendale | 格伦代尔 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/格倫代爾_(加利福尼亞州)> | 格倫代爾 (zh.wikipedia zh-tw); 格蘭岱 (CCYP; World Journal) | <https://zh.wikipedia.org/zh-tw/格倫代爾_(加利福尼亞州)>, <https://www.ccyp.com/subjects/91114>; World Journal, <https://www.worldjournal.com/wj/story/121362/9585126> (格蘭岱市 10 times, the Glendale–LA river bridge) | **格蘭岱.** The site had no Traditional name for it. World Journal and the CCYP directory agree on 格蘭岱 for California's Glendale; World Journal keeps 格倫代爾 for Glendale, Arizona. Differs from the Simplified pages' 格伦代尔 — flagged for the blog-alignment task. |
+| Alhambra | 阿罕布拉 | CCYP directory (Simplified edition), <https://cn.ccyp.com/subjects/91081> | 阿罕布拉 | City of Alhambra, water-rate assistance guidelines, <https://www.alhambraca.gov/DocumentCenter/View/6724/CITY-OF-ALHAMBRA-LIWRAP-Final-Guildelines-TCH> | **阿罕布拉.** The site's `zh-hant` blog (11 occurrences, six posts), the city itself and World Journal all agree. |
+| Arcadia | 亚凯迪亚 | 美洲华联社 (LA, Simplified), <https://huarenone.com/2026/02/04/%E7%8E%8B%E7%88%B1%E6%9E%97%E5%B0%B1%E4%BB%BB%E4%BA%9A%E5%87%AF%E8%BF%AA%E4%BA%9A%E5%B8%82%E5%B8%82%E9%95%BF-%E9%83%91%E5%8D%9A%E4%BB%81%E5%BE%8B%E5%B8%88%E6%8B%85%E4%BB%BB%E5%89%AF%E5%B8%82%E9%95%BF/>; CCYP, <https://cn.ccyp.com/subjects/91083> | 亞凱迪亞 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/亞凱迪亞> | **亞凱迪亞.** The site's majority form (9 occurrences in three posts, plus comments in `[locale]/[section]/index.astro` and `homepage-parity.test.ts`), World Journal's tag, and the Simplified pages' 亚凯迪亚. Two posts write 阿卡迪亞 — see below. |
+| Monrovia | 蒙罗维亚 | CCYP, <https://cn.ccyp.com/subjects/91124> | 蒙羅維亞 | CCYP, <https://www.ccyp.com/subjects/91124> | **蒙羅維亞.** The site's blog (three posts), World Journal (9 times in <https://www.worldjournal.com/wj/story/121359/9450717>), CCYP, and the Simplified pages' 蒙罗维亚. |
+| San Marino | 圣马力诺 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/圣玛利诺_(加利福尼亚州)> (renders 圣马力诺); the China Press (侨报) also wrote 圣马力诺市, but its 2014 article URL now returns 404 | 聖瑪利諾 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖瑪利諾> | **聖瑪利諾.** The site's blog (four occurrences, three posts) and World Journal's tag agree. |
+| Monterey Park | 蒙特利公园 | CCYP, <https://cn.ccyp.com/subjects/91126> | 蒙特利公園 | City of Monterey Park news release, <https://www.montereypark.ca.gov/DocumentCenter/View/8703> | **蒙特利公園.** The site's blog (ten occurrences, three posts), the city and World Journal agree. |
+| San Gabriel | 圣盖博 | CCYP, <https://cn.ccyp.com/subjects/91136> | 聖蓋博 | City of San Gabriel housing relief guidelines (Chinese), <https://sangabrieled.com/DocumentCenter/View/494/CHINESE--Housing-Relief-Guidlines>; World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖蓋博> | **聖蓋博.** Already in `ui.ts` and `home.ts` (聖蓋博谷) and throughout the blog; the city and World Journal agree. |
 
 These names supersede the spellings in the site's earlier `zh-hans` blog posts — 阿凯迪亚 and 阿卡迪亚 for Arcadia, 门罗维亚 for Monrovia. The city pages keep 亚凯迪亚 and 蒙罗维亚 (controller ruling R14, 2026-09-15); aligning the blog is a separate, later task.
+
+In `zh-hant`, the only blog spellings that differ from the decided names are two
+of Arcadia's: 阿卡迪亞 at
+`src/content/blog/zh-hant/yong-ai-dafu-kehu-laixin-buxiang-jiqiren.md:27` and
+`src/content/blog/zh-hant/trader-joes-bu-mai-guanggao-weihe-xuebulai.md:35`.
+No `zh-hant` post names Altadena, South Pasadena or Glendale. The two
+Traditional names that are not the Simplified names written in the other
+script — 艾塔迪那 (阿尔塔迪纳) and 格蘭岱 (格伦代尔) — are for the same later task
+to weigh on the Simplified side.
 
 Two judgment calls:
 
@@ -281,7 +303,9 @@ Two judgment calls:
   | USC Verdugo Hills Hospital | not found | — | English | <https://www.keckmedicine.org/usc-verdugo-hills-hospital/>: no Chinese text. |
   | Glendale Memorial Hospital and Health Center | not found | — | English | <https://www.dignityhealth.org/socal/locations/glendalememorial>: no Chinese text. |
 
-  The Traditional forms above are recorded as printed for the `zh-hant` pages.
+  The `zh-hant` pages use the Traditional forms above exactly as printed —
+  嘉惠爾醫院（Garfield Medical Center） and 聖蓋博醫院（San Gabriel Valley Medical
+  Center） on first use on each page — and keep the other eight in English.
 
 ## Simplified Chinese phrasing (`zh-hans` city pages)
 
@@ -338,3 +362,71 @@ English, not from the Spanish.
   choice (因此, 然而, 并非, 至于, 由于) rather than sentence length, and every page
   keeps a few ordinary connectives (所以, 因为, 而不是) so none reads as a legal
   document. No sentence exceeds 85 Han characters.
+
+## Traditional Chinese phrasing (`zh-hant` city pages)
+
+Chosen 2026-09-15 for `src/data/city-copy/zh-hant.ts`, translated from the
+English, not converted from the Simplified pages, in Taiwan Mandarin (臺灣華語):
+正體字, formal written register, Taiwan lexis and punctuation. City names are
+the "Decided `zh-hant`" column above.
+
+- **Figures** follow the Simplified rules exactly: the English figures in Arabic
+  digits with a period decimal (`23.0%`) and a comma for thousands (`9,419`,
+  `6,000`), dates as `2026 年 9 月`, and quantities the English writes as words
+  in Chinese — `五歲以上`, `四比一`, `三分之一`, `超過八分之一`, `每十位居民中就有超過四位`.
+- **Title and headline noun: `診所`**, in the owner's pattern
+  `為{城市名}（{City}）醫療與牙科診所帶來更多病患`. Patients are `病患`, as in
+  every `zh-hant` string in `services.ts` and `home.ts`. `顧問` is not used, and
+  nothing mentions selling a practice (owner decisions).
+- **Service names verbatim from `services.ts`:** `診所經營診斷`, `診所數位化`,
+  `吸引更多病患`, in Taiwan's 「」 quotation marks. The last two are followed by
+  `服務` in running text, as on the Simplified pages.
+- **Google Business Profile: `Google 商家檔案`**, the name `services.ts` already
+  uses and Google's zh-TW help center title, "Google 商家檔案說明" (fetched
+  2026-09-15): <https://support.google.com/business/answer/9798848?hl=zh-TW>.
+- **Census Bureau and ACS: `美國人口普查局`, `美國社區問卷調查（ACS）`, `五年估算`**,
+  from the Bureau's own Traditional Chinese fact sheet, "2015–2019 年美國社區問卷調查
+  (American Community Survey) (ACS), 5 年估算" (fetched 2026-09-15):
+  <https://www.census.gov/content/dam/Census/library/factsheets/2020/dec/upcoming-us-population-releases-chinese-traditional.pdf>.
+  The sheet writes the digit 5; the pages write `五` because the English writes
+  "five". "Aged five and over" is `五歲以上`, which in Taiwan usage includes five.
+- **NPI Registry: `NPI 登錄系統`; source label `CMS NPI 登錄系統`.** No official
+  Chinese name was found, so `CMS` stays unexpanded, as in the Simplified label.
+  Individual clinicians are `個別醫事人員`, Taiwan's term for licensed health
+  professionals; "practice location" is `執業地點`.
+- **HCAI: `加州 HCAI`**, with the English department name in the source label,
+  as on the Simplified pages.
+- **General acute care hospital: `一般急性照護醫院`.** California's license
+  category has no official Chinese name. The rendering follows Taiwan's own
+  hospital vocabulary: the 醫療機構設置標準 classifies beds as `急性一般病床`
+  (<https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020025>), and Taiwan
+  writes `照護` for care where the mainland writes `护理`.
+- **Clinicians:** `初級照護醫師`, after Medi-Cal's Traditional Chinese enrollment
+  site, which writes `初級照護提供者（PCP）` throughout (30 occurrences,
+  <https://www.healthcareoptions.dhcs.ca.gov/zh-Hant/>), with `醫師` for
+  physician as Taiwan writes it; `家庭醫學科或內科` for "family or internal
+  medicine"; `牙醫`; `驗光師`, a licensed profession under that name in Taiwan.
+- **Hospitals:** 嘉惠爾醫院 and 聖蓋博醫院 as printed on their own material, with
+  the English in parentheses on first use; the other eight stay in English. A
+  hospital in an adjoining city is `位於……的` or `則位於附近的……市`, never stacked
+  before the hospital's name.
+- **Eaton Fire: `伊頓大火`**, World Journal's usual form (headline of
+  <https://www.worldjournal.com/wj/story/121359/9671593>, five occurrences;
+  `伊頓山火` also appears there, less often). `CAL FIRE` and the Catalyst
+  California report title stay in English.
+- **Mandarin: `華語`**, the neutral Taiwan term, beside `粵語` for Cantonese.
+- **Script: `正體或簡體`**, the pair the site's own `zh-hant` post on the
+  subject uses (`zhengti-haishi-jianti-guanwang.md`, 正體 15 times across the
+  blog); `字體` (typeface) is never used for script.
+- **Front-office terms** come from the Traditional `services.ts` copy:
+  `初診表單`, `同意書`, `預約提醒`, `召回訊息`, `回診`, `櫃檯`, `電子病歷系統`,
+  `評論` (not `評價`), `保險公司名錄`. Taiwan lexis elsewhere: `資訊`, `網站`,
+  `建置`, `資料夾`, `導覽列`, `語音信箱`, `蒐集`, `紀錄` for a record (noun).
+- **Register.** The band is 0.55–0.85 on the 書面語 index, raised through word
+  choice (因此, 然而, 並非, 至於, 對於……而言) and kept below the ceiling with
+  ordinary connectives (所以, 因為, 這樣). Every page measured 0.64–0.75 after
+  hand edits; the longest sentence on any page is 75 Han characters.
+- **Script purity** was checked with `blog-content.test.ts`'s `PAIRS` table
+  (66 pairs, every string and the whole file: 0 Simplified characters) and by
+  encoding each of the file's distinct Han characters in Big5, which lacks
+  Simplified-only forms (none failed; 为, 这, 医, 诊 fail as controls).

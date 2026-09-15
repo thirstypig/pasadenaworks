@@ -98,6 +98,32 @@ describe('city copy', () => {
     }
   });
 
+  it('titles every Traditional Chinese page with the searched phrase', () => {
+    // Same owner pattern in Traditional script. The names are pinned, not
+    // converted from the Simplified ones: Traditional usage in the San Gabriel
+    // Valley differs for some cities (World Journal's 艾塔迪那, 格蘭岱), and the
+    // site's existing zh-hant strings already write 帕薩迪納. Each decision and
+    // its source is in the "Chinese city names" table of
+    // docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md.
+    const ZH_HANT_NAME: Record<CitySlug, string> = {
+      pasadena: '帕薩迪納',
+      altadena: '艾塔迪那',
+      'south-pasadena': '南帕薩迪納',
+      glendale: '格蘭岱',
+      alhambra: '阿罕布拉',
+      arcadia: '亞凱迪亞',
+      monrovia: '蒙羅維亞',
+      'san-marino': '聖瑪利諾',
+      'monterey-park': '蒙特利公園',
+      'san-gabriel': '聖蓋博',
+    };
+    for (const city of cities) {
+      expect(city.t['zh-hant']?.title, city.slug).toBe(
+        `為${ZH_HANT_NAME[city.slug]}（${cityDisplayName(city.slug)}）醫療與牙科診所帶來更多病患`,
+      );
+    }
+  });
+
   it('keeps meta descriptions in the service pages’ bands', () => {
     const BAND = { en: [150, 158], es: [130, 160] } as const;
     for (const city of cities) {
