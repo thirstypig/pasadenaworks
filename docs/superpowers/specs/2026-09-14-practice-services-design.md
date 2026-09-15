@@ -90,7 +90,7 @@ are listed in §5.
 ### 3.1 Homepage (`src/pages/index.astro`)
 
 - **`<title>`:** Pasadena Works — Consulting for Independent Health Practices
-- **Meta description:** We help independent medical, dental, and eye care practices in Southern California digitize the office, get found online, and bring in new patients.
+- **Meta description:** We help independent medical, dental, and eye care practices in Southern California digitize the office, get found online, and bring in more new patients.
 - **Eyebrow:** San Gabriel Valley &amp; Southern California
 - **H1:** For independent practices ready to stop running on paper and word of mouth.
 - **Subhead:** We help medical, dental, and eye care practices across Southern California digitize the front office, look trustworthy to the patient who searches for them, and bring in new patients they can trace — and we are never paid by the software companies whose products we recommend.
@@ -163,7 +163,7 @@ are listed in §5.
   - Health directory and insurer listings that match Google
   - A website that loads quickly on a phone, answers the questions patients ask first, and meets WCAG 2.1 AA
   - Optional: the website, Google listing, and intake forms in Spanish or Chinese
-- **meta:** Websites, Google Business Profiles, reviews, and directory listings for medical, dental, and eye care practices in Southern California, with HIPAA-safe replies.
+- **meta:** Websites, Google Business Profiles, reviews, and directory listings for medical, dental, and eye care practices in Southern California; HIPAA-safe replies.
 
 ### 3.5 Marketing and advertising (`id: ads`)
 
