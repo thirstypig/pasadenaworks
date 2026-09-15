@@ -66,7 +66,10 @@ const localBusinessSchema = {
   url: site.url,
   email: site.email,
   telephone: site.phone,
-  areaServed: site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
+  areaServed: [
+    ...site.serviceArea.map((city) => ({ '@type': 'City', name: city })),
+    ...site.regionServed.map((region) => ({ '@type': 'AdministrativeArea', name: region })),
+  ],
   /* Empty entries dropped and the key omitted entirely when nothing is set —
      the reasoning lives on `social` in src/data/site.ts, where someone is
      actually tempted to paste a placeholder. */
