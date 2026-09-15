@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "043"
 tags: [code-review, docs, copy, seo, duplication]
@@ -56,7 +56,7 @@ the others; drop dated figures or mark them "at the time".
 
 ## Recommended Action
 
-To be decided in triage.
+See the 2026-09-15 work-log entry.
 
 ## Technical Details
 
@@ -64,15 +64,22 @@ To be decided in triage.
 
 ## Acceptance Criteria
 
-- [ ] README describes a practice consultancy with three services
-- [ ] No UI string states the number of services
-- [ ] Glossary meta matches its audience; `npm run build` passes
-- [ ] Each duplicated explanation has one home; dated counts are removed or marked
+- [x] README describes a practice consultancy with three services
+- [x] No UI string states the number of services
+- [x] Glossary meta matches its audience; `npm run build` passes
+- [x] Each duplicated explanation has one home; dated counts are removed or marked
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the pattern-recognition, code-simplicity, security-sentinel and SEO review agents.
+
+### 2026-09-15 — Fixed
+(a) README describes the practice consultancy, three services, and `regionServed`. (b) The four `servicesIntro` strings no longer count the other services ("decides what comes next" and translations). (c) Glossary title and meta now name practice technology terms and independent practices (155 characters). (d) Left for the spec §9 content plan: the link text still reads "getting found on Google", and the page it reaches covers that. (e) CLAUDE.md figures that carry a date were kept as dated history; the live counts were updated (tests 358, typecheck 89, dist-dependent 30, deploy skips 31). (f) The plan's commit templates use `<session URL>` instead of the session link.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/043 is closed.**
 
 ## Resources
 

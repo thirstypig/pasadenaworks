@@ -43,4 +43,4 @@ La mayoría de los dueños imagina una oleada entrante de clientes indignados. E
 
 Puede anunciarlo llanamente: "A partir del próximo mes, los precios suben para mantenerse al día con los costos." **No se le exige disculparse por operar un negocio que tiene que permanecer solvente.**
 
-Si desea una segunda opinión desinteresada sobre sus números concretos antes de decidir, eso es precisamente para lo que existe [una sesión de trabajo sobre precios](/es/servicios/asesoria-de-negocios/). A veces la respuesta honesta es que usted está enteramente bien como está, y se lo diremos con la misma prontitud.
+Si desea una segunda opinión desinteresada sobre sus números concretos antes de decidir, eso es precisamente para lo que existe [una sesión de trabajo sobre precios](/es/servicios/revision-del-consultorio/). A veces la respuesta honesta es que usted está enteramente bien como está, y se lo diremos con la misma prontitud.

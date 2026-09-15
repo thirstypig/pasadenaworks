@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "041"
 tags: [code-review, typescript, architecture, seo]
@@ -55,7 +55,7 @@ built. (c) Already done by 036.
 
 ## Recommended Action
 
-To be decided in triage.
+See the 2026-09-15 work-log entry.
 
 ## Technical Details
 
@@ -64,15 +64,22 @@ To be decided in triage.
 
 ## Acceptance Criteria
 
-- [ ] Removing a service record is a compile error or a named test failure
-- [ ] `google()` cannot silently return a corrupted URL for an `&amp;` source
-- [ ] (c) confirmed resolved: redirect sources checked against URLs that shipped
-- [ ] `npm run typecheck`, `npm run test` and `npm run build` pass
+- [x] Removing a service record is a compile error or a named test failure
+- [x] `google()` cannot silently return a corrupted URL for an `&amp;` source
+- [x] (c) confirmed resolved: redirect sources checked against URLs that shipped
+- [x] `npm run typecheck`, `npm run test` and `npm run build` pass
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the kieran-typescript, architecture-strategist and pattern-recognition review agents.
+
+### 2026-09-15 — Fixed
+(a) `ServiceId` is derived from the records through a `defineServices()` helper whose type parameter infers the id union; `Service` is `ServiceRecord<ServiceId>`. Falsified: renaming the Checkup record's id made `PILLAR_SERVICE` a compile error (TS2322), then restored byte-identical. (b) `google()` throws on an `&amp;`-escaped URL. (c) done by 036.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/041 is closed.**
 
 ## Resources
 

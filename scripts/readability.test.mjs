@@ -703,6 +703,49 @@ describe('rendered-page extraction', () => {
     // Positive control: if the build is missing the comparison is vacuous.
     expect(compared, 'no live posts found in dist/ — run npm run build first').toBeGreaterThan(0);
   });
+
+  /**
+   * THE MARKER THE CITY-LIST EXCLUSION DEPENDS ON. mainProse() drops the
+   * localized homepages' city list by its CSS class, and the hand-written
+   * test above cannot notice a rename in the template
+   * (src/pages/[locale]/index.astro). Nothing else would either: the rename
+   * builds green, and `readability -- --dist` exits non-zero only on a runaway
+   * sentence, never on a band miss. Skips without dist/, like the cross-check.
+   */
+  const SERVICE_AREA_UL = /<ul\b[^>]*\bclass="[^"]*\bservice-area\b[^"]*"[^>]*>/;
+  const LOCALIZED_HOMEPAGES = ['es', 'zh-hans', 'zh-hant'];
+
+  it.skipIf(!existsSync(DIST_DIR))('finds the service-area class on every built localized homepage', () => {
+    for (const locale of LOCALIZED_HOMEPAGES) {
+      const html = readFileSync(join(DIST_DIR, locale, 'index.html'), 'utf8');
+      expect(
+        SERVICE_AREA_UL.test(html),
+        `dist/${locale}/index.html has no <ul class="service-area">. mainProse() drops the city list `
+        + 'by that class, so renaming it silently puts every city name back into the score as its own '
+        + 'two-word sentence. On /es/ that moved Fernández Huerta from 46 to 58 when found (2026-09-14), '
+        + 'outside the 40–55 band, and from 47 to 55 on the 2026-09-15 build. Rename the class in '
+        + 'mainProse() too, or restore it in src/pages/[locale]/index.astro.',
+      ).toBe(true);
+    }
+  });
+
+  /**
+   * Positive control for the check above, so it is not decorative: on the
+   * built /es/ page the exclusion must actually remove a city and change the
+   * score. "Monrovia" appears inside <main> only in that list. If the prose
+   * ever mentions it, pick another city that the list alone carries.
+   */
+  it.skipIf(!existsSync(DIST_DIR))('actually removes the city list from the built /es/ score', () => {
+    const html = readFileSync(join(DIST_DIR, 'es', 'index.html'), 'utf8');
+    const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
+    expect(main.split('Monrovia').length - 1, 'Monrovia should appear in <main> exactly once, inside the city list').toBe(1);
+
+    const withExclusion = mainProse(html);
+    const withoutExclusion = mainProse(html.replace(/\bservice-area\b/g, 'renamed-area'));
+    expect(withExclusion, 'the city list reached the /es/ homepage score').not.toContain('Monrovia');
+    expect(withoutExclusion, 'renaming the class should let the list through; the control is vacuous').toContain('Monrovia');
+    expect(analyze(withoutExclusion, 'es').sentences).toBeGreaterThan(analyze(withExclusion, 'es').sentences);
+  });
 });
 
 describe('degenerate input', () => {

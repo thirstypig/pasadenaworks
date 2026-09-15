@@ -70,9 +70,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 88 files. The build itself
+                     #   AND .ts, tina/ included. 89 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 350 across 28 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 358 across 28 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -86,11 +86,11 @@ npm run test         # tests (vitest, 350 across 28 files) — i18n/hreflang, re
                      #   script's slug/traversal validation and UTM-fragment handling,
                      #   the retired-service redirects, the service copy's parity
                      #   across locales, and the LocalBusiness areaServed.
-                     #   20 of these need dist/ and SKIP without it — the rendered
+                     #   30 of these need dist/ and SKIP without it — the rendered
                      #   nav-link checks, the og:image, stylesheet and JSON-LD
-                     #   checks, the ten built-redirect checks, and the readability
+                     #   checks, the fourteen built-redirect checks, and the readability
                      #   cross-checks — which is why ci.yml re-runs the whole suite
-                     #   after the build. deploy.yml reports 21 skipped, not 20:
+                     #   after the build. deploy.yml reports 31 skipped, not 30:
                      #   it tests BEFORE `npx tinacms build`, so
                      #   tina/__generated__/_schema.json is absent and the lock
                      #   test skips too — ci.yml regenerates that file first, so

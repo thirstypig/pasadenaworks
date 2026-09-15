@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "042"
 tags: [code-review, seo, structured-data, agent-native]
@@ -55,7 +55,7 @@ Write each as "Orange County, CA", or add `containedInPlace` California.
 
 ## Recommended Action
 
-To be decided in triage.
+See the 2026-09-15 work-log entry.
 
 ## Technical Details
 
@@ -64,15 +64,22 @@ To be decided in triage.
 
 ## Acceptance Criteria
 
-- [ ] Each county in `areaServed` is unambiguous (state named, or contained in California)
-- [ ] If Option A: description and services appear, generated from data, in all four locales
-- [ ] The built homepage's JSON-LD passes validator.schema.org
-- [ ] A test covers every new field; `npm run test` after `npm run build` passes
+- [x] Each county in `areaServed` is unambiguous (state named, or contained in California)
+- [x] If Option A: description and services appear, generated from data, in all four locales
+- [x] The built homepage's JSON-LD passes validator.schema.org
+- [x] A test covers every new field; `npm run test` after `npm run build` passes
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the agent-native and kieran-typescript review agents.
+
+### 2026-09-15 — Fixed
+Option A, trimmed: the LocalBusiness JSON-LD now carries the homepage's meta description in its language, marks each county `containedInPlace` California, and lists the live services as a `hasOfferCatalog` read from services.ts, with localized names and URLs. `@type` stays LocalBusiness. Tests on the built en, es and zh-hant homepages check the counties' state, that the description equals the page meta, and that every offered service URL was built. JSON-LD parsed on all four homepages.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/042 is closed.**
 
 ## Resources
 

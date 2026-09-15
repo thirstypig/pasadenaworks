@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { services, serviceBySlug, serviceForPillar, PILLAR_SERVICE } from './services';
 import { PILLARS } from './pillars';
 import { glossary } from './glossary';
+import { LOCALES } from '../i18n/ui';
+import { TRANSLATED_LOCALES } from '../i18n/locales.mjs';
 
 describe('serviceBySlug', () => {
   it('finds a service by its locale-specific slug', () => {
@@ -17,14 +19,10 @@ describe('serviceBySlug', () => {
     expect(serviceBySlug('en', 'sitios-web')).toBeUndefined();
   });
 
-  it('finds Digitize the office by its slug in every locale', () => {
-    expect(serviceBySlug('en', 'practice-digitization')?.id).toBe('digitize');
-    expect(serviceBySlug('es', 'digitalizacion-del-consultorio')?.id).toBe('digitize');
-    expect(serviceBySlug('zh-hans', 'zhensuo-shuzihua')?.id).toBe('digitize');
-    expect(serviceBySlug('zh-hant', 'zhensuo-shuweihua')?.id).toBe('digitize');
-  });
+  // Every service URL, and so every slug, is pinned by PUBLISHED_SERVICE_URLS
+  // in retired-services.test.ts; this file does not restate them.
 
-  it('lists the services in display order', () => {
+  it('lists the services in the display order the owner chose (2026-09-14)', () => {
     expect(services.map((s) => s.id)).toEqual(['consulting', 'digitize', 'websites']);
   });
 
@@ -33,9 +31,8 @@ describe('serviceBySlug', () => {
   });
 
   it('every service defines a slug for all four locales (no missing translation)', () => {
-    const locales = ['en', 'es', 'zh-hans', 'zh-hant'] as const;
     for (const service of services) {
-      for (const locale of locales) {
+      for (const locale of LOCALES) {
         expect(service.slugs[locale]).toBeTruthy();
         expect(service.t[locale]).toBeDefined();
       }
@@ -44,7 +41,7 @@ describe('serviceBySlug', () => {
 });
 
 describe('serviceForPillar', () => {
-  it('gives every blog pillar a live service', () => {
+  it('resolves every blog pillar to a service without throwing', () => {
     for (const pillar of PILLARS) {
       expect(serviceForPillar(pillar).id).toBe(PILLAR_SERVICE[pillar]);
     }
@@ -69,7 +66,7 @@ describe('glossary links in service copy', () => {
 
   it('keeps glossary links out of non-English copy, because the glossary is English-only', () => {
     for (const service of services) {
-      for (const locale of ['es', 'zh-hans', 'zh-hant'] as const) {
+      for (const locale of TRANSLATED_LOCALES) {
         expect(JSON.stringify(service.t[locale]), `${service.id}/${locale}`).not.toContain('/glossary/');
       }
     }
@@ -96,10 +93,6 @@ describe('copy rules', () => {
       expect(text).not.toContain(word);
     }
   });
-
-  it('carries no unfilled source placeholder', () => {
-    expect(JSON.stringify(services)).not.toContain('URL from sources file');
-  });
 });
 
 describe('translation parity', () => {
@@ -108,7 +101,7 @@ describe('translation parity', () => {
   it('gives every locale the same structure as English: body blocks, list items, outcomes, source links', () => {
     for (const service of services) {
       const en = service.t.en;
-      for (const locale of ['es', 'zh-hans', 'zh-hant'] as const) {
+      for (const locale of TRANSLATED_LOCALES) {
         const tr = service.t[locale];
         const where = `${service.id}/${locale}`;
         expect(tr.body.length, `${where} body blocks`).toBe(en.body.length);

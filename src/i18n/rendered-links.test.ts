@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { readdirSync, readFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { DIST, builtPages } from '../utils/built-pages';
 import { LOCALES, type Locale } from './ui';
 import { SEGMENTS } from './routes';
 
@@ -29,22 +29,6 @@ import { SEGMENTS } from './routes';
  * broken. See CLAUDE.md.
  */
 
-const DIST = join(dirname(fileURLToPath(import.meta.url)), '../../dist');
-
-/** Every built index.html, as a path relative to dist/. */
-function builtPages(dir = ''): string[] {
-  const out: string[] = [];
-  for (const entry of readdirSync(join(DIST, dir), { withFileTypes: true })) {
-    const rel = dir ? `${dir}/${entry.name}` : entry.name;
-    if (entry.isDirectory()) {
-      if (entry.name === '_astro' || entry.name === 'admin') continue;
-      out.push(...builtPages(rel));
-    } else if (entry.name === 'index.html') {
-      out.push(rel);
-    }
-  }
-  return out;
-}
 
 const PREFIXED = LOCALES.filter((l) => l !== 'en') as Exclude<Locale, 'en'>[];
 

@@ -1,6 +1,7 @@
 # Pasadena Works
 
-Marketing site for a small-business consultancy in Pasadena, CA. Built with
+Marketing site for a consultancy serving independent health practices across
+Southern California, based in Pasadena, CA. Built with
 [Astro](https://astro.build), deployed free on GitHub Pages.
 
 **What to publish into it:** see [CONTENT-PLAN.md](./CONTENT-PLAN.md) — a
@@ -26,8 +27,8 @@ change if you're using this repo as a starting point for a different business.
 |---|---|---|
 | **Contact form endpoint** | `site.ts` → `formEndpoint` | The form won't work until this is a real endpoint, not `REPLACE_ME`. See below. |
 | **Email and phone** | `site.ts` → `email`, `phone`, `phoneDisplay` | |
-| **Service area cities** | `site.ts` → `serviceArea` | Drives the homepage list and your local search schema. |
-| **Service copy** | `src/data/services.ts` | All four services, all four languages, in one file. |
+| **Service area cities** | `site.ts` → `serviceArea` | Drives the homepage city list and the city pages; together with `regionServed` (the counties), your local search schema. |
+| **Service copy** | `src/data/services.ts` | All three services, all four languages, in one file. |
 | **City pages** | `src/data/cities.ts` | Nine city landing pages. Read the warning at the top before adding more. |
 | **Homepage copy** | `src/pages/index.astro` (English), `src/data/home.ts` (other languages) | |
 

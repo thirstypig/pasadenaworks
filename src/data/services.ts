@@ -46,7 +46,7 @@ const SOURCES = {
     'https://www.hhs.gov/about/news/2022/03/28/four-hipaa-enforcement-actions-hold-healthcare-providers-accountable-with-compliance.html',
   hipaaMarketing: 'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/marketing/index.html',
   ocrTrackingTech:
-    'https://www.hklaw.com/en/insights/publications/2024/06/american-hospital-assn-v-becerra-are-tracking-tools-ok-again',
+    'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/hipaa-online-tracking/index.html',
   calBusProf650:
     'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=650',
   federalAks:
@@ -63,6 +63,9 @@ const GOOGLE_HL: Record<Locale, string> = { en: 'en', es: 'es-419', 'zh-hans': '
 /** Google's help pages exist in each reader's language; the federal and state
  *  sources do not, so only Google links get a per-locale `hl`. */
 function google(url: string, locale: Locale): string {
+  // SOURCES values are HTML-escaped (`&amp;`). URL() would read that as a
+  // literal parameter and emit a broken link, so refuse it outright.
+  if (url.includes('&amp;')) throw new Error(`google() needs an unescaped URL, got ${url}`);
   const u = new URL(url);
   u.searchParams.set('hl', GOOGLE_HL[locale]);
   return u.toString();
@@ -91,26 +94,29 @@ export interface ServiceCopy {
   meta: string;
 }
 
-/** The live service ids. Retired ids (`search`, `ads`) redirect — see
- *  src/data/retired-services.mjs. Blog pillars reach a service through
- *  PILLAR_SERVICE below, never by matching this id. */
-export type ServiceId = 'consulting' | 'digitize' | 'websites';
-
-export interface Service {
-  id: ServiceId;
+interface ServiceRecord<Id extends string> {
+  id: Id;
   slugs: Record<Locale, string>;
   t: Record<Locale, ServiceCopy>;
 }
 
-export const services: Service[] = [
-  /* ── 1. Practice Checkup (id stays 'consulting'; URL unchanged) ─────── */
+/** Returns its argument unchanged; it exists so TypeScript infers the id union
+ *  from the records themselves. `ServiceId` is therefore derived, not a second
+ *  hand-written list: delete a service and every `PILLAR_SERVICE` entry still
+ *  naming it becomes a compile error, instead of a throw at build time. */
+function defineServices<const Id extends string>(records: ServiceRecord<Id>[]): ServiceRecord<Id>[] {
+  return records;
+}
+
+export const services = defineServices([
+  /* ── 1. Practice Checkup (id stays 'consulting'; URL renamed 2026-09-15)  */
   {
     id: 'consulting',
     slugs: {
-      en: 'business-advice',
-      es: 'asesoria-de-negocios',
-      'zh-hans': 'jingying-zixun',
-      'zh-hant': 'jingying-zixun',
+      en: 'practice-checkup',
+      es: 'revision-del-consultorio',
+      'zh-hans': 'jingying-zhenduan',
+      'zh-hant': 'jingying-zhenduan',
     },
     t: {
       en: {
@@ -157,20 +163,20 @@ export const services: Service[] = [
         title: '诊所经营诊断',
         tagline: '在花钱请任何人修正之前，先准确找出究竟是什么让您的诊所流失患者。',
         summary:
-          '针对整间诊所进行一次固定价格的检视——电话与初诊表格、病历与电子病历系统、网站与 Google 商家资料——最后提出一份简短的书面计划，依轻重缓急排列应当优先处理的事项；若您后续继续与我们合作，这笔费用将抵扣后续工作的费用。',
+          '针对整间诊所进行一次固定价格的全面审视——电话与初诊表格、病历与电子病历系统、网站与 Google 商家资料——最后提出一份简短的书面计划，依轻重缓急排列应当优先处理的事项；若您后续继续与我们合作，这笔费用将抵扣后续工作的费用。',
         body: [
-          '<p>多数联系我们的诊所都认为自己面临的是营销问题；尽管其中确实有些诊所如此，但同样常见的情况是，潜在患者早已打来电话，诊所却在一则无人回复的语音留言与一叠需要二十分钟才填得完的初诊表格之间，把他们流失掉。广告无法弥补上述任何一项缺失，因此我们在提出任何建议之前，都会先检视整间诊所。</p>',
-          '<h2>怎么做</h2><ul><li>与您以及前台人员面谈，因为负责接听电话的人往往比任何人都清楚，一天的工作究竟在哪个环节出了问题</li><li>完整走一遍一位患者的就诊经历：从最初的搜索或来电，经过挂号与看诊本身，一直到下次复诊的提醒</li><li>检视您的电子病历系统实际如何配置、患者病历如何整理，以及您的 Google 商家资料、评价与网站，在一位正考虑是否来电的人眼中呈现出怎样的诊所</li><li>一份简明的书面计划，依每项建议回本的快慢排列优先顺序，后续任何工作的固定价格都会在开工前以书面方式约定</li></ul>',
+          '<p>多数联系我们的诊所都认为自己面临的是营销问题；尽管其中确实有些诊所如此，但同样常见的情况是，潜在患者早已打来电话，诊所却在一则无人回复的语音留言与一叠需要二十分钟才填得完的初诊表格之间，把他们流失掉。广告无法弥补上述任何一项缺失，因此我们在提出任何建议之前，都会先审视整间诊所。</p>',
+          '<h2>怎么做</h2><ul><li>与您以及前台人员面谈，因为负责接听电话的人往往比任何人都清楚，一天的工作究竟在哪个环节出了问题</li><li>完整走一遍一位患者的就诊经历：从最初的搜索或来电，经过挂号与看诊本身，一直到下次复诊的提醒</li><li>审视您的电子病历系统实际如何配置、患者病历如何整理，以及您的 Google 商家资料、评价与网站，在一位正考虑是否来电的人眼中呈现出怎样的诊所</li><li>一份简明的书面计划，依每项建议回本的快慢排列优先顺序，后续任何工作的固定价格都会在开工前以书面方式约定</li></ul>',
           '<p>有时候，计划的结论是诊所的状况比您担心的好得多，而最有价值的下一步花费甚少；遇到这种情况，我们会像记录一项昂贵建议那样，同样照实写下来。</p>',
         ],
         outcomes: [
           '一份书面记录的患者就诊路径图，标出目前潜在患者会在哪些环节放弃',
-          '一份坦率的评估，说明您的病历、电子病历系统配置与前台作业流程，实际上为诊所发挥了多少作用',
+          '一份坦率的评估，说明您的病历、电子病历系统配置与前台工作流程，实际上为诊所发挥了多少作用',
           '一份评估，说明潜在患者搜索您的诊所时——无论是在 Google、评价、网站还是医疗名录上——看到的是怎样的诊所',
-          '一份按优先顺序排列的书面计划，而非一份没有人会再打开第二次的简报',
+          '一份按优先顺序排列的书面计划，而非一份没有人会再打开第二次的演示文稿',
           '诊断费用可抵扣您日后选择与我们合作的任何后续工作',
         ],
-        meta: '为南加州独立医疗、牙科与眼科诊所提供固定价格的经营诊断：检视病历、电子病历系统、前台流程与线上曝光，并排出优先顺序。',
+        meta: '为南加州独立医疗、牙科与眼科诊所提供固定价格的经营诊断：审视病历、电子病历系统、前台流程与线上曝光，并排出优先顺序。',
       },
       'zh-hant': {
         title: '診所經營診斷',
@@ -267,15 +273,15 @@ export const services: Service[] = [
           '我们将病历、预约、初诊表格与提醒迁移到彼此协同运作的系统，出发点是患者在您诊所中的实际就诊流程，而非某人想卖给您的软件，并且我们不收取任何软件供应商的佣金。',
         body: [
           '<p>许多独立诊所的日常运作，依赖的是一套从未完整配置的电子病历（EHR）系统、一条前台始终接听不及的电话线路，以及每次看诊后都得有人重新录入的纸质表格。上述每一项都日复一日地消耗员工的时间；此外，其中数项更在无人察觉的情况下，使尚未等到有人接听便已放弃的患者就此流失。</p>',
-          `<h2>怎么做</h2><ul><li>追踪一位患者从第一通电话到复诊提醒的完整流程，进而修补时间与金钱持续流失的具体环节</li><li>在线预约、患者到诊前即可在自己手机上填写的初诊表与知情同意书，以及<a href="${SOURCES.remindersNoShows}">能减少患者爽约的自动提醒</a></li><li>纸质病历经扫描后妥善整理，电子病历系统亦按照医护人员与员工的实际工作方式配置，从而让大家真正用起来</li><li>一份 HIPAA 安全风险分析（<a href="${SOURCES.hipaaCoveredEntities}">以电子方式申报保险理赔的诊所</a>均须<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 规定完成此项分析</a>），并与每一家经手患者信息的供应商签署业务伙伴协议</li><li>书面化的诊所作业流程，让诊所在您不在场的日子，也能与您在场时一样运作</li></ul>`,
-          '<p>我们只依软件本身的优劣提出建议，也不收取任何供应商的佣金或转介费，因为只有这样，关于该买哪一套系统的建议才有价值。电脑维修与医疗账务则并非我们的业务，我们会把您转介给在这些方面做得出色的专业人士。</p>',
+          `<h2>怎么做</h2><ul><li>追踪一位患者从第一通电话到复诊提醒的完整流程，进而修补时间与金钱持续流失的具体环节</li><li>在线预约、患者到诊前即可在自己手机上填写的初诊表与知情同意书，以及<a href="${SOURCES.remindersNoShows}">能减少患者爽约的自动提醒</a></li><li>纸质病历经扫描后妥善整理，电子病历系统亦按照医护人员与员工的实际工作方式配置，从而让大家真正用起来</li><li>一份 HIPAA 安全风险分析（<a href="${SOURCES.hipaaCoveredEntities}">以电子方式申报保险理赔的诊所</a>均须<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 规定完成此项分析</a>），并与每一家经手患者信息的供应商签署业务伙伴协议</li><li>书面化的诊所工作流程，让诊所在您不在场的日子，也能与您在场时一样运作</li></ul>`,
+          '<p>我们只依软件本身的优劣提出建议，也不收取任何供应商的佣金或推荐费，因为只有这样，关于该买哪一套系统的建议才有价值。电脑维修与医疗账务则并非我们的业务，我们会把您推荐给在这些方面做得出色的专业人士。</p>',
         ],
         outcomes: [
           '患者无须致电前台，便能自行预约、填写表格并收到提醒',
           '纸质病历完成数字化，电子病历系统也按照诊所实际的运作方式配置妥当',
           '一份已完成的 HIPAA 安全风险分析，以及分析所找出的改进措施',
           '与每一家经手患者信息的供应商签署的业务伙伴协议；若有供应商拒签，则提出更换方案',
-          '前台与后勤的书面作业流程，新入职员工也能照着执行',
+          '前台与后勤的书面工作流程，新入职员工也能照着执行',
           '只由您付费、不受任何其他人支付报酬的专业建议',
         ],
         meta: '为南加州独立诊所提供电子病历配置、在线预约、数字化初诊表与 HIPAA 安全风险分析，且不收取任何软件供应商的佣金。',
@@ -322,13 +328,13 @@ export const services: Service[] = [
           'Before most patients call, they check your Google listing, your reviews, and your website, so we get those right first. Then we bring back the patients who are overdue and advertise only the treatments worth advertising, keeping track of where new patients come from.',
         body: [
           '<p>A prospective patient usually wants to know five things before calling: whether you accept their insurance, whether you are accepting new patients, which languages you speak, where to park, and whether they can book an appointment online. A practice that answers those questions immediately often receives the call instead of a competitor down the street that does not, which is why no amount of advertising helps until those fundamentals are right.</p>',
-          `<h2>First, the basics</h2><ul><li>Your <a href="/glossary/#google-business-profile">Google Business Profile</a> completed and verified so that the practice appears in Google Maps and local search results, <a href="${google(SOURCES.googlePractitionerListings, 'en')}">with a separate listing for each doctor</a>, since prospective patients frequently search for a practitioner by name</li><li>A steady, predictable flow of <a href="/glossary/#reviews">reviews</a>: an automatic text after each appointment asking every patient, <a href="${google(SOURCES.googleReviewPolicy, 'en')}">never only the satisfied ones, and never with anything offered in return</a></li><li>Replies to reviews written so that they reveal nothing about a patient, not even that the reviewer is one, since <a href="${SOURCES.hhsReviewResponseSettlement}">federal regulators fined one dental practice $50,000 for a reply that disclosed a patient's details</a></li><li>Healthgrades, Zocdoc, WebMD, and your insurers' provider directories corrected so that every one of them agrees with your Google listing</li><li>A fast website built and tested to the <a href="/glossary/#wcag">WCAG 2.1 AA</a> accessibility standard, available in Spanish or Chinese wherever your patients speak those languages</li></ul>`,
+          `<h2>First, the basics</h2><ul><li>Your <a href="/glossary/#google-business-profile">Google Business Profile</a> completed and verified so that the practice appears in Google Maps and local search results, <a href="${google(SOURCES.googlePractitionerListings, 'en')}">with a separate listing for each doctor when several practice at one location</a>, since prospective patients frequently search for a practitioner by name</li><li>A steady, predictable flow of <a href="/glossary/#reviews">reviews</a>: an automatic text after each appointment asking every patient, <a href="${google(SOURCES.googleReviewPolicy, 'en')}">never only the satisfied ones, and never with anything offered in return</a></li><li>Replies to reviews written so that they reveal nothing about a patient, not even that the reviewer is one, since <a href="${SOURCES.hhsReviewResponseSettlement}">federal regulators fined one dental practice $50,000 for a reply that disclosed a patient's details</a></li><li>Healthgrades, Zocdoc, WebMD, and your insurers' provider directories corrected so that every one of them agrees with your Google listing</li><li>A fast website built and tested to the <a href="/glossary/#wcag">WCAG 2.1 AA</a> accessibility standard, available in Spanish or Chinese wherever your patients speak those languages</li></ul>`,
           `<p><a href="${SOURCES.medicarePartBCoverage}">Practices that accept Medicare Part B</a> or Medi-Cal must make their websites meet that accessibility standard under a federal regulation, <a href="${SOURCES.section504Extension}">by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones</a>, although HHS said in the same notice that it may still revise the requirements.</p>`,
           `<h2>Then, growth</h2><p>The least expensive appointment most practices will ever book comes from a patient who is already overdue: the annual eye examination, the six-month cleaning, the follow-up visit that never got scheduled. Most practices remind those patients inconsistently or not at all, so growth begins there, before a single dollar goes to advertising.</p><ul><li>Tracking that records where new patients originally came from, so that the monthly report can answer honestly whether the spending paid for itself</li><li>Recall and reactivation messages for patients who are overdue for a visit, <a href="${SOURCES.hipaaMarketing}">written within HIPAA's rules on marketing to patients</a></li><li>A dedicated page for each high-value treatment you offer, written around the specific way prospective patients actually search for it</li><li>Google search advertising only for treatments where a new patient is genuinely worth the cost, with a budget cap that cannot quietly run away from you</li></ul>`,
           `<p>Some things we will not do: target advertising at people based on a health condition, place advertising-tracking code on appointment or intake pages <a href="${SOURCES.ocrTrackingTech}">where it can pass patient information to an advertising platform</a>, or pay anyone for referrals, which <a href="${SOURCES.calBusProf650}">state</a> and <a href="${SOURCES.federalAks}">federal</a> anti-kickback laws generally prohibit. You retain ownership of the website, the domain, and the content, because holding a client's website hostage is a poor business model and a worse way to treat people.</p>`,
         ],
         outcomes: [
-          'Google Business Profile listings for the practice and for each individual practitioner, completed and verified',
+          'Google Business Profile listings for the practice and, where several doctors share a location, for each practitioner, completed and verified',
           'A review request that reaches every patient after every appointment, and replies that never confirm anyone is a patient',
           'Health directory and insurance company listings that agree with your Google listing',
           'A website that loads quickly on a phone, answers the questions patients ask first, and is built and tested to WCAG 2.1 AA, in Spanish or Chinese if your patients need it',
@@ -346,13 +352,13 @@ export const services: Service[] = [
           'Antes de llamar, la mayoría de los pacientes revisan su Perfil de Negocio de Google, sus reseñas y su sitio web, así que primero ponemos todo eso en orden. Después recuperamos a los pacientes con visitas atrasadas y anunciamos solo los tratamientos que vale la pena anunciar, registrando de dónde llegan los pacientes nuevos.',
         body: [
           '<p>Antes de llamar, un paciente potencial suele querer saber cinco cosas: si usted acepta su seguro, si está recibiendo pacientes nuevos, qué idiomas se hablan en el consultorio, dónde estacionarse y si puede reservar una cita en línea. Un consultorio que responde esas preguntas de inmediato frecuentemente recibe la llamada en lugar de un competidor de la misma calle que no lo hace, y por eso ninguna cantidad de publicidad ayuda mientras esos fundamentos no estén en orden.</p>',
-          `<h2>Primero, lo básico</h2><ul><li>Su Perfil de Negocio de Google completo y verificado, para que el consultorio aparezca en Google Maps y en las búsquedas locales, <a href="${google(SOURCES.googlePractitionerListings, 'es')}">con un perfil separado para cada profesional de la salud</a>, ya que los pacientes potenciales con frecuencia buscan a un profesional por su nombre</li><li>Un flujo constante y predecible de reseñas: un mensaje de texto automático después de cada cita que se las pide a todos los pacientes, <a href="${google(SOURCES.googleReviewPolicy, 'es')}">nunca solo a los satisfechos y nunca a cambio de algo</a></li><li>Respuestas a las reseñas redactadas de modo que no revelen nada sobre un paciente, ni siquiera que quien escribe lo es, ya que <a href="${SOURCES.hhsReviewResponseSettlement}">las autoridades federales multaron a un consultorio dental con 50,000 dólares por una respuesta que divulgó datos de un paciente</a></li><li>Healthgrades, Zocdoc, WebMD y los directorios de proveedores de sus aseguradoras, corregidos para que todos coincidan con su Perfil de Negocio de Google</li><li>Un sitio web rápido, construido y probado conforme al estándar de accesibilidad WCAG 2.1 AA, disponible en español o en chino dondequiera que sus pacientes hablen esos idiomas</li></ul>`,
+          `<h2>Primero, lo básico</h2><ul><li>Su Perfil de Negocio de Google completo y verificado, para que el consultorio aparezca en Google Maps y en las búsquedas locales, <a href="${google(SOURCES.googlePractitionerListings, 'es')}">con un perfil separado para cada profesional de la salud cuando varios atienden en el mismo lugar</a>, ya que los pacientes potenciales con frecuencia buscan a un profesional por su nombre</li><li>Un flujo constante y predecible de reseñas: un mensaje de texto automático después de cada cita que se las pide a todos los pacientes, <a href="${google(SOURCES.googleReviewPolicy, 'es')}">nunca solo a los satisfechos y nunca a cambio de algo</a></li><li>Respuestas a las reseñas redactadas de modo que no revelen nada sobre un paciente, ni siquiera que quien escribe lo es, ya que <a href="${SOURCES.hhsReviewResponseSettlement}">las autoridades federales multaron a un consultorio dental con 50,000 dólares por una respuesta que divulgó datos de un paciente</a></li><li>Healthgrades, Zocdoc, WebMD y los directorios de proveedores de sus aseguradoras, corregidos para que todos coincidan con su Perfil de Negocio de Google</li><li>Un sitio web rápido, construido y probado conforme al estándar de accesibilidad WCAG 2.1 AA, disponible en español o en chino dondequiera que sus pacientes hablen esos idiomas</li></ul>`,
           `<p><a href="${SOURCES.medicarePartBCoverage}">Los consultorios que aceptan la Parte B de Medicare</a> o Medi-Cal deben, conforme a una regulación federal, lograr que sus sitios web cumplan dicho estándar de accesibilidad <a href="${SOURCES.section504Extension}">a más tardar en mayo de 2027 si tienen quince empleados o más y en mayo de 2028 si son más pequeños</a>, aunque el HHS señaló en ese mismo aviso que todavía podría modificar los requisitos.</p>`,
           `<h2>Después, el crecimiento</h2><p>La cita más económica que la mayoría de los consultorios llegará a agendar proviene de un paciente que ya está atrasado: el examen anual de la vista, la limpieza dental de cada seis meses, la consulta de seguimiento que nunca se programó. La mayoría de los consultorios les recuerda a esos pacientes de forma irregular o sencillamente no lo hace, por lo que el crecimiento comienza precisamente ahí, antes de destinar un solo dólar a la publicidad.</p><ul><li>Un sistema de seguimiento que registra de dónde vinieron originalmente los pacientes nuevos, para que el informe mensual pueda responder con honestidad si la inversión se pagó sola</li><li>Mensajes de recordatorio y reactivación para pacientes con visitas atrasadas, <a href="${SOURCES.hipaaMarketing}">redactados dentro de las reglas de HIPAA sobre el marketing dirigido a pacientes</a></li><li>Una página dedicada a cada tratamiento de alto valor que usted ofrece, escrita según la forma específica en que los pacientes potenciales realmente lo buscan</li><li>Publicidad en la búsqueda de Google solo para tratamientos en los que un paciente nuevo realmente justifica el costo, con un tope de presupuesto que no se le puede escapar sin que usted lo note</li></ul>`,
-          `<p>Hay cosas que no haremos: dirigir publicidad a personas según una condición de salud, colocar código de rastreo publicitario en páginas de citas o de admisión <a href="${SOURCES.ocrTrackingTech}">donde puede transmitir información de pacientes a una plataforma de publicidad</a>, ni pagarle a nadie por referencias, algo que por lo general prohíben las leyes <a href="${SOURCES.calBusProf650}">estatales</a> y <a href="${SOURCES.federalAks}">federales</a> contra los sobornos. Usted conserva la propiedad del sitio web, del dominio y del contenido, porque retener como rehén el sitio web de un cliente constituye un modelo de negocio deficiente y una manera todavía peor de tratar a las personas.</p>`,
+          `<p>Hay cosas que no haremos: dirigir publicidad a personas según una condición de salud, colocar código de rastreo publicitario en páginas de citas o de admisión <a href="${SOURCES.ocrTrackingTech}">donde puede transmitir información de pacientes a una plataforma de publicidad</a>, ni pagarle a nadie por referidos, algo que por lo general prohíben las leyes <a href="${SOURCES.calBusProf650}">estatales</a> y <a href="${SOURCES.federalAks}">federales</a> contra los sobornos. Usted conserva la propiedad del sitio web, del dominio y del contenido, porque retener como rehén el sitio web de un cliente constituye un modelo de negocio deficiente y una manera todavía peor de tratar a las personas.</p>`,
         ],
         outcomes: [
-          'Perfiles de Negocio de Google completos y verificados para el consultorio y para cada profesional de la salud',
+          'Perfiles de Negocio de Google completos y verificados para el consultorio y, cuando varios profesionales atienden en el mismo lugar, para cada uno de ellos',
           'Una solicitud de reseña que llega a cada paciente después de cada cita, y respuestas que nunca confirman que alguien es paciente',
           'Fichas en directorios de salud y de aseguradoras que coinciden con su Perfil de Negocio de Google',
           'Un sitio web que carga rápidamente en el teléfono, responde en primer lugar las preguntas que formulan los pacientes y está construido y probado conforme a WCAG 2.1 AA, en español o en chino si sus pacientes lo necesitan',
@@ -370,17 +376,17 @@ export const services: Service[] = [
           '多数患者在来电之前，都会先查看您的 Google 商家资料、评价与网站，因此我们会先把这些做好。接着，我们会召回逾期未复诊的患者，并只为值得投放的治疗项目做广告，同时记录新患者的来源。',
         body: [
           '<p>潜在患者在来电之前，通常想知道五件事：您是否接受他们的保险、是否仍在接收新患者、诊所使用哪些语言、在哪里停车，以及能否在线预约。能立即回答这些问题的诊所，往往能接到这通电话，而非让它落入同一条街上做不到这点的竞争对手手中；因此，在这些基本功做好之前，再多的广告也无济于事。</p>',
-          `<h2>第一步：打好基础</h2><ul><li>完整填写并验证您的 Google 商家资料，让诊所出现在 Google 地图与本地搜索结果中；潜在患者经常直接搜索医生的名字，因此<a href="${google(SOURCES.googlePractitionerListings, 'zh-hans')}">应为每一位医生分别建立商家资料</a></li><li>稳定而可预期的评价来源：每次看诊后自动发送短信邀请每一位患者留下评价，<a href="${google(SOURCES.googleReviewPolicy, 'zh-hans')}">绝不只邀请满意的患者，也绝不以任何回报作为交换</a></li><li>回复评价时不透露任何患者信息，甚至不证实评价者是患者；<a href="${SOURCES.hhsReviewResponseSettlement}">美国联邦监管机构曾因一家牙科诊所在回复中披露患者资料，对其处以 50,000 美元罚款</a></li><li>Healthgrades、Zocdoc、WebMD 以及各保险公司的医疗服务提供者名录，全部更正至与您的 Google 商家资料一致</li><li>按照 WCAG 2.1 AA 无障碍标准构建并测试的快速网站，并视患者使用的语言提供西班牙文或中文版本</li></ul>`,
+          `<h2>第一步：打好基础</h2><ul><li>完整填写并验证您的 Google 商家资料，让诊所出现在 Google 地图与本地搜索结果中；潜在患者经常直接搜索医生的名字，因此<a href="${google(SOURCES.googlePractitionerListings, 'zh-hans')}">若同一地点有多位医生执业，应为每一位医生分别建立商家资料</a></li><li>稳定而可预期的评价来源：每次看诊后自动发送短信邀请每一位患者留下评价，<a href="${google(SOURCES.googleReviewPolicy, 'zh-hans')}">绝不只邀请满意的患者，也绝不以任何回报作为交换</a></li><li>回复评价时不透露任何患者信息，甚至不证实评价者是患者；<a href="${SOURCES.hhsReviewResponseSettlement}">美国联邦监管机构曾因一家牙科诊所在回复中披露患者资料，对其处以 50,000 美元罚款</a></li><li>Healthgrades、Zocdoc、WebMD 以及各保险公司的医疗服务提供者名录，全部更正至与您的 Google 商家资料一致</li><li>按照 WCAG 2.1 AA 无障碍标准构建并测试的快速网站，并视患者使用的语言提供西班牙文或中文版本</li></ul>`,
           `<p><a href="${SOURCES.medicarePartBCoverage}">接受联邦医疗保险（Medicare）B 部分</a>或加州医疗补助（Medi-Cal）的诊所，依联邦法规须让网站符合上述无障碍标准，<a href="${SOURCES.section504Extension}">员工十五人以上的诊所须在 2027 年 5 月前完成，规模较小的诊所则须在 2028 年 5 月前完成</a>。不过，美国卫生与公众服务部（HHS）在公布上述期限的同一份文件中表示，仍可能修订相关要求。</p>`,
           `<h2>第二步：带动增长</h2><p>多数诊所所能获得的成本最低的一次预约，来自一位早已逾期的患者：每年一次的眼科检查、每半年一次的洗牙、始终没有排上的复诊。多数诊所对这些患者的提醒时有时无，甚至完全没有，因此增长从这里开始，在花任何一分钱做广告之前。</p><ul><li>记录新患者最初从何而来的追踪机制，让每月报告能如实回答这笔支出是否已经回本</li><li>针对逾期未复诊患者的召回与重新联系信息，<a href="${SOURCES.hipaaMarketing}">内容符合 HIPAA 关于向患者进行营销的规定</a></li><li>为您提供的每一项高价值治疗建立专属页面，按照潜在患者实际的搜索方式撰写</li><li>只为新患者确实值得这笔成本的治疗项目投放 Google 搜索广告，并设定不会在不知不觉中超支的预算上限</li></ul>`,
-          `<p>有些事情我们不会做：根据健康状况定向投放广告；在预约或初诊页面放置广告追踪代码，<a href="${SOURCES.ocrTrackingTech}">这类代码可能将患者信息传给广告平台</a>；或者为转介向任何人付费，<a href="${SOURCES.calBusProf650}">加州</a>与<a href="${SOURCES.federalAks}">联邦</a>的反回扣法律一般均禁止此类行为。网站、域名与内容的所有权始终归您，因为把客户的网站扣作筹码，既是拙劣的商业模式，更是糟糕的待人之道。</p>`,
+          `<p>有些事情我们不会做：根据健康状况定向投放广告；在预约或初诊页面放置广告追踪代码，<a href="${SOURCES.ocrTrackingTech}">这类代码可能将患者信息传给广告平台</a>；或者为患者推荐向任何人付费，<a href="${SOURCES.calBusProf650}">加州</a>与<a href="${SOURCES.federalAks}">联邦</a>的反回扣法律一般均禁止此类行为。网站、域名与内容的所有权始终归您，因为把客户的网站扣作筹码，既是拙劣的商业模式，更是糟糕的待人之道。</p>`,
         ],
         outcomes: [
-          '为诊所及每一位个体从业者完成并验证 Google 商家资料',
+          '为诊所完成并验证 Google 商家资料；若同一地点有多位医生执业，也为每一位分别建立',
           '每次看诊后都会送达每一位患者的评价邀请，以及绝不证实任何人是患者的评价回复',
           '与您的 Google 商家资料一致的医疗名录与保险公司信息',
           '在手机上加载迅速、优先回答患者最先询问的问题，并按照 WCAG 2.1 AA 构建与测试的网站，如有需要可提供西班牙文或中文版本',
-          '有系统地将逾期患者带回预约排程的召回信息',
+          '有系统地将逾期患者带回预约日程的召回信息',
           '设有严格预算上限、只在数字确实划算时才投放的搜索广告',
           '每月一份说明：花了多少、带来多少回报，以及新患者来自何处',
         ],
@@ -394,13 +400,13 @@ export const services: Service[] = [
           '多數病患在來電之前，都會先查看您的 Google 商家檔案、評論與網站，因此我們會先把這些做好。接著，我們會召回逾期未回診的病患，並只為值得投放的治療項目刊登廣告，同時記錄新病患的來源。',
         body: [
           '<p>潛在病患在來電之前，通常想知道五件事：您是否接受他們的保險、是否仍在接受新病患、診所使用哪些語言、在哪裡停車，以及能否線上預約。能立即回答這些問題的診所，往往能接到這通電話，而非讓它落入同一條街上做不到這點的競爭對手手中；因此，在這些基本功做好之前，再多的廣告也無濟於事。</p>',
-          `<h2>第一步：打好基礎</h2><ul><li>完整填寫並驗證您的 Google 商家檔案，讓診所出現在 Google 地圖與在地搜尋結果中；潛在病患經常直接搜尋醫師的名字，因此<a href="${google(SOURCES.googlePractitionerListings, 'zh-hant')}">應為每一位醫師分別建立商家檔案</a></li><li>穩定而可預期的評論來源：每次看診後自動傳送簡訊邀請每一位病患留下評論，<a href="${google(SOURCES.googleReviewPolicy, 'zh-hant')}">絕不只邀請滿意的病患，也絕不以任何回饋作為交換</a></li><li>回覆評論時不透露任何病患資訊，甚至不證實評論者是病患；<a href="${SOURCES.hhsReviewResponseSettlement}">美國聯邦主管機關曾因一家牙醫診所在回覆中揭露病患資料，對其處以 50,000 美元罰款</a></li><li>Healthgrades、Zocdoc、WebMD 以及各保險公司的醫療服務提供者名錄，全部更正至與您的 Google 商家檔案一致</li><li>依照 WCAG 2.1 AA 無障礙標準建置並測試的快速網站，並視病患使用的語言提供西班牙文或中文版本</li></ul>`,
+          `<h2>第一步：打好基礎</h2><ul><li>完整填寫並驗證您的 Google 商家檔案，讓診所出現在 Google 地圖與在地搜尋結果中；潛在病患經常直接搜尋醫師的名字，因此<a href="${google(SOURCES.googlePractitionerListings, 'zh-hant')}">若同一地點有多位醫師執業，應為每一位醫師分別建立商家檔案</a></li><li>穩定而可預期的評論來源：每次看診後自動傳送簡訊邀請每一位病患留下評論，<a href="${google(SOURCES.googleReviewPolicy, 'zh-hant')}">絕不只邀請滿意的病患，也絕不以任何回饋作為交換</a></li><li>回覆評論時不透露任何病患資訊，甚至不證實評論者是病患；<a href="${SOURCES.hhsReviewResponseSettlement}">美國聯邦主管機關曾因一家牙醫診所在回覆中揭露病患資料，對其處以 50,000 美元罰款</a></li><li>Healthgrades、Zocdoc、WebMD 以及各保險公司的醫療服務提供者名錄，全部更正至與您的 Google 商家檔案一致</li><li>依照 WCAG 2.1 AA 無障礙標準建置並測試的快速網站，並視病患使用的語言提供西班牙文或中文版本</li></ul>`,
           `<p><a href="${SOURCES.medicarePartBCoverage}">接受聯邦醫療保險（Medicare）B 部分</a>或加州醫療補助（Medi-Cal）的診所，依聯邦法規須讓網站符合上述無障礙標準，<a href="${SOURCES.section504Extension}">員工十五人以上的診所須在 2027 年 5 月前完成，規模較小的診所則須在 2028 年 5 月前完成</a>。不過，美國衛生及公共服務部（HHS）在公布上述期限的同一份文件中表示，仍可能修訂相關要求。</p>`,
           `<h2>第二步：帶動成長</h2><p>多數診所所能獲得的成本最低的一次預約，來自一位早已逾期的病患：每年一次的眼科檢查、每半年一次的洗牙、始終沒有排上的回診。多數診所對這些病患的提醒時有時無，甚至完全沒有，因此成長從這裡開始，在花任何一塊錢刊登廣告之前。</p><ul><li>記錄新病患最初從何而來的追蹤機制，讓每月報告能如實回答這筆支出是否已經回本</li><li>針對逾期未回診病患的召回與重新聯繫訊息，<a href="${SOURCES.hipaaMarketing}">內容符合 HIPAA 關於向病患進行行銷的規定</a></li><li>為您提供的每一項高價值治療建立專屬頁面，依照潛在病患實際的搜尋方式撰寫</li><li>只為新病患確實值得這筆成本的治療項目刊登 Google 搜尋廣告，並設定不會在不知不覺中超支的預算上限</li></ul>`,
           `<p>有些事情我們不會做：依健康狀況鎖定投放廣告；在預約或初診頁面放置廣告追蹤程式碼，<a href="${SOURCES.ocrTrackingTech}">這類程式碼可能將病患資訊傳給廣告平台</a>；或是為轉介向任何人付費，<a href="${SOURCES.calBusProf650}">加州</a>與<a href="${SOURCES.federalAks}">聯邦</a>的反回扣法律一般皆禁止此類行為。網站、網域與內容的所有權始終歸您，因為把客戶的網站扣作籌碼，既是拙劣的商業模式，更是糟糕的待人之道。</p>`,
         ],
         outcomes: [
-          '為診所及每一位個人專業執業人員完成並驗證 Google 商家檔案',
+          '為診所完成並驗證 Google 商家檔案；若同一地點有多位醫師執業，也為每一位分別建立',
           '每次看診後都會送達每一位病患的評論邀請，以及絕不證實任何人是病患的評論回覆',
           '與您的 Google 商家檔案一致的醫療名錄與保險公司資訊',
           '在手機上載入迅速、優先回答病患最先詢問的問題，並依照 WCAG 2.1 AA 建置與測試的網站，如有需要可提供西班牙文或中文版本',
@@ -412,7 +418,13 @@ export const services: Service[] = [
       },
     },
   },
-];
+]);
+
+/** The live service ids, derived from `services` above. Retired ids (`search`,
+ *  `ads`) redirect — see src/data/retired-services.mjs. Blog pillars reach a
+ *  service through PILLAR_SERVICE below, never by matching this id. */
+export type ServiceId = (typeof services)[number]['id'];
+export type Service = ServiceRecord<ServiceId>;
 
 /** Look up a service by its localized slug. */
 export function serviceBySlug(locale: Locale, slug: string): Service | undefined {

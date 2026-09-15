@@ -169,7 +169,7 @@ export const ui: Record<Locale, UIStrings> = {
       whatYouGet: 'What you get',
       servicesDescription:
         'A practice checkup, office digitization, and more new patients, for independent medical, dental, and eye care practices throughout Southern California.',
-      servicesIntro: 'Start with the checkup; what it finds decides which of the other two comes next.',
+      servicesIntro: 'Start with the checkup; what it finds decides what comes next.',
       citiesTitle: 'Cities we work in',
       citiesDescription:
         'Website and local SEO work for small businesses across Pasadena and the San Gabriel Valley.',
@@ -233,7 +233,7 @@ export const ui: Record<Locale, UIStrings> = {
       whatYouGet: 'Lo que incluye',
       servicesDescription:
         'Revisión integral, digitalización del consultorio y más pacientes nuevos para consultorios médicos, dentales y de optometría del sur de California.',
-      servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá cuál de los otros dos servicios sigue.',
+      servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá qué sigue.',
       citiesTitle: 'Ciudades donde trabajamos',
       citiesDescription:
         'Sitios web y SEO local para negocios pequeños en Pasadena y el Valle de San Gabriel.',
@@ -296,7 +296,7 @@ export const ui: Record<Locale, UIStrings> = {
     hub: {
       whatYouGet: '服务内容',
       servicesDescription: '为南加州各地的独立医疗、牙科与眼科诊所提供经营诊断、诊所数字化与新患者开发服务。',
-      servicesIntro: '先从经营诊断开始，诊断的结果将决定接下来进行另外两项中的哪一项。',
+      servicesIntro: '先从经营诊断开始，诊断的结果将决定下一步。',
       citiesTitle: '我们服务的城市',
       citiesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设与本地谷歌推广服务。',
       citiesIntro: '我们为整个圣盖博谷的小型企业提供服务。选择您所在的城市，看看当地最重要的事。',
@@ -355,7 +355,7 @@ export const ui: Record<Locale, UIStrings> = {
     hub: {
       whatYouGet: '服務內容',
       servicesDescription: '為南加州各地的獨立醫療、牙科與眼科診所提供經營診斷、診所數位化與新病患開發服務。',
-      servicesIntro: '先從經營診斷開始，診斷的結果將決定接下來進行另外兩項中的哪一項。',
+      servicesIntro: '先從經營診斷開始，診斷的結果將決定下一步。',
       citiesTitle: '我們服務的城市',
       citiesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置與在地 Google 推廣服務。',
       citiesIntro: '我們為整個聖蓋博谷的小型企業提供服務。選擇您所在的城市，看看當地最重要的事。',

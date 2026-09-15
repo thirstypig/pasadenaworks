@@ -1,5 +1,5 @@
 ---
-status: pending
+status: complete
 priority: p3
 issue_id: "039"
 tags: [code-review, readability, tests, maintainability]
@@ -55,7 +55,7 @@ drop any element carrying it.
 
 ## Recommended Action
 
-To be decided in triage.
+See the 2026-09-15 work-log entry.
 
 ## Technical Details
 
@@ -64,15 +64,22 @@ To be decided in triage.
 
 ## Acceptance Criteria
 
-- [ ] `LIST_ITEM_END` is written as an escape sequence, not a raw character
-- [ ] `prose()`'s doc comment sits directly above `function prose`
-- [ ] A test fails if a built localized homepage loses the marker the scorer relies on
-- [ ] `npm run test`, `npm run build`, then `npm run readability -- --dist` all pass
+- [x] `LIST_ITEM_END` is written as an escape sequence, not a raw character
+- [x] `prose()`'s doc comment sits directly above `function prose`
+- [x] A test fails if a built localized homepage loses the marker the scorer relies on
+- [x] `npm run test`, `npm run build`, then `npm run readability -- --dist` all pass
 
 ## Work Log
 
 ### 2026-09-14 — Found in PR #75 review
 Raised by the code-simplicity, kieran-typescript and pattern-recognition review agents.
+
+### 2026-09-15 — Fixed
+All three fixed in scripts/readability.mjs and its test: `LIST_ITEM_END` is written `'\uE000'` (same runtime value); the list-item block moved above `prose()`'s doc comment, a pure move; two built-page tests assert each localized homepage has `<ul class="service-area">` and that "Monrovia" is excluded from the /es/ score. Each was falsified on scratch copies (class renamed on es and zh-hant copies; exclusion line deleted from a scorer copy). Note: on the 2026-09-15 build, renaming the class moves /es/ from 47 to 55 — the band edge — not 46 to 58; the failure message gives both figures with dates.
+
+Verified: `npm run typecheck` 0 errors (89 files); `npm run build` clean; `npm run test` 357 passed, 1 skipped (358); 30 tests skip without dist/ (measured by moving dist/ aside); `npm run readability -- --dist` exit 0 with the same out-of-band list as before (listing and legal pages only).
+
+**todos/039 is closed.**
 
 ## Resources
 

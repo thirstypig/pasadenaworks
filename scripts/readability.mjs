@@ -177,6 +177,27 @@ const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
 /* ── text extraction ───────────────────────────────────────────────────── */
 
 /**
+ * ── A LIST ITEM ENDS A SENTENCE ──
+ *
+ * Bullets carry no terminal punctuation by house style, and both splitters
+ * below break only on punctuation — so a seven-bullet list used to score as ONE
+ * sentence of a hundred words. A list-heavy service page measured FK 25.4 that
+ * way while its paragraphs read near grade 11 (2026-09-14).
+ *
+ * Both extraction paths mark the end of every list item with this character,
+ * and both splitters treat it as a sentence end, so markdown and rendered
+ * scores still agree. It is a private-use code point on purpose: a real
+ * separator such as U+2029 is whitespace to JavaScript's `\s`, and the
+ * whitespace collapse at the end of mainProse() would silently erase it.
+ *
+ * Measured across the complete corpus before adopting it, which is the test
+ * for a recalibration rather than a snooze: no blog post in any locale changed
+ * verdict (largest shift 0.3 grades), and the only pages that did were the
+ * service pages and Spanish homepage being rewritten in the same change.
+ */
+const LIST_ITEM_END = '\uE000';
+
+/**
  * Strips a markdown post down to the prose a reader actually reads.
  *
  * Headings are removed rather than counted. They are deliberate fragments
@@ -205,27 +226,6 @@ const PARTICLES = ['吧', '呢', '嘛', '啊', '喔', '啦', '耶', '唷'];
  * pretending it is closed; the guard is that quoting prose you wrote
  * yourself is visibly odd in review.
  */
-/**
- * ── A LIST ITEM ENDS A SENTENCE ──
- *
- * Bullets carry no terminal punctuation by house style, and both splitters
- * below break only on punctuation — so a seven-bullet list used to score as ONE
- * sentence of a hundred words. A list-heavy service page measured FK 25.4 that
- * way while its paragraphs read near grade 11 (2026-09-14).
- *
- * Both extraction paths mark the end of every list item with this character,
- * and both splitters treat it as a sentence end, so markdown and rendered
- * scores still agree. It is a private-use code point on purpose: a real
- * separator such as U+2029 is whitespace to JavaScript's `\s`, and the
- * whitespace collapse at the end of mainProse() would silently erase it.
- *
- * Measured across the complete corpus before adopting it, which is the test
- * for a recalibration rather than a snooze: no blog post in any locale changed
- * verdict (largest shift 0.3 grades), and the only pages that did were the
- * service pages and Spanish homepage being rewritten in the same change.
- */
-const LIST_ITEM_END = '';
-
 export function prose(markdown) {
   // `\r?\n`, and no required newline AFTER the closing fence. The previous
   // pattern was /^---[\s\S]*?\n---\n/, which FAILS OPEN: on a CRLF file, or a

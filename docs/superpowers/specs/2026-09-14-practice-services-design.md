@@ -1,13 +1,13 @@
 # Repositioning Pasadena Works around independent health practices
 
-**Date:** 2026-09-14 · **Status:** design, awaiting owner review · **Branch:** `feat/practice-services`
+**Date:** 2026-09-14 · **Status:** implemented, merged in #75 · **Branch:** `feat/practice-services`
 
 This document records decisions made in conversation with the owner and the
 English copy that implements them. Nothing here is live. Translations, the
 build, and the tests follow only after the English copy is approved.
 
-This repository is public. The document deliberately names no client and no
-family member; "family practices" is as specific as it gets.
+This repository is public. The document deliberately names no client and
+describes none.
 
 ---
 
@@ -24,10 +24,10 @@ family member; "family practices" is as specific as it gets.
 | 7 | Equipment sales | Not offered on the site. |
 | 8 | How a client starts | Free booking call (existing Cal.com link), then a paid Practice Checkup whose fee is credited toward subsequent work. |
 | 9 | Prices | None published. Copy promises "a fixed price, agreed in writing before we start." |
-| 10 | Proof | Named family practices with the family connection disclosed, per the FTC's material-connection rule, and no patient-identifying detail. **Not at launch:** added only once real figures and each family member's written consent exist. |
+| 10 | Proof | Case studies name a practice only with the client's written consent, disclose any material connection per the FTC's endorsement rules, and carry no patient-identifying detail. **Not at launch:** added only once real figures and that consent exist. |
 | 11 | Structure | A Practice Checkup plus two offerings: *Digitize the office* (everything inside the office) and *Get more patients* (everything outside it). A first draft split the second into "Online presence" and "Marketing and advertising"; the owner read them as the same thing, so they were merged, keeping "the basics first, then growth" as the page's own order. |
 | 12 | Vendor neutrality | No commissions or referral fees from software vendors. Stated on the site. |
-| 13 | HIPAA | Pasadena Works signs a business associate agreement (BAA) with each practice whose patient data it handles. Stated on the site. |
+| 13 | HIPAA | Pasadena Works intends to sign a business associate agreement (BAA) with each practice whose patient data it handles. **Not stated on the site** until a BAA template exists — the promise was removed before launch (`todos/029`). |
 | 14 | Explicitly not offered | IT support and repairs, billing and collections, software reselling, social media management, condition-targeted social ads, paid referrals. |
 
 ## 2. Service structure and URLs

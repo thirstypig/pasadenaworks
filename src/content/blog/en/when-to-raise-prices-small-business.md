@@ -43,4 +43,4 @@ Most owners picture an incoming wave of indignant customers. In practice, a reas
 
 You can announce it plainly: "Starting next month, prices are going up to keep up with costs." **You are not required to apologize for operating a business that has to remain solvent.**
 
-If you would like a second, disinterested opinion on your specific numbers before deciding, that is precisely what [a working session on pricing](/services/business-advice/) exists for. Sometimes the honest answer is that you are entirely fine as you are, and we will tell you that as readily.
+If you would like a second, disinterested opinion on your specific numbers before deciding, that is precisely what [a working session on pricing](/services/practice-checkup/) exists for. Sometimes the honest answer is that you are entirely fine as you are, and we will tell you that as readily.
