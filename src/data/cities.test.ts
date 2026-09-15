@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { cities, cityLocales, cityBySlug, cityDisplayName, type CityCopy } from './cities';
+import { cities, cityLocales, cityBySlug, cityDisplayName, type CityCopy, type CitySlug } from './cities';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
@@ -71,6 +71,30 @@ describe('city copy', () => {
     // skipping a missing locale, so an untranslated page fails here too.
     for (const city of cities) {
       expect(city.t.es?.title, city.slug).toBe(`Más pacientes para consultorios médicos y dentales en ${cityDisplayName(city.slug)}`);
+    }
+  });
+
+  it('titles every Simplified Chinese page with the searched phrase', () => {
+    // The owner's pattern: the Chinese name readers search for, then the
+    // English name in full-width parentheses. The Chinese names are pinned
+    // here, not derived, and are sourced in the "Chinese city names" table of
+    // docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md.
+    const ZH_HANS_NAME: Record<CitySlug, string> = {
+      pasadena: '帕萨迪纳',
+      altadena: '阿尔塔迪纳',
+      'south-pasadena': '南帕萨迪纳',
+      glendale: '格伦代尔',
+      alhambra: '阿罕布拉',
+      arcadia: '亚凯迪亚',
+      monrovia: '蒙罗维亚',
+      'san-marino': '圣马力诺',
+      'monterey-park': '蒙特利公园',
+      'san-gabriel': '圣盖博',
+    };
+    for (const city of cities) {
+      expect(city.t['zh-hans']?.title, city.slug).toBe(
+        `为${ZH_HANS_NAME[city.slug]}（${cityDisplayName(city.slug)}）医疗与牙科诊所带来更多患者`,
+      );
     }
   });
 

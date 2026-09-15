@@ -223,3 +223,100 @@ because this site's Spanish follows US practice and parity is digit-exact.
   `Revisión integral del consultorio`, `Digitalizar el consultorio` and
   `Conseguir más pacientes`. The two infinitive names are introduced as `el
   servicio …` in running text, so they do not read as ordinary verbs.
+
+## Chinese city names
+
+Settled 2026-09-15 for the `zh-hans` titles (`为{城市名}（{City}）医疗与牙科诊所带来更多患者`),
+and pinned in `cities.test.ts`. The rule: the name the San Gabriel Valley's own
+Chinese-language press, directories and city governments write, because that
+is what a reader searches for. Chinese Wikipedia was used only where no local
+source was found, and was **overruled** where it disagrees with local use
+(Monterey Park is 蒙特雷帕克 on zh.wikipedia's zh-cn variant and San Gabriel
+圣加布里埃尔; nobody local writes either). Every URL below was fetched on
+2026-09-15 and the name counted in the returned page, except where noted.
+
+The Traditional column records what a source actually prints, for the
+`zh-hant` task to weigh; it is **not** a character-by-character conversion of
+the Simplified column. Local Traditional-script usage differs from Simplified
+usage for several cities (World Journal writes 巴沙迪那 for Pasadena, where
+Simplified sources write 帕萨迪纳), and `zh-hant` should make its own call.
+
+| City | Simplified (`zh-hans`) | Simplified source | Traditional, as printed | Traditional source |
+|---|---|---|---|---|
+| Pasadena | 帕萨迪纳 | VOA Chinese, <https://www.voachinese.com/a/california-wildfires-could-be-leaving-deeper-inequality-in-their-wake-20250112/7934221.html> | 巴沙迪那 (World Journal); 帕沙第納 (zh.wikipedia zh-tw) | <https://www.worldjournal.com/wj/story/121362/9729757> |
+| Altadena | 阿尔塔迪纳 | VOA Chinese, same article (11 occurrences) | 阿爾塔迪納 | zh.wikipedia zh-tw, <https://zh.wikipedia.org/zh-tw/阿爾塔迪納_(加利福尼亞州)>; World Journal headlines write 艾塔迪那 (seen in search results, page not fetchable by script) |
+| South Pasadena | 南帕萨迪纳 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/南帕萨迪纳_(加利福尼亚州)> — follows Pasadena, so the two related names are searched together | 南帕薩迪那 (CCYP directory) | <https://www.ccyp.com/subjects/91143> |
+| Glendale | 格伦代尔 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/格倫代爾_(加利福尼亞州)> | 格倫代爾 (zh.wikipedia zh-tw); 格蘭岱 (CCYP) | <https://zh.wikipedia.org/zh-tw/格倫代爾_(加利福尼亞州)>, <https://www.ccyp.com/subjects/91114> |
+| Alhambra | 阿罕布拉 | CCYP directory (Simplified edition), <https://cn.ccyp.com/subjects/91081> | 阿罕布拉 | City of Alhambra, water-rate assistance guidelines, <https://www.alhambraca.gov/DocumentCenter/View/6724/CITY-OF-ALHAMBRA-LIWRAP-Final-Guildelines-TCH> |
+| Arcadia | 亚凯迪亚 | 美洲华联社 (LA, Simplified), <https://huarenone.com/2026/02/04/%E7%8E%8B%E7%88%B1%E6%9E%97%E5%B0%B1%E4%BB%BB%E4%BA%9A%E5%87%AF%E8%BF%AA%E4%BA%9A%E5%B8%82%E5%B8%82%E9%95%BF-%E9%83%91%E5%8D%9A%E4%BB%81%E5%BE%8B%E5%B8%88%E6%8B%85%E4%BB%BB%E5%89%AF%E5%B8%82%E9%95%BF/>; CCYP, <https://cn.ccyp.com/subjects/91083> | 亞凱迪亞 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/亞凱迪亞> |
+| Monrovia | 蒙罗维亚 | CCYP, <https://cn.ccyp.com/subjects/91124> | 蒙羅維亞 | CCYP, <https://www.ccyp.com/subjects/91124> |
+| San Marino | 圣马力诺 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/圣玛利诺_(加利福尼亚州)> (renders 圣马力诺); the China Press (侨报) also wrote 圣马力诺市, but its 2014 article URL now returns 404 | 聖瑪利諾 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖瑪利諾> |
+| Monterey Park | 蒙特利公园 | CCYP, <https://cn.ccyp.com/subjects/91126> | 蒙特利公園 | City of Monterey Park news release, <https://www.montereypark.ca.gov/DocumentCenter/View/8703> |
+| San Gabriel | 圣盖博 | CCYP, <https://cn.ccyp.com/subjects/91136> | 聖蓋博 | City of San Gabriel housing relief guidelines (Chinese), <https://sangabrieled.com/DocumentCenter/View/494/CHINESE--Housing-Relief-Guidlines>; World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖蓋博> |
+
+Two judgment calls:
+
+- **Arcadia is 亚凯迪亚, not 阿凯迪亚.** The plan's example was 阿凯迪亚, and
+  national outlets vary (VOA 阿卡迪亚, RFA 阿凯迪亚). The local press agrees on
+  亚凯迪亚 in both scripts — 美洲华联社 in Simplified, World Journal's 亞凱迪亞
+  tag in Traditional — and so does the CCYP directory, so the local form wins.
+- **Hospital names stay in English** (Huntington Hospital, Garfield Medical
+  Center, …). No hospital's own Chinese-language material was checked, so no
+  Chinese rendering is asserted. A neighboring city's hospital is always
+  written with 附近 / 相邻城市 / 邻近 and that city's name plus 市.
+
+## Simplified Chinese phrasing (`zh-hans` city pages)
+
+Chosen 2026-09-15 for `src/data/city-copy/zh-hans.ts`, translated from the
+English, not from the Spanish.
+
+- **Figures** are the English figures in Arabic digits with a period decimal
+  (`24.2%`) and a comma for thousands (`9,419`, `6,000`), as `services.ts`
+  already writes `50,000 美元`. Dates are `2026 年 9 月`, which the parity test
+  reduces to the year. Quantities the English writes as words stay Chinese
+  numerals — `五岁及以上`, `四比一`, `三分之一`, `超过八分之一`, `每十位居民中就有四位以上`
+  — because writing `5 岁` would add a digit the English does not have. One
+  space separates Latin text and digits from Han characters.
+- **Title and headline noun: `诊所`**, in the owner's pattern
+  `为{城市名}（{City}）医疗与牙科诊所带来更多患者`. Eye care in the metas is
+  `眼科诊所`, as in the service metas. `顾问` is not used (owner decision), and
+  nothing mentions selling a practice.
+- **Service names verbatim from `services.ts`:** `诊所经营诊断`, `诊所数字化`,
+  `获取更多患者`, in “” quotation marks. The last two are followed by `服务` in
+  running text, because both read as ordinary phrases otherwise — the same
+  reason the Spanish writes `el servicio …`.
+- **Google Business Profile: `Google 商家资料`**, the title of Google's zh-CN
+  help center, "Google 商家资料帮助":
+  <https://support.google.com/business/answer/9798848?hl=zh-CN>.
+- **Census Bureau and ACS: `美国人口普查局`, `美国社区问卷调查（ACS）`, `五年估算`**,
+  from the Bureau's own Simplified Chinese fact sheet, "2015–2019 年美国社区问卷调查
+  (American Community Survey) (ACS), 5 年估算":
+  <https://www.census.gov/content/dam/Census/library/factsheets/2020/dec/upcoming-us-population-releases-chinese-simplified.pdf>.
+  The sheet writes the digit 5; the pages write `五` because the English writes
+  "five".
+- **NPI Registry: `NPI 登记系统`; source label `CMS NPI 登记系统`.** No official
+  Chinese name for the registry or for CMS was found, so `CMS` stays
+  unexpanded, as in the Spanish label.
+- **HCAI: `加州 HCAI`**, with the English department name in the source label.
+  HCAI publishes Spanish pages but no Chinese one was found, so no Chinese
+  department name is invented.
+- **General acute care hospital: `综合急症护理医院`.** California's license
+  category has no official Chinese name; `综合医院` is the ordinary Chinese for a
+  general hospital and `急症护理` for acute care, and both halves are kept
+  because both are part of the category name.
+- **Clinicians:** `初级保健医生` (the term California's Medi-Cal enrollment site
+  uses throughout its Simplified Chinese edition,
+  <https://www.healthcareoptions.dhcs.ca.gov/zh-Hans/>), with `家庭医学或内科` for
+  "family or internal medicine"; `牙医`; `验光师` for optometrist (Cambridge
+  Chinese–English dictionary,
+  <https://dictionary.cambridge.org/us/dictionary/chinese-simplified-english/验光师>).
+  "Practice location" is `执业地点`; individual clinicians are `个人执业者`.
+- **Eaton Fire: `伊顿大火`**, as VOA Chinese writes it in the article cited for
+  Altadena above. `CAL FIRE` and the Catalyst California report title stay in
+  English.
+- **Front-office terms** come from the Simplified `services.ts` copy:
+  `初诊表格`, `知情同意书`, `预约提醒`, `召回信息`, `前台`, `电子病历系统`, `评价`.
+- **Register.** The band is 0.55–0.85 on the 书面语 index, raised through word
+  choice (因此, 然而, 并非, 至于, 由于) rather than sentence length, and every page
+  keeps a few ordinary connectives (所以, 因为, 而不是) so none reads as a legal
+  document. No sentence exceeds 85 Han characters.
