@@ -25,23 +25,23 @@ family member; "family practices" is as specific as it gets.
 | 8 | How a client starts | Free booking call (existing Cal.com link), then a paid Practice Checkup whose fee is credited toward subsequent work. |
 | 9 | Prices | None published. Copy promises "a fixed price, agreed in writing before we start." |
 | 10 | Proof | Named family practices with the family connection disclosed, per the FTC's material-connection rule, and no patient-identifying detail. **Not at launch:** added only once real figures and each family member's written consent exist. |
-| 11 | Structure | A Practice Checkup plus three offerings: *Digitize the office*, *Online presence*, *Marketing and advertising*. |
+| 11 | Structure | A Practice Checkup plus two offerings: *Digitize the office* (everything inside the office) and *Get more patients* (everything outside it). A first draft split the second into "Online presence" and "Marketing and advertising"; the owner read them as the same thing, so they were merged, keeping "the basics first, then growth" as the page's own order. |
 | 12 | Vendor neutrality | No commissions or referral fees from software vendors. Stated on the site. |
 | 13 | HIPAA | Pasadena Works signs a business associate agreement (BAA) with each practice whose patient data it handles. Stated on the site. |
 | 14 | Explicitly not offered | IT support and repairs, billing and collections, software reselling, social media management, condition-targeted social ads, paid referrals. |
 
 ## 2. Service structure and URLs
 
-The four existing service pages are indexed in four languages. Three keep
-their URLs and are rewritten; one is retired behind a redirect; one is new.
+The four existing service pages are indexed in four languages. Two keep their
+URLs and are rewritten; two are retired behind redirects; one is new.
 
 | Order | `id` | New title (en) | English URL | Change |
 |---|---|---|---|---|
 | 1 | `consulting` | Practice Checkup | `/services/business-advice/` | Rewritten; URL unchanged |
 | 2 | `digitize` | Digitize the office | `/services/practice-digitization/` | **New** |
-| 3 | `websites` | Online presence | `/services/websites/` | Rewritten; URL unchanged |
-| 4 | `ads` | Marketing and advertising | `/services/paid-advertising/` | Rewritten; URL unchanged |
+| 3 | `websites` | Get more patients | `/services/websites/` | Rewritten; URL unchanged |
 | — | `search` | *(retired)* | `/services/get-found-on-google/` | Redirects to `websites`, per locale |
+| — | `ads` | *(retired)* | `/services/paid-advertising/` | Redirects to `websites`, per locale |
 
 **Slugs for the new service** (hard rule 3: segment and slug both translated):
 `en` `practice-digitization` · `es` `digitalizacion-del-consultorio` ·
@@ -49,24 +49,28 @@ their URLs and are rewritten; one is retired behind a redirect; one is new.
 (診所數位化). The two Chinese slugs differ because the words differ: mainland
 数字化 against Taiwan 數位化.
 
-**Why `websites` keeps its id and slug even though its title changes:**
-`routes.ts:51` derives the city-hub URL segment from the `websites` service's
-slugs, so every city page lives under it.
+**Why the merged page lives at `websites`, not `ads`:** `routes.ts:51` derives
+the city-hub URL segment from the `websites` service's slugs, so every city page
+lives under it and that service cannot be the one retired.
 
-**Retiring `search`.** Astro's `redirects` config, on a static build with no
+**Retiring `search` and `ads`.** Astro's `redirects` config, on a static build with no
 adapter, emits a page with `<meta http-equiv="refresh" content="0">`,
 `<meta name="robots" content="noindex">` and a canonical link to the target
 (`node_modules/astro/dist/core/routing/3xx.js`). Google treats an instant meta
 refresh as a permanent redirect. `@astrojs/sitemap` lists only `type === "page"`
-routes, so redirects stay out of the sitemap. Four redirects, one per locale,
-each pointing at the same locale's `websites` page:
+routes, so redirects stay out of the sitemap. Eight redirects, two retired
+services times four locales, each pointing at the same locale's `websites` page:
 
 | From | To |
 |---|---|
 | `/services/get-found-on-google/` | `/services/websites/` |
+| `/services/paid-advertising/` | `/services/websites/` |
 | `/es/servicios/aparecer-en-google/` | `/es/servicios/sitios-web/` |
+| `/es/servicios/publicidad-pagada/` | `/es/servicios/sitios-web/` |
 | `/zh-hans/fuwu/guge-tuiguang/` | `/zh-hans/fuwu/wangzhan-jianshe/` |
+| `/zh-hans/fuwu/fufei-guanggao/` | `/zh-hans/fuwu/wangzhan-jianshe/` |
 | `/zh-hant/fuwu/google-tuiguang/` | `/zh-hant/fuwu/wangzhan-jianzhi/` |
+| `/zh-hant/fuwu/fufei-guanggao/` | `/zh-hant/fuwu/wangzhan-jianzhi/` |
 
 Segments verified against `SEGMENTS.services` in `routes.ts` (`services`,
 `servicios`, `fuwu`, `fuwu`); the build test in §6 asserts them rather than
@@ -75,8 +79,9 @@ trusting this table.
 **Blog pillars do not change.** The 68 posts keep `websites | search |
 consulting | ads`, so `tina/tina-lock.json` is untouched. `EndCta.astro`
 currently finds its service with `services.find((s) => s.id === pillar)!`,
-which crashes on `search` once that service is gone. It is replaced by an
-explicit, typed map — `Record<Pillar, ServiceId>`, with `search → websites` —
+which crashes on `search` and `ads` once those services are gone. It is
+replaced by an explicit, typed map — `Record<Pillar, ServiceId>`, with
+`websites`, `search` and `ads` all → `websites`, and `consulting → consulting` —
 so a pillar without a service is a compile error rather than a build crash.
 
 ## 3. English copy
@@ -142,55 +147,43 @@ are listed in §5.
   - Advice from someone paid by you and nobody else
 - **meta:** EHR setup, digital intake, online scheduling, and HIPAA risk analysis for independent practices in Southern California. No commissions from software vendors.
 
-### 3.4 Online presence (`id: websites`)
+### 3.4 Get more patients (`id: websites`)
 
-- **title:** Online presence
-- **tagline:** When a patient looks you up, they should find a practice they trust.
-- **summary:** Before most patients call, they check your Google listing, your reviews, and your website for a few specific answers. We make sure those answers are there, accurate, and consistent everywhere a patient might look, and that the website itself belongs to you.
+Merges the draft "Online presence" and "Marketing and advertising" pages
+(decision 11). The page keeps their order: the basics first, then growth.
+
+- **title:** Get more patients
+- **tagline:** More of the patients you want, and proof of where they came from.
+- **summary:** Before most patients call, they check your Google listing, your reviews, and your website, so we get those right first. Then we bring back the patients who are overdue and advertise only the treatments worth advertising, with every new patient traced to its source.
 - **body:**
-  1. A prospective patient usually wants to know five things: whether you take their insurance, whether you are accepting new patients, which languages you speak, where to park, and whether they can book online. A practice whose listing and website answer those questions quickly often gets the call over a practice down the street whose website does not.
-  2. **How it works**
+  1. A prospective patient usually wants to know five things: whether you take their insurance, whether you are accepting new patients, which languages you speak, where to park, and whether they can book online. A practice that answers those questions quickly often gets the call over one down the street that does not, which is why no amount of advertising helps until the basics are right.
+  2. **First, the basics**
      - Your <a href="/glossary/#google-business-profile">Google Business Profile</a> completed and verified, with a separate listing for each doctor, since patients often search by name **[cite: Google's individual-practitioner guidelines]**
      - A steady flow of <a href="/glossary/#reviews">reviews</a>: a text after each visit asking every patient, never only the satisfied ones, and never with anything offered in return **[cite: Google review policy; FTC consumer review rule]**
      - Replies to reviews written so they never confirm that the reviewer is a patient, a HIPAA violation federal regulators have fined practices for **[cite: HHS OCR enforcement]**
      - Healthgrades, Zocdoc, WebMD, and your insurers' provider directories made consistent with Google
      - A fast website that meets the <a href="/glossary/#wcag">WCAG 2.1 AA</a> accessibility standard, in Spanish or Chinese where your patients speak it
-  3. Practices that accept Medicare Part B are now required by federal rule to make their websites meet that accessibility standard, by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones **[cite: Federal Register 2026-09266]**. You retain ownership of the website, the domain, and the content regardless, because holding a client's website hostage is a poor business model and a worse way to treat people.
-- **outcomes:**
-  - Google Business Profile listings for the practice and for each doctor, verified
-  - A review request that reaches every patient after every visit
-  - Review replies that answer the complaint without confirming anyone is a patient
-  - Health directory and insurer listings that match Google
-  - A website that loads quickly on a phone, answers the questions patients ask first, and meets WCAG 2.1 AA
-  - Optional: the website, Google listing, and intake forms in Spanish or Chinese
-- **meta:** Websites, Google Business Profiles, reviews, and directory listings for medical, dental, and eye care practices in Southern California; HIPAA-safe replies.
-
-### 3.5 Marketing and advertising (`id: ads`)
-
-- **title:** Marketing and advertising
-- **tagline:** More of the patients you want, and proof of where they came from.
-- **summary:** We bring back the patients you already have before spending money on new ones, then advertise only the treatments worth advertising, with every new patient traced to its source. If advertising does not make sense for your practice yet, we will say so.
-- **body:**
-  1. The least expensive appointment most practices will ever book comes from a patient who is already overdue: the annual eye exam, the six-month cleaning, the follow-up that never got scheduled. Most practices remind those patients poorly or not at all, so that is where we start, before a dollar goes to advertising.
-  2. **How it works**
+  3. Practices that accept Medicare Part B are now required by federal rule to make their websites meet that accessibility standard, by May 2027 for practices with fifteen or more employees and by May 2028 for smaller ones **[cite: Federal Register 2026-09266]**.
+  4. **Then, growth.** The least expensive appointment most practices will ever book comes from a patient who is already overdue: the annual eye exam, the six-month cleaning, the follow-up that never got scheduled. Most practices remind those patients poorly or not at all, so growth starts there, before a dollar goes to advertising.
      - Tracking that records where every new patient came from, so the monthly report can answer whether the spending paid for itself
      - Recall and reactivation messages for patients who are overdue for a visit, written within HIPAA's rules on marketing to patients **[cite]**
      - A page for each high-value treatment you offer, written for the way patients actually search for it
      - Google search ads only for treatments where a new patient is worth the cost, with a budget cap that cannot quietly run away from you
-  3. Some things we will not do: target advertising at people based on a health condition, place ad-tracking code on appointment or intake pages where it can pass patient information to an advertising platform **[cite: HHS OCR tracking-technologies guidance]**, or pay anyone for referrals, which state and federal anti-kickback laws prohibit **[cite: Cal. Bus. &amp; Prof. Code § 650; 42 U.S.C. § 1320a-7b(b)]**. Either way, you receive a plain monthly account of what you spent and what it returned.
+  5. Some things we will not do: target advertising at people based on a health condition, place ad-tracking code on appointment or intake pages where it can pass patient information to an advertising platform **[cite: HHS OCR tracking-technologies guidance]**, or pay anyone for referrals, which state and federal anti-kickback laws prohibit **[cite: Cal. Bus. &amp; Prof. Code § 650; 42 U.S.C. § 1320a-7b(b)]**. You retain ownership of the website, the domain, and the content, because holding a client's website hostage is a poor business model and a worse way to treat people.
 - **outcomes:**
-  - A record of where each new patient came from
+  - Google Business Profile listings for the practice and for each doctor, verified
+  - A review request that reaches every patient after every visit, and replies that never confirm anyone is a patient
+  - Health directory and insurer listings that match Google
+  - A website that loads quickly on a phone, answers the questions patients ask first, and meets WCAG 2.1 AA, in Spanish or Chinese if your patients need it
   - Recall messages that bring overdue patients back
-  - Pages for your highest-value treatments
   - Search ads with a hard budget cap, only where the numbers work
-  - No tracking code on pages where patients enter health information
-  - A monthly note: spent this, got that
-- **meta:** Patient recall, treatment pages, and Google search ads for medical, dental, and eye care practices in Southern California, with every new patient tracked.
+  - A monthly note: what you spent, what it returned, and where each new patient came from
+- **meta:** Websites, Google profiles, reviews, patient recall, and search ads for independent medical, dental, and eye care practices in Southern California, tracked.
 
-### 3.6 Other English strings
+### 3.5 Other English strings
 
 - **`ui.ts` `serviceAreaBlurb` (footer):** Consulting for independent health practices, based in the San Gabriel Valley.
-- **`ui.ts` `servicesDescription` (services index meta):** A practice checkup, office digitization, online presence, and marketing for independent medical, dental, and eye care practices in Southern California.
+- **`ui.ts` `servicesDescription` (services index meta):** A practice checkup, office digitization, and more new patients, for independent medical, dental, and eye care practices throughout Southern California.
 - **`public/og.png`:** same design; eyebrow "San Gabriel Valley &amp; Southern California"; tagline "Consulting for independent medical, dental, and eye care practices — paid by you, and nobody else." Regenerated the way it was last time: an HTML template screenshotted in headless Chrome.
 
 ## 4. Translations
@@ -201,7 +194,7 @@ blog translation practice:
 
 - Take phrasing from research and every fact from the English. A translation may never assert more than its English twin.
 - Take product and regulatory names from the vendor's or regulator's own localized pages, not from translation: Google Business Profile, Medicare Part B, EHR, and HIPAA. Verify before writing.
-- Re-read every polarity-bearing sentence against the English: "never", "only", "not", every modal. §3.5's "things we will not do" paragraph is the highest-risk sentence in this document.
+- Re-read every polarity-bearing sentence against the English: "never", "only", "not", every modal. §3.4's "things we will not do" paragraph is the highest-risk sentence in this document.
 - Taiwan lexis and 正體字 for `zh-hant`, via the `writing-taiwan-mandarin-copy` skill.
 
 Every service carries all four locales because `Service.t` is `Record<Locale, ServiceCopy>`,
@@ -218,12 +211,12 @@ so hard rule 1 is enforced by the type: the new page emits four alternates plus 
 ## 6. Verification
 
 - `npm run build`, `npm run typecheck`, `npm run test`: all green.
-- `npm run readability -- --dist`: all four rewritten service pages and all four homepages in band for every locale (en FK 13–15; es Fernández Huerta 40–55; zh register 0.55–0.85 and at most 85 characters per sentence). Bands are met by hand edits, one page at a time, never by a sweep. Blog posts are also re-scored, because `EndCta` renders each service's tagline inside every post's `<main>`.
-- **Redirect test** (new; skips without `dist/`): each of the four retired URLs contains `http-equiv="refresh"` pointing at the same locale's `websites` page and carries `noindex`; none appears in the sitemap; no page's `hreflang` points at one. **Paired positive assertion:** each redirect target exists in `dist/` and is itself listed in the sitemap.
+- `npm run readability -- --dist`: all three service pages and all four homepages in band for every locale (en FK 13–15; es Fernández Huerta 40–55; zh register 0.55–0.85 and at most 85 characters per sentence). Bands are met by hand edits, one page at a time, never by a sweep. Blog posts are also re-scored, because `EndCta` renders each service's tagline inside every post's `<main>`.
+- **Redirect test** (new; skips without `dist/`): each of the eight retired URLs contains `http-equiv="refresh"` pointing at the same locale's `websites` page and carries `noindex`; none appears in the sitemap; no page's `hreflang` points at one. **Paired positive assertion:** each redirect target exists in `dist/` and is itself listed in the sitemap.
 - **Hard rule 1:** the new service page emits four alternates plus `x-default` in every locale, and `glendale` still emits none.
 - **`homepage-parity.test.ts:113`:** its needle is the English hero. Replace it with the new hero, and assert first that the needle appears in `dist/index.html`, so the absence check cannot pass vacuously.
 - **`services.test.ts`:** a lookup for the new slugs in every locale; `search` slugs resolve to nothing; every pillar maps to an existing service.
-- **Visual check:** serve `dist/` and look at the homepage, the services index, and all four service pages at desktop and phone widths, in English and one Chinese locale.
+- **Visual check:** serve `dist/` and look at the homepage, the services index, all three service pages, and one redirect per locale at desktop and phone widths, in English and one Chinese locale.
 - **Every [cite] resolved:** each has a working source link in the copy, or its claim is cut.
 
 ## 7. Before merging (owner)
