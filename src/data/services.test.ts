@@ -43,17 +43,6 @@ describe('serviceBySlug', () => {
   });
 });
 
-describe('retired services', () => {
-  it('no longer resolves a retired slug in any locale', () => {
-    expect(serviceBySlug('en', 'get-found-on-google')).toBeUndefined();
-    expect(serviceBySlug('en', 'paid-advertising')).toBeUndefined();
-    expect(serviceBySlug('es', 'aparecer-en-google')).toBeUndefined();
-    expect(serviceBySlug('es', 'publicidad-pagada')).toBeUndefined();
-    expect(serviceBySlug('zh-hans', 'guge-tuiguang')).toBeUndefined();
-    expect(serviceBySlug('zh-hant', 'fufei-guanggao')).toBeUndefined();
-  });
-});
-
 describe('serviceForPillar', () => {
   it('gives every blog pillar a live service', () => {
     for (const pillar of PILLARS) {
@@ -87,12 +76,17 @@ describe('glossary links in service copy', () => {
   });
 });
 
-describe('English copy rules', () => {
-  it('keeps every English meta description between 150 and 158 characters', () => {
+describe('copy rules', () => {
+  // Google cuts a description near 160 characters. Spanish runs longer than
+  // English for the same meaning, so it gets the same ceiling with a lower
+  // floor; Chinese characters are wider, and a count means something else.
+  const META_BAND = { en: [150, 158], es: [130, 160] } as const;
+
+  it.each(Object.entries(META_BAND))('keeps every %s meta description inside its band', (locale, [min, max]) => {
     for (const service of services) {
-      const n = [...service.t.en.meta].length;
-      expect(n, `${service.id} meta is ${n} characters`).toBeGreaterThanOrEqual(150);
-      expect(n, `${service.id} meta is ${n} characters`).toBeLessThanOrEqual(158);
+      const n = [...service.t[locale as keyof typeof META_BAND].meta].length;
+      expect(n, `${service.id}/${locale} meta is ${n} characters`).toBeGreaterThanOrEqual(min);
+      expect(n, `${service.id}/${locale} meta is ${n} characters`).toBeLessThanOrEqual(max);
     }
   });
 

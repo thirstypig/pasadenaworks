@@ -57,7 +57,8 @@ const strings = t(locale);
 
   <div class="contact-form__field">
     <label for="message">{strings.form.message}</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+    <textarea id="message" name="message" rows="5" required aria-describedby="message-hint"></textarea>
+    <p class="contact-form__hint" id="message-hint">{strings.form.messageHint}</p>
   </div>
 
   <button type="submit" class="btn" data-label={strings.form.send}>{strings.form.send}</button>
@@ -221,6 +222,12 @@ const strings = t(locale);
 
   .btn {
     align-self: flex-start;
+  }
+
+  .contact-form__hint {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--color-ink-soft);
   }
 
   .contact-form__status {

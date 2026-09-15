@@ -5,8 +5,9 @@
  *
  * Plain ESM, not TypeScript, because astro.config.mjs imports it. Keys carry no
  * trailing slash — Astro's static build writes each one to `<key>/index.html`.
- * `retired-services.test.ts` derives the expected map from `services.ts` and
- * `SEGMENTS`, so a slug typo here fails a test instead of shipping a 404.
+ * `retired-services.test.ts` checks every key against a literal list of every
+ * service URL ever published, and every target against the live service pages,
+ * so a typo — or a rename with no redirect — fails a test instead of shipping a 404.
  */
 export const RETIRED_SERVICE_REDIRECTS = {
   '/services/get-found-on-google': '/services/websites/',

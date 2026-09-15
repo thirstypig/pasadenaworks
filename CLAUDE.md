@@ -72,7 +72,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 88 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 346 across 28 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 350 across 28 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -335,14 +335,19 @@ only two kinds silently mis-branches the moment a third one exists. Hit
 exactly this bug adding the blog kind; see
 `docs/solutions/logic-errors/dual-purpose-route-bare-else-broke-on-third-kind.md`.
 
-**A service can be retired, but only behind a redirect in every locale, and
-`websites` can never be the one.** On 2026-09-14 `search` and `ads` folded into
-"Get more patients". Their eight URLs (two services × four locales) are Astro
-static redirects declared in `src/data/retired-services.mjs` — an instant meta
-refresh, `noindex`, and a canonical to the target; `@astrojs/sitemap` skips
-them. `retired-services.test.ts` derives the expected map from `services.ts`
-and `SEGMENTS`, and checks the built pages. `websites` survives any rename
-because `routes.ts` builds the city-hub segment from its slugs. The blog's four
+**A service can be retired or renamed, but only behind a redirect in every
+locale.** On 2026-09-14 `search` and `ads` folded into "Get more patients".
+Their eight URLs (two services × four locales) are Astro static redirects
+declared in `src/data/retired-services.mjs` — an instant meta refresh,
+`noindex`, and a canonical to the target; `@astrojs/sitemap` skips them.
+`retired-services.test.ts` keeps an append-only, literal list of every service
+URL ever published and fails if any stops resolving — it is deliberately NOT
+derived from `services.ts`, because a derived expectation moves with a rename.
+The same file checks every service link written inside a blog post from
+source, since most posts are date-gated and absent from `dist/`. The city
+pages' segment (`/websites/`) is written out in `routes.ts` and pinned by a
+test rather than read from the service slug, so a service rename never moves
+every city page. The blog's four
 pillars did not change; they reach a service through `PILLAR_SERVICE` in
 `services.ts`, because matching a pillar to a service id crashed the build the
 moment a service was retired.
@@ -890,14 +895,19 @@ prose to move a score. All four locales reached 68/68 in band that way on
   declaratives left `npm run test` fully green and `npm run readability
   -- --dist` at exit 0. Note why the CLI did not help — `--dist` exits
   non-zero only on a RUNAWAY SENTENCE, never on a band miss.
-- **All 28 code-review findings, `001`–`028`, are complete** (`001`–`020` as
+- **PR #75's review (2026-09-14) added `029`–`046`.** Every P1 and P2
+  (`029`–`038`) was fixed on that branch before merge — mostly legal wording
+  on the service pages, the Chinese Checkup name, and three guards that make a
+  service URL rename or a stale link fail a test. The P3s (`039`–`046`) are
+  pending triage; `044` and `046` are owner decisions, not defects.
+- **All 28 earlier code-review findings, `001`–`028`, are complete** (`001`–`020` as
   of 2026-09-05; `021`–`028` added and closed since). `013` closed the
   original batch: the n8n workflow now validates before writing to the CRM.
   Closing it uncovered a live P1 underneath the P2 — the contact form had been
   writing *blank* records into Twenty since 2026-08-26 — so read that todo before
   touching the contact form or the n8n workflow.
 
-  **Every finding is closed, including the items parked inside todos marked
+  **Every finding in that batch is closed, including the items parked inside todos marked
   `complete` as decisions rather than defects.** Findings `020` (English/
   localized visual divergence) and `028` (a fourth-`kind` compile-error claim
   found to be overstated on inspection) both closed with the same lesson as
@@ -1005,3 +1015,4 @@ Read that file before re-investigating any of these.
 - 13 English and roughly as many Spanish posts (mostly the phase-two batch) had drifted outside the college reading-level bands with nothing in CI catching it; all four locales are back to 68/68 in band, and 32 sentences a mechanical sentence-join had damaged (a stranded capital, a lowercased brand name, a doubled conjunction) were repaired along the way — three new Latin-script grammar guards added to `scripts/readability.test.mjs` so the specific damage pattern can't ship silently again (2026-09-10)
 - Tina's `npm audit` is down to 2 moderate from 8 — one real fix via plain `npm audit fix` (body-parser's nested `qs`), one via an `overrides` pin to a patched react-router-dom major, verified working in a real browser session against the local admin — see the Tina audit note above for what's still open and why (2026-09-10)
 - A leftover git worktree made `npm run test` collect the repo twice and report 623 tests across 52 files, against CI's 316 across 26; the doubled figure had been written into this file as the project's test count (2026-09-11, #71)
+- The site is repositioned for independent health practices; the PR's review removed a BAA promise with no template behind it, corrected the accessibility-law paragraph, and added guards so a service URL rename or a stale post link fails a test (2026-09-14, #75)

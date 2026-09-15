@@ -30,9 +30,9 @@ export interface HomeCopy {
 
 export const home: Partial<Record<Locale, HomeCopy>> = {
   es: {
-    title: 'Pasadena Works — Consultoría para consultorios de salud independientes',
+    title: 'Pasadena Works — Consultoría para consultorios de salud',
     metaDescription:
-      'Ayudamos a consultorios médicos, dentales y de optometría independientes del sur de California a digitalizar la oficina, aparecer en línea y atraer más pacientes nuevos.',
+      'Ayudamos a consultorios médicos, dentales y de optometría del sur de California a digitalizar la oficina, aparecer en línea y atraer pacientes nuevos.',
     heroEyebrow: 'Valle de San Gabriel y sur de California',
     heroHeading: 'Para consultorios independientes listos para dejar de depender del papel y del boca a boca.',
     heroSubhead:
@@ -63,7 +63,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     heroCta: '联系我们',
     servicesHeading: '我们能帮您做什么',
     servicesIntro:
-      '每一次合作都从全面体检开始，因为自认为需要广告的诊所，往往首先需要修正的是初诊表格；在有人实际检视之前，并没有诚实的办法判断究竟需要哪一项。',
+      '每一次合作都从经营诊断开始，因为自认为需要广告的诊所，往往首先需要修正的是初诊表格；在有人实际检视之前，并没有诚实的办法判断究竟需要哪一项。',
     valueHeading: '当您退居幕后，诊所更有价值',
     valueBody:
       '这一切并非只着眼于今年：拥有电子病历、书面作业流程与稳定新患者来源的诊所，即使负责人不在场也能正常运作，而这恰恰是买家或接手的合伙医生愿意付费的原因。当您准备出售时，我们会协助诊所做好准备，并为您介绍负责实际交易的经纪人；我们不从事诊所买卖的中介，也不收取任何从事中介者的费用。',
@@ -85,7 +85,7 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     heroCta: '聯絡我們',
     servicesHeading: '我們能幫您做什麼',
     servicesIntro:
-      '每一次合作都從全面健檢開始，因為自認為需要廣告的診所，往往首先需要修正的是初診表單；在有人實際檢視之前，並沒有誠實的辦法判斷究竟需要哪一項。',
+      '每一次合作都從經營診斷開始，因為自認為需要廣告的診所，往往首先需要修正的是初診表單；在有人實際檢視之前，並沒有誠實的辦法判斷究竟需要哪一項。',
     valueHeading: '當您退居幕後，診所更有價值',
     valueBody:
       '這一切並非只著眼於今年：擁有電子病歷、書面作業流程與穩定新病患來源的診所，即使負責人不在場也能正常運作，而這正是買家或接手的合夥醫師願意付費的原因。當您準備出售時，我們會協助診所做好準備，並為您介紹負責實際交易的仲介；我們不從事診所買賣的仲介業務，也不收取任何仲介業者的費用。',

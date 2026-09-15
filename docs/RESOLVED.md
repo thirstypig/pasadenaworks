@@ -433,3 +433,22 @@ Read this before re-investigating anything that sounds already-handled.
   that one had never been inflated). Full write-up, including why the count
   looked plausible, in
   [`docs/solutions/process-errors/a-stale-worktree-made-the-test-suite-count-itself-twice.md`](solutions/process-errors/a-stale-worktree-made-the-test-suite-count-itself-twice.md).
+
+- **The site was repositioned around independent health practices, and its
+  own review caught legal overstatements before they shipped** (2026-09-14,
+  #75). Three services replaced four: a Practice Checkup, Digitize the office,
+  and Get more patients, in all four languages, with every checkable claim
+  linked to a source. `search` and `ads` retired behind eight Astro static
+  redirects. A nine-agent review then found no structural defects but two P1s
+  in the copy: the Digitize page promised a business associate agreement from
+  Pasadena Works with no template to sign (the promise was removed), and the
+  accessibility paragraph named only Medicare Part B — misleading Denti-Cal
+  dentists — and called a rule "now required" that HHS says it may revise.
+  Both were re-verified against the Federal Register before rewriting. The
+  review also renamed the Chinese Checkup, whose 体检/健檢 read as a patient's
+  physical, added a contact-form hint against typing patient details, and
+  added three guards that each failed on an injected violation: an
+  append-only list of every service URL ever published (a rename without a
+  redirect now fails a test), a source-side check of service links inside
+  date-gated posts, and a pinned city-hub segment that no longer borrows the
+  `websites` slug. Findings are `todos/029`–`046`.
