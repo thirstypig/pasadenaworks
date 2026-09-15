@@ -15,8 +15,8 @@ const translations = homeTranslations();
 ---
 
 <Base
-  title="Pasadena Works — Websites & Local SEO for Small Businesses"
-  description="Websites, local SEO, and paid ads for small businesses in Pasadena and the San Gabriel Valley. Plain-spoken, no jargon, no long contracts."
+  title="Pasadena Works — Consulting for Independent Health Practices"
+  description="We help independent medical, dental, and eye care practices in Southern California digitize the office, get found online, and bring in more new patients."
   locale="en"
   path="/"
   translations={translations}
@@ -25,13 +25,14 @@ const translations = homeTranslations();
   <section class="section--dark hero">
     <div class="wrap hero__inner">
       <div class="hero__text">
-        <p class="hero__eyebrow">Pasadena &amp; the San Gabriel Valley</p>
-        <h1>Digital work for small businesses that gets more customers finding you.</h1>
+        <p class="hero__eyebrow">San Gabriel Valley &amp; Southern California</p>
+        <h1>For independent practices ready to stop running on paper and word of mouth.</h1>
         <p class="hero__subhead prose">
-          Websites, Google visibility, and paid advertising for small
-          businesses throughout Pasadena and the San Gabriel Valley — sold to
-          you honestly, explained without jargon, and never subsequently held
-          hostage against your own domain.
+          We help medical, dental, and eye care practices across Southern
+          California digitize the front office, look trustworthy to the
+          patient who searches for them, and bring in new patients they can
+          trace — and we are never paid by the software companies whose
+          products we recommend.
         </p>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
@@ -46,7 +47,7 @@ const translations = homeTranslations();
   <section class="section">
     <div class="wrap">
       <h2>What we do</h2>
-      <p class="prose">There are four services and none of them is especially complicated, so begin with whichever one is genuinely costing you customers at the moment, rather than with whichever happens to sound most impressive.</p>
+      <p class="prose">Every engagement begins with a checkup, because a practice that believes it needs advertising frequently needs its intake forms fixed first, and there is no honest way to know which until someone has looked.</p>
       <div class="service-grid">
         {services.map((service) => (
           <a
@@ -62,12 +63,19 @@ const translations = homeTranslations();
     </div>
   </section>
 
+  <section class="section" id="worth-more">
+    <div class="wrap">
+      <h2>Worth more when you step back</h2>
+      <p class="prose">None of this is only about this year: a practice with digital records, written procedures, and a steady flow of new patients runs without its owner in the room, which is precisely what a buyer or an associate taking over will pay for. When you are ready to sell, we prepare the practice and introduce you to a broker who handles the sale itself; we do not broker practice sales, and we accept no fee from anyone who does.</p>
+    </div>
+  </section>
+
   <Lattice />
 
   <section class="section" id="contact">
     <div class="wrap">
       <h2>Get in touch</h2>
-      <p class="prose">Tell us what is currently happening with your website or your Google presence, in whatever detail you happen to have available. We will respond with something specific to your particular situation, rather than with a form-letter proposal assembled beforehand.</p>
+      <p class="prose">Tell us what is happening at your practice — the phones, the paperwork, the Google listing, or whatever is costing you the most at the moment. We will respond with something specific to your practice rather than a proposal assembled beforehand.</p>
       <p class="prose">
         Would you rather talk sooner than an email exchange allows? <a href={site.bookingUrl} target="_blank" rel="noopener" class="btn">Schedule a call now &rsaquo;</a>
       </p>

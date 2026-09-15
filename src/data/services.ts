@@ -110,7 +110,7 @@ export const services: Service[] = [
         title: 'Practice Checkup',
         tagline: 'Find out precisely what is costing your practice patients before you pay anyone to fix it.',
         summary:
-          'One fixed-price review of the whole practice — the phones and intake forms, the records and the EHR, the website and the Google listing — ending in a short written plan that ranks what to fix first. If you continue with us, the fee is credited toward that work.',
+          'One fixed-price review of the whole practice — the phones and intake forms, the records and the EHR, the website and the Google listing — ending in a short written plan that ranks what to fix first, and if you continue with us, the fee is credited toward that work.',
         body: [
           '<p>Most practices that contact us believe they have a marketing problem, and although some genuinely do, just as often the prospective patients are already calling while the practice loses them somewhere between an unreturned voicemail and a clipboard of intake paperwork that takes twenty minutes to complete. Advertising cannot repair either of those failures, which is precisely why we examine the entire practice before recommending anything.</p>',
           '<h2>How it works</h2><ul><li>A conversation with you and your reception staff, because the people answering the telephones generally understand better than anyone where the day goes wrong</li><li>A walk through one patient\'s complete experience, from the initial search or telephone call through registration, the appointment itself, and the reminder for their next visit</li><li>A review of how your <a href="/glossary/#ehr">EHR</a> is actually configured, how your patient records are organized, and how your <a href="/glossary/#google-business-profile">Google Business Profile</a>, reviews, and website present the practice to someone deciding whether to call</li><li>A concise written plan that ranks every recommendation by how quickly it will pay for itself, with a fixed price for any subsequent work agreed in writing before we begin</li></ul>',
@@ -129,7 +129,7 @@ export const services: Service[] = [
         title: 'Revisión integral del consultorio',
         tagline: 'Descubra con precisión qué le está costando pacientes a su consultorio antes de pagarle a alguien para corregirlo.',
         summary:
-          'Una revisión de precio fijo de todo el consultorio —los teléfonos y los formularios de admisión, los expedientes y el EHR, el sitio web y su Perfil de Negocio de Google— que concluye con un plan breve por escrito que ordena qué corregir primero. Si continúa con nosotros, el costo de la revisión se abona al trabajo posterior.',
+          'Una revisión de precio fijo de todo el consultorio —los teléfonos y los formularios de admisión, los expedientes y el EHR, el sitio web y su Perfil de Negocio de Google— que concluye con un plan breve por escrito que ordena qué corregir primero, y si continúa con nosotros, el costo de la revisión se abona al trabajo posterior.',
         body: [
           '<p>La mayoría de los consultorios que se comunican con nosotros creen tener un problema de marketing, y aunque algunos efectivamente lo tienen, con igual frecuencia los pacientes potenciales ya están llamando mientras el consultorio los pierde en algún punto entre un mensaje de voz que nadie devuelve y un portapapeles con formularios de admisión que tarda veinte minutos en completarse. La publicidad no puede reparar ninguna de esas fallas, y precisamente por eso examinamos el consultorio completo antes de recomendar cualquier cosa.</p>',
           '<h2>Cómo funciona</h2><ul><li>Una conversación con usted y con su personal de recepción, porque quienes contestan los teléfonos suelen entender mejor que nadie en qué momento se complica el día</li><li>Un recorrido por la experiencia completa de un paciente, desde la primera búsqueda o llamada telefónica, pasando por el registro y la cita en sí, hasta el recordatorio de su próxima visita</li><li>Una revisión de cómo está configurado realmente su sistema de registros médicos electrónicos (EHR), de cómo están organizados los expedientes de sus pacientes y de cómo su Perfil de Negocio de Google, sus reseñas y su sitio web presentan el consultorio ante alguien que está decidiendo si llamar</li><li>Un plan conciso por escrito que ordena cada recomendación según la rapidez con la que se pagará sola, con un precio fijo para cualquier trabajo posterior acordado por escrito antes de empezar</li></ul>',
@@ -148,7 +148,7 @@ export const services: Service[] = [
         title: '诊所全面体检',
         tagline: '在花钱请任何人修正之前，先准确找出究竟是什么让您的诊所流失患者。',
         summary:
-          '针对整间诊所进行一次固定价格的检视——电话与初诊表格、病历与电子病历系统、网站与 Google 商家资料——最后提出一份简短的书面计划，依轻重缓急排列应当优先处理的事项。若您后续继续与我们合作，这笔费用将抵扣后续工作的费用。',
+          '针对整间诊所进行一次固定价格的检视——电话与初诊表格、病历与电子病历系统、网站与 Google 商家资料——最后提出一份简短的书面计划，依轻重缓急排列应当优先处理的事项；若您后续继续与我们合作，这笔费用将抵扣后续工作的费用。',
         body: [
           '<p>多数联系我们的诊所都认为自己面临的是营销问题；尽管其中确实有些诊所如此，但同样常见的情况是，潜在患者早已打来电话，诊所却在一则无人回复的语音留言与一叠需要二十分钟才填得完的初诊表格之间，把他们流失掉。广告无法弥补上述任何一项缺失，因此我们在提出任何建议之前，都会先检视整间诊所。</p>',
           '<h2>怎么做</h2><ul><li>与您以及前台人员面谈，因为负责接听电话的人往往比任何人都清楚，一天的工作究竟在哪个环节出了问题</li><li>完整走一遍一位患者的就诊经历：从最初的搜索或来电，经过挂号与看诊本身，一直到下次复诊的提醒</li><li>检视您的电子病历系统实际如何配置、患者病历如何整理，以及您的 Google 商家资料、评价与网站，在一位正考虑是否来电的人眼中呈现出怎样的诊所</li><li>一份简明的书面计划，依每项建议回本的快慢排列优先顺序，后续任何工作的固定价格都会在开工前以书面方式约定</li></ul>',
@@ -167,7 +167,7 @@ export const services: Service[] = [
         title: '診所全面健檢',
         tagline: '在花錢請任何人修正之前，先準確找出究竟是什麼讓您的診所流失病患。',
         summary:
-          '針對整間診所進行一次固定價格的檢視——電話與初診表單、病歷與電子病歷系統、網站與 Google 商家檔案——最後提出一份簡短的書面計畫，依輕重緩急排列應當優先處理的事項。若您後續繼續與我們合作，這筆費用將抵扣後續工作的費用。',
+          '針對整間診所進行一次固定價格的檢視——電話與初診表單、病歷與電子病歷系統、網站與 Google 商家檔案——最後提出一份簡短的書面計畫，依輕重緩急排列應當優先處理的事項；若您後續繼續與我們合作，這筆費用將抵扣後續工作的費用。',
         body: [
           '<p>多數聯絡我們的診所都認為自己面臨的是行銷問題；儘管其中確實有些診所如此，但同樣常見的情況是，潛在病患早已打來電話，診所卻在一則無人回覆的語音留言與一疊需要二十分鐘才填得完的初診表單之間，把他們流失掉。廣告無法彌補上述任何一項缺失，因此我們在提出任何建議之前，都會先檢視整間診所。</p>',
           '<h2>怎麼做</h2><ul><li>與您以及櫃檯人員面談，因為負責接聽電話的人往往比任何人都清楚，一天的工作究竟在哪個環節出了問題</li><li>完整走一遍一位病患的就診經驗：從最初的搜尋或來電，經過掛號與看診本身，一直到下次回診的提醒</li><li>檢視您的電子病歷系統實際如何設定、病患病歷如何整理，以及您的 Google 商家檔案、評論與網站，在一位正考慮是否來電的人眼中呈現出怎樣的診所</li><li>一份簡明的書面計畫，依每項建議回本的快慢排列優先順序，後續任何工作的固定價格都會在開工前以書面方式約定</li></ul>',
@@ -212,7 +212,7 @@ export const services: Service[] = [
         title: 'Digitize the office',
         tagline: 'Less paperwork, fewer interrupting telephone calls, and a reception desk that is no longer overwhelmed.',
         summary:
-          'We move patient records, scheduling, intake forms, and reminders onto systems that work together, starting from how patients actually move through your office rather than from whatever software someone wants to sell you. We take no commissions from software vendors.',
+          'We move patient records, scheduling, intake forms, and reminders onto systems that work together, starting from how patients actually move through your office rather than from whatever software someone wants to sell you, and we take no commissions from software vendors.',
         body: [
           '<p>Many independent practices run on an <a href="/glossary/#ehr">EHR</a> that was only ever half configured, a telephone line the front desk is perpetually behind on, and paper forms that someone retypes after every appointment. Each of those deficiencies consumes staff time every single day, and several of them quietly cost the practice prospective patients who abandoned the call before anyone answered.</p>',
           `<h2>How it works</h2><ul><li>We follow one patient from the initial telephone call to the follow-up reminder, then repair the specific steps where time and money consistently leak out</li><li>Online scheduling, intake and consent forms that patients complete on their own phones before arriving, and <a href="${SOURCES.remindersNoShows}">automated reminders that reduce no-shows</a></li><li>Paper charts scanned and organized, and your EHR configured around how your clinicians and staff actually work, so that people genuinely use it</li><li>A <a href="/glossary/#hipaa">HIPAA</a> security risk analysis, <a href="${SOURCES.hipaaRiskAnalysis}">which HIPAA requires</a> of <a href="${SOURCES.hipaaCoveredEntities}">practices that bill insurance electronically</a>, together with a signed <a href="/glossary/#business-associate-agreement">business associate agreement</a> with every vendor that handles patient information, including us</li><li>Written office procedures, so that the practice operates identically on the days you are absent and on the days you are present</li></ul>`,
@@ -232,7 +232,7 @@ export const services: Service[] = [
         title: 'Digitalizar el consultorio',
         tagline: 'Menos papel, menos llamadas telefónicas y una recepción que ya no está desbordada.',
         summary:
-          'Trasladamos los expedientes de los pacientes, la programación de citas, los formularios de admisión y los recordatorios a sistemas que funcionan en conjunto, partiendo de cómo se mueven realmente los pacientes por su consultorio y no del software que alguien quiera venderle. No aceptamos comisiones de los proveedores de software.',
+          'Trasladamos los expedientes de los pacientes, la programación de citas, los formularios de admisión y los recordatorios a sistemas que funcionan en conjunto, partiendo de cómo se mueven realmente los pacientes por su consultorio y no del software que alguien quiera venderle, y no aceptamos comisiones de los proveedores de software.',
         body: [
           '<p>Muchos consultorios independientes funcionan con un sistema de registros médicos electrónicos (EHR) que nunca llegó a configurarse del todo, una línea telefónica que la recepción no alcanza a atender y formularios en papel que alguien vuelve a transcribir después de cada cita. Cada uno de estos problemas consume tiempo del personal todos los días, y varios de ellos le cuestan al consultorio, sin que nadie lo note, pacientes que se rindieron antes de que alguien contestara.</p>',
           `<h2>Cómo funciona</h2><ul><li>Seguimos a un paciente desde la primera llamada telefónica hasta el recordatorio de seguimiento, y luego reparamos los pasos concretos por los que se pierden tiempo y dinero de manera constante</li><li>Programación de citas en línea, formularios de admisión y de consentimiento que los pacientes completan en su propio teléfono antes de llegar, y <a href="${SOURCES.remindersNoShows}">recordatorios automáticos que reducen las inasistencias a las citas</a></li><li>Expedientes en papel escaneados y organizados, y un sistema EHR configurado según la forma en que realmente trabajan su equipo clínico y su personal, para que de verdad lo utilicen</li><li>Un análisis de riesgos de seguridad conforme a HIPAA, <a href="${SOURCES.hipaaRiskAnalysis}">que HIPAA exige</a> a los <a href="${SOURCES.hipaaCoveredEntities}">consultorios que facturan a las aseguradoras de forma electrónica</a>, junto con un contrato de socio comercial firmado con cada proveedor que maneja información de pacientes, incluidos nosotros</li><li>Procedimientos escritos para el consultorio, de modo que funcione igual los días en que usted no está que los días en que sí está</li></ul>`,
@@ -252,7 +252,7 @@ export const services: Service[] = [
         title: '诊所数字化',
         tagline: '更少的纸质文件、更少的电话，前台也不再应接不暇。',
         summary:
-          '我们将病历、预约、初诊表格与提醒迁移到彼此协同运作的系统，出发点是患者在您诊所中的实际就诊流程，而非某人想卖给您的软件。我们不收取任何软件供应商的佣金。',
+          '我们将病历、预约、初诊表格与提醒迁移到彼此协同运作的系统，出发点是患者在您诊所中的实际就诊流程，而非某人想卖给您的软件，并且我们不收取任何软件供应商的佣金。',
         body: [
           '<p>许多独立诊所的日常运作，依赖的是一套从未完整配置的电子病历（EHR）系统、一条前台始终接听不及的电话线路，以及每次看诊后都得有人重新录入的纸质表格。上述每一项都日复一日地消耗员工的时间；此外，其中数项更在无人察觉的情况下，使尚未等到有人接听便已放弃的患者就此流失。</p>',
           `<h2>怎么做</h2><ul><li>追踪一位患者从第一通电话到复诊提醒的完整流程，进而修补时间与金钱持续流失的具体环节</li><li>在线预约、患者到诊前即可在自己手机上填写的初诊表与知情同意书，以及<a href="${SOURCES.remindersNoShows}">能减少患者爽约的自动提醒</a></li><li>纸质病历经扫描后妥善整理，电子病历系统亦按照医护人员与员工的实际工作方式配置，从而让大家真正用起来</li><li>一份 HIPAA 安全风险分析（<a href="${SOURCES.hipaaCoveredEntities}">以电子方式申报保险理赔的诊所</a>均须<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 规定完成此项分析</a>），并与每一家经手患者信息的供应商签署业务伙伴协议，我们也不例外</li><li>书面化的诊所作业流程，让诊所在您不在场的日子，也能与您在场时一样运作</li></ul>`,
@@ -272,7 +272,7 @@ export const services: Service[] = [
         title: '診所數位化',
         tagline: '更少的紙本、更少的電話，櫃檯也不再應接不暇。',
         summary:
-          '我們將病歷、預約、初診表單與提醒移轉到彼此協同運作的系統，出發點是病患在您診所中的實際動線，而非某人想賣給您的軟體。我們不收取任何軟體廠商的佣金。',
+          '我們將病歷、預約、初診表單與提醒移轉到彼此協同運作的系統，出發點是病患在您診所中的實際動線，而非某人想賣給您的軟體，並且我們不收取任何軟體廠商的佣金。',
         body: [
           '<p>許多獨立診所的日常運作，仰賴的是一套從未完整設定的電子病歷（EHR）系統、一條櫃檯始終接聽不及的電話線路，以及每次看診後都得有人重新輸入的紙本表單。上述每一項都日復一日地消耗員工的時間；此外，其中數項更在無人察覺的情況下，使尚未等到有人接聽便已放棄的病患就此流失。</p>',
           `<h2>怎麼做</h2><ul><li>追蹤一位病患從第一通電話到回診提醒的完整流程，進而修補時間與金錢持續流失的具體環節</li><li>線上預約、病患到診前即可在自己手機上填寫的初診資料表與同意書，以及<a href="${SOURCES.remindersNoShows}">能減少病患爽約的自動提醒</a></li><li>紙本病歷經掃描後妥善整理，電子病歷系統亦依照醫護人員與員工的實際工作方式設定，從而讓大家真正用起來</li><li>一份 HIPAA 資安風險分析（<a href="${SOURCES.hipaaCoveredEntities}">以電子方式申報保險理賠的診所</a>皆須<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 規定完成此項分析</a>），並與每一家經手病患資訊的廠商簽署業務夥伴合約，我們也不例外</li><li>書面化的診所作業流程，讓診所在您不在場的日子，也能與您在場時一樣運作</li></ul>`,
