@@ -41,11 +41,19 @@ date.
   returned is a genuinely distinct hospital.
 - **Language at home.** ACS 5-year estimates, table C16001, via Census
   Reporter (`api.censusreporter.org`) — the Census Bureau's own API now
-  requires a key. Spanish = `C16001003 / C16001001`; Chinese (incl. Mandarin,
-  Cantonese) = `C16001021 / C16001001`; rounded to one decimal place. Each
-  Census place ID is checked to resolve to the expected city name before its
-  figures are used — an earlier attempt at Monterey Park's ID
-  (`16000US0648816`) returned Montebello; the correct ID is
+  requires a key. The release is pinned explicitly in the query
+  (`/1.0/data/show/acs2024_5yr?table_ids=C16001&geo_ids=...`), not requested
+  as "latest": asking for "latest" silently resolved to the 1-year release on
+  2026-09-15 for this exact table and geography set — Pasadena's Spanish
+  share came back 20.9%/Chinese 4.5% under "latest" against 24.2%/5.5% under
+  the pinned 5-year release. The script also checks the response's
+  `release.id` actually is a 5-year release (`isFiveYearRelease()`) and
+  throws rather than use the data otherwise, the same guard pattern as
+  `placeMatches()` below. Spanish = `C16001003 / C16001001`; Chinese (incl.
+  Mandarin, Cantonese) = `C16001021 / C16001001`; rounded to one decimal
+  place. Each Census place ID is checked to resolve to the expected city
+  name before its figures are used — an earlier attempt at Monterey Park's
+  ID (`16000US0648816`) returned Montebello; the correct ID is
   `16000US0648914`. All ten IDs used here resolved correctly.
   Census Reporter returns HTTP 403 to Node's default `fetch` (no
   `User-Agent`); a browser-shaped header set (`User-Agent`, `Accept`,

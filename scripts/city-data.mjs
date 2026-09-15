@@ -59,6 +59,13 @@ export function countGroup(providers, group, npiCity) {
 
 export const placeMatches = (censusName, city) => censusName.split(',')[0].replace(/ CDP$/, '') === city;
 
+// Spec §4 requires the ACS 5-YEAR release specifically (small-place data
+// needs the larger sample; the 1-year release exists for big places only
+// and gives different, less reliable numbers). Pin it by name rather than
+// asking Census Reporter for "latest" and trusting what comes back.
+export const ACS_RELEASE = 'acs2024_5yr';
+export const isFiveYearRelease = (releaseId) => /_5yr$/.test(releaseId ?? '');
+
 export const pct = (part, whole) => ((part / whole) * 100).toFixed(1);
 
 const PAGE = 200;
@@ -116,11 +123,19 @@ const BROWSER_HEADERS = {
 };
 
 async function languages(ids) {
-  const res = await fetch(`https://api.censusreporter.org/1.0/data/show/latest?table_ids=C16001&geo_ids=${ids.join(',')}`, {
+  // Requesting "latest" (rather than ACS_RELEASE by name) silently returned
+  // the 1-year release on 2026-09-15 — Pasadena's Spanish share came back
+  // 20.9% instead of the 5-year figure's 24.2%. Pin the release in the URL
+  // AND verify the response actually carries it; Census Reporter could
+  // change what a given release name serves without a schema change to
+  // catch it, same reasoning as the placeMatches() guard below.
+  const res = await fetch(`https://api.censusreporter.org/1.0/data/show/${ACS_RELEASE}?table_ids=C16001&geo_ids=${ids.join(',')}`, {
     headers: BROWSER_HEADERS,
   });
   if (!res.ok) throw new Error(`Census Reporter ${res.status}`);
-  return res.json();
+  const body = await res.json();
+  if (!isFiveYearRelease(body.release?.id)) throw new Error(`Census Reporter returned release ${body.release?.id}, not a 5-year release`);
+  return body;
 }
 
 if (isMain(import.meta.url)) {

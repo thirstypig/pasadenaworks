@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { primaryTaxonomy, practisesIn, countGroup, GROUPS, placeMatches, pct } from './city-data.mjs';
+import { primaryTaxonomy, practisesIn, countGroup, GROUPS, placeMatches, pct, isFiveYearRelease } from './city-data.mjs';
 
 const provider = (number, taxonomies, addresses) => ({ number, taxonomies, addresses });
 const loc = (city) => ({ address_purpose: 'LOCATION', city, state: 'CA' });
@@ -49,5 +49,14 @@ describe('city-data counting rules', () => {
   it('rounds a share to one decimal place', () => {
     expect(pct(4011, 10000)).toBe('40.1');
     expect(pct(1, 3)).toBe('33.3');
+  });
+
+  it('rejects a Census release that is not the 5-year estimate', () => {
+    // "latest" silently resolved to the 1-year release on 2026-09-15 for a
+    // request that asked for table C16001 with no release pinned; the
+    // 5-year table is what the spec requires and what the sources file cites.
+    expect(isFiveYearRelease('acs2024_1yr')).toBe(false);
+    expect(isFiveYearRelease('acs2024_5yr')).toBe(true);
+    expect(isFiveYearRelease(undefined)).toBe(false);
   });
 });
