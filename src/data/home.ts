@@ -16,11 +16,6 @@ export interface HomeCopy {
   heroCta: string;
   servicesHeading: string;
   servicesIntro: string;
-  /** "Worth more when you step back" — the long-term payoff of the services:
-   *  a practice that runs without its owner sells for more. Pasadena Works
-   *  prepares the practice and introduces a broker; it never brokers. */
-  valueHeading: string;
-  valueBody: string;
   serviceAreaHeading: string;
   serviceAreaIntro: string;
   closingHeading: string;
@@ -30,20 +25,17 @@ export interface HomeCopy {
 
 export const home: Partial<Record<Locale, HomeCopy>> = {
   es: {
-    title: 'Pasadena Works — Consultoría para consultorios de salud',
+    title: 'Pasadena Works — Más pacientes para consultorios médicos y dentales',
     metaDescription:
       'Ayudamos a consultorios médicos, dentales y de optometría del sur de California a digitalizar la oficina, aparecer en línea y atraer pacientes nuevos.',
     heroEyebrow: 'Valle de San Gabriel y sur de California',
-    heroHeading: 'Para consultorios independientes listos para dejar de depender del papel y del boca a boca.',
+    heroHeading: 'Más pacientes nuevos y una recepción que funciona sin usted.',
     heroSubhead:
       'Ayudamos a consultorios médicos, dentales y de optometría de todo el sur de California a digitalizar la recepción, a transmitir confianza al paciente que los busca y a atraer pacientes nuevos cuyo origen pueden rastrear, y nunca recibimos pago de las empresas de software cuyos productos recomendamos.',
     heroCta: 'Contáctenos',
     servicesHeading: 'En qué le podemos ayudar',
     servicesIntro:
-      'Todo trabajo comienza con una revisión, porque un consultorio que cree necesitar publicidad con frecuencia necesita primero corregir sus formularios de admisión, y no existe una manera honesta de saber cuál de las dos cosas hace falta hasta que alguien lo haya examinado.',
-    valueHeading: 'Vale más cuando usted se hace a un lado',
-    valueBody:
-      'Nada de esto se trata solo de este año: un consultorio con expedientes digitales, procedimientos escritos y un flujo constante de pacientes nuevos funciona sin que su dueño esté presente, que es precisamente lo que pagará un comprador o un asociado que tome el relevo. Cuando usted esté listo para vender, preparamos el consultorio y le presentamos a un corredor que se encarga de la venta en sí; nosotros no intermediamos ventas de consultorios y no aceptamos ningún pago de quienes sí lo hacen.',
+      'Trabajamos como lo hace un buen equipo de producto: observamos dónde se atascan los pacientes y el personal, resolvemos primero el problema más costoso y comprobamos si funcionó. Todo trabajo comienza con una revisión, porque un consultorio que cree necesitar publicidad con frecuencia necesita primero corregir sus formularios de admisión, y no existe una manera honesta de saber cuál de las dos cosas hace falta hasta que alguien lo haya examinado.',
     serviceAreaHeading: 'Dónde trabajamos',
     serviceAreaIntro:
       'Tenemos nuestra base en el Valle de San Gabriel y trabajamos con consultorios de todo el sur de California, incluidas estas ciudades.',
@@ -53,20 +45,17 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     closingCta: 'Escríbanos',
   },
   'zh-hans': {
-    title: 'Pasadena Works — 独立诊所顾问服务',
+    title: 'Pasadena Works — 为医疗与牙科诊所带来更多患者',
     metaDescription:
       '我们协助南加州的独立医疗、牙科与眼科诊所实现诊所数字化、提升线上曝光，并带来更多新患者。',
     heroEyebrow: '圣盖博谷与南加州',
-    heroHeading: '献给准备告别纸质文件与口耳相传的独立诊所。',
+    heroHeading: '更多新患者，外加一个无需您亲自坐镇也能顺畅运作的前台。',
     heroSubhead:
       '我们协助南加州各地的医疗、牙科与眼科诊所将前台作业数字化，让搜索诊所的患者看到值得信赖的形象，并带来来源可追踪的新患者；此外，我们从不收取所推荐软件厂商的任何报酬。',
     heroCta: '联系我们',
     servicesHeading: '我们能帮您做什么',
     servicesIntro:
-      '每一次合作都从经营诊断开始，因为自认为需要广告的诊所，往往首先需要修正的是初诊表格；在有人实际审视之前，并没有诚实的办法判断究竟需要哪一项。',
-    valueHeading: '当您退居幕后，诊所更有价值',
-    valueBody:
-      '这一切并非只着眼于今年：拥有电子病历、书面工作流程与稳定新患者来源的诊所，即使负责人不在场也能正常运作，而这恰恰是买家或接手的执业医生愿意付费的原因。当您准备出售时，我们会协助诊所做好准备，并为您介绍负责实际交易的经纪人；我们不从事诊所买卖的中介，也不收取任何从事中介者的费用。',
+      '我们的工作方式如同优秀的产品团队：先观察患者与员工在哪些环节受阻，优先解决代价最高的问题，再检验成效。每一次合作都从经营诊断开始，因为自认为需要广告的诊所，往往首先需要修正的是初诊表格；在有人实际审视之前，并没有诚实的办法判断究竟需要哪一项。',
     serviceAreaHeading: '我们的服务区域',
     serviceAreaIntro: '我们以圣盖博谷为基地，服务南加州各地的诊所，包括以下城市。',
     closingHeading: '准备好聊聊了吗？',
@@ -75,20 +64,17 @@ export const home: Partial<Record<Locale, HomeCopy>> = {
     closingCta: '给我们留言',
   },
   'zh-hant': {
-    title: 'Pasadena Works — 獨立診所顧問服務',
+    title: 'Pasadena Works — 為醫療與牙科診所帶來更多病患',
     metaDescription:
       '我們協助南加州的獨立醫療、牙科與眼科診所推動診所數位化、提升線上曝光，並帶來更多新病患。',
     heroEyebrow: '聖蓋博谷與南加州',
-    heroHeading: '獻給準備告別紙本作業與口耳相傳的獨立診所。',
+    heroHeading: '更多新病患，再加上一個不必您親自坐鎮也能順暢運作的櫃檯。',
     heroSubhead:
       '我們協助南加州各地的醫療、牙科與眼科診所將櫃檯作業數位化，讓搜尋診所的病患看到值得信賴的形象，並帶來來源可追蹤的新病患；此外，我們從不收取所推薦軟體廠商的任何報酬。',
     heroCta: '聯絡我們',
     servicesHeading: '我們能幫您做什麼',
     servicesIntro:
-      '每一次合作都從經營診斷開始，因為自認為需要廣告的診所，往往首先需要修正的是初診表單；在有人實際檢視之前，並沒有誠實的辦法判斷究竟需要哪一項。',
-    valueHeading: '當您退居幕後，診所更有價值',
-    valueBody:
-      '這一切並非只著眼於今年：擁有電子病歷、書面作業流程與穩定新病患來源的診所，即使負責人不在場也能正常運作，而這正是買家或接手的醫師願意付費的原因。當您準備出售時，我們會協助診所做好準備，並為您介紹負責實際交易的仲介；我們不從事診所買賣的仲介業務，也不收取任何仲介業者的費用。',
+      '我們的做法如同優秀的產品團隊：先觀察病患與員工在哪些環節受阻，優先解決代價最高的問題，再檢驗成效。每一次合作都從經營診斷開始，因為自認為需要廣告的診所，往往首先需要修正的是初診表單；在有人實際檢視之前，並沒有誠實的辦法判斷究竟需要哪一項。',
     serviceAreaHeading: '我們的服務區域',
     serviceAreaIntro: '我們以聖蓋博谷為據點，服務南加州各地的診所，包括以下城市。',
     closingHeading: '準備好聊聊了嗎？',

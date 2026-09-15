@@ -117,12 +117,4 @@ describe('the four homepages are one design', () => {
     expect(localized).toContain('copy.servicesHeading');
     expect(localized).not.toContain(needle);
   });
-
-  it('carries the "worth more" section in every language', () => {
-    for (const [label, source] of [['english', english], ['localized', localized]] as const) {
-      expect(source, `${label} homepage is missing the worth-more section`).toContain('id="worth-more"');
-    }
-    expect(localized).toContain('copy.valueHeading');
-    expect(localized).toContain('copy.valueBody');
-  });
 });
