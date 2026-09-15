@@ -60,21 +60,10 @@ describe('city copy', () => {
     }
   });
 
-  /** The one deliberate departure from the title pattern. Altadena's page is
-   *  about practices recovering from the Eaton Fire, and spec §1.4 rules out
-   *  anything there that reads as capitalizing on it — "More patients" does.
-   *  Anything not listed here must match the pattern exactly. */
-  const TITLE_EXCEPTIONS: Partial<Record<string, string>> = {
-    altadena: 'Help for medical and dental practices in Altadena',
-  };
-
   it('titles every English page with the searched phrase', () => {
     for (const city of cities) {
-      expect(city.t.en!.title, city.slug).toBe(
-        TITLE_EXCEPTIONS[city.slug] ?? `More patients for medical and dental practices in ${cityDisplayName(city.slug)}`,
-      );
+      expect(city.t.en!.title, city.slug).toBe(`More patients for medical and dental practices in ${cityDisplayName(city.slug)}`);
     }
-    expect(Object.keys(TITLE_EXCEPTIONS)).toEqual(['altadena']);
   });
 
   it('keeps meta descriptions in the service pages’ bands', () => {

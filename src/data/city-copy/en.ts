@@ -37,7 +37,7 @@ export const copy: Partial<Record<CitySlug, CityCopy>> = {
   },
 
   altadena: {
-    title: 'Help for medical and dental practices in Altadena',
+    title: 'More patients for medical and dental practices in Altadena',
     summary:
       'Altadena’s rebuilding after the Eaton Fire of January 2025 still had far to go at the end of that year, and this page reads its registry and Census figures with that in mind.',
     body: [
@@ -117,7 +117,7 @@ export const copy: Partial<Record<CitySlug, CityCopy>> = {
     body: [
       'The NPI Registry lists 25 dentists, 15 optometrists, and 13 primary-care physicians with a practice location in Monrovia as of September 2026. Monrovia is a small market beside a much larger one, since Arcadia, next door, lists 144 dentists and 100 primary-care physicians under the same query. California’s HCAI licenses one general acute care hospital in the city, Monrovia Memorial Hospital, while USC Arcadia Hospital stands nearby in Arcadia.',
       'According to the 2024 five-year American Community Survey, 30.1% of Monrovia residents aged five and over speak Spanish at home, the highest share among the cities we cover, and 6.7% speak Chinese. At nearly one resident in three, Spanish is not an accommodation a practice here can leave to whichever employee happens to be bilingual. It belongs in the website’s navigation, on every intake and consent form, and in the description on the Google Business Profile. The Chinese share justifies a line stating whether anyone on staff speaks it, although it is much harder to justify translating an entire website on that basis.',
-      'With only 13 primary-care physicians and 15 optometrists registered in the city, a Monrovia patient in either field has few local alternatives when one office fails to answer, and a practice that answers well in Spanish can stand out among them. The fundamentals are therefore inexpensive and worthwhile: Get more patients begins with a Google listing and a website that tell a Spanish-speaking caller, in Spanish, whether the practice accepts their insurance and whether it is taking new patients. If you suspect those callers are already reaching the office and leaving no message, the Practice Checkup is the sensible place to begin.',
+      'Because the much larger market in Arcadia sits just over the line, a Monrovia patient who cannot get an answer at one office has somewhere else to go, so what keeps that patient is a reason to stay rather than a lack of alternatives. The likeliest reason is the one the language figures already point to: a practice that answers well in Spanish, in the city with the largest Spanish-speaking share we cover, holds an advantage that does not depend on how many offices its neighbor has. Get more patients therefore begins with a Google listing and a website that tell a Spanish-speaking caller, in Spanish, whether the practice accepts their insurance and whether it is taking new patients. If you suspect those callers are already reaching the office and leaving no message, the Practice Checkup is the sensible place to begin.',
     ],
     meta: 'More patients for independent medical, dental, and eye care practices in Monrovia, where Spanish belongs on the website, intake forms, and Google listing.',
     sources: [npi, hcai, acs('0648648')],
