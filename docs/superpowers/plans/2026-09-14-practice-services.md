@@ -24,17 +24,18 @@
 - **Translation method:** phrasing from research, every fact from the English; a translation never asserts more than its English twin. Product and regulatory names come from the vendor's or regulator's own localized pages (verify, don't translate). Re-read every sentence containing "never", "only", "not", "no", or a modal against the English before committing. Use the `writing-taiwan-mandarin-copy` skill before writing any `zh-hant` string.
 - **Public repository:** no client or family member is named in code, docs, commits, or the PR.
 - **Never `rm -rf` inside the project** — move generated directories to the session scratchpad instead. Never commit `dist/`.
-- **Scoped readability check** (used by several tasks; run after `npm run build`):
+- **Scoped readability check** (used by several tasks; run after `npm run build`). It must run from a FILE: `readability.mjs` calls `isMain()`, which reads `process.argv[1]` and throws under `node -e` (found in Task 3). Save once to `$TMPDIR/scoped-readability.mjs`, with `REPO` replaced by the output of `pwd`:
 
-  ```bash
-  node --input-type=module -e "
-  import { reportDist, TARGETS, sentenceGuard } from './scripts/readability.mjs';
+  ```js
+  import { reportDist, TARGETS, sentenceGuard } from 'REPO/scripts/readability.mjs';
   const re = /^\/((es|zh-hans|zh-hant)\/)?((services|servicios|fuwu)\/[^/]+\/)?index\.html$/;
-  for (const r of reportDist('dist').filter((r) => re.test(r.page) && !r.tooShort)) {
+  for (const r of reportDist('REPO/dist').filter((r) => re.test(r.page) && !r.tooShort)) {
     const t = TARGETS[r.locale];
     console.log((r.verdict ?? '-').padEnd(6), String(r[t.metric]).padStart(6), (sentenceGuard(r) ?? '').padEnd(8), r.page);
-  }"
+  }
   ```
+
+  Run: `node "$TMPDIR/scoped-readability.mjs"`
 
   Expected when a task is done: every row it touched reads `ok` and no row reads `runaway`.
 - **Commits** end with:
@@ -1124,7 +1125,8 @@ moment a service was retired.
 
 4. **Commands**, the `npm run test` comment: replace the count `316 across 26 files` with the count CI reports on the pull request in Step 4 (CI on a clean checkout is the authority — see the worktree gotcha), and add "the retired-service redirects" and "service copy parity across locales" to the list of what the tests cover.
 5. **Commands**, the `npm run typecheck` comment: replace `85 files` with the count `npm run typecheck` prints in Step 2.
-6. **Known outstanding work**, add a bullet: `**City pages, a practice-focused content plan, success stories and per-specialty pages** are deliberately deferred — see spec §9 in docs/superpowers/specs/2026-09-14-practice-services-design.md. Until the content plan lands, the 68 small-business posts end in calls to action that lead to practice service pages.`
+6. **Voice → Register**, add after the paragraph on the sentence ceiling: `**A list item ends a sentence** (2026-09-14). Both scoring paths mark each bullet's end, because bullets carry no terminal punctuation and a seven-item list used to score as one hundred-word sentence — a list-heavy service page read FK 25.4 that way against paragraphs near grade 11. Measured across the whole corpus before adopting it: no blog post changed verdict (largest shift 0.3). The corollary is that the service pages' earlier in-band scores were partly that artifact, so a rewritten list-heavy page must be raised by hand, not assumed in band.`
+7. **Known outstanding work**, add a bullet: `**City pages, a practice-focused content plan, success stories and per-specialty pages** are deliberately deferred — see spec §9 in docs/superpowers/specs/2026-09-14-practice-services-design.md. Until the content plan lands, the 68 small-business posts end in calls to action that lead to practice service pages.`
 
 - [ ] **Step 2: Full local verification**
 

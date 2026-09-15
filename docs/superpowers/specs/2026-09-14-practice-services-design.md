@@ -92,6 +92,8 @@ the reader could check is marked **[cite]** and ships with a source link or is
 cut, per the house rule. `<a>` links go to glossary entries; four new entries
 are listed in §5.
 
+**Raised in Task 3 (owner decision, 2026-09-14).** Once the readability scorer counted each bullet as a sentence, this draft of §3.2 and §3.4 measured FK 7.1 and 10.7, below the college-level band. Both were raised by hand to 13.4 and 13.0 — same meaning, no new promises — and one review-reply clause was made exact per the sources file. The final English lives in `src/data/services.ts`, which is authoritative for translation; the text below is the approved draft it was raised from.
+
 ### 3.1 Homepage (`src/pages/index.astro`)
 
 - **`<title>`:** Pasadena Works — Consulting for Independent Health Practices
