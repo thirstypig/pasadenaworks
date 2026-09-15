@@ -17,6 +17,17 @@ describe('serviceBySlug', () => {
     expect(serviceBySlug('en', 'sitios-web')).toBeUndefined();
   });
 
+  it('finds Digitize the office by its slug in every locale', () => {
+    expect(serviceBySlug('en', 'practice-digitization')?.id).toBe('digitize');
+    expect(serviceBySlug('es', 'digitalizacion-del-consultorio')?.id).toBe('digitize');
+    expect(serviceBySlug('zh-hans', 'zhensuo-shuzihua')?.id).toBe('digitize');
+    expect(serviceBySlug('zh-hant', 'zhensuo-shuweihua')?.id).toBe('digitize');
+  });
+
+  it('lists the services in display order', () => {
+    expect(services.map((s) => s.id)).toEqual(['consulting', 'digitize', 'websites']);
+  });
+
   it('returns undefined for a slug that does not exist in any service', () => {
     expect(serviceBySlug('en', 'not-a-real-service')).toBeUndefined();
   });

@@ -87,7 +87,7 @@ export interface ServiceCopy {
 /** The live service ids. Retired ids (`search`, `ads`) redirect — see
  *  src/data/retired-services.mjs. Blog pillars reach a service through
  *  PILLAR_SERVICE below, never by matching this id. */
-export type ServiceId = 'consulting' | 'websites';
+export type ServiceId = 'consulting' | 'digitize' | 'websites';
 
 export interface Service {
   id: ServiceId;
@@ -181,6 +181,112 @@ export const services: Service[] = [
           '一次後續回訪，藉以確認前述方法是否確實奏效',
         ],
         meta: '為南加州小型企業主提供線上策略諮詢——網站、曝光度、行銷該投資什麼，什麼可以先放一放，不講行話。',
+      },
+    },
+  },
+
+  /* ── 2. Digitize the office (added 2026-09-14) ──────────────────────────
+   *
+   *  Terminology, verified before writing rather than translated:
+   *   - EHR: es "registros médicos electrónicos" (HHS's own Spanish privacy
+   *     guide, hhs.gov …/privacy-security-20130205-spn.pdf); zh-hant 電子病歷
+   *     (Taiwan MOHW, 醫療機構電子病歷製作及管理辦法); zh-hans 电子病历
+   *     (National Health Commission, 电子病历应用管理规范).
+   *   - Business associate agreement: es "contrato de socio comercial";
+   *     zh-hant 業務夥伴合約 and zh-hans 业务伙伴协议 (Microsoft Learn's HIPAA
+   *     compliance page in each locale).
+   *   - HIPAA stays "HIPAA" in every locale.
+   *  Two modals were checked against the English: "so that people use it"
+   *  and "so that the practice runs the same way" are 讓/让, not 確保/确保,
+   *  which would promise an outcome the English does not. */
+  {
+    id: 'digitize',
+    slugs: {
+      en: 'practice-digitization',
+      es: 'digitalizacion-del-consultorio',
+      'zh-hans': 'zhensuo-shuzihua',
+      'zh-hant': 'zhensuo-shuweihua',
+    },
+    t: {
+      en: {
+        title: 'Digitize the office',
+        tagline: 'Less paperwork, fewer interrupting telephone calls, and a reception desk that is no longer overwhelmed.',
+        summary:
+          'We move patient records, scheduling, intake forms, and reminders onto systems that work together, starting from how patients actually move through your office rather than from whatever software someone wants to sell you. We take no commissions from software vendors.',
+        body: [
+          '<p>Many independent practices run on an <a href="/glossary/#ehr">EHR</a> that was only ever half configured, a telephone line the front desk is perpetually behind on, and paper forms that someone retypes after every appointment. Each of those deficiencies consumes staff time every single day, and several of them quietly cost the practice prospective patients who abandoned the call before anyone answered.</p>',
+          `<h2>How it works</h2><ul><li>We follow one patient from the initial telephone call to the follow-up reminder, then repair the specific steps where time and money consistently leak out</li><li>Online scheduling, intake and consent forms that patients complete on their own phones before arriving, and <a href="${SOURCES.remindersNoShows}">automated reminders that reduce no-shows</a></li><li>Paper charts scanned and organized, and your EHR configured around how your clinicians and staff actually work, so that people genuinely use it</li><li>A <a href="/glossary/#hipaa">HIPAA</a> security risk analysis, <a href="${SOURCES.hipaaRiskAnalysis}">which HIPAA requires</a> of <a href="${SOURCES.hipaaCoveredEntities}">practices that bill insurance electronically</a>, together with a signed <a href="/glossary/#business-associate-agreement">business associate agreement</a> with every vendor that handles patient information, including us</li><li>Written office procedures, so that the practice operates identically on the days you are absent and on the days you are present</li></ul>`,
+          '<p>We recommend software strictly on its merits and accept no commissions or referral fees from any vendor, which is the only way that advice about which system to purchase can be worth anything. We also deliberately stay out of computer repairs and medical billing, and we will gladly refer you to specialists who handle those responsibilities well.</p>',
+        ],
+        outcomes: [
+          'Patients who book appointments, complete their paperwork, and receive reminders without ever needing to telephone the front desk',
+          'Paper charts digitized, and an EHR configured around the way your practice actually operates from day to day',
+          'A completed HIPAA security risk analysis, together with the corrective steps it identifies',
+          'A business associate agreement signed with every vendor that touches patient information',
+          'Written procedures for the front desk and the back office that a newly hired employee can actually follow',
+          'Advice from someone who is compensated by you and by nobody else',
+        ],
+        meta: 'EHR setup, digital intake, online scheduling, and HIPAA risk analysis for independent practices in Southern California. No commissions from software vendors.',
+      },
+      es: {
+        title: 'Digitalizar el consultorio',
+        tagline: 'Menos papel, menos llamadas telefónicas y una recepción que ya no está desbordada.',
+        summary:
+          'Trasladamos los expedientes de los pacientes, la programación de citas, los formularios de admisión y los recordatorios a sistemas que funcionan en conjunto, partiendo de cómo se mueven realmente los pacientes por su consultorio y no del software que alguien quiera venderle. No aceptamos comisiones de los proveedores de software.',
+        body: [
+          '<p>Muchos consultorios independientes funcionan con un sistema de registros médicos electrónicos (EHR) que nunca llegó a configurarse del todo, una línea telefónica que la recepción no alcanza a atender y formularios en papel que alguien vuelve a transcribir después de cada cita. Cada uno de estos problemas consume tiempo del personal todos los días, y varios de ellos le cuestan al consultorio, sin que nadie lo note, pacientes que se rindieron antes de que alguien contestara.</p>',
+          `<h2>Cómo funciona</h2><ul><li>Seguimos a un paciente desde la primera llamada telefónica hasta el recordatorio de seguimiento, y luego reparamos los pasos concretos por los que se pierden tiempo y dinero de manera constante</li><li>Programación de citas en línea, formularios de admisión y de consentimiento que los pacientes completan en su propio teléfono antes de llegar, y <a href="${SOURCES.remindersNoShows}">recordatorios automáticos que reducen las inasistencias a las citas</a></li><li>Expedientes en papel escaneados y organizados, y un sistema EHR configurado según la forma en que realmente trabajan su equipo clínico y su personal, para que de verdad lo utilicen</li><li>Un análisis de riesgos de seguridad conforme a HIPAA, <a href="${SOURCES.hipaaRiskAnalysis}">que HIPAA exige</a> a los <a href="${SOURCES.hipaaCoveredEntities}">consultorios que facturan a las aseguradoras de forma electrónica</a>, junto con un contrato de socio comercial firmado con cada proveedor que maneja información de pacientes, incluidos nosotros</li><li>Procedimientos escritos para el consultorio, de modo que funcione igual los días en que usted no está que los días en que sí está</li></ul>`,
+          '<p>Recomendamos software exclusivamente por sus méritos y no aceptamos comisiones ni pagos por recomendación de ningún proveedor, porque solo así un consejo sobre qué sistema comprar puede valer algo. Tampoco nos dedicamos a reparar computadoras ni a la facturación, y con gusto le recomendaremos a personas que hacen bien ese trabajo.</p>',
+        ],
+        outcomes: [
+          'Pacientes que reservan citas, completan sus formularios y reciben recordatorios sin necesidad de llamar a la recepción',
+          'Expedientes en papel digitalizados y un sistema EHR configurado según la manera en que su consultorio realmente opera',
+          'Un análisis de riesgos de seguridad conforme a HIPAA ya terminado, junto con las medidas correctivas que identifique',
+          'Un contrato de socio comercial firmado con cada proveedor que maneja información de pacientes',
+          'Procedimientos escritos para la recepción y la administración que un empleado nuevo realmente pueda seguir',
+          'Asesoría de alguien a quien le paga usted y nadie más',
+        ],
+        meta: 'Configuración de EHR, formularios de admisión digitales, citas en línea y análisis de riesgos HIPAA para consultorios independientes del sur de California, sin comisiones.',
+      },
+      'zh-hans': {
+        title: '诊所数字化',
+        tagline: '更少的纸质文件、更少的电话，前台也不再应接不暇。',
+        summary:
+          '我们将病历、预约、初诊表格与提醒迁移到彼此协同运作的系统，出发点是患者在您诊所中的实际就诊流程，而非某人想卖给您的软件。我们不收取任何软件供应商的佣金。',
+        body: [
+          '<p>许多独立诊所的日常运作，依赖的是一套从未完整配置的电子病历（EHR）系统、一条前台始终接听不及的电话线路，以及每次看诊后都得有人重新录入的纸质表格。上述每一项都日复一日地消耗员工的时间；此外，其中数项更在无人察觉的情况下，使尚未等到有人接听便已放弃的患者就此流失。</p>',
+          `<h2>怎么做</h2><ul><li>追踪一位患者从第一通电话到复诊提醒的完整流程，进而修补时间与金钱持续流失的具体环节</li><li>在线预约、患者到诊前即可在自己手机上填写的初诊表与知情同意书，以及<a href="${SOURCES.remindersNoShows}">能减少患者爽约的自动提醒</a></li><li>纸质病历经扫描后妥善整理，电子病历系统亦按照医护人员与员工的实际工作方式配置，从而让大家真正用起来</li><li>一份 HIPAA 安全风险分析（<a href="${SOURCES.hipaaCoveredEntities}">以电子方式申报保险理赔的诊所</a>均须<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 规定完成此项分析</a>），并与每一家经手患者信息的供应商签署业务伙伴协议，我们也不例外</li><li>书面化的诊所作业流程，让诊所在您不在场的日子，也能与您在场时一样运作</li></ul>`,
+          '<p>我们只依软件本身的优劣提出建议，也不收取任何供应商的佣金或转介费，因为只有这样，关于该买哪一套系统的建议才有价值。电脑维修与医疗账务则并非我们的业务，我们会把您转介给在这些方面做得出色的专业人士。</p>',
+        ],
+        outcomes: [
+          '患者无须致电前台，便能自行预约、填写表格并收到提醒',
+          '纸质病历完成数字化，电子病历系统也按照诊所实际的运作方式配置妥当',
+          '一份已完成的 HIPAA 安全风险分析，以及分析所找出的改进措施',
+          '与每一家经手患者信息的供应商签署的业务伙伴协议',
+          '前台与后勤的书面作业流程，新入职员工也能照着执行',
+          '只由您付费、不受任何其他人支付报酬的专业建议',
+        ],
+        meta: '为南加州独立诊所提供电子病历配置、在线预约、数字化初诊表与 HIPAA 安全风险分析，且不收取任何软件供应商的佣金。',
+      },
+      'zh-hant': {
+        title: '診所數位化',
+        tagline: '更少的紙本、更少的電話，櫃檯也不再應接不暇。',
+        summary:
+          '我們將病歷、預約、初診表單與提醒移轉到彼此協同運作的系統，出發點是病患在您診所中的實際動線，而非某人想賣給您的軟體。我們不收取任何軟體廠商的佣金。',
+        body: [
+          '<p>許多獨立診所的日常運作，仰賴的是一套從未完整設定的電子病歷（EHR）系統、一條櫃檯始終接聽不及的電話線路，以及每次看診後都得有人重新輸入的紙本表單。上述每一項都日復一日地消耗員工的時間；此外，其中數項更在無人察覺的情況下，使尚未等到有人接聽便已放棄的病患就此流失。</p>',
+          `<h2>怎麼做</h2><ul><li>追蹤一位病患從第一通電話到回診提醒的完整流程，進而修補時間與金錢持續流失的具體環節</li><li>線上預約、病患到診前即可在自己手機上填寫的初診資料表與同意書，以及<a href="${SOURCES.remindersNoShows}">能減少病患爽約的自動提醒</a></li><li>紙本病歷經掃描後妥善整理，電子病歷系統亦依照醫護人員與員工的實際工作方式設定，從而讓大家真正用起來</li><li>一份 HIPAA 資安風險分析（<a href="${SOURCES.hipaaCoveredEntities}">以電子方式申報保險理賠的診所</a>皆須<a href="${SOURCES.hipaaRiskAnalysis}">依 HIPAA 規定完成此項分析</a>），並與每一家經手病患資訊的廠商簽署業務夥伴合約，我們也不例外</li><li>書面化的診所作業流程，讓診所在您不在場的日子，也能與您在場時一樣運作</li></ul>`,
+          '<p>我們只依軟體本身的優劣提出建議，也不收取任何廠商的佣金或轉介費，因為只有這樣，關於該買哪一套系統的建議才有價值。電腦維修與醫療帳務則並非我們的業務，我們會把您轉介給在這些方面做得出色的專業人士。</p>',
+        ],
+        outcomes: [
+          '病患無須致電櫃檯，便能自行預約、填寫表單並收到提醒',
+          '紙本病歷完成數位化，電子病歷系統也依照診所實際的運作方式設定妥當',
+          '一份已完成的 HIPAA 資安風險分析，以及分析所找出的改善措施',
+          '與每一家經手病患資訊的廠商簽署的業務夥伴合約',
+          '櫃檯與後勤的書面作業流程，新進員工也能照著執行',
+          '只由您付費、不受任何其他人支付報酬的專業建議',
+        ],
+        meta: '為南加州獨立診所提供電子病歷設定、線上預約、數位初診表與 HIPAA 資安風險分析，且不收取任何軟體廠商的佣金。',
       },
     },
   },
