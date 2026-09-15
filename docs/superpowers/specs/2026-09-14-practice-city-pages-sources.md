@@ -156,3 +156,70 @@ Each confirmed to respond 200 on 2026-09-15 before being listed:
 - U.S. Census Bureau, data.census.gov, table C16001 pinned to the ACS 2024 5-year detailed tables and one place (replace the seven-digit state + place code, e.g. `0656000` for Pasadena): <https://data.census.gov/table/ACSDT5Y2024.C16001?g=160XX00US0656000>
   Verified 2026-09-15 by rendering all ten places in a real browser and recomputing each share from the page's own Total, Spanish and Chinese (incl. Mandarin, Cantonese) estimates: every Spanish and Chinese share above matched to one decimal place (Pasadena 31,629 and 7,222 of 130,511, giving 24.2% and 5.5%, the 5-year values, not the 1-year 20.9%/4.5%).
   The Census Reporter link recorded here earlier (`censusreporter.org/tables/C16001/?geo_ids=…`) was replaced the same day: that page is a generic table description that ignores `geo_ids` until a reader picks a place, so it showed none of the cited figures.
+
+## Spanish phrasing (`es` city pages)
+
+Chosen 2026-09-15 for `src/data/city-copy/es.ts`. Figures are the English
+figures with a period as the decimal mark (`24.2%`) and a comma for thousands
+(`9,419`, `6,000`), the US Spanish convention the service pages already use
+(`50,000 dólares`) and what the figure-parity test compares. The Census
+Bureau's own Spanish releases write `78,3 %`; that form was not adopted,
+because this site's Spanish follows US practice and parity is digit-exact.
+
+- **Title and headline noun: `consultorio`.** The owner's title pattern is
+  `Más pacientes para consultorios médicos y dentales en {City}`, and
+  `services.ts` uses `consultorio` throughout. `clínica dental` is also common
+  in US Spanish marketing (Aspen Dental's Spanish site brands itself `Clínica
+  Dental`, <https://www.aspendental.com/espanol/>), but a second noun would
+  split the keyword. `asesoría` / `consultoría` are not used as the headline
+  noun (owner decision). Eye care in metas is `de optometría`, as in the
+  service metas; `independientes` is left out of the metas to fit 130–160
+  characters, as the Spanish homepage meta in `ui.ts` already does.
+- **Google Business Profile: `Perfil de Negocio de Google`**, from Google's
+  es-419 help center title, "Ayuda de Perfil de Negocio de Google":
+  <https://support.google.com/business/answer/9798848?hl=es-419>. A Google
+  listing in general is `ficha de Google`, as `services.ts` has "Fichas en
+  directorios".
+- **Census Bureau and ACS: `Oficina del Censo`, `Encuesta sobre la Comunidad
+  Estadounidense`, `estimaciones de cinco años`, `de cinco años o más`,
+  `hablan español en casa`**, from the Bureau's Spanish release on language
+  at home:
+  <https://www.census.gov/newsroom/press-releases/2023/language-at-home-acs-5-year/language-at-home-acs-5-year-spanish.html>
+  ("Encuesta sobre la Comunidad Estadounidense (ACS)", "estimaciones de 5
+  años", "población de 5 años o más"). The release writes the digit 5; the
+  pages write `cinco` because the English writes "five", and the parity test
+  compares digits.
+- **HCAI: `Departamento de Información y Acceso a la Atención Sanitaria de
+  California`**, the department's own Spanish name on
+  <https://hcai.ca.gov/acerca-de-nuestra-organizacion/programas/>. It is used
+  in the source label, and the body writes `el HCAI de California`.
+- **General acute care hospital: `hospital general de cuidados agudos`.** The
+  CDC's Spanish NHSN FAQ writes "hospitales de cuidados agudos"
+  (<https://www.cdc.gov/nhsn/pdfs/espanol/AUR-FAQs-for-web-es.pdf>). `general`
+  is kept because it is part of California's license category name. Hospital
+  names stay in English, as the hospitals name themselves.
+- **NPI Registry: `Registro NPI`; source label `Registro NPI de los CMS`.**
+  CMS publishes no Spanish name for the registry. `CMS` is left unexpanded,
+  as CMS's own Spanish resource page does
+  (<https://www.cms.gov/priorities/health-equity/minority-health/resource-center/language/spanish-espanol>).
+  Insurers' Spanish pages write "Identificador de Proveedor Nacional"
+  (<https://es.deltadentalins.com/about/legal/understanding-npi.html>), which
+  the page does not need, since it names only the registry.
+- **Clinicians: `médicos de atención primaria`, `medicina familiar o medicina
+  interna`, `dentistas`, `optometristas`**, the terms California insurers
+  and Covered California use in Spanish
+  (<https://www.coveredca.com/espanol/members/primary-care-physician/>, which
+  also uses "médico de cuidado primario";
+  <https://es-www.humana.com/vision-insurance/vision-resources/optometrist-vs-ophthalmologist>).
+  "Practice location" is `lugar de consulta`.
+- **Eaton Fire: `incendio Eaton`**, as Telemundo 52 writes it
+  (<https://www.telemundo52.com/noticias/local/linea-tiempo-incendios-eaton-palisades-los-angeles/2730189/>).
+  `CAL FIRE` stays as the agency's own acronym. Catalyst California's report
+  title stays in English because it is a proper title.
+- **Front-office terms** come from the Spanish `services.ts` copy:
+  `formularios de admisión`, `formularios de consentimiento`, `recordatorios
+  de citas`, `mensajes de recordatorio`, `recepción`, `expedientes`,
+  `sistema EHR`, `reseñas`. The three service names appear verbatim:
+  `Revisión integral del consultorio`, `Digitalizar el consultorio` and
+  `Conseguir más pacientes`. The two infinitive names are introduced as `el
+  servicio …` in running text, so they do not read as ordinary verbs.

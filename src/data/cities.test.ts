@@ -66,6 +66,14 @@ describe('city copy', () => {
     }
   });
 
+  it('titles every Spanish page with the searched phrase', () => {
+    // The owner's pattern, Altadena included. Reads every city rather than
+    // skipping a missing locale, so an untranslated page fails here too.
+    for (const city of cities) {
+      expect(city.t.es?.title, city.slug).toBe(`Más pacientes para consultorios médicos y dentales en ${cityDisplayName(city.slug)}`);
+    }
+  });
+
   it('keeps meta descriptions in the service pages’ bands', () => {
     const BAND = { en: [150, 158], es: [130, 160] } as const;
     for (const city of cities) {
