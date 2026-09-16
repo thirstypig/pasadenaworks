@@ -4,7 +4,7 @@ date: 2026-09-05
 category: integration-issues
 component: "tina/config.ts, tina/tina-lock.json, .github/workflows/deploy.yml"
 symptom: "After merging edits to tina/config.ts, every production deploy failed inside `npx tinacms build` with ERR_CLOUD_CHECK_FAILED ('The local Tina schema doesn't match the remote Tina schema'), while build, typecheck and all 186 tests were green. The daily publish cron failed with it."
-tags: [tina, tinacms, tina-cloud, deploy, ci, schema, lock-file, silent-failure, scheduled-publishing, misdiagnosis]
+tags: [tina, tinacms, tina-cloud, deploy, ci, schema, lock-file, silent-failure, scheduled-publishing, misdiagnosis, version-drift, npm-cache]
 status: solved
 ---
 
@@ -207,6 +207,67 @@ the admin bundle regardless. With a GraphQL-surface mismatch, the shipped
 admin's generated queries disagree with what the cloud resolves against — the
 failure moves from a red deploy to runtime errors in the editor. The guard
 exists for a reason; the fix is to satisfy it, not remove it.
+
+## The inverse failure, 2026-09-16: a regenerated lock that differs for a reason that is not your edit
+
+This write-up is about not regenerating the lock when you should. The opposite
+mistake is available and costs the same outage.
+
+A spelling sweep touched comments in `tina/config.ts` and `tina/utils.ts`.
+Comments do not reach the schema hash — the section above says so, correctly —
+but the rule has been wrong before, so it was verified rather than trusted.
+Regenerating produced a **different hash**, which read as "comments do reach the
+hash after all, and this note is wrong."
+
+It was not the comments. Diffing the lock's `schema` member showed the whole
+change:
+
+```
+- "fullVersion": "2.4.11"
++ "fullVersion": "2.4.10"
+```
+
+The machine's `node_modules` had drifted behind `package-lock.json`, which pins
+`@tinacms/graphql` at **2.4.11** (bumped there by the `npm audit fix` recorded in
+CLAUDE.md). The locally installed copy was **2.4.10**, and the generator stamps
+its own version into the schema. **Committing that lock would have recorded the
+older version and failed every deploy with `ERR_CLOUD_CHECK_FAILED`** — this
+document's own incident, arrived at from the other direction, by a developer
+doing the careful thing.
+
+After `npm ci`, with 2.4.11 installed, the lock regenerated to **precisely** the
+committed hash. That is the real proof comments are safe, and it is a different
+claim from "the hash did not change."
+
+**The rule this leaves, which is narrower than "comments are safe":**
+
+> A regenerated lock that differs is **not** evidence your edit reached the
+> schema. Diff the `schema` member and find out what actually moved — the file
+> carries a version stamp, and your toolchain is a variable.
+
+```bash
+git show HEAD:tina/tina-lock.json > /tmp/old.json
+python3 -c "
+import json,difflib
+a=json.dumps(json.load(open('/tmp/old.json'))['schema'],indent=1,sort_keys=True).splitlines()
+b=json.dumps(json.load(open('tina/tina-lock.json'))['schema'],indent=1,sort_keys=True).splitlines()
+print('\n'.join(l for l in difflib.unified_diff(a,b,lineterm='') if l[:1] in '+-'))"
+```
+
+A tell worth knowing: the `schema` member was the **same byte length** before and
+after, which is what a same-width substitution looks like — `2.4.11` → `2.4.10`.
+A length comparison would have called it unchanged.
+
+**Two incidental traps from the same session**, both of which cost time:
+
+- `npx tinacms dev --no-server --noWatch` is the documented regeneration command,
+  and `timeout 180 npx …` does not run it — macOS has no `timeout`. The command
+  silently never executed while the surrounding check reported "no change",
+  which looks exactly like success.
+- `npm ci` here failed with `EACCES` on `~/.npm/_cacache`: 41 cache entries were
+  **root-owned** from an earlier `sudo npm` run. It empties `node_modules` before
+  it fails, so the repo is left unbuildable. `npm ci --cache <a writable dir>`
+  gets you moving; `sudo chown -R $(whoami) ~/.npm` is the actual fix.
 
 ## Related
 

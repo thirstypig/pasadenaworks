@@ -704,6 +704,20 @@ dropped by `JSON.stringify` but leaves `ui: {}` behind, a new key — and even k
 hash. An earlier version of this section listed `description` and `ui.validate`
 as safe; both were wrong.
 
+**A regenerated lock that DIFFERS is not proof your edit reached the schema.**
+The file carries a `fullVersion` stamp from `@tinacms/graphql`, so a
+`node_modules` that has drifted behind `package-lock.json` changes the hash on
+its own — seen 2026-09-16, where a comment-only edit appeared to move the schema
+and the entire diff was `2.4.11` → `2.4.10`. Committing that would have failed
+every deploy, from the opposite direction to the 2026-09-04 incident. Diff the
+lock's `schema` member and find out what actually moved; note the member was the
+same byte length both times, so a length check would have called it unchanged.
+Two traps alongside it: macOS has no `timeout`, so `timeout N npx tinacms …`
+never runs the command while looking like a clean no-change result, and `npm ci`
+can fail `EACCES` on root-owned `~/.npm/_cacache` entries *after* emptying
+`node_modules`. Full write-up in
+`docs/solutions/integration-issues/tina-lock-json-is-the-remote-schema-and-must-be-committed.md`.
+
 **Bisecting by deploy cannot work**, and it looked like the remote was moving.
 It was not: the lock had been unchanged since 2026-08-31 and every re-index
 served the same stale schema. Compare locally — the test above, or

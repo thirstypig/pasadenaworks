@@ -4,7 +4,7 @@ date: 2026-09-14
 category: process-errors
 component: "scripts/readability.mjs — prose(), mainProse(), LIST_ITEM_END and the Latin/CJK sentence splitters; scripts/readability.test.mjs; CLAUDE.md § Register"
 symptom: "A list-heavy service page measured Flesch-Kincaid 25.4 while its paragraphs read near grade 11. Bullets carry no terminal punctuation by house style, and both sentence splitters broke only on punctuation, so every bullet ran into the next and a seven-item list scored as one hundred-word sentence. Fixing that turned each two-word city in the localized homepages' service-area list into a two-word sentence and pulled /es/ from Fernández Huerta 46 to 58, outside the 40–55 band."
-tags: [readability, metrics, measurement, sentence-splitting, lists, i18n, es, recalibration, silent-failure, test-coverage]
+tags: [readability, metrics, measurement, sentence-splitting, lists, i18n, es, recalibration, silent-failure, test-coverage, meta-description, falsification]
 status: solved
 ---
 
@@ -220,6 +220,68 @@ The two built-page tests need `dist/` and skip without it, which is why
 - **Test a splitter or extractor on every shape of text the site publishes, not
   just paragraphs.** Paragraphs were the one shape these splitters already
   handled, and they were the only shape anyone had tested.
+
+## A third instance, 2026-09-16: the post subtitle is the meta description
+
+The same defect a third time, in the same file, and worth recording because the
+shape is now unmistakable — **a non-prose element inside `<main>` quietly
+joining the sample**.
+
+`/blog/do-i-need-a-website-if-i-have-instagram/` was the one live post below the
+English band: **FK 12.9** on the built page against **13.3** at source. The
+prose was never the problem. `Post.astro` renders
+`<p class="post__subtitle">{description}</p>` from the same frontmatter string
+that becomes `<meta name="description">`, and CLAUDE.md excludes meta
+descriptions from scoring on purpose — 155 characters written to win a click in
+a search result is a different job from reading well. The markdown path never
+saw it, because frontmatter is stripped. That post's description opens
+*"Sometimes no. Usually yes."*: two two-word sentences at the head of a
+37-sentence sample.
+
+Its siblings `post__author` and `post__meta` were excluded from the start. This
+one was simply missed, and the gap sat inside the half-grade cross-check
+tolerance (0.4), so nothing was ever red.
+
+**The direction is the part worth carrying.** The bulleted list made pages score
+HARDER; the city data strip, added two days earlier, also made them score harder;
+this made them score EASIER. Short marketing copy at the top of a post pulls the
+number down, long unpunctuated furniture pulls it up. *The sign tells you
+nothing about whether an element belongs in the sample — only the element does.*
+
+Fixed by adding `subtitle` to the existing `post__(author|meta)` alternation.
+With it excluded the two paths agree exactly at 13.3, and that agreement — not
+the verdict flipping — is the evidence nothing else was wrong with the post.
+Whole-corpus check, as the rule above requires: 10 of 96 built pages moved, all
+in the harder direction, exactly one verdict changed, none moved out of band.
+
+### Two ways the verification nearly lied, both caught
+
+Both belong here because either one would have produced a confident wrong
+conclusion, and neither was visible in the output.
+
+- **A comparison that found nothing, because it compared nothing.** The first
+  whole-corpus before/after reported **zero of 96 pages moved**, which argued the
+  exclusion did nothing and was not worth keeping. The snapshot script read
+  `r.score` — a field `reportDist` does not return. Every value was `null`, the
+  loop's `if (sb === null) continue` skipped every page, and "no differences"
+  was a statement about the script. The real fields are `fkGrade`,
+  `fernandezHuerta`, `registerIndex`. **A comparison that finds no differences is
+  a claim about the comparison until proven otherwise** — print the field names
+  off one real row before trusting a diff of zero.
+- **A falsification that passed.** Proving the new dimension test could fail
+  meant corrupting a declared width; the first attempt reported a pass, which
+  read as "the test is still broken". The `sed` had silently not matched. Redone
+  with the edit confirmed applied first, it failed as intended. **A falsification
+  that passes is evidence about the setup until you prove otherwise.**
+
+### What guards it now
+
+A unit test that `mainProse()` drops the subtitle, and its **paired marker test**
+that `<p class="post__subtitle">` still exists on every built post — the same
+arrangement `ul.service-area` and `p.page-back` already have. Both were
+falsified before being kept: removing the exclusion fails the first, renaming
+the class in `Post.astro` fails the second. The marker test also asserts it
+found posts at all, so it cannot pass vacuously.
 
 ## Related
 
