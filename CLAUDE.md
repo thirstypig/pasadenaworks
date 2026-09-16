@@ -13,8 +13,10 @@ in the San Gabriel Valley. Astro static site, deployed free on GitHub Pages at
 Checkup, *Digitize the office*, and *Get more patients*. The decisions, the
 approved copy and every source behind a checkable claim are in
 `docs/superpowers/specs/2026-09-14-practice-services-design.md` and its
-`-sources.md` twin. The 68 blog posts and the city pages still address small
-businesses; both are deliberate follow-ups (spec §9), not oversights.
+`-sources.md` twin. The ten city pages followed on 2026-09-15 — rebuilt on
+clinician-registry, hospital and Census figures, in all four languages. The 68
+blog posts still address small businesses; that is a deliberate follow-up
+(spec §9), not an oversight.
 
 Four languages: English at the root, Spanish and both Chinese variants on
 prefixed paths. Organic search is the primary customer acquisition channel, so
@@ -70,9 +72,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 89 files. The build itself
+                     #   AND .ts, tina/ included. 96 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 358 across 28 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 389 across 30 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -85,12 +87,17 @@ npm run test         # tests (vitest, 358 across 28 files) — i18n/hreflang, re
                      #   hero-credit link-needs-a-name predicate, and the Unsplash
                      #   script's slug/traversal validation and UTM-fragment handling,
                      #   the retired-service redirects, the service copy's parity
-                     #   across locales, and the LocalBusiness areaServed.
-                     #   30 of these need dist/ and SKIP without it — the rendered
+                     #   across locales, the LocalBusiness areaServed, and the
+                     #   city pages — their four title patterns, figure and
+                     #   source-URL parity across locales, the one-name-per-city
+                     #   tripwire, and the built-page guards in
+                     #   src/data/city-pages.test.ts.
+                     #   36 of these need dist/ and SKIP without it — the rendered
                      #   nav-link checks, the og:image, stylesheet and JSON-LD
-                     #   checks, the fourteen built-redirect checks, and the readability
+                     #   checks, the fourteen built-redirect checks, the four
+                     #   built-city-page checks, and the readability
                      #   cross-checks — which is why ci.yml re-runs the whole suite
-                     #   after the build. deploy.yml reports 31 skipped, not 30:
+                     #   after the build. deploy.yml reports 37 skipped, not 36:
                      #   it tests BEFORE `npx tinacms build`, so
                      #   tina/__generated__/_schema.json is absent and the lock
                      #   test skips too — ci.yml regenerates that file first, so
@@ -201,7 +208,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate covered 85 files then (88 as of 2026-09-14) and reports 0 errors.
+excluded; the gate covered 85 files then (96 as of 2026-09-15) and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -227,7 +234,8 @@ src/
 │   ├── site.ts       ← email, phone, form endpoint, service-area cities
 │   ├── services.ts   ← ALL service copy, all four languages; PILLAR_SERVICE maps blog pillars to services
 │   ├── retired-services.mjs ← redirects for retired service URLs (search, ads → websites)
-│   ├── cities.ts     ← city landing page copy + cityDisplayName()
+│   ├── cities.ts     ← city list, CityCopy shape, cityLocales() + cityDisplayName()
+│   ├── city-copy/    ← the city page prose itself, one module per locale (en, es, zh-hans, zh-hant)
 │   ├── home.ts       ← homepage copy for es / zh-hans / zh-hant
 │   ├── pillars.ts    ← THE pillar list (schema, both components, Tina all read it)
 │   └── hero-image.ts ← what a heroImage path may be; rejects protocol-relative URLs
@@ -270,9 +278,18 @@ Verify after any routing change:
 
 ```bash
 npm run build
-grep -o 'hreflang="[^"]*" href="[^"]*"' dist/websites/glendale/index.html   # expect nothing
+grep -o 'hreflang="[^"]*" href="[^"]*"' dist/glossary/index.html            # expect nothing
 grep -o 'hreflang="[^"]*" href="[^"]*"' dist/websites/alhambra/index.html   # expect 4 + x-default
 ```
+
+The "expect nothing" page used to be `dist/websites/glendale/index.html`, and
+that is worth knowing rather than just fixing: Glendale gained all four locales
+on 2026-09-15, so the check had quietly become one that can never fail. An
+absence check whose subject stops existing passes forever — which is why the
+positive control on the second line is not decoration, and why
+`src/data/city-pages.test.ts` runs both halves against the built pages.
+`/glossary/` is English-only today; if it ever gains a translation, move the
+check again rather than deleting it.
 
 `src/i18n/routes.test.ts` unit-tests `buildAlternates()` directly (zero/partial/full-locale
 cases) — run `npm run test` for a faster check than the grep above during development.
@@ -283,8 +300,28 @@ cases) — run `npm run test` for a faster check than the grep above during deve
 city name swapped are the classic doorway-page pattern — Google indexes them
 and ranks none of them.
 
-If asked to add cities in bulk, push back. Ask what's actually true about that
-city's commercial districts. Six honest pages beat twenty thin ones.
+**The method is data-backed, not landmark-backed** (2026-09-15). Every page
+rests on figures a reader can check for that city: registered clinicians by
+type from the CMS NPI Registry, the licensed general acute care hospitals in or
+beside the city from California HCAI, and the share of residents who speak
+Spanish and Chinese at home from the Census ACS 5-year table C16001. The queries
+and query dates are in
+`docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md`, which is the
+only source the copy may cite. `sources` is a required, non-empty field on
+`CityCopy`, so a page cannot build without its links.
+
+Naming a commercial district was the old method and it is gone — a street name
+says nothing to a clinic owner, and it is far too easy to write the same
+sentence ten times with the street swapped.
+
+The guard is a test, not a habit: `cities.test.ts` masks every city name and
+every number out of each English paragraph and fails if two cities are left
+with the same sentence. "One template, new numbers" is the doorway pattern a
+data-backed page is most tempted by, so that is the shape it looks for.
+
+If asked to add cities in bulk, push back. Ask what the registry, the hospital
+list and the Census actually say about that city, and whether the answer is
+different enough to be worth a page. Six honest pages beat twenty thin ones.
 
 ### 3. Translated URL segments stay translated
 
@@ -699,11 +736,15 @@ perfectly in band while running 80 characters to a sentence. English and Spanish
 need no equivalent: their primary metrics are already length-sensitive and their
 band maxima catch the same failure.
 
-Both are **tripwires, not targets**, each set ~24% above the observed maximum of
-the statistic it reads, so nothing is near either and no one is tempted to edit
-prose to satisfy them — which is the inversion the write-up below warns about.
-Added 2026-09-04, after the file header had claimed such a guard existed for
-months while nothing compared the value to anything.
+Both are **tripwires, not targets**, and the two ceilings are set differently.
+The per-sentence one follows the rule — ~24% above the observed maximum of the
+statistic it reads (176 → 220). The mean one does **not**: 85 sits about 52%
+above the observed maximum mean of 55.8, because it was deliberately held where
+it was rather than re-derived downward to 70. The paragraph two below explains
+why, and it is the fuller account; the point here is only that neither value is
+anything prose should be edited toward, which is the inversion the write-up
+further down warns about. Added 2026-09-04, after the file header had claimed
+such a guard existed for months while nothing compared the value to anything.
 
 **There was one, and it read the wrong statistic (fixed 2026-09-15).** The old
 `MAX_CHARS_PER_SENTENCE = 85` was compared against the page MEAN while every
@@ -832,9 +873,18 @@ than half a grade. They started 1.1 apart, and the entire gap was page
 furniture inside `<main>` — a back-link, an image credit, a CTA button.
 
 **City pages: check the facts survived.** Hard rule 2 content is sourced.
-After any register edit to `cities.ts`, assert the specifics are still in
-the built output (1926, Laura Scudder, 400 storefronts, 1895, Renaissance
-Plaza, Huntington Drive, 1887) rather than trusting the diff.
+After any register edit to `city-copy/*.ts`, assert that the figures recorded in
+`docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md` still appear
+in the built pages, then run `npm run test`: its parity test compares every
+translation's figures, digit for digit, against the English, and a second test
+compares the source URLs. Do not trust the diff — a register edit rewrites the
+sentence around a number, which is exactly where one gets dropped or rounded.
+
+The old list here named 1926, Laura Scudder, 400 storefronts, 1895, Renaissance
+Plaza, Huntington Drive and 1887. All of that copy was removed on 2026-09-15
+when the pages were rebuilt on registry, hospital and Census figures, so those
+strings are now the opposite of a check: grepping for them would fail on
+correct pages.
 
 **The metric describes the prose; editing prose to move the metric inverts
 what it is for.** That happened four times during the conversion and every
@@ -879,12 +929,20 @@ prose to move a score. All four locales reached 68/68 in band that way on
 
 ## Known outstanding work
 
-- **City pages, a practice-focused content plan, success stories and
-  per-specialty pages** are deliberately deferred — spec §9 in
+- **A practice-focused content plan, success stories and per-specialty pages**
+  are deliberately deferred — spec §9 in
   `docs/superpowers/specs/2026-09-14-practice-services-design.md`. Until the
   content plan lands, the 68 small-business posts end in calls to action that
-  lead to practice service pages, and the city and blog index descriptions in
-  `ui.ts` still say small businesses.
+  lead to practice service pages.
+
+  **City pages are no longer on that list.** Ten cities now exist in all four
+  languages, rebuilt on registry, hospital and Census figures and re-aimed at
+  practices (2026-09-15, spec
+  `docs/superpowers/specs/2026-09-14-practice-city-pages-design.md`). The city
+  hub and the blog index descriptions in `ui.ts` were re-aimed at the same
+  time; the blog descriptions name practices *alongside* other local
+  businesses, because the corpus itself is still general small-business
+  writing and nine posts are retail-specific.
 - **Both schedules are written, translated and approved: 68 sets, every one
   in all four languages, all `draft: false` as of 2026-09-10.** The original
   90-day run (20 sets) was approved 2026-08-31; `CONTENT-PLAN.md`'s phase two
@@ -939,8 +997,10 @@ prose to move a score. All four locales reached 68/68 in band that way on
 - **PR #75's review (2026-09-14) added `029`–`046`.** Every P1 and P2
   (`029`–`038`) was fixed on that branch before merge — mostly legal wording
   on the service pages, the Chinese Checkup name, and three guards that make a
-  service URL rename or a stale link fail a test. The P3s (`039`–`046`) are
-  pending triage; `044` and `046` are owner decisions, not defects.
+  service URL rename or a stale link fail a test. The P3s were triaged and
+  closed afterwards: `039`–`045` and `047` are complete, and **`046` is the
+  only one still pending** — the questions for the attorney hour, which is an
+  owner decision rather than a defect and cannot be closed from here.
 - **All 28 earlier code-review findings, `001`–`028`, are complete** (`001`–`020` as
   of 2026-09-05; `021`–`028` added and closed since). `013` closed the
   original batch: the n8n workflow now validates before writing to the CRM.
@@ -1057,3 +1117,6 @@ Read that file before re-investigating any of these.
 - Tina's `npm audit` is down to 2 moderate from 8 — one real fix via plain `npm audit fix` (body-parser's nested `qs`), one via an `overrides` pin to a patched react-router-dom major, verified working in a real browser session against the local admin — see the Tina audit note above for what's still open and why (2026-09-10)
 - A leftover git worktree made `npm run test` collect the repo twice and report 623 tests across 52 files, against CI's 316 across 26; the doubled figure had been written into this file as the project's test count (2026-09-11, #71)
 - The site is repositioned for independent health practices; the PR's review removed a BAA promise with no template behind it, corrected the accessibility-law paragraph, and added guards so a service URL rename or a stale post link fails a test (2026-09-14, #75)
+- The PR #75 review's P3 findings are closed and the Checkup's URL no longer says "business advice" (2026-09-15, #76)
+- The homepage leads with growth: H1 "More new patients, and a front office that runs without you", title "Pasadena Works — More Patients for Medical & Dental Practices". The "Worth more when you step back" section was removed along with its parity test — nothing on the site markets selling a practice (2026-09-15, #77)
+- The city pages are rebuilt for practices: ten cities (San Gabriel is new) in all four languages, resting on CMS NPI Registry, California HCAI and Census ACS figures instead of the old street-and-landmark copy, with the hub and blog descriptions re-aimed to match. The five translated city URLs that were already published still build, and `src/data/city-pages.test.ts` is the append-only guard that keeps them building (2026-09-15)

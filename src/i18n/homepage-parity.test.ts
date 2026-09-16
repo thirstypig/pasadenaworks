@@ -79,7 +79,7 @@ describe('the four homepages are one design', () => {
     // stack hands Chinese to PingFang/Noto while Latin gets Anton. Fine for a
     // heading, which is one script throughout. Wrong for a zh city-hub item,
     // which embeds a Latin city name inside CJK prose —
-    // 亞凱迪亞（Arcadia）商家網站設計與在地推廣 — so "Arcadia" renders ultra-bold
+    // 為亞凱迪亞（Arcadia）醫療與牙科診所帶來更多病患 — so "Arcadia" renders ultra-bold
     // condensed against regular-weight Chinese, inside one line. English and
     // Spanish items are pure Latin and never show it.
     //

@@ -1,8 +1,8 @@
 # City pages for independent health practices
 
-**Date:** 2026-09-14 · **Status:** design, awaiting owner review · **Branch:** `feat/practice-city-pages`, based on `main`
+**Date:** 2026-09-14 · **Status:** built (2026-09-15) · **Branch:** `feat/practice-city-pages`, based on `main`
 
-Follows `2026-09-14-practice-services-design.md` §9 item 1. Nothing here is live.
+Follows `2026-09-14-practice-services-design.md` §9 item 1.
 This repository is public: no client is named anywhere.
 
 ---
@@ -22,9 +22,14 @@ This repository is public: no client is named anywhere.
 
 Unchanged. City pages keep `/websites/<slug>/` and the localized hub segments
 (`/es/sitios-web/<slug>/`, `/zh-hans/wangzhan-jianshe/<slug>/`,
-`/zh-hant/wangzhan-jianzhi/<slug>/`), because `SEGMENTS.cityHub` is derived from
-the `websites` service slugs and every existing page is indexed. San Gabriel
-gets slug `san-gabriel`. No redirects are needed: nothing is removed.
+`/zh-hant/wangzhan-jianzhi/<slug>/`), because every existing page is indexed.
+San Gabriel gets slug `san-gabriel`. No redirects are needed: nothing is removed.
+
+**Correction (2026-09-15).** This section originally said the segments were
+"derived from the `websites` service slugs". They are not, and have not been
+since 2026-09-14: `SEGMENTS.cityHub` in `src/i18n/routes.ts` writes the four
+values out longhand, precisely so that renaming or retiring the `websites`
+service cannot move every city page's URL. `routes.test.ts` pins them.
 
 ## 3. Page structure
 
@@ -67,8 +72,23 @@ Each city's `body` has three paragraphs, in this order:
    A paragraph that would read the same with a different city name swapped in
    fails hard rule 2 and is rewritten.
 
-Titles and meta follow the service pages' pattern: English title
-"Practice consulting in {City}"; English `meta` 150–158 characters.
+Titles and meta follow the service pages' pattern; English `meta` is 150–158
+characters.
+
+**Superseded (2026-09-15).** The title pattern proposed here, "Practice
+consulting in {City}", is not what shipped. The owner's pattern is what people
+search for — the outcome, not the service:
+
+| Locale | Title |
+|---|---|
+| `en` | `More patients for medical and dental practices in {City}` |
+| `es` | `Más pacientes para consultorios médicos y dentales en {City}` |
+| `zh-hans` | `为{中文名}（{City}）医疗与牙科诊所带来更多患者` |
+| `zh-hant` | `為{中文名}（{City}）醫療與牙科診所帶來更多病患` |
+
+All four are pinned by `src/data/cities.test.ts`, Altadena included, and the
+Chinese name in each is the one name that city carries per script (the "Chinese
+city names" table in the sources file).
 
 ## 4. Data sources and methods
 

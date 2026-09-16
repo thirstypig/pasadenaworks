@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { cities, cityLocales, cityBySlug, cityDisplayName, type CityCopy, type CitySlug } from './cities';
+import { LOCALES } from '../i18n/ui';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
@@ -222,6 +223,23 @@ describe('city copy', () => {
     }
     // Control: with no translations at all this would pass vacuously.
     expect(compared).toBeGreaterThan(0);
+  });
+});
+
+describe('city coverage', () => {
+  it('gives every city all four languages', () => {
+    // A test, not a type. `City.t` stays `Partial` so a future city CAN exist
+    // in fewer languages without ever claiming a translation that 404s (hard
+    // rule 1), and `cityLocales()` keeps reading the data rather than assuming
+    // a fixed list. Today's decision (spec §1.3) is that every city is written
+    // in all four, and this is the only thing holding the site to it — the
+    // title tests above read `city.t.es?.title` and friends, so a whole locale
+    // going missing would show up there as one failure per city rather than as
+    // the coverage gap it is.
+    const all = [...LOCALES].sort();
+    for (const city of cities) expect(cityLocales(city).sort(), city.slug).toEqual(all);
+    // Control: an empty `cities` array would pass the loop vacuously.
+    expect(cities.length).toBe(10);
   });
 });
 

@@ -29,7 +29,7 @@ change if you're using this repo as a starting point for a different business.
 | **Email and phone** | `site.ts` → `email`, `phone`, `phoneDisplay` | |
 | **Service area cities** | `site.ts` → `serviceArea` | Drives the homepage city list and the city pages; together with `regionServed` (the counties), your local search schema. |
 | **Service copy** | `src/data/services.ts` | All three services, all four languages, in one file. |
-| **City pages** | `src/data/cities.ts` | Nine city landing pages. Read the warning at the top before adding more. |
+| **City pages** | `src/data/cities.ts` (the list and the rules), `src/data/city-copy/<locale>.ts` (the prose) | Ten city landing pages, each in all four languages. Read the warning at the top of `cities.ts` before adding more. |
 | **Homepage copy** | `src/pages/index.astro` (English), `src/data/home.ts` (other languages) | |
 
 ### Setting up the contact form
@@ -75,7 +75,7 @@ npm run readability -- --dist  # same, for the built pages (run a build first)
 
 The dev server reloads as you save. Leave it running while you edit.
 
-There's a test suite (304 tests) covering the parts of this site that are easy
+There's a test suite (389 tests) covering the parts of this site that are easy
 to get subtly wrong without noticing: `hreflang`/locale-routing logic,
 city/service slug lookups, reading-time math (including CJK, which has no
 spaces between words), scheduled publishing, UTC-pinned date formatting, the
@@ -285,21 +285,29 @@ need to touch any routing code.
 
 ## City landing pages
 
-Nine cities live in `src/data/cities.ts` and publish to `/websites/<city>/`,
-with a hub at `/websites/`. Los Angeles is deliberately not one of them — it's
-too broad to write a specific, honest page about, so it stays a general
+Ten cities are listed in `src/data/cities.ts` and publish to
+`/websites/<city>/`, with a hub at `/websites/`. The prose lives one module per
+language in `src/data/city-copy/`. Los Angeles is deliberately not one of them —
+it's too broad to write a specific, honest page about, so it stays a general
 mention (footer, schema `areaServed`) rather than a landing page.
 
 **The rule for this file is in the file itself, and it matters:** near-identical
 pages with the city name swapped out are the classic doorway-page pattern.
-Google indexes them and ranks none of them. Every city here names real streets
-and real commercial districts, and if you can't do that for a new city, don't
-add it. Six honest pages beat twenty thin ones.
+Google indexes them and ranks none of them. Every page here rests on figures a
+reader can check for that city — registered clinicians by type from the CMS NPI
+Registry, the licensed general acute care hospitals in or beside the city from
+California HCAI, and the share of residents who speak Spanish and Chinese at
+home from the Census — and every page lists its sources. If you can't find
+something genuinely different to say about a new city, don't add it. Six honest
+pages beat twenty thin ones. The test suite masks the city names and the numbers
+out of each page and fails if two cities are left saying the same thing.
 
-Cities carry translations only where the language is genuinely how local
-customers search — Alhambra has all four, Arcadia has English and Traditional
-Chinese, Glendale is English-only. The `hreflang` tags follow that automatically,
-so an English-only city correctly claims no alternates at all.
+Every city is written in all four languages, because the reader is the practice
+owner rather than the neighborhood, and an owner may read Spanish or Chinese
+wherever the practice is. The Census language shares are page *content*, not the
+rule for which translations exist. The routing still reads the data rather than
+assuming four — `cityLocales()` — so a future city that exists in fewer
+languages would correctly claim no alternates it cannot back up.
 
 ## Adding a service or a language
 
@@ -376,7 +384,8 @@ src/
 ├── data/
 │   ├── site.ts         ← settings: email, phone, form endpoint, cities
 │   ├── services.ts     ← all service copy, all four languages
-│   ├── cities.ts       ← city landing page copy
+│   ├── cities.ts       ← the city list, the CityCopy shape, and the rules
+│   ├── city-copy/      ← city page prose, one module per language (en/es/zh-hans/zh-hant)
 │   ├── home.ts         ← homepage copy for es / zh-hans / zh-hant
 │   ├── pillars.ts      ← the pillar list (schema, components, and Tina all read it)
 │   ├── hero-image.ts   ← what a heroImage path may be (rejects protocol-relative URLs)

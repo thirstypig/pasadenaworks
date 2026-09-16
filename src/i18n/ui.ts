@@ -175,11 +175,15 @@ export const ui: Record<Locale, UIStrings> = {
       servicesIntro: 'Start with the checkup; what it finds decides what comes next.',
       citiesTitle: 'Cities we work in',
       citiesDescription:
-        'Website and local SEO work for small businesses across Pasadena and the San Gabriel Valley.',
+        'Consulting for independent medical, dental, and eye care practices across Pasadena and the San Gabriel Valley.',
       citiesIntro:
-        'We work with small businesses across the San Gabriel Valley. Pick your city for what matters there specifically.',
+        'We work with independent practices across the San Gabriel Valley, and each city page starts from that city’s own clinician registry and Census figures rather than from a template.',
+      // Practices are named alongside the other local businesses, not instead
+      // of them: the 68 posts are general small-business topics and nine are
+      // retail-specific, so a description promising practice-specific articles
+      // would advertise a corpus that does not exist.
       blogDescription:
-        'Plain-spoken articles on websites, local search, business decisions, and paid ads for small business owners in the San Gabriel Valley.',
+        'Plain-spoken articles on websites, local search, business decisions, and paid ads for practices and other small businesses in the San Gabriel Valley.',
     },
     misc: {
       mainNav: 'Main navigation',
@@ -240,11 +244,11 @@ export const ui: Record<Locale, UIStrings> = {
       servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá qué sigue.',
       citiesTitle: 'Ciudades donde trabajamos',
       citiesDescription:
-        'Sitios web y SEO local para negocios pequeños en Pasadena y el Valle de San Gabriel.',
+        'Consultoría para consultorios médicos, dentales y de optometría independientes en Pasadena y el Valle de San Gabriel.',
       citiesIntro:
-        'Trabajamos con negocios pequeños en todo el Valle de San Gabriel. Elige tu ciudad para ver lo que importa ahí específicamente.',
+        'Trabajamos con consultorios independientes en todo el Valle de San Gabriel, y cada página de ciudad parte del registro de profesionales y de las cifras del Censo de esa ciudad, no de una plantilla.',
       blogDescription:
-        'Artículos claros y directos sobre sitios web, búsqueda local, decisiones de negocio y publicidad paga para dueños de negocios pequeños en el Valle de San Gabriel.',
+        'Artículos claros y directos sobre sitios web, búsqueda local, decisiones de negocio y publicidad paga para consultorios y otros negocios pequeños en el Valle de San Gabriel.',
     },
     misc: {
       mainNav: 'Navegación principal',
@@ -303,9 +307,9 @@ export const ui: Record<Locale, UIStrings> = {
       servicesDescription: '为南加州各地的独立医疗、牙科与眼科诊所提供经营诊断、诊所数字化与新患者开发服务。',
       servicesIntro: '先从经营诊断开始，诊断的结果将决定下一步。',
       citiesTitle: '我们服务的城市',
-      citiesDescription: '为帕萨迪纳和圣盖博谷的小型企业提供网站建设与本地谷歌推广服务。',
-      citiesIntro: '我们为整个圣盖博谷的小型企业提供服务。选择您所在的城市，看看当地最重要的事。',
-      blogDescription: '写给圣盖博谷小生意老板看的文章，说大白话，聊网站、本地搜索、经营决策和付费广告。',
+      citiesDescription: '为帕萨迪纳和圣盖博谷的独立医疗、牙科与眼科诊所提供顾问服务。',
+      citiesIntro: '我们为圣盖博谷各地的独立诊所提供服务，每个城市页面都以该市自己的 CMS NPI 登记与人口普查数据为起点，而不是套用同一个模板。',
+      blogDescription: '写给圣盖博谷诊所和其他小生意老板看的文章，说大白话，聊网站、本地搜索、经营决策和付费广告。',
     },
     misc: {
       mainNav: '主导航',
@@ -363,9 +367,9 @@ export const ui: Record<Locale, UIStrings> = {
       servicesDescription: '為南加州各地的獨立醫療、牙科與眼科診所提供經營診斷、診所數位化與新病患開發服務。',
       servicesIntro: '先從經營診斷開始，診斷的結果將決定下一步。',
       citiesTitle: '我們服務的城市',
-      citiesDescription: '為帕薩迪納和聖蓋博谷的小型企業提供網站建置與在地 Google 推廣服務。',
-      citiesIntro: '我們為整個聖蓋博谷的小型企業提供服務。選擇您所在的城市，看看當地最重要的事。',
-      blogDescription: '寫給聖蓋博谷小生意老闆看的文章，說白話，聊網站、在地搜尋、經營決策與付費廣告。',
+      citiesDescription: '為帕薩迪納和聖蓋博谷的獨立醫療、牙科與眼科診所提供顧問服務。',
+      citiesIntro: '我們為聖蓋博谷各地的獨立診所提供服務，每個城市頁面都以該市自己的 CMS NPI 登錄與人口普查資料為起點，而不是套用同一套模板。',
+      blogDescription: '寫給聖蓋博谷診所與其他小生意老闆看的文章，說白話，聊網站、在地搜尋、經營決策與付費廣告。',
     },
     misc: {
       mainNav: '主導覽',
