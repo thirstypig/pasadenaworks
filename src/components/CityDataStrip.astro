@@ -10,15 +10,15 @@
  * <div> rows, so the non-greedy exclusion in `mainProse()` would stop at the
  * first inner </div> and leave most of the panel in the reading-level sample.
  * Measured: with the exclusion removed, 27 built pages fall out of band and the
- * city pages read FK 15.6-16.0; with it, 17, which is exactly the known legal,
- * glossary and index-page set. `city-pages.test.ts` pins both the marker and
- * the element.
+ * city pages read FK 15.6-16.0; with it, 17 — which are the legal pages, the
+ * glossary, the index and listing pages, and one live blog post sitting just
+ * under the band. `city-pages.test.ts` pins both the marker and the element.
  *
  * Five fixed clinic types, largest first — see `CLINIC_TYPES` in
  * `city-figures.ts` for why the five are fixed rather than a per-city top five.
  */
 import type { CitySlug } from '../data/cities';
-import { cityDisplayName } from '../data/cities';
+import { cityName } from '../data/city-names';
 import { CITY_FIGURES, FIGURES_QUERIED, CLINIC_TYPES, barScale } from '../data/city-figures';
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/utils';
@@ -31,7 +31,7 @@ interface Props {
 const { slug, locale } = Astro.props;
 const strings = t(locale);
 const figures = CITY_FIGURES[slug];
-const name = cityDisplayName(slug);
+const name = cityName(slug, locale);
 const scale = barScale(figures);
 
 // Five fixed clinic types, largest first on each page — so the panel leads
@@ -95,25 +95,25 @@ const nearby = figures.nearbyHospitals;
     ))}
   </dl>
 
+  {/* ONE term, TWO descriptions. The empty second `<dt aria-hidden>` that used
+      to sit here was a layout spacer, and `aria-hidden` does not remove a `<dt>`
+      from the list's term/description pairing — a screen reader announced the
+      Chinese percentage against an empty term. Both languages belong under the
+      one "spoken at home" term anyway. */}
   <dl class="city-strip__langs">
-    <div class="city-strip__row">
-      <dt>{strings.hub.cityStripAtHome}</dt>
-      <dd><span>{strings.hub.cityStripSpanish}</span> <b>{pct(figures.spanishAtHome)}</b></dd>
-    </div>
-    <div class="city-strip__row">
-      <dt aria-hidden="true"></dt>
-      <dd><span>{strings.hub.cityStripChinese}</span> <b>{pct(figures.chineseAtHome)}</b></dd>
-    </div>
+    <dt>{strings.hub.cityStripAtHome}</dt>
+    <dd><span>{strings.hub.cityStripSpanish}</span> <b>{pct(figures.spanishAtHome)}</b></dd>
+    <dd><span>{strings.hub.cityStripChinese}</span> <b>{pct(figures.chineseAtHome)}</b></dd>
   </dl>
 
   <p class="city-strip__hospitals">
     {hospitals.length > 0 ? (
-      <><b>{strings.hub.cityStripHospitals}:</b> {hospitals.join(' · ')}</>
+      <><b>{strings.hub.cityStripHospitals}</b>{hospitals.join(' · ')}</>
     ) : (
       <b>{strings.hub.cityStripNoHospital}</b>
     )}
     {nearby.length > 0 && (
-      <><br /><b>{strings.hub.cityStripNearbyHospitals}:</b> {nearby.join(' · ')}</>
+      <><br /><b>{strings.hub.cityStripNearbyHospitals}</b>{nearby.join(' · ')}</>
     )}
   </p>
 </aside>
@@ -171,9 +171,30 @@ const nearby = figures.nearbyHospitals;
     background: currentColor;
     opacity: 0.55;
   }
-  .city-strip__langs .city-strip__row dd {
-    justify-content: flex-start;
+  .city-strip__langs {
+    display: grid;
+    grid-template-columns: minmax(7rem, 11rem) 1fr;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+  .city-strip__langs dt {
+    grid-row: span 2;
+    margin: 0;
+  }
+  .city-strip__langs dd {
+    margin: 0;
+    display: flex;
+    align-items: center;
     gap: var(--space-3);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 30rem) {
+    .city-strip__langs {
+      grid-template-columns: 1fr;
+    }
+    .city-strip__langs dt {
+      grid-row: auto;
+    }
   }
   .city-strip__hospitals {
     margin: 0;

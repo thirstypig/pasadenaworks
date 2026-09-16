@@ -74,7 +74,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 100 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 437 across 31 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 442 across 32 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -92,12 +92,12 @@ npm run test         # tests (vitest, 437 across 31 files) — i18n/hreflang, re
                      #   source-URL parity across locales, the one-name-per-city
                      #   tripwire, and the built-page guards in
                      #   src/data/city-pages.test.ts.
-                     #   36 of these need dist/ and SKIP without it — the rendered
+                     #   43 of these need dist/ and SKIP without it — the rendered
                      #   nav-link checks, the og:image, stylesheet and JSON-LD
                      #   checks, the fourteen built-redirect checks, the four
                      #   built-city-page checks, and the readability
                      #   cross-checks — which is why ci.yml re-runs the whole suite
-                     #   after the build. deploy.yml reports 37 skipped, not 36:
+                     #   after the build. deploy.yml reports 44 skipped, not 43:
                      #   it tests BEFORE `npx tinacms build`, so
                      #   tina/__generated__/_schema.json is absent and the lock
                      #   test skips too — ci.yml regenerates that file first, so
@@ -351,8 +351,15 @@ does not affect that, which is why this layout change needed no change to the
 scorer. The strip is an `<aside>` and **not** a `<div>`: it nests `<div>` rows,
 so the non-greedy exclusion would stop at the first inner `</div>` and leave
 most of the panel in the sample. Measured — with the exclusion removed, 27
-built pages fall out of band and the city pages read FK 15.6–16.0; with it, 17,
-exactly the known legal, glossary and index-page set.
+built pages fall out of band and the city pages read FK 15.6–16.0; with it, 17.
+
+**Those 17 are not quite "the known exclusions", and the difference matters.**
+They are 3 legal pages, the glossary, 12 index and listing pages — and **one
+live blog post**, `/blog/do-i-need-a-website-if-i-have-instagram/` at FK 12.9.
+Its markdown source scores 13.3, so the half-grade source-vs-built cross-check
+still passes and nothing is red; the built page is simply a little below the
+band. Earlier versions of this note said "exactly the known legal, glossary and
+index-page set", which would have had the next reader stop looking.
 
 `city-pages.test.ts` pins the ORDER, not just the presence of both markers: a
 presence test keeps passing if someone moves them back above the heading.
