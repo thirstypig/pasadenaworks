@@ -1,0 +1,76 @@
+---
+/**
+ * The city photograph, set BETWEEN paragraphs rather than above the page.
+ *
+ * THE HOUSE PATTERN for a city page is: paragraph, photo, paragraph, data
+ * strip, paragraph. `CityBody.astro` does the interleaving; this component only
+ * knows how to draw one photo. A city page's body is exactly three paragraphs
+ * (see `CityCopy.body`), which is what makes the pattern land evenly.
+ *
+ * It is deliberately NARROWER than the prose column: 26rem against the 38rem of
+ * `--max-width-prose`, so it reads as an illustration inside the text rather
+ * than a banner the text happens to sit under. That also means every file is
+ * displayed smaller than it was fetched, which is why Alhambra's 605px original
+ * — the one file below the site's 1216px corpus width — is not a visible
+ * problem here: at 26rem it downscales like the others instead of stretching.
+ *
+ * The credit is a `<figcaption>`, never a bare `<p>`, so `mainProse()` in
+ * `scripts/readability.mjs` drops it from the reading-level sample for free.
+ */
+import type { CitySlug } from '../data/cities';
+import { CITY_PHOTOS } from '../data/city-photos';
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  slug: CitySlug;
+  locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const strings = t(locale);
+const photo = CITY_PHOTOS[slug];
+---
+
+<figure class="city-photo">
+  <img
+    src={photo.src}
+    alt={photo.alt[locale]}
+    width={photo.width}
+    height={photo.height}
+    loading="lazy"
+    decoding="async"
+  />
+  {!photo.public && (
+    <figcaption>
+      {strings.hub.cityPhotoLabel}: {photo.author}
+      {photo.licenseUrl && (
+        <>
+          {' · '}
+          <a href={photo.licenseUrl} rel="license noopener" target="_blank">{photo.license}</a>
+        </>
+      )}
+      {photo.shareAlike && <> ({strings.hub.cityPhotoResized})</>}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .city-photo {
+    /* Narrower than the prose column on purpose — see the note above. */
+    max-width: 26rem;
+    margin: var(--space-6) auto;
+  }
+  .city-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--color-line);
+    border-radius: 2px;
+  }
+  .city-photo figcaption {
+    font-size: var(--step--1);
+    margin-top: var(--space-2);
+    opacity: 0.75;
+  }
+</style>

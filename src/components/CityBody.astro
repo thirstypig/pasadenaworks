@@ -1,19 +1,61 @@
 ---
-import type { CityCopy } from '../data/cities';
+/**
+ * ── THE HOUSE PATTERN FOR A CITY PAGE BODY ──
+ *
+ *   paragraph · photo · paragraph · data strip · paragraph · sources
+ *
+ * Set as a standard on 2026-09-16. Both pieces of furniture sit BETWEEN
+ * paragraphs rather than stacked above the page, so a reader meets the
+ * photograph and the figures while reading rather than before starting, and
+ * neither one pushes the opening sentence below the fold.
+ *
+ * It lands evenly because `CityCopy.body` is exactly three paragraphs — that
+ * constraint is documented on the type and is what this layout assumes. The
+ * insertion is written against positions rather than a fixed three, so a city
+ * that ever carried two or four paragraphs degrades sensibly instead of
+ * dropping the photo: anything past the third paragraph simply follows, and a
+ * page with fewer paragraphs still gets both pieces, in order, at the end.
+ *
+ * Both pieces are page FURNITURE and are dropped by `mainProse()` before the
+ * reading level is scored — the credit because it is a `<figcaption>`, the
+ * strip by its `city-strip` class. Position does not affect that: the
+ * exclusions match the elements wherever they sit, which is exactly why this
+ * layout change needed no change to the scorer.
+ */
+import type { CityCopy, CitySlug } from '../data/cities';
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/utils';
+import CityPhoto from './CityPhoto.astro';
+import CityDataStrip from './CityDataStrip.astro';
 
 interface Props {
   copy: CityCopy;
   locale: Locale;
+  slug: CitySlug;
 }
 
-const { copy, locale } = Astro.props;
+const { copy, locale, slug } = Astro.props;
 const strings = t(locale);
+
+/** Photo after the first paragraph, strip after the second. */
+const PHOTO_AFTER = 1;
+const STRIP_AFTER = 2;
+const paragraphs = copy.body;
 ---
 
 <div class="city-body prose">
-  {copy.body.map((paragraph) => <p>{paragraph}</p>)}
+  {paragraphs.map((paragraph, i) => (
+    <>
+      <p>{paragraph}</p>
+      {i + 1 === PHOTO_AFTER && <CityPhoto slug={slug} locale={locale} />}
+      {i + 1 === STRIP_AFTER && <CityDataStrip slug={slug} locale={locale} />}
+    </>
+  ))}
+
+  {/* Fewer paragraphs than the pattern assumes: still show both, in order. */}
+  {paragraphs.length < PHOTO_AFTER && <CityPhoto slug={slug} locale={locale} />}
+  {paragraphs.length < STRIP_AFTER && <CityDataStrip slug={slug} locale={locale} />}
+
   <h2 class="city-sources__heading">{strings.hub.citySources}</h2>
   <ul class="city-sources">
     {copy.sources.map((s) => (

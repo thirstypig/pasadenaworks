@@ -74,7 +74,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 100 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 433 across 31 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 437 across 31 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -322,6 +322,49 @@ data-backed page is most tempted by, so that is the shape it looks for.
 If asked to add cities in bulk, push back. Ask what the registry, the hospital
 list and the Census actually say about that city, and whether the answer is
 different enough to be worth a page. Six honest pages beat twenty thin ones.
+
+### 2b. A city page's furniture goes BETWEEN paragraphs
+
+The house pattern, set 2026-09-16, is:
+
+```
+paragraph · photo · paragraph · data strip · paragraph · sources
+```
+
+`CityBody.astro` does the interleaving; `CityPhoto.astro` and
+`CityDataStrip.astro` each only know how to draw one thing. It lands evenly
+because `CityCopy.body` is exactly three paragraphs, which is the reason that
+constraint is documented on the type. Both pieces sat stacked above the `<h1>`
+until this change, which pushed the opening sentence down the page and made the
+photograph read as a banner.
+
+**The photo is deliberately narrower than the prose column** — 26rem against
+`--max-width-prose`'s 38rem — so it reads as an illustration inside the text.
+That also means every file renders smaller than it was fetched, which is why
+Alhambra's 605px original (the one file below the 1216px corpus width) is not
+a visible problem: at 26rem it downscales like the others rather than
+stretching.
+
+**Both are furniture and `mainProse()` drops them before scoring** — the credit
+because it is a `<figcaption>`, the strip by its `city-strip` class. Position
+does not affect that, which is why this layout change needed no change to the
+scorer. The strip is an `<aside>` and **not** a `<div>`: it nests `<div>` rows,
+so the non-greedy exclusion would stop at the first inner `</div>` and leave
+most of the panel in the sample. Measured — with the exclusion removed, 27
+built pages fall out of band and the city pages read FK 15.6–16.0; with it, 17,
+exactly the known legal, glossary and index-page set.
+
+`city-pages.test.ts` pins the ORDER, not just the presence of both markers: a
+presence test keeps passing if someone moves them back above the heading.
+
+**The strip shows five fixed clinic types, largest first, not a per-city top
+five.** A real top five drops optometrists from five of the ten pages, and eye
+care is one of the three practice types this site sells to. And a specialty can
+only be counted at all if it has one generalist taxonomy code — obstetrics and
+pediatrics were probed and rejected, because their practitioners scatter across
+subspecialty codes and a generalist filter returns 0 OB/GYNs and 3
+pediatricians in Pasadena. The sources spec records that dead end; don't
+re-derive it.
 
 ### 3. Translated URL segments stay translated
 
@@ -670,7 +713,7 @@ also shows up inside Tina under Project Docs.
 An Unsplash API key was added 2026-09-08 (`UNSPLASH_ACCESS_KEY` in `.env`,
 gitignored, never committed — verified against full history, which matters
 because this repo is public). **Use `npm run unsplash` rather than doing this by
-hand**, because signing up moved the site from the Unsplash *licence* to the
+hand**, because signing up moved the site from the Unsplash *license* to the
 Unsplash *API guidelines*, and they are stricter in three ways that all fail
 **silently** — the page renders, the build passes, nothing complains:
 
@@ -685,7 +728,7 @@ is automatic rather than remembered. `search` lists candidates and stops —
 choosing the photo for an article is editorial and stays human.
 
 **`heroCreditUrl` is optional on purpose.** The 20 images already in
-`public/blog/` predate the API and remain covered by the plain licence, where
+`public/blog/` predate the API and remain covered by the plain license, where
 attribution is appreciated but not required. Requiring the field would fail the
 build on 80 existing files to satisfy a rule that does not reach them.
 `Post.astro` renders the linked form when the URL is present and the old bare
