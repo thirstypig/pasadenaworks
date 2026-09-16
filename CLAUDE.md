@@ -799,7 +799,8 @@ That fix had a side effect worth knowing: on the localized homepages each
 two-word city in the service-area list became a two-word "sentence" and pulled
 `/es/` from 46 to 58. A list of place names is furniture, like the nav and the
 form, so `mainProse()` now drops `ul.service-area`. Every correction to the
-instrument gets the same whole-corpus check as the first one.
+instrument gets the same whole-corpus check as the first one. Full write-up in
+`docs/solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md`.
 
 **The service and city pages' back-links were the last furniture still scored**
 (fixed 2026-09-15). "‹ All cities", "‹ Back to services" and their translations
@@ -1117,6 +1118,7 @@ Read that file before re-investigating any of these.
 - Tina's `npm audit` is down to 2 moderate from 8 — one real fix via plain `npm audit fix` (body-parser's nested `qs`), one via an `overrides` pin to a patched react-router-dom major, verified working in a real browser session against the local admin — see the Tina audit note above for what's still open and why (2026-09-10)
 - A leftover git worktree made `npm run test` collect the repo twice and report 623 tests across 52 files, against CI's 316 across 26; the doubled figure had been written into this file as the project's test count (2026-09-11, #71)
 - The site is repositioned for independent health practices; the PR's review removed a BAA promise with no template behind it, corrected the accessibility-law paragraph, and added guards so a service URL rename or a stale post link fails a test (2026-09-14, #75)
+- The readability scorer counted a bulleted list as one sentence, so a list-heavy service page read FK 25.4 against paragraphs near grade 11; each list item now ends a sentence on both scoring paths, and the side effect it caused on the localized homepages' city list (/es/ 46 → 58) was found and excluded (2026-09-14, #75)
 - The PR #75 review's P3 findings are closed and the Checkup's URL no longer says "business advice" (2026-09-15, #76)
 - The homepage leads with growth: H1 "More new patients, and a front office that runs without you", title "Pasadena Works — More Patients for Medical & Dental Practices". The "Worth more when you step back" section was removed along with its parity test — nothing on the site markets selling a practice (2026-09-15, #77)
 - The city pages are rebuilt for practices: ten cities (San Gabriel is new) in all four languages, resting on CMS NPI Registry, California HCAI and Census ACS figures instead of the old street-and-landmark copy, with the hub and blog descriptions re-aimed to match. The five translated city URLs that were already published still build, and `src/data/city-pages.test.ts` is the append-only guard that keeps them building (2026-09-15)
