@@ -1,31 +1,35 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { cities, cityLocales, cityDisplayName } from '../../data/cities';
+import { cities, cityLocales } from '../../data/cities';
 import { SEGMENTS, localeUrl, cityHubPaths } from '../../i18n/routes';
+import { t } from '../../i18n/utils';
+
+/*
+ * The English city hub. Its heading, description and intro come from `ui.ts`
+ * like the other three hubs' do, rather than being written out here again
+ * (2026-09-15). `src/pages/index.astro` is the ONE page allowed to hold
+ * English copy inline; this is not it, and the duplicate was already drifting
+ * — the description here listed all ten cities and ran 184 characters against
+ * the site's own 150–158 convention, while the localized hubs carried a
+ * different sentence entirely.
+ */
+const strings = t('en');
 
 const translations = cityHubPaths();
 
 const englishCities = cities.filter((c) => cityLocales(c).includes('en'));
-
-const description = `Consulting for independent medical, dental, and eye care practices in ${englishCities
-  .map((c) => cityDisplayName(c.slug))
-  .join(', ')}.`;
 ---
 
 <Base
-  title="Cities we work in — Pasadena Works"
-  description={description}
+  title={`${strings.hub.citiesTitle} — Pasadena Works`}
+  description={strings.hub.citiesDescription}
   locale="en"
   path="/websites/"
   translations={translations}
 >
   <section class="section wrap">
-    <h1>Cities we work in</h1>
-    <p class="prose">
-      We work with independent practices across the San Gabriel Valley, and
-      each city page starts from that city&rsquo;s own clinician registry and
-      Census figures rather than from a template.
-    </p>
+    <h1>{strings.hub.citiesTitle}</h1>
+    <p class="prose">{strings.hub.citiesIntro}</p>
     <ul class="city-list">
       {englishCities.map((city) => (
         <li>

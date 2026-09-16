@@ -174,8 +174,14 @@ export const ui: Record<Locale, UIStrings> = {
         'A practice checkup, office digitization, and more new patients, for independent medical, dental, and eye care practices throughout Southern California.',
       servicesIntro: 'Start with the checkup; what it finds decides what comes next.',
       citiesTitle: 'Cities we work in',
+      // 150–158 characters, the same band the city pages' own metas are held
+      // to, and it leads with what the pages offer rather than with
+      // "Consulting" — the vague noun the site was repositioned away from.
+      // A couple of cities plus the valley, not all ten: the list was what
+      // pushed the old English hub description to 184 characters, where Google
+      // truncated the tail of it.
       citiesDescription:
-        'Consulting for independent medical, dental, and eye care practices across Pasadena and the San Gabriel Valley.',
+        'New patients and a smoother front office for independent medical, dental, and eye care practices in Pasadena, Alhambra, Arcadia and the San Gabriel Valley.',
       citiesIntro:
         'We work with independent practices across the San Gabriel Valley, and each city page starts from that city’s own clinician registry and Census figures rather than from a template.',
       // Practices are named alongside the other local businesses, not instead
@@ -243,8 +249,11 @@ export const ui: Record<Locale, UIStrings> = {
         'Revisión integral, digitalización del consultorio y más pacientes nuevos para consultorios médicos, dentales y de optometría del sur de California.',
       servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá qué sigue.',
       citiesTitle: 'Ciudades donde trabajamos',
+      // Names two cities rather than three: asserting LESS than the English is
+      // allowed, asserting more is not, and dropping "independientes" to fit
+      // all three would have widened the audience claim instead of narrowing it.
       citiesDescription:
-        'Consultoría para consultorios médicos, dentales y de optometría independientes en Pasadena y el Valle de San Gabriel.',
+        'Pacientes nuevos y una recepción más fluida para consultorios médicos, dentales y de optometría independientes en Pasadena, Arcadia y el Valle de San Gabriel.',
       citiesIntro:
         'Trabajamos con consultorios independientes en todo el Valle de San Gabriel, y cada página de ciudad parte del registro de profesionales y de las cifras del Censo de esa ciudad, no de una plantilla.',
       blogDescription:
@@ -307,7 +316,7 @@ export const ui: Record<Locale, UIStrings> = {
       servicesDescription: '为南加州各地的独立医疗、牙科与眼科诊所提供经营诊断、诊所数字化与新患者开发服务。',
       servicesIntro: '先从经营诊断开始，诊断的结果将决定下一步。',
       citiesTitle: '我们服务的城市',
-      citiesDescription: '为帕萨迪纳和圣盖博谷的独立医疗、牙科与眼科诊所提供顾问服务。',
+      citiesDescription: '为帕萨迪纳、阿罕布拉、亚凯迪亚等圣盖博谷城市的独立医疗、牙科与眼科诊所带来新患者与更顺畅的前台运作。',
       citiesIntro: '我们为圣盖博谷各地的独立诊所提供服务，每个城市页面都以该市自己的 CMS NPI 登记与人口普查数据为起点，而不是套用同一个模板。',
       blogDescription: '写给圣盖博谷诊所和其他小生意老板看的文章，说大白话，聊网站、本地搜索、经营决策和付费广告。',
     },
@@ -367,7 +376,7 @@ export const ui: Record<Locale, UIStrings> = {
       servicesDescription: '為南加州各地的獨立醫療、牙科與眼科診所提供經營診斷、診所數位化與新病患開發服務。',
       servicesIntro: '先從經營診斷開始，診斷的結果將決定下一步。',
       citiesTitle: '我們服務的城市',
-      citiesDescription: '為帕薩迪納和聖蓋博谷的獨立醫療、牙科與眼科診所提供顧問服務。',
+      citiesDescription: '為帕薩迪納、阿罕布拉、亞凱迪亞等聖蓋博谷城市的獨立醫療、牙科與眼科診所帶來新病患與更順暢的櫃檯運作。',
       citiesIntro: '我們為聖蓋博谷各地的獨立診所提供服務，每個城市頁面都以該市自己的 CMS NPI 登錄與人口普查資料為起點，而不是套用同一套模板。',
       blogDescription: '寫給聖蓋博谷診所與其他小生意老闆看的文章，說白話，聊網站、在地搜尋、經營決策與付費廣告。',
     },

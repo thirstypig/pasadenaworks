@@ -173,23 +173,13 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
 
 <style>
 
-  /* .service-card/:hover/__link now live in global.css (todos/024) — this
-     page's copy was byte-identical to two others, merged here with
-     .city-list a, which stays local since it's not shared elsewhere. */
-
-  .city-list a {
-    display: block;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius);
-    padding: var(--space-5);
-    text-decoration: none;
-    color: var(--color-ink);
-  }
-
-  .city-list a:hover {
-    border-color: var(--color-accent);
-  }
+  /* .service-card/:hover/__link live in global.css (todos/024), and
+     `.city-list a` joined them there on 2026-09-15. It used to be scoped to
+     this file, which is why these three localized hubs rendered bordered cards
+     while the English hub rendered bare links — the card rule was never on
+     that page. Do not bring it back here: one copy, shared by both hubs, is
+     what stops them diverging again, and homepage-parity.test.ts fails if
+     either file re-declares it. */
 
   .city-list {
     list-style: none;
@@ -209,7 +199,7 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
      Han glyphs, so the stack deliberately hands Chinese to PingFang/Noto while
      Latin gets Anton. That is right for a heading, which is all one script. It
      is wrong here: a zh city-hub item embeds a Latin city name inside CJK
-     prose — 亞凱迪亞（Arcadia）商家網站設計與在地推廣 — so "Arcadia" renders
+     prose — 為亞凱迪亞（Arcadia）醫療與牙科診所帶來更多病患 — so "Arcadia" renders
      ultra-bold condensed against regular-weight Chinese, a visible mismatch
      inside a single line. The English hub never shows it because its items are
      pure Latin, and Spanish does not either.

@@ -476,8 +476,20 @@ main {
    English homepage's `.service-card` stays local and unmerged — it uses the
    label-frame treatment instead, a design choice, not drift (see the comment
    on .service-grid above). Missed in the same pass that consolidated
-   .service-grid; found in the 2026-09-09 full-repo review, todos/024. */
-.service-card {
+   .service-grid; found in the 2026-09-09 full-repo review, todos/024.
+
+   `.city-list a` JOINED THIS SELECTOR ON 2026-09-15, and the reason is the
+   point of consolidating in the first place. The rule was scoped inside
+   `[locale]/[section]/index.astro`, so the three localized city hubs rendered
+   bordered cards while the English hub at `pages/websites/index.astro` — which
+   never had an `a` rule at all — rendered bare underlined links. Four pages of
+   one type, two designs, visible the moment they are put side by side.
+   todos/020 examined the difference in September, recorded it as "backwards
+   and stale", and fixed only the typography, so it survived that pass. It
+   lives here now precisely so neither page owns a copy that the other can
+   drift from; `homepage-parity.test.ts` fails if either re-declares it. */
+.service-card,
+.city-list a {
   display: block;
   background: var(--color-surface);
   border: 1px solid var(--color-line);
@@ -487,7 +499,8 @@ main {
   color: var(--color-ink);
 }
 
-.service-card:hover {
+.service-card:hover,
+.city-list a:hover {
   border-color: var(--color-accent);
 }
 
