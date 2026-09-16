@@ -74,7 +74,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 100 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 442 across 32 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 444 across 32 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -351,15 +351,26 @@ does not affect that, which is why this layout change needed no change to the
 scorer. The strip is an `<aside>` and **not** a `<div>`: it nests `<div>` rows,
 so the non-greedy exclusion would stop at the first inner `</div>` and leave
 most of the panel in the sample. Measured — with the exclusion removed, 27
-built pages fall out of band and the city pages read FK 15.6–16.0; with it, 17.
+built pages fall out of band and the city pages read FK 15.6–16.0; with it, 16
+— 3 legal pages, the glossary, and 12 index and listing pages.
 
-**Those 17 are not quite "the known exclusions", and the difference matters.**
-They are 3 legal pages, the glossary, 12 index and listing pages — and **one
-live blog post**, `/blog/do-i-need-a-website-if-i-have-instagram/` at FK 12.9.
-Its markdown source scores 13.3, so the half-grade source-vs-built cross-check
-still passes and nothing is red; the built page is simply a little below the
-band. Earlier versions of this note said "exactly the known legal, glossary and
-index-page set", which would have had the next reader stop looking.
+**That set was 17 until 2026-09-16, and the seventeenth is worth the paragraph.**
+A live post, `/blog/do-i-need-a-website-if-i-have-instagram/`, read FK 12.9 on
+the built page against 13.3 at source. The prose was never the problem: the
+built path was scoring `<p class="post__subtitle">`, which `Post.astro` renders
+from the SAME frontmatter string that becomes `<meta name="description">`. Meta
+descriptions are excluded from scoring on purpose — 155 characters written to
+win a click is a different job from reading well — and the markdown path never
+saw it because frontmatter is stripped. "Sometimes no. Usually yes." is two
+two-word sentences at the head of a 37-sentence sample. Its siblings
+`post__author` and `post__meta` were excluded from the start; this one was
+missed. With it excluded the two paths agree exactly at 13.3, which is the
+evidence that nothing else was wrong with the post.
+
+Measured across the whole built corpus before keeping it, as every correction
+to this instrument must be: 10 of 96 pages moved, all of them in the harder
+direction, and exactly one verdict changed — that post, below → ok. No page
+moved out of band.
 
 `city-pages.test.ts` pins the ORDER, not just the presence of both markers: a
 presence test keeps passing if someone moves them back above the heading.
