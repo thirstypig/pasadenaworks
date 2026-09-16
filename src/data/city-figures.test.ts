@@ -51,22 +51,54 @@ describe('city figures match the sources spec', () => {
     expect(specText.length).toBeGreaterThan(1000);
   });
 
-  it.each(CITY_SLUGS)('%s: clinician counts are the spec values', (slug) => {
+/**
+ * Pull `label: **number**` pairs out of a spec section.
+ *
+ * WHY THIS IS NOT A BAG OF NUMBERS. The first version of this check collected
+ * every bolded integer in the section and asserted `toContain` for each figure.
+ * That is order-blind and label-blind, so it could not catch the one error it
+ * was written to catch — a transcription that puts the right numbers against
+ * the wrong fields. Proven 2026-09-16: swapping Arcadia's `acupuncturists: 60`
+ * and `physicalTherapists: 83` left the ENTIRE suite green (436 passed), while
+ * the page printed both figures under the wrong labels. Monterey Park happened
+ * to be caught, but only by the separate Chinese-cities assertion below, and
+ * only because that city is in it.
+ *
+ * So each number is now tied to the label the spec wrote beside it.
+ */
+function specFigures(section: string): Record<string, number> {
+  const out: Record<string, number> = {};
+  // "Dentists: **213**", "Primary-care physicians (…): **227**",
+  // "; optometrists: **35**", "Physical therapists: **83**".
+  for (const m of section.matchAll(/([A-Za-z][A-Za-z- ]*?)\s*(?:\([^)]*\))?\s*:\s*\*\*([\d,]+)\*\*/g)) {
+    const key = m[1].trim().toLowerCase().replace(/\s+/g, ' ');
+    out[key] = Number(m[2].replace(/,/g, ''));
+  }
+  return out;
+}
+
+/** The spec's label for each field, lower-cased as `specFigures` returns it. */
+const SPEC_LABEL: Record<string, string[]> = {
+  dentists: ['dentists'],
+  optometrists: ['optometrists'],
+  primaryCare: ['primary-care physicians'],
+  acupuncturists: ['acupuncturists'],
+  physicalTherapists: ['physical therapists'],
+};
+
+  it.each(CITY_SLUGS)('%s: every count matches the number beside its own label', (slug) => {
     const section = specSection(SPEC_HEADING[slug as CitySlug]);
     expect(section, `no spec section for ${slug}`).not.toBe('');
     const f = CITY_FIGURES[slug as CitySlug];
+    const spec = specFigures(section);
 
-    // Every bolded integer in the section, in order of appearance. The spec
-    // writes dentists, optometrists, then primary care in that order.
-    const bolded = [...section.matchAll(/\*\*([\d,]+)\*\*/g)].map((m) =>
-      Number(m[1].replace(/,/g, ''))
-    );
-    expect(bolded).toContain(f.dentists);
-    expect(bolded).toContain(f.optometrists);
-    expect(bolded).toContain(f.primaryCare);
-    // Added 2026-09-16, recorded in the spec under their own query date.
-    expect(bolded).toContain(f.acupuncturists);
-    expect(bolded).toContain(f.physicalTherapists);
+    for (const [field, labels] of Object.entries(SPEC_LABEL)) {
+      const label = labels.find((l) => l in spec);
+      expect(label, `${slug}: spec has no label for ${field}`).toBeDefined();
+      expect(spec[label!], `${slug}.${field} disagrees with the spec's "${label}"`).toBe(
+        f[field as keyof typeof f] as number
+      );
+    }
   });
 
   it.each(CITY_SLUGS)('%s: language shares are the spec values', (slug) => {
@@ -158,11 +190,54 @@ describe('city photos', () => {
     }
   });
 
-  it('every image file actually exists on disk at its declared size', async () => {
+/**
+ * Read a JPEG's real pixel dimensions from its SOF marker.
+ *
+ * No dependency: the production five are the whole point of this repo's
+ * dependency discipline, and this is ~15 lines. Walks the segment chain from
+ * SOI, stopping at the first Start-Of-Frame — 0xC0 baseline or 0xC2
+ * progressive, both of which these files use — where height and width sit at
+ * offsets 5 and 7 past the marker.
+ */
+function jpegSize(file: string): { width: number; height: number } | null {
+  const b = readFileSync(file);
+  if (b[0] !== 0xff || b[1] !== 0xd8) return null;
+  let i = 2;
+  while (i < b.length - 9) {
+    if (b[i] !== 0xff) { i++; continue; }
+    const marker = b[i + 1];
+    if (marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) { i += 2; continue; }
+    const len = b.readUInt16BE(i + 2);
+    // SOF0/1/2/3 and 9/10/11; skip DHT (0xC4), DAC (0xCC), which share the range.
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { height: b.readUInt16BE(i + 5), width: b.readUInt16BE(i + 7) };
+    }
+    i += 2 + len;
+  }
+  return null;
+}
+
+  it('every image exists AND is really the size the data claims', () => {
+    // The first version of this test carried this name and only called
+    // existsSync — a typo in width or height shipped green and produced
+    // layout shift on a site whose whole strategy is organic search. The
+    // declared numbers drive the <img width>/<height> attributes, so they are
+    // what reserves space before the file loads.
     for (const slug of CITY_SLUGS) {
       const p = CITY_PHOTOS[slug as CitySlug];
       const file = join(ROOT, 'public', p.src.replace(/^\//, ''));
       expect(existsSync(file), `missing ${file}`).toBe(true);
+      const real = jpegSize(file);
+      expect(real, `${slug}: could not read JPEG dimensions`).not.toBeNull();
+      expect(real!.width, `${slug} declares width ${p.width}`).toBe(p.width);
+      expect(real!.height, `${slug} declares height ${p.height}`).toBe(p.height);
+    }
+  });
+
+  it('every photo is 3:2 landscape, the shape the layout reserves', () => {
+    for (const slug of CITY_SLUGS) {
+      const p = CITY_PHOTOS[slug as CitySlug];
+      expect(p.width / p.height, `${slug} is not 3:2`).toBeCloseTo(1.5, 2);
     }
   });
 

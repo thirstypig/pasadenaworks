@@ -16,6 +16,12 @@
  *
  * The credit is a `<figcaption>`, never a bare `<p>`, so `mainProse()` in
  * `scripts/readability.mjs` drops it from the reading-level sample for free.
+ *
+ * The photographer's name links to the Commons FILE PAGE, not just the license
+ * deed. `CityPhoto` documents `sourceUrl` as the page "so a reader can check
+ * the license themselves", and until 2026-09-16 the field was required,
+ * populated for all ten photos, and rendered nowhere — a promise the markup
+ * did not keep.
  */
 import type { CitySlug } from '../data/cities';
 import { CITY_PHOTOS } from '../data/city-photos';
@@ -43,14 +49,18 @@ const photo = CITY_PHOTOS[slug];
   />
   {!photo.public && (
     <figcaption>
-      {strings.hub.cityPhotoLabel}: {photo.author}
+      {/* The label carries its own separator — Chinese takes a full-width
+          colon and no following space, so it cannot live in the template.
+          Same shape as `misc.photoCreditPlain`, which the blog already uses. */}
+      {strings.hub.cityPhotoLabel}
+      <a href={photo.sourceUrl} rel="noopener" target="_blank">{photo.author}</a>
       {photo.licenseUrl && (
         <>
           {' · '}
           <a href={photo.licenseUrl} rel="license noopener" target="_blank">{photo.license}</a>
         </>
       )}
-      {photo.shareAlike && <> ({strings.hub.cityPhotoResized})</>}
+      {photo.shareAlike && strings.hub.cityPhotoResized}
     </figcaption>
   )}
 </figure>

@@ -119,13 +119,18 @@ export interface UIStrings {
     cityStripAtHome: string;
     cityStripSpanish: string;
     cityStripChinese: string;
-    /** Hospital rows. `{n}` is a count; the list of names follows. */
+    /** Hospital rows. Each CARRIES ITS OWN SEPARATOR: Latin takes a colon and
+     *  a space, Chinese a full-width colon and none. Same reasoning, and the
+     *  same shape, as `misc.photoCreditPlain`. */
     cityStripHospitals: string;
     cityStripNearbyHospitals: string;
     cityStripNoHospital: string;
-    /** Caption label on the city hero photo: `<label>: <name> - <license>`. */
+    /** Caption label on the city photo, rendered `<label><name> · <license>`.
+     *  CARRIES ITS OWN SEPARATOR — Chinese takes a full-width colon and no
+     *  following space, so the colon cannot live in the template. */
     cityPhotoLabel: string;
-    /** Appended for share-alike licenses, which require saying it was changed. */
+    /** Appended for share-alike licenses, which require saying it was changed.
+     *  Carries its own brackets, full-width in Chinese. */
     cityPhotoResized: string;
   };
   misc: {
@@ -199,11 +204,11 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripAtHome: 'Spoken at home',
       cityStripSpanish: 'Spanish',
       cityStripChinese: 'Chinese',
-      cityStripHospitals: 'General acute care hospitals',
-      cityStripNearbyHospitals: 'Nearby',
+      cityStripHospitals: 'General acute care hospitals: ',
+      cityStripNearbyHospitals: 'Nearby: ',
       cityStripNoHospital: 'No general acute care hospital in the city',
-      cityPhotoLabel: 'Photo',
-      cityPhotoResized: 'resized',
+      cityPhotoLabel: 'Photo: ',
+      cityPhotoResized: ' (resized)',
       servicesDescription:
         'A practice checkup, office digitization, and more new patients, for independent medical, dental, and eye care practices throughout Southern California.',
       servicesIntro: 'Start with the checkup; what it finds decides what comes next.',
@@ -288,11 +293,11 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripAtHome: 'Se habla en casa',
       cityStripSpanish: 'Español',
       cityStripChinese: 'Chino',
-      cityStripHospitals: 'Hospitales de cuidados agudos generales',
-      cityStripNearbyHospitals: 'Cerca',
+      cityStripHospitals: 'Hospitales de cuidados agudos generales: ',
+      cityStripNearbyHospitals: 'Cerca: ',
       cityStripNoHospital: 'Sin hospital de cuidados agudos generales en la ciudad',
-      cityPhotoLabel: 'Foto',
-      cityPhotoResized: 'redimensionada',
+      cityPhotoLabel: 'Foto: ',
+      cityPhotoResized: ' (redimensionada)',
       servicesDescription:
         'Revisión integral, digitalización del consultorio y más pacientes nuevos para consultorios médicos, dentales y de optometría del sur de California.',
       servicesIntro: 'Empiece por la revisión; lo que encuentre decidirá qué sigue.',
@@ -361,7 +366,7 @@ export const ui: Record<Locale, UIStrings> = {
     hub: {
       whatYouGet: '服务内容',
       citySources: '资料来源',
-      cityStripHeading: '在 {city} 登记执业',
+      cityStripHeading: '在{city}登记执业',
       cityStripPrimaryCare: '基层医疗',
       cityStripDentists: '牙医',
       cityStripOptometrists: '验光师',
@@ -370,11 +375,11 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripAtHome: '在家使用的语言',
       cityStripSpanish: '西班牙语',
       cityStripChinese: '中文',
-      cityStripHospitals: '综合急症医院',
-      cityStripNearbyHospitals: '邻近',
+      cityStripHospitals: '综合急症医院：',
+      cityStripNearbyHospitals: '邻近：',
       cityStripNoHospital: '市内没有综合急症医院',
-      cityPhotoLabel: '照片',
-      cityPhotoResized: '已调整尺寸',
+      cityPhotoLabel: '照片：',
+      cityPhotoResized: '（已调整尺寸）',
       servicesDescription: '为南加州各地的独立医疗、牙科与眼科诊所提供经营诊断、诊所数字化与新患者开发服务。',
       servicesIntro: '先从经营诊断开始，诊断的结果将决定下一步。',
       citiesTitle: '我们服务的城市',
@@ -435,7 +440,7 @@ export const ui: Record<Locale, UIStrings> = {
     hub: {
       whatYouGet: '服務內容',
       citySources: '資料來源',
-      cityStripHeading: '在 {city} 登記執業',
+      cityStripHeading: '在{city}登記執業',
       cityStripPrimaryCare: '基層醫療',
       cityStripDentists: '牙醫',
       cityStripOptometrists: '驗光師',
@@ -444,11 +449,11 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripAtHome: '在家使用的語言',
       cityStripSpanish: '西班牙文',
       cityStripChinese: '中文',
-      cityStripHospitals: '綜合急症醫院',
-      cityStripNearbyHospitals: '鄰近',
+      cityStripHospitals: '綜合急症醫院：',
+      cityStripNearbyHospitals: '鄰近：',
       cityStripNoHospital: '市內沒有綜合急症醫院',
-      cityPhotoLabel: '照片',
-      cityPhotoResized: '已調整尺寸',
+      cityPhotoLabel: '照片：',
+      cityPhotoResized: '（已調整尺寸）',
       servicesDescription: '為南加州各地的獨立醫療、牙科與眼科診所提供經營診斷、診所數位化與新病患開發服務。',
       servicesIntro: '先從經營診斷開始，診斷的結果將決定下一步。',
       citiesTitle: '我們服務的城市',
