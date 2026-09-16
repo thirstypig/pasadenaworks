@@ -689,20 +689,45 @@ the targets and the reasoning; `scripts/readability.test.mjs` locks them.
 | `es` | Fernández Huerta (**lower = harder**) | 40–55 |
 | `zh-hans` / `zh-hant` | 書面語 register index | 0.55–0.85 |
 
-Chinese also carries a **runaway-sentence ceiling of 85 characters per
-sentence** (`MAX_CHARS_PER_SENTENCE`, checked by `sentenceGuard()`). It exists
-because `registerIndex` measures word choice, not length — the two come apart in
-Chinese, which is the whole reason that metric replaced characters-per-sentence
-— so a post can sit perfectly in band while running 80 characters to a sentence.
-English and Spanish need no equivalent: their primary metrics are already
-length-sensitive and their band maxima catch the same failure.
+Chinese also carries **two length tripwires, checked by `sentenceGuard()`**: a
+per-sentence ceiling of 220 characters on the longest sentence
+(`MAX_SENTENCE_CHARS`) and a page-mean ceiling of 85
+(`MAX_MEAN_CHARS_PER_SENTENCE`). They exist because `registerIndex` measures
+word choice, not length — the two come apart in Chinese, which is the whole
+reason that metric replaced characters-per-sentence — so a post can sit
+perfectly in band while running 80 characters to a sentence. English and Spanish
+need no equivalent: their primary metrics are already length-sensitive and their
+band maxima catch the same failure.
 
-It is a **tripwire, not a target**. Measured across the full Chinese corpus —
-40 blog posts plus 30 built pages, 70 items: min 22.0, median 42.1, max 68.4.
-The ceiling sits ~24% above the observed maximum, so nothing is near it and no
-one is tempted to edit prose to satisfy it — which is the inversion the write-up
-below warns about. Added 2026-09-04, after the file header had claimed such a
-guard existed for months while nothing compared the value to anything.
+Both are **tripwires, not targets**, each set ~24% above the observed maximum of
+the statistic it reads, so nothing is near either and no one is tempted to edit
+prose to satisfy them — which is the inversion the write-up below warns about.
+Added 2026-09-04, after the file header had claimed such a guard existed for
+months while nothing compared the value to anything.
+
+**There was one, and it read the wrong statistic (fixed 2026-09-15).** The old
+`MAX_CHARS_PER_SENTENCE = 85` was compared against the page MEAN while every
+description of it — here and in the script — called it a per-sentence ceiling.
+A page hit exactly 85 characters in one sentence while the guard reported `ok`,
+because its mean sat in the forties; only a by-hand measurement caught it. The
+longest sentence is now measured under the name the documentation always used,
+and the mean is kept as a separate check with its own code (`'runaway'` vs
+`'dense'`), because neither statistic subsumes the other. Calibrated over the
+complete Chinese corpus — 136 blog posts plus 46 built pages, 182 items: longest
+min 19, median 83, max 176 (the zh-hant FTC fake-review post, which enumerates
+six categories in one semicolon-separated sentence). 176 × 1.24 = 218.2 → 220.
+
+**Know what 220 does and does not guard.** A maximum has a far fatter right tail
+than a mean, so the same rule yields a much looser ceiling: the built pages top
+out at 97 and the Chinese city pages at 76, so 220 is driven by one blog outlier
+and binds the blog alone. The mean ceiling does not rescue them either — the
+built corpus tops out at 55.8 against 85. What actually holds the Chinese city
+pages to the house standard is the register band and human review, not either
+length tripwire. **`MAX_MEAN_CHARS_PER_SENTENCE` was deliberately NOT re-derived
+downward**: the rule would give 70, but the 68.4 that set 85 was real prose this
+site shipped, and ratcheting a tripwire down every time the corpus improves
+turns it into a target that tracks the prose. Re-derive when it was fitted to
+the wrong *sample*; not merely because the corpus moved.
 
 **It was 60 until 2026-09-07, and why it moved is the lesson.** `sentenceGuard()`
 was called only from the CLI's markdown branch, never from `--dist` — so the
@@ -717,8 +742,8 @@ at once (61.5–68.4).
 Raising a ceiling because prose crossed it is the metric-corrupts-prose
 inversion. Raising it because the number was fitted to the wrong sample is
 fixing the measurement — and the check is whether the new value comes from the
-same rule applied to a *complete* corpus. It does. If a future page trips 85,
-that is a genuine runaway: fix the prose, not the number.
+same rule applied to a *complete* corpus. It does. If a future page trips a
+ceiling, that is a genuine runaway: fix the prose, not the number.
 
 **A list item ends a sentence** (2026-09-14). Both scoring paths mark each
 bullet's end, because bullets carry no terminal punctuation and a seven-item
@@ -734,6 +759,22 @@ two-word city in the service-area list became a two-word "sentence" and pulled
 `/es/` from 46 to 58. A list of place names is furniture, like the nav and the
 form, so `mainProse()` now drops `ul.service-area`. Every correction to the
 instrument gets the same whole-corpus check as the first one.
+
+**The service and city pages' back-links were the last furniture still scored**
+(fixed 2026-09-15). "‹ All cities", "‹ Back to services" and their translations
+landed as a three-word sentence on every service and city page in all four
+locales — the same category as the nav, the form and the blog's own
+`a.post__back`, all already excluded. They now carry `class="page-back"` and
+`mainProse()` drops them by that class, with the same paired "the marker still
+exists on the built page" test `ul.service-area` has. That one is written as an
+invariant over the whole build — after removing `p.page-back` and
+`a.post__back`, no `‹` may remain inside any `<main>` — so it covers every
+locale and both page types, and catches a new page type that grows an unclassed
+back-link. It is not arithmetic trivia: the furniture dragged
+words-per-sentence down, and the Spanish city pages had been paying for it with
+60–71-word sentences against English twins running 25–37. Removing it moved no
+blog verdict in any locale (largest shift 0.0) and put four English city pages
+above the band at 15.1–15.9, which were then repaired by hand.
 
 `scripts/readability.test.mjs` now asserts the guard against **both** corpora,
 and the built-page half skips without `dist/` — which is why `ci.yml` re-runs

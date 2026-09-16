@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   analyze,
@@ -9,7 +9,9 @@ import {
   spanishSyllables,
   verdict,
   sentenceGuard,
-  MAX_CHARS_PER_SENTENCE,
+  guardDetail,
+  MAX_SENTENCE_CHARS,
+  MAX_MEAN_CHARS_PER_SENTENCE,
   TARGETS,
   FORMAL_MARKERS,
   COLLOQUIAL_MARKERS,
@@ -180,15 +182,77 @@ describe('Chinese register index', () => {
   });
 });
 
-describe('sentenceGuard (the runaway-sentence ceiling)', () => {
+describe('sentenceGuard (the runaway-sentence ceilings)', () => {
   it('passes the whole Chinese blog corpus, with headroom', () => {
     // A tripwire, not a target. If this ever fails, the prose ran away — do not
-    // raise the ceiling to make it pass. Blog max measured 47.1 against a
-    // ceiling of 85.
+    // raise a ceiling to make it pass. Blog maxima measured 2026-09-15:
+    // longest sentence 176 against a ceiling of 220, mean 49.0 against 85.
     const tripped = report()
-      .filter((r) => sentenceGuard(r) === 'runaway')
-      .map((r) => `${r.file}: ${r.charsPerSentence} chars/sentence`);
+      .map((r) => [r, sentenceGuard(r)])
+      .filter(([, code]) => code)
+      .map(([r, code]) => {
+        const { value, max, label } = guardDetail(r, code);
+        return `${r.file}: ${value} ${label} (max ${max})`;
+      });
     expect(tripped).toEqual([]);
+  });
+
+  /**
+   * THE DEFECT THIS PAIR PINS, AND IT IS A NAMING FAILURE THAT BECAME A
+   * MEASUREMENT FAILURE.
+   *
+   * `sentenceGuard` compared `result.charsPerSentence` — the page MEAN —
+   * against a constant every comment, and CLAUDE.md, described as a
+   * per-sentence ceiling ("no sentence over 85 characters"). A mean is not a
+   * maximum. On 2026-09-14 a built page carried a sentence of exactly 85
+   * characters while the guard reported `ok`, because its mean sat in the
+   * forties; only a by-hand measurement found it.
+   *
+   * The first assertion below FAILS against the old implementation (a
+   * 300-character sentence on a page whose mean is 40 returned null) and the
+   * second one returns the wrong code (`'runaway'` for what is really a dense
+   * page, sending a reader hunting for a long sentence that does not exist).
+   * Both are the point of the fix, so both are pinned here rather than left to
+   * the corpus checks, which pass either way while nothing is out of band.
+   */
+  it('reads the LONGEST sentence, not the page mean', () => {
+    expect(sentenceGuard({ locale: 'zh-hant', longest: 300, charsPerSentence: 40 })).toBe('runaway');
+    expect(sentenceGuard({ locale: 'zh-hans', longest: MAX_SENTENCE_CHARS + 1, charsPerSentence: 30 }))
+      .toBe('runaway');
+    expect(sentenceGuard({ locale: 'zh-hant', longest: MAX_SENTENCE_CHARS, charsPerSentence: 30 }))
+      .toBeNull();
+  });
+
+  it('keeps the page mean as a separate check with its own code', () => {
+    // Neither statistic subsumes the other: a page of uniformly 70-character
+    // sentences has no runaway sentence, and a page with one 200-character
+    // monster has an unremarkable mean. 'dense' vs 'runaway' is what tells the
+    // reader which one to go looking for.
+    expect(sentenceGuard({ locale: 'zh-hans', longest: 90, charsPerSentence: 90 })).toBe('dense');
+    expect(sentenceGuard({ locale: 'zh-hans', longest: 90, charsPerSentence: MAX_MEAN_CHARS_PER_SENTENCE }))
+      .toBeNull();
+    // A runaway sentence outranks a dense page when both are true.
+    expect(sentenceGuard({ locale: 'zh-hant', longest: 300, charsPerSentence: 90 })).toBe('runaway');
+  });
+
+  it('reports the number that actually tripped, against its own ceiling', () => {
+    // Without this, both codes would print the mean and the ❌ line would name
+    // a figure nothing compared.
+    const r = { locale: 'zh-hant', longest: 300, charsPerSentence: 40 };
+    expect(guardDetail(r, 'runaway')).toMatchObject({ value: 300, max: MAX_SENTENCE_CHARS });
+    expect(guardDetail(r, 'dense')).toMatchObject({ value: 40, max: MAX_MEAN_CHARS_PER_SENTENCE });
+  });
+
+  /**
+   * `analyze` must actually populate `longest` for Chinese, or the guard above
+   * reads undefined on every real page and can never fire — the exact shape of
+   * the bug it replaces. Three sentences, the middle one longest.
+   */
+  it('measures the longest sentence off real Chinese text', () => {
+    const text = '因此如此。然而此事甚為複雜，故須逐項說明其緣由與後果，並列舉相關事例。此外如此。';
+    const r = analyze(text, 'zh-hant');
+    expect(r.longest).toBe(27);
+    expect(r.longest).toBeGreaterThan(r.charsPerSentence);
   });
 
   /*
@@ -209,32 +273,46 @@ describe('sentenceGuard (the runaway-sentence ceiling)', () => {
     const zh = rendered.filter((r) => r.locale?.startsWith('zh') && r.charsPerSentence != null);
     expect(zh.length, 'dist/ yielded no Chinese pages to measure').toBeGreaterThan(0);
     const tripped = zh
-      .filter((r) => sentenceGuard(r) === 'runaway')
-      .map((r) => `${r.page}: ${r.charsPerSentence} chars/sentence`);
+      .map((r) => [r, sentenceGuard(r)])
+      .filter(([, code]) => code)
+      .map(([r, code]) => {
+        const { value, max, label } = guardDetail(r, code);
+        return `${r.page}: ${value} ${label} (max ${max})`;
+      });
     expect(tripped).toEqual([]);
   });
 
   it('actually fires — positive control', () => {
-    // Without this, the assertion above is satisfied by a guard that can never
-    // trigger, which is precisely the bug being fixed here: the header claimed
-    // this guard existed for months while nothing compared the value to
+    // Without this, the assertions above are satisfied by a guard that can
+    // never trigger, which is precisely the bug fixed on 2026-09-04: the header
+    // claimed this guard existed for months while nothing compared the value to
     // anything.
-    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: 200 })).toBe('runaway');
-    expect(sentenceGuard({ locale: 'zh-hans', charsPerSentence: MAX_CHARS_PER_SENTENCE + 0.1 })).toBe(
-      'runaway',
-    );
+    expect(sentenceGuard({ locale: 'zh-hant', longest: 400, charsPerSentence: 200 })).toBe('runaway');
+    expect(sentenceGuard({ locale: 'zh-hans', longest: MAX_SENTENCE_CHARS + 0.1, charsPerSentence: 30 }))
+      .toBe('runaway');
+    expect(sentenceGuard({ locale: 'zh-hans', longest: 30, charsPerSentence: MAX_MEAN_CHARS_PER_SENTENCE + 0.1 }))
+      .toBe('dense');
   });
 
-  it('does not fire at or below the ceiling, and ignores non-zh locales', () => {
-    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: MAX_CHARS_PER_SENTENCE })).toBeNull();
+  it('does not fire at or below either ceiling, and ignores non-zh locales', () => {
+    expect(sentenceGuard({
+      locale: 'zh-hant',
+      longest: MAX_SENTENCE_CHARS,
+      charsPerSentence: MAX_MEAN_CHARS_PER_SENTENCE,
+    })).toBeNull();
     // en/es are excluded deliberately: their primary metrics are already
     // length-sensitive and carry upper bounds that catch the same failure.
-    expect(sentenceGuard({ locale: 'en', charsPerSentence: 500 })).toBeNull();
-    expect(sentenceGuard({ locale: 'es', charsPerSentence: 500 })).toBeNull();
+    expect(sentenceGuard({ locale: 'en', longest: 5000, charsPerSentence: 500 })).toBeNull();
+    expect(sentenceGuard({ locale: 'es', longest: 5000, charsPerSentence: 500 })).toBeNull();
   });
 
-  it('reports nothing rather than a false pass when the value is missing', () => {
-    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: null })).toBeNull();
+  it('reports nothing rather than a false pass when a value is missing', () => {
+    expect(sentenceGuard({ locale: 'zh-hant', longest: null, charsPerSentence: null })).toBeNull();
+    // A page with no `longest` at all must still be checked on its mean rather
+    // than silently passing — the guard reads two fields now, and only one
+    // being absent is not a reason to skip the other.
+    expect(sentenceGuard({ locale: 'zh-hant', charsPerSentence: 300 })).toBe('dense');
+    expect(sentenceGuard({ locale: 'zh-hant', longest: 300 })).toBe('runaway');
     expect(sentenceGuard(null)).toBeNull();
   });
 });
@@ -674,6 +752,25 @@ describe('rendered-page extraction', () => {
     expect(out).not.toContain('NPI Registry');
   });
 
+  /**
+   * The back-link at the foot of a service or city page is interface text — the
+   * same category as the nav, the buttons, the form and the blog's own
+   * `a.post__back`, all excluded above — and it was the last member of that
+   * category still reaching a score. It lands as a three-word sentence on every
+   * service and city page in all four locales.
+   *
+   * That is not arithmetic trivia. It drags words-per-sentence down, and
+   * somebody then pays for it by merging two real sentences: the Spanish city
+   * pages were carrying 60–71-word sentences against English twins whose
+   * longest ran 25–37 (found 2026-09-15). The metric corrupting the prose it
+   * governs, for the third time in this file's history.
+   */
+  it('excludes a service or city page’s back-link', () => {
+    const out = mainProse('<main><p>Real prose about the practice.</p><p class="page-back"><a href="/websites/">&lsaquo; All cities</a></p></main>');
+    expect(out).toContain('Real prose');
+    expect(out).not.toContain('All cities');
+  });
+
   it('does not double-count an item that already ends in punctuation', () => {
     const punctuated = '<main><ul><li>This item is a full sentence.</li><li>So is this second one here.</li></ul></main>';
     expect(analyze(mainProse(punctuated), 'en').sentences).toBe(2);
@@ -738,6 +835,87 @@ describe('rendered-page extraction', () => {
         + 'mainProse() too, or restore it in src/pages/[locale]/index.astro.',
       ).toBe(true);
     }
+  });
+
+  /**
+   * THE MARKER THE BACK-LINK EXCLUSION DEPENDS ON — the twin of the
+   * service-area check above, and written for the same reason: mainProse()
+   * drops the service and city pages' back-links by the `page-back` class, and
+   * the hand-written unit test cannot notice a rename in
+   * src/pages/websites/[city].astro, src/pages/services/[service].astro or
+   * src/pages/[locale]/[section]/[service].astro.
+   *
+   * It is expressed as an invariant over the WHOLE BUILD rather than as a list
+   * of paths, which buys two things a path list would not. It covers every
+   * locale and both page types without restating the route table (a fifth
+   * hand-written copy of it, in the terms this file's own localeFromPath
+   * comment uses), and it fails on a NEW page type that grows an unclassed
+   * back-link, not only on a rename of an existing one.
+   *
+   * The chevron ‹ (U+2039) is the house marker for a back-link — see
+   * src/styles/display-glyphs.test.ts, which requires it because ← is outside
+   * every Anton subset. So: inside <main>, after removing the two classes that
+   * mainProse() excludes, no chevron may remain.
+   */
+  // Astro preserves the source entity, so a built page carries `&lsaquo;`
+  // rather than the literal character. Match either, or this check sweeps the
+  // whole build and finds nothing — which is exactly the vacuous pass the
+  // positive control below exists to catch, and did catch while it was wrong.
+  const CHEVRON = /&lsaquo;|‹/;
+  const distPages = () => {
+    const out = [];
+    const walk = (dir) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name === 'index.html') out.push(full);
+      }
+    };
+    walk(DIST_DIR);
+    return out;
+  };
+
+  it.skipIf(!existsSync(DIST_DIR))('leaves no unexcluded back-link inside <main> on any built page', () => {
+    const offenders = [];
+    let carried = 0;
+    const locales = new Set();
+    for (const file of distPages()) {
+      const html = readFileSync(file, 'utf8');
+      const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
+      if (!CHEVRON.test(main)) continue;
+      carried += 1;
+      locales.add(localeFromPath('/' + relative(DIST_DIR, file).replace(/\\/g, '/')));
+      const stripped = main
+        .replace(/<p\b[^>]*\bclass="[^"]*\bpage-back\b[^"]*"[^>]*>[\s\S]*?<\/p>/g, ' ')
+        .replace(/<a class="post__back"[\s\S]*?<\/a>/g, ' ');
+      if (CHEVRON.test(stripped)) {
+        offenders.push(relative(DIST_DIR, file));
+      }
+    }
+    expect(
+      offenders,
+      'a back-link inside <main> carries neither class="page-back" nor class="post__back", so mainProse() '
+      + 'scores it as its own three-word sentence. That drags words-per-sentence down and invites somebody '
+      + 'to merge two real sentences to compensate — which is exactly how the Spanish city pages ended up '
+      + 'with 60–71-word sentences against English twins running 25–37 (2026-09-15). Add the class in the '
+      + 'template, or widen the exclusion in mainProse().',
+    ).toEqual([]);
+    // Positive controls: an empty sweep would pass vacuously, and a sweep that
+    // only ever saw English would miss a rename in the localized route.
+    expect(carried, 'no built page carries a back-link at all — the check is vacuous').toBeGreaterThan(40);
+    expect([...locales].sort()).toEqual(['en', 'es', 'zh-hans', 'zh-hant']);
+  });
+
+  it.skipIf(!existsSync(DIST_DIR))('actually removes the back-link from a built city page’s score', () => {
+    const html = readFileSync(join(DIST_DIR, 'websites', 'arcadia', 'index.html'), 'utf8');
+    const withExclusion = mainProse(html);
+    const withoutExclusion = mainProse(html.replace(/\bpage-back\b/g, 'renamed-back'));
+    expect(withExclusion, 'the back-link reached the Arcadia score').not.toContain('All cities');
+    expect(withoutExclusion, 'renaming the class should let it through; the control is vacuous').toContain('All cities');
+    expect(analyze(withoutExclusion, 'en').sentences).toBeGreaterThan(analyze(withExclusion, 'en').sentences);
+    // And it is worth a grade, not a rounding error: Arcadia read 14.7 with the
+    // back-link counted and 15.7 without it (2026-09-15).
+    expect(analyze(withExclusion, 'en').fkGrade - analyze(withoutExclusion, 'en').fkGrade).toBeGreaterThan(0.5);
   });
 
   /**
