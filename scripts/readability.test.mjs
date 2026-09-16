@@ -771,6 +771,32 @@ describe('rendered-page extraction', () => {
     expect(out).not.toContain('All cities');
   });
 
+  /**
+   * THE POST SUBTITLE IS THE META DESCRIPTION, AND IS NOT PROSE.
+   *
+   * `Post.astro` renders `<p class="post__subtitle">{description}</p>` from the
+   * same frontmatter string that becomes `<meta name="description">`. CLAUDE.md
+   * excludes meta descriptions from scoring deliberately — 155 characters
+   * written to win a click in a search result is a different job from reading
+   * well — and the markdown path never saw it, because frontmatter is stripped.
+   *
+   * Scoring it on the built page only was the ENTIRE source-vs-built divergence
+   * on the one post that sat out of band: "Sometimes no. Usually yes." is two
+   * two-word sentences landing at the head of a 37-sentence sample, and it read
+   * FK 12.9 built against 13.3 at source. With the exclusion the two agree
+   * exactly, which is the evidence that nothing else was wrong with it.
+   *
+   * Its two siblings, `post__author` and `post__meta`, were excluded from the
+   * start; this one was simply missed.
+   */
+  it('excludes a post subtitle, which is the meta description', () => {
+    const out = mainProse(
+      '<main><p class="post__subtitle">Sometimes no. Usually yes.</p><p>Real prose about the practice.</p></main>'
+    );
+    expect(out).toContain('Real prose');
+    expect(out).not.toContain('Sometimes no');
+  });
+
   it('does not double-count an item that already ends in punctuation', () => {
     const punctuated = '<main><ul><li>This item is a full sentence.</li><li>So is this second one here.</li></ul></main>';
     expect(analyze(mainProse(punctuated), 'en').sentences).toBe(2);
@@ -792,6 +818,28 @@ describe('rendered-page extraction', () => {
    * danger is a dist/ which EXISTS but yields zero comparisons, and the
    * positive control below still covers exactly that.
    */
+  /**
+   * The PAIRED MARKER TEST for the rule above. An exclusion is only correct
+   * while the marker it keys on still exists; rename the class and the
+   * descriptions quietly rejoin the sample, which is how this defect arrived.
+   */
+  it.skipIf(!existsSync(DIST_DIR))('finds the post__subtitle class on built blog posts', () => {
+    const posts = reportDist(DIST_DIR)
+      .map((r) => r.page)
+      .filter((p) => /\/(blog|boke)\/[^/]+\/index\.html$/.test(p));
+    expect(posts.length, 'no built blog posts found — this check would be vacuous').toBeGreaterThan(0);
+    let withSubtitle = 0;
+    for (const page of posts) {
+      const html = readFileSync(join(DIST_DIR, page), 'utf8');
+      if (/<p class="post__subtitle"/.test(html)) withSubtitle++;
+    }
+    expect(
+      withSubtitle,
+      'no built post carries <p class="post__subtitle"> — mainProse() drops the meta ' +
+        'description by that class, so if it was renamed the exclusion is now dead'
+    ).toBe(posts.length);
+  });
+
   it.skipIf(!existsSync(DIST_DIR))('agrees with the markdown path on live posts, within half a grade', () => {
     const rendered = reportDist(DIST_DIR);
     const live = [

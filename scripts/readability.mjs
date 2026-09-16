@@ -572,7 +572,16 @@ export function mainProse(html) {
   t = t.replace(/<h[1-6]\b[\s\S]*?<\/h[1-6]>/g, ' ');
   // Page furniture and interface text.
   t = t.replace(/<a class="post__back"[\s\S]*?<\/a>/g, ' ');
-  t = t.replace(/<p class="post__(author|meta)"[\s\S]*?<\/p>/g, ' ');
+  // `post__subtitle` renders the post's `description` — THE SAME STRING that
+  // goes into <meta name="description">. CLAUDE.md excludes meta descriptions
+  // from scoring on purpose ("155 characters to win a click in a search result
+  // is a different job from reading well"), and the markdown path never saw it
+  // because it is frontmatter. Scoring it on the built page only was the whole
+  // of the source-vs-built divergence on the one post that sat out of band:
+  // "Sometimes no. Usually yes." is two two-word sentences landing at the top
+  // of a ten-sentence sample. Added 2026-09-16 beside its siblings, which were
+  // excluded from the start.
+  t = t.replace(/<p class="post__(author|meta|subtitle)"[\s\S]*?<\/p>/g, ' ');
   t = t.replace(/<figcaption[\s\S]*?<\/figcaption>/g, ' ');
   t = t.replace(/<div class="end-cta[\s\S]*?<\/div>\s*<\/div>/g, ' ');
   // Attribute order is not guaranteed — the homepage CTA is written
