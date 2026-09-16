@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CityBody from '../../components/CityBody.astro';
-import CityMasthead from '../../components/CityMasthead.astro';
 import { cities, cityLocales } from '../../data/cities';
 import { SEGMENTS, localeUrl } from '../../i18n/routes';
 import { LOCALES, type Locale } from '../../i18n/ui';
@@ -35,10 +34,9 @@ const translations = Object.fromEntries(
   translations={translations}
 >
   <section class="section wrap">
-    <CityMasthead slug={city.slug} locale="en" />
     <h1>{copy.title}</h1>
     <p class="prose">{copy.summary}</p>
-    <CityBody copy={copy} locale="en" />
+    <CityBody copy={copy} locale="en" slug={city.slug} />
     <p><a class="btn" href="/#contact">Get in touch</a></p>
     <p class="page-back"><a href="/websites/">&lsaquo; All cities</a></p>
   </section>

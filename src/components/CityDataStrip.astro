@@ -1,21 +1,24 @@
 ---
 /**
- * The photograph and the data strip that open every city page.
+ * The data strip: a printed panel of this city's own registry, hospital and
+ * Census figures, set BETWEEN paragraphs rather than above the page.
  *
- * Two jobs that belong together because both are FURNITURE, not prose: the
- * caption sits in a `<figcaption>` and the strip carries `class="city-strip"`,
- * and `mainProse()` in `scripts/readability.mjs` drops both before scoring. A
- * credit rendered as a bare `<p>`, or a strip of two-word rows scored as
- * sentences, is the same defect that bulleted lists and back-links caused
- * twice before — see
- * `docs/solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md`.
+ * THE HOUSE PATTERN for a city page is: paragraph, photo, paragraph, data
+ * strip, paragraph. `CityBody.astro` does the interleaving.
  *
- * Used by BOTH city routes (`websites/[city].astro` and the localized
- * `[locale]/[section]/[service].astro` city branch) so the two cannot drift.
+ * IT IS AN <aside>, NOT A <div>, AND THAT IS LOAD-BEARING. The strip nests
+ * <div> rows, so the non-greedy exclusion in `mainProse()` would stop at the
+ * first inner </div> and leave most of the panel in the reading-level sample.
+ * Measured: with the exclusion removed, 27 built pages fall out of band and the
+ * city pages read FK 15.6-16.0; with it, 17, which is exactly the known legal,
+ * glossary and index-page set. `city-pages.test.ts` pins both the marker and
+ * the element.
+ *
+ * Five fixed clinic types, largest first — see `CLINIC_TYPES` in
+ * `city-figures.ts` for why the five are fixed rather than a per-city top five.
  */
 import type { CitySlug } from '../data/cities';
 import { cityDisplayName } from '../data/cities';
-import { CITY_PHOTOS } from '../data/city-photos';
 import { CITY_FIGURES, FIGURES_QUERIED, CLINIC_TYPES, barScale } from '../data/city-figures';
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/utils';
@@ -27,7 +30,6 @@ interface Props {
 
 const { slug, locale } = Astro.props;
 const strings = t(locale);
-const photo = CITY_PHOTOS[slug];
 const figures = CITY_FIGURES[slug];
 const name = cityDisplayName(slug);
 const scale = barScale(figures);
@@ -63,6 +65,7 @@ const queried = new Intl.DateTimeFormat(BCP47[locale], {
   month: 'short',
   timeZone: 'UTC',
 }).format(new Date(Date.UTC(qy, qm - 1, 1)));
+
 // One decimal place, always, with a period — matching the prose on this same
 // page in ALL FOUR locales (the Spanish copy deliberately writes 23.0%, not
 // 23,0%, so that `cities.test.ts` can compare every translation's figures
@@ -73,29 +76,6 @@ const pct = (n: number) => `${n.toFixed(1)}%`;
 const hospitals = figures.hospitals;
 const nearby = figures.nearbyHospitals;
 ---
-
-<figure class="city-photo">
-  <img
-    src={photo.src}
-    alt={photo.alt[locale]}
-    width={photo.width}
-    height={photo.height}
-    loading="eager"
-    decoding="async"
-  />
-  {!photo.public && (
-    <figcaption>
-      {strings.hub.cityPhotoLabel}: {photo.author}
-      {photo.licenseUrl && (
-        <>
-          {' · '}
-          <a href={photo.licenseUrl} rel="license noopener" target="_blank">{photo.license}</a>
-        </>
-      )}
-      {photo.shareAlike && <> ({strings.hub.cityPhotoResized})</>}
-    </figcaption>
-  )}
-</figure>
 
 <aside class="city-strip" aria-label={heading}>
   <p class="city-strip__heading">
@@ -139,21 +119,7 @@ const nearby = figures.nearbyHospitals;
 </aside>
 
 <style>
-  .city-photo {
-    margin: 0 0 var(--space-5);
-  }
-  .city-photo img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid var(--color-line);
-    border-radius: 2px;
-  }
-  .city-photo figcaption {
-    font-size: var(--step--1);
-    margin-top: var(--space-2);
-    opacity: 0.75;
-  }
+
 
   /* A double rule, matching .label-frame, rather than a card: the strip is a
      printed panel in the vintage-label language, not a floating object. */

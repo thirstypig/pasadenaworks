@@ -161,3 +161,71 @@ describe('city pages: photo and data strip', () => {
     }
   });
 });
+
+/**
+ * ── THE HOUSE PATTERN, PINNED (2026-09-16) ──
+ *
+ *   paragraph · photo · paragraph · data strip · paragraph
+ *
+ * Set as a standard by the owner. Before this the photo and the strip were
+ * stacked above the <h1>, which pushed the opening sentence down the page and
+ * made the photograph read as a banner rather than an illustration.
+ *
+ * This asserts ORDER, not merely presence — the markers test above already
+ * proves both elements exist, and would keep passing if someone moved them
+ * back above the heading or put the strip before the photo.
+ */
+describe('city pages: the paragraph / photo / paragraph / strip / paragraph pattern', () => {
+  const built = PUBLISHED.filter((url) => existsSync(file(url)));
+
+  /** The body's top-level sequence, with the strip and photo as single tokens. */
+  function outline(html: string): string[] {
+    const inner = html.match(
+      /<div class="city-body prose"[^>]*>([\s\S]*?)<h2 class="city-sources__heading"/
+    )?.[1];
+    if (!inner) return [];
+    const strip = inner.match(/<aside[^>]*city-strip[\s\S]*?<\/aside>/)?.[0];
+    const figure = inner.match(/<figure[\s\S]*?<\/figure>/)?.[0];
+    let flat = inner;
+    if (strip) flat = flat.replace(strip, '@STRIP@');
+    if (figure) flat = flat.replace(figure, '@PHOTO@');
+    const seq: string[] = [];
+    for (const chunk of flat.split(/(@STRIP@|@PHOTO@)/)) {
+      if (chunk === '@STRIP@' || chunk === '@PHOTO@') {
+        seq.push(chunk.replaceAll('@', ''));
+        continue;
+      }
+      for (const m of chunk.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)) {
+        if (m[1].replace(/<[^>]+>/g, '').trim()) seq.push('PARAGRAPH');
+      }
+    }
+    return seq;
+  }
+
+  it.skipIf(built.length === 0)('every built city page follows the pattern exactly', () => {
+    for (const url of built) {
+      expect(outline(readFileSync(file(url), 'utf8')), url).toEqual([
+        'PARAGRAPH',
+        'PHOTO',
+        'PARAGRAPH',
+        'STRIP',
+        'PARAGRAPH',
+      ]);
+    }
+  });
+
+  it.skipIf(built.length === 0)('neither piece is left stranded above the heading', () => {
+    // The previous layout put both before <h1>. If someone reverts the
+    // interleaving, the pattern test above fails — but this one names the
+    // specific regression, so the failure reads as "it moved back" rather
+    // than "the order is wrong".
+    for (const url of built) {
+      const html = readFileSync(file(url), 'utf8');
+      const h1 = html.indexOf('<h1');
+      const photo = html.indexOf('<figure class="city-photo"');
+      const strip = html.search(/<aside[^>]*city-strip/);
+      expect(photo, `${url}: photo sits above the h1`).toBeGreaterThan(h1);
+      expect(strip, `${url}: strip sits above the h1`).toBeGreaterThan(h1);
+    }
+  });
+});
