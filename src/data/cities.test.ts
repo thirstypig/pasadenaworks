@@ -38,6 +38,45 @@ function figures(text: string): string[] {
 
 const prose = (c: CityCopy) => [c.summary, ...c.body].join(' ');
 
+/**
+ * The ONE name each city carries per Chinese script, across city pages, UI
+ * strings and the blog. Pinned here, not derived: Traditional usage in the San
+ * Gabriel Valley is not a character conversion of Simplified usage, and the
+ * decision for each city, with its source, is in the "Chinese city names" table
+ * of docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md.
+ *
+ * Three Simplified names changed on 2026-09-15 so that the two scripts name the
+ * same city: 阿尔塔迪纳 → 艾塔迪那, 格伦代尔 → 格兰岱, 圣马力诺 → 圣玛利诺. The
+ * superseded spellings are in SUPERSEDED below, which is the tripwire that stops
+ * one coming back.
+ */
+const ZH_NAME: Record<'zh-hans' | 'zh-hant', Record<CitySlug, string>> = {
+  'zh-hans': {
+    pasadena: '帕萨迪纳',
+    altadena: '艾塔迪那',
+    'south-pasadena': '南帕萨迪纳',
+    glendale: '格兰岱',
+    alhambra: '阿罕布拉',
+    arcadia: '亚凯迪亚',
+    monrovia: '蒙罗维亚',
+    'san-marino': '圣玛利诺',
+    'monterey-park': '蒙特利公园',
+    'san-gabriel': '圣盖博',
+  },
+  'zh-hant': {
+    pasadena: '帕薩迪納',
+    altadena: '艾塔迪那',
+    'south-pasadena': '南帕薩迪納',
+    glendale: '格蘭岱',
+    alhambra: '阿罕布拉',
+    arcadia: '亞凱迪亞',
+    monrovia: '蒙羅維亞',
+    'san-marino': '聖瑪利諾',
+    'monterey-park': '蒙特利公園',
+    'san-gabriel': '聖蓋博',
+  },
+};
+
 describe('city copy', () => {
   it('normalizes figures the same way in every language', () => {
     expect(figures('1,200 dentists and 23.0% in September 2026')).toEqual(figures('2026 年 9 月，1200 名牙醫，23.0%'));
@@ -76,52 +115,59 @@ describe('city copy', () => {
 
   it('titles every Simplified Chinese page with the searched phrase', () => {
     // The owner's pattern: the Chinese name readers search for, then the
-    // English name in full-width parentheses. The Chinese names are pinned
-    // here, not derived, and are sourced in the "Chinese city names" table of
-    // docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md.
-    const ZH_HANS_NAME: Record<CitySlug, string> = {
-      pasadena: '帕萨迪纳',
-      altadena: '阿尔塔迪纳',
-      'south-pasadena': '南帕萨迪纳',
-      glendale: '格伦代尔',
-      alhambra: '阿罕布拉',
-      arcadia: '亚凯迪亚',
-      monrovia: '蒙罗维亚',
-      'san-marino': '圣马力诺',
-      'monterey-park': '蒙特利公园',
-      'san-gabriel': '圣盖博',
-    };
+    // English name in full-width parentheses. The names come from ZH_NAME above.
     for (const city of cities) {
       expect(city.t['zh-hans']?.title, city.slug).toBe(
-        `为${ZH_HANS_NAME[city.slug]}（${cityDisplayName(city.slug)}）医疗与牙科诊所带来更多患者`,
+        `为${ZH_NAME['zh-hans'][city.slug]}（${cityDisplayName(city.slug)}）医疗与牙科诊所带来更多患者`,
       );
     }
   });
 
   it('titles every Traditional Chinese page with the searched phrase', () => {
-    // Same owner pattern in Traditional script. The names are pinned, not
-    // converted from the Simplified ones: Traditional usage in the San Gabriel
-    // Valley differs for some cities (World Journal's 艾塔迪那, 格蘭岱), and the
-    // site's existing zh-hant strings already write 帕薩迪納. Each decision and
-    // its source is in the "Chinese city names" table of
-    // docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md.
-    const ZH_HANT_NAME: Record<CitySlug, string> = {
-      pasadena: '帕薩迪納',
-      altadena: '艾塔迪那',
-      'south-pasadena': '南帕薩迪納',
-      glendale: '格蘭岱',
-      alhambra: '阿罕布拉',
-      arcadia: '亞凱迪亞',
-      monrovia: '蒙羅維亞',
-      'san-marino': '聖瑪利諾',
-      'monterey-park': '蒙特利公園',
-      'san-gabriel': '聖蓋博',
-    };
+    // Same owner pattern in Traditional script.
     for (const city of cities) {
       expect(city.t['zh-hant']?.title, city.slug).toBe(
-        `為${ZH_HANT_NAME[city.slug]}（${cityDisplayName(city.slug)}）醫療與牙科診所帶來更多病患`,
+        `為${ZH_NAME['zh-hant'][city.slug]}（${cityDisplayName(city.slug)}）醫療與牙科診所帶來更多病患`,
       );
     }
+  });
+
+  it('writes the pinned name in the summary, body and meta too, not only the title', () => {
+    // The two title tests above pin only the title, so a body could spell a
+    // city differently — or in the other script — and pass. Both halves matter:
+    // the positive half catches a page that stops naming its own city, and the
+    // leak half catches a Traditional name pasted into a Simplified page, which
+    // is exactly how the two scripts drifted apart in the first place.
+    const problems: string[] = [];
+    let checked = 0;
+    for (const city of cities) {
+      for (const locale of ['zh-hans', 'zh-hant'] as const) {
+        const c = city.t[locale];
+        if (!c) continue;
+        const name = ZH_NAME[locale][city.slug];
+        for (const [field, text] of [
+          ['summary', c.summary],
+          ['body', c.body.join('')],
+          ['meta', c.meta],
+        ] as const) {
+          checked++;
+          if (!text.includes(name)) problems.push(`${city.slug}/${locale} ${field} never writes ${name}`);
+        }
+        // Where the two scripts write the same characters (阿罕布拉, 艾塔迪那)
+        // there is nothing to leak, so those cities are skipped rather than
+        // reported as a false positive.
+        const other = locale === 'zh-hans' ? 'zh-hant' : 'zh-hans';
+        const text = [c.summary, c.meta, ...c.body].join('');
+        for (const slug of cities.map((x) => x.slug)) {
+          const theirs = ZH_NAME[other][slug];
+          if (ZH_NAME[locale][slug] === theirs) continue;
+          if (text.includes(theirs)) problems.push(`${city.slug}/${locale} writes ${slug} as ${theirs}, the ${other} name`);
+        }
+      }
+    }
+    expect(problems, problems.join('\n')).toEqual([]);
+    // Control: with no Chinese copy at all the loop above would pass vacuously.
+    expect(checked).toBe(cities.length * 2 * 3);
   });
 
   it('keeps meta descriptions in the service pages’ bands', () => {
@@ -259,5 +305,88 @@ describe('cityDisplayName', () => {
       offenders,
       `these redefine cityDisplayName instead of importing it from src/data/cities.ts:\n  ${offenders.join('\n  ')}`,
     ).toEqual([]);
+  });
+});
+
+/**
+ * Superseded city spellings, and the name that replaced each one.
+ *
+ * Every entry is a spelling that was in real use — on this site, or in a source
+ * the "Chinese city names" table weighed and overruled — and that must not come
+ * back. The site had two names for three cities at once (the Simplified pages
+ * wrote 阿尔塔迪纳/格伦代尔/圣马力诺 while the Traditional pages wrote
+ * 艾塔迪那/格蘭岱/聖瑪利諾) and the blog wrote Arcadia three different ways, so
+ * this is a drift that has already happened rather than one being imagined.
+ *
+ * Reasoning per city is in the sources file; the short version:
+ *   - Arcadia — local press and the CCYP directory agree on 亞凱迪亞/亚凯迪亚;
+ *     the 阿- and 阿卡- forms are national-outlet usage (VOA, RFA).
+ *   - Altadena — World Journal writes 艾塔迪那 throughout its Eaton Fire and
+ *     rebuilding coverage; 阿爾塔迪納 rested on VOA, a national outlet.
+ *   - Glendale — World Journal and CCYP write 格蘭岱市 for California's
+ *     Glendale and keep 格倫代爾 for Glendale, Arizona.
+ *   - San Marino — 圣马力诺 is the standard Chinese name of the Republic of San
+ *     Marino, so the page was competing with a country for its own keyword.
+ *   - Pasadena / Monterey Park / San Gabriel — forms the table overruled
+ *     because nobody local writes them.
+ */
+const SUPERSEDED: [variant: string, decided: string][] = [
+  ['阿凯迪亚', '亚凯迪亚'], ['阿卡迪亚', '亚凯迪亚'],
+  ['阿凱迪亞', '亞凱迪亞'], ['阿卡迪亞', '亞凱迪亞'],
+  ['门罗维亚', '蒙罗维亚'], ['門羅維亞', '蒙羅維亞'],
+  ['阿尔塔迪纳', '艾塔迪那'], ['阿爾塔迪納', '艾塔迪那'],
+  ['阿塔迪纳', '艾塔迪那'], ['阿塔迪納', '艾塔迪那'],
+  ['格伦代尔', '格兰岱'], ['格倫代爾', '格蘭岱'],
+  ['圣马力诺', '圣玛利诺'], ['聖馬力諾', '聖瑪利諾'],
+  ['圣马利诺', '圣玛利诺'], ['聖馬利諾', '聖瑪利諾'],
+  ['巴沙迪那', '帕萨迪纳 / 帕薩迪納'],
+  ['帕沙第纳', '帕萨迪纳'], ['帕沙第納', '帕薩迪納'],
+  ['蒙特雷帕克', '蒙特利公园 / 蒙特利公園'],
+  ['圣加布里埃尔', '圣盖博'], ['聖加布里埃爾', '聖蓋博'],
+];
+
+describe('one name per city', () => {
+  it('lists no superseded spelling that is also a decided name', () => {
+    // A typo here would make the tripwire below unsatisfiable: it would demand
+    // that a name be removed and replaced with itself.
+    const decided = new Set(Object.values(ZH_NAME).flatMap((m) => Object.values(m)));
+    for (const [variant] of SUPERSEDED) expect(decided.has(variant), variant).toBe(false);
+    expect(SUPERSEDED.length).toBeGreaterThan(10);
+  });
+
+  it('never writes a superseded spelling in src/, in either script', () => {
+    // Walks the real files rather than the imported copy, so it covers the
+    // Chinese blog posts (most of which are date-gated and absent from dist/)
+    // as well as city copy, UI strings and page templates.
+    //
+    // Deliberately NOT walked: this file, which has to name the superseded
+    // spellings to forbid them, and
+    // docs/superpowers/specs/2026-09-14-practice-city-pages-sources.md, which
+    // records what each source actually prints — including the overruled forms.
+    const offenders: string[] = [];
+    let filesScanned = 0;
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir)) {
+        if (entry === 'node_modules' || entry === 'dist') continue;
+        const full = join(dir, entry);
+        if (statSync(full).isDirectory()) {
+          walk(full);
+          continue;
+        }
+        if (!/\.(ts|mjs|astro|md)$/.test(entry) || entry.includes('.test.')) continue;
+        filesScanned++;
+        const source = readFileSync(full, 'utf8');
+        for (const [variant, decided] of SUPERSEDED) {
+          if (source.includes(variant)) {
+            offenders.push(`${relative(REPO, full)} writes ${variant} — the name is ${decided}`);
+          }
+        }
+      }
+    };
+    walk(join(REPO, 'src'));
+    expect(offenders, `superseded city spellings:\n  ${offenders.join('\n  ')}`).toEqual([]);
+    // Control: a walk that found nothing would pass vacuously. src/ holds 272
+    // Chinese blog posts alone, so this floor cannot be met by accident.
+    expect(filesScanned).toBeGreaterThan(100);
   });
 });

@@ -257,26 +257,44 @@ it matches loosely.
 | City | Simplified (`zh-hans`) | Simplified source | Traditional, as printed | Traditional source | Decided `zh-hant` |
 |---|---|---|---|---|---|
 | Pasadena | 帕萨迪纳 | VOA Chinese, <https://www.voachinese.com/a/california-wildfires-could-be-leaving-deeper-inequality-in-their-wake-20250112/7934221.html> | 巴沙迪那 (World Journal); 帕沙第納 (zh.wikipedia zh-tw) | <https://www.worldjournal.com/wj/story/121362/9729757> | **帕薩迪納.** The site already writes it: `ui.ts` (`citiesDescription`) and 20 times across eight `zh-hant` posts, with no other spelling anywhere. World Journal's news desk writes 巴沙迪那 (22 times in the article cited), but its own literary supplement prints 帕薩迪納 (5 times, <https://www.worldjournal.com/wj/story/121250/9569656>), so readers recognize both; 帕薩迪納 is also the same name as the Simplified pages' 帕萨迪纳. No reason found strong enough to change the site's existing form. |
-| Altadena | 阿尔塔迪纳 | VOA Chinese, same article (11 occurrences) | 阿爾塔迪納 (zh.wikipedia zh-tw); 艾塔迪那 (World Journal) | zh.wikipedia zh-tw, <https://zh.wikipedia.org/zh-tw/阿爾塔迪納_(加利福尼亞州)>; World Journal, <https://www.worldjournal.com/wj/story/121359/9688465> (6 occurrences, a 2026 rebuilding story) and <https://www.worldjournal.com/wj/story/121359/9671593> (伊頓大火 headline) | **艾塔迪那.** The site had no Traditional name for it. World Journal's news desk writes 艾塔迪那 throughout its fire and rebuilding coverage; 阿爾塔迪納 and 阿塔迪納 appear there only in advertiser-supplied items. Differs from the Simplified pages' 阿尔塔迪纳 — flagged for the blog-alignment task. |
+| Altadena | 艾塔迪那 (was 阿尔塔迪纳 until 2026-09-15, see "One name per city") | World Journal, <https://www.worldjournal.com/wj/story/121359/9688465> — VOA Chinese wrote 阿尔塔迪纳 (11 occurrences in the article cited for Pasadena) and was overruled as a national outlet | 阿爾塔迪納 (zh.wikipedia zh-tw); 艾塔迪那 (World Journal) | zh.wikipedia zh-tw, <https://zh.wikipedia.org/zh-tw/阿爾塔迪納_(加利福尼亞州)>; World Journal, <https://www.worldjournal.com/wj/story/121359/9688465> (6 occurrences, a 2026 rebuilding story) and <https://www.worldjournal.com/wj/story/121359/9671593> (伊頓大火 headline) | **艾塔迪那.** The site had no Traditional name for it. World Journal's news desk writes 艾塔迪那 throughout its fire and rebuilding coverage; 阿爾塔迪納 and 阿塔迪納 appear there only in advertiser-supplied items. The Simplified pages wrote 阿尔塔迪纳 until 2026-09-15 and now write 艾塔迪那, which is the same four characters in both scripts. |
 | South Pasadena | 南帕萨迪纳 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/南帕萨迪纳_(加利福尼亚州)> — follows Pasadena, so the two related names are searched together | 南帕薩迪那 (CCYP directory); 南巴沙迪那 (World Journal) | <https://www.ccyp.com/subjects/91143>; <https://www.worldjournal.com/wj/story/121362/9572085> (21 occurrences) | **南帕薩迪納.** Follows the site's Pasadena. World Journal's 南巴沙迪那 follows its own 巴沙迪那; putting 南巴沙迪那 beside the site's 帕薩迪納 would make two related names look unrelated. Same name as the Simplified pages' 南帕萨迪纳. |
-| Glendale | 格伦代尔 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/格倫代爾_(加利福尼亞州)> | 格倫代爾 (zh.wikipedia zh-tw); 格蘭岱 (CCYP; World Journal) | <https://zh.wikipedia.org/zh-tw/格倫代爾_(加利福尼亞州)>, <https://www.ccyp.com/subjects/91114>; World Journal, <https://www.worldjournal.com/wj/story/121362/9585126> (格蘭岱市 10 times, the Glendale–LA river bridge) | **格蘭岱.** The site had no Traditional name for it. World Journal and the CCYP directory agree on 格蘭岱 for California's Glendale; World Journal keeps 格倫代爾 for Glendale, Arizona. Differs from the Simplified pages' 格伦代尔 — flagged for the blog-alignment task. |
+| Glendale | 格兰岱 (was 格伦代尔 until 2026-09-15, see "One name per city") | CCYP, which publishes 格兰岱市政府 and 格蘭岱市政府 for the same page — zh.wikipedia zh-cn's 格倫代爾, <https://zh.wikipedia.org/zh-cn/格倫代爾_(加利福尼亞州)>, is the form World Journal reserves for Glendale, Arizona | 格倫代爾 (zh.wikipedia zh-tw); 格蘭岱 (CCYP; World Journal) | <https://zh.wikipedia.org/zh-tw/格倫代爾_(加利福尼亞州)>, <https://www.ccyp.com/subjects/91114>; World Journal, <https://www.worldjournal.com/wj/story/121362/9585126> (格蘭岱市 10 times, the Glendale–LA river bridge) | **格蘭岱.** The site had no Traditional name for it. World Journal and the CCYP directory agree on 格蘭岱 for California's Glendale; World Journal keeps 格倫代爾 for Glendale, Arizona. The Simplified pages wrote 格伦代尔 until 2026-09-15 and now write 格兰岱. |
 | Alhambra | 阿罕布拉 | CCYP directory (Simplified edition), <https://cn.ccyp.com/subjects/91081> | 阿罕布拉 | City of Alhambra, water-rate assistance guidelines, <https://www.alhambraca.gov/DocumentCenter/View/6724/CITY-OF-ALHAMBRA-LIWRAP-Final-Guildelines-TCH> | **阿罕布拉.** The site's `zh-hant` blog (11 occurrences, six posts), the city itself and World Journal all agree. |
 | Arcadia | 亚凯迪亚 | 美洲华联社 (LA, Simplified), <https://huarenone.com/2026/02/04/%E7%8E%8B%E7%88%B1%E6%9E%97%E5%B0%B1%E4%BB%BB%E4%BA%9A%E5%87%AF%E8%BF%AA%E4%BA%9A%E5%B8%82%E5%B8%82%E9%95%BF-%E9%83%91%E5%8D%9A%E4%BB%81%E5%BE%8B%E5%B8%88%E6%8B%85%E4%BB%BB%E5%89%AF%E5%B8%82%E9%95%BF/>; CCYP, <https://cn.ccyp.com/subjects/91083> | 亞凱迪亞 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/亞凱迪亞> | **亞凱迪亞.** The site's majority form (9 occurrences in three posts, plus comments in `[locale]/[section]/index.astro` and `homepage-parity.test.ts`), World Journal's tag, and the Simplified pages' 亚凯迪亚. Two posts write 阿卡迪亞 — see below. |
 | Monrovia | 蒙罗维亚 | CCYP, <https://cn.ccyp.com/subjects/91124> | 蒙羅維亞 | CCYP, <https://www.ccyp.com/subjects/91124> | **蒙羅維亞.** The site's blog (three posts), World Journal (9 times in <https://www.worldjournal.com/wj/story/121359/9450717>), CCYP, and the Simplified pages' 蒙罗维亚. |
-| San Marino | 圣马力诺 | zh.wikipedia zh-cn, <https://zh.wikipedia.org/zh-cn/圣玛利诺_(加利福尼亚州)> (renders 圣马力诺); the China Press (侨报) also wrote 圣马力诺市, but its 2014 article URL now returns 404 | 聖瑪利諾 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖瑪利諾> | **聖瑪利諾.** The site's blog (four occurrences, three posts) and World Journal's tag agree. |
+| San Marino | 圣玛利诺 (was 圣马力诺 until 2026-09-15, see "One name per city") | zh.wikipedia's own article is titled 圣玛利诺_(加利福尼亚州), <https://zh.wikipedia.org/zh-cn/圣玛利诺_(加利福尼亚州)>, although its zh-cn variant renders the body as 圣马力诺; the China Press (侨报) also wrote 圣马力诺市, but its 2014 article URL now returns 404 | 聖瑪利諾 | World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖瑪利諾> | **聖瑪利諾.** The site's blog (four occurrences, three posts) and World Journal's tag agree. |
 | Monterey Park | 蒙特利公园 | CCYP, <https://cn.ccyp.com/subjects/91126> | 蒙特利公園 | City of Monterey Park news release, <https://www.montereypark.ca.gov/DocumentCenter/View/8703> | **蒙特利公園.** The site's blog (ten occurrences, three posts), the city and World Journal agree. |
 | San Gabriel | 圣盖博 | CCYP, <https://cn.ccyp.com/subjects/91136> | 聖蓋博 | City of San Gabriel housing relief guidelines (Chinese), <https://sangabrieled.com/DocumentCenter/View/494/CHINESE--Housing-Relief-Guidlines>; World Journal tag page, <https://www.worldjournal.com/search/tagging/8877/聖蓋博> | **聖蓋博.** Already in `ui.ts` and `home.ts` (聖蓋博谷) and throughout the blog; the city and World Journal agree. |
 
-These names supersede the spellings in the site's earlier `zh-hans` blog posts — 阿凯迪亚 and 阿卡迪亚 for Arcadia, 门罗维亚 for Monrovia. The city pages keep 亚凯迪亚 and 蒙罗维亚 (controller ruling R14, 2026-09-15); aligning the blog is a separate, later task.
+### One name per city, 2026-09-15
 
-In `zh-hant`, the only blog spellings that differ from the decided names are two
-of Arcadia's: 阿卡迪亞 at
-`src/content/blog/zh-hant/yong-ai-dafu-kehu-laixin-buxiang-jiqiren.md:27` and
-`src/content/blog/zh-hant/trader-joes-bu-mai-guanggao-weihe-xuebulai.md:35`.
-No `zh-hant` post names Altadena, South Pasadena or Glendale. The two
-Traditional names that are not the Simplified names written in the other
-script — 艾塔迪那 (阿尔塔迪纳) and 格蘭岱 (格伦代尔) — are for the same later task
-to weigh on the Simplified side.
+Task 5c closed the last gap: until then the site could name the same city two
+ways, because the Simplified and Traditional tables above were settled from
+different sources, and the blog predated both. Three `zh-hans` names changed,
+in every place they appear, so that a reader switching scripts never sees a
+different city. The Traditional form won each time, on evidence re-fetched
+during the Task 5 review:
+
+| City | `zh-hans` was | `zh-hans` is | Why the Traditional form won |
+|---|---|---|---|
+| Altadena | 阿尔塔迪纳 | **艾塔迪那** | World Journal writes 艾塔迪那 6 times across its Eaton Fire and rebuilding coverage and none of the alternatives; all four characters are identical in both scripts, so the two locales now carry a byte-identical name. 阿尔塔迪纳 rested on VOA, a national outlet, against the rule at the head of this section that local San Gabriel Valley press wins. |
+| Glendale | 格伦代尔 | **格兰岱** | World Journal writes 格蘭岱 38 times and 格倫代爾 0 times for California's Glendale, and CCYP publishes 格蘭岱市政府 and 格兰岱市政府 for the same page — so the directory itself treats 格兰岱 as the Simplified twin of 格蘭岱. |
+| San Marino | 圣马力诺 | **圣玛利诺** | World Journal's tag page carries 聖瑪利諾 133 times and 0 for either 馬力 or 馬利, and 聖瑪利諾 was already the site's Traditional form. 圣马力诺 is also the standard Chinese name of the **Republic of San Marino**, so the page was competing with a country for its own keyword — a search argument the Traditional form does not have to fight. |
+
+The blog was aligned in the same change. In `zh-hans` that meant 阿凯迪亚 (8) and
+阿卡迪亚 (2) → 亚凯迪亚, 门罗维亚 (3) → 蒙罗维亚, and 圣马力诺 (4) → 圣玛利诺; in
+`zh-hant`, 阿卡迪亞 (2) → 亞凱迪亞. No `zh-hant` post names Altadena, South
+Pasadena or Glendale, and no post's `title`, `description`, `targetKeyword` or
+`tags` carried a superseded spelling.
+
+`cities.test.ts` now pins both scripts' names in one `ZH_NAME` map, asserts each
+city page writes its own pinned name in the summary, body and meta (not only the
+title) with no leak from the other script, and carries a `SUPERSEDED` tripwire
+that walks `src/` and fails on any spelling this table overruled — including the
+ones nobody local writes (巴沙迪那, 蒙特雷帕克, 圣加布里埃尔). This file is
+deliberately outside that walk, because recording what each source actually
+prints is its job.
 
 Two judgment calls:
 
