@@ -72,9 +72,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 96 files. The build itself
+                     #   AND .ts, tina/ included. 100 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 389 across 30 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 433 across 31 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -208,7 +208,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate covered 85 files then (96 as of 2026-09-15) and reports 0 errors.
+excluded; the gate covered 85 files then (100 as of 2026-09-16) and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
