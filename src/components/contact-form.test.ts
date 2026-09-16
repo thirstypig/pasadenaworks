@@ -117,7 +117,7 @@ describe('contact form → n8n → Twenty CRM contract', () => {
     ).toBe(true);
   });
 
-  it('does not label the honeypot with a field name autofill recognises', () => {
+  it('does not label the honeypot with a field name autofill recognizes', () => {
     // Chrome's address autofill matches on the LABEL and ignores
     // autocomplete="off" for address forms. The label said "Company", so a
     // visitor with a saved address profile could have the trap filled for them

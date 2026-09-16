@@ -120,7 +120,7 @@ const strings = t(locale);
           localStorage.removeItem(KEY);
         } catch {
           /* Nothing was stored to begin with — the banner still reopens and
-             the choice is still honoured for this page view. */
+             the choice is still honored for this page view. */
         }
         window['ga-disable-' + measurementId] = true;
         if (banner) {
@@ -135,7 +135,7 @@ const strings = t(locale);
           try {
             localStorage.setItem(KEY, choice);
           } catch {
-            /* The choice cannot be remembered, but it must still be HONOURED for
+            /* The choice cannot be remembered, but it must still be HONORED for
                this page view — dismiss the banner and respect the answer. */
           }
           banner.hidden = true;

@@ -301,7 +301,7 @@ ol {
  *
  * Selectors in a plain stylesheet are already global — just write it. (The
  * construct looks plausible because CSS Modules genuinely supports it; a
- * `*.module.css` file WOULD honour it. Renaming this file is not an option:
+ * `*.module.css` file WOULD honor it. Renaming this file is not an option:
  * every other class in it would become a hashed local name.) */
 html[lang^='zh'] body {
   line-height: 1.8;
@@ -452,8 +452,8 @@ main {
    `.service-card` are focusable elements carrying this class, and
    :focus-visible also uses `outline` — so focus REPLACED the decorative ring
    instead of adding to it. The focused card was distinguishable only by the
-   ring changing colour at nearly the same position, which reads as "a
-   differently coloured card", not "the focused card". box-shadow leaves
+   ring changing color at nearly the same position, which reads as "a
+   differently colored card", not "the focused card". box-shadow leaves
    `outline` free for focus alone. */
 /* Shared by four pages — the two service indexes and both homepages — where it
    was byte-identical in all four. The .service-CARD rules are deliberately NOT

@@ -16,7 +16,7 @@
  *
  * `heroCreditUrl` is OPTIONAL on purpose. The 20 images already in
  * `public/blog/` were sourced before the API and remain covered by the plain
- * licence, so requiring a URL would fail the build on 80 existing post files to
+ * license, so requiring a URL would fail the build on 80 existing post files to
  * satisfy a rule that does not reach them. New API-sourced images supply one;
  * the template renders the linked form when it is present and the bare string
  * when it is not.

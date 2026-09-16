@@ -261,7 +261,7 @@ export default defineConfig({
             description:
               'The photographer’s Unsplash profile, e.g. https://unsplash.com/@name. Required for images sourced through the Unsplash API; leave blank for older images. `npm run unsplash` prints this for you.',
             // Optional here exactly as in the Astro schema: the twenty images
-            // that predate the API are covered by the plain Unsplash licence,
+            // that predate the API are covered by the plain Unsplash license,
             // where attribution is appreciated but not required. Requiring it
             // would block editing any of those posts in Tina.
             //

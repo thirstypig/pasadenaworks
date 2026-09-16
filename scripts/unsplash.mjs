@@ -6,7 +6,7 @@
  *   node scripts/unsplash.mjs use <photoId> <post-slug>
  *
  * WHY THIS IS A SCRIPT AND NOT A NOTE IN A README. Using the Unsplash API puts
- * this site under the API guidelines rather than the plain Unsplash licence,
+ * this site under the API guidelines rather than the plain Unsplash license,
  * and they add three obligations that all fail SILENTLY when skipped — the page
  * renders, the build passes, nothing complains:
  *

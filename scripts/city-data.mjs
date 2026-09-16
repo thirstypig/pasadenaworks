@@ -73,14 +73,14 @@ export const GROUPS = {
 
 export const primaryTaxonomy = (p) => p.taxonomies.find((t) => t.primary) ?? null;
 
-export const practisesIn = (p, npiCity) =>
+export const practicesIn = (p, npiCity) =>
   p.addresses.some((a) => a.address_purpose === 'LOCATION' && a.state === 'CA' && a.city === npiCity);
 
 export function countGroup(providers, group, npiCity) {
   const seen = new Set();
   for (const p of providers) {
     const t = primaryTaxonomy(p);
-    if (t && group.matches(t) && practisesIn(p, npiCity)) seen.add(p.number);
+    if (t && group.matches(t) && practicesIn(p, npiCity)) seen.add(p.number);
   }
   return seen.size;
 }

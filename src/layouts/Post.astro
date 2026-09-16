@@ -113,7 +113,7 @@ const articleSchema = {
         {/* Unsplash's API guidelines require the photographer AND Unsplash to
             be linked, both carrying utm_source/utm_medium. Images sourced
             before the API have no heroCreditUrl and keep the bare string —
-            they are covered by the plain licence, which does not require a
+            they are covered by the plain license, which does not require a
             link. See src/data/hero-credit.ts. */}
         {heroCredit && heroCreditUrl && (
           <figcaption>
@@ -232,7 +232,7 @@ const articleSchema = {
   }
 
   /* Links in article prose are underlined AT REST, not only on hover.
-     They used to be distinguished by colour alone, and the accent against
+     They used to be distinguished by color alone, and the accent against
      surrounding body text measures 2.96:1 in light mode and 2.53:1 in dark
      — under WCAG 1.4.1's 3:1 floor, so a reader who does not separate those
      hues could not find the links at all. Hover is not a fix: it does not
@@ -245,7 +245,7 @@ const articleSchema = {
      global.css: the End CTA renders a `.btn` INSIDE `.post__body`, and this
      selector's specificity (0,2,1) beats `.btn` (0,1,0). Without the guard it
      paints an underline along the button's bottom edge and overrides its text
-     colour — on every post, in all four languages. The bug was invisible while
+     color — on every post, in all four languages. The bug was invisible while
      this border was transparent; making it visible is what surfaced it. */
   .post__body :global(a:not(.btn)) {
     color: var(--color-accent-text);

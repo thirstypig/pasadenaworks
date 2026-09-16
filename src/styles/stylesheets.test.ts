@@ -26,7 +26,7 @@ import { join } from 'node:path';
  *     pseudo-class" on every build, and did so throughout. Nobody read it.
  *     ci.yml now promotes that warning to a failure, the same treatment the
  *     duplicate-slug warning already gets, which makes this file the second
- *     line of defence rather than the first.
+ *     line of defense rather than the first.
  *   - `npm run typecheck` never reads CSS.
  *   - A linter is not reliable here either: the text is syntactically VALID CSS
  *     — a selector naming a pseudo-class no browser implements — and stylelint

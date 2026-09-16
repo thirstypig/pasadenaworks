@@ -31,7 +31,7 @@ const strings = t(locale);
        THE LABEL IS NOT DECORATIVE, AND IT USED TO SAY "Company". That is an
        address-profile field name, and Chrome's address autofill matches on the
        label — it also ignores `autocomplete="off"` for address forms, which is
-       long-standing documented behaviour, not a bug. So a visitor with a saved
+       long-standing documented behavior, not a bug. So a visitor with a saved
        address profile could have this filled FOR them, and the handler below
        discards a real enquiry while showing the success message: total, silent
        lead loss on the site's only conversion path. The name must stay
