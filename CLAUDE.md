@@ -515,6 +515,24 @@ the agent's experiment, not the repo's state. It looked exactly like a genuine
 finding. When running `/ce:review` with parallel agents, re-verify anything
 `dist/`-based *after* they finish, or build into a separate directory.
 
+**And the same shared tree has a WRITING form, which is worse: `git add -A`
+commits whatever a peer agent is halfway through.** On 2026-09-15 two agents
+were working this checkout at once — one finishing the readability scorer, one
+mid-task on the city hubs. The first staged everything, and swept up the
+second's `src/data/cities.test.ts` (modified) and `src/data/city-pages.test.ts`
+(new, untracked) — files with nothing to do with its task. It noticed, backed
+out with `git reset --soft HEAD~1` plus a selective `git restore --staged`, and
+re-committed; verified afterwards with `git log --oneline --all -- <path>`
+returning empty, so the file had never been in any commit. Nothing was lost,
+but only because the agent checked its own `git show --stat` before moving on.
+
+The reading form corrupts *evidence*; this one corrupts *history*, and a
+squash-merge would have buried it. **Stage explicit paths — `git add <path> …` —
+never `-A` or `.`, whenever anything else might be working this tree**, and read
+`git show --stat HEAD` after committing rather than trusting the command. The
+existing `git status` / `ListAgents` / worktree checks tell you a peer exists;
+they do not stop your own staging from taking their work.
+
 **A leftover worktree makes the test suite count itself twice.** A git worktree
 under `.claude/worktrees/` is a full second checkout, so every `*.test.ts` in it
 is a real file on disk — and `.claude/` is not in vitest's default `exclude`.
