@@ -35,7 +35,7 @@ function asciiSlug(value: string): string {
  * The `slug` field is the right source: it is `required: true`, it is already
  * the real URL segment, and `blog-content.test.ts` already enforces that it is
  * unique across every locale. Falling back to the title preserves the old
- * behaviour for an English post typed before the slug field is filled in.
+ * behavior for an English post typed before the slug field is filled in.
  */
 export function slugifyBlogFilename(values: BlogValuesLike | undefined): string {
   const locale = values?.locale || 'en';

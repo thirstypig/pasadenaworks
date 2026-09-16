@@ -6,7 +6,7 @@ import { isValidPostSlug } from '../src/data/post-slug.mjs';
 
 /**
  * WHAT THIS SCRIPT IS FOR. Using the Unsplash API puts this site under the API
- * guidelines rather than the plain licence, which means every API-sourced image
+ * guidelines rather than the plain license, which means every API-sourced image
  * must carry a linked credit to the photographer AND to Unsplash, and must
  * trigger the download endpoint. All three are easy to forget and none of them
  * fail loudly when skipped — the page still renders and the build still passes.

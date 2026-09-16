@@ -96,7 +96,7 @@ describe('the locale list is declared once', () => {
     // TESTS ARE EXCLUDED, DELIBERATELY. A test that imports the list it is
     // checking cannot fail — it would assert the list equals itself. Five test
     // files name these four strings directly, and that independence is the
-    // point of them (todos/019, "tests that pass regardless of the behaviour
+    // point of them (todos/019, "tests that pass regardless of the behavior
     // they name"). The one below does the same, three assertions up.
     const pattern = /\[\s*'en',\s*'es',\s*'zh-hans',\s*'zh-hant'\s*\]/;
     const offenders = sourceFiles()

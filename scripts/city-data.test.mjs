@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { primaryTaxonomy, practisesIn, countGroup, GROUPS, placeMatches, pct, isFiveYearRelease } from './city-data.mjs';
+import { primaryTaxonomy, practicesIn, countGroup, GROUPS, placeMatches, pct, isFiveYearRelease } from './city-data.mjs';
 
 const provider = (number, taxonomies, addresses) => ({ number, taxonomies, addresses });
 const loc = (city) => ({ address_purpose: 'LOCATION', city, state: 'CA' });
@@ -20,8 +20,8 @@ describe('city-data counting rules', () => {
 
   it('counts a practice LOCATION, never a mailing address', () => {
     const mailOnly = provider(2, [{ desc: 'Dentist', code: '122300000X', primary: true }], [mail('MONROVIA'), loc('ARCADIA')]);
-    expect(practisesIn(mailOnly, 'MONROVIA')).toBe(false);
-    expect(practisesIn(mailOnly, 'ARCADIA')).toBe(true);
+    expect(practicesIn(mailOnly, 'MONROVIA')).toBe(false);
+    expect(practicesIn(mailOnly, 'ARCADIA')).toBe(true);
   });
 
   it('includes dental and optometry specialties but only generalist primary care', () => {

@@ -65,7 +65,7 @@ const blog = defineCollection({
     /** The photographer's Unsplash profile, e.g. https://unsplash.com/@name.
      *
      *  Optional, and deliberately so. The 20 images already in public/blog/
-     *  predate the Unsplash API and are covered by the plain licence, where
+     *  predate the Unsplash API and are covered by the plain license, where
      *  attribution is appreciated but not required. Requiring a URL would fail
      *  the build on 80 existing files to satisfy a rule that does not reach
      *  them. Anything sourced THROUGH the API is under the API guidelines,

@@ -17,7 +17,7 @@ import {
  *
  * Before this the site rendered `Photo: Campaign Creators` — a bare string with
  * no link and no campaign parameters. That is fine for the 20 images sourced
- * before the API and still covered by the plain licence, which is exactly why
+ * before the API and still covered by the plain license, which is exactly why
  * `heroCreditUrl` is OPTIONAL: making it required would fail the build on 80
  * existing post files to satisfy a rule that does not apply to them.
  *
