@@ -83,7 +83,7 @@ export const TARGETS = {
 };
 
 /**
- * The runaway-sentence ceiling, in characters per sentence, for zh only.
+ * ── THE zh LENGTH TRIPWIRES. TWO STATISTICS, TWO CEILINGS, ON PURPOSE. ──
  *
  * The header above says characters-per-sentence "is kept only as a guard
  * against runaway sentences." Until 2026-09-04 there was NO SUCH GUARD — the
@@ -99,38 +99,81 @@ export const TARGETS = {
  * bounds that catch the same failure (CLAUDE.md records a draft that passed a
  * 13+ floor at grade 15.9 with 29.8-word sentences; the FK max caught it).
  *
- * 85 is a TRIPWIRE, not a target. It sits ~24% above the observed maximum, so
- * nothing in the corpus is near it and no one is ever tempted to edit prose to
- * satisfy it — which is exactly the inversion CLAUDE.md warns about in
+ * Both of these are TRIPWIRES, not targets. Each sits ~24% above the observed
+ * maximum of the statistic it measures, so nothing in the corpus is near either
+ * and no one is ever tempted to edit prose to satisfy them — which is exactly
+ * the inversion CLAUDE.md warns about in
  * docs/solutions/process-errors/a-writing-metric-corrupts-the-prose-it-governs.md.
- * It fires only on prose that has genuinely run away.
  *
- * RECALIBRATED 2026-09-07, FROM 60, AND THE REASON MATTERS MORE THAN THE
- * NUMBER. The old value was derived on 2026-09-04 from "the 40 Chinese posts"
- * — min 30.7, median 41.0, max 47.1 — and 60 was ~27% above that 47.1. But the
- * blog was the only corpus the guard could see: `sentenceGuard` was called
- * exclusively from the markdown branch of the CLI, never from `--dist`. The
- * service, city and homepage copy lives in src/data/*.ts, has no markdown
- * source, and reaches a reader only through the built page. So the ceiling was
- * calibrated on a sample that structurally excluded the copy it was then
- * applied to.
+ * ── WHY THERE ARE NOW TWO ──
  *
- * Applying the guard to `--dist` for the first time failed four service pages
- * at 61.5–68.4. That is not prose that ran away; it is prose that was written
- * before this constraint existed and was never in the sample that set it.
- * Re-derived over the FULL corpus — 40 blog posts plus 30 built pages, 70
- * Chinese items: min 22.0, median 42.1, max 68.4. The same "~27% above the
- * maximum" rule gives 86.9; rounded to 85, which is 24% above.
+ * There was one, `MAX_CHARS_PER_SENTENCE = 85`, and it was compared against
+ * `result.charsPerSentence` — the PAGE MEAN. But every description of it, here
+ * and in CLAUDE.md, called it a per-sentence ceiling: "no sentence over 85
+ * characters". A mean and a maximum are different statistics, and the gap
+ * between them is not academic. On 2026-09-14 a real page carried a sentence of
+ * exactly 85 characters while the guard reported `ok`, because that page's mean
+ * was in the forties. Only a by-hand measurement caught it. A guard whose name
+ * and documentation describe a stricter statistic than the one it reads is the
+ * same defect as a guard that compares nothing: the next reader stops looking.
  *
- * THIS IS A RECALIBRATION, NOT A SNOOZE, and the distinction is the whole
- * point. Raising a ceiling because prose crossed it would be the inversion.
- * Raising it because the number was fitted to the wrong sample is fixing the
- * measurement. The test that would tell them apart is whether the new value is
- * derived the same way from a complete corpus — it is, by the same rule, from
- * every Chinese item the project actually scores. If a FUTURE page trips 85,
- * that is a real runaway: fix the prose.
+ * So the longest sentence is now measured, under the name the documentation
+ * always used, and the mean is kept as a second, separate check. They catch
+ * different failures and neither subsumes the other: a page of uniformly
+ * 70-character sentences has no runaway sentence at all, and a page with one
+ * 200-character monster has an unremarkable mean.
  */
-export const MAX_CHARS_PER_SENTENCE = 85;
+
+/**
+ * The runaway-SENTENCE ceiling: the longest single sentence on a zh page.
+ *
+ * CALIBRATED 2026-09-15 on the complete Chinese corpus — every item this
+ * project scores, 182 of them: 136 blog posts (68 sets × two scripts, markdown
+ * path) and 46 built pages (`--dist` path). Longest-sentence distribution:
+ * min 19, median 83, max 176. The maximum is
+ * `zh-hant/bushi-pinglun-yu-pinglun-lesuo-guifan-jinzhi-shenme.md` (its
+ * zh-hans twin is 175), which enumerates the FTC rule's six prohibited
+ * categories in one semicolon-separated sentence — long, but idiomatic
+ * Chinese and not prose that ran away.
+ *
+ * Same rule as every previous calibration: ~24% above the observed maximum.
+ * 176 × 1.24 = 218.2, rounded to 220.
+ *
+ * AND THE NUMBER IS LOOSE, WHICH IS THE HONEST RESULT RATHER THAN A GOOD ONE.
+ * A maximum has a much fatter right tail than a mean, so the same rule applied
+ * to the stricter statistic yields a far higher ceiling: 220 fires only on a
+ * genuine catastrophe. That is why the mean check below is kept rather than
+ * replaced — it is the statistic that actually discriminates on this corpus.
+ * Do not "tighten" 220 toward something that looks more like a limit; the
+ * corpus is what sets it, and four Chinese posts already run 105–176.
+ */
+export const MAX_SENTENCE_CHARS = 220;
+
+/**
+ * The page-mean ceiling, unchanged at 85 and DELIBERATELY NOT RE-DERIVED.
+ *
+ * Its own history: set to 60 on 2026-09-04 from the blog alone (min 30.7,
+ * median 41.0, max 47.1), then recalibrated to 85 on 2026-09-07 once the guard
+ * was wired into `--dist` and could finally see the service, city and homepage
+ * copy that lives in src/data/*.ts and has no markdown source. That corpus of
+ * 70 items ran min 22.0, median 42.1, max 68.4, and 85 is ~24% above 68.4.
+ *
+ * Today's complete corpus of 182 items runs min 17.9, median 41.7, max 55.8
+ * (`/zh-hans/index.html`), so 85 now sits ~52% above the maximum rather than
+ * ~24%. Applying the rule mechanically would TIGHTEN it to 70.
+ *
+ * It is left at 85 anyway, and the reason is the reason the rule exists. The
+ * 68.4 that set this number was real Chinese prose this site shipped; it is
+ * lower today only because those service pages were rewritten and because list
+ * items became sentence ends (2026-09-14), not because 68.4 was ever a
+ * runaway. Ratcheting a tripwire down every time the corpus improves turns it
+ * into a target that tracks the prose — the exact inversion it was built to
+ * avoid — and would eventually fire on ordinary variation. A tripwire may be
+ * re-derived when it was fitted to the WRONG SAMPLE, which is what happened in
+ * 2026-09-07 and what happened to the per-sentence measure above. It is not
+ * re-derived merely because the corpus moved underneath it.
+ */
+export const MAX_MEAN_CHARS_PER_SENTENCE = 85;
 
 /**
  * Separate from `verdict()` on purpose. `verdict` answers one question — is the
@@ -138,13 +181,26 @@ export const MAX_CHARS_PER_SENTENCE = 85;
  * counts. Folding a length failure into it would make "above" ambiguous and
  * silently change what those counts mean.
  *
- * Returns 'runaway' or null.
+ * Returns 'runaway' (one sentence past MAX_SENTENCE_CHARS), 'dense' (the page
+ * mean past MAX_MEAN_CHARS_PER_SENTENCE), or null. Two codes rather than one
+ * boolean because the caller has to print the number that actually tripped;
+ * a single 'runaway' for both would send a reader hunting for a long sentence
+ * on a page that has none.
  */
 export function sentenceGuard(result) {
   if (!result?.locale?.startsWith('zh')) return null;
-  const value = result.charsPerSentence;
-  if (value == null) return null;
-  return value > MAX_CHARS_PER_SENTENCE ? 'runaway' : null;
+  const longest = result.longest;
+  if (longest != null && longest > MAX_SENTENCE_CHARS) return 'runaway';
+  const mean = result.charsPerSentence;
+  if (mean != null && mean > MAX_MEAN_CHARS_PER_SENTENCE) return 'dense';
+  return null;
+}
+
+/** The number, the ceiling and the label behind a `sentenceGuard` code. */
+export function guardDetail(result, code) {
+  return code === 'runaway'
+    ? { value: result.longest, max: MAX_SENTENCE_CHARS, label: 'chars in one sentence' }
+    : { value: result.charsPerSentence, max: MAX_MEAN_CHARS_PER_SENTENCE, label: 'chars/sentence (page mean)' };
 }
 
 /**
@@ -533,6 +589,23 @@ export function mainProse(html) {
   // Once list items became sentence ends, each two-word city scored as a
   // two-word sentence and dragged the page toward zero (2026-09-14).
   t = t.replace(/<ul\b[^>]*\bclass="[^"]*\bservice-area\b[^"]*"[^>]*>[\s\S]*?<\/ul>/g, ' ');
+  // A city page's source list is citations, not prose (2026-09-15).
+  t = t.replace(/<ul\b[^>]*\bclass="[^"]*\bcity-sources\b[^"]*"[^>]*>[\s\S]*?<\/ul>/g, ' ');
+  // The back-link at the foot of a service or city page — "‹ All cities",
+  // "‹ Back to services" and their translations. Interface text, the same
+  // category as the nav, the buttons and the blog's own `a.post__back`
+  // (excluded above), and it was the only member of that category still
+  // reaching the score. It lands as a three-word sentence on every service
+  // and city page in all four locales, which drags words-per-sentence down
+  // and then invites somebody to merge two real sentences to compensate.
+  // That is not hypothetical: the Spanish city pages were carrying 60–71-word
+  // sentences against English twins whose longest ran 25–37, because the
+  // furniture had to be paid for somewhere (found 2026-09-15).
+  //
+  // Matched on a class rather than on the chevron, so a copy change cannot
+  // silently re-admit it; `readability.test.mjs` pins the class onto the
+  // built pages the same way it pins `service-area`.
+  t = t.replace(/<p\b[^>]*\bclass="[^"]*\bpage-back\b[^"]*"[^>]*>[\s\S]*?<\/p>/g, ' ');
   // Quoted samples: keep the opening summary, drop later blockquotes,
   // matching dropQuotedSamples() on the markdown side.
   {
@@ -610,20 +683,19 @@ if (isMain(import.meta.url)) {
        no markdown source and is reachable only through the built page, which is
        what --dist is for. The copy that could ONLY be checked here was the copy
        never checked, and turning this on immediately surfaced four pages the
-       blog-only corpus had never seen (see MAX_CHARS_PER_SENTENCE above).
+       blog-only corpus had never seen (see MAX_MEAN_CHARS_PER_SENTENCE above).
 
        BANDS STAY ADVISORY, DELIBERATELY. `off` above lists the legal pages, the
        glossary and the index/listing pages, which CLAUDE.md excludes from the
        register work on purpose — "reported but not scored". Failing on those
        would make CI red over content policy says to leave alone, and the only
-       way to green would be editing prose to satisfy a metric. The ceiling is
-       different in kind: it is calibrated to sit far above every real page, so
-       crossing it means something genuinely went wrong. */
-    const runaway = all.filter((r) => sentenceGuard(r) === 'runaway');
-    for (const r of runaway) {
-      console.error(
-        `\n❌ ${String(r.charsPerSentence).padStart(6)} chars/sentence (max ${MAX_CHARS_PER_SENTENCE})  ${r.page}`,
-      );
+       way to green would be editing prose to satisfy a metric. The ceilings are
+       different in kind: both are calibrated to sit far above every real page,
+       so crossing one means something genuinely went wrong. */
+    const runaway = all.map((r) => [r, sentenceGuard(r)]).filter(([, code]) => code);
+    for (const [r, code] of runaway) {
+      const { value, max, label } = guardDetail(r, code);
+      console.error(`\n❌ ${String(value).padStart(6)} ${label} (max ${max})  ${r.page}`);
     }
     /* Previously an unconditional exit(0), which left ci.yml's
        `npm run readability -- --dist` step able to fail on exactly one thing: a
@@ -651,11 +723,11 @@ if (isMain(import.meta.url)) {
       const mean = values.reduce((a, b) => a + b, 0) / values.length;
       console.log(`  ── ${inBand}/${group.length} in band · mean ${mean.toFixed(1)}`);
 
-      const runaway = group.filter((r) => sentenceGuard(r) === 'runaway');
-      for (const r of runaway) {
-        console.log(
-          `  ⚠️  ${String(r.charsPerSentence).padStart(6)} chars/sentence (max ${MAX_CHARS_PER_SENTENCE})  ${r.file}`,
-        );
+      for (const r of group) {
+        const code = sentenceGuard(r);
+        if (!code) continue;
+        const { value, max, label } = guardDetail(r, code);
+        console.log(`  ⚠️  ${String(value).padStart(6)} ${label} (max ${max})  ${r.file}`);
       }
     }
   }

@@ -45,6 +45,7 @@ const english = readFileSync(join(PAGES, 'index.astro'), 'utf8');
 const localized = readFileSync(join(PAGES, '[locale]', 'index.astro'), 'utf8');
 const englishCityHub = readFileSync(join(PAGES, 'websites', 'index.astro'), 'utf8');
 const localizedCityHub = readFileSync(join(PAGES, '[locale]', '[section]', 'index.astro'), 'utf8');
+const globalCss = readFileSync(fileURLToPath(new URL('../styles/global.css', import.meta.url)), 'utf8');
 
 describe('the four homepages are one design', () => {
   it('shows the logo lockup in every language', () => {
@@ -79,7 +80,7 @@ describe('the four homepages are one design', () => {
     // stack hands Chinese to PingFang/Noto while Latin gets Anton. Fine for a
     // heading, which is one script throughout. Wrong for a zh city-hub item,
     // which embeds a Latin city name inside CJK prose —
-    // 亞凱迪亞（Arcadia）商家網站設計與在地推廣 — so "Arcadia" renders ultra-bold
+    // 為亞凱迪亞（Arcadia）醫療與牙科診所帶來更多病患 — so "Arcadia" renders ultra-bold
     // condensed against regular-weight Chinese, inside one line. English and
     // Spanish items are pure Latin and never show it.
     //
@@ -102,6 +103,32 @@ describe('the four homepages are one design', () => {
         body,
         `${label} city hub does not set the display face on .city-list`,
       ).toContain('var(--font-display)');
+    }
+  });
+
+  it('gives both city hubs the same card treatment, from one rule', () => {
+    // THE DRIFT THIS EXISTS FOR, found 2026-09-15. `.city-list a` — the
+    // bordered-card rule — was scoped inside the localized hub, and the English
+    // hub had no `a` rule at all, so /websites/ rendered bare underlined links
+    // while /es/sitios-web/ and both Chinese hubs rendered cards. Four pages of
+    // one type with two designs. todos/020 looked straight at this in September,
+    // called it "backwards and stale", and fixed only the typography.
+    //
+    // The fix is one shared rule in global.css, so the guard is the ABSENCE of a
+    // local copy rather than the presence of matching ones: two copies that
+    // agree today are exactly what drifted last time.
+    expect(globalCss, 'the shared card rule left global.css').toMatch(/\.city-list a\s*\{/);
+    for (const [label, source] of [
+      ['english', englishCityHub],
+      ['localized', localizedCityHub],
+    ] as const) {
+      expect(
+        source,
+        `${label} city hub re-declares .city-list a — it belongs in global.css, shared by both`,
+        // Matches a rule opening (`.city-list a {`, `.city-list a:hover {`),
+        // not a mention: both files' comments have to name the selector to
+        // explain where it went.
+      ).not.toMatch(/\.city-list a[^{}\n]*\{/);
     }
   });
 

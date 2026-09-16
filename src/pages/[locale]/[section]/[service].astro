@@ -220,7 +220,7 @@ if (kind !== 'service' && kind !== 'city' && kind !== 'blog-post') {
         {serviceCopy.outcomes.map((o) => <li set:html={o} />)}
       </ul>
       <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
-      <p>
+      <p class="page-back">
         <a href={localeUrl(locale, SEGMENTS.services[locale])}>
           &lsaquo; {strings.buttons.backToServices}
         </a>
@@ -232,9 +232,9 @@ if (kind !== 'service' && kind !== 'city' && kind !== 'blog-post') {
     <section class="section wrap">
       <h1>{cityCopy.title}</h1>
       <p class="prose">{cityCopy.summary}</p>
-      <CityBody copy={cityCopy} />
+      <CityBody copy={cityCopy} locale={locale} />
       <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
-      <p>
+      <p class="page-back">
         <a href={localeUrl(locale, SEGMENTS.cityHub[locale])}>&lsaquo; {strings.buttons.backToCities}</a>
       </p>
     </section>

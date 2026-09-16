@@ -1,21 +1,34 @@
 ---
 import type { CityCopy } from '../data/cities';
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
 
 interface Props {
   copy: CityCopy;
+  locale: Locale;
 }
 
-const { copy } = Astro.props;
+const { copy, locale } = Astro.props;
+const strings = t(locale);
 ---
 
 <div class="city-body prose">
-  {
-    copy.body.map((paragraph) =>
-      paragraph.trimStart().startsWith('<!--') ? (
-        <Fragment set:html={paragraph} />
-      ) : (
-        <p>{paragraph}</p>
-      )
-    )
-  }
+  {copy.body.map((paragraph) => <p>{paragraph}</p>)}
+  <h2 class="city-sources__heading">{strings.hub.citySources}</h2>
+  <ul class="city-sources">
+    {copy.sources.map((s) => (
+      <li><a href={s.url} rel="noopener">{s.label}</a></li>
+    ))}
+  </ul>
 </div>
+
+<style>
+  .city-sources__heading {
+    font-size: var(--step-0);
+    margin-top: var(--space-6);
+  }
+  .city-sources {
+    font-size: var(--step--1);
+    padding-left: var(--space-4);
+  }
+</style>
