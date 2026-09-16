@@ -1,0 +1,215 @@
+---
+/**
+ * The photograph and the data strip that open every city page.
+ *
+ * Two jobs that belong together because both are FURNITURE, not prose: the
+ * caption sits in a `<figcaption>` and the strip carries `class="city-strip"`,
+ * and `mainProse()` in `scripts/readability.mjs` drops both before scoring. A
+ * credit rendered as a bare `<p>`, or a strip of two-word rows scored as
+ * sentences, is the same defect that bulleted lists and back-links caused
+ * twice before — see
+ * `docs/solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md`.
+ *
+ * Used by BOTH city routes (`websites/[city].astro` and the localized
+ * `[locale]/[section]/[service].astro` city branch) so the two cannot drift.
+ */
+import type { CitySlug } from '../data/cities';
+import { cityDisplayName } from '../data/cities';
+import { CITY_PHOTOS } from '../data/city-photos';
+import { CITY_FIGURES, FIGURES_QUERIED, barScale } from '../data/city-figures';
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  slug: CitySlug;
+  locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const strings = t(locale);
+const photo = CITY_PHOTOS[slug];
+const figures = CITY_FIGURES[slug];
+const name = cityDisplayName(slug);
+const scale = barScale(figures);
+
+const rows = [
+  { label: strings.hub.cityStripPrimaryCare, value: figures.primaryCare },
+  { label: strings.hub.cityStripDentists, value: figures.dentists },
+  { label: strings.hub.cityStripOptometrists, value: figures.optometrists },
+];
+
+const heading = strings.hub.cityStripHeading.replace('{city}', name);
+
+// The query month, formatted in the reader's own language. Every figure on the
+// strip comes from the same run, so one date covers the panel.
+const BCP47: Record<Locale, string> = {
+  en: 'en-US',
+  es: 'es-419',
+  'zh-hans': 'zh-Hans',
+  'zh-hant': 'zh-Hant',
+};
+const [qy, qm] = FIGURES_QUERIED.split('-').map(Number);
+const queried = new Intl.DateTimeFormat(BCP47[locale], {
+  year: 'numeric',
+  month: 'short',
+  timeZone: 'UTC',
+}).format(new Date(Date.UTC(qy, qm - 1, 1)));
+// One decimal place, always, with a period — matching the prose on this same
+// page in ALL FOUR locales (the Spanish copy deliberately writes 23.0%, not
+// 23,0%, so that `cities.test.ts` can compare every translation's figures
+// against the English digit for digit). Plain interpolation drops the trailing
+// zero, so Alhambra rendered "23%" beside prose reading "23.0%".
+const pct = (n: number) => `${n.toFixed(1)}%`;
+
+const hospitals = figures.hospitals;
+const nearby = figures.nearbyHospitals;
+---
+
+<figure class="city-photo">
+  <img
+    src={photo.src}
+    alt={photo.alt[locale]}
+    width={photo.width}
+    height={photo.height}
+    loading="eager"
+    decoding="async"
+  />
+  {!photo.public && (
+    <figcaption>
+      {strings.hub.cityPhotoLabel}: {photo.author}
+      {photo.licenseUrl && (
+        <>
+          {' · '}
+          <a href={photo.licenseUrl} rel="license noopener" target="_blank">{photo.license}</a>
+        </>
+      )}
+      {photo.shareAlike && <> ({strings.hub.cityPhotoResized})</>}
+    </figcaption>
+  )}
+</figure>
+
+<aside class="city-strip" aria-label={heading}>
+  <p class="city-strip__heading">
+    <span>{heading}</span>
+    <span class="city-strip__when">{queried}</span>
+  </p>
+
+  <dl class="city-strip__bars">
+    {rows.map((r) => (
+      <div class="city-strip__row">
+        <dt>{r.label}</dt>
+        <dd>
+          <span class="city-strip__bar" style={`--pct:${Math.round((r.value / scale) * 100)}%`}></span>
+          <b>{r.value}</b>
+        </dd>
+      </div>
+    ))}
+  </dl>
+
+  <dl class="city-strip__langs">
+    <div class="city-strip__row">
+      <dt>{strings.hub.cityStripAtHome}</dt>
+      <dd><span>{strings.hub.cityStripSpanish}</span> <b>{pct(figures.spanishAtHome)}</b></dd>
+    </div>
+    <div class="city-strip__row">
+      <dt aria-hidden="true"></dt>
+      <dd><span>{strings.hub.cityStripChinese}</span> <b>{pct(figures.chineseAtHome)}</b></dd>
+    </div>
+  </dl>
+
+  <p class="city-strip__hospitals">
+    {hospitals.length > 0 ? (
+      <><b>{strings.hub.cityStripHospitals}:</b> {hospitals.join(' · ')}</>
+    ) : (
+      <b>{strings.hub.cityStripNoHospital}</b>
+    )}
+    {nearby.length > 0 && (
+      <><br /><b>{strings.hub.cityStripNearbyHospitals}:</b> {nearby.join(' · ')}</>
+    )}
+  </p>
+</aside>
+
+<style>
+  .city-photo {
+    margin: 0 0 var(--space-5);
+  }
+  .city-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--color-line);
+    border-radius: 2px;
+  }
+  .city-photo figcaption {
+    font-size: var(--step--1);
+    margin-top: var(--space-2);
+    opacity: 0.75;
+  }
+
+  /* A double rule, matching .label-frame, rather than a card: the strip is a
+     printed panel in the vintage-label language, not a floating object. */
+  .city-strip {
+    border: 3px double currentColor;
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+    font-size: var(--step--1);
+  }
+  .city-strip__heading {
+    font-family: var(--font-display);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    justify-content: space-between;
+  }
+  .city-strip__when {
+    opacity: 0.7;
+  }
+  .city-strip__bars,
+  .city-strip__langs {
+    margin: 0 0 var(--space-3);
+  }
+  .city-strip__row {
+    display: grid;
+    grid-template-columns: minmax(7rem, 11rem) 1fr;
+    gap: var(--space-2) var(--space-3);
+    align-items: center;
+    padding-block: 2px;
+  }
+  .city-strip__row dt {
+    margin: 0;
+  }
+  .city-strip__row dd {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .city-strip__bar {
+    display: block;
+    height: 0.62em;
+    width: var(--pct);
+    min-width: 2px;
+    background: currentColor;
+    opacity: 0.55;
+  }
+  .city-strip__langs .city-strip__row dd {
+    justify-content: flex-start;
+    gap: var(--space-3);
+  }
+  .city-strip__hospitals {
+    margin: 0;
+    padding-top: var(--space-3);
+    border-top: 1px solid currentColor;
+  }
+
+  @media (max-width: 30rem) {
+    .city-strip__row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>

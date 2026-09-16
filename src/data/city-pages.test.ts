@@ -97,3 +97,67 @@ describe.skipIf(!existsSync(DIST))('built city pages', () => {
     }
   });
 });
+
+/**
+ * ── THE PHOTO AND THE DATA STRIP (2026-09-16) ──
+ *
+ * Both are page furniture, and `mainProse()` in `scripts/readability.mjs` drops
+ * them before scoring: the credit because it is a `<figcaption>`, the strip by
+ * its `city-strip` class. That exclusion is only correct while the markers it
+ * keys on still exist, so these are the PAIRED marker tests CLAUDE.md asks for
+ * whenever a `mainProse()` rule is added — the same arrangement `ul.service-area`
+ * and `p.page-back` already have.
+ *
+ * Without them the failure is silent and one-directional: rename the class and
+ * the strip's dozen "Dentists 213" rows quietly rejoin the reading-level sample
+ * as two-word sentences, which is precisely the defect that bulleted lists
+ * caused on the service pages and back-links caused on these ones.
+ */
+describe('city pages: photo and data strip', () => {
+  const built = PUBLISHED.filter((url) => existsSync(file(url)));
+
+  it.skipIf(built.length === 0)('every built city page carries both markers', () => {
+    for (const url of built) {
+      const html = readFileSync(file(url), 'utf8');
+      expect(html, `${url} has no city photo`).toMatch(/<figure class="city-photo"/);
+      expect(html, `${url} has no data strip`).toMatch(/<aside[^>]*class="[^"]*city-strip/);
+    }
+  });
+
+  it.skipIf(built.length === 0)('the strip is an <aside>, which is what its exclusion matches', () => {
+    // It is not a <div> on purpose: the strip nests <div> rows, so the
+    // non-greedy exclusion regex would stop at the first inner </div> and
+    // leave most of the panel in the prose sample.
+    for (const url of built) {
+      const html = readFileSync(file(url), 'utf8');
+      expect(html, `${url}`).not.toMatch(/<div[^>]*class="[^"]*\bcity-strip\b/);
+    }
+  });
+
+  it.skipIf(built.length === 0)('mainProse() removes the strip and the credit entirely', () => {
+    for (const url of built) {
+      const html = readFileSync(file(url), 'utf8');
+      // Re-derive the same way the scorer does, then assert none of the
+      // strip's own vocabulary survives into the scored text.
+      const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
+      const stripped = main
+        .replace(/<aside\b[^>]*\bclass="[^"]*\bcity-strip\b[^"]*"[^>]*>[\s\S]*?<\/aside>/g, ' ')
+        .replace(/<figcaption[\s\S]*?<\/figcaption>/g, ' ');
+      expect(stripped, `${url} leaks the strip into scored prose`).not.toMatch(/city-strip/);
+      expect(stripped, `${url} leaks the credit into scored prose`).not.toMatch(/figcaption/);
+    }
+  });
+
+  it.skipIf(built.length === 0)('the credit names the photographer and links the license where one is owed', () => {
+    for (const url of built) {
+      const html = readFileSync(file(url), 'utf8');
+      const cap = html.match(/<figcaption[^>]*>([\s\S]*?)<\/figcaption>/)?.[1];
+      if (!cap) continue; // public-domain and CC0 pages render no caption at all
+      const text = cap.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      expect(text.length, `${url} has an empty credit`).toBeGreaterThan(4);
+      expect(cap, `${url} credit does not link a license`).toMatch(
+        /href="https:\/\/creativecommons\.org\/licenses\//
+      );
+    }
+  });
+});

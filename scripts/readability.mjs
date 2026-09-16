@@ -591,6 +591,18 @@ export function mainProse(html) {
   t = t.replace(/<ul\b[^>]*\bclass="[^"]*\bservice-area\b[^"]*"[^>]*>[\s\S]*?<\/ul>/g, ' ');
   // A city page's source list is citations, not prose (2026-09-15).
   t = t.replace(/<ul\b[^>]*\bclass="[^"]*\bcity-sources\b[^"]*"[^>]*>[\s\S]*?<\/ul>/g, ' ');
+  // The city data strip is a table of figures wearing a panel, not prose
+  // (2026-09-16). Every row is a label and a number — "Dentists 213",
+  // "Spanish 24.2%" — so scored as prose it contributes a dozen two-word
+  // sentences per page and drags the page toward zero. Exactly the defect
+  // `ul.service-area` and the back-links caused, which is why it is excluded
+  // in the same change that introduced it rather than after a score moved.
+  // The photo credit needs no rule of its own: it is a <figcaption>, dropped
+  // above, and that is the whole reason it is not a bare <p>.
+  // It is an <aside> and not a <div> for exactly this reason: the strip nests
+  // <div> rows, so a non-greedy /<div ...>[\s\S]*?<\/div>/ would stop at the
+  // first inner </div> and leave most of the panel in the sample.
+  t = t.replace(/<aside\b[^>]*\bclass="[^"]*\bcity-strip\b[^"]*"[^>]*>[\s\S]*?<\/aside>/g, ' ');
   // The back-link at the foot of a service or city page — "‹ All cities",
   // "‹ Back to services" and their translations. Interface text, the same
   // category as the nav, the buttons and the blog's own `a.post__back`

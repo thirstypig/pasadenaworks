@@ -72,9 +72,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 96 files. The build itself
+                     #   AND .ts, tina/ included. 100 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 389 across 30 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 433 across 31 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -208,7 +208,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate covered 85 files then (96 as of 2026-09-15) and reports 0 errors.
+excluded; the gate covered 85 files then (100 as of 2026-09-16) and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -514,6 +514,24 @@ broken a `kind` literal and rebuilt — producing real evidence for a bug that w
 the agent's experiment, not the repo's state. It looked exactly like a genuine
 finding. When running `/ce:review` with parallel agents, re-verify anything
 `dist/`-based *after* they finish, or build into a separate directory.
+
+**And the same shared tree has a WRITING form, which is worse: `git add -A`
+commits whatever a peer agent is halfway through.** On 2026-09-15 two agents
+were working this checkout at once — one finishing the readability scorer, one
+mid-task on the city hubs. The first staged everything, and swept up the
+second's `src/data/cities.test.ts` (modified) and `src/data/city-pages.test.ts`
+(new, untracked) — files with nothing to do with its task. It noticed, backed
+out with `git reset --soft HEAD~1` plus a selective `git restore --staged`, and
+re-committed; verified afterwards with `git log --oneline --all -- <path>`
+returning empty, so the file had never been in any commit. Nothing was lost,
+but only because the agent checked its own `git show --stat` before moving on.
+
+The reading form corrupts *evidence*; this one corrupts *history*, and a
+squash-merge would have buried it. **Stage explicit paths — `git add <path> …` —
+never `-A` or `.`, whenever anything else might be working this tree**, and read
+`git show --stat HEAD` after committing rather than trusting the command. The
+existing `git status` / `ListAgents` / worktree checks tell you a peer exists;
+they do not stop your own staging from taking their work.
 
 **A leftover worktree makes the test suite count itself twice.** A git worktree
 under `.claude/worktrees/` is a full second checkout, so every `*.test.ts` in it
