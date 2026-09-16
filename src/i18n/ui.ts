@@ -113,6 +113,8 @@ export interface UIStrings {
     cityStripPrimaryCare: string;
     cityStripDentists: string;
     cityStripOptometrists: string;
+    cityStripAcupuncturists: string;
+    cityStripPhysicalTherapists: string;
     /** Label above the two language shares. */
     cityStripAtHome: string;
     cityStripSpanish: string;
@@ -192,6 +194,8 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripPrimaryCare: 'Primary care',
       cityStripDentists: 'Dentists',
       cityStripOptometrists: 'Optometrists',
+      cityStripAcupuncturists: 'Acupuncturists',
+      cityStripPhysicalTherapists: 'Physical therapists',
       cityStripAtHome: 'Spoken at home',
       cityStripSpanish: 'Spanish',
       cityStripChinese: 'Chinese',
@@ -279,6 +283,8 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripPrimaryCare: 'Medicina general',
       cityStripDentists: 'Dentistas',
       cityStripOptometrists: 'Optometristas',
+      cityStripAcupuncturists: 'Acupunturistas',
+      cityStripPhysicalTherapists: 'Fisioterapeutas',
       cityStripAtHome: 'Se habla en casa',
       cityStripSpanish: 'Español',
       cityStripChinese: 'Chino',
@@ -359,6 +365,8 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripPrimaryCare: '基层医疗',
       cityStripDentists: '牙医',
       cityStripOptometrists: '验光师',
+      cityStripAcupuncturists: '针灸师',
+      cityStripPhysicalTherapists: '物理治疗师',
       cityStripAtHome: '在家使用的语言',
       cityStripSpanish: '西班牙语',
       cityStripChinese: '中文',
@@ -431,6 +439,8 @@ export const ui: Record<Locale, UIStrings> = {
       cityStripPrimaryCare: '基層醫療',
       cityStripDentists: '牙醫',
       cityStripOptometrists: '驗光師',
+      cityStripAcupuncturists: '針灸師',
+      cityStripPhysicalTherapists: '物理治療師',
       cityStripAtHome: '在家使用的語言',
       cityStripSpanish: '西班牙文',
       cityStripChinese: '中文',

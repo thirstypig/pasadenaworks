@@ -41,7 +41,35 @@ export const GROUPS = {
     queries: ['Family Medicine', 'Internal Medicine'],
     matches: (t) => t.code === '207Q00000X' || t.code === '207R00000X',
   },
+  // Added 2026-09-16, when the city-page data strip went from three clinic
+  // types to five. Both are independent owner-run practices in this market —
+  // the customer this site is written for — and acupuncture turned out to be
+  // the second largest clinic type in Alhambra, San Gabriel and Monterey Park,
+  // which is the same Chinese-speaking population the pages already discuss.
+  acupuncturists: { queries: ['Acupuncturist'], matches: (t) => t.code === '171100000X' },
+  physicalTherapists: { queries: ['Physical Therapist'], matches: (t) => t.code === '225100000X' },
 };
+
+/**
+ * WHY THE STRIP SHOWS THESE FIVE AND NOT A PER-CITY TOP FIVE.
+ *
+ * A genuine top five, recomputed per city, drops OPTOMETRISTS from five of the
+ * ten pages — Pasadena, Altadena, South Pasadena, Alhambra and San Marino —
+ * because chiropractors and psychologists outnumber them there. Eye care is one
+ * of the three practice types this site sells to, so a page that silently stops
+ * counting optometrists is worse for the business than a slightly less
+ * interesting panel. The five are fixed; each page sorts them by size.
+ *
+ * ALSO: A SPECIALTY IS ONLY COUNTABLE THIS WAY IF IT HAS ONE GENERALIST CODE.
+ * Obstetrics & gynecology and pediatrics were both probed and rejected on
+ * 2026-09-16. Their practitioners scatter across subspecialty taxonomies
+ * (207VM0101X Maternal & Fetal Medicine, 2080A0000X Adolescent Medicine, and a
+ * dozen more), so filtering to the generalist code returns 0 OB/GYNs and 3
+ * pediatricians in Pasadena — confidently wrong numbers, which is the one thing
+ * a sourced city page must never print. Counting the subspecialties instead
+ * would mean deciding which of them are "a clinic", a judgment the registry
+ * cannot support. Do not add a specialty here without running that probe first.
+ */
 
 export const primaryTaxonomy = (p) => p.taxonomies.find((t) => t.primary) ?? null;
 

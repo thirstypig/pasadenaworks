@@ -28,6 +28,9 @@ export interface CityFigures {
   optometrists: number;
   /** Family + internal medicine, generalist codes only (no subspecialists). */
   primaryCare: number;
+  /** Added 2026-09-16, queried one day after the three above. */
+  acupuncturists: number;
+  physicalTherapists: number;
   /** ACS 2024 5-year, table C16001, percent of residents aged 5+. */
   spanishAtHome: number;
   chineseAtHome: number;
@@ -45,6 +48,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 213,
     optometrists: 93,
     primaryCare: 227,
+    acupuncturists: 125,
+    physicalTherapists: 189,
     spanishAtHome: 24.2,
     chineseAtHome: 5.5,
     hospitals: ['Huntington Hospital'],
@@ -54,6 +59,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 14,
     optometrists: 1,
     primaryCare: 1,
+    acupuncturists: 3,
+    physicalTherapists: 6,
     spanishAtHome: 21.3,
     chineseAtHome: 1.7,
     hospitals: [],
@@ -63,6 +70,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 45,
     optometrists: 12,
     primaryCare: 11,
+    acupuncturists: 30,
+    physicalTherapists: 24,
     spanishAtHome: 11.6,
     chineseAtHome: 14.7,
     hospitals: [],
@@ -72,6 +81,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 305,
     optometrists: 66,
     primaryCare: 237,
+    acupuncturists: 66,
+    physicalTherapists: 143,
     spanishAtHome: 13.7,
     chineseAtHome: 0.9,
     hospitals: [
@@ -85,6 +96,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 91,
     optometrists: 16,
     primaryCare: 68,
+    acupuncturists: 79,
+    physicalTherapists: 56,
     spanishAtHome: 23.0,
     chineseAtHome: 33.0,
     hospitals: ['Alhambra Hospital Medical Center'],
@@ -98,6 +111,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 144,
     optometrists: 35,
     primaryCare: 100,
+    acupuncturists: 60,
+    physicalTherapists: 83,
     spanishAtHome: 9.3,
     chineseAtHome: 37.6,
     hospitals: ['USC Arcadia Hospital'],
@@ -107,6 +122,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 25,
     optometrists: 15,
     primaryCare: 13,
+    acupuncturists: 9,
+    physicalTherapists: 14,
     spanishAtHome: 30.1,
     chineseAtHome: 6.7,
     hospitals: ['Monrovia Memorial Hospital'],
@@ -116,6 +133,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 18,
     optometrists: 2,
     primaryCare: 17,
+    acupuncturists: 13,
+    physicalTherapists: 5,
     spanishAtHome: 3.2,
     chineseAtHome: 43.8,
     hospitals: [],
@@ -125,6 +144,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 69,
     optometrists: 27,
     primaryCare: 62,
+    acupuncturists: 65,
+    physicalTherapists: 15,
     spanishAtHome: 16.4,
     chineseAtHome: 42.1,
     hospitals: ['Garfield Medical Center', 'Monterey Park Hospital'],
@@ -134,6 +155,8 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
     dentists: 106,
     optometrists: 31,
     primaryCare: 47,
+    acupuncturists: 72,
+    physicalTherapists: 22,
     spanishAtHome: 15.1,
     chineseAtHome: 40.1,
     hospitals: ['San Gabriel Valley Medical Center'],
@@ -141,7 +164,28 @@ export const CITY_FIGURES: Record<CitySlug, CityFigures> = {
   },
 };
 
-/** Largest clinician count on a page, so the three bars share one scale. */
+/**
+ * The five clinic types the strip shows, largest first on each page.
+ *
+ * FIXED, not a per-city top five. Recomputing the top five per city drops
+ * optometrists from five of the ten pages, because chiropractors and
+ * psychologists outnumber them in Pasadena, Altadena, South Pasadena, Alhambra
+ * and San Marino. Eye care is one of the three practice types this site sells
+ * to, so a page that quietly stops counting optometrists costs more than a
+ * marginally more interesting panel. See `scripts/city-data.mjs` for why
+ * obstetrics and pediatrics are not on this list.
+ */
+export const CLINIC_TYPES = [
+  'primaryCare',
+  'dentists',
+  'optometrists',
+  'acupuncturists',
+  'physicalTherapists',
+] as const;
+
+export type ClinicType = (typeof CLINIC_TYPES)[number];
+
+/** Largest clinician count on a page, so all five bars share one scale. */
 export function barScale(f: CityFigures): number {
-  return Math.max(f.dentists, f.optometrists, f.primaryCare);
+  return Math.max(...CLINIC_TYPES.map((k) => f[k]));
 }

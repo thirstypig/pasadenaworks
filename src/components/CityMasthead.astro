@@ -16,7 +16,7 @@
 import type { CitySlug } from '../data/cities';
 import { cityDisplayName } from '../data/cities';
 import { CITY_PHOTOS } from '../data/city-photos';
-import { CITY_FIGURES, FIGURES_QUERIED, barScale } from '../data/city-figures';
+import { CITY_FIGURES, FIGURES_QUERIED, CLINIC_TYPES, barScale } from '../data/city-figures';
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/utils';
 
@@ -32,11 +32,20 @@ const figures = CITY_FIGURES[slug];
 const name = cityDisplayName(slug);
 const scale = barScale(figures);
 
-const rows = [
-  { label: strings.hub.cityStripPrimaryCare, value: figures.primaryCare },
-  { label: strings.hub.cityStripDentists, value: figures.dentists },
-  { label: strings.hub.cityStripOptometrists, value: figures.optometrists },
-];
+// Five fixed clinic types, largest first on each page — so the panel leads
+// with whatever this particular city actually has most of. Sorting rather than
+// fixing the order is what makes ten pages read differently from one template.
+const LABELS = {
+  primaryCare: strings.hub.cityStripPrimaryCare,
+  dentists: strings.hub.cityStripDentists,
+  optometrists: strings.hub.cityStripOptometrists,
+  acupuncturists: strings.hub.cityStripAcupuncturists,
+  physicalTherapists: strings.hub.cityStripPhysicalTherapists,
+} as const;
+
+const rows = CLINIC_TYPES.map((key) => ({ label: LABELS[key], value: figures[key] })).sort(
+  (a, b) => b.value - a.value
+);
 
 const heading = strings.hub.cityStripHeading.replace('{city}', name);
 

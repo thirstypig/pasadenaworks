@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { CITY_FIGURES, FIGURES_QUERIED, barScale } from './city-figures';
+import { CITY_FIGURES, FIGURES_QUERIED, CLINIC_TYPES, barScale } from './city-figures';
 import { CITY_PHOTOS } from './city-photos';
 import { CITY_SLUGS, type CitySlug } from './cities';
 import { LOCALES } from '../i18n/ui';
@@ -64,6 +64,9 @@ describe('city figures match the sources spec', () => {
     expect(bolded).toContain(f.dentists);
     expect(bolded).toContain(f.optometrists);
     expect(bolded).toContain(f.primaryCare);
+    // Added 2026-09-16, recorded in the spec under their own query date.
+    expect(bolded).toContain(f.acupuncturists);
+    expect(bolded).toContain(f.physicalTherapists);
   });
 
   it.each(CITY_SLUGS)('%s: language shares are the spec values', (slug) => {
@@ -96,10 +99,42 @@ describe('city figures match the sources spec', () => {
     expect(specText).toContain('2026-09-15');
   });
 
-  it('bar scale is the largest of the three counts, so bars share one scale', () => {
+  it('bar scale is the largest of the five counts, so bars share one scale', () => {
     const f = CITY_FIGURES.pasadena;
     expect(barScale(f)).toBe(227);
-    expect(barScale(f)).toBeGreaterThanOrEqual(f.dentists);
+    for (const k of CLINIC_TYPES) expect(barScale(f)).toBeGreaterThanOrEqual(f[k]);
+  });
+
+  it('the strip shows a FIXED five, not a per-city top five', () => {
+    // A real top five drops optometrists from five of the ten pages, and eye
+    // care is one of the three practice types this site sells to. This asserts
+    // the intent rather than the rendering: if someone switches to a computed
+    // top five, this is the test that should stop them and explain why.
+    expect([...CLINIC_TYPES]).toEqual([
+      'primaryCare',
+      'dentists',
+      'optometrists',
+      'acupuncturists',
+      'physicalTherapists',
+    ]);
+    for (const slug of CITY_SLUGS) {
+      const f = CITY_FIGURES[slug as CitySlug];
+      for (const k of CLINIC_TYPES) {
+        expect(Number.isInteger(f[k]), `${slug}.${k} is not a whole count`).toBe(true);
+        expect(f[k], `${slug}.${k} is negative`).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it('acupuncturists outnumber optometrists in the Chinese-speaking cities', () => {
+    // Not arithmetic trivia: this is the finding that justified adding the two
+    // new types at all, and it is the thing that would quietly disappear if the
+    // figures were ever refreshed carelessly or the labels swapped.
+    for (const slug of ['alhambra', 'san-gabriel', 'monterey-park'] as CitySlug[]) {
+      const f = CITY_FIGURES[slug];
+      expect(f.acupuncturists, slug).toBeGreaterThan(f.optometrists);
+      expect(f.chineseAtHome, slug).toBeGreaterThan(30);
+    }
   });
 });
 
