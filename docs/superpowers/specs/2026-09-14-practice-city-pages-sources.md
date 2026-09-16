@@ -27,6 +27,21 @@ date.
     subspecialists, filed under the same top-level taxonomy, are excluded.
   - Providers are de-duplicated by NPI number across the two primary-care
     queries.
+- **Two more clinic types, added 2026-09-16** (`acupuncturists`,
+  `physicalTherapists`), when the city-page data strip went from three types to
+  five. Same method as above — NPI v2.1, `LOCATION`, re-filtered by PRIMARY
+  taxonomy — against the single generalist code for each: Acupuncturist
+  `171100000X`, Physical Therapist `225100000X`. **Queried 2026-09-16**, one day
+  after the rest of this file; the strip reports the month, which covers both.
+  - **Obstetrics & gynecology and pediatrics were probed the same day and
+    rejected.** Neither has a usable single generalist code: practitioners
+    scatter across subspecialty taxonomies (`207VM0101X` Maternal & Fetal
+    Medicine, `207VE0102X` Reproductive Endocrinology, `2080A0000X` Adolescent
+    Medicine and more), so a generalist-code filter returns **0 OB/GYNs and 3
+    pediatricians in Pasadena** — numbers that are confidently wrong rather than
+    merely imprecise. Counting the subspecialties instead would mean deciding
+    which of them constitute "a clinic", a judgment the registry cannot support.
+    Recorded here so the next person does not re-derive the same dead end.
 - **Hospitals.** California HCAI licensed facility list (ArcGIS
   `facilitylist` feature service), `LicenseType='General Acute Care' AND
   FacilityStatus='A'`, `City` in the city or an adjoining one from
@@ -64,12 +79,14 @@ date.
 - Dentists: **213** practising in Pasadena (NPI, LOCATION, primary taxonomy, queried 2026-09-15)
 - Optometrists: **93** (same query, 2026-09-15)
 - Primary-care physicians (family + internal medicine, generalist codes): **227** (2026-09-15)
+- Acupuncturists: **125**; physical therapists: **189** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **Huntington Hospital** (HCAI facility #11733, General Acute Care, active). A second HCAI record, "HH-CSHS Terri Jerry Kohl Medical Pavilion" (#33832), is a separately licensed building on Huntington's own campus, not a second hospital.
 - Spanish at home (5+): **24.2%**; Chinese: **5.5%** (ACS 2024 5-year, table C16001, place `16000US0656000` → "Pasadena, CA", queried 2026-09-15)
 
 ## Altadena
 
 - Dentists: **14**; optometrists: **1**; primary-care physicians: **1** (NPI, 2026-09-15)
+- Acupuncturists: **3**; physical therapists: **6** (NPI, primary taxonomy, 2026-09-16)
 - No general acute care hospital in Altadena. Nearby: **Huntington Hospital**, Pasadena (HCAI #11733; its campus building #33832 is the same hospital, not counted separately)
 - Spanish at home (5+): **21.3%**; Chinese: **1.7%** (ACS 2024 5-year, place `16000US0601290` → "Altadena CDP, CA", queried 2026-09-15)
 - See the Eaton Fire section below — this is the one page where fire recovery is addressed.
@@ -77,18 +94,21 @@ date.
 ## South Pasadena
 
 - Dentists: **45**; optometrists: **12**; primary-care physicians: **11** (NPI, 2026-09-15)
+- Acupuncturists: **30**; physical therapists: **24** (NPI, primary taxonomy, 2026-09-16)
 - No general acute care hospital in South Pasadena. Nearby: **Alhambra Hospital Medical Center**, Alhambra (HCAI #11386); **Huntington Hospital**, Pasadena (HCAI #11733)
 - Spanish at home (5+): **11.6%**; Chinese: **14.7%** (ACS 2024 5-year, place `16000US0673220` → "South Pasadena, CA", queried 2026-09-15)
 
 ## Glendale
 
 - Dentists: **305**; optometrists: **66**; primary-care physicians: **237** (NPI, 2026-09-15)
+- Acupuncturists: **66**; physical therapists: **143** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **Adventist Health Glendale** (HCAI #11668), **USC Verdugo Hills Hospital** (HCAI #12551), **Glendale Memorial Hospital and Health Center** (HCAI #11844) — three distinct, active general acute care hospitals
 - Spanish at home (5+): **13.7%**; Chinese: **0.9%** (ACS 2024 5-year, place `16000US0630000` → "Glendale, CA", queried 2026-09-15)
 
 ## Alhambra
 
 - Dentists: **91**; optometrists: **16**; primary-care physicians: **68** (NPI, 2026-09-15)
+- Acupuncturists: **79**; physical therapists: **56** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **Alhambra Hospital Medical Center** (HCAI #11386)
 - Nearby: **San Gabriel Valley Medical Center**, San Gabriel (HCAI #11548); **Garfield Medical Center**, Monterey Park (HCAI #11658); **Monterey Park Hospital**, Monterey Park (HCAI #12878)
 - Spanish at home (5+): **23.0%**; Chinese: **33.0%** (ACS 2024 5-year, place `16000US0600884` → "Alhambra, CA", queried 2026-09-15)
@@ -96,6 +116,7 @@ date.
 ## Arcadia
 
 - Dentists: **144**; optometrists: **35**; primary-care physicians: **100** (NPI, 2026-09-15)
+- Acupuncturists: **60**; physical therapists: **83** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **USC Arcadia Hospital** (HCAI #11858)
 - Nearby: **Monrovia Memorial Hospital**, Monrovia (HCAI #11874)
 - Spanish at home (5+): **9.3%**; Chinese: **37.6%** (ACS 2024 5-year, place `16000US0602462` → "Arcadia, CA", queried 2026-09-15)
@@ -103,6 +124,7 @@ date.
 ## Monrovia
 
 - Dentists: **25**; optometrists: **15**; primary-care physicians: **13** (NPI, 2026-09-15). An earlier same-day probe (recorded in the task brief) found 26 dentists with the LOCATION filter; the registry is a live database and the count moved by one between that probe and this query — 25 is what this run's query returned and is the number to use.
+- Acupuncturists: **9**; physical therapists: **14** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **Monrovia Memorial Hospital** (HCAI #11874)
 - Nearby: **USC Arcadia Hospital**, Arcadia (HCAI #11858)
 - Spanish at home (5+): **30.1%**; Chinese: **6.7%** (ACS 2024 5-year, place `16000US0648648` → "Monrovia, CA", queried 2026-09-15)
@@ -110,12 +132,14 @@ date.
 ## San Marino
 
 - Dentists: **18**; optometrists: **2**; primary-care physicians: **17** (NPI, 2026-09-15)
+- Acupuncturists: **13**; physical therapists: **5** (NPI, primary taxonomy, 2026-09-16)
 - No general acute care hospital in San Marino. Nearby: **San Gabriel Valley Medical Center**, San Gabriel (HCAI #11548); **Huntington Hospital**, Pasadena (HCAI #11733)
 - Spanish at home (5+): **3.2%**; Chinese: **43.8%** (ACS 2024 5-year, place `16000US0668224` → "San Marino, CA", queried 2026-09-15)
 
 ## Monterey Park
 
 - Dentists: **69**; optometrists: **27**; primary-care physicians: **62** (NPI, 2026-09-15)
+- Acupuncturists: **65**; physical therapists: **15** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **Garfield Medical Center** (HCAI #11658), **Monterey Park Hospital** (HCAI #12878) — two distinct, active general acute care hospitals
 - Nearby: **Alhambra Hospital Medical Center**, Alhambra (HCAI #11386)
 - Spanish at home (5+): **16.4%**; Chinese: **42.1%** (ACS 2024 5-year, place `16000US0648914` → "Monterey Park, CA", queried 2026-09-15). This is the place ID from the design spec's re-derived table; an earlier attempt at `16000US0648816` returned Montebello and was rejected.
@@ -123,6 +147,7 @@ date.
 ## San Gabriel
 
 - Dentists: **106**; optometrists: **31**; primary-care physicians: **47** (NPI, 2026-09-15)
+- Acupuncturists: **72**; physical therapists: **22** (NPI, primary taxonomy, 2026-09-16)
 - Hospitals in the city: **San Gabriel Valley Medical Center** (HCAI #11548)
 - Nearby: **Alhambra Hospital Medical Center**, Alhambra (HCAI #11386)
 - Spanish at home (5+): **15.1%**; Chinese: **40.1%** (ACS 2024 5-year, place `16000US0667042` → "San Gabriel, CA", queried 2026-09-15)
