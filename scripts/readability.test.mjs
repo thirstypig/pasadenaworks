@@ -856,6 +856,18 @@ describe('rendered-page extraction', () => {
    * src/styles/display-glyphs.test.ts, which requires it because ← is outside
    * every Anton subset. So: inside <main>, after removing the two classes that
    * mainProse() excludes, no chevron may remain.
+   *
+   * THE CLAIM ABOVE IS EXACTLY THAT WIDE AND NO WIDER. The sweep is keyed on
+   * the chevron, so what it catches is a new page type whose back-link CARRIES
+   * ONE. A back-link written as a bare "Volver a servicios", with no chevron,
+   * would be neither excluded by mainProse() nor detected here — it would land
+   * in the score as a two-word sentence, silently, exactly as these did. That
+   * is the same "a sample, not an inventory" caveat the script-purity table and
+   * the brand list in this file carry, and it is acceptable for the same
+   * reason: the glyph is pinned as the house marker by a test of its own, so
+   * dropping it is a visible, deliberate act rather than a slip. If the house
+   * style ever stops requiring it, this sweep stops covering the new spelling
+   * and needs a second key.
    */
   // Astro preserves the source entity, so a built page carries `&lsaquo;`
   // rather than the literal character. Match either, or this check sweeps the
@@ -875,7 +887,7 @@ describe('rendered-page extraction', () => {
     return out;
   };
 
-  it.skipIf(!existsSync(DIST_DIR))('leaves no unexcluded back-link inside <main> on any built page', () => {
+  it.skipIf(!existsSync(DIST_DIR))('leaves no unexcluded chevron back-link inside <main> on any built page', () => {
     const offenders = [];
     let carried = 0;
     const locales = new Set();
