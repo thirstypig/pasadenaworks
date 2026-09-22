@@ -88,7 +88,7 @@ npm run test         # tests (vitest, 458 across 35 files, measured locally afte
                      #   caught only the spellings that announce themselves — the
                      #   hero-credit link-needs-a-name predicate, and the Unsplash
                      #   script's slug/traversal validation and UTM-fragment handling,
-                     #   the retired-service redirects, the service copy's parity
+                     #   the retired-service redirects, the blog closing blurb, the service copy's parity
                      #   across locales, the LocalBusiness areaServed, and the
                      #   city pages — their four title patterns, figure and
                      #   source-URL parity across locales, the one-name-per-city
@@ -263,6 +263,14 @@ src/
 Each carries the reproduction, two or three options with trade-offs, and a work
 log. Written by `/ce:review`; read before starting work so a known issue isn't
 rediscovered.
+
+**Every blog post closes with the same blurb.** `EndCta.astro` renders
+`strings.endCta` — a heading, two sentences naming who Pasadena Works is and
+that the practice alone pays us, the pillar's service link, then Book a free
+call and the telephone number. One copy in `ui.ts`, not 272 (68 posts x 4
+locales). The box is furniture and `mainProse()` drops it; `src/i18n/
+end-cta.test.ts` checks that on every built post, and records what that check
+is proven to catch.
 
 **Copy changes go in `src/data/`, not in page templates.** If you find yourself
 editing prose inside an `.astro` file, check whether it belongs in a data file

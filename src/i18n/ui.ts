@@ -79,7 +79,15 @@ export interface UIStrings {
   };
   endCta: {
     heading: string;
-    cta: string;
+    /** The two sentences that close every blog post, identical on all 68.
+     *  The posts still address small businesses generally, so the heading
+     *  bridges to a practice owner rather than pretending otherwise. Written
+     *  once here, not per post: 68 posts x 4 locales is 272 pages. */
+    blurb: string;
+    /** Label before the link to the service matching the post's pillar.
+     *  It carries its own punctuation, because Chinese takes the full-width
+     *  colon (U+FF1A) after Han characters and Latin takes the ASCII one. */
+    related: string;
   };
   form: {
     name: string;
@@ -179,8 +187,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToCities: 'All cities',
     },
     endCta: {
-      heading: 'Ready to fix this?',
-      cta: 'See how it works',
+      heading: 'If you run a practice',
+      blurb:
+        'Pasadena Works helps independent medical, dental, and eye care practices in the San Gabriel Valley get more patients and run a calmer front office. We are paid by the practice and nobody else, so we will tell you when something is not worth what it costs.',
+      related: 'Related:',
     },
     form: {
       name: 'Name',
@@ -269,8 +279,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToCities: 'Todas las ciudades',
     },
     endCta: {
-      heading: '¿Listo para arreglar esto?',
-      cta: 'Vea cómo funciona',
+      heading: 'Si usted dirige un consultorio',
+      blurb:
+        'Pasadena Works ayuda a los consultorios independientes de medicina, odontología y optometría del Valle de San Gabriel a atraer más pacientes y a tener una recepción más tranquila. Nos paga el consultorio y nadie más, así que le diremos cuando algo no vale lo que cuesta.',
+      related: 'Relacionado:',
     },
     form: {
       name: 'Nombre',
@@ -352,8 +364,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToCities: '所有城市',
     },
     endCta: {
-      heading: '准备好解决这个问题了吗？',
-      cta: '看看怎么做',
+      heading: '如果您经营一家诊所',
+      blurb:
+        'Pasadena Works 协助圣盖博谷的独立医疗、牙科与眼科诊所吸引更多患者，并让前台的运转更为从容。我们只收取诊所的报酬，别无他人，因此若某件事并不值得花这笔钱，我们会如实相告。',
+      related: '相关服务：',
     },
     form: {
       name: '姓名',
@@ -427,8 +441,10 @@ export const ui: Record<Locale, UIStrings> = {
       backToCities: '所有城市',
     },
     endCta: {
-      heading: '準備好解決這個問題了嗎？',
-      cta: '看看怎麼做',
+      heading: '如果您經營一家診所',
+      blurb:
+        'Pasadena Works 協助聖蓋博谷的獨立醫療、牙科與眼科診所吸引更多病患，並讓櫃檯的運作更為從容。我們只收取診所的報酬，別無他人，因此若某件事並不值得花這筆錢，我們會如實相告。',
+      related: '相關服務：',
     },
     form: {
       name: '姓名',
