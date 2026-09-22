@@ -496,14 +496,18 @@ Read this before re-investigating anything that sounds already-handled.
   the copy in `src/data/services.ts` under id `transition`. It describes three
   endings (sell, hand on, close) and the operational preparation for each, and
   says plainly that the business does not value practices, find or negotiate
-  with buyers, or give legal or tax advice. Two guards in
-  `src/data/services.test.ts` keep it there: no broker or introduction wording
-  in any locale, and exactly two outbound links, the California records-retention
-  statutes (Bus. & Prof. Code §2266 for physicians, §3007 for optometrists),
-  each stated with its "at least" minimum. The built pages carry all four
+  with buyers, or give legal or tax advice. It lists the regulations that
+  govern the doctor's profession for their attorney to confirm, rather than
+  promising to check them. Three tests in `src/data/services.test.ts` keep it
+  there, in every locale: no broker wording (`brok(er|ing)` in English, and
+  all four Chinese broker words against both Chinese locales), no introduction
+  or referral wording, and a body whose outbound links are exactly the two
+  California records-retention statutes, Bus. & Prof. Code §2266 for physicians
+  and §3007 for optometrists. The copy states each with its "at least"
+  minimum; no test checks that wording. The built pages carry all four
   hreflang alternates plus `x-default`, and the homepage's `LocalBusiness`
   offer catalog names the service. Built-page reading level: en FK 13.1, es
-  F-H 51, zh-hans and zh-hant register 0.6, all in band. English first measured
+  F-H 53, zh-hans and zh-hant register 0.6, all in band. English first measured
   11.2 and Spanish 57, and both were raised by hand with more precise words and
   one real subordination in the sale item, measured after nearly every edit, with every
   claim and negation kept. The service grid now holds four cards: one row of
