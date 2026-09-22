@@ -136,6 +136,23 @@ describe.skipIf(!existsSync(DIST))('rendered navigation stays inside its locale'
     expect(missing).toEqual([]);
   });
 
+  it('links every locale to its own About page from the header and footer', () => {
+    // Positively stated, for the same reason as the blog check above: it must
+    // reach THIS locale's page, not merely avoid English. English is checked
+    // too — it is the one locale the check above skips.
+    const missing: string[] = [];
+    for (const locale of LOCALES) {
+      const home = locale === 'en' ? 'index.html' : `${locale}/index.html`;
+      const html = readFileSync(join(DIST, home), 'utf-8');
+      const expected = locale === 'en' ? `/${SEGMENTS.about.en}/` : `/${locale}/${SEGMENTS.about[locale]}/`;
+      const header = html.match(/<header[\s\S]*?<\/header>/)?.[0] ?? '';
+      const footer = html.match(/<footer[\s\S]*?<\/footer>/)?.[0] ?? '';
+      if (!header.includes(`href="${expected}"`)) missing.push(`${locale} header: ${expected}`);
+      if (!footer.includes(`href="${expected}"`)) missing.push(`${locale} footer: ${expected}`);
+    }
+    expect(missing).toEqual([]);
+  });
+
   it('gives the 404 page no canonical, because /404/ does not exist', () => {
     // Astro emits dist/404.html, not dist/404/index.html, so a canonical at
     // /404/ pointed at a URL that 404s — the only such canonical in the build.

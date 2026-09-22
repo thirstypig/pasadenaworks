@@ -72,9 +72,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 100 files. The build itself
+                     #   AND .ts, tina/ included. 108 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 444 across 32 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 452 across 34 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -91,13 +91,15 @@ npm run test         # tests (vitest, 444 across 32 files) — i18n/hreflang, re
                      #   city pages — their four title patterns, figure and
                      #   source-URL parity across locales, the one-name-per-city
                      #   tripwire, and the built-page guards in
-                     #   src/data/city-pages.test.ts.
-                     #   43 of these need dist/ and SKIP without it — the rendered
-                     #   nav-link checks, the og:image, stylesheet and JSON-LD
-                     #   checks, the fourteen built-redirect checks, the four
-                     #   built-city-page checks, and the readability
+                     #   src/data/city-pages.test.ts, and the About page — its
+                     #   copy in every locale and its built pages' hreflang set.
+                     #   46 of these need dist/ and SKIP without it — the rendered
+                     #   nav-link checks (About links included), the og:image,
+                     #   stylesheet and JSON-LD checks, the fourteen
+                     #   built-redirect checks, the four built-city-page checks,
+                     #   the two built-About-page checks, and the readability
                      #   cross-checks — which is why ci.yml re-runs the whole suite
-                     #   after the build. deploy.yml reports 44 skipped, not 43:
+                     #   after the build. deploy.yml reports 47 skipped, not 46:
                      #   it tests BEFORE `npx tinacms build`, so
                      #   tina/__generated__/_schema.json is absent and the lock
                      #   test skips too — ci.yml regenerates that file first, so
@@ -208,7 +210,7 @@ real content from shipping to fix nothing.
 while all 28 components, layouts and pages were outside the gate while ~94
 minified vendor bundles under `public/admin` were inside it. That is where every
 unsafe cast lives. `astro check` was added 2026-09-03 and `public/admin`
-excluded; the gate covered 85 files then (100 as of 2026-09-16) and reports 0 errors.
+excluded; the gate covered 85 files then (108 as of 2026-09-21) and reports 0 errors.
 
 **What that buys, concretely:** the `kind` discriminants on both dual-purpose
 routes are now real discriminated unions (`RouteProps`, `HubProps`) rather than
@@ -237,6 +239,7 @@ src/
 │   ├── cities.ts     ← city list, CityCopy shape, cityLocales() + cityDisplayName()
 │   ├── city-copy/    ← the city page prose itself, one module per locale (en, es, zh-hans, zh-hant)
 │   ├── home.ts       ← homepage copy for es / zh-hans / zh-hant
+│   ├── about.ts      ← About page copy, all four languages
 │   ├── pillars.ts    ← THE pillar list (schema, both components, Tina all read it)
 │   └── hero-image.ts ← what a heroImage path may be; rejects protocol-relative URLs
 ├── i18n/
@@ -246,7 +249,8 @@ src/
 │   └── utils.ts      ← t() and localePath()
 ├── content/blog/     ← articles, one .md file per language, under en/ es/ zh-hans/ zh-hant/
 ├── components/       ← Header, Footer, ContactForm, CookieConsent, LangSwitch,
-│                        Lattice, CityBody, EndCta, BlogPostGrid, TagPill, ThemeToggle
+│                        Lattice, CityBody, CityPhoto, CityDataStrip, AboutBody,
+│                        EndCta, BlogPostGrid, TagPill, ThemeToggle
 ├── layouts/          ← Base (ALL SEO tags live here), Post
 ├── pages/
 └── styles/global.css ← design tokens
@@ -426,7 +430,10 @@ unreadable noise across wide containers. It now tiles at true size via
 cannot add `[locale]/[cityhub]/[city].astro` — it collides. That file (and its
 `[locale]/[section]/index.astro` sibling one level up) branch on a `kind`
 prop instead — now three values (`'service' | 'city' | 'blog-post'`, the
-last added 2026-08-27 for translated blog posts). Follow that pattern for any
+last added 2026-08-27 for translated blog posts). The sibling
+`[locale]/[section]/index.astro` now has four kinds —
+`'blog' | 'service' | 'city-hub' | 'about'`, the last added 2026-09-21 for the
+About page. Follow that pattern for any
 new localized section, and when you add a new `kind`, **grep the file for
 every existing `if`/`else` first** — a bare `else` written when there were
 only two kinds silently mis-branches the moment a third one exists. Hit
@@ -1213,5 +1220,6 @@ Read that file before re-investigating any of these.
 - The site is repositioned for independent health practices; the PR's review removed a BAA promise with no template behind it, corrected the accessibility-law paragraph, and added guards so a service URL rename or a stale post link fails a test (2026-09-14, #75)
 - The readability scorer counted a bulleted list as one sentence, so a list-heavy service page read FK 25.4 against paragraphs near grade 11; each list item now ends a sentence on both scoring paths, and the side effect it caused on the localized homepages' city list (/es/ 46 → 58) was found and excluded (2026-09-14, #75)
 - The PR #75 review's P3 findings are closed and the Checkup's URL no longer says "business advice" (2026-09-15, #76)
-- The homepage leads with growth: H1 "More new patients, and a front office that runs without you", title "Pasadena Works — More Patients for Medical & Dental Practices". The "Worth more when you step back" section was removed along with its parity test — nothing on the site markets selling a practice (2026-09-15, #77)
+- The homepage leads with growth: H1 "More new patients, and a front office that runs without you", title "Pasadena Works — More Patients for Medical & Dental Practices". The "Worth more when you step back" section was removed along with its parity test — nothing on the site markets selling a practice (2026-09-15, #77) (partly superseded 2026-09-21: the positioning spec reverses this, and the About page mentions advising a doctor considering a sale)
 - The city pages are rebuilt for practices: ten cities (San Gabriel is new) in all four languages, resting on CMS NPI Registry, California HCAI and Census ACS figures instead of the old street-and-landmark copy, with the hub and blog descriptions re-aimed to match. The five translated city URLs that were already published still build, and `src/data/city-pages.test.ts` is the append-only guard that keeps them building (2026-09-15)
+- An About page exists in four languages — first name only, paid by the practice and nobody else (2026-09-21)

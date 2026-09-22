@@ -1,0 +1,31 @@
+---
+/** The About page body, shared by the English route and the localized one so
+ *  the two cannot drift apart — the fate of every page this site ever kept as
+ *  two copies (see routes.ts on indexPaths). The button is `.btn`, which the
+ *  readability scorer already strips as furniture. */
+import type { Locale } from '../i18n/ui';
+import { about } from '../data/about';
+import { t } from '../i18n/utils';
+import { site } from '../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = about[locale];
+const strings = t(locale);
+---
+
+<section class="section wrap">
+  <h1>{copy.heading}</h1>
+  {copy.sections.map((s) => (
+    <>
+      <h2>{s.heading}</h2>
+      {s.body.map((p) => <p class="prose">{p}</p>)}
+    </>
+  ))}
+  <p>
+    <a class="btn" href={site.bookingUrl} target="_blank" rel="noopener">{strings.nav.bookCall} &rsaquo;</a>
+  </p>
+</section>

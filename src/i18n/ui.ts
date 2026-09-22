@@ -61,6 +61,7 @@ export interface UIStrings {
     home: string;
     services: string;
     blog: string;
+    about: string;
     contact: string;
     bookCall: string;
   };
@@ -161,6 +162,7 @@ export const ui: Record<Locale, UIStrings> = {
       home: 'Home',
       services: 'Services',
       blog: 'Blog',
+      about: 'About',
       contact: 'Contact',
       bookCall: 'Book a call',
     },
@@ -250,6 +252,7 @@ export const ui: Record<Locale, UIStrings> = {
       home: 'Inicio',
       services: 'Servicios',
       blog: 'Blog',
+      about: 'Nosotros',
       contact: 'Contacto',
       bookCall: 'Agenda una llamada',
     },
@@ -332,6 +335,7 @@ export const ui: Record<Locale, UIStrings> = {
       home: '首页',
       services: '服务',
       blog: '博客',
+      about: '关于我们',
       contact: '联系我们',
       bookCall: '预约通话',
     },
@@ -406,6 +410,7 @@ export const ui: Record<Locale, UIStrings> = {
       home: '首頁',
       services: '服務',
       blog: '部落格',
+      about: '關於我們',
       contact: '聯絡我們',
       bookCall: '預約通話',
     },
