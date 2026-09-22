@@ -4,6 +4,7 @@ import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 import type { Pillar } from '../data/pillars';
+import { site } from '../data/site';
 
 interface Props {
   pillar: Pillar;
@@ -18,12 +19,20 @@ const copy = service.t[locale];
 const strings = t(locale);
 ---
 
+{/* Flat on purpose: scripts/readability.mjs drops this box with a non-greedy
+    `<div class="end-cta…</div>\s*</div>` match, so a nested <div> here would
+    end that match early and leak the rest into the reading score — the trap
+    CLAUDE.md records for the city data strip. Keep the children as siblings. */}
 <div class="end-cta label-frame">
   <h2>{strings.endCta.heading}</h2>
-  <p class="prose">
-    {copy.tagline}
+  <p class="prose">{strings.endCta.blurb}</p>
+  <p class="end-cta__related">
+    {strings.endCta.related} <a href={href}>{copy.title}</a> &rsaquo;
   </p>
-  <a class="btn" href={href}>{strings.endCta.cta} &rsaquo;</a>
+  <p class="end-cta__actions">
+    <a class="btn" href={site.bookingUrl} target="_blank" rel="noopener">{strings.nav.bookCall} &rsaquo;</a>
+    <a class="end-cta__phone" href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+  </p>
 </div>
 
 <style>
@@ -49,5 +58,31 @@ const strings = t(locale);
 
   .end-cta .btn {
     margin-top: var(--space-2);
+  }
+
+  /* The actions row sets its own spacing, so the button's own top margin
+     would push it out of line with the telephone number beside it. */
+  .end-cta__actions .btn {
+    margin-top: 0;
+  }
+
+  .end-cta__related {
+    font-size: var(--step--1);
+  }
+
+  /* The booking button and the telephone number read as one line of actions
+     at desktop width and stack on a phone. */
+  .end-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .end-cta__phone {
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    white-space: nowrap;
   }
 </style>
