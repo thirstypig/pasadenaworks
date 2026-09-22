@@ -13,7 +13,8 @@ import type { Pillar } from './pillars';
  *    t       — the copy, per language.
  *
  *  Order of this array = display order on the site: Practice Checkup, then
- *  Digitize the office, then Get more patients (2026-09-14).
+ *  Digitize the office, then Get more patients (2026-09-14), then Transition
+ *  Planning (appended 2026-09-22).
  *
  *  `id` and `slugs` are what indexed URLs are built from. Changing a slug moves
  *  a page; retiring a service needs a redirect for every locale in
@@ -49,6 +50,10 @@ const SOURCES = {
     'https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/hipaa-online-tracking/index.html',
   calBusProf650:
     'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=650',
+  calBusProf2266:
+    'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=2266',
+  calBusProf3007:
+    'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=3007',
   federalAks:
     'https://uscode.house.gov/view.xhtml?req=granuleid%3AUSC-prelim-title42-section1320a-7b&amp;num=0&amp;edition=prelim',
   hipaaRiskAnalysis:
@@ -240,7 +245,7 @@ export const services = defineServices([
           'A completed HIPAA security risk analysis, together with the corrective steps it identifies',
           'A business associate agreement signed with every vendor that touches patient information, or a plan to replace any vendor that will not sign one',
           'Written procedures for the front desk and the back office that a newly hired employee can actually follow',
-          'Advice from someone who is compensated by you and by nobody else',
+          'Advice from someone who is paid by you and by nobody else',
         ],
         meta: 'EHR setup, digital intake, online scheduling, and HIPAA risk analysis for independent practices in Southern California. No commissions from software vendors.',
       },
@@ -415,6 +420,107 @@ export const services = defineServices([
           '每月一份說明：花了多少、帶來多少回報，以及新病患來自何處',
         ],
         meta: '為南加州獨立醫療、牙科與眼科診所提供網站、Google 商家檔案、評論管理、病患召回與搜尋廣告，並追蹤新病患的來源。',
+      },
+    },
+  },
+
+  /* ── 4. Transition Planning (added 2026-09-22) ──────────────────────────
+   *  Preparation only. It must not mention brokers or introductions until
+   *  todos/046 (e) is answered (owner, 2026-09-21), and it may state as law
+   *  only what docs/superpowers/specs/2026-09-21-positioning-about-
+   *  transition-sources.md marks Verified. services.test.ts enforces both. */
+  {
+    id: 'transition',
+    slugs: {
+      en: 'transition-planning',
+      es: 'transicion-del-consultorio',
+      'zh-hans': 'chuancheng-guihua',
+      'zh-hant': 'jieban-guihua',
+    },
+    t: {
+      en: {
+        title: 'Transition Planning',
+        seoTitle: 'Medical & Dental Practice Transition Planning',
+        tagline: 'A written plan for the day you step back, made years before that day arrives.',
+        summary:
+          'A written plan for how you will step back from the practice, whether you sell it, hand it to a successor, or close it, followed by the preparation that makes that ending go well, begun years rather than months ahead.',
+        body: [
+          '<p>Many doctors begin planning their departure only a few months before they intend to leave, which is roughly the point at which it has become too late to change anything that matters. A practice that still operates on paper charts, on procedures that exist only in the office manager’s memory, and on a front desk that only one person fully understands is harder to sell, harder to transfer to a successor, and harder to close without leaving patients stranded, and because each of those problems takes months to repair, the plan is most valuable when it is prepared early.</p>',
+          `<h2>Three endings, and you choose</h2><ul><li><strong>Selling the practice.</strong> Although the transaction itself belongs to the licensed professionals you engage, we prepare the practice for it: records digitized and organized, documented procedures, accurate patient data, and a front office that runs on an ordinary day without you.</li><li><strong>Handing it on to an associate or successor.</strong> We plan the handover so that the systems, the procedures, and the patients’ trust stay with the practice rather than leaving with you.</li><li><strong>Closing the practice properly.</strong> We plan the patient letters, the transfer of records, and the directory listings that must be removed, and we list the regulations that govern your profession for your attorney to confirm; California, for example, requires a physician to keep patient records <a href="${SOURCES.calBusProf2266}">for at least seven years after the last visit</a>, and an optometrist <a href="${SOURCES.calBusProf3007}">for at least seven years after treatment ends, and for a minor at least until age nineteen</a>.</li></ul>`,
+          '<p>We do not value practices, find or negotiate with buyers, or give legal or tax advice, because those decisions belong to your attorney, your accountant, and the licensed professionals you engage. What we contribute is the operational preparation that makes each of their jobs easier, and since we are paid by the practice and by nobody else, our advice does not depend on which ending you choose.</p>',
+        ],
+        outcomes: [
+          'A written transition plan that names the ending you have chosen, the steps it requires, and the order in which to take them',
+          'Patient records digitized, organized, and ready to transfer to a buyer, a successor, or a records custodian',
+          'Documented procedures that allow the front office to operate on an ordinary day without you',
+          'A timeline for patient letters, directory changes, and record transfers, for your attorney to confirm against the regulations that govern your profession',
+          'A clear account of which decisions belong to your attorney and which to your accountant, so that no responsibility falls between them',
+          'Advice from someone who is paid by the practice and nobody else, whatever ending you choose',
+        ],
+        meta: 'Transition planning for independent medical, dental, and eye care practices in Southern California: sell, hand it on, or close it, with years to prepare.',
+      },
+      es: {
+        title: 'Planificación de la transición',
+        seoTitle: 'Transición de consultorios médicos y dentales',
+        tagline: 'Un plan por escrito para el día en que usted se retire, elaborado años antes de que ese día llegue.',
+        summary:
+          'Un plan por escrito sobre cómo se retirará usted del consultorio, ya sea que lo venda, lo entregue a un sucesor o lo cierre, seguido de la preparación que permite que ese desenlace salga bien, iniciada con años y no con meses de anticipación.',
+        body: [
+          '<p>Muchos doctores empiezan a planificar su salida solo unos pocos meses antes de la fecha en que piensan irse, que es más o menos el momento en que ya resulta demasiado tarde para cambiar algo que de verdad importe. Un consultorio que todavía opera con expedientes en papel, con procedimientos que solo existen en la memoria de quien lo administra y con una recepción que solo una persona entiende por completo es más difícil de vender, más difícil de traspasar a un sucesor y más difícil de cerrar sin dejar desamparados a los pacientes, y como cada uno de esos problemas tarda meses en corregirse, el plan resulta más valioso cuanto antes se elabora.</p>',
+          `<h2>Tres desenlaces, y usted elige</h2><ul><li><strong>Vender el consultorio.</strong> Aunque la operación de venta en sí corresponde a los profesionales con licencia que usted contrate, preparamos el consultorio para ella: expedientes digitalizados y organizados, procedimientos documentados, datos de pacientes precisos y una recepción que funciona un día cualquiera sin usted.</li><li><strong>Entregarlo a un profesional asociado o a un sucesor.</strong> Planificamos el traspaso para que los sistemas, los procedimientos y la confianza de los pacientes permanezcan en el consultorio en lugar de irse con usted.</li><li><strong>Cerrar el consultorio como se debe.</strong> Planificamos las cartas a los pacientes, la transferencia de los expedientes y los perfiles en directorios que deben darse de baja, y enumeramos las normas que rigen su profesión para que su abogado las confirme; California, por ejemplo, exige que un médico conserve los expedientes clínicos de sus pacientes <a href="${SOURCES.calBusProf2266}">durante al menos siete años después de la última consulta</a>, y que un optometrista los conserve <a href="${SOURCES.calBusProf3007}">durante al menos siete años después de terminado el tratamiento y, en el caso de un menor, como mínimo hasta que cumpla diecinueve años</a>.</li></ul>`,
+          '<p>No valuamos consultorios, no buscamos compradores ni negociamos con ellos, y no damos asesoría legal ni fiscal, porque esas decisiones corresponden a su abogado, a su contador y a los profesionales con licencia que usted contrate. Lo que aportamos es la preparación operativa que facilita el trabajo de cada uno de ellos, y como nos paga el consultorio y nadie más, nuestra asesoría no depende del desenlace que usted elija.</p>',
+        ],
+        outcomes: [
+          'Un plan de transición por escrito que indica el desenlace que usted eligió, los pasos que requiere y el orden en que conviene darlos',
+          'Expedientes clínicos digitalizados, organizados y listos para transferirse a un comprador, a un sucesor o a un custodio de expedientes',
+          'Procedimientos documentados que permiten que la recepción opere un día cualquiera sin usted',
+          'Un calendario para las cartas a los pacientes, los cambios en los directorios y la transferencia de expedientes, para que su abogado lo confirme según las normas que rigen su profesión',
+          'Una definición clara de qué decisiones corresponden a su abogado y cuáles a su contador, para que ninguna responsabilidad quede sin atender entre uno y otro',
+          'Asesoría de alguien a quien le paga el consultorio y nadie más, sea cual sea el desenlace',
+        ],
+        meta: 'Planificación de la transición para consultorios médicos, dentales y de optometría del sur de California: vender, entregar o cerrar, con años para prepararse.',
+      },
+      'zh-hans': {
+        title: '诊所传承规划',
+        seoTitle: '医疗与牙科诊所传承规划',
+        tagline: '为您退出诊所的那一天拟定书面计划，并在那一天到来的数年之前便着手准备。',
+        summary:
+          '一份说明您将如何退出诊所的书面计划，无论是出售诊所、交由接班人经营，还是结束营业，并辅以使这一结局得以顺利完成的准备工作；这些工作提前数年而非数月便已开始。',
+        body: [
+          '<p>不少医生在打算离开前的几个月才开始规划退出，而此时大致已来不及改变任何真正重要的事情。一家仍依赖纸质病历、仅存于诊所经理记忆中的工作流程，以及只有一个人完全了解的前台来运作的诊所，更难出售、更难交给接班人，也更难在不让患者求助无门的情况下结业；由于上述每一个问题都需要数月才能修补，因此这份计划越早制定，价值就越高。</p>',
+          `<h2>三种结局，由您选择</h2><ul><li><strong>出售诊所。</strong>我们为出售做好准备：病历完成数字化并妥善整理、工作流程形成书面文件、患者资料准确无误，以及一个在寻常日子里没有您也能正常运作的前台。出售本身则由您所委任的持照专业人士负责。</li><li><strong>交由聘任医生或接班人接手。</strong>我们规划交接过程，让系统、工作流程与患者的信任留在诊所，而非随您一同离开。</li><li><strong>妥善结业。</strong>我们规划致患者的通知信、病历的移交，以及必须撤下的各类网上名录资料，并列出您所属专业的相关规定，交由您的律师确认；以加州为例，医生须将患者病历<a href="${SOURCES.calBusProf2266}">自最后一次就诊起至少保存七年</a>，验光师则须<a href="${SOURCES.calBusProf3007}">自治疗结束起至少保存七年，未成年人的病历并须至少保存至其年满十九岁</a>。</li></ul>`,
+          '<p>我们不为诊所估值，不寻找买家，也不与买家谈判，亦不提供法律或税务建议，因为这些决定属于您的律师、您的会计师以及您所委任的持照专业人士。我们所贡献的，是让他们各自的工作更加顺利的运营准备；而且由于只由诊所支付我们的报酬，别无他人，我们的建议并不取决于您选择哪一种结局。</p>',
+        ],
+        outcomes: [
+          '一份书面的退出计划，写明您所选择的结局、所需的步骤，以及执行这些步骤的先后顺序',
+          '患者病历完成数字化并妥善整理，随时可移交给买家、接班人或病历保管人',
+          '书面化的工作流程，让前台在寻常日子里没有您也能正常运作',
+          '一份涵盖致患者通知信、名录资料变更与病历移交的时间表，并交由您的律师依您所属专业的规定确认',
+          '清楚说明哪些决定属于您的律师、哪些属于您的会计师，使任何事项都不致在两者之间被遗漏',
+          '只由诊所支付报酬、别无他人的专业建议，无论您选择哪一种结局',
+        ],
+        meta: '为南加州独立医疗、牙科与眼科诊所提供传承规划：出售、交棒或结业，并提前数年做好准备。',
+      },
+      'zh-hant': {
+        title: '診所接班規劃',
+        seoTitle: '醫療與牙醫診所接班規劃',
+        tagline: '為您退出診所的那一天擬定書面計畫，並在那一天到來的數年之前便著手準備。',
+        summary:
+          '一份說明您將如何退出診所的書面計畫，無論是出售診所、交由接班人經營，還是結束營業，並輔以使這個結局得以順利完成的準備工作；這些工作提前數年而非數月便已開始。',
+        body: [
+          '<p>不少醫師在打算離開前的幾個月才開始規劃退場，而此時大致已來不及改變任何真正重要的事情。一家仍仰賴紙本病歷、僅存於診所經理記憶中的作業流程，以及只有一個人完全了解的櫃檯來運作的診所，更難出售、更難交給接班人，也更難在不讓病患求助無門的情況下歇業；由於上述每一個問題都需要數月才能修補，因此這份計畫越早擬定，價值就越高。</p>',
+          `<h2>三種結局，由您選擇</h2><ul><li><strong>出售診所。</strong>我們為出售做好準備：病歷完成數位化並妥善整理、作業流程形成書面文件、病患資料正確無誤，以及一個在平常日子裡沒有您也能正常運作的櫃檯。出售本身則由您所委任的持照專業人士負責。</li><li><strong>交由受聘醫師或接班人接手。</strong>我們規劃交接過程，讓系統、作業流程與病患的信任留在診所，而非隨您一同離開。</li><li><strong>妥善歇業。</strong>我們規劃致病患的通知信、病歷的移交，以及必須撤下的各類網路名錄資料，並列出您所屬專業的相關規定，交由您的律師確認；以加州為例，醫師須將病患病歷<a href="${SOURCES.calBusProf2266}">自最後一次就診起至少保存七年</a>，驗光師則須<a href="${SOURCES.calBusProf3007}">自治療結束起至少保存七年，未成年人的病歷並須至少保存至其年滿十九歲</a>。</li></ul>`,
+          '<p>我們不為診所鑑價，不尋找買方，也不與買方談判，亦不提供法律或稅務建議，因為這些決定屬於您的律師、您的會計師以及您所委任的持照專業人士。我們所貢獻的，是讓他們各自的工作更加順利的營運準備；而且由於只由診所支付我們的報酬，別無他人，我們的建議並不取決於您選擇哪一種結局。</p>',
+        ],
+        outcomes: [
+          '一份書面的退場計畫，寫明您所選擇的結局、所需的步驟，以及執行這些步驟的先後順序',
+          '病患病歷完成數位化並妥善整理，隨時可移交給買方、接班人或病歷保管人',
+          '書面化的作業流程，讓櫃檯在平常日子裡沒有您也能正常運作',
+          '一份涵蓋致病患通知信、名錄資料變更與病歷移交的時程表，並交由您的律師依您所屬專業的規定確認',
+          '清楚說明哪些決定屬於您的律師、哪些屬於您的會計師，使任何事項都不致在兩者之間遭到遺漏',
+          '只由診所支付報酬、別無他人的專業建議，無論您選擇哪一種結局',
+        ],
+        meta: '為南加州獨立醫療、牙醫與眼科診所提供接班規劃：出售、交棒或歇業，並提前數年做好準備。',
       },
     },
   },

@@ -22,8 +22,8 @@ describe('serviceBySlug', () => {
   // Every service URL, and so every slug, is pinned by PUBLISHED_SERVICE_URLS
   // in retired-services.test.ts; this file does not restate them.
 
-  it('lists the services in the display order the owner chose (2026-09-14)', () => {
-    expect(services.map((s) => s.id)).toEqual(['consulting', 'digitize', 'websites']);
+  it('lists the services in the display order the owner chose (2026-09-14; Transition Planning appended 2026-09-22)', () => {
+    expect(services.map((s) => s.id)).toEqual(['consulting', 'digitize', 'websites', 'transition']);
   });
 
   it('returns undefined for a slug that does not exist in any service', () => {
@@ -111,6 +111,67 @@ describe('translation parity', () => {
           count(en.body.join(''), /href="https?:/g),
         );
       }
+    }
+  });
+});
+
+describe('Transition Planning launch guards', () => {
+  const transition = services.find((s) => s.id === 'transition');
+
+  it('exists', () => {
+    expect(transition).toBeDefined();
+  });
+
+  it('says nothing about brokers until todos/046 (e) is answered', () => {
+    // The owner's launch decision, 2026-09-21: preparation only. B&P §10131
+    // makes a broker anyone who, for any compensation, solicits buyers or
+    // sellers of a business — our planning fee could count. Remove a word from
+    // this list only when the attorney has answered (e) in todos/046.
+    // `brok(er|ing)` catches broker, brokers, brokerage and brokering alike.
+    const EVERY_LOCALE = /\bbr[oó]k(er|ing)/i;
+    // Simplified and Traditional share vocabulary across the strait — 中介 is
+    // common in Taiwan and 仲介 appears in mainland text — so both Chinese
+    // locales are checked against all four words, not only their own pair.
+    const ZH_BROKER = /中介|经纪|仲介|經紀/;
+    const BROKER_WORDS: Record<string, RegExp> = {
+      en: /\bbrok(er|ing)/i,
+      es: /corredor|intermediari|agente de venta|br[oó]ker/i,
+      'zh-hans': ZH_BROKER,
+      'zh-hant': ZH_BROKER,
+    };
+    for (const [locale, re] of Object.entries(BROKER_WORDS)) {
+      const text = JSON.stringify((transition!.t as Record<string, unknown>)[locale]);
+      expect(text, `${locale} mentions a broker`).not.toMatch(re);
+      expect(text, `${locale} mentions a broker`).not.toMatch(EVERY_LOCALE);
+    }
+  });
+
+  it('offers no introductions or referrals until todos/046 (e) is answered', () => {
+    // Introducing a seller to a buyer is the other half of what B&P §10131
+    // reaches, so it is held back with the broker words above.
+    const INTRODUCTION_WORDS: Record<string, RegExp> = {
+      en: /\bintroduc|\breferr?(al|als|s)?\b/i,
+      es: /present(ar|amos)|recomendamos a/i,
+      'zh-hans': /介绍|介紹|引荐|引薦|转介|轉介/,
+      'zh-hant': /介绍|介紹|引荐|引薦|转介|轉介/,
+    };
+    for (const [locale, re] of Object.entries(INTRODUCTION_WORDS)) {
+      const text = JSON.stringify((transition!.t as Record<string, unknown>)[locale]);
+      expect(text, `${locale} offers an introduction`).not.toMatch(re);
+    }
+  });
+
+  it('cites only the two statutes this page is allowed (§2266, §3007)', () => {
+    // Everything else the 2026-09-21 research found is "Reported" — true as
+    // far as it went, but not compared word for word, so not quotable as law.
+    const VERIFIED = [
+      'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=2266',
+      'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=3007',
+    ];
+    for (const locale of LOCALES) {
+      const html = [...transition!.t[locale].body, ...transition!.t[locale].outcomes].join('');
+      const links = [...html.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]);
+      expect([...new Set(links)].sort(), `${locale} statute links`).toEqual([...VERIFIED].sort());
     }
   });
 });

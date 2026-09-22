@@ -48,6 +48,11 @@ const PUBLISHED_SERVICE_URLS = [
   '/es/servicios/digitalizacion-del-consultorio/',
   '/zh-hans/fuwu/zhensuo-shuzihua/',
   '/zh-hant/fuwu/zhensuo-shuweihua/',
+  // transition — added 2026-09-22
+  '/services/transition-planning/',
+  '/es/servicios/transicion-del-consultorio/',
+  '/zh-hans/fuwu/chuancheng-guihua/',
+  '/zh-hant/fuwu/jieban-guihua/',
   // search — retired 2026-09-14
   '/services/get-found-on-google/',
   '/es/servicios/aparecer-en-google/',
