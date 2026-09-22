@@ -127,12 +127,17 @@ describe('Transition Planning launch guards', () => {
     // makes a broker anyone who, for any compensation, solicits buyers or
     // sellers of a business — our planning fee could count. Remove a word from
     // this list only when the attorney has answered (e) in todos/046.
-    const EVERY_LOCALE = /\bbr[oó]kers?\b|\bbrokerage\b/i;
+    // `brok(er|ing)` catches broker, brokers, brokerage and brokering alike.
+    const EVERY_LOCALE = /\bbr[oó]k(er|ing)/i;
+    // Simplified and Traditional share vocabulary across the strait — 中介 is
+    // common in Taiwan and 仲介 appears in mainland text — so both Chinese
+    // locales are checked against all four words, not only their own pair.
+    const ZH_BROKER = /中介|经纪|仲介|經紀/;
     const BROKER_WORDS: Record<string, RegExp> = {
-      en: /\bbrokers?\b|\bbrokerage\b/i,
+      en: /\bbrok(er|ing)/i,
       es: /corredor|intermediari|agente de venta|br[oó]ker/i,
-      'zh-hans': /中介|经纪/,
-      'zh-hant': /仲介|經紀/,
+      'zh-hans': ZH_BROKER,
+      'zh-hant': ZH_BROKER,
     };
     for (const [locale, re] of Object.entries(BROKER_WORDS)) {
       const text = JSON.stringify((transition!.t as Record<string, unknown>)[locale]);
@@ -141,7 +146,22 @@ describe('Transition Planning launch guards', () => {
     }
   });
 
-  it('cites only statutes the sources file marks Verified', () => {
+  it('offers no introductions or referrals until todos/046 (e) is answered', () => {
+    // Introducing a seller to a buyer is the other half of what B&P §10131
+    // reaches, so it is held back with the broker words above.
+    const INTRODUCTION_WORDS: Record<string, RegExp> = {
+      en: /\bintroduc|\breferr?(al|als|s)?\b/i,
+      es: /present(ar|amos)|recomendamos a/i,
+      'zh-hans': /介绍|介紹|引荐|引薦|转介|轉介/,
+      'zh-hant': /介绍|介紹|引荐|引薦|转介|轉介/,
+    };
+    for (const [locale, re] of Object.entries(INTRODUCTION_WORDS)) {
+      const text = JSON.stringify((transition!.t as Record<string, unknown>)[locale]);
+      expect(text, `${locale} offers an introduction`).not.toMatch(re);
+    }
+  });
+
+  it('cites only the two statutes this page is allowed (§2266, §3007)', () => {
     // Everything else the 2026-09-21 research found is "Reported" — true as
     // far as it went, but not compared word for word, so not quotable as law.
     const VERIFIED = [
@@ -151,8 +171,7 @@ describe('Transition Planning launch guards', () => {
     for (const locale of LOCALES) {
       const html = [...transition!.t[locale].body, ...transition!.t[locale].outcomes].join('');
       const links = [...html.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]);
-      expect(links.length, `${locale} cites no statute`).toBeGreaterThan(0);
-      for (const url of links) expect(VERIFIED, `${locale}: ${url}`).toContain(url);
+      expect([...new Set(links)].sort(), `${locale} statute links`).toEqual([...VERIFIED].sort());
     }
   });
 });
