@@ -72,9 +72,9 @@ npm run readability  # reading level of every post, per locale, against the hous
 npm run readability -- --dist   # same, but scores BUILT pages (services, cities,
                      #   homepage) — run `npm run build` first
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
-                     #   AND .ts, tina/ included. 100 files. The build itself
+                     #   AND .ts, tina/ included. 108 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 444 across 32 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 452 across 34 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -91,13 +91,15 @@ npm run test         # tests (vitest, 444 across 32 files) — i18n/hreflang, re
                      #   city pages — their four title patterns, figure and
                      #   source-URL parity across locales, the one-name-per-city
                      #   tripwire, and the built-page guards in
-                     #   src/data/city-pages.test.ts.
-                     #   43 of these need dist/ and SKIP without it — the rendered
-                     #   nav-link checks, the og:image, stylesheet and JSON-LD
-                     #   checks, the fourteen built-redirect checks, the four
-                     #   built-city-page checks, and the readability
+                     #   src/data/city-pages.test.ts, and the About page — its
+                     #   copy in every locale and its built pages' hreflang set.
+                     #   46 of these need dist/ and SKIP without it — the rendered
+                     #   nav-link checks (About links included), the og:image,
+                     #   stylesheet and JSON-LD checks, the fourteen
+                     #   built-redirect checks, the four built-city-page checks,
+                     #   the two built-About-page checks, and the readability
                      #   cross-checks — which is why ci.yml re-runs the whole suite
-                     #   after the build. deploy.yml reports 44 skipped, not 43:
+                     #   after the build. deploy.yml reports 47 skipped, not 46:
                      #   it tests BEFORE `npx tinacms build`, so
                      #   tina/__generated__/_schema.json is absent and the lock
                      #   test skips too — ci.yml regenerates that file first, so
@@ -237,6 +239,7 @@ src/
 │   ├── cities.ts     ← city list, CityCopy shape, cityLocales() + cityDisplayName()
 │   ├── city-copy/    ← the city page prose itself, one module per locale (en, es, zh-hans, zh-hant)
 │   ├── home.ts       ← homepage copy for es / zh-hans / zh-hant
+│   ├── about.ts      ← About page copy, all four languages
 │   ├── pillars.ts    ← THE pillar list (schema, both components, Tina all read it)
 │   └── hero-image.ts ← what a heroImage path may be; rejects protocol-relative URLs
 ├── i18n/
@@ -1215,3 +1218,4 @@ Read that file before re-investigating any of these.
 - The PR #75 review's P3 findings are closed and the Checkup's URL no longer says "business advice" (2026-09-15, #76)
 - The homepage leads with growth: H1 "More new patients, and a front office that runs without you", title "Pasadena Works — More Patients for Medical & Dental Practices". The "Worth more when you step back" section was removed along with its parity test — nothing on the site markets selling a practice (2026-09-15, #77)
 - The city pages are rebuilt for practices: ten cities (San Gabriel is new) in all four languages, resting on CMS NPI Registry, California HCAI and Census ACS figures instead of the old street-and-landmark copy, with the hub and blog descriptions re-aimed to match. The five translated city URLs that were already published still build, and `src/data/city-pages.test.ts` is the append-only guard that keeps them building (2026-09-15)
+- An About page exists in four languages — first name only, paid by the practice and nobody else (2026-09-21)

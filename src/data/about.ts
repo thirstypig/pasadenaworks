@@ -55,7 +55,7 @@ export const about: Record<Locale, AboutCopy> = {
       {
         heading: 'Con quién trabajaría',
         body: [
-          'Pasadena Works está dirigida por James, quien ha pasado ocho años en la gestión de producto, es decir, el trabajo de decidir qué debe hacer un programa, para quién y por qué, antes de que alguien lo construya. Ese hábito es todo el método que seguimos aquí. Antes de recomendar una herramienta, observamos cómo su recepción atiende de verdad a un paciente nuevo, una solicitud de receta o una cita reprogramada, porque un sistema que se ajusta a la forma en que ya trabaja su personal se llega a usar, mientras que uno elegido a partir de una demostración del proveedor suele terminar funcionando junto al papel que se compró para reemplazar.',
+          'Pasadena Works está dirigida por James, quien ha pasado ocho años en la gestión de producto, es decir, el trabajo de decidir qué debe hacer un programa, para quién y por qué, antes de que alguien lo construya. Ese hábito es todo el método que seguimos aquí. Antes de recomendar una herramienta, observamos cómo su recepción atiende de verdad a un paciente nuevo, una solicitud de resurtido de receta o una cita reprogramada, porque un sistema que se ajusta a la forma en que ya trabaja su personal se llega a usar, mientras que uno elegido a partir de una demostración del proveedor suele terminar funcionando junto al papel que se compró para reemplazar.',
         ],
       },
       {
@@ -67,7 +67,7 @@ export const about: Record<Locale, AboutCopy> = {
       {
         heading: 'Cómo nos pagan',
         body: [
-          'Nos paga el consultorio y nadie más. Como no cobramos comisión de los proveedores de software, no tenemos ningún motivo para recomendar un EHR sobre otro salvo que le convenga a su consultorio; como no cobramos honorarios de los intermediarios que venden consultorios, el consejo que le damos a un médico que considera una venta no depende de que esa venta se realice. Cuando algo que usted está considerando no vale el dinero, se lo diremos, incluso cuando lo que está en juego sea nuestro propio trabajo.',
+          'Nos paga el consultorio y nadie más. Como no aceptamos comisiones de los proveedores de software, no tenemos ningún motivo para recomendar un EHR sobre otro salvo que le convenga a su consultorio; como no aceptamos honorarios de los intermediarios que venden consultorios, el consejo que le damos a un médico que considera una venta no depende de que esa venta se realice. Cuando algo que usted está considerando no vale lo que cuesta, se lo diremos, incluso cuando lo que está en juego sea nuestro propio trabajo.',
         ],
       },
     ],
@@ -87,13 +87,13 @@ export const about: Record<Locale, AboutCopy> = {
       {
         heading: '我们在诊所内做过的工作',
         body: [
-          '目前的工作大致分为两类。我们重建过诊所网站，使患者无需致电即可查到营业时间、可用的保险以及预约方式；我们也就电子病历系统（EHR）的工作流程提供过咨询，也就是在诊所决定围绕某套系统进行配置之前，先厘清由谁在哪一步录入哪些信息。我们只以概括的方式描述这些工作，因为未经书面许可，我们不会说出任何客户的名字。',
+          '目前的工作大致分为两类。我们重建过诊所网站，使患者无需致电即可查到营业时间、接受的保险以及预约方式；我们也就电子病历系统（EHR）的工作流程提供过咨询，也就是在诊所决定围绕某套系统进行配置之前，先厘清由谁在哪一步录入哪些信息。我们只以概括的方式描述这些工作，因为未经书面许可，我们不会说出任何客户的名字。',
         ],
       },
       {
         heading: '我们的报酬从何而来',
         body: [
-          '我们的报酬只来自诊所，不来自任何其他人。由于我们不从软件供应商那里抽取佣金，因此除了是否适合您的诊所之外，我们没有理由偏向推荐某一款电子病历系统；由于我们不从诊所中介那里收取费用，我们给正在考虑出售诊所的医生的建议，并不取决于这笔交易是否成交。如果您正在考虑的方案并不值这笔钱，我们会直说，即使这话说的是我们自己的工作。',
+          '我们的报酬只来自诊所，不来自任何其他人。由于我们不从软件供应商那里抽取佣金，因此除了是否适合您的诊所之外，我们没有理由偏向推荐某一款电子病历系统；由于我们不从诊所买卖中介那里收取费用，我们给正在考虑出售诊所的医生的建议，并不取决于这笔交易是否成交。如果您正在考虑的方案并不值这笔钱，我们会直说，即使所涉及的正是我们自己的工作。',
         ],
       },
     ],
@@ -113,13 +113,13 @@ export const about: Record<Locale, AboutCopy> = {
       {
         heading: '我們在診所內做過的工作',
         body: [
-          '目前的工作大致分為兩類。我們重建過診所網站，使病患無需致電即可查到營業時間、可用的保險以及預約方式；我們也就電子病歷系統（EHR）的工作流程提供過諮詢，也就是在診所決定圍繞某套系統進行設定之前，先釐清由誰在哪一步輸入哪些資料。我們只以概括的方式描述這些工作，因為未經書面許可，我們不會說出任何客戶的名字。',
+          '目前的工作大致分為兩類。我們重建過診所網站，使病患無需致電即可查到營業時間、接受的保險以及預約方式；我們也就電子病歷系統（EHR）的工作流程提供過諮詢，也就是在診所決定圍繞某套系統進行設定之前，先釐清由誰在哪一步輸入哪些資料。我們只以概括的方式描述這些工作，因為未經書面許可，我們不會說出任何客戶的名字。',
         ],
       },
       {
         heading: '我們的報酬從何而來',
         body: [
-          '我們的報酬只來自診所，不來自任何其他人。由於我們不從軟體廠商那裡抽取佣金，因此除了是否適合您的診所之外，我們沒有理由偏向推薦某一款電子病歷系統；由於我們不從診所仲介那裡收取費用，我們給正在考慮出售診所的醫師的建議，並不取決於這筆交易是否成交。如果您正在考慮的方案並不值這筆錢，我們會直說，即使這話說的是我們自己的工作。',
+          '我們的報酬只來自診所，不來自任何其他人。由於我們不從軟體廠商那裡抽取佣金，因此除了是否適合您的診所之外，我們沒有理由偏向推薦某一款電子病歷系統；由於我們不從診所買賣仲介那裡收取費用，我們給正在考慮出售診所的醫師的建議，並不取決於這筆交易是否成交。如果您正在考慮的方案並不值這筆錢，我們會直說，即使所涉及的正是我們自己的工作。',
         ],
       },
     ],

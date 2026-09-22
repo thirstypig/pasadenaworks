@@ -471,3 +471,19 @@ Read this before re-investigating anything that sounds already-handled.
   tests guard the `service-area` class the exclusion depends on. Full
   write-up in
   [`docs/solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md`](solutions/process-errors/readability-scorer-counted-a-bulleted-list-as-one-sentence.md).
+
+- **An About page exists in four languages — first name only, paid by the
+  practice and nobody else** (2026-09-21). It lives at `/about/`,
+  `/es/sobre-nosotros/`, `/zh-hans/guanyu-women/` and `/zh-hant/guanyu-women/`,
+  all four built from one shared body with the copy in `src/data/about.ts`, and
+  is linked from the header and footer in every locale. It makes only the
+  claims the owner stated: James, eight years in product management, rebuilt
+  practice websites, and EHR workflow consulting — no surname, no family and no
+  client names, because this repo is public and the page itself promises not to
+  name a client without written permission. The third section says how the business is paid: by the practice
+  only, with no commission from software vendors and no fee from practice
+  brokers. The URL segment is pinned by a test, and the built pages are checked
+  for all four hreflang alternates plus `x-default`. Built-page reading level:
+  es F-H 54, zh-hans and zh-hant register 0.6, all in band; en FK 12.7, just
+  under the 13–15 band, left as the owner approved it rather than rewritten to
+  move the number.
