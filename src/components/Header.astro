@@ -18,6 +18,7 @@ const strings = t(locale);
 const home = localeUrl(locale);
 const servicesHref = localeUrl(locale, SEGMENTS.services[locale]);
 const blogHref = localeUrl(locale, SEGMENTS.blog[locale]);
+const aboutHref = localeUrl(locale, SEGMENTS.about[locale]);
 ---
 
 <header class="site-header">
@@ -30,6 +31,7 @@ const blogHref = localeUrl(locale, SEGMENTS.blog[locale]);
       <a href={home}>{strings.nav.home}</a>
       <a href={servicesHref}>{strings.nav.services}</a>
       <a href={blogHref}>{strings.nav.blog}</a>
+      <a href={aboutHref}>{strings.nav.about}</a>
       <a href={`${home}#contact`}>{strings.nav.contact}</a>
     </nav>
 
