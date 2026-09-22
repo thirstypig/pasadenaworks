@@ -484,6 +484,7 @@ Read this before re-investigating anything that sounds already-handled.
   only, with no commission from software vendors and no fee from practice
   brokers. The URL segment is pinned by a test, and the built pages are checked
   for all four hreflang alternates plus `x-default`. Built-page reading level:
-  es F-H 54, zh-hans and zh-hant register 0.6, all in band; en FK 12.7, just
-  under the 13–15 band, left as the owner approved it rather than rewritten to
-  move the number.
+  en FK 14.1, es F-H 54, and zh-hans and zh-hant register 0.6, all in band.
+  English first measured 12.7, just under its 13–15 band, and was lifted to
+  14.1 by one hand-made sentence join in the first section ("That habit is
+  the whole method here: before we recommend a tool…").
