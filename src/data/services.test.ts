@@ -127,15 +127,17 @@ describe('Transition Planning launch guards', () => {
     // makes a broker anyone who, for any compensation, solicits buyers or
     // sellers of a business — our planning fee could count. Remove a word from
     // this list only when the attorney has answered (e) in todos/046.
+    const EVERY_LOCALE = /\bbr[oó]kers?\b|\bbrokerage\b/i;
     const BROKER_WORDS: Record<string, RegExp> = {
       en: /\bbrokers?\b|\bbrokerage\b/i,
-      es: /corredor|intermediari|agente de venta/i,
+      es: /corredor|intermediari|agente de venta|br[oó]ker/i,
       'zh-hans': /中介|经纪/,
       'zh-hant': /仲介|經紀/,
     };
     for (const [locale, re] of Object.entries(BROKER_WORDS)) {
       const text = JSON.stringify((transition!.t as Record<string, unknown>)[locale]);
       expect(text, `${locale} mentions a broker`).not.toMatch(re);
+      expect(text, `${locale} mentions a broker`).not.toMatch(EVERY_LOCALE);
     }
   });
 
@@ -147,7 +149,7 @@ describe('Transition Planning launch guards', () => {
       'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=3007',
     ];
     for (const locale of LOCALES) {
-      const html = transition!.t[locale].body.join('');
+      const html = [...transition!.t[locale].body, ...transition!.t[locale].outcomes].join('');
       const links = [...html.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]);
       expect(links.length, `${locale} cites no statute`).toBeGreaterThan(0);
       for (const url of links) expect(VERIFIED, `${locale}: ${url}`).toContain(url);
