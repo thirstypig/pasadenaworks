@@ -1,23 +1,25 @@
 ---
 /**
- * Triple-purpose hub index: renders the translated services index, the
- * translated city-hub index, OR the translated blog index, branching on
- * `kind`. All three live at [locale]/[section]/ depth, so they share one
- * file rather than colliding dynamic routes — same pattern as
- * [service].astro one level down.
+ * Four-purpose hub index: renders the translated services index, the
+ * translated city-hub index, the translated blog index, OR the translated
+ * About page, branching on `kind`. All four live at [locale]/[section]/
+ * depth, so they share one file rather than colliding dynamic routes — same
+ * pattern as [service].astro one level down.
  */
 import Base from '../../../layouts/Base.astro';
 import { services } from '../../../data/services';
 import { cities, cityLocales } from '../../../data/cities';
-import { SEGMENTS, localeUrl, servicesIndexPaths, cityHubPaths, blogIndexPaths } from '../../../i18n/routes';
+import { SEGMENTS, localeUrl, servicesIndexPaths, cityHubPaths, blogIndexPaths, aboutPaths } from '../../../i18n/routes';
 import { t } from '../../../i18n/utils';
 import { LOCALES, type Locale } from '../../../i18n/ui';
 import { getPostsByLocale, blogIndexPath } from '../../../utils/blog';
 import { readingTime } from '../../../utils/reading-time';
 import BlogPostGrid from '../../../components/BlogPostGrid.astro';
+import AboutBody from '../../../components/AboutBody.astro';
+import { about } from '../../../data/about';
 import type { CollectionEntry } from 'astro:content';
 
-/** The three hub kinds this route serves. Discriminated so a `kind` LITERAL
+/** The four hub kinds this route serves. Discriminated so a `kind` LITERAL
  *  TYPO is a compile error where it's written — `tsc` flags a comparison
  *  against a literal outside the union. A genuinely NEW, unhandled `kind` is
  *  caught by the runtime throw at the bottom of this file instead (which
@@ -38,6 +40,7 @@ import type { CollectionEntry } from 'astro:content';
 type HubProps =
   | { kind: 'service'; locale: Locale }
   | { kind: 'city-hub'; locale: Locale }
+  | { kind: 'about'; locale: Locale }
   | {
       kind: 'blog';
       locale: Locale;
@@ -67,6 +70,11 @@ export async function getStaticPaths() {
         posts: posts.map((post) => ({ post, minutes: readingTime(post.body) })),
       },
     });
+
+    paths.push({
+      params: { locale, section: SEGMENTS.about[locale] },
+      props: { kind: 'about', locale },
+    });
   }
 
   return paths;
@@ -86,7 +94,7 @@ const posts = props.kind === 'blog' ? props.posts : undefined;
  * first", i.e. a machine-checkable invariant guarded by hand; it had already
  * failed once (docs/solutions/logic-errors/
  * dual-purpose-route-bare-else-broke-on-third-kind.md). */
-if (kind !== 'blog' && kind !== 'service' && kind !== 'city-hub') {
+if (kind !== 'blog' && kind !== 'service' && kind !== 'city-hub' && kind !== 'about') {
   throw new Error(
     `[locale]/[section]/index.astro: unhandled kind ${JSON.stringify(kind)}. ` +
       `Note this file's vocabulary differs from its sibling: 'blog' is the INDEX ` +
@@ -146,6 +154,16 @@ const localizedCities = cities.filter((c) => cityLocales(c).includes(locale));
         ))}
       </div>
     </section>
+  </Base>
+) : kind === 'about' ? (
+  <Base
+    title={about[locale].title}
+    description={about[locale].meta}
+    locale={locale}
+    path={aboutPaths()[locale]}
+    translations={aboutPaths()}
+  >
+    <AboutBody locale={locale} />
   </Base>
 ) : (
   <Base

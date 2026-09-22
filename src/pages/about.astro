@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import AboutBody from '../components/AboutBody.astro';
+import { about } from '../data/about';
+import { aboutPaths } from '../i18n/routes';
+
+const paths = aboutPaths();
+---
+
+<Base title={about.en.title} description={about.en.meta} locale="en" path={paths.en} translations={paths}>
+  <AboutBody locale="en" />
+</Base>
