@@ -22,8 +22,8 @@ describe('serviceBySlug', () => {
   // Every service URL, and so every slug, is pinned by PUBLISHED_SERVICE_URLS
   // in retired-services.test.ts; this file does not restate them.
 
-  it('lists the services in the display order the owner chose (2026-09-14)', () => {
-    expect(services.map((s) => s.id)).toEqual(['consulting', 'digitize', 'websites']);
+  it('lists the services in the display order the owner chose (2026-09-14; Transition Planning appended 2026-09-22)', () => {
+    expect(services.map((s) => s.id)).toEqual(['consulting', 'digitize', 'websites', 'transition']);
   });
 
   it('returns undefined for a slug that does not exist in any service', () => {
@@ -111,6 +111,46 @@ describe('translation parity', () => {
           count(en.body.join(''), /href="https?:/g),
         );
       }
+    }
+  });
+});
+
+describe('Transition Planning launch guards', () => {
+  const transition = services.find((s) => s.id === 'transition');
+
+  it('exists', () => {
+    expect(transition).toBeDefined();
+  });
+
+  it('says nothing about brokers until todos/046 (e) is answered', () => {
+    // The owner's launch decision, 2026-09-21: preparation only. B&P §10131
+    // makes a broker anyone who, for any compensation, solicits buyers or
+    // sellers of a business — our planning fee could count. Remove a word from
+    // this list only when the attorney has answered (e) in todos/046.
+    const BROKER_WORDS: Record<string, RegExp> = {
+      en: /\bbrokers?\b|\bbrokerage\b/i,
+      es: /corredor|intermediari|agente de venta/i,
+      'zh-hans': /中介|经纪/,
+      'zh-hant': /仲介|經紀/,
+    };
+    for (const [locale, re] of Object.entries(BROKER_WORDS)) {
+      const text = JSON.stringify((transition!.t as Record<string, unknown>)[locale]);
+      expect(text, `${locale} mentions a broker`).not.toMatch(re);
+    }
+  });
+
+  it('cites only statutes the sources file marks Verified', () => {
+    // Everything else the 2026-09-21 research found is "Reported" — true as
+    // far as it went, but not compared word for word, so not quotable as law.
+    const VERIFIED = [
+      'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=2266',
+      'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=3007',
+    ];
+    for (const locale of LOCALES) {
+      const html = transition!.t[locale].body.join('');
+      const links = [...html.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]);
+      expect(links.length, `${locale} cites no statute`).toBeGreaterThan(0);
+      for (const url of links) expect(VERIFIED, `${locale}: ${url}`).toContain(url);
     }
   });
 });
