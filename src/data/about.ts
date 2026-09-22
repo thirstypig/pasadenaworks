@@ -48,9 +48,9 @@ export const about: Record<Locale, AboutCopy> = {
   },
 
   es: {
-    title: 'Sobre Pasadena Works — Pagados por la práctica y por nadie más',
-    meta: 'Pasadena Works está dirigida por James, con ocho años de experiencia en gestión de producto. Nos paga la práctica y nadie más.',
-    heading: 'Pagados por la práctica, y por nadie más',
+    title: 'Sobre Pasadena Works — Nos paga el consultorio y nadie más',
+    meta: 'Pasadena Works está dirigida por James, con ocho años de experiencia en gestión de producto. Nos paga el consultorio y nadie más.',
+    heading: 'Nos paga el consultorio, y nadie más',
     sections: [
       {
         heading: 'Con quién trabajaría',
@@ -59,27 +59,27 @@ export const about: Record<Locale, AboutCopy> = {
         ],
       },
       {
-        heading: 'Lo que hemos hecho dentro de las prácticas',
+        heading: 'Lo que hemos hecho dentro de los consultorios',
         body: [
-          'El trabajo hasta ahora ha sido de dos tipos. Hemos reconstruido sitios web de prácticas para que un paciente encuentre el horario, los seguros que se aceptan y la manera de pedir una cita sin tener que llamar, y hemos asesorado sobre los flujos de trabajo del expediente clínico electrónico (EHR), lo cual significa establecer quién ingresa cada dato y en qué paso, antes de que la práctica se comprometa a configurar un sistema alrededor de eso. Describimos ese trabajo en términos generales porque no nombramos a un cliente sin su permiso por escrito.',
+          'El trabajo hasta ahora ha sido de dos tipos. Hemos reconstruido sitios web de consultorios para que un paciente encuentre el horario, los seguros que se aceptan y la manera de pedir una cita sin tener que llamar, y hemos asesorado sobre los flujos de trabajo del expediente clínico electrónico (EHR), lo cual significa establecer quién ingresa cada dato y en qué paso, antes de que el consultorio se comprometa a configurar un sistema alrededor de eso. Describimos ese trabajo en términos generales porque no nombramos a un cliente sin su permiso por escrito.',
         ],
       },
       {
         heading: 'Cómo nos pagan',
         body: [
-          'Nos paga la práctica y nadie más. Como no cobramos comisión de los proveedores de software, no tenemos ningún motivo para recomendar un EHR sobre otro salvo que le convenga a su consultorio; como no cobramos honorarios de los intermediarios que venden prácticas, el consejo que le damos a un médico que considera una venta no depende de que esa venta se realice. Cuando algo que usted está considerando no vale el dinero, se lo diremos, incluso cuando lo que está en juego sea nuestro propio trabajo.',
+          'Nos paga el consultorio y nadie más. Como no cobramos comisión de los proveedores de software, no tenemos ningún motivo para recomendar un EHR sobre otro salvo que le convenga a su consultorio; como no cobramos honorarios de los intermediarios que venden consultorios, el consejo que le damos a un médico que considera una venta no depende de que esa venta se realice. Cuando algo que usted está considerando no vale el dinero, se lo diremos, incluso cuando lo que está en juego sea nuestro propio trabajo.',
         ],
       },
     ],
   },
 
   'zh-hans': {
-    title: '关于 Pasadena Works——只对诊所负责，不受他人支配',
-    meta: 'Pasadena Works 由 James 主理，拥有八年产品管理经验。我们只收取诊所的报酬，不受任何第三方支配。',
-    heading: '只对诊所负责，不受他人支配',
+    title: '关于 Pasadena Works——报酬只来自诊所，别无他人',
+    meta: 'Pasadena Works 由 James 主理，拥有八年产品管理经验。我们只收取诊所的报酬，不收任何其他方的钱。',
+    heading: '报酬只来自诊所，别无他人',
     sections: [
       {
-        heading: '与谁合作',
+        heading: '您将与谁合作',
         body: [
           'Pasadena Works 由 James 主理，他有八年产品管理经验——所谓产品管理，就是在动手开发之前，先确定一款软件应该做什么、面向谁、为何而做。这种习惯正是我们工作方法的核心。在推荐任何工具之前，我们会先观察前台如何实际处理新患者、续药请求或改期预约，因为一套贴合员工现有工作方式的系统才会被真正使用，而仅凭供应商演示选定的系统，往往最终只是与本该被取代的纸质流程并存。',
         ],
@@ -91,21 +91,21 @@ export const about: Record<Locale, AboutCopy> = {
         ],
       },
       {
-        heading: '我们如何收费',
+        heading: '我们的报酬从何而来',
         body: [
-          '我们只收取诊所的报酬，不受任何第三方支配。由于我们不从软件供应商那里抽取佣金，因此除了是否适合您的诊所之外，我们没有理由偏向推荐某一款电子病历系统；由于我们不从诊所中介那里收取费用，我们给正在考虑出售诊所的医生的建议，并不取决于这笔交易是否成交。如果您正在考虑的方案并不值这笔钱，我们会直说，即使这话说的是我们自己的工作。',
+          '我们的报酬只来自诊所，不来自任何其他人。由于我们不从软件供应商那里抽取佣金，因此除了是否适合您的诊所之外，我们没有理由偏向推荐某一款电子病历系统；由于我们不从诊所中介那里收取费用，我们给正在考虑出售诊所的医生的建议，并不取决于这笔交易是否成交。如果您正在考虑的方案并不值这笔钱，我们会直说，即使这话说的是我们自己的工作。',
         ],
       },
     ],
   },
 
   'zh-hant': {
-    title: '關於 Pasadena Works——只對診所負責，不受他人支配',
-    meta: 'Pasadena Works 由 James 主理，擁有八年產品管理經驗。我們只收取診所的報酬，不受任何第三方支配。',
-    heading: '只對診所負責，不受他人支配',
+    title: '關於 Pasadena Works——報酬只來自診所，別無他人',
+    meta: 'Pasadena Works 由 James 主理，擁有八年產品管理經驗。我們只收取診所的報酬，不收任何其他方的錢。',
+    heading: '報酬只來自診所，別無他人',
     sections: [
       {
-        heading: '與誰合作',
+        heading: '您將與誰合作',
         body: [
           'Pasadena Works 由 James 主理，他有八年產品管理經驗——所謂產品管理，就是在動手開發之前，先確定一款軟體應該做什麼、面向誰、為何而做。這種習慣正是我們工作方法的核心。在推薦任何工具之前，我們會先觀察櫃檯如何實際處理新病患、續藥請求或改期預約，因為一套貼合員工現有工作方式的系統才會被真正使用，而僅憑廠商展示選定的系統，往往最終只是與本該被取代的紙本流程並存。',
         ],
@@ -117,9 +117,9 @@ export const about: Record<Locale, AboutCopy> = {
         ],
       },
       {
-        heading: '我們如何收費',
+        heading: '我們的報酬從何而來',
         body: [
-          '我們只收取診所的報酬，不受任何第三方支配。由於我們不從軟體廠商那裡抽取佣金，因此除了是否適合您的診所之外，我們沒有理由偏向推薦某一款電子病歷系統；由於我們不從診所仲介那裡收取費用，我們給正在考慮出售診所的醫師的建議，並不取決於這筆交易是否成交。如果您正在考慮的方案並不值這筆錢，我們會直說，即使這話說的是我們自己的工作。',
+          '我們的報酬只來自診所，不來自任何其他人。由於我們不從軟體廠商那裡抽取佣金，因此除了是否適合您的診所之外，我們沒有理由偏向推薦某一款電子病歷系統；由於我們不從診所仲介那裡收取費用，我們給正在考慮出售診所的醫師的建議，並不取決於這筆交易是否成交。如果您正在考慮的方案並不值這筆錢，我們會直說，即使這話說的是我們自己的工作。',
         ],
       },
     ],
