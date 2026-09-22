@@ -38,8 +38,10 @@ sourcing rule in §7.
    at sale time and are paid by the sale.
 5. **Why us.** Paid by the practice and nobody else — no vendor commissions,
    no broker fees — so no recommendation is steered. We map how the office
-   runs before choosing a tool, we work in Spanish and Chinese, and we say
-   when something is not worth the money.
+   runs before choosing a tool, and we say when something is not worth the
+   money. **Corrected 2026-09-21:** the owner speaks English only. The site is
+   translated; the consultant is not bilingual, and every non-English
+   booking label says the call is in English.
 6. **Competitive advantage, one line.** *Paid by the practice and nobody else,
    run by a product manager who has worked inside offices like yours.*
 7. **Positioning challenge (theirs).** Patients cannot tell them apart from
@@ -123,13 +125,14 @@ the service parity test and `LocalBusiness` offer catalog pick it up. No
 
 - Replace `EndCta.astro`'s generic heading + service tagline with one fixed
   two-sentence blurb (who Pasadena Works is; paid by the practice and nobody
-  else), then the pillar's service link as today, then **Book a call** and the
+  else), then the pillar's service link as today, then **Book a free call** and the
   phone number.
 - One blurb, translated three times, in `ui.ts`. Not per pillar, not per post.
 - It bridges the mismatch honestly: the 68 posts still address small
   businesses, the blurb speaks to practices.
-- Uses the existing "Book a call" label. It does **not** say "free" unless
-  the owner decides the call is free.
+- Uses the booking label, which since 2026-09-21 reads "Book a free call"
+  (the owner confirmed the call is free) and, outside English, says the call
+  is in English.
 - Must stay excluded from readability scoring as furniture. Today
   `scripts/readability.mjs` drops it with a non-greedy
   `<div class="end-cta…</div>\s*</div>` match, which assumes the current

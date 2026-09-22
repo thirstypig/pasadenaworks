@@ -63,6 +63,10 @@ export interface UIStrings {
     blog: string;
     about: string;
     contact: string;
+    /** The consultation is free, and the owner speaks English only (both
+     *  stated 2026-09-21). So every non-English label says the call is in
+     *  English: a reader who booked from a translated page must not reach a
+     *  language they did not expect. ui.test.ts pins that. */
     bookCall: string;
   };
   buttons: {
@@ -164,7 +168,7 @@ export const ui: Record<Locale, UIStrings> = {
       blog: 'Blog',
       about: 'About',
       contact: 'Contact',
-      bookCall: 'Book a call',
+      bookCall: 'Book a free call',
     },
     buttons: {
       getInTouch: 'Get in touch',
@@ -254,7 +258,7 @@ export const ui: Record<Locale, UIStrings> = {
       blog: 'Blog',
       about: 'Nosotros',
       contact: 'Contacto',
-      bookCall: 'Agenda una llamada',
+      bookCall: 'Agenda una llamada gratuita en inglés',
     },
     buttons: {
       getInTouch: 'Contáctenos',
@@ -337,7 +341,7 @@ export const ui: Record<Locale, UIStrings> = {
       blog: '博客',
       about: '关于我们',
       contact: '联系我们',
-      bookCall: '预约通话',
+      bookCall: '预约免费英语通话',
     },
     buttons: {
       getInTouch: '联系我们',
@@ -412,7 +416,7 @@ export const ui: Record<Locale, UIStrings> = {
       blog: '部落格',
       about: '關於我們',
       contact: '聯絡我們',
-      bookCall: '預約通話',
+      bookCall: '預約免費英語通話',
     },
     buttons: {
       getInTouch: '聯絡我們',

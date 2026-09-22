@@ -41,3 +41,4 @@ workflow consulting.
   permission.
 - The zh slug `guanyu-women` is the pinyin of 关于我们/關於我們, the standard
   label for an About page in both scripts, not a transliteration of English.
+- Owner's statements, 2026-09-21: the booked call is free; the owner speaks English only.
