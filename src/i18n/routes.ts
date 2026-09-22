@@ -37,6 +37,7 @@ export const SEGMENTS: {
   services: Record<Locale, string>;
   cityHub: Record<Locale, string>;
   blog: Record<Locale, string>;
+  about: Record<Locale, string>;
 } = {
   services: {
     en: 'services',
@@ -67,10 +68,19 @@ export const SEGMENTS: {
     'zh-hans': 'boke',
     'zh-hant': 'boke',
   },
+
+  /** The About page, per locale. 关于我们/關於我們 is the standard label in
+   *  both scripts, so the romanization is shared, as `fuwu` is. */
+  about: {
+    en: 'about',
+    es: 'sobre-nosotros',
+    'zh-hans': 'guanyu-women',
+    'zh-hant': 'guanyu-women',
+  },
 };
 
 /**
- * hreflang maps for the three index pages that exist in all four locales.
+ * hreflang maps for the four index pages that exist in all four locales.
  *
  * These were written out longhand SIX times — once on each English page and
  * again on its localized twin — in three different styles: hardcoded literals,
@@ -84,7 +94,7 @@ export const SEGMENTS: {
  * fixed on 2026-09-03 (a wrong blog link, a button label used as a heading, a
  * mislabelled back-link, a missing card CTA).
  *
- * A full four-locale map IS correct for these three pages — they genuinely
+ * A full four-locale map IS correct for these four pages — they genuinely
  * exist in every locale. This is not the "hardcode a full map for consistency"
  * that hard rule #1 forbids; it is the correct map, derived once instead of
  * transcribed six times. Pages whose existence is conditional must still derive
@@ -99,6 +109,7 @@ function indexPaths(segment: Record<Locale, string>): Record<Locale, string> {
 export const servicesIndexPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.services);
 export const cityHubPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.cityHub);
 export const blogIndexPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.blog);
+export const aboutPaths = (): Record<Locale, string> => indexPaths(SEGMENTS.about);
 
 /** Build a path for a given locale, joining segments and adding the locale
  *  prefix (skipped for the default locale). Always leading+trailing slash. */
