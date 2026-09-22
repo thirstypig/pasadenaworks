@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CityBody from '../../components/CityBody.astro';
+import EndCta from '../../components/EndCta.astro';
 import { cities, cityLocales } from '../../data/cities';
 import { SEGMENTS, localeUrl } from '../../i18n/routes';
 import { LOCALES, type Locale } from '../../i18n/ui';
@@ -37,7 +38,12 @@ const translations = Object.fromEntries(
     <h1>{copy.title}</h1>
     <p class="prose">{copy.summary}</p>
     <CityBody copy={copy} locale="en" slug={city.slug} />
-    <p><a class="btn" href="/#contact">Get in touch</a></p>
+    {/* Who you would be working with, and that the practice alone pays us.
+        Identical on every city page ON PURPOSE — furniture, like the footer,
+        so it sits outside cities.test.ts's duplicate-sentence check rather
+        than defeating it. The city-specific argument lives in the third
+        paragraph above, where that check can see it. */}
+    <EndCta serviceId="consulting" locale="en" />
     <p class="page-back"><a href="/websites/">&lsaquo; All cities</a></p>
   </section>
 </Base>

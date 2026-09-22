@@ -583,7 +583,19 @@ export function mainProse(html) {
   // excluded from the start.
   t = t.replace(/<p class="post__(author|meta|subtitle)"[\s\S]*?<\/p>/g, ' ');
   t = t.replace(/<figcaption[\s\S]*?<\/figcaption>/g, ' ');
-  t = t.replace(/<div class="end-cta[\s\S]*?<\/div>\s*<\/div>/g, ' ');
+  // The closing box. Matched to its OWN first </div>, which works because
+  // EndCta.astro keeps its children flat — no nested <div> — and says so.
+  //
+  // This used to require `</div>\s*</div>`, which matched the box's close PLUS
+  // the close of Post.astro's wrapper around it. That made the exclusion depend
+  // on the box's SURROUNDINGS rather than on the box. It held for as long as
+  // blog posts were the only caller. The moment the same box was added to the
+  // city pages — inside a <section>, with a <p> after it rather than a </div> —
+  // it matched nothing at all and the whole CTA was scored as prose. Measured
+  // when it was found: 0 characters removed on a city page, 890 on a post.
+  // The flat form removes 884 and 891 respectively, the six-character
+  // difference being the wrapper's own closing tag, which carries no text.
+  t = t.replace(/<div class="end-cta[\s\S]*?<\/div>/g, ' ');
   // Attribute order is not guaranteed — the homepage CTA is written
   // <a href={...} ... class="btn">, so anchoring on `class` being first
   // silently missed it. Match the class attribute anywhere in the tag.

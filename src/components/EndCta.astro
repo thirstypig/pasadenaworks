@@ -1,28 +1,45 @@
 ---
-import { serviceForPillar } from '../data/services';
+import { serviceForPillar, services, type Service } from '../data/services';
 import { SEGMENTS, localeUrl } from '../i18n/routes';
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 import type { Pillar } from '../data/pillars';
 import { site } from '../data/site';
 
-interface Props {
-  pillar: Pillar;
-  locale: Locale;
-}
+/**
+ * The closing box. Blog posts reach a service through their PILLAR; a city
+ * page has no pillar, so it names a service id directly.
+ *
+ * Exactly one of the two is given. A discriminated union rather than two
+ * optional props, so "neither" and "both" are compile errors — the same
+ * reasoning as the `kind` unions on the dual-purpose routes, and for the
+ * same reason: this file used to be reachable one way only, and a second
+ * caller is exactly when a loose prop shape starts silently mis-branching.
+ */
+type Props = { locale: Locale } & ({ pillar: Pillar } | { serviceId: Service['id'] });
 
-const { pillar, locale } = Astro.props;
+const props = Astro.props as Props;
+const { locale } = props;
 
-const service = serviceForPillar(pillar);
+const service =
+  'pillar' in props
+    ? serviceForPillar(props.pillar)
+    : (services.find((s) => s.id === props.serviceId) as Service);
 const href = localeUrl(locale, SEGMENTS.services[locale], service.slugs[locale]);
 const copy = service.t[locale];
 const strings = t(locale);
 ---
 
-{/* Flat on purpose: scripts/readability.mjs drops this box with a non-greedy
-    `<div class="end-cta…</div>\s*</div>` match, so a nested <div> here would
-    end that match early and leak the rest into the reading score — the trap
-    CLAUDE.md records for the city data strip. Keep the children as siblings. */}
+{/* Flat on purpose: scripts/readability.mjs drops this box by matching to its
+    own FIRST </div>, which is only correct while the children are siblings. A
+    nested <div> here would end that match early and leak the rest into the
+    reading score — the trap CLAUDE.md records for the city data strip.
+
+    The exclusion used to require `</div>\s*</div>`, matching this box's close
+    plus Post.astro's wrapper around it, which quietly made the rule depend on
+    where the box was rendered. Adding it to the city pages — inside a
+    <section>, followed by a <p> — matched nothing and scored the whole CTA as
+    prose. Fixed 2026-09-22. Keep the children as siblings. */}
 <div class="end-cta label-frame">
   <h2>{strings.endCta.heading}</h2>
   <p class="prose">{strings.endCta.blurb}</p>
