@@ -31,5 +31,13 @@ California / Dental Board of California before any of it reaches a page.
 
 ## About page (§3)
 
-Owner's own statements, 2026-09-21: first name James; 8 years in product;
-practice work limited to rebuilt websites and EHR workflow consulting.
+Owner's own statements, 2026-09-21: first name James; 8 years in product
+(product management); practice work limited to rebuilt websites and EHR
+workflow consulting.
+
+- Owner-approved About copy, 2026-09-21: the rebuilt sites let a patient find
+  the hours, the accepted insurance and how to book without calling.
+- Owner-approved commitment: no client is named without its written
+  permission.
+- The zh slug `guanyu-women` is the pinyin of 关于我们/關於我們, the standard
+  label for an About page in both scripts, not a transliteration of English.

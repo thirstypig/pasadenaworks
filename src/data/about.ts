@@ -49,7 +49,7 @@ export const about: Record<Locale, AboutCopy> = {
 
   es: {
     title: 'Sobre Pasadena Works — Nos paga el consultorio y nadie más',
-    meta: 'Pasadena Works está dirigida por James, con ocho años de experiencia en gestión de producto. Nos paga el consultorio y nadie más.',
+    meta: 'Pasadena Works está dirigida por James, quien tiene ocho años de experiencia en gestión de producto. Nos paga el consultorio y nadie más.',
     heading: 'Nos paga el consultorio, y nadie más',
     sections: [
       {
@@ -75,7 +75,7 @@ export const about: Record<Locale, AboutCopy> = {
 
   'zh-hans': {
     title: '关于 Pasadena Works——报酬只来自诊所，别无他人',
-    meta: 'Pasadena Works 由 James 主理，拥有八年产品管理经验。我们只收取诊所的报酬，不收任何其他方的钱。',
+    meta: 'Pasadena Works 由拥有八年产品管理经验的 James 主理。我们只收取诊所的报酬，不收任何其他方的钱。',
     heading: '报酬只来自诊所，别无他人',
     sections: [
       {
@@ -101,7 +101,7 @@ export const about: Record<Locale, AboutCopy> = {
 
   'zh-hant': {
     title: '關於 Pasadena Works——報酬只來自診所，別無他人',
-    meta: 'Pasadena Works 由 James 主理，擁有八年產品管理經驗。我們只收取診所的報酬，不收任何其他方的錢。',
+    meta: 'Pasadena Works 由擁有八年產品管理經驗的 James 主理。我們只收取診所的報酬，不收任何其他方的錢。',
     heading: '報酬只來自診所，別無他人',
     sections: [
       {
