@@ -10,7 +10,9 @@ in the San Gabriel Valley. Astro static site, deployed free on GitHub Pages at
 `pasadenaworks.com`.
 
 **Repositioned 2026-09-14** from general small businesses to practices: a Practice
-Checkup, *Digitize the office*, and *Get more patients*. The decisions, the
+Checkup, *Digitize the office*, and *Get more patients*. A fourth service,
+**Transition Planning**, followed on 2026-09-22: preparation only — no brokers
+or introductions — until the attorney answers `todos/046` (e). The decisions, the
 approved copy and every source behind a checkable claim are in
 `docs/superpowers/specs/2026-09-14-practice-services-design.md` and its
 `-sources.md` twin. The ten city pages followed on 2026-09-15 — rebuilt on
@@ -74,7 +76,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 108 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 452 across 34 files) — i18n/hreflang, reading
+npm run test         # tests (vitest, 457 across 35 files) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -1223,3 +1225,4 @@ Read that file before re-investigating any of these.
 - The homepage leads with growth: H1 "More new patients, and a front office that runs without you", title "Pasadena Works — More Patients for Medical & Dental Practices". The "Worth more when you step back" section was removed along with its parity test — nothing on the site markets selling a practice (2026-09-15, #77) (partly superseded 2026-09-21: the positioning spec reverses this, and the About page mentions advising a doctor considering a sale)
 - The city pages are rebuilt for practices: ten cities (San Gabriel is new) in all four languages, resting on CMS NPI Registry, California HCAI and Census ACS figures instead of the old street-and-landmark copy, with the hub and blog descriptions re-aimed to match. The five translated city URLs that were already published still build, and `src/data/city-pages.test.ts` is the append-only guard that keeps them building (2026-09-15)
 - An About page exists in four languages — first name only, paid by the practice and nobody else (2026-09-21)
+- Transition Planning is a fourth service in four languages, preparation only until the attorney answers todos/046 (e) (2026-09-22)

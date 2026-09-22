@@ -488,3 +488,24 @@ Read this before re-investigating anything that sounds already-handled.
   English first measured 12.7, just under its 13–15 band, and was lifted to
   14.1 by one hand-made sentence join in the first section ("That habit is
   the whole method here: before we recommend a tool…").
+
+- **Transition Planning is a fourth service in four languages, preparation only
+  until the attorney answers todos/046 (e)** (2026-09-22). It lives at
+  `/services/transition-planning/`, `/es/servicios/transicion-del-consultorio/`,
+  `/zh-hans/fuwu/chuancheng-guihua/` and `/zh-hant/fuwu/jieban-guihua/`, with
+  the copy in `src/data/services.ts` under id `transition`. It describes three
+  endings (sell, hand on, close) and the operational preparation for each, and
+  says plainly that the business does not value practices, find or negotiate
+  with buyers, or give legal or tax advice. Two guards in
+  `src/data/services.test.ts` keep it there: no broker or introduction wording
+  in any locale, and exactly two outbound links, the California records-retention
+  statutes (Bus. & Prof. Code §2266 for physicians, §3007 for optometrists),
+  each stated with its "at least" minimum. The built pages carry all four
+  hreflang alternates plus `x-default`, and the homepage's `LocalBusiness`
+  offer catalog names the service. Built-page reading level: en FK 13.4, es
+  F-H 50, zh-hans and zh-hant register 0.6, all in band. English first measured
+  11.2 and Spanish 57, and both were raised by hand with more precise words and
+  one real subordination in the sale item, measured after each edit, with every
+  claim and negation kept. The service grid now holds four cards: one row of
+  four at 1280px, one column at 375px, and three plus a lone fourth at 1024px,
+  with no horizontal scroll at any of them.
