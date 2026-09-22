@@ -87,14 +87,21 @@ built years before one.
 
 **Hard lines (a review blocks the PR if any is crossed):**
 - We never value a practice, never broker, never take a broker's or vendor's
-  fee, never give legal or tax advice. We introduce the broker, CPA, attorney
-  or records custodian.
+  fee, never give legal or tax advice.
+- **Sell boundary (owner, 2026-09-21):** we prepare the practice and, once the
+  attorney confirms it (todos/046 (e)), give the doctor a list of licensed
+  brokers to interview. We never contact buyers, market the practice, or
+  negotiate. B&P §10131 turns on activity — "solicits prospective sellers or
+  buyers" — and on *any* compensation, which could include our planning fee,
+  so the no-fee rule alone is not the safe line.
+- **Launch wording (owner, 2026-09-21):** ship now describing preparation only;
+  no mention of brokers, broker lists or introductions until (e) is answered.
+  State as law only what the sources file marks **Verified**.
 - Every legal statement on the page (Medical Board notice, patient
   notification, records retention periods) is checked against the statute or
   the board's own page, **not** a records-custodian vendor's blog. Vendor
   pages were the source of two overstated claims in PR #75.
-- Add to todos/046: does planning a sale, and introducing a broker without a
-  fee, stay clear of California broker licensing?
+- The attorney questions are in todos/046 (e)–(h).
 
 **Build shape:** a fourth record in `services.ts` in all four locales, new
 slugs in the service segment, the homepage service grid gains a fourth card,
