@@ -502,10 +502,10 @@ Read this before re-investigating anything that sounds already-handled.
   statutes (Bus. & Prof. Code §2266 for physicians, §3007 for optometrists),
   each stated with its "at least" minimum. The built pages carry all four
   hreflang alternates plus `x-default`, and the homepage's `LocalBusiness`
-  offer catalog names the service. Built-page reading level: en FK 13.4, es
-  F-H 50, zh-hans and zh-hant register 0.6, all in band. English first measured
+  offer catalog names the service. Built-page reading level: en FK 13.1, es
+  F-H 51, zh-hans and zh-hant register 0.6, all in band. English first measured
   11.2 and Spanish 57, and both were raised by hand with more precise words and
-  one real subordination in the sale item, measured after each edit, with every
+  one real subordination in the sale item, measured after nearly every edit, with every
   claim and negation kept. The service grid now holds four cards: one row of
   four at 1280px, one column at 375px, and three plus a lone fourth at 1024px,
   with no horizontal scroll at any of them.
