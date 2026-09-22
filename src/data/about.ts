@@ -29,7 +29,7 @@ export const about: Record<Locale, AboutCopy> = {
       {
         heading: 'Who you would be working with',
         body: [
-          'Pasadena Works is run by James, who has spent eight years in product management, which is the work of deciding what a piece of software should do, for whom, and why, before anyone builds it. That habit is the whole method here. Before we recommend a tool, we watch how your front desk actually handles a new patient, a refill request, or a rescheduled appointment, because a system that fits the way your staff already works will be used, whereas one chosen from a vendor’s demonstration usually ends up running alongside the paper it was bought to replace.',
+          'Pasadena Works is run by James, who has spent eight years in product management, which is the work of deciding what a piece of software should do, for whom, and why, before anyone builds it. That habit is the whole method here: before we recommend a tool, we watch how your front desk actually handles a new patient, a refill request, or a rescheduled appointment, because a system that fits the way your staff already works will be used, whereas one chosen from a vendor’s demonstration usually ends up running alongside the paper it was bought to replace.',
         ],
       },
       {
