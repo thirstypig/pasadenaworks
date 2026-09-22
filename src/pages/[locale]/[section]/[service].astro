@@ -14,6 +14,7 @@ import { render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Post from '../../../layouts/Post.astro';
 import CityBody from '../../../components/CityBody.astro';
+import EndCta from '../../../components/EndCta.astro';
 import { services, type Service } from '../../../data/services';
 import { cities, cityLocales, type City } from '../../../data/cities';
 import { SEGMENTS, localeUrl } from '../../../i18n/routes';
@@ -233,7 +234,15 @@ if (kind !== 'service' && kind !== 'city' && kind !== 'blog-post') {
       <h1>{cityCopy.title}</h1>
       <p class="prose">{cityCopy.summary}</p>
       <CityBody copy={cityCopy} locale={locale} slug={city.slug} />
-      <p><a class="btn" href={`${localeUrl(locale)}#contact`}>{strings.buttons.getInTouch}</a></p>
+      {/* Who you would be working with, and that the practice alone pays us.
+          Identical on all forty city pages ON PURPOSE — it is furniture, like
+          the footer, not body copy, so it sits outside cities.test.ts's
+          duplicate-sentence check rather than defeating it. The city-specific
+          argument lives in the third paragraph above, where that check can
+          see it. Reuses the blog's box and its strings, so this shipped in
+          all four languages the day it was added, including the locales whose
+          body copy is still being rewritten. */}
+      <EndCta serviceId="consulting" locale={locale} />
       <p class="page-back">
         <a href={localeUrl(locale, SEGMENTS.cityHub[locale])}>&lsaquo; {strings.buttons.backToCities}</a>
       </p>
