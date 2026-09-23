@@ -1,6 +1,6 @@
 ---
 title: Why Google Translate on your website does nothing for SEO
-description: 'Google Translate widgets help visitors read your site, but Googlebot never sees the translated text as its own page — so it can''t rank for translated searches.'
+description: 'Google Translate widgets help a patient read your site, but Googlebot never sees the translated text as its own page — so your practice cannot rank for searches in that language.'
 pubDate: 2026-10-05T00:00:00.000Z
 pillar: websites
 targetKeyword: google translate website seo
@@ -17,9 +17,9 @@ translationKey: google-translate-seo
 slug: google-translate-website-seo
 ---
 
-> **TL;DR** — The "Translate this page" widget helps a human visitor read your site in their own language. It accomplishes nothing for search rankings, because Google never encounters the translated text as a genuine page: it is merely JavaScript substituting words inside the visitor's browser after the fact. If you want to appear when somebody searches in Spanish or Chinese, you require actual translated pages at their own URLs, with hreflang tags informing Google that they exist.
+> **TL;DR** — The "Translate this page" widget helps a human visitor read your site in their own language. It accomplishes nothing for search rankings, because Google never encounters the translated text as a genuine page: it is merely JavaScript substituting words inside the visitor's browser after the fact. If you want your practice to appear when a patient searches in Spanish or Chinese, you require actual translated pages at their own URLs, with hreflang tags informing Google that they exist.
 
-Somebody asks us this almost every time we raise the subject of multilingual SEO: "Don't we already have that? There's a Translate button in the corner." The answer is no. That button performs something genuine for the person clicking it and nothing whatsoever for Google, and those are two distinct jobs of which the widget does only one.
+A practice asks us this almost every time we raise the subject of multilingual SEO: "Don't we already have that? There's a Translate button in the corner." The answer is no. That button performs something genuine for the person clicking it and nothing whatsoever for Google, and those are two distinct jobs of which the widget does only one.
 
 ## What the widget actually does
 
@@ -31,14 +31,14 @@ Googlebot does execute JavaScript, which is the detail that misleads people, but
 
 ## Why a search engine needs a separate page, not a costume over the old one
 
-Search engines rank URLs rather than visual appearances. When somebody searches "diseño de páginas web Pasadena," Google attempts to match that query against a page whose actual indexed content is Spanish, which means the words on the page, held in Google's database, must themselves be Spanish words. A widget that repaints English content into Spanish for one visitor's browser never deposits Spanish words into Google's database, so there is simply nothing available to match against.
+Search engines rank URLs rather than visual appearances. When a patient searches "dentista que habla español en Pasadena," Google attempts to match that query against a page whose actual indexed content is Spanish, which means the words on the page, held in Google's database, must themselves be Spanish words. A widget that repaints English content into Spanish for one visitor's browser never deposits Spanish words into Google's database, so there is simply nothing available to match against.
 
-That constitutes the entire difference between a genuine translated page and a translation plugin. A real Spanish page resides at its own URL — `/es/` for a page such as this one — and the HTML leaving the server at that address is Spanish, written by a person, sitting in a file, indexed by Google as its own page carrying its own title tag, its own meta description, and its own ranking history. It can outrank a competitor's English page for a Spanish query, and it can appear in Spanish "near me" results. A translation widget can accomplish none of that, because no separate object exists there to link to, rank, or measure.
+That constitutes the entire difference between a genuine translated page and a translation plugin. A real Spanish page resides at its own URL — `/es/` for a page such as this one — and the HTML leaving the server at that address is Spanish, written by a person, sitting in a file, indexed by Google as its own page carrying its own title tag, its own meta description, and its own ranking history. It can outrank another practice's English page for a Spanish query, and it can appear in Spanish "near me" results. A translation widget can accomplish none of that, because no separate object exists there to link to, rank, or measure.
 
 The remaining piece, which people skip even when they do build genuine translated pages, is `hreflang`: the tag informing Google that this English page and this Spanish page constitute identical content in two languages, so that it may serve whichever one matches the searcher. [Google's own documentation](https://developers.google.com/search/docs/specialty/international/localized-versions) is specific about one requirement that trips people up constantly — every language version must reference itself as well as all the others, and **if two pages do not both point at each other, the tags are ignored entirely**. Real translated URLs and correct, reciprocal hreflang tags are therefore a package: either one without the other leaves the value unclaimed.
 
 ## What this actually costs to fix
 
-Building genuine translated pages costs genuine time or genuine money, because somebody has to write authentic Spanish or Chinese copy rather than a machine translation of the English, and a fluent reader can invariably tell the difference. It also entails maintaining more pages going forward, since whenever the English page changes somebody must update the translated ones alongside it.
+Building genuine translated pages costs genuine time or genuine money, because somebody has to write authentic Spanish or Chinese copy rather than a machine translation of the English, and a fluent reader can invariably tell the difference — which matters more in medicine than in most trades, since a patient who doubts they have understood the instructions is a patient who telephones the front desk instead of reading the page. It also entails maintaining more pages going forward, since whenever the English page changes somebody must update the translated ones alongside it.
 
-If your business receives meaningful search traffic in another language — check the country and query data in Google Search Console before assuming that it does not — that expenditure is usually justified, because it represents the only path that appears in results whatsoever. If you receive little or none, do not build it merely to appear thorough. A translation widget is perfectly acceptable as a courtesy toward the occasional visitor who needs one. Simply do not mistake it for a marketing plan, and do not permit anybody to bill you as though it were one.
+If your practice receives meaningful search traffic in another language — check the query and country data in Search Console's Performance report before assuming that it does not — that expenditure is usually justified, because it represents the only path that appears in results whatsoever. If you receive little or none, do not build it merely to appear thorough. A translation widget is perfectly acceptable as a courtesy toward the occasional visitor who needs one, and it costs a practice almost nothing to leave in place. Simply do not mistake it for a marketing plan, and do not permit anybody to bill you as though it were one.
