@@ -328,6 +328,17 @@ Naming a commercial district was the old method and it is gone — a street name
 says nothing to a clinic owner, and it is far too easy to write the same
 sentence ten times with the street swapped.
 
+**Figure parity is a MULTISET comparison, and that constrains the prose.**
+`cities.test.ts`'s `figures()` sorts every number it finds without deduping, so
+a translation must repeat each figure exactly as often as the English does —
+mention "305" twice in English and the Spanish must too. Writing "where 305
+dentists compete" as a rhetorical echo therefore fails the test unless every
+translation echoes it identically, and dropping a year or a rounded total from
+one locale fails the same way. Found 2026-09-22 while rewriting the pages
+problem-first: a draft that repeated one count and dropped two others looked
+fine to a set-based check and red to the real one. Write the figure once per
+page unless every locale can carry the repetition.
+
 The guard is a test, not a habit: `cities.test.ts` masks every city name and
 every number out of each English paragraph and fails if two cities are left
 with the same sentence. "One template, new numbers" is the doorway pattern a
