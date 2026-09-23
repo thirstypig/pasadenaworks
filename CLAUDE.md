@@ -76,7 +76,7 @@ npm run readability -- --dist   # same, but scores BUILT pages (services, cities
 npm run typecheck    # astro sync && astro check && tsc --noEmit — .astro files
                      #   AND .ts, tina/ included. 108 files. The build itself
                      #   typechecks neither; the sync is required, see below.
-npm run test         # tests (vitest, 458 across 35 files, measured locally after a build on 2026-09-22) — i18n/hreflang, reading
+npm run test         # tests (vitest, 462 across 36 files, measured locally after a build on 2026-09-22) — i18n/hreflang, reading
                      #   time, city/service lookups, blog i18n helpers, blog content
                      #   integrity, the content-status generator and its Pacific clock,
                      #   JSON-LD escaping, Tina's collection match globs + filename
@@ -1234,3 +1234,4 @@ Read that file before re-investigating any of these.
 - The city pages are rebuilt for practices: ten cities (San Gabriel is new) in all four languages, resting on CMS NPI Registry, California HCAI and Census ACS figures instead of the old street-and-landmark copy, with the hub and blog descriptions re-aimed to match. The five translated city URLs that were already published still build, and `src/data/city-pages.test.ts` is the append-only guard that keeps them building (2026-09-15)
 - An About page exists in four languages — first name only, paid by the practice and nobody else (2026-09-21)
 - Transition Planning is a fourth service in four languages, preparation only until the attorney answers todos/046 (e) (2026-09-22)
+- The city pages lead with the practice's problem and use their own figures as proof, in all four languages; no claim about patient behavior survived sourcing, so none is on them (2026-09-22, #94 and the translations that followed). Each page also answers "why us" twice over: a shared closing box identical on all forty, and one city-specific beat inside the third paragraph where the duplicate-sentence guard can still see it. Monterey Park's names the limitation as the argument — we work in English, and an exact listing claim beats an unqualified promise of Chinese

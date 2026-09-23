@@ -513,3 +513,59 @@ Read this before re-investigating anything that sounds already-handled.
   claim and negation kept. The service grid now holds four cards: one row of
   four at 1280px, one column at 375px, and three plus a lone fourth at 1024px,
   with no horizontal scroll at any of them.
+
+## The city pages lead with the practice's problem, in all four languages (2026-09-22)
+
+The ten city pages were rebuilt on registry, hospital and Census figures on
+2026-09-15, but they still opened on the data. They now open on what is hard
+about practising in that city, and use the figures as proof rather than as the
+subject. Nine address the largest clinician group in that city by name;
+Pasadena is the one physician-led registry on the site.
+
+**No claim about patient behavior survived sourcing.** A hunt for something
+citable on patients checking hours or insurance first, on call abandonment, or
+on local-search click depth turned up only vendor surveys with no stated
+sample, field dates or selection method. None of it is on the pages. Only what
+each page's own figures show.
+
+**Why a practice would hire us is answered in two places, deliberately.** The
+constant reason — one person, in the San Gabriel Valley, paid by the practice
+and nobody else — is the blog's closing box, now rendered on city pages too,
+identical on all forty. That is furniture, like the footer, so it sits OUTSIDE
+`cities.test.ts`'s duplicate-sentence check rather than defeating it. The
+city-specific reason is one beat inside the third paragraph, INSIDE that check,
+so ten near-identical pitches fail the build instead of shipping. Altadena was
+left alone: its paragraph already ended "some of this a practice can do on its
+own in an afternoon, and when that is the case, we will say so rather than
+charge for it," which is the model the other nine were written toward.
+
+Monterey Park's is the one worth copying, because its answer is the
+limitation: "We work in English, and we are not going to pretend that the
+person advising you needs to speak anything else." A qualified line about
+Mandarin on weekday mornings earns patients the practice can serve; an
+unqualified promise of Chinese produces a call that ends badly. That sentence
+survived into Spanish, Simplified and Traditional unsoftened, which was the
+single thing most at risk in translation.
+
+**A latent scorer bug surfaced only because a second caller existed.**
+`mainProse()` dropped the closing box by matching `</div>\s*</div>` — the box's
+own close plus `Post.astro`'s wrapper — so the rule depended on the box's
+surroundings rather than on the box. Rendered inside a `<section>` with a `<p>`
+after it, it matched nothing and the whole CTA was scored as prose: 0
+characters removed on a city page against 890 on a post. Matching to the box's
+own first `</div>` is correct because `EndCta` keeps its children flat, and
+removes 884 and 891. Re-measured across the whole built corpus, as every change
+to this instrument must be.
+
+Final: 23 in band in every locale, and every page outside is one of the known
+legal, glossary or index pages — no city among them. Two pages were repaired by
+hand rather than by moving a band: English Monterey Park came back at FK 15.4
+and was fixed by splitting one 58-word sentence; Traditional Chinese San
+Gabriel came back at register 1.00 — every formal marker, no ordinary one,
+which reads as a legal document — and was fixed by softening two markers.
+
+The translations were written by three agents working in parallel on separate
+files, with the two Chinese ones kept deliberately ignorant of each other's
+wording so the Taiwan and mainland lexis would not converge. It did not: the
+same sentence reads 普通话 in Simplified and 華語 in Traditional, 前台 against
+櫃檯, 数字化 against 數位化.
