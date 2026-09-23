@@ -22,8 +22,8 @@ English-only (its translations missed the date) · ✏️ draft, will not publis
 | 2026-09-21 | How to ask customers for reviews without being awkward | websites | ✅ | ✅ | ✅ | ✅ live |
 | 2026-09-28 | Should your practice's website be in Spanish too? | websites | ✅ | ✅ | ✅ | ⏳ 5 days |
 | 2026-10-05 | Why Google Translate on your website does nothing for SEO | websites | ✅ | ✅ | ✅ | ⏳ 12 days |
-| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Valley | websites | ✅ | ✅ | ✅ | ⏳ 19 days |
-| 2026-10-19 | Simplified or Traditional Chinese — which does your business need? | websites | ✅ | ✅ | ✅ | ⏳ 26 days |
+| 2026-10-12 | Reaching Chinese-speaking patients in the San Gabriel Valley | digitize | ✅ | ✅ | ✅ | ⏳ 19 days |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your practice need? | websites | ✅ | ✅ | ✅ | ⏳ 26 days |
 | 2026-10-26 | Are Google Ads worth it for a small business? | websites | ✅ | ✅ | ✅ | ⏳ 33 days |
 | 2026-11-02 | What to do when your website traffic drops | websites | ✅ | ✅ | ✅ | ⏳ 40 days |
 | 2026-11-09 | Which service should you stop offering? | consulting | ✅ | ✅ | ✅ | ⏳ 47 days |
