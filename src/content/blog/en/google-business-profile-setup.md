@@ -2,7 +2,7 @@
 title: How to Claim and Fix Your Google Business Profile
 description: 'How to claim and verify your Google Business Profile in 2026, plus the category, hours, and service-area mistakes that quietly cost small businesses money.'
 pubDate: 2026-09-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google business profile setup
 author: Pasadena Works
 tags:

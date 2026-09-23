@@ -2,7 +2,7 @@
 title: "Por qué el Traductor de Google en tu sitio no le sirve de nada al SEO"
 description: "Los widgets del Traductor de Google ayudan a que un visitante lea tu sitio, pero Googlebot nunca ve ese texto traducido como una página propia, así que no puede posicionar en búsquedas en otro idioma."
 pubDate: 2026-10-05T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "traductor de google seo página web"
 author: "Pasadena Works"
 tags: ["seo multilingüe", "hreflang"]

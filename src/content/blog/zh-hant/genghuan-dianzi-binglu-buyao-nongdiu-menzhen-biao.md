@@ -2,7 +2,7 @@
 title: 更換電子病歷系統時，別把門診表弄丟了
 description: 臨床紀錄通常撐得過一次移轉。真正讓診所吃虧的，是預約排診、回診名單與未結餘額。
 pubDate: 2027-05-10T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: 更換電子病歷系統
 author: Pasadena Works
 tags:

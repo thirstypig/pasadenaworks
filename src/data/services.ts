@@ -546,9 +546,9 @@ export function serviceBySlug(locale: Locale, slug: string): Service | undefined
  */
 export const PILLAR_SERVICE: Record<Pillar, ServiceId> = {
   websites: 'websites',
-  search: 'websites',
-  ads: 'websites',
+  digitize: 'digitize',
   consulting: 'consulting',
+  transition: 'transition',
 };
 
 export function serviceForPillar(pillar: Pillar): Service {

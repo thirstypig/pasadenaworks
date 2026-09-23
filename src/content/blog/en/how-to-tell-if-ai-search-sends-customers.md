@@ -2,7 +2,7 @@
 title: How to tell whether AI search is sending you customers
 description: 'You mostly cannot separate it out, and understanding why is more useful than any dashboard. What you can read is the shape of the change, and where the assistants do leave a trace.'
 pubDate: 2027-06-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: measure traffic from ai search
 author: Pasadena Works
 tags:

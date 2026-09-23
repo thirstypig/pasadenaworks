@@ -2,7 +2,7 @@
 title: "Temporada del Desfile de las Rosas: lo que los negocios de Pasadena deben revisar cada diciembre"
 description: "Una lista de diciembre para negocios de Pasadena: horarios en el Perfil de Negocio de Google, información de acceso a la ruta del desfile, personal, y qué cambia de verdad en las búsquedas."
 pubDate: 2026-12-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "desfile de las rosas pasadena negocios"
 author: "Pasadena Works"
 tags: ["seo local", "pasadena"]

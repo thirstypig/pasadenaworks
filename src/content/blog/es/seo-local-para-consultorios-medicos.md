@@ -2,7 +2,7 @@
 title: SEO local para consultorios médicos
 description: 'Google dice que el ranking local se reduce a tres cosas, y solo una de ellas es algo que un consultorio pueda cambiar de verdad. Aquí es donde el esfuerzo rinde.'
 pubDate: 2027-02-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: seo local para medicos
 author: Pasadena Works
 tags:

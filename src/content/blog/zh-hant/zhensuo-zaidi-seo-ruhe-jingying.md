@@ -2,7 +2,7 @@
 title: 診所的在地 SEO 如何經營
 description: Google 說在地排名歸結為三件事，而其中只有一件是診所真正能改變的。本文說明力氣該花在哪裡。
 pubDate: 2027-02-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 診所在地 seo
 author: Pasadena Works
 tags:

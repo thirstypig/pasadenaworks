@@ -2,7 +2,7 @@
 title: 'HIPAA and your website: the parts that trip people up'
 description: 'A federal court struck down the most aggressive reading of the tracking-pixel rules in 2024. That changed less than vendors claim, and less than practices hope.'
 pubDate: 2027-03-29T00:00:00.000Z
-pillar: websites
+pillar: digitize
 targetKeyword: hipaa website tracking rules
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: 'Fake reviews and review extortion: what the rule actually bans'
 description: 'The FTC banned six specific practices in 2024, and two of them are things well-meaning small businesses do without realizing. Threatening a negative reviewer is one of them.'
 pubDate: 2027-10-04T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ftc fake review rule small business
 author: Pasadena Works
 tags:

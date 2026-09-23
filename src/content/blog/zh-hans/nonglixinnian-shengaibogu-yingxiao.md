@@ -2,7 +2,7 @@
 title: "圣盖博谷的农历新年生意，该怎么做营销"
 description: "2027 年农历新年是 2 月 6 日。蒙特利公园、阿罕布拉、亚凯迪亚一带的餐馆、美发店和商铺，该怎么提前准备。"
 pubDate: 2027-01-04T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: "圣盖博谷 农历新年 营销"
 author: "Pasadena Works"
 tags: ["农历新年", "圣盖博谷"]

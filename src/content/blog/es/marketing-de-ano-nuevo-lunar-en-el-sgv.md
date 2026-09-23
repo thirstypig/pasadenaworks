@@ -2,7 +2,7 @@
 title: "Marketing para el público del Año Nuevo Lunar en el San Gabriel Valley"
 description: "El Año Nuevo Lunar 2027 cae el 6 de febrero. Así deberían prepararse restaurantes, salones y tiendas del SGV en Monterey Park, Alhambra y Arcadia."
 pubDate: 2027-01-04T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: "año nuevo lunar marketing san gabriel valley"
 author: "Pasadena Works"
 tags: ["año nuevo lunar", "san gabriel valley"]

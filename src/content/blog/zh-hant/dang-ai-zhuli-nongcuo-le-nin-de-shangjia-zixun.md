@@ -2,7 +2,7 @@
 title: 當 AI 助理把您的商家資訊說錯了
 description: 那句回答您改不了，也沒有一條客服專線可打。您能改的，是它所依據的那些來源；這是一種更慢的修法，而它是唯一存在的修法。
 pubDate: 2027-11-29T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai 助理 商家資訊錯誤
 author: Pasadena Works
 tags:

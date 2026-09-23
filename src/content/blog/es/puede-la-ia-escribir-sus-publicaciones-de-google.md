@@ -2,7 +2,7 @@
 title: '¿Puede la IA escribir sus publicaciones del Perfil de Negocio?'
 description: 'Puede redactarlas, y una publicación genérica resulta peor que ninguna. La restricción no es la escritura: es que solo merece publicarse cuando algo es verdaderamente cierto esta semana.'
 pubDate: 2027-05-24T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ia para publicaciones de perfil de negocio
 author: Pasadena Works
 tags:

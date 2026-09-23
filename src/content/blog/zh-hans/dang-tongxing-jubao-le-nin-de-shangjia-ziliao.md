@@ -2,7 +2,7 @@
 title: 当同行举报了您的商家资料，或者悄悄改了它
 description: 任何人都能对您的 Google 商家资料提出修改建议，而这个改动可能在您听说之前就已生效。防守的关键是尽早发现——那是一项设置，而非一种本事。
 pubDate: 2027-10-11T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 同行改了我的 google 商家资料
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: When an assistant gets your business details wrong
 description: 'You cannot edit the answer, and there is no support line for it. What you can edit are the sources it drew on, which is a slower fix and the only one that exists.'
 pubDate: 2027-11-29T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai assistant wrong business information
 author: Pasadena Works
 tags:

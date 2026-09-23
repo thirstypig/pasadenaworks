@@ -2,7 +2,7 @@
 title: "GEO 是真有其事，还是 SEO 换了个名字"
 description: 多半是后者；而兜售它的供应商，正越来越多地被他们声称要为之优化的那家公司自己的文档所否定。
 pubDate: 2027-05-03T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: geo 生成式引擎优化是真的吗
 author: Pasadena Works
 tags:

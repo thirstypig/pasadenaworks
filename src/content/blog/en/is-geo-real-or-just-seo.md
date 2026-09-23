@@ -2,7 +2,7 @@
 title: 'Is "GEO" real, or SEO with a new name?'
 description: 'Mostly the second, and the vendors selling it are increasingly contradicted by the documentation of the company whose product they claim to optimize for.'
 pubDate: 2027-05-03T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: is geo generative engine optimization real
 author: Pasadena Works
 tags:

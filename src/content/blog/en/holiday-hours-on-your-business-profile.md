@@ -2,7 +2,7 @@
 title: Holiday hours on your Google Business Profile
 description: 'The smallest job on the list and the one that produces the most avoidable anger. Set special hours for the whole season in one sitting, before anybody drives to a locked door.'
 pubDate: 2027-11-15T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google business profile holiday hours
 author: Pasadena Works
 tags:

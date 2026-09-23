@@ -2,7 +2,7 @@
 title: 独立小店怎样在本地搜索上赢过连锁
 description: 不是去争那些连锁必赢的词，而是成为一个街区里最准确、反应最快的那份商家资料——那恰恰是一个中央营销部门做不到的事。
 pubDate: 2027-06-28T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 独立小店 本地搜索 赢过连锁
 author: Pasadena Works
 tags:

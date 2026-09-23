@@ -2,7 +2,7 @@
 title: Why doesn't my business come up when someone asks ChatGPT?
 description: 'Customers are asking assistants instead of searching. The reason your business is missing is usually ordinary, and the fix is not the one being sold to you.'
 pubDate: 2027-01-18T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: business not showing up in ai search
 author: Pasadena Works
 tags:

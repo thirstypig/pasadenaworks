@@ -2,7 +2,7 @@
 title: Are Google Ads worth it for a small business?
 description: Google Ads works for small businesses with good margins and someone watching the account weekly. Here's what it costs and when it doesn't pay off.
 pubDate: 2026-10-26T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: are google ads worth it for small business
 author: Pasadena Works
 tags:

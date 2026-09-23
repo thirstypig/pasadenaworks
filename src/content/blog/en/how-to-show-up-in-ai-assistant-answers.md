@@ -2,7 +2,7 @@
 title: How to show up in ChatGPT, Claude, Gemini and Perplexity answers
 description: 'There is no submission form and no placement to buy. What there is: being crawlable by the right robots, and stating plainly the facts an assistant would need to recommend you.'
 pubDate: 2027-03-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: how to appear in ai assistant answers
 author: Pasadena Works
 tags:

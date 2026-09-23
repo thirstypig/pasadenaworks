@@ -2,7 +2,7 @@
 title: 'Choosing an EHR: what actually matters for a small practice'
 description: 'The demo is a performance and the feature list is noise. Three questions predict whether you will still be content in year three, and one of them is about leaving.'
 pubDate: 2027-04-05T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: choosing an ehr for small practice
 author: Pasadena Works
 tags:

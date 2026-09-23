@@ -2,7 +2,7 @@
 title: 如何判斷 AI 搜尋有沒有替您帶來客戶
 description: 多數情況下您沒辦法把它單獨拆出來，而弄明白「為什麼拆不出來」，比任何一塊儀表板都更有用。您能讀的是變化的形狀，以及助理確實留下痕跡的那幾處。
 pubDate: 2027-06-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 如何衡量 ai 搜尋帶來的流量
 author: Pasadena Works
 tags:

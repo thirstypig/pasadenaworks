@@ -2,7 +2,7 @@
 title: How an independent outranks a chain in local search
 description: 'Not by competing on the terms the chain wins. By being the more accurate, more responsive listing in a neighborhood, which is the one thing a central marketing department cannot do.'
 pubDate: 2027-06-28T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: independent business outrank chain local search
 author: Pasadena Works
 tags:

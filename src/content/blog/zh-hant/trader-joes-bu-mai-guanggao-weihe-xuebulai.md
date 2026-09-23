@@ -2,7 +2,7 @@
 title: Trader Joe's 不買廣告，可這套為什麼學不來
 description: 那份口碑是真的。而它建立在 661 家門市、四千個商品，以及一個獨立店家搆不著的自有品牌比例之上——這恰恰是那條建議略去不提的部分。
 pubDate: 2027-08-16T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: 小型企業 口碑行銷
 author: Pasadena Works
 tags:

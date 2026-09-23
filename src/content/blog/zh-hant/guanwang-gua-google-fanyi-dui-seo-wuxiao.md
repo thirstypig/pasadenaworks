@@ -2,7 +2,7 @@
 title: "官網掛 Google 翻譯，對 SEO 一點用都沒有"
 description: "Google 翻譯外掛能幫訪客讀懂您的網站，但 Google 的爬蟲從來不會把翻譯出來的文字當成一個獨立頁面，所以它無法在其他語言的搜尋裡取得排名。"
 pubDate: 2026-10-05T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "網站 Google 翻譯 SEO"
 author: "Pasadena Works"
 tags: ["多語言 SEO", "hreflang"]

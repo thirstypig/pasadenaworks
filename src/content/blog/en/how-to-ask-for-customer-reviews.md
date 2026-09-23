@@ -2,7 +2,7 @@
 title: How to ask customers for reviews without being awkward
 description: The wording, the timing, and the rules Google and Yelp actually enforce — including the one that gets listings suspended.
 pubDate: 2026-09-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: how to ask customers for reviews
 author: Pasadena Works
 tags:

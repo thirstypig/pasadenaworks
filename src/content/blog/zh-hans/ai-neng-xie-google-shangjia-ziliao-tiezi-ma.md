@@ -2,7 +2,7 @@
 title: AI 能替您写 Google 商家资料的帖子吗
 description: 它能起草，而一条泛泛而谈的帖子比不发更糟。真正的约束不在写作，而在于这类帖子只有当本周确实有事可说时才值得发。
 pubDate: 2027-05-24T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai 写 google 商家资料帖子
 author: Pasadena Works
 tags:

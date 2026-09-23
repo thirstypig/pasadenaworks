@@ -2,7 +2,7 @@
 title: HIPAA 与诊所网站：容易踩坑的几处
 description: 2024 年，一家联邦法院推翻了关于追踪像素最激进的那一种解读。这件事改变的，比供应商所宣称的少，也比诊所所期望的少。
 pubDate: 2027-03-29T00:00:00.000Z
-pillar: websites
+pillar: digitize
 targetKeyword: hipaa 网站追踪规定
 author: Pasadena Works
 tags:

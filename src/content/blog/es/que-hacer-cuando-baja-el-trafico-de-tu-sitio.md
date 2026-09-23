@@ -2,7 +2,7 @@
 title: "Qué hacer cuando baja el tráfico de tu página web"
 description: "Una caída repentina de tráfico casi siempre tiene una de cinco causas. Este es el orden para encontrar la tuya rápido, antes de adivinar y gastar dinero arreglando lo que no era."
 pubDate: 2026-11-02T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "bajó el tráfico de mi página web"
 author: "Pasadena Works"
 tags: ["seo", "google search console"]

@@ -2,7 +2,7 @@
 title: 如何讓 ChatGPT、Claude、Gemini 與 Perplexity 的答覆提到您
 description: 沒有提交入口，也沒有版位可買。能做的是：讓該讀的檢索器讀得到您的網站，並且把助理所需要的事實用明文寫出來。
 pubDate: 2027-03-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 如何出現在 ai 答覆中
 author: Pasadena Works
 tags:

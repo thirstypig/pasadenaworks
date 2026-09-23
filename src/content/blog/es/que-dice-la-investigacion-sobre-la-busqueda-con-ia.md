@@ -2,7 +2,7 @@
 title: Qué dice la investigación publicada sobre cómo se usa realmente la búsqueda con IA
 description: 'Pew siguió a 900 personas a lo largo de 68.879 búsquedas reales. Cuando aparecía un resumen de IA, los clics en resultados casi se reducían a la mitad, y los clics dentro del resumen ocurrían el 1% de las veces.'
 pubDate: 2027-11-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: estudio clics resumenes de ia google
 author: Pasadena Works
 tags:

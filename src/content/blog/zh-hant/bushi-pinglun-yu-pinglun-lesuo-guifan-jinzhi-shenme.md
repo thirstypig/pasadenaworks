@@ -2,7 +2,7 @@
 title: 不實評論與評論勒索：這條規範實際禁止的是什麼
 description: 聯邦貿易委員會在 2024 年禁止了六種具體做法，其中有兩種，是心懷善意的小型企業在毫無察覺的情況下正在做的。威脅一位留下負評的人，就是其中之一。
 pubDate: 2027-10-04T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ftc 不實評論規範 中小企業
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: 已发表的研究怎么说：人们实际上是如何使用 AI 搜索的
 description: 皮尤追踪了 900 个人、68,879 次真实搜索。当 AI 摘要出现时，点击搜索结果的比例几乎腰斩；而点进摘要内部链接的，只有 1%。
 pubDate: 2027-11-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai 概览 点击率 研究
 author: Pasadena Works
 tags:

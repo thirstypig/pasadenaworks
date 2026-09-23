@@ -2,7 +2,7 @@
 title: 驗光所買 Google 廣告划算嗎
 description: 有時候划算，而決定因素並不是廣告本身。而是您能否說清哪些預約來自廣告，以及驗光究竟是產品，還是招攬客人的由頭。
 pubDate: 2027-05-17T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: 驗光所 google 廣告
 author: Pasadena Works
 tags:

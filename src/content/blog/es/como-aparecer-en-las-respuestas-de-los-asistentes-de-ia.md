@@ -2,7 +2,7 @@
 title: Cómo aparecer en las respuestas de ChatGPT, Claude, Gemini y Perplexity
 description: 'No hay formulario de inscripción ni posición que comprar. Lo que sí hay: permitir que los robots correctos lean su sitio, y declarar con llaneza los datos que un asistente necesitaría.'
 pubDate: 2027-03-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: como aparecer en respuestas de ia
 author: Pasadena Works
 tags:

@@ -47,11 +47,16 @@ describe('serviceForPillar', () => {
     }
   });
 
-  it('sends the retired pillars to Get more patients, and consulting to the Checkup', () => {
-    expect(serviceForPillar('search').id).toBe('websites');
-    expect(serviceForPillar('ads').id).toBe('websites');
+  it('maps each pillar to its own service, one to one', () => {
+    // Since 2026-09-23 the taxonomy has one pillar per LIVE service. It used
+    // to be websites/search/consulting/ads, where three of the four collapsed
+    // onto Get more patients — so 48 of 68 posts pointed at one service and
+    // two services had no blog post at all. The identity mapping is the point
+    // of the migration, so assert it rather than just that nothing throws.
     expect(serviceForPillar('websites').id).toBe('websites');
+    expect(serviceForPillar('digitize').id).toBe('digitize');
     expect(serviceForPillar('consulting').id).toBe('consulting');
+    expect(serviceForPillar('transition').id).toBe('transition');
   });
 });
 

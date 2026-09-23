@@ -2,7 +2,7 @@
 title: "顾客在谷歌上找不到我的店，该怎么办？"
 description: "客人在谷歌本地搜索找不到您这种正经生意，通常就是这四个原因，先修哪一个最划算。"
 pubDate: 2026-06-01
-pillar: search
+pillar: websites
 targetKeyword: "顾客在谷歌上找不到我的店"
 draft: false
 author: "Pasadena Works"

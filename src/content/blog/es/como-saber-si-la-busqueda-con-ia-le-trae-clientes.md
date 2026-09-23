@@ -2,7 +2,7 @@
 title: Cómo saber si la búsqueda con IA le está trayendo clientes
 description: 'Mayormente no puede separarlo, y entender por qué resulta más útil que cualquier panel. Lo que sí puede leer es la forma del cambio, y dónde los asistentes sí dejan rastro.'
 pubDate: 2027-06-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: medir trafico de busqueda con ia
 author: Pasadena Works
 tags:

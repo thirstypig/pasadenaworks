@@ -2,7 +2,7 @@
 title: Cuando un competidor denuncia su ficha, o la edita discretamente
 description: 'Cualquiera puede sugerir un cambio en su ficha de Google, y el cambio puede publicarse antes de que usted se entere. La defensa consiste en advertirlo rápido, que es una configuración antes que una habilidad.'
 pubDate: 2027-10-11T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: un competidor cambio mi ficha de google
 author: Pasadena Works
 tags:

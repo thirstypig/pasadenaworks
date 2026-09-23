@@ -2,7 +2,7 @@
 title: Why Google Translate on your website does nothing for SEO
 description: 'Google Translate widgets help visitors read your site, but Googlebot never sees the translated text as its own page — so it can''t rank for translated searches.'
 pubDate: 2026-10-05T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google translate website seo
 author: Pasadena Works
 tags:

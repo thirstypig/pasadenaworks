@@ -2,7 +2,7 @@
 title: 怎样才能出现在 ChatGPT、Claude、Gemini 和 Perplexity 的回答里
 description: 没有提交入口，也没有位置可买。能做的是：让该读的爬虫读得到您的网站，并且把助手所需要的事实用明文写出来。
 pubDate: 2027-03-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 怎样出现在 ai 回答里
 author: Pasadena Works
 tags:

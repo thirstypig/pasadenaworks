@@ -2,7 +2,7 @@
 title: "网站上挂 Google 翻译，对 SEO 一点用都没有"
 description: "Google 翻译插件能帮访客读懂您的网站，但 Google 的爬虫从来不会把翻译出来的文字当成一个独立页面，所以它没法在别的语言的搜索里获得排名。"
 pubDate: 2026-10-05T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "网站 Google 翻译 SEO"
 author: "Pasadena Works"
 tags: ["多语言 SEO", "hreflang"]

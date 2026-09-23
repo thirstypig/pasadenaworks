@@ -2,7 +2,7 @@
 title: "Cómo reclamar y arreglar tu Perfil de Negocio de Google"
 description: "Cómo reclamar y verificar tu Perfil de Negocio de Google, más los errores de categoría, horario y área de servicio que le cuestan dinero a los negocios pequeños."
 pubDate: 2026-09-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "cómo reclamar tu perfil de negocio en Google"
 author: "Pasadena Works"
 tags: ["SEO local", "Perfil de Negocio de Google"]

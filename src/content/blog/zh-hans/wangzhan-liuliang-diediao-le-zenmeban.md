@@ -2,7 +2,7 @@
 title: "网站流量掉下来了，该怎么办"
 description: "流量突然下滑，原因通常逃不出五种。这里给出一个诊断顺序，让您快速找到自己的那一种，而不是靠猜，把钱花在修错的地方。"
 pubDate: 2026-11-02T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "网站流量下降 怎么办"
 author: "Pasadena Works"
 tags: ["SEO", "Google Search Console"]

@@ -2,7 +2,7 @@
 title: What published research says about how people actually use AI search
 description: 'Pew tracked 900 people through 68,879 real searches. When an AI summary appeared, clicks on results roughly halved, and clicks inside the summary happened 1% of the time.'
 pubDate: 2027-11-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai overviews click through rate research
 author: Pasadena Works
 tags:

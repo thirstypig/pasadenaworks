@@ -2,7 +2,7 @@
 title: "GEO 算是新學問，還是 SEO 改了個名"
 description: 多半是後者；而兜售它的廠商，正越來越常被他們聲稱要為之最佳化的那家公司自己的文件所否定。
 pubDate: 2027-05-03T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: geo 生成式引擎最佳化是真的嗎
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: "Cómo pedirles reseñas a tus clientes sin que se sienta incómodo"
 description: "Las palabras, el momento y las reglas que Google y Yelp sí aplican — incluida la que hace que te suspendan la ficha."
 pubDate: 2026-09-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "cómo pedir reseñas a los clientes"
 author: "Pasadena Works"
 tags: ["reseñas", "SEO local"]

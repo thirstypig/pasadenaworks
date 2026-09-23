@@ -2,7 +2,7 @@
 title: Google 商家檔案遭停權：真實經營的店是怎麼被關在門外的
 description: 幾乎總是某個人做的一次編輯，而非什麼不當行為。復權流程的紀錄顯示：停權緊跟著改動而來——這也就告訴了您，何時該小心。
 pubDate: 2027-09-20T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google 商家檔案遭停權
 author: Pasadena Works
 tags:

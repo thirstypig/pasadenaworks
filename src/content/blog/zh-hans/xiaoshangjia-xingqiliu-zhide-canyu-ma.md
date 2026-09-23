@@ -2,7 +2,7 @@
 title: 小商家星期六，值得参与吗
 description: 对一家当天就能让人走进来买东西的店来说，值得；而准备工作比那一天本身更要紧。对多数服务型生意来说，老实讲，作用不大——同一个下午，有更好的用法。
 pubDate: 2027-11-08T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: 小商家星期六 值得参与吗
 author: Pasadena Works
 tags:

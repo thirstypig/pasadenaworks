@@ -2,7 +2,7 @@
 title: HIPAA 與診所網站：最容易出錯之處
 description: 2024 年，一家聯邦法院推翻了關於追蹤像素最激進的那一種解讀。這件事改變的，比廠商所宣稱的少，也比診所所期望的少。
 pubDate: 2027-03-29T00:00:00.000Z
-pillar: websites
+pillar: digitize
 targetKeyword: hipaa 網站追蹤規範
 author: Pasadena Works
 tags:

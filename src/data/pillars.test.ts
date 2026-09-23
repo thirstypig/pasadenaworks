@@ -12,8 +12,8 @@ import type { Pillar } from './pillars';
  * places: the Zod enum in `src/content.config.ts`, TypeScript unions in
  * `EndCta.astro` and `Post.astro`, and the `options` list in `tina/config.ts`.
  *
- * CLAUDE.md leans on this value — "`pillar` must be one of websites, search,
- * consulting, ads, and the build fails on a typo, deliberately" — and that
+ * CLAUDE.md leans on this value — "`pillar` must be one of PILLARS, and the
+ * build fails on a typo, deliberately" — and that
  * guarantee is only as strong as the four copies agreeing. Adding a fifth
  * pillar to the schema and forgetting Tina's list would let the admin offer a
  * value the build then rejects; forgetting a component's union would type-erase
@@ -50,13 +50,13 @@ function sourceFiles(): string[] {
 
 describe('the pillar list is declared once', () => {
   it('holds the four pillars the content plan uses', () => {
-    expect([...PILLARS]).toEqual(['websites', 'search', 'consulting', 'ads']);
+    expect([...PILLARS]).toEqual(['websites', 'digitize', 'consulting', 'transition']);
   });
 
   it('is not written out anywhere else', () => {
     // Catches a fifth copy appearing. `tina/__generated__` is excluded: it is
     // generated from the config, so it legitimately restates the values.
-    const pattern = /\[\s*'websites',\s*'search',\s*'consulting',\s*'ads'\s*\]|'websites'\s*\|\s*'search'\s*\|\s*'consulting'\s*\|\s*'ads'/;
+    const pattern = /\[\s*'websites',\s*'digitize',\s*'consulting',\s*'transition'\s*\]|'websites'\s*\|\s*'digitize'\s*\|\s*'consulting'\s*\|\s*'transition'/;
     const offenders = sourceFiles()
       .filter((file) => pattern.test(readFileSync(file, 'utf8')))
       .map((file) => relative(REPO, file))

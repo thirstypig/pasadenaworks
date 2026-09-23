@@ -2,7 +2,7 @@
 title: 'Small Business Saturday: ¿vale la pena el esfuerzo?'
 description: 'Para un local con algo que vender ese día, sí, y la preparación importa más que la jornada. Para la mayoría de los negocios de servicios, honestamente, poco — y hay un uso mejor de esa misma tarde.'
 pubDate: 2027-11-08T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: vale la pena el small business saturday
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: Switching EHR without losing your schedule
 description: 'The clinical records usually survive a migration. The appointment book, the recall list and the balances are where practices actually get hurt.'
 pubDate: 2027-05-10T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: switching ehr systems small practice
 author: Pasadena Works
 tags:
