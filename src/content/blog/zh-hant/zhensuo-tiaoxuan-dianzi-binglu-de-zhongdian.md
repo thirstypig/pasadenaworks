@@ -2,7 +2,7 @@
 title: 小型診所挑選電子病歷系統的重點
 description: 展示是一場表演，功能清單是雜訊。有三個問題能預測您在第三年是否還滿意，而其中一個問的是怎麼離開。
 pubDate: 2027-04-05T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: 診所電子病歷系統怎麼挑
 author: Pasadena Works
 tags:

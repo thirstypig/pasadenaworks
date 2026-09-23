@@ -2,7 +2,7 @@
 title: When a competitor reports your listing, or quietly edits it
 description: 'Anybody can suggest a change to your Google listing, and the change can go live before you hear about it. The defense is noticing quickly, which is a setting rather than a skill.'
 pubDate: 2027-10-11T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: competitor changed my google listing
 author: Pasadena Works
 tags:

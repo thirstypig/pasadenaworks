@@ -2,7 +2,7 @@
 title: 诊所的本地 SEO 该怎么做
 description: Google 说本地排名归结为三件事，而其中只有一件是诊所真正能改变的。本文说明力气应该花在哪里。
 pubDate: 2027-02-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 诊所本地 seo
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: '¿Es real el "GEO" o es SEO con otro nombre?'
 description: 'Mayormente lo segundo, y a los proveedores que lo venden los contradice cada vez más la documentación de la empresa para cuyo producto dicen optimizar.'
 pubDate: 2027-05-03T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: es real la optimizacion para motores generativos
 author: Pasadena Works
 tags:

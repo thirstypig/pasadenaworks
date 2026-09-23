@@ -2,7 +2,7 @@
 title: "中小企業投 Google Ads 值不值得？"
 description: "如果您的利潤夠、又有人每週真的去看帳戶，Google Ads 對中小企業是有用的。這裡把它到底要花多少錢、以及什麼時候不划算講清楚。"
 pubDate: 2026-10-26T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: "中小企業投 Google Ads 值得嗎"
 author: "Pasadena Works"
 tags: ["Google Ads", "廣告預算"]

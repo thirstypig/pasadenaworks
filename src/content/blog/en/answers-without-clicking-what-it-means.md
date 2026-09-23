@@ -2,7 +2,7 @@
 title: People are getting answers without clicking. What that means for you.
 description: 'Zero-click results are not new and not uniformly bad. What matters is which of your questions were ever worth a visit, and which were always going to end in a phone call.'
 pubDate: 2027-02-08T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: zero click search small business
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: "小生意投 Google Ads 值不值？"
 description: "如果您的利润够、有人每周真的去看账户，Google Ads 对小生意是有用的。这里说清楚它到底要花多少钱，以及什么时候不划算。"
 pubDate: 2026-10-26T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: "小企业投 Google Ads 值得吗"
 author: "Pasadena Works"
 tags: ["Google Ads", "广告预算"]

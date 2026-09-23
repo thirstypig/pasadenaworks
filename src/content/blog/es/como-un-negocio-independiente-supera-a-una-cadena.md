@@ -2,7 +2,7 @@
 title: Cómo un negocio independiente supera a una cadena en la búsqueda local
 description: 'No compitiendo por los términos que la cadena gana. Siendo la ficha más exacta y más receptiva de un barrio, que es lo único que un departamento central de marketing no puede hacer.'
 pubDate: 2027-06-28T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: negocio independiente superar cadena busqueda local
 author: Pasadena Works
 tags:

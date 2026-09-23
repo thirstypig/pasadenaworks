@@ -2,7 +2,7 @@
 title: La gente obtiene respuestas sin hacer clic. Qué significa eso para usted.
 description: 'Los resultados sin clic no son nuevos ni uniformemente malos. Lo que importa es cuáles de sus preguntas merecían una visita, y cuáles siempre iban a terminar en una llamada.'
 pubDate: 2027-02-08T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: busquedas sin clic negocio pequeno
 author: Pasadena Works
 tags:

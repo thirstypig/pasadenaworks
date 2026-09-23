@@ -2,7 +2,7 @@
 title: "玫瑰花车游行季：帕萨迪纳的商家每年十二月该检查什么"
 description: "给帕萨迪纳商家的十二月清单：Google 商家资料的营业时间、游行路线的通行信息、人手安排，以及搜索流量到底发生了什么变化。"
 pubDate: 2026-12-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "帕萨迪纳 玫瑰花车游行 商家"
 author: "Pasadena Works"
 tags: ["本地 SEO", "帕萨迪纳"]

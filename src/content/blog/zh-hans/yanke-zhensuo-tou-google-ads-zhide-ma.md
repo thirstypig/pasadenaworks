@@ -2,7 +2,7 @@
 title: 眼科视光诊所投 Google Ads 值得吗
 description: 有时候值得，而决定因素并不是广告本身。而是您能否说清哪些预约来自广告，以及验光究竟是产品，还是引流的由头。
 pubDate: 2027-05-17T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: 视光诊所 google 广告
 author: Pasadena Works
 tags:

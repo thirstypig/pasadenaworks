@@ -2,7 +2,7 @@
 title: 更换电子病历系统时，别把排班弄丢了
 description: 临床记录通常挺得过一次迁移。真正让诊所吃亏的，是预约排班、召回名单和未结余额。
 pubDate: 2027-05-10T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: 更换电子病历系统
 author: Pasadena Works
 tags:

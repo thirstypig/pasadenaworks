@@ -2,7 +2,7 @@
 title: Cambiar de expediente clínico sin perder la agenda
 description: 'Los registros clínicos suelen sobrevivir a una migración. La agenda de citas, la lista de seguimiento y los saldos pendientes son donde los consultorios salen realmente perjudicados.'
 pubDate: 2027-05-10T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: cambiar de sistema de expediente clinico
 author: Pasadena Works
 tags:

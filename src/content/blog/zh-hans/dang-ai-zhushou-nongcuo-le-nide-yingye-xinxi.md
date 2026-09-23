@@ -2,7 +2,7 @@
 title: 当 AI 助手把您的经营信息说错了
 description: 那句回答您改不了，也没有一条客服热线可打。您能改的，是它所依据的那些来源；这是一种更慢的修法，而它是唯一存在的修法。
 pubDate: 2027-11-29T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai 助手 商家信息错误
 author: Pasadena Works
 tags:

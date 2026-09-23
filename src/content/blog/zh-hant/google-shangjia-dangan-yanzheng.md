@@ -2,7 +2,7 @@
 title: "如何聲明擁有權並修好您的 Google 商家檔案"
 description: "如何聲明擁有權並完成 Google 商家檔案驗證，以及在類別、營業時間和服務區域上悄悄讓小生意虧錢的那些錯。"
 pubDate: 2026-09-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "Google 商家檔案驗證"
 author: "Pasadena Works"
 tags: ["在地搜尋", "Google 商家檔案"]

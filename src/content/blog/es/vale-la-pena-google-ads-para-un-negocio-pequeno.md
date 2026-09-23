@@ -2,7 +2,7 @@
 title: "¿Vale la pena Google Ads para un negocio pequeño?"
 description: "Google Ads funciona para negocios pequeños con buen margen y alguien revisando la cuenta cada semana. Esto es lo que cuesta y cuándo no se paga."
 pubDate: 2026-10-26T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: "vale la pena google ads negocio pequeño"
 author: "Pasadena Works"
 tags: ["google ads", "presupuesto de publicidad"]

@@ -2,7 +2,7 @@
 title: 怎么判断 AI 搜索有没有给您带来客户
 description: 多数情况下您没法把它单独拆出来，而弄明白"为什么拆不出来"，比任何一块仪表盘都更有用。您能读的是变化的形状，以及助手确实留下痕迹的那几处。
 pubDate: 2027-06-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 怎么衡量 ai 搜索带来的流量
 author: Pasadena Works
 tags:

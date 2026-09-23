@@ -2,7 +2,7 @@
 title: Local SEO for medical practices
 description: 'Google says local ranking comes down to three things, and only one of them is something a practice can meaningfully change. Here is where the effort actually pays.'
 pubDate: 2027-02-22T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: local seo for doctors
 author: Pasadena Works
 tags:

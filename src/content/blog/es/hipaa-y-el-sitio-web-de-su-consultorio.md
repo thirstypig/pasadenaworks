@@ -2,7 +2,7 @@
 title: 'HIPAA y el sitio web de su consultorio: dónde se tropieza la gente'
 description: 'Un tribunal federal anuló en 2024 la lectura más agresiva de las reglas sobre píxeles de seguimiento. Eso cambió menos de lo que dicen los proveedores, y menos de lo que esperan los consultorios.'
 pubDate: 2027-03-29T00:00:00.000Z
-pillar: websites
+pillar: digitize
 targetKeyword: hipaa sitio web consultorio
 author: Pasadena Works
 tags:

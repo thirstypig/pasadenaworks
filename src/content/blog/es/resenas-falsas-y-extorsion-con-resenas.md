@@ -2,7 +2,7 @@
 title: 'Reseñas falsas y extorsión con reseñas: qué prohíbe realmente la norma'
 description: 'La FTC prohibió seis prácticas concretas en 2024, y dos de ellas son cosas que los negocios pequeños bienintencionados hacen sin advertirlo. Amenazar a quien deja una reseña negativa es una.'
 pubDate: 2027-10-04T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: norma ftc resenas falsas negocio pequeno
 author: Pasadena Works
 tags:

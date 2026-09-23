@@ -2,7 +2,7 @@
 title: Are Google Ads worth it for an optometrist?
 description: 'Sometimes, and the deciding factor is not the ads. It is whether you can tell which appointments came from them, and whether the exam is the product or the loss leader.'
 pubDate: 2027-05-17T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: google ads for optometrists
 author: Pasadena Works
 tags:

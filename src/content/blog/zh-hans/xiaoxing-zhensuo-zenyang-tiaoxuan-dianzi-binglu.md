@@ -2,7 +2,7 @@
 title: 小型诊所该怎样挑选电子病历系统
 description: 演示是一场表演，功能清单是噪音。有三个问题能预测您在第三年是否还满意，而其中一个问的是怎样离开。
 pubDate: 2027-04-05T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: 诊所电子病历系统怎么选
 author: Pasadena Works
 tags:

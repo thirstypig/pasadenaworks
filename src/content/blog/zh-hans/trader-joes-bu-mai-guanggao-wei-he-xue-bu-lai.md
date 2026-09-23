@@ -2,7 +2,7 @@
 title: Trader Joe's 不买广告，可这套为什么学不来
 description: 那份口碑是真的。而它建立在 661 家门店、四千个商品，以及一个独立小店够不着的自有品牌比例之上——这恰恰是那条建议略去不提的部分。
 pubDate: 2027-08-16T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: 小生意 口碑营销
 author: Pasadena Works
 tags:

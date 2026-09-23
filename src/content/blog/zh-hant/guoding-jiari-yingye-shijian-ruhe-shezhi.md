@@ -2,7 +2,7 @@
 title: Google 商家檔案上的國定假日營業時間如何設定
 description: 這是整份清單上最小的一件活兒，也是最能避免卻最常引發惱火的一件。請一口氣把整季的特殊營業時間設完，趕在有人開車走到一扇鎖著的門前之前。
 pubDate: 2027-11-15T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google 商家檔案 國定假日營業時間
 author: Pasadena Works
 tags:

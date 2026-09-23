@@ -2,7 +2,7 @@
 title: Cuando un asistente de IA se equivoca con los datos de su negocio
 description: 'No puede editar la respuesta, y no existe una línea de soporte para ella. Lo que sí puede editar son las fuentes de las que bebió, que constituye un arreglo más lento y el único que existe.'
 pubDate: 2027-11-29T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: asistente de ia informacion incorrecta negocio
 author: Pasadena Works
 tags:

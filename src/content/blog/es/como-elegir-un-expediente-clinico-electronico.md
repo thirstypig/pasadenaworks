@@ -2,7 +2,7 @@
 title: 'Cómo elegir un expediente clínico electrónico para un consultorio pequeño'
 description: 'La demostración es una actuación y la lista de funciones es ruido. Tres preguntas predicen si seguirá contento en el tercer año, y una de ellas trata sobre marcharse.'
 pubDate: 2027-04-05T00:00:00.000Z
-pillar: consulting
+pillar: digitize
 targetKeyword: elegir expediente clinico electronico
 author: Pasadena Works
 tags:

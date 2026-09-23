@@ -2,7 +2,7 @@
 title: ¿Por qué no aparece mi negocio cuando alguien le pregunta a ChatGPT?
 description: 'Los clientes preguntan a los asistentes en lugar de buscar. El motivo por el que su negocio falta suele ser corriente, y la solución no es la que le están vendiendo.'
 pubDate: 2027-01-18T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: mi negocio no aparece en busquedas con ia
 author: Pasadena Works
 tags:

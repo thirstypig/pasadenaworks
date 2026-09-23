@@ -2,7 +2,7 @@
 title: Marketing to the San Gabriel Valley's Lunar New Year crowd
 description: 'Lunar New Year 2027 falls on February 6. Here''s how SGV restaurants, salons, and shops in Monterey Park, Alhambra, and arcadia should market to it.'
 pubDate: 2027-01-04T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: lunar new year marketing san gabriel valley
 author: Pasadena Works
 tags:

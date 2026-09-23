@@ -2,7 +2,7 @@
 title: 獨立店家如何在在地搜尋上贏過連鎖
 description: 不是去爭那些連鎖必贏的字詞，而是成為一個街區裡最準確、反應最快的那份商家檔案——那恰恰是一個中央行銷部門做不到的事。
 pubDate: 2027-06-28T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 獨立店家 在地搜尋 贏過連鎖
 author: Pasadena Works
 tags:

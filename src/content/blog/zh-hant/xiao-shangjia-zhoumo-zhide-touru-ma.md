@@ -2,7 +2,7 @@
 title: 小商家週六，值得投入嗎
 description: 對一家當天就能讓人走進來買東西的店來說，值得；而準備工作比那一天本身更要緊。對多數服務型生意來說，老實講，作用不大——同一個下午，有更好的用法。
 pubDate: 2027-11-08T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: 小商家週六 值得投入嗎
 author: Pasadena Works
 tags:

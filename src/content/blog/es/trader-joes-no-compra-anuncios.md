@@ -2,7 +2,7 @@
 title: "Trader Joe's no compra anuncios. Por qué es un mal modelo para copiar."
 description: 'El boca a boca es real. Se apoya en 661 tiendas, cuatro mil productos y una proporción de marca propia inalcanzable para un independiente, que es la parte que el consejo omite.'
 pubDate: 2027-08-16T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: marketing boca a boca negocio pequeno
 author: Pasadena Works
 tags:

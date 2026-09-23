@@ -2,7 +2,7 @@
 title: "Trader Joe's doesn't buy ads. Why that's a bad model to copy."
 description: 'The word of mouth is real. It rests on 661 stores, four thousand products and a private label share no independent can reach, which is the part the advice leaves out.'
 pubDate: 2027-08-16T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: word of mouth marketing small business
 author: Pasadena Works
 tags:

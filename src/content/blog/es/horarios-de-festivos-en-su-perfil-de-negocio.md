@@ -2,7 +2,7 @@
 title: Horarios de festivos en su Perfil de Negocio de Google
 description: 'La tarea más pequeña de la lista y la que produce el enfado más evitable. Configure los horarios especiales de toda la temporada de una sentada, antes de que alguien conduzca hasta una puerta cerrada.'
 pubDate: 2027-11-15T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: horario de festivos perfil de negocio google
 author: Pasadena Works
 tags:

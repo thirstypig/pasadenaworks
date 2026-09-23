@@ -2,7 +2,7 @@
 title: 虚假评价与评价勒索：这条规则实际禁止的是什么
 description: 联邦贸易委员会在 2024 年禁止了六种具体做法，其中有两种，是心怀善意的小生意在毫无察觉的情况下正在做的。威胁一位留下差评的人，就是其中之一。
 pubDate: 2027-10-04T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ftc 虚假评价规则 小企业
 author: Pasadena Works
 tags:

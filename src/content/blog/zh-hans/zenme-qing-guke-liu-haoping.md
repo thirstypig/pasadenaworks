@@ -2,7 +2,7 @@
 title: "怎么请顾客留好评又不尴尬"
 description: "该怎么说、什么时候说，以及 Google 和 Yelp 真正会执行的规则——包括那条会让商家资料被停用的。"
 pubDate: 2026-09-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "怎么请顾客留好评"
 author: "Pasadena Works"
 tags: ["评价", "本地搜索"]

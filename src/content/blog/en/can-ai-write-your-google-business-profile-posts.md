@@ -2,7 +2,7 @@
 title: Can AI write your Google Business Profile posts?
 description: 'It can draft them, and a generic post is worse than no post at all. The constraint is not the writing; it is that these posts are only worth publishing when something is genuinely true this week.'
 pubDate: 2027-05-24T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai for google business profile posts
 author: Pasadena Works
 tags:

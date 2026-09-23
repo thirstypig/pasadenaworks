@@ -2,7 +2,7 @@
 title: 當同業檢舉了您的商家檔案，或者悄悄改了它
 description: 任何人都能對您的 Google 商家檔案提出修改建議，而這個改動可能在您聽說之前就已生效。防守的關鍵是及早發現——那是一項設定，而非一種本事。
 pubDate: 2027-10-11T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: 同業改了我的 google 商家檔案
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: 'Suspensiones del Perfil de Negocio de Google: qué deja fuera a un negocio real'
 description: 'Casi siempre una edición que alguien hizo, no una mala conducta. El patrón del proceso de restablecimiento indica que las suspensiones siguen a los cambios, lo cual le dice cuándo tener cuidado.'
 pubDate: 2027-09-20T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: perfil de negocio de google suspendido
 author: Pasadena Works
 tags:

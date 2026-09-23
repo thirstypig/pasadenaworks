@@ -2,7 +2,7 @@
 title: "聖蓋博谷的農曆新年生意，該怎麼做行銷"
 description: "2027 年農曆新年是 2 月 6 日。蒙特利公園、阿罕布拉、亞凱迪亞一帶的餐廳、美髮店和店家，該怎麼提前準備。"
 pubDate: 2027-01-04T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: "聖蓋博谷 農曆新年 行銷"
 author: "Pasadena Works"
 tags: ["農曆新年", "聖蓋博谷"]

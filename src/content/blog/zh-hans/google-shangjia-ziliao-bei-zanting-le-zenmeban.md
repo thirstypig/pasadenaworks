@@ -2,7 +2,7 @@
 title: Google 商家资料被暂停：真实经营的店是怎么被关在门外的
 description: 几乎总是某个人做的一次编辑，而非什么不当行为。恢复流程的记录显示：暂停紧跟着改动而来——这也就告诉了您，何时该小心。
 pubDate: 2027-09-20T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google 商家资料被暂停
 author: Pasadena Works
 tags:

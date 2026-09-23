@@ -2,7 +2,7 @@
 title: "Why customers can't find your business on Google"
 description: "The four most common reasons a real, legitimate business doesn't show up in local Google search results, and what to fix first."
 pubDate: 2026-06-01
-pillar: search
+pillar: websites
 targetKeyword: "why can't customers find my business on google"
 draft: false
 author: "Pasadena Works"

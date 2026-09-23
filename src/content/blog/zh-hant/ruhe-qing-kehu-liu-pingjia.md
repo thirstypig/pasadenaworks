@@ -2,7 +2,7 @@
 title: "如何請客戶留評價又不尷尬"
 description: "該怎麼說、什麼時候說，以及 Google 和 Yelp 真正會執行的規則——包括那條會讓商家檔案被停權的。"
 pubDate: 2026-09-21T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "如何請客戶留評價"
 author: "Pasadena Works"
 tags: ["評價", "在地搜尋"]

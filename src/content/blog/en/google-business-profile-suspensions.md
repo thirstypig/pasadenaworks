@@ -2,7 +2,7 @@
 title: 'Google Business Profile suspensions: what gets a real business shut out'
 description: 'A documented set of ordinary edits - a name change, an address move, a duplicate listing - can trigger a suspension without any misconduct or rival report involved. Google names these specifically in its own guidelines, which tells you when to be careful.'
 pubDate: 2027-09-20T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google business profile suspended
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: Google 商家资料上的节假日营业时间怎么设
 description: 这是整份清单上最小的一件活儿，也是最能避免却最常引发恼火的一件。请一口气把整个季节的特殊营业时间设完，赶在有人开车走到一扇锁着的门前之前。
 pubDate: 2027-11-15T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google 商家资料 节假日营业时间
 author: Pasadena Works
 tags:

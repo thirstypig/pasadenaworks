@@ -2,7 +2,7 @@
 title: What Google's AI Overviews changed for a local business
 description: 'Less than the panic suggests, and something real. What changed is chiefly how you can measure it, and Google now reports that separately.'
 pubDate: 2027-02-01T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: google ai overviews small business impact
 author: Pasadena Works
 tags:

@@ -2,7 +2,7 @@
 title: AI 能替您寫 Google 商家檔案的貼文嗎
 description: 它能起草，而一則泛泛而談的貼文比不發更糟。真正的限制不在寫作，而在於這類貼文只有當本週確實有事可說時才值得發。
 pubDate: 2027-05-24T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: ai 寫 google 商家檔案貼文
 author: Pasadena Works
 tags:

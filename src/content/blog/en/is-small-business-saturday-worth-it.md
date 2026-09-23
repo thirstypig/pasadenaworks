@@ -2,7 +2,7 @@
 title: 'Small Business Saturday: worth the effort?'
 description: 'For a shop with something to sell that day, yes, and the preparation matters more than the day. For most service businesses, honestly, not much — and there is a better use of the same afternoon.'
 pubDate: 2027-11-08T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: is small business saturday worth it
 author: Pasadena Works
 tags:

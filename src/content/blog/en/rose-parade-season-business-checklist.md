@@ -2,7 +2,7 @@
 title: 'Getting ready for Rose Parade season: what Pasadena businesses should check every December'
 description: 'A December checklist for Pasadena businesses: Google Business Profile hours, parade-route access info, staffing, and what actually changes in search traffic.'
 pubDate: 2026-12-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: rose parade pasadena business checklist
 author: Pasadena Works
 tags:

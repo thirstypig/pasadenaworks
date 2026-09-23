@@ -2,7 +2,7 @@
 title: '¿Valen la pena los Google Ads para un optometrista?'
 description: 'A veces, y el factor decisivo no son los anuncios. Es si usted puede saber qué citas vinieron de ellos, y si el examen es el producto o el gancho.'
 pubDate: 2027-05-17T00:00:00.000Z
-pillar: ads
+pillar: websites
 targetKeyword: google ads para optometristas
 author: Pasadena Works
 tags:

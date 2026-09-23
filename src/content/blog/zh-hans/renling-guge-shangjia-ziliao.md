@@ -2,7 +2,7 @@
 title: "怎么申领并修好您的 Google 商家资料"
 description: "怎么申领和验证 Google 商家资料（谷歌商家），以及在类别、营业时间和服务区域上悄悄让小生意亏钱的那些错。"
 pubDate: 2026-09-07T00:00:00.000Z
-pillar: search
+pillar: websites
 targetKeyword: "谷歌商家资料认领"
 author: "Pasadena Works"
 tags: ["本地搜索", "Google 商家资料"]

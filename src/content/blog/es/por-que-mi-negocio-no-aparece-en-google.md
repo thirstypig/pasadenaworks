@@ -2,7 +2,7 @@
 title: "Por qué tu negocio no aparece en Google"
 description: "Las cuatro razones más comunes por las que un negocio real y legítimo no aparece en los resultados de búsqueda local de Google, y qué arreglar primero."
 pubDate: 2026-06-01
-pillar: search
+pillar: websites
 targetKeyword: "por qué mi negocio no aparece en Google"
 draft: false
 author: "Pasadena Works"
