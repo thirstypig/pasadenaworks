@@ -569,3 +569,66 @@ files, with the two Chinese ones kept deliberately ignorant of each other's
 wording so the Taiwan and mainland lexis would not converge. It did not: the
 same sentence reads 普通话 in Simplified and 華語 in Traditional, 前台 against
 櫃檯, 数字化 against 數位化.
+
+## One blog pillar per live service, and the corpus triaged (2026-09-23)
+
+`PILLARS` was still `websites / search / consulting / ads` — the lineup from
+before the 2026-09-14 repositioning. `search` and `ads` had been folded into
+Get more patients on that date but survived as blog pillars, and
+`PILLAR_SERVICE` collapsed three of the four onto one service. The result was
+that **48 of 68 posts (71%) pointed at Get more patients while Digitize the
+office and Transition Planning had no blog post in any language.** A taxonomy
+that names retired services also hides the gaps.
+
+Now one pillar per live service, with `PILLAR_SERVICE` one-to-one. 116 files
+moved — 29 posts × 4 locales, matched by `translationKey` so no locale was
+left on a pillar its English twin had abandoned. A pillar is never rendered to
+a reader, so this needed no translated strings; it only chooses which service
+a post's closing box links to.
+
+`tina/config.ts` imports `PILLARS` rather than restating it, so Tina's options
+followed automatically. The lock still had to be regenerated and committed —
+and checked the way this file says to check it, by diffing the lock's `schema`
+member (`bfc63863dde2` → `46860b4b7b1f`) rather than trusting that the file
+changed, since a `@tinacms/graphql` version drift moves the hash on its own.
+
+**All 61 unpublished posts are triaged** into KEEP / ADAPT / REPLACE in
+`CONTENT-PLAN.md` — 6 / 52 / 3. The corpus needed far less rewriting than "68
+posts aimed at small businesses" implied: only three subjects do not survive
+the repositioning at all. The balance target was reported rather than forced,
+because `transition` is held at zero until `todos/046` (e) is answered and
+`digitize` reaching 14 would have cost eight posts from the AI-search cluster.
+
+Two posts carry a legal hazard and only one is what it looks like.
+`2026-11-16` "How to fire a customer" is REPLACE, never adapt — dismissing a
+patient carries notice and continuity-of-care obligations. `2027-01-11` "When
+to walk away from a bad-fit client" reads like the same trap and is not, once
+re-aimed to walking away from an insurance CONTRACT.
+
+**The four posts due first are re-aimed in all four languages**, the first
+publishing 2026-09-28. Two of them argued from the wrong Census variable: the
+**Hispanic share** of a city in one, the **Asian share** in the other — the
+latter bundling households running in Mandarin, Cantonese, Korean, Vietnamese
+and English. Ethnicity is not language. Both now use table **C16001, language
+spoken at home**, which is what the city pages already cite, and the result is
+a better argument as well as a truer one: Spanish runs Monrovia 30.1% down to
+San Marino 3.2%, a tenfold spread.
+
+C16001 publishes a single Chinese column, and Mandarin and Cantonese are not
+mutually intelligible spoken. On paper that barely matters, since written
+Chinese serves speakers of either — which is exactly why a translated FORM is
+such good value — but on the telephone it decides everything. That is why
+`2026-10-12` moved pillar `websites` → `digitize`.
+
+The `spanish-website` polarity tripwire was **repointed, not deleted**: it
+pinned a phrase from a section the rewrite removed, so it failed loudly rather
+than passing on a claim that no longer existed. It now pins the post's new
+load-bearing argument — the forms come before the website — verified by
+injecting the reversal into the zh-Hant file and watching both the
+expected-phrase and forbidden-inverse checks fire.
+
+Two tables of Census figures are the first tables in the blog corpus, which
+exposed that the `table` rule in `global.css` had cell padding for nobody:
+"Monterey Park16.4%". The defensive scroll rules written before any table
+existed held fine at 400px; the ordinary case was simply never covered. Caught
+by loading the page, since a DOM assertion cannot see two cells colliding.
