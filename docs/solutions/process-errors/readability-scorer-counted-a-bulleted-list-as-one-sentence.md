@@ -283,6 +283,51 @@ falsified before being kept: removing the exclusion fails the first, renaming
 the class in `Post.astro` fails the second. The marker test also asserts it
 found posts at all, so it cannot pass vacuously.
 
+## A fourth instance, 2026-09-23: the exclusion was coupled to its only caller
+
+The closing box (`EndCta.astro`) is furniture, so `mainProse()` drops it
+before scoring. It did that by matching:
+
+```js
+/<div class="end-cta[\s\S]*?<\/div>\s*<\/div>/
+```
+
+Note the trailing `\s*</div>`. That is not the box's own closing tag — the box
+is flat by design and has no nested `<div>`. It is the closing tag of
+**`Post.astro`'s wrapper around the box**. The exclusion therefore depended on
+the box's SURROUNDINGS rather than on the box.
+
+That held for as long as blog posts were the only caller. On 2026-09-23 the
+same box was added to the city pages, where it sits inside a `<section>` with
+a `<p class="page-back">` after it rather than a `</div>`. The regex matched
+**nothing at all**, and the entire call to action — heading, blurb, service
+link, button text, telephone number — was scored as prose.
+
+**Measured when found**, because "it looks excluded" is not evidence:
+
+| | old regex removes | new regex removes |
+|---|---|---|
+| blog post | 890 chars | 884 |
+| city page | **0 chars** | 891 |
+
+The six-character difference on the blog post is the wrapper's own closing
+tag, which carries no text. Matching to the box's own first `</div>` is
+correct precisely because `EndCta.astro` keeps its children as siblings, and
+says so in a comment for this reason.
+
+Re-measured across the whole built corpus before keeping it, as every
+correction to this instrument must be: 23 of 30 English pages in band, and the
+seven outside are the same legal, glossary and index pages as before. No city
+page among them, no blog post moved.
+
+**The generalizable part.** The failure was silent in the safest possible
+direction — nothing was deleted, so no text went missing; the score simply
+included furniture. The only tell was a number that should have been ~890 and
+was 0. A guard can be correct and still be coupled to its only caller, and the
+second caller is the test. Three separate instances of that shape landed in one
+day: this, a Chinese router that named one project id, and a test asserting a
+key that could never exist.
+
 ## Related
 
 - [A metric introduced to govern writing corrupts that writing](a-writing-metric-corrupts-the-prose-it-governs.md): the two scoring paths, the half-grade cross-check, and the "measure which one is broken" rule this fix followed.
