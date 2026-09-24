@@ -537,3 +537,118 @@ Then check exactly two things, monthly:
 Expect roughly nothing for three months. Local SEO compounds slowly and then
 noticeably. If you're checking weekly and feeling discouraged, check monthly
 instead — the data genuinely isn't meaningful at weekly resolution.
+
+## Triage of the 61 unpublished posts (2026-09-23)
+
+Every unpublished post gets one verdict. Recorded here rather than in a
+conversation, because the work is staged over fifteen months.
+
+- **KEEP** — already right for a practice. Change nothing.
+- **ADAPT** — same subject and usually the same slug. Customers become
+  patients, examples become clinical, and the closing argument points at the
+  right service. About a paragraph of change, plus three translations.
+- **REPLACE** — the subject does not survive the repositioning. New title,
+  new slug, new post, new translations.
+
+Work in DATE ORDER, about eight weeks ahead of the publishing front. The
+`→` column is the pillar the post should end on; where it differs from the
+pillar it carries today, the frontmatter changes with the rewrite.
+
+| Date | Post | Verdict | → | Note |
+|---|---|---|---|---|
+| 2026-09-28 | Should your website be in Spanish too? | **ADAPT** | `·` | Patients, not customers. Add the intake-form half — a Spanish page is the cheap part. |
+| 2026-10-05 | Why Google Translate on your website does nothing for SEO | **ADAPT** | `·` | Same argument, unchanged; examples become clinical. |
+| 2026-10-12 | Reaching Chinese-speaking customers in the San Gabriel Val | **ADAPT** | `digitize` | Re-aim from the website to the FRONT DESK and intake forms — the Monterey Park city-page argument, which is the expensive half. |
+| 2026-10-19 | Simplified or Traditional Chinese — which does your busine | **ADAPT** | `·` | The city pages already make this case; reuse their framing. |
+| 2026-10-26 | Are Google Ads worth it for a small business? | **ADAPT** | `·` | For a practice. Pairs with the optometrist version in May. |
+| 2026-11-02 | What to do when your website traffic drops | **ADAPT** | `·` | Generic; examples become clinical. |
+| 2026-11-09 | Which service should you stop offering? | **ADAPT** | `·` | Becomes sharper: which PROCEDURES to stop offering. |
+| 2026-11-16 | How to fire a customer without burning the relationship | **REPLACE** | `digitize` | ⚠ Patient dismissal is regulated — notice periods, continuity of care. Never retitle. Replace with a Digitize subject. |
+| 2026-11-23 | Should you redesign your website, or just fix what''s brok | **ADAPT** | `·` | Generic. |
+| 2026-12-07 | Getting ready for Rose Parade season: what Pasadena busine | **ADAPT** | `·` | Genuinely local: Pasadena practices face closures and access problems that week. |
+| 2026-12-14 | Do you need an online store, or just a way to take orders? | **REPLACE** | `digitize` | A practice needs online booking and intake, not a store. Natural Digitize replacement. |
+| 2027-01-04 | Marketing to the San Gabriel Valley's Lunar New Year crowd | **ADAPT** | `·` | Real in the SGV: clinic hours and closures over the holiday. |
+| 2027-01-11 | How to know when to walk away from a bad-fit client | **ADAPT** | `·` | ⚠ Do NOT make this about declining patients. Re-aim to walking away from an INSURANCE CONTRACT — a real decision, and safe. |
+| 2027-01-18 | Why doesn't my business come up when someone asks ChatGPT? | **ADAPT** | `·` |  |
+| 2027-01-25 | Should you let ChatGPT write your website copy? | **ADAPT** | `·` |  |
+| 2027-02-01 | What Google's AI Overviews changed for a local business | **ADAPT** | `·` |  |
+| 2027-02-08 | People are getting answers without clicking. What that mea | **ADAPT** | `·` |  |
+| 2027-02-15 | What a physician's website actually needs | **KEEP** | `·` | Already practice-specific. |
+| 2027-02-22 | Local SEO for medical practices | **KEEP** | `·` | Already practice-specific. |
+| 2027-03-01 | What AI is genuinely good at for a small business, and wha | **ADAPT** | `digitize` | Re-aim to AI inside the office — notes, scheduling, reminders. |
+| 2027-03-08 | Who actually owns your website? | **ADAPT** | `·` |  |
+| 2027-03-15 | What to do when your web developer stops answering | **ADAPT** | `·` |  |
+| 2027-03-22 | How to show up in ChatGPT, Claude, Gemini and Perplexity a | **ADAPT** | `·` |  |
+| 2027-03-29 | HIPAA and your website: the parts that trip people up | **KEEP** | `·` | Already practice-specific. |
+| 2027-04-05 | Choosing an EHR: what actually matters for a small practic | **KEEP** | `·` | Already practice-specific. |
+| 2027-04-12 | Using AI to answer customer enquiries without sounding lik | **ADAPT** | `digitize` | The front desk and the telephone — squarely Digitize. |
+| 2027-04-19 | How to get your domain name back | **ADAPT** | `consulting` |  |
+| 2027-04-26 | What should SEO actually cost? | **ADAPT** | `·` |  |
+| 2027-05-03 | Is "GEO" real, or SEO with a new name? | **ADAPT** | `·` |  |
+| 2027-05-10 | Switching EHR without losing your schedule | **KEEP** | `·` | Already practice-specific. |
+| 2027-05-17 | Are Google Ads worth it for an optometrist? | **KEEP** | `·` | Already practice-specific. |
+| 2027-05-24 | Can AI write your Google Business Profile posts? | **ADAPT** | `·` |  |
+| 2027-05-31 | How to tell whether you're being overcharged for a website | **ADAPT** | `·` |  |
+| 2027-06-07 | Website accessibility lawsuits in California: what's actua | **ADAPT** | `consulting` |  |
+| 2027-06-14 | Making your site accessible without rebuilding it | **ADAPT** | `consulting` |  |
+| 2027-06-21 | How to tell whether AI search is sending you customers | **ADAPT** | `·` |  |
+| 2027-06-28 | How an independent outranks a chain in local search | **ADAPT** | `·` | Strong re-aim: an independent practice against a hospital-owned group. |
+| 2027-07-05 | AI-generated photos on your website: when it backfires | **ADAPT** | `·` |  |
+| 2027-07-12 | What does a marketing consultant charge, and for what? | **ADAPT** | `·` |  |
+| 2027-07-19 | Websites that barely change: what restraint is actually wo | **ADAPT** | `·` |  |
+| 2027-07-26 | Does your website need an llms.txt file? | **ADAPT** | `·` |  |
+| 2027-08-02 | Own your name online: what the Sriracha fight teaches smal | **ADAPT** | `consulting` |  |
+| 2027-08-09 | What to tell an employee who wants to "use AI" for marketi | **ADAPT** | `digitize` | ⚠ For a practice this is a PHI question, not a marketing one. Staff putting patient details into a chatbot. Differentiated and worth doing properly. |
+| 2027-08-16 | Trader Joe's doesn't buy ads. Why that's a bad model to co | **ADAPT** | `·` | Re-aim to referral-based growth. |
+| 2027-08-23 | What an ADA website lawsuit actually looks like, read from | **ADAPT** | `consulting` |  |
+| 2027-08-30 | The California businesses sued over their websites, and wh | **ADAPT** | `consulting` |  |
+| 2027-09-06 | Accessibility overlay widgets did not stop the lawsuits | **ADAPT** | `consulting` |  |
+| 2027-09-13 | What "ADA compliant" vendors promise, against what the rec | **ADAPT** | `·` |  |
+| 2027-09-20 | Google Business Profile suspensions: what gets a real busi | **ADAPT** | `·` |  |
+| 2027-09-27 | Q4 checklist: what to fix before the holiday rush | **ADAPT** | `digitize` | Re-aim to the December benefits rush — deductibles resetting, capacity. A real practice phenomenon. |
+| 2027-10-04 | Fake reviews and review extortion: what the rule actually  | **ADAPT** | `·` |  |
+| 2027-10-11 | When a competitor reports your listing, or quietly edits i | **ADAPT** | `·` |  |
+| 2027-10-18 | Businesses that lost their own domain name, and how | **ADAPT** | `consulting` |  |
+| 2027-10-25 | What happens to your site when your developer's company di | **ADAPT** | `·` |  |
+| 2027-11-01 | Disputed handovers: who owned the website, according to th | **ADAPT** | `·` |  |
+| 2027-11-08 | Small Business Saturday: worth the effort? | **REPLACE** | `digitize` | A retail holiday has no practice analogue. Weakest post in the run. |
+| 2027-11-15 | Holiday hours on your Google Business Profile | **ADAPT** | `·` |  |
+| 2027-11-22 | What published research says about how people actually use | **ADAPT** | `·` |  |
+| 2027-11-29 | When an assistant gets your business details wrong | **ADAPT** | `·` |  |
+| 2027-12-06 | What agencies actually charge, and why the \"rate surveys\ | **ADAPT** | `·` |  |
+| 2027-12-13 | What owners report about their websites: the survey data | **ADAPT** | `·` |  |
+
+**Verdicts:** 6 keep · 52 adapt · 3 replace.
+
+**Where that lands, against the spec's target:**
+
+| Pillar | Triage | Target | |
+|---|---|---|---|
+| `websites` | 30 | ~24 | +6 |
+| `consulting` | 20 | ~18 | +2 |
+| `digitize` | 11 | ~14 | -3 |
+| `transition` | 0 | ~3 | -3 |
+
+**The gap is reported, not closed, and that is deliberate.** The spec says
+the balance is a target rather than a quota: where a post genuinely belongs
+in another pillar, the post wins and the table moves. Two honest reasons it
+moved:
+
+- **`transition` is 0 because `todos/046` (e) is unanswered.** Transition
+  Planning describes preparation only until the attorney rules on broker
+  licensing. Writing three posts into that gap now would be writing the
+  claim the todo is holding. The three arrive when the answer does.
+- **`digitize` reaches 11, not 14.** Getting to 14 means three more
+  REPLACEs, and the only remaining candidates sit inside the AI-search
+  cluster — which the spec protects by name, on the grounds that it is the
+  most differentiated writing on the site. Trading three of those for a
+  quota is the trade the spec already rejected once at 24.
+
+Digitize the office still goes from **0 posts to 11**, which was the point.
+
+**Two posts carry a legal hazard and are marked in the table.** 2026-11-16
+is REPLACE, never adapt: dismissing a patient is regulated, with notice and
+continuity-of-care obligations. 2027-01-11 looks like the same hazard and is
+not — re-aimed to walking away from an insurance contract, which is a real
+decision and carries none of it.
+

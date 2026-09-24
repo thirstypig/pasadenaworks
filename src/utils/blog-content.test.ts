@@ -345,14 +345,28 @@ const POLARITY_TRIPWIRES: {
 }[] = [
   {
     translationKey: 'spanish-website',
-    note: 'a Spanish site pays off LESS for national-referral, niche-ecommerce and B2B-procurement businesses',
+    // REPOINTED 2026-09-23. This tripwire used to pin "pays off considerably
+    // less" — a claim about which BUSINESS TYPES a Spanish site suits. The
+    // post was re-aimed at practices and that whole section went, so the
+    // tripwire failed loudly rather than passing on a claim that no longer
+    // existed. It now pins the post's new load-bearing argument, which is the
+    // one most likely to ship reversed: the FORMS matter more than the
+    // WEBSITE. A translation saying "do the website first" inverts the
+    // article while reading perfectly well.
+    note: 'the FORMS come before the WEBSITE — if only one is affordable, translate the intake paperwork',
     expected: {
-      en: 'pays off considerably less',
-      es: 'Se paga considerablemente menos',
-      'zh-hant': '回報便低得多',
-      'zh-hans': '回报便低得多',
+      en: 'translate the forms',
+      es: 'traduzca los formularios',
+      'zh-hant': '請先翻譯表單',
+      'zh-hans': '请翻译表格',
     },
-    forbidden: ['划算得多', '更划算', 'más rentable', 'pays off considerably more'],
+    forbidden: [
+      'translate the website first',
+      'traduzca el sitio primero',
+      'traduzca primero el sitio',
+      '先翻譯網站',
+      '先翻译网站',
+    ],
   },
   // Added 2026-09-03 after a fidelity audit found each of these had drifted.
   // All four are the shape the automated checks cannot see: a comparative, a
